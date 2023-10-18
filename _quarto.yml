@@ -1,0 +1,83 @@
+project:
+  type: website
+  preview:
+    port: 4200
+    browser: true
+    watch-inputs: true
+    navigate: true
+    timeout: 300
+
+website:
+  title: "`pharmaverse` examples"
+  image: assets/img/pharmaverse.png
+  open-graph: true
+  favicon: assets/img/pharmaverse.png
+  search:
+    location: navbar
+    type: overlay
+    copy-button: true
+  page-navigation: true
+  reader-mode: true
+  site-url: https://github.com/pharmaverse/examples
+  repo-url: https://github.com/pharmaverse/examples
+  repo-branch: main
+  cookie-consent: true
+  navbar:
+    pinned: true
+    collapse: false
+    background: primary
+    search: true
+    right:
+      - icon: house
+        href: https://pharmaverse.org
+        aria-label: pharmaverse
+      - icon: slack
+        href: https://app.slack.com/client/T028PB489D3/
+        aria-label: Slack
+      - icon: github
+        href: https://github.com/pharmaverse/examples
+        aria-label: Repository
+  sidebar:
+    - id: sidebar
+      style: docked
+      collapse-level: 1
+      logo: assets/img/pharmaverse.png
+      border: true
+      contents:
+        - file: index.qmd
+          text: Introduction
+        - text: "---"
+        - auto: sdtm
+        - auto: adam
+        - auto: tlg
+        - text: "---"
+        - file: session.qmd
+
+format:
+  html:
+    search: true
+    theme:
+      light:
+        - flatly
+      dark:
+        - darkly
+    anchor-sections: true
+    smooth-scroll: true
+    code-link: true
+    code-fold: true
+    code-overflow: scroll
+    code-line-numbers: true
+    code-copy: true
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
+    code-block-bg: true
+    code-block-border-left: "#1482FA"
+    css: assets/css/style.scss
+    number-sections: false
+    lang: en-US
+    page-layout: full
+
+
+

@@ -1,0 +1,9 @@
+/.quarto/
+_cache
+cache
+*_cache
+*_files
+_freeze
+_site
+site_libs
+.DS_Store

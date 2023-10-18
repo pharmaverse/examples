@@ -1,0 +1,7 @@
+---
+title: "Session Info"
+---
+
+```{r sessioninfo, message=FALSE}
+sessionInfo()
+```
