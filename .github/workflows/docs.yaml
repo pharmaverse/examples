@@ -12,7 +12,6 @@ on:
   push:
     branches:
       - main
-      - init
   schedule:
     - cron: "10 10 * * *"
 
