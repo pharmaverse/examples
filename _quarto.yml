@@ -27,6 +27,13 @@ website:
     collapse: false
     background: primary
     search: true
+    right:
+      - icon: slack
+        href: https://app.slack.com/client/T028PB489D3/
+        aria-label: Slack
+      - icon: github
+        href: https://github.com/pharmaverse/examples
+        aria-label: Repository
   sidebar:
     - id: sidebar
       style: docked
