@@ -48,6 +48,7 @@ website:
         - auto: adam
         - auto: tlg
         - text: "---"
+        - file: session.qmd
 
 format:
   html:
