@@ -28,6 +28,9 @@ website:
     background: primary
     search: true
     right:
+      - icon: house
+        href: https://pharmaverse.org
+        aria-label: pharmaverse
       - icon: slack
         href: https://app.slack.com/client/T028PB489D3/
         aria-label: Slack
