@@ -201,8 +201,8 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sdtm/test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">test</span></a>
+  <a href="./sdtm/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
@@ -218,8 +218,8 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./adam/test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">test</span></a>
+  <a href="./adam/ADSL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSL</span></a>
   </div>
 </li>
       </ul>
@@ -274,9 +274,10 @@ cookieconsent.run({
 
 </header>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.</p>
-<p>Curabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.</p>
-<p>Maecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar.</p>
+<p>This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses. The examples use consistent source SDTMs to create ADaMs (such as <code>ADSL</code> and <code>ADAE</code>) and using these as input to produce some familiar Tables/Listings/Graphs and associated interactive displays (via Shiny).</p>
+<p>Other examples may be included here, e.g.&nbsp;for PK/PD or Therapeutic Area specifics (such as Oncology or Vaccines).</p>
+<p>Note that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.</p>
+<p>If you’d like to try out any of these examples in a live R session (via Posit Cloud) or if you are interesting in contributing an article to this book, then see more in our GitHub repo README.</p>
 
 
 <!-- -->
@@ -686,11 +687,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "`pharmaverse` examples"</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">---</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>Curabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>Maecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5"></a>This book contains end-to-end examples of using pharmaverse packages together to</span>
+<span id="cb1-6"><a href="#cb1-6"></a>achieve common clinical reporting analyses.</span>
+<span id="cb1-7"><a href="#cb1-7"></a>The examples use consistent source SDTMs to create ADaMs (such as <span class="in">`ADSL`</span> and <span class="in">`ADAE`</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>and using these as input to produce some familiar Tables/Listings/Graphs and</span>
+<span id="cb1-9"><a href="#cb1-9"></a>associated interactive displays (via Shiny).</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a>Other examples may be included here, e.g. for PK/PD or Therapeutic Area</span>
+<span id="cb1-12"><a href="#cb1-12"></a>specifics (such as Oncology or Vaccines).</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>Note that this examples book should only be used to show how collections of</span>
+<span id="cb1-15"><a href="#cb1-15"></a>packages can be used in conjunction - more thorough examples of individual</span>
+<span id="cb1-16"><a href="#cb1-16"></a>package usages would always be covered in the package site vignettes and no</span>
+<span id="cb1-17"><a href="#cb1-17"></a>need to repeat here.</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>If you'd like to try out any of these examples in a live R session (via Posit</span>
+<span id="cb1-20"><a href="#cb1-20"></a>Cloud) or if you are interesting in contributing an article to this book, then</span>
+<span id="cb1-21"><a href="#cb1-21"></a>see more in our GitHub repo README.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
