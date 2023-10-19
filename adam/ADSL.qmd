@@ -27,6 +27,7 @@ these objects from their source standard specification templates.
 ## Load Data and Required pharmaverse Packages
 
 The first step is to load our pharmaverse packages and input data.
+Below shows the versions of each of these package used.
 
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(metacore)
@@ -69,13 +70,20 @@ metacore$ds_vars
   
 ## Start Building Derivations
 
-The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don't you can call `metatools::build_from_derived()` with just an empty list and the error will tell you which datasets you need to supply. 
+The first derivation step we are going to do is to pull through all the columns
+that come directly from the SDTM datasets. You might know which datasets you are
+going to pull from directly already, but if you don't you can call
+`metatools::build_from_derived()` with just an empty list and the error will tell
+you which datasets you need to supply. 
 
 ```{r, error=TRUE}
 build_from_derived(metacore, list(), predecessor_only = FALSE)
 ```
 
-In this case all the columns come from `DM` so that is the only dataset we will pass into `metatools::build_from_derived()`. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
+In this case all the columns come from `DM` so that is the only dataset we will
+pass into `metatools::build_from_derived()`. The resulting dataset has all the
+columns combined and any columns that needed renaming between SDTM and ADaM are
+renamed.
 
 ```{r demographcis}
 adsl_preds <- build_from_derived(metacore, 
@@ -84,15 +92,27 @@ adsl_preds <- build_from_derived(metacore,
 head(adsl_preds, n=10)
 ```
 
-Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case `AGEGR1`. The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
+Now we have the base dataset, we can start to create some variables. We can start
+with creating the subgroups using the controlled terminology, in this case `AGEGR1`.
+The metacore object holds all the metadata needed to make `ADSL`. Part of that
+metadata is the controlled terminology, which can help automate the creation of
+subgroups. We can look into the `{metacore}` object and see the controlled
+terminology for `AGEGR1`.
 
 ```{r}
 get_control_term(metacore, variable = AGEGR1)
 ```
 
-Because this controlled terminology is written in a fairly standard format we can automate the creation of `AGEGR1`. The function `metatools::create_cat_var()` takes in a `{metacore}` object, a reference variable - in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly. 
+Because this controlled terminology is written in a fairly standard format we
+can automate the creation of `AGEGR1`. The function `metatools::create_cat_var()`
+takes in a `{metacore}` object, a reference variable - in this case `AGE` because
+that is the continuous variable `AGEGR1` is created from, and the name of the
+sub-grouped variable. It will take the controlled terminology from the sub-grouped
+variable and group the reference variables accordingly. 
 
-Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
+Using a similar philosophy we can create the numeric version of `RACE` using the
+controlled terminology stored in the `{metacore}` object with the
+`metatools::create_var_from_codelist()` function.
 
 ```{r ct}
 adsl_ct <- adsl_preds %>% 
@@ -109,9 +129,13 @@ adsl_ct <- adsl_preds %>%
 head(adsl_ct, n=10)
 ```
 
-Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.
-Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/articles/adsl.html) in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there.
-We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.
+Now we have sorted out what we can easily do with controlled terminology it is
+time to start deriving some variables.
+Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html)
+in practice, but for the purpose of this end-to-end ADaM vignette we will share
+a few exposure derivations from there.
+We derive the start and end of treatment (which requires dates to first be
+converted from DTC to DTM), the treatment duration, and the safety population flag.
 
 ```{r exposure}
 ex_ext <- ex %>%
@@ -197,8 +221,12 @@ adsl_raw <- adsl_raw %>%
 
 ## Apply Metadata to Create an eSub XPT and Perform Associated Checks
 
-Now we have all the variables defined we can run some checks before applying the necessary formatting.
-The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas the others focused around applying attributes to prepare for XPT come from `{xportr}`. At the end you could add a call to `xportr::xportr_write()` to produce the XPT file.
+Now we have all the variables defined we can run some checks before applying the
+necessary formatting.
+The top four functions performing checks and sorting/ordering come from
+`{metatools}`, whereas the others focused around applying attributes to prepare
+for XPT come from `{xportr}`. At the end you could add a call to
+`xportr::xportr_write()` to produce the XPT file.
 
 ```{r checks, warning=FALSE, message=FALSE}
 
