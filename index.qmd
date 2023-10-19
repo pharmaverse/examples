@@ -2,8 +2,20 @@
 title: "`pharmaverse` examples"
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.
+This book contains end-to-end examples of using pharmaverse packages together to
+achieve common clinical reporting analyses.
+The examples use consistent source SDTMs to create ADaMs (such as `ADSL` and `ADAE`)
+and using these as input to produce some familiar Tables/Listings/Graphs and
+associated interactive displays (via Shiny).
 
-Curabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.
+Other examples may be included here, e.g. for PK/PD or Therapeutic Area
+specifics (such as Oncology or Vaccines).
 
-Maecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar.
+Note that this examples book should only be used to show how collections of
+packages can be used in conjunction - more thorough examples of individual
+package usages would always be covered in the package site vignettes and no
+need to repeat here.
+
+If you'd like to try out any of these examples in a live R session (via Posit
+Cloud) or if you are interesting in contributing an article to this book, then
+see more in our GitHub repo README.

@@ -1,0 +1,214 @@
+---
+title: "ADSL"
+---
+
+## Introduction
+
+This guide will show you how four pharmaverse packages, along with some from
+tidyverse, can be used to create an ADaM such as `ADSL` end-to-end, using
+`{pharmaversesdtm}` SDTM data as input.
+
+The four packages used with a brief description of their purpose are as follows:
+
+* [`{metacore}`](https://atorus-research.github.io/metacore/): provides harmonized
+metadata/specifications object.
+* [`{metatools}`](https://pharmaverse.github.io/metatools/): uses the provided
+metadata to build/enhance and check the dataset.
+* [`{admiral}`](https://pharmaverse.github.io/admiral/index.html): provides the
+ADaM derivations.
+* [`{xportr}`](https://atorus-research.github.io/xportr/): delivers the SAS
+transport file (XPT) and eSub checks.
+
+It is important to understand `{metacore}` objects by reading through the above
+linked package site, as these are fundamental to being able to use `{metatools}`
+and `{xportr}`. Each company may need to build a specification reader to create
+these objects from their source standard specification templates.
+
+## Load Data and Required pharmaverse Packages
+
+The first step is to load our pharmaverse packages and input data.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
+library(metacore)
+library(metatools)
+library(pharmaversesdtm)
+library(admiral)
+library(xportr)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(stringr)
+
+# All our examples use the latest CRAN versions of packages each time the book is
+# deployed, but in case interested here are the versions
+packageVersion("metacore")
+packageVersion("metatools")
+packageVersion("admiral")
+packageVersion("xportr")
+
+# Read in input SDTM data 
+data("dm")
+data("ex")
+```
+
+Next we need to load the specification file in the form of a `{metacore}` object.
+
+```{r metacore, warning=FALSE, results='hold'}
+# Read in metacore object 
+load(metacore_example("pilot_ADaM.rda"))
+metacore <- metacore %>% 
+   select_dataset("ADSL")
+```
+
+Here is an example of how a `{metacore}` object looks showing variable level
+metadata:
+
+```{r}
+metacore$ds_vars
+```
+  
+## Start Building Derivations
+
+The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don't you can call `metatools::build_from_derived()` with just an empty list and the error will tell you which datasets you need to supply. 
+
+```{r, error=TRUE}
+build_from_derived(metacore, list(), predecessor_only = FALSE)
+```
+
+In this case all the columns come from `DM` so that is the only dataset we will pass into `metatools::build_from_derived()`. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
+
+```{r demographcis}
+adsl_preds <- build_from_derived(metacore, 
+                                 ds_list = list("dm" = dm), 
+                                 predecessor_only = FALSE, keep = TRUE)
+head(adsl_preds, n=10)
+```
+
+Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case `AGEGR1`. The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
+
+```{r}
+get_control_term(metacore, variable = AGEGR1)
+```
+
+Because this controlled terminology is written in a fairly standard format we can automate the creation of `AGEGR1`. The function `metatools::create_cat_var()` takes in a `{metacore}` object, a reference variable - in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly. 
+
+Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
+
+```{r ct}
+adsl_ct <- adsl_preds %>% 
+   create_cat_var(metacore, ref_var = AGE, 
+                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %>% 
+   create_var_from_codelist(metacore = metacore, 
+                            input_var = RACE, 
+                            out_var = RACEN) %>% 
+   #Removing screen failures from ARM and TRT01P to match the define and FDA guidence
+   mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),
+          TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)
+   )
+
+head(adsl_ct, n=10)
+```
+
+Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.
+Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/articles/adsl.html) in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there.
+We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.
+
+```{r exposure}
+ex_ext <- ex %>%
+  derive_vars_dtm(
+    dtc = EXSTDTC,
+    new_vars_prefix = "EXST"
+  ) %>%
+  derive_vars_dtm(
+    dtc = EXENDTC,
+    new_vars_prefix = "EXEN",
+    time_imputation = "last"
+  )
+
+adsl_raw <- adsl_ct %>%
+  derive_vars_merged(
+    dataset_add = ex_ext,
+    filter_add = (EXDOSE > 0 |
+      (EXDOSE == 0 &
+        str_detect(EXTRT, "PLACEBO"))) & nchar(EXSTDTC) >= 10,
+    new_vars = exprs(TRTSDTM = EXSTDTM),
+    order = exprs(EXSTDTM, EXSEQ),
+    mode = "first",
+    by_vars = exprs(STUDYID, USUBJID)
+  ) %>%
+  derive_vars_merged(
+    dataset_add = ex_ext,
+    filter_add = (EXDOSE > 0 |
+      (EXDOSE == 0 &
+        str_detect(EXTRT, "PLACEBO"))) & nchar(EXENDTC) >= 10,
+    new_vars = exprs(TRTEDTM = EXENDTM),
+    order = exprs(EXENDTM, EXSEQ),
+    mode = "last",
+    by_vars = exprs(STUDYID, USUBJID)
+  ) %>%
+   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  #Convert Datetime variables to date 
+   derive_var_trtdurd() %>% 
+   derive_var_merged_exist_flag(
+     dataset_add = ex,
+     by_vars = exprs(STUDYID, USUBJID),
+     new_var = SAFFL,
+     condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
+   ) %>% 
+   drop_unspec_vars(metacore) #This will drop any columns that aren't specified in the metacore object
+
+head(adsl_raw, n=10)
+```
+
+```{r, warning=FALSE, message=FALSE, include=FALSE}
+# Create dummy variables to match metacore specs to avoid later errors
+# In practice these would be mainly created using derivation functions from admiral
+adsl_raw <- adsl_raw %>%
+  mutate(
+    SITEGR1 = NA,
+    TRT01PN = NA,
+    TRT01A = NA,
+    TRT01AN = NA,
+    AVGDD = NA,
+    CUMDOSE = NA,
+    ITTFL = NA,
+    EFFFL = NA,
+    COMP8FL = NA,
+    COMP16FL = NA,
+    COMP24FL = NA,
+    DISCONFL = NA,
+    DSRAEFL = NA,
+    BMIBL = NA,
+    BMIBLGR1 = NA,
+    HEIGHTBL = NA,
+    WEIGHTBL = NA,
+    EDUCLVL = NA,
+    DISONSDT = NA,
+    DURDIS = NA,
+    DURDSGR1 = NA,
+    VISIT1DT = NA,
+    VISNUMEN = NA,
+    RFENDT = NA,
+    DCDECOD = NA,
+    EOSSTT = NA,
+    DCSREAS = NA,
+    MMSETOT = NA
+  )
+```
+
+## Apply Metadata to Create an eSub XPT and Perform Associated Checks
+
+Now we have all the variables defined we can run some checks before applying the necessary formatting.
+The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas the others focused around applying attributes to prepare for XPT come from `{xportr}`. At the end you could add a call to `xportr::xportr_write()` to produce the XPT file.
+
+```{r checks, warning=FALSE, message=FALSE}
+
+adsl_raw %>% 
+   check_variables(metacore) %>% # Check all variables specified are present and no more
+   check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
+   order_cols(metacore) %>% # Orders the columns according to the spec
+   sort_by_key(metacore) %>% # Sorts the rows by the sort keys 
+   xportr_type(metacore) %>% # Coerce variable type to match spec
+   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata 
+   xportr_label(metacore) %>% # Assigns variable label from metacore specifications 
+   xportr_df_label(metacore) # Assigns dataset label from metacore specifications
+```

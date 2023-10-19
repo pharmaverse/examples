@@ -1,0 +1,10 @@
+---
+title: "SDTM Examples"
+---
+
+For SDTM mapping, there is currently an industry collaboration supported by
+CDISC for the `{roak}` R package. Read more [here](https://www.cdisc.org/oak).
+
+Once this completes and the package is made available as open source, we will
+be able to add examples showcasing how best to use this alongside other
+pharmaverse packages in this space - such as `{datacutr}` and `{sdtmchecks}`.
