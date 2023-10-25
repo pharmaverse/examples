@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/pharmaverse/examples/index.html</loc>
-    <lastmod>2023-10-24T10:25:34.219Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
-    <lastmod>2023-10-24T10:25:31.583Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
-    <lastmod>2023-10-24T10:25:21.643Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/pharmaverse/examples/adam/ADSL.html</loc>
-    <lastmod>2023-10-24T10:25:30.139Z</lastmod>
+    <lastmod>2023-10-25T10:25:51.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/index.html</loc>
+    <lastmod>2023-10-25T10:25:45.146Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
-    <lastmod>2023-10-24T10:25:31.059Z</lastmod>
+    <lastmod>2023-10-25T10:25:41.722Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
+    <lastmod>2023-10-25T10:25:40.354Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
+    <lastmod>2023-10-25T10:25:42.182Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/session.html</loc>
-    <lastmod>2023-10-24T10:25:33.715Z</lastmod>
+    <lastmod>2023-10-25T10:25:44.670Z</lastmod>
   </url>
 </urlset>

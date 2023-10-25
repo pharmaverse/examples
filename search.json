@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "pharmaverse examples",
-    "section": "",
-    "text": "This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses. The examples use consistent source SDTMs to create ADaMs (such as ADSL and ADAE) and using these as input to produce some familiar Tables/Listings/Graphs and associated interactive displays (via Shiny).\nOther examples may be included here, e.g. for PK/PD or Therapeutic Area specifics (such as Oncology or Vaccines).\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.\nIf you’d like to try out any of these examples in a live R session (via Posit Cloud) or if you are interesting in contributing an article to this book, then see more in our GitHub repo README."
-  },
-  {
-    "objectID": "tlg/index.html",
-    "href": "tlg/index.html",
-    "title": "TLG",
-    "section": "",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.\nCurabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.\nMaecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar."
-  },
-  {
-    "objectID": "sdtm/examples.html",
-    "href": "sdtm/examples.html",
-    "title": "SDTM Examples",
-    "section": "",
-    "text": "For SDTM mapping, there is currently an industry collaboration supported by CDISC for the {roak} R package. Read more here.\nOnce this completes and the package is made available as open source, we will be able to add examples showcasing how best to use this alongside other pharmaverse packages in this space - such as {datacutr} and {sdtmchecks}."
-  },
-  {
     "objectID": "adam/ADSL.html",
     "href": "adam/ADSL.html",
     "title": "ADSL",
@@ -56,11 +35,32 @@
     "text": "Apply Metadata to Create an eSub XPT and Perform Associated Checks\nNow we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from {metatools}, whereas the others focused around applying attributes to prepare for XPT come from {xportr}. At the end you could add a call to xportr::xportr_write() to produce the XPT file.\n\n\nCode\nadsl_raw %&gt;% \n   check_variables(metacore) %&gt;% # Check all variables specified are present and no more\n   check_ct_data(metacore, na_acceptable = TRUE) %&gt;% # Checks all variables with CT only contain values within the CT\n   order_cols(metacore) %&gt;% # Orders the columns according to the spec\n   sort_by_key(metacore) %&gt;% # Sorts the rows by the sort keys \n   xportr_type(metacore) %&gt;% # Coerce variable type to match spec\n   xportr_length(metacore) %&gt;% # Assigns SAS length from a variable level metadata \n   xportr_label(metacore) %&gt;% # Assigns variable label from metacore specifications \n   xportr_df_label(metacore) # Assigns dataset label from metacore specifications\n\n\n# A tibble: 306 × 49\n   STUDYID     USUBJID SUBJID SITEID SITEGR1 ARM   TRT01P TRT01PN TRT01A TRT01AN\n   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;\n 1 CDISCPILOT… 01-701… 1015   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA\n 2 CDISCPILOT… 01-701… 1023   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA\n 3 CDISCPILOT… 01-701… 1028   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n 4 CDISCPILOT… 01-701… 1033   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n 5 CDISCPILOT… 01-701… 1034   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n 6 CDISCPILOT… 01-701… 1047   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA\n 7 CDISCPILOT… 01-701… 1057   701    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;        NA &lt;NA&gt;        NA\n 8 CDISCPILOT… 01-701… 1097   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n 9 CDISCPILOT… 01-701… 1111   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n10 CDISCPILOT… 01-701… 1115   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA\n# ℹ 296 more rows\n# ℹ 39 more variables: TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;, TRTDURD &lt;dbl&gt;,\n#   AVGDD &lt;dbl&gt;, CUMDOSE &lt;dbl&gt;, AGE &lt;dbl&gt;, AGEGR1 &lt;chr&gt;, AGEGR1N &lt;dbl&gt;,\n#   AGEU &lt;chr&gt;, RACE &lt;chr&gt;, RACEN &lt;dbl&gt;, SEX &lt;chr&gt;, ETHNIC &lt;chr&gt;, SAFFL &lt;chr&gt;,\n#   ITTFL &lt;chr&gt;, EFFFL &lt;chr&gt;, COMP8FL &lt;chr&gt;, COMP16FL &lt;chr&gt;, COMP24FL &lt;chr&gt;,\n#   DISCONFL &lt;chr&gt;, DSRAEFL &lt;chr&gt;, DTHFL &lt;chr&gt;, BMIBL &lt;dbl&gt;, BMIBLGR1 &lt;chr&gt;,\n#   HEIGHTBL &lt;dbl&gt;, WEIGHTBL &lt;dbl&gt;, EDUCLVL &lt;dbl&gt;, DISONSDT &lt;lgl&gt;, …"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "pharmaverse examples",
+    "section": "",
+    "text": "This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses. The examples use consistent source SDTMs to create ADaMs (such as ADSL and ADAE) and using these as input to produce some familiar Tables/Listings/Graphs and associated interactive displays (via Shiny).\nOther examples may be included here, e.g. for PK/PD or Therapeutic Area specifics (such as Oncology or Vaccines).\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.\nIf you’d like to try out any of these examples in a live R session (via Posit Cloud) or if you are interesting in contributing an article to this book, then see more in our GitHub repo README."
+  },
+  {
     "objectID": "tlg/test.html",
     "href": "tlg/test.html",
     "title": "test",
     "section": "",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.\nCurabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.\nMaecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar."
+  },
+  {
+    "objectID": "tlg/index.html",
+    "href": "tlg/index.html",
+    "title": "TLG",
+    "section": "",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.\nCurabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.\nMaecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar."
+  },
+  {
+    "objectID": "sdtm/examples.html",
+    "href": "sdtm/examples.html",
+    "title": "SDTM Examples",
+    "section": "",
+    "text": "For SDTM mapping, there is currently an industry collaboration supported by CDISC for the {roak} R package. Read more here.\nOnce this completes and the package is made available as open source, we will be able to add examples showcasing how best to use this alongside other pharmaverse packages in this space - such as {datacutr} and {sdtmchecks}."
   },
   {
     "objectID": "session.html",
