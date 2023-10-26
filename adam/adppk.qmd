@@ -1,5 +1,5 @@
 ---
-title: "ADPPK Template Walkthrough"
+title: "ADPPK"
 ---
 
 The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. This is equivalent to the ADaM `AVAL` variable and will be included in addition to `AVAL` for ADPPK.

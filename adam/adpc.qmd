@@ -1,5 +1,5 @@
 ---
-title: "ADPC Template Walkthrough"
+title: "ADPC"
 ---
 
 The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0>). This example presented uses underlying `EX` and `PC` domains where the `EX` and `PC` domains represent data as collected and the `ADPC` ADaM is output. However, the example can be applied to situations where an `EC` domain is used as input instead of `EX` and/or `ADNCA` or another ADaM is created.
