@@ -2,6 +2,13 @@
 title: "Session Info"
 ---
 
+# Session Info
 ```{r sessioninfo, message=FALSE}
 sessionInfo()
+```
+
+# Installed Packages
+
+```{r installedpackages, message=FALSE}
+knitr::kable(installed.packages()[, c("Package", "Version")], row.names = FALSE)
 ```
