@@ -22,7 +22,7 @@ need to repeat here.
 # Posit Cloud
 Each example can be explored via a live and interactive Posit Cloud environment
 (preconfigured with all required package installations).
-Please click the "Launch Posit Cloud" button to work with the live code. <<TO BE ADDED>>
+Please click the "Launch Posit Cloud" button to work with the live code. _TO BE ADDED_
 Feel free to copy the repo and customize any examples for your own internal
 clinical reporting workflows!
 
@@ -30,13 +30,16 @@ clinical reporting workflows!
 Anyone can add examples to this repo for usage of any pharmaverse packages.
 To do this make an issue with your idea and the maintainer team will contact
 you to provide you the necessary repo access.
+
 One note to dependencies is we don't use `renv` here to manage this examples
 book. If you ever need to use a new package the requirement is that you will edit
 the root level `DESCRIPTION` file and add it to the Imports. This is a
 simple dependency management approach, as then during rendering/deployment our
 pipeline will pull the latest released version from CRAN.
+
 You could even use the Posit Cloud environment for these contributions, but if not
 be sure you have installed the latest CRAN versions of all the packages being used.
+
 We recommend you notify the maintainers of all the packages used in your example,
 as then they are more likely to help notify us if ever anything changes in their
 packages that breaks any of our examples.
