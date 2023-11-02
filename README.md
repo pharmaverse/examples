@@ -1,4 +1,10 @@
 # Pharmaverse Examples
+The true beauty of pharmaverse (and open source in general) is when efforts from
+various different developers come together to compliment each other as a whole
+greater than the sum of the individual parts. By design in R, no single package
+will ever completely cover all your needs, but by piecing them together we can
+make complex tasks increasingly simple.
+
 This book contains end-to-end examples of using pharmaverse packages together to
 achieve common clinical reporting analyses.
 The examples use consistent source SDTMs to create ADaMs (such as ADSL and ADAE)
@@ -14,9 +20,11 @@ package usages would always be covered in the package site vignettes and no
 need to repeat here.
 
 # Posit Cloud
-Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations).
+Each example can be explored via a live and interactive Posit Cloud environment
+(preconfigured with all required package installations).
 Please click the "Launch Posit Cloud" button to work with the live code. <<TO BE ADDED>>
-Feel free to copy the repo and customize any examples for your own internal clinical reporting workflows!
+Feel free to copy the repo and customize any examples for your own internal
+clinical reporting workflows!
 
 # Contributing
 Anyone can add examples to this repo for usage of any pharmaverse packages.
@@ -27,3 +35,8 @@ book. If you ever need to use a new package the requirement is that you will edi
 the root level `DESCRIPTION` file and add it to the Imports. This is a
 simple dependency management approach, as then during rendering/deployment our
 pipeline will pull the latest released version from CRAN.
+You could even use the Posit Cloud environment for these contributions, but if not
+be sure you have installed the latest CRAN versions of all the packages being used.
+We recommend you notify the maintainers of all the packages used in your example,
+as then they are more likely to help notify us if ever anything changes in their
+packages that breaks any of our examples.
