@@ -30,6 +30,8 @@ clinical reporting workflows!
 Anyone can add examples to this repo for usage of any pharmaverse packages.
 To do this make an issue with your idea and the maintainer team will contact
 you to provide you the necessary repo access.
+You can then branch of `main` and create a PR where one of the maintainer
+team would review and approve to get your contribution published.
 
 One note to dependencies is we don't use `renv` here to manage this examples
 book. If you ever need to use a new package the requirement is that you will edit
