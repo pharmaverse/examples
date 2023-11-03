@@ -26,7 +26,7 @@ library(pharmaversesdtm)
 
 ## Next Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `spec_to_metacore()` function. 
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. 
 
 ```{r echo=TRUE}
 #| label: Load Specs
@@ -141,7 +141,7 @@ ex_dates <- ex %>%
 
 ### Expand Dosing Records
 
-Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the `{admiral}` function `create_single_dose_dataset()`.
+Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function `admiral::create_single_dose_dataset()`.
 
 ```{r}
 #| label: Expand
