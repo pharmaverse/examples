@@ -1,20 +1,9 @@
 ---
 title: "ADPC"
+order: 2
 ---
 
-The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0>). This example presented uses underlying `EX` and `PC` domains where the `EX` and `PC` domains represent data as collected and the `ADPC` ADaM is output. However, the example can be applied to situations where an `EC` domain is used as input instead of `EX` and/or `ADNCA` or another ADaM is created.
-
-One of the important aspects of the dataset is the derivation of relative timing variables. These variables consist of nominal and actual times, and refer to the time from first dose or time from most recent reference dose. The reference dose for pre-dose records may be the upcoming dose. The CDISC Implementation Guide makes use of duplicated records for analysis, which allows the same record to be used both with respect to the previous dose and the next upcoming dose. This is illustrated later in this vignette.
-
-Here are the relative time variables we will use. These correspond to the names in the CDISC Implementation Guide.
-
-| Variable | Variable Label                         |
-|----------|----------------------------------------|
-| NFRLT    | Nom. Rel. Time from Analyte First Dose |
-| AFRLT    | Act. Rel. Time from Analyte First Dose |
-| NRRLT    | Nominal Rel. Time from Ref. Dose       |
-| ARRLT    | Actual Rel. Time from Ref. Dose        |
-| MRRLT    | Modified Rel. Time from Ref. Dose      |
+The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0>). This example presented uses underlying `EX` and `PC` domains where the `EX` and `PC` domains represent data as collected and the `ADPC` ADaM is output. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
 
 ## First Load Packages
 
@@ -37,7 +26,7 @@ library(pharmaversesdtm)
 
 ## Next Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `spec_to_metacore()` function. The spec file can be found [here](https://github.com/pharmaverse/e2e_pk/blob/main/pk_spec.xlsx){target="_blank"}.
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `spec_to_metacore()` function. 
 
 ```{r echo=TRUE}
 #| label: Load Specs
@@ -72,18 +61,7 @@ vs <- convert_blanks_to_na(vs)
 
 ### Derive PC Dates
 
-At this step, it may be useful to join `ADSL` to your `PC` and `EX` domains as well. Only the `ADSL` variables used for derivations are selected at this step. The rest of the relevant `ADSL` variables will be added later.
-
-In this case we will keep `TRTSDT`/`TRTSDTM` for day derivation and `TRT01P`/`TRT01A` for planned and actual treatments.
-
-In this segment we will use `derive_vars_merged()` to join the `ADSL` variables and the following `{admiral}` functions to derive analysis dates, times and days:
-
--   `derive_vars_dtm()`
--   `derive_vars_dtm_to_dt()`
--   `derive_vars_dtm_to_tm()`
--   `derive_vars_dy()`
-
-We will also create `NFRLT` for `PC` data based on `PCTPTNUM`. We will create an event ID (`EVID`) of 0 for concentration records and 1 for dosing records. This is a traditional variable that will provide a handy tool to identify records but will be dropped from the final dataset in this example.
+Here we use `{admiral}` functions for working with dates and we will also create a nominal time from first dose `NFRLT` for `PC` data based on `PCTPTNUM`.
 
 ```{r}
 #| label: PC Dates
@@ -119,7 +97,7 @@ pc_dates <- pc %>%
 
 ### Get Dosing Information
 
-Next we will also join `ADSL` data with `EX` and derive dates/times. This section uses the `{admiral}` functions `derive_vars_merged()`, `derive_vars_dtm()`, and `derive_vars_dtm_to_dt()`. Time is imputed to 00:00:00 here for reasons specific to the sample data. Other imputation times may be used based on study details. Here we create `NFRLT` for `EX` data based on `VISITDY` using the formula `(VISITDY - 1) * 24` using `dplyr::mutate`.
+Here we also create nomimal time from first dose `NFRLT` for `EX` data based on `VISITDY`.
 
 ```{r}
 #| label: Dosing
@@ -163,16 +141,10 @@ ex_dates <- ex %>%
 
 ### Expand Dosing Records
 
-The function `create_single_dose_dataset()` can be used to expand dosing records between the start date and end date. The nominal time will also be expanded based on the values of `EXDOSFRQ`, for example "QD" will result in nominal time being incremented by 24 hours and "BID" will result in nominal time being incremented by 12 hours. This is a new feature of `create_single_dose_dataset()`.
-
-Dates and times will be derived after expansion using `derive_vars_dtm_to_dt()` and `derive_vars_dtm_to_tm()`.
-
-For this example study we will define analysis visit (`AVISIT)` based on the nominal day value from `NFRLT` and give it the format, "Day 1", "Day 2", "Day 3", etc. This is important for creating the `BASETYPE` variable later. `DRUG` is created from `EXTRT` here. This will be useful for linking treatment data with concentration data if there are multiple drugs and/or analytes, but this variable will also be dropped from the final dataset in this example.
+Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the `{admiral}` function `create_single_dose_dataset()`.
 
 ```{r}
 #| label: Expand
-# ---- Expand dosing records between start and end dates ----
-# Updated function includes nominal_time parameter
 
 ex_exp <- ex_dates %>%
   create_single_dose_dataset(
@@ -210,13 +182,10 @@ ex_exp <- ex_dates %>%
 
 ### Find First Dose
 
-In this section we will find the first dose for each subject and drug, using `derive_vars_merged()`. We also create an analysis visit (`AVISIT`) based on `NFRLT`. The first dose datetime for an analyte `FANLDTM` is calculated as the minimum `ADTM` from the dosing records by subject and drug.
+In this section we will find the first dose for each subject and drug.
 
 ```{r}
 #| label: First Dose
-
-# ---- Find first dose per treatment per subject ----
-# ---- Join with ADPC data and keep only subjects with dosing ----
 
 adpc_first_dose <- pc_dates %>%
   derive_vars_merged(
@@ -237,13 +206,12 @@ adpc_first_dose <- pc_dates %>%
   )
 ```
 
-### Find Previous Dose
+### Find Previous Dose and Next Dose
 
-Use `derive_vars_joined()` to find the previous dose data. This will join the expanded `EX` data with the `ADPC` based on the analysis date `ADTM`. Note the `filter_join` parameter. In addition to the date of the previous dose (`ADTM_prev)`, we also keep the actual dose amount `EXDOSE_prev` and the analysis visit of the dose `AVISIT_prev`.
+Use `derive_vars_joined()` to find the previous dose and the next dose.
 
 ```{r}
-#| label: Previous Dose
-# ---- Find previous dose  ----
+#| label: Previous Dose and Next Dose
 
 adpc_prev <- adpc_first_dose %>%
   derive_vars_joined(
@@ -260,15 +228,6 @@ adpc_prev <- adpc_first_dose %>%
     mode = "last",
     check_type = "none"
   )
-```
-
-### Find Next Dose
-
-Similarly, find next dose information using `derive_vars_joined()` with the `filter_join` parameter as `ADTM <= ADTM.join`. Here we keep the next dose analysis date `ADTM_next`, the next actual dose `EXDOSE_next`, and the next analysis visit `AVISIT_next`.
-
-```{r}
-#| label: Next Dose
-# ---- Find next dose  ----
 
 adpc_next <- adpc_prev %>%
   derive_vars_joined(
@@ -287,13 +246,12 @@ adpc_next <- adpc_prev %>%
   )
 ```
 
-### Find Previous Nominal Dose
+### Find Previous and Next Nominal Dose
 
-Use the same method to find the previous and next nominal times. Note that here the data are sorted by nominal time rather than the actual time. This will tell us when the previous dose and the next dose were supposed to occur. Sometimes this will differ from the actual times in a study. Here we keep the previous nominal dose time `NFRLT_prev` and the next nominal dose time `NFRLT_next`. Note that the `filter_join` parameter uses the nominal relative times, e.g. `NFRLT > NFRLT.join`.
+Use the same method to find the previous and next nominal times. 
 
 ```{r}
 #| label: Previous Nominal Dose
-# ---- Find previous nominal dose ----
 
 adpc_nom_prev <- adpc_next %>%
   derive_vars_joined(
@@ -307,13 +265,6 @@ adpc_nom_prev <- adpc_next %>%
     mode = "last",
     check_type = "none"
   )
-```
-
-### Find Next Nominal Time
-
-```{r}
-#| label: Next Nominal Dose
-# ---- Find next nominal time ----
 
 adpc_nom_next <- adpc_nom_prev %>%
   derive_vars_joined(
@@ -331,17 +282,10 @@ adpc_nom_next <- adpc_nom_prev %>%
 
 ### Combine PC and EX Data
 
-Combine `PC` and `EX` records and derive the additional relative time variables. Often NCA data will keep both dosing and concentration records. We will keep both here. Sometimes you will see `ADPC` with only the concentration records. If this is desired, the dosing records can be dropped before saving the final dataset. We will use the `{admiral}` function `derive_vars_duration()` to calculate the actual relative time from first dose (`AFRLT`) and the actual relative time from most recent dose (`ARRLT`). Note that we use the parameter `add_one = FALSE` here. We will also create a variable representing actual time to next dose (`AXRLT`) which is not kept, but will be used when we create duplicated records for analysis for the pre-dose records. For now, we will update missing values of `ARRLT` corresponding to the pre-dose records with `AXRLT`, and dosing records will be set to zero.
-
-We also calculate the reference dates `FANLDTM` (First Datetime of Dose for Analyte) and `PCRFTDTM` (Reference Datetime of Dose for Analyte) and their corresponding date and time variables.
-
-We calculate the maximum date for concentration records and only keep the dosing records up to that date.
+Combine `PC` and `EX` records and derive the additional relative time variables. 
 
 ```{r}
 #| label: Combine
-
-# ---- Combine ADPC and EX data ----
-# Derive Relative Time Variables
 
 adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
   group_by(USUBJID, DRUG) %>%
@@ -402,7 +346,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
 
 ### Derive Nominal Reference
 
-For nominal relative times we calculate `NRRLT` generally as `NFRLT - NFRLT_prev` and `NXRLT` as `NFRLT - NFRLT_next`.
+For nominal relative times we calculate the nominal relative time to reference dose `NRRLT`.
 
 ```{r}
 #| label: Nominal Reference
@@ -425,22 +369,10 @@ adpc_nrrlt <- adpc_arrlt %>%
 
 ### Derive Analysis Variables
 
-Using `dplyr::mutate` we derive a number of analysis variables including analysis value (`AVAL`), analysis time point (`ATPT`) analysis timepoint reference (`ATPTREF`) and baseline type (`BASETYPE`).
-
-We set `ATPT` to `PCTPT` for concentration records and to "Dose" for dosing records. The analysis timepoint reference `ATPTREF` will correspond to the dosing visit. We will use `AVISIT_prev` and `AVISIT_next` to derive. The baseline type will be a concatenation of `ATPTREF` and "Baseline" with values such as "Day 1 Baseline", "Day 2 Baseline", etc. The baseline flag `ABLFL` will be set to "Y" for pre-dose records.
-
-Analysis value `AVAL` in this example comes from `PCSTRESN` for concentration records. In addition we are including the dose value `EXDOSE` for dosing records and setting BLQ (Below Limit of Quantitation) records to 0 before the first dose and to 1/2 of LLOQ (Lower Limit of Quantitation) for records after first dose. (Additional tests such as whether more than 1/3 of records are BLQ may be required and are not done in this example.) We also create a listing-ready variable `AVALCAT1` which includes the "BLQ" record indicator and formats the numeric values to three significant digits.
-
-We derive actual dose `DOSEA` based on `EXDOSE_prev` and `EXDOSE_next` and planned dose `DOSEP` based on the planned treatment `TRT01P`. In addition we add the units for the dose variables and the relative time variables.
+Here we derive the analysis variables such as `AVAL` and `ATPTREF`.
 
 ```{r}
 #| label: Analysis Variables
-
-# ---- Derive Analysis Variables ----
-# Derive ATPTN, ATPT, ATPTREF, ABLFL and BASETYPE
-# Derive planned dose DOSEP, actual dose DOSEA and units
-# Derive PARAMCD and relative time units
-# Derive AVAL, AVALU and AVALCAT1
 
 adpc_aval <- adpc_nrrlt %>%
   mutate(
@@ -508,16 +440,10 @@ adpc_aval <- adpc_nrrlt %>%
 
 ### Derive DTYPE Copy Records
 
-As mentioned above, the CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose. In addition to 24 hour post-dose records, other situations may include pre-dose records for "Cycle 2 Day 1", etc.
-
-In general, we will select the records of interest and then update the relative time variables for the duplicated records. In this case we will select where the nominal relative time to next dose is zero. (Note that we do not need to duplicate the first dose record since there is no prior dose.)
-
-`DTYPE` is set to "COPY" for the duplicated records and the original `PCSEQ` value is retained. In this case we change "24h Post-dose" to "Pre-dose". `ABLFL` is set to "Y" since these records will serve as baseline for the "Day 2" dose. `DOSEA` is set to `EXDOSE_next` and `PCRFTDTM` is set to `ADTM_next`.
+The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose. 
 
 ```{r}
 #| label: DTYPE
-
-# ---- Create DTYPE copy records ----
 
 dtype <- adpc_aval %>%
   filter(NFRLT > 0 & NXRLT == 0 & EVID == 0 & !is.na(AVISIT_next)) %>%
@@ -542,13 +468,10 @@ dtype <- adpc_aval %>%
 
 ### Combine Original and DTYPE Copy
 
-Now the duplicated records are combined with the original records. We also derive the modified relative time from reference dose `MRRLT`. In this case, negative values of `ARRLT` are set to zero.
-
-This is also an opportunity to derive analysis flags e.g. `ANL01FL` , `ANL02FL` etc. In this example `ANL01FL` is set to "Y" for all records and `ANL02FL` is set to "Y" for all records except the duplicated records with `DTYPE` = "COPY". Additional flags may be used to select full profile records and/or to select records included in the tables and figures, etc.
+Now the duplicated records are combined with the original records.
 
 ```{r}
 #| label: Combine DTYPE
-# ---- Combine original records and DTYPE copy records ----
 
 adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
   arrange(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) %>%
@@ -561,8 +484,6 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
 ```
 
 ### Derive BASE and CHG
-
-The `{admiral}` function `derive_var_base()` is used to derive `BASE` and the function `derive_var_chg()` is used to derive change from baseline `CHG`.
 
 ```{r}
 #| label: BASE
@@ -580,11 +501,9 @@ adpc_base <- adpc_dtype %>%
 adpc_chg <- derive_var_chg(adpc_base)
 ```
 
-### Add ASEQ
+### Derive `PARAM` with `{metatools}`
 
-We also now derive `ASEQ` using `derive_var_obs_number()` and we drop intermediate variables such as those ending with "\_prev" and "\_next".
-
-Finally we derive `PARAM` and `PARAMN` using `create_var_from_codelist()` from `{metatools}`.
+Here we derive `PARAM` and `PARAMN` using `create_var_from_codelist()` from `{metatools}`.
 
 ```{r}
 #| label: ASEQ
@@ -606,7 +525,7 @@ adpc_aseq <- adpc_chg %>%
 
 ### Derive Additional Baselines
 
-Here we derive additional baseline values from `VS` for baseline height `HTBL` and weight `WTBL` and compute the body mass index (BMI) with `compute_bmi()`. These values could also be obtained from `ADVS` if available. Baseline lab values could also be derived from `LB` or `ADLB` in a similar manner.
+Here we derive additional baseline values from `VS` for baseline height `HTBL` and weight `WTBL` and compute the body mass index (BMI) with `compute_bmi()`. 
 
 ```{r}
 #| label: Baselines
@@ -654,12 +573,7 @@ We use `{metacore}` to perform a number of checks on the data. We will drop vari
 ```{r}
 #| label: Metacore
 #| warning: false
-# Final Steps, Select final variables and Add labels
-
-dir <- "."
-
 # Apply metadata and perform associated checks ----
-# uses {metatools}
 adpc <- adpc_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
   check_variables(metacore) %>% # Check all variables specified are present and no more
@@ -681,26 +595,5 @@ adpc_xpt <- adpc %>%
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
-  xportr_write(file.path(dir, "adpc.xpt")) # Write xpt v5 transport file
+  xportr_write("adpc.xpt") # Write xpt v5 transport file
 ```
-
-## Save Final Output
-
-Finally we save the final output.
-
-```{r}
-#| label: Save
-# ---- Save output ----
-
-saveRDS(adpc, file = file.path(dir, "adpc.rds"), compress = "bzip2")
-```
-
-# Example Scripts {#example}
-
-| ADaM | Sample Code                                                                                       |
-|--------------------|----------------------------------------------------|
-| ADPC | [ad_adpc_spec.R](https://github.com/pharmaverse/e2e_pk/blob/main/ad_adpc_spec.R){target="_blank"} |
-
-# Spec File
-
-[pk_spec.xlsx](https://github.com/pharmaverse/e2e_pk/blob/main/pk_spec.xlsx){target="_blank"}

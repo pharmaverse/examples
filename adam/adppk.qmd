@@ -1,8 +1,9 @@
 ---
 title: "ADPPK"
+order: 3
 ---
 
-The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. This is equivalent to the ADaM `AVAL` variable and will be included in addition to `AVAL` for ADPPK.
+The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
 
 ## First Load Packages
 
@@ -26,7 +27,7 @@ library(pharmaversesdtm)
 
 ## Next Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `spec_to_metacore()` function. The spec file can be found [here](https://github.com/pharmaverse/e2e_pk/blob/main/pk_spec.xlsx){target="_blank"}
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `spec_to_metacore()` function. 
 
 ```{r echo=TRUE, message=FALSE}
 #| label: Load Specs
@@ -62,18 +63,7 @@ lb <- convert_blanks_to_na(lb)
 
 ### Derive PC Dates
 
-At this step, it may be useful to join `ADSL` to your `PC` and `EX` domains as well. Only the `ADSL` variables used for derivations are selected at this step. The rest of the relevant `ADSL` variables will be added later.
-
-In this case we will keep `TRTSDT`/`TRTSDTM` for day derivation and `TRT01P`/`TRT01A` for planned and actual treatments.
-
-In this segment we will use `derive_vars_merged()` to join the `ADSL` variables and the following `{admiral}` functions to derive analysis dates, times and days:
-
--   `derive_vars_dtm()`
--   `derive_vars_dtm_to_dt()`
--   `derive_vars_dtm_to_tm()`
--   `derive_vars_dy()`
-
-We will also create `NFRLT` for `PC` data based on `PCTPTNUM`. We will create an event ID (`EVID`) of 0 for concentration records and 1 for dosing records.
+Here we use `{admiral}` functions for working with dates and we will also create a nominal time from first dose `NFRLT` for `PC` data based on `PCTPTNUM`.
 
 ```{r}
 #| label: PC Dates
@@ -109,7 +99,7 @@ pc_dates <- pc %>%
 
 ### Get Dosing Information
 
-Next we will also join `ADSL` data with `EX` and derive dates/times. This section uses the `{admiral}` functions `derive_vars_merged()`, `derive_vars_dtm()`, and `derive_vars_dtm_to_dt()`. Time is imputed to 00:00:00 here for reasons specific to the sample data. Other imputation times may be used based on study details. Here we create `NFRLT` for `EX` data based on `VISITDY` using the formula `(VISITDY - 1) * 24` using `dplyr::mutate`.
+Here we also create nominal time from first dose `NFRLT` for `EX` data based on `VISITDY`.
 
 ```{r}
 #| label: Dosing
@@ -154,12 +144,10 @@ ex_dates <- ex %>%
 
 ### Expand Dosing Records
 
-The `{admiral}` function `create_single_dose_dataset()` will be used to expand dosing records between the start date and end date. The nominal time will also be expanded based on the values of `EXDOSFRQ`, for example "QD" will result in nominal time being incremented by 24 hours and "BID" will result in nominal time being incremented by 12 hours.
+Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the `{admiral}` function `create_single_dose_dataset()`.
 
 ```{r}
 #| label: Expand
-# ---- Expand dosing records between start and end dates ----
-# Updated function includes nominal_time parameter
 
 ex_exp <- ex_dates %>%
   create_single_dose_dataset(
@@ -196,7 +184,7 @@ ex_exp <- ex_dates %>%
 
 ### Find First Dose
 
-We find the first dose for the concentration records using the `{admiral}` function `derive_vars_merged()`
+In this section we will find the first dose for each subject and drug.
 
 ```{r}
 #| label: First Dose
@@ -224,7 +212,7 @@ adppk_first_dose <- pc_dates %>%
 
 ### Find Previous Dose
 
-For `ADPPK` we will find the previous dose with respect to actual time and nominal time. We will use \`derive_vars_joined().
+For `ADPPK` we will find the previous dose with respect to actual time and nominal time.
 
 ```{r}
 #| label: Previous Dose
@@ -251,7 +239,6 @@ adppk_prev <- adppk_first_dose %>%
 
 ```{r}
 #| label: Previous Nominal Dose
-# ---- Find previous nominal dose ----
 
 adppk_nom_prev <- adppk_prev %>%
   derive_vars_joined(
@@ -269,12 +256,10 @@ adppk_nom_prev <- adppk_prev %>%
 
 ### Combine PC and EX Data
 
-Here we combine `PC` and `EX` records. We will derive the relative time variables `AFRLT` (Actual Relative Time from First Dose), `APRLT` (Actual Relative Time from Previous Dose), and `NPRLT` (Nominal Relative Time from Previous Dose). Use `derive_vars_duration()` to derive `AFRLT` and `APRLT`. Note we defined `EVID` above with values of 0 for observation records and 1 for dosing records.
+Here we combine `PC` and `EX` records. We will derive the relative time variables `AFRLT` (Actual Relative Time from First Dose), `APRLT` (Actual Relative Time from Previous Dose), and `NPRLT` (Nominal Relative Time from Previous Dose). 
 
 ```{r}
 #| label: Combine
-# ---- Combine ADPPK and EX data ----
-# Derive Relative Time Variables
 
 adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
   group_by(USUBJID, DRUG) %>%
@@ -397,8 +382,6 @@ adppk_aval <- adppk_aprlt %>%
 
 ### Add ASEQ
 
-We add a sequence variable using the `{admiral}` function `derive_var_obs_number()`.
-
 ```{r}
 #| label: ASEQ
 # ---- Add ASEQ ----
@@ -418,7 +401,7 @@ adppk_aseq <- adppk_aval %>%
   )
 ```
 
-## Derive Covariates Using Metacore
+## Derive Covariates Using `{metatools}`
 
 In this step we will create our numeric covariates using the `create_var_from_codelist()` function from `{metatools}`.
 
@@ -455,11 +438,10 @@ covar <- adsl %>%
 
 ### Derive Additional Baselines
 
-Next we add additional baselines from vital signs and laboratory data. We will use the `{admiral}` functions `derive_vars_merged()` and `derive_vars_transposed()` to add these.
+Next we add additional baselines from vital signs and laboratory data. 
 
 ```{r}
 #| label: Baselines
-#---- Derive additional baselines from VS and LB ----
 
 labsbl <- lb %>%
   filter(LBBLFL == "Y" & LBTESTCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
@@ -535,13 +517,6 @@ We use `{metacore}` to perform a number of checks on the data. We will drop vari
 ```{r}
 #| label: Metacore
 #| warning: false
-# Final Steps, Select final variables and Add labels
-# This process will be based on your metadata, no example given for this reason
-# ...
-dir <- "."
-
-# Apply metadata and perform associated checks ----
-# uses {metatools}
 
 adppk <- adppk_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
@@ -564,28 +539,5 @@ adppk_xpt <- adppk %>%
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
-  xportr_write(file.path(dir, "adppk.xpt")) # Write xpt v5 transport file
+  xportr_write("adppk.xpt") # Write xpt v5 transport file
 ```
-
-## Save Final Output
-
-Finally we save the final output. We will also create a `CSV` file for the modeler.
-
-```{r}
-#| label: Save
-# ---- Save output ----
-saveRDS(adppk, file = file.path(dir, "adppk.rds"), compress = "bzip2")
-
-# Write CSV
-write_csv(adppk_xpt, "adppk.csv")
-```
-
-# Example Scripts {#example}
-
-| ADaM  | Sample Code                                                                                         |
-|----------------|--------------------------------------------------------|
-| ADPPK | [ad_adppk_spec.R](https://github.com/pharmaverse/e2e_pk/blob/main/ad_adppk_spec.R){target="_blank"} |
-
-# Spec File
-
-[pk_spec.xlsx](https://github.com/pharmaverse/e2e_pk/blob/main/pk_spec.xlsx){target="_blank"}
