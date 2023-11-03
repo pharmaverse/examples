@@ -18,7 +18,7 @@ It is important to understand `{metacore}` objects by reading through the above 
 
 ## Load Data and Required pharmaverse Packages
 
-The first step is to load our pharmaverse packages and input data. Below shows the versions of each of these package used.
+The first step is to load our pharmaverse packages and input data.
 
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(metacore)
@@ -30,13 +30,6 @@ library(dplyr)
 library(tidyr)
 library(lubridate)
 library(stringr)
-
-# All our examples use the latest CRAN versions of packages each time the book is
-# deployed, but in case interested here are the versions
-packageVersion("metacore")
-packageVersion("metatools")
-packageVersion("admiral")
-packageVersion("xportr")
 
 # Read in input SDTM data 
 data("dm")
