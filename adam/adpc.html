@@ -291,7 +291,7 @@ cookieconsent.run({
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(pharmaversesdtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="next-load-specifications-for-metacore" class="level2"><h2 class="anchored" data-anchor-id="next-load-specifications-for-metacore">Next Load Specifications for Metacore</h2>
-<p>We have saved our specifications in an Excel file and will load them into <a href="https://atorus-research.github.io/metacore/">metacore</a> with the <code>spec_to_metacore()</code> function.</p>
+<p>We have saved our specifications in an Excel file and will load them into <a href="https://atorus-research.github.io/metacore/">metacore</a> with the <code><a href="https://atorus-research.github.io/metacore/reference/spec_to_metacore.html">metacore::spec_to_metacore()</a></code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
@@ -386,7 +386,7 @@ cookieconsent.run({
 <span id="cb5-35"><a href="#cb5-35"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="expand-dosing-records" class="level3"><h3 class="anchored" data-anchor-id="expand-dosing-records">Expand Dosing Records</h3>
-<p>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the <a href="https://pharmaverse.github.io/admiral/">admiral</a> function <code>create_single_dose_dataset()</code>.</p>
+<p>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <code><a href="https://pharmaverse.github.io/admiral/reference/create_single_dose_dataset.html">admiral::create_single_dose_dataset()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">create_single_dose_dataset</span>(</span>
@@ -1114,7 +1114,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-26"><a href="#cb21-26"></a></span>
 <span id="cb21-27"><a href="#cb21-27"></a><span class="fu">## Next Load Specifications for Metacore</span></span>
 <span id="cb21-28"><a href="#cb21-28"></a></span>
-<span id="cb21-29"><a href="#cb21-29"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`spec_to_metacore()`</span> function. </span>
+<span id="cb21-29"><a href="#cb21-29"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function. </span>
 <span id="cb21-30"><a href="#cb21-30"></a></span>
 <span id="cb21-31"><a href="#cb21-31"></a><span class="in">```{r echo=TRUE}</span></span>
 <span id="cb21-32"><a href="#cb21-32"></a><span class="co">#| label: Load Specs</span></span>
@@ -1229,7 +1229,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-147"><a href="#cb21-147"></a></span>
 <span id="cb21-148"><a href="#cb21-148"></a><span class="fu">### Expand Dosing Records</span></span>
 <span id="cb21-149"><a href="#cb21-149"></a></span>
-<span id="cb21-150"><a href="#cb21-150"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the <span class="in">`{admiral}`</span> function <span class="in">`create_single_dose_dataset()`</span>.</span>
+<span id="cb21-150"><a href="#cb21-150"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <span class="in">`admiral::create_single_dose_dataset()`</span>.</span>
 <span id="cb21-151"><a href="#cb21-151"></a></span>
 <span id="cb21-154"><a href="#cb21-154"></a><span class="in">```{r}</span></span>
 <span id="cb21-155"><a href="#cb21-155"></a><span class="co">#| label: Expand</span></span>

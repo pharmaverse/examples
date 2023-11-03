@@ -292,7 +292,7 @@ cookieconsent.run({
 <span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(pharmaversesdtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="next-load-specifications-for-metacore" class="level2"><h2 class="anchored" data-anchor-id="next-load-specifications-for-metacore">Next Load Specifications for Metacore</h2>
-<p>We have saved our specifications in an Excel file and will load them into <a href="https://atorus-research.github.io/metacore/">metacore</a> with the <code>spec_to_metacore()</code> function.</p>
+<p>We have saved our specifications in an Excel file and will load them into <a href="https://atorus-research.github.io/metacore/">metacore</a> with the <code><a href="https://atorus-research.github.io/metacore/reference/spec_to_metacore.html">metacore::spec_to_metacore()</a></code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
@@ -391,7 +391,7 @@ cookieconsent.run({
 <span id="cb5-37"><a href="#cb5-37"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="expand-dosing-records" class="level3"><h3 class="anchored" data-anchor-id="expand-dosing-records">Expand Dosing Records</h3>
-<p>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the <a href="https://pharmaverse.github.io/admiral/">admiral</a> function <code>create_single_dose_dataset()</code>.</p>
+<p>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <code><a href="https://pharmaverse.github.io/admiral/reference/create_single_dose_dataset.html">admiral::create_single_dose_dataset()</a></code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">create_single_dose_dataset</span>(</span>
@@ -622,7 +622,7 @@ cookieconsent.run({
 </div>
 </section></section><section id="derive-covariates-using-metatools" class="level2"><h2 class="anchored" data-anchor-id="derive-covariates-using-metatools">Derive Covariates Using <code>{metatools}</code>
 </h2>
-<p>In this step we will create our numeric covariates using the <code>create_var_from_codelist()</code> function from <a href="https://pharmaverse.github.io/metatools/">metatools</a>.</p>
+<p>In this step we will create our numeric covariates using the <code><a href="https://pharmaverse.github.io/metatools/reference/create_var_from_codelist.html">metatools::create_var_from_codelist()</a></code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">#---- Derive Covariates ----</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co"># Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.</span></span>
@@ -1080,7 +1080,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-27"><a href="#cb18-27"></a></span>
 <span id="cb18-28"><a href="#cb18-28"></a><span class="fu">## Next Load Specifications for Metacore</span></span>
 <span id="cb18-29"><a href="#cb18-29"></a></span>
-<span id="cb18-30"><a href="#cb18-30"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`spec_to_metacore()`</span> function. </span>
+<span id="cb18-30"><a href="#cb18-30"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function. </span>
 <span id="cb18-31"><a href="#cb18-31"></a></span>
 <span id="cb18-32"><a href="#cb18-32"></a><span class="in">```{r echo=TRUE, message=FALSE}</span></span>
 <span id="cb18-33"><a href="#cb18-33"></a><span class="co">#| label: Load Specs</span></span>
@@ -1197,7 +1197,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-150"><a href="#cb18-150"></a></span>
 <span id="cb18-151"><a href="#cb18-151"></a><span class="fu">### Expand Dosing Records</span></span>
 <span id="cb18-152"><a href="#cb18-152"></a></span>
-<span id="cb18-153"><a href="#cb18-153"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the <span class="in">`{admiral}`</span> function <span class="in">`create_single_dose_dataset()`</span>.</span>
+<span id="cb18-153"><a href="#cb18-153"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <span class="in">`admiral::create_single_dose_dataset()`</span>.</span>
 <span id="cb18-154"><a href="#cb18-154"></a></span>
 <span id="cb18-157"><a href="#cb18-157"></a><span class="in">```{r}</span></span>
 <span id="cb18-158"><a href="#cb18-158"></a><span class="co">#| label: Expand</span></span>
@@ -1456,7 +1456,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-423"><a href="#cb18-423"></a></span>
 <span id="cb18-424"><a href="#cb18-424"></a><span class="fu">## Derive Covariates Using `{metatools}`</span></span>
 <span id="cb18-425"><a href="#cb18-425"></a></span>
-<span id="cb18-426"><a href="#cb18-426"></a>In this step we will create our numeric covariates using the <span class="in">`create_var_from_codelist()`</span> function from <span class="in">`{metatools}`</span>.</span>
+<span id="cb18-426"><a href="#cb18-426"></a>In this step we will create our numeric covariates using the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
 <span id="cb18-427"><a href="#cb18-427"></a></span>
 <span id="cb18-430"><a href="#cb18-430"></a><span class="in">```{r}</span></span>
 <span id="cb18-431"><a href="#cb18-431"></a><span class="co">#| label: Covariates</span></span>
