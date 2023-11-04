@@ -528,7 +528,7 @@ adppk <- adppk_prefinal %>%
 
 ## Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file.
+Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`. 
 
 ```{r}
 #| label: xportr
@@ -538,6 +538,7 @@ adppk_xpt <- adppk %>%
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
-  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
-  xportr_write("adppk.xpt") # Write xpt v5 transport file
+  xportr_df_label(metacore) # Assigns dataset label from metacore specifications
+  # xportr_write("adppk.xpt") # Write xpt v5 transport file
+
 ```
