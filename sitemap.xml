@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
-    <lastmod>2023-11-04T20:04:00.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
-    <lastmod>2023-11-04T20:04:01.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
-    <lastmod>2023-11-04T20:04:01.000Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/pharmaverse/examples/session.html</loc>
-    <lastmod>2023-11-04T20:04:06.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adpc.html</loc>
-    <lastmod>2023-11-04T20:04:25.000Z</lastmod>
+    <lastmod>2023-11-05T10:22:29.545Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/adam/ADSL.html</loc>
-    <lastmod>2023-11-04T20:04:35.000Z</lastmod>
+    <lastmod>2023-11-05T10:22:27.393Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
-    <lastmod>2023-11-04T20:04:51.000Z</lastmod>
+    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
+    <lastmod>2023-11-05T10:22:22.948Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
+    <lastmod>2023-11-05T10:22:22.032Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
+    <lastmod>2023-11-05T10:22:23.244Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/index.html</loc>
-    <lastmod>2023-11-04T20:04:51.000Z</lastmod>
+    <lastmod>2023-11-05T10:22:23.885Z</lastmod>
   </url>
 </urlset>
