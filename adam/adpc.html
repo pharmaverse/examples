@@ -765,13 +765,15 @@ cookieconsent.run({
 </section><section id="apply-labels-and-formats-with-xportr" class="level2"><h2 class="anchored" data-anchor-id="apply-labels-and-formats-with-xportr">Apply Labels and Formats with xportr</h2>
 <p>Using <a href="https://github.com/atorus-research/xportr">xportr</a> we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <code><a href="https://rdrr.io/pkg/xportr/man/xportr_write.html">xportr::xportr_write()</a></code> to produce the XPT file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="co"># xportr_write("adpc.xpt") # Write xpt v5 transport file </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1677,15 +1679,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-625"><a href="#cb21-625"></a><span class="in">```{r}</span></span>
 <span id="cb21-626"><a href="#cb21-626"></a><span class="co">#| label: xportr</span></span>
 <span id="cb21-627"><a href="#cb21-627"></a><span class="co">#| warning: false</span></span>
-<span id="cb21-628"><a href="#cb21-628"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb21-629"><a href="#cb21-629"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb21-630"><a href="#cb21-630"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb21-631"><a href="#cb21-631"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb21-632"><a href="#cb21-632"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb21-633"><a href="#cb21-633"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb21-634"><a href="#cb21-634"></a>  <span class="co"># xportr_write("adpc.xpt") # Write xpt v5 transport file </span></span>
-<span id="cb21-635"><a href="#cb21-635"></a>  </span>
-<span id="cb21-636"><a href="#cb21-636"></a><span class="in">```</span></span>
+<span id="cb21-628"><a href="#cb21-628"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<span id="cb21-629"><a href="#cb21-629"></a></span>
+<span id="cb21-630"><a href="#cb21-630"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb21-631"><a href="#cb21-631"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb21-632"><a href="#cb21-632"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb21-633"><a href="#cb21-633"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb21-634"><a href="#cb21-634"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb21-635"><a href="#cb21-635"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb21-636"><a href="#cb21-636"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file </span></span>
+<span id="cb21-637"><a href="#cb21-637"></a>  </span>
+<span id="cb21-638"><a href="#cb21-638"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
