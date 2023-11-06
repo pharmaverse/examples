@@ -532,13 +532,14 @@ Using {xportr} we check variable type, assign variable lenght, add variable labe
 
 ```{r}
 #| label: xportr
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adppk_xpt <- adppk %>%
   xportr_type(metacore) %>% # Coerce variable type to match spec
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
-  xportr_df_label(metacore) # Assigns dataset label from metacore specifications
-  # xportr_write("adppk.xpt") # Write xpt v5 transport file
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adppk.xpt")) # Write xpt v5 transport file
 
 ```
