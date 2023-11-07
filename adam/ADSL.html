@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.450">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>pharmaverse examples - ADSL</title>
 <style>
 code{white-space: pre-wrap;}
@@ -14,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -43,44 +47,15 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -103,7 +78,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -119,9 +95,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -134,125 +113,155 @@ cookieconsent.run({
   "website_name":""
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="pharmaverse examples - ADSL">
-<meta property="og:description" content="This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as ADSL end-to-end, using pharmaversesdtm SDTM data as input.">
+<meta property="og:description" content="">
 <meta property="og:site-name" content="`pharmaverse` examples">
 </head>
+
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand navbar-dark "><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand navbar-dark ">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title"><code>pharmaverse</code> examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-    <a class="nav-link" href="https://pharmaverse.org"><i class="bi bi-house" role="img" aria-label="pharmaverse">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.org" rel="" target=""><i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"><i class="bi bi-slack" role="img" aria-label="Slack">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/" rel="" target=""><i class="bi bi-slack" role="img" aria-label="Slack">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/pharmaverse/examples"><i class="bi bi-github" role="img" aria-label="Repository">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples" rel="" target=""><i class="bi bi-github" role="img" aria-label="Repository">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-toggle-container">
-                <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-                <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
-            </div>
+</div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">ADSL</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/ADSL.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/ADSL.html">ADSL</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">SDTM</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+ <span class="menu-text">SDTM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">SDTM Examples</a>
+  <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">ADAM</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">ADAM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../adam/ADSL.html" class="sidebar-item-text sidebar-link active">ADSL</a>
+  <a href="../adam/ADSL.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">ADSL</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../tlg/index.html" class="sidebar-item-text sidebar-link">TLG</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a href="../tlg/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TLG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tlg/test.html" class="sidebar-item-text sidebar-link">test</a>
+  <a href="../tlg/test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">test</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../session.html" class="sidebar-item-text sidebar-link">Session Info</a>
+  <a href="../session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session Info</span></a>
   </div>
 </li>
     </ul>
-</div>
-</nav><!-- margin-sidebar -->
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title d-none d-lg-block">ADSL</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">ADSL</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
@@ -265,24 +274,27 @@ cookieconsent.run({
   </div>
   
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <code>ADSL</code> end-to-end, using <a href="https://pharmaverse.github.io/pharmaversesdtm/main/">pharmaversesdtm</a> SDTM data as input.</p>
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <code>ADSL</code> end-to-end, using <code>{pharmaversesdtm}</code> SDTM data as input.</p>
 <p>The four packages used with a brief description of their purpose are as follows:</p>
 <ul>
-<li>
-<a href="https://atorus-research.github.io/metacore/"><code>{metacore}</code></a>: provides harmonized metadata/specifications object.</li>
-<li>
-<a href="https://pharmaverse.github.io/metatools/"><code>{metatools}</code></a>: uses the provided metadata to build/enhance and check the dataset.</li>
-<li>
-<a href="https://pharmaverse.github.io/admiral/index.html"><code>{admiral}</code></a>: provides the ADaM derivations.</li>
-<li>
-<a href="https://atorus-research.github.io/xportr/"><code>{xportr}</code></a>: delivers the SAS transport file (XPT) and eSub checks.</li>
+<li><a href="https://atorus-research.github.io/metacore/"><code>{metacore}</code></a>: provides harmonized metadata/specifications object.</li>
+<li><a href="https://pharmaverse.github.io/metatools/"><code>{metatools}</code></a>: uses the provided metadata to build/enhance and check the dataset.</li>
+<li><a href="https://pharmaverse.github.io/admiral/index.html"><code>{admiral}</code></a>: provides the ADaM derivations.</li>
+<li><a href="https://atorus-research.github.io/xportr/"><code>{xportr}</code></a>: delivers the SAS transport file (XPT) and eSub checks.</li>
 </ul>
-<p>It is important to understand <a href="https://atorus-research.github.io/metacore/">metacore</a> objects by reading through the above linked package site, as these are fundamental to being able to use <a href="https://pharmaverse.github.io/metatools/">metatools</a> and <a href="https://github.com/atorus-research/xportr">xportr</a>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</p>
-</section><section id="load-data-and-required-pharmaverse-packages" class="level2"><h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-packages">Load Data and Required pharmaverse Packages</h2>
+<p>It is important to understand <code>{metacore}</code> objects by reading through the above linked package site, as these are fundamental to being able to use <code>{metatools}</code> and <code>{xportr}</code>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</p>
+</section>
+<section id="load-data-and-required-pharmaverse-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-packages">Load Data and Required pharmaverse Packages</h2>
 <p>The first step is to load our pharmaverse packages and input data.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(metatools)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(pharmaversesdtm)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(admiral)</span>
@@ -297,18 +309,23 @@ cookieconsent.run({
 <span id="cb1-13"><a href="#cb1-13"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Next we need to load the specification file in the form of a <a href="https://atorus-research.github.io/metacore/">metacore</a> object.</p>
+<p>Next we need to load the specification file in the form of a <code>{metacore}</code> object.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Read in metacore object </span></span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Read in metacore object </span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">load</span>(<span class="fu">metacore_example</span>(<span class="st">"pilot_ADaM.rda"</span>))</span>
 <span id="cb2-3"><a href="#cb2-3"></a>metacore <span class="ot">&lt;-</span> metacore <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4"></a>   <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Here is an example of how a <a href="https://atorus-research.github.io/metacore/">metacore</a> object looks showing variable level metadata:</p>
+<p>Here is an example of how a <code>{metacore}</code> object looks showing variable level metadata:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>metacore<span class="sc">$</span>ds_vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>metacore<span class="sc">$</span>ds_vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 49 × 7
    dataset variable key_seq order keep  core  supp_flag
    &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;lgl&gt; &lt;chr&gt; &lt;lgl&gt;    
@@ -325,22 +342,30 @@ cookieconsent.run({
 # ℹ 39 more rows</code></pre>
 </div>
 </div>
-</section><section id="start-building-derivations" class="level2"><h2 class="anchored" data-anchor-id="start-building-derivations">Start Building Derivations</h2>
-<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don’t you can call <code><a href="https://pharmaverse.github.io/metatools/reference/build_from_derived.html">metatools::build_from_derived()</a></code> with just an empty list and the error will tell you which datasets you need to supply.</p>
+</section>
+<section id="start-building-derivations" class="level2">
+<h2 class="anchored" data-anchor-id="start-building-derivations">Start Building Derivations</h2>
+<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don’t you can call <code>metatools::build_from_derived()</code> with just an empty list and the error will tell you which datasets you need to supply.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">build_from_derived</span>(metacore, <span class="fu">list</span>(), <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-error">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">build_from_derived</span>(metacore, <span class="fu">list</span>(), <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
 <pre><code>Error in build_from_derived(metacore, list(), predecessor_only = FALSE): Not all datasets provided. Please pass the following dataset(s):
 DM</code></pre>
 </div>
 </div>
-<p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code><a href="https://pharmaverse.github.io/metatools/reference/build_from_derived.html">metatools::build_from_derived()</a></code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
+<p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code>metatools::build_from_derived()</code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adsl_preds <span class="ot">&lt;-</span> <span class="fu">build_from_derived</span>(metacore, </span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adsl_preds <span class="ot">&lt;-</span> <span class="fu">build_from_derived</span>(metacore, </span>
 <span id="cb7-2"><a href="#cb7-2"></a>                                 <span class="at">ds_list =</span> <span class="fu">list</span>(<span class="st">"dm"</span> <span class="ot">=</span> dm), </span>
 <span id="cb7-3"><a href="#cb7-3"></a>                                 <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>, <span class="at">keep =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="fu">head</span>(adsl_preds, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 14
    STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -357,10 +382,13 @@ DM</code></pre>
 # ℹ 3 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <a href="https://atorus-research.github.io/metacore/">metacore</a> object and see the controlled terminology for <code>AGEGR1</code>.</p>
+<p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <code>{metacore}</code> object and see the controlled terminology for <code>AGEGR1</code>.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   code  decode
   &lt;chr&gt; &lt;chr&gt; 
@@ -369,10 +397,12 @@ DM</code></pre>
 3 &gt;80   &gt;80   </code></pre>
 </div>
 </div>
-<p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code><a href="https://pharmaverse.github.io/metatools/reference/create_cat_var.html">metatools::create_cat_var()</a></code> takes in a <a href="https://atorus-research.github.io/metacore/">metacore</a> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
-<p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <a href="https://atorus-research.github.io/metacore/">metacore</a> object with the <code><a href="https://pharmaverse.github.io/metatools/reference/create_var_from_codelist.html">metatools::create_var_from_codelist()</a></code> function.</p>
+<p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code>metatools::create_cat_var()</code> takes in a <code>{metacore}</code> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
+<p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <code>{metacore}</code> object with the <code>metatools::create_var_from_codelist()</code> function.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span> </span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a href="#cb11-2"></a>   <span class="fu">create_cat_var</span>(metacore, <span class="at">ref_var =</span> AGE, </span>
 <span id="cb11-3"><a href="#cb11-3"></a>                  <span class="at">grp_var =</span> AGEGR1, <span class="at">num_grp_var =</span> AGEGR1N) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-4"><a href="#cb11-4"></a>   <span class="fu">create_var_from_codelist</span>(<span class="at">metacore =</span> metacore, </span>
@@ -384,7 +414,8 @@ DM</code></pre>
 <span id="cb11-10"><a href="#cb11-10"></a>   )</span>
 <span id="cb11-11"><a href="#cb11-11"></a></span>
 <span id="cb11-12"><a href="#cb11-12"></a><span class="fu">head</span>(adsl_ct, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 17
    STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -402,9 +433,11 @@ DM</code></pre>
 #   AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <a href="https://pharmaverse.github.io/admiral/">admiral</a> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
+<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <code>{admiral}</code> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">derive_vars_dtm</span>(</span>
 <span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXST"</span></span>
@@ -445,13 +478,17 @@ DM</code></pre>
 <span id="cb13-39"><a href="#cb13-39"></a>     <span class="at">condition =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>)))</span>
 <span id="cb13-40"><a href="#cb13-40"></a>   ) <span class="sc">%&gt;%</span> </span>
 <span id="cb13-41"><a href="#cb13-41"></a>   <span class="fu">drop_unspec_vars</span>(metacore) <span class="co">#This will drop any columns that aren't specified in the metacore object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
+</details>
+<div class="cell-output cell-output-stderr">
 <pre><code>The following variable(s) were dropped:
   TRTSDTM
   TRTEDTM</code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">head</span>(adsl_raw, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">head</span>(adsl_raw, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 21
    STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
    &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
@@ -470,10 +507,14 @@ DM</code></pre>
 #   TRTDURD &lt;dbl&gt;, SAFFL &lt;chr&gt;</code></pre>
 </div>
 </div>
-</section><section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2"><h2 class="anchored" data-anchor-id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h2>
-<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <a href="https://pharmaverse.github.io/metatools/">metatools</a>, whereas the others focused around applying attributes to prepare for XPT come from <a href="https://github.com/atorus-research/xportr">xportr</a>. At the end you could add a call to <code><a href="https://rdrr.io/pkg/xportr/man/xportr_write.html">xportr::xportr_write()</a></code> to produce the XPT file.</p>
+</section>
+<section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2">
+<h2 class="anchored" data-anchor-id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h2>
+<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <code>{metatools}</code>, whereas the others focused around applying attributes to prepare for XPT come from <code>{xportr}</code>. At the end you could add a call to <code>xportr::xportr_write()</code> to produce the XPT file.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>adsl_raw <span class="sc">%&gt;%</span> </span>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>adsl_raw <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2"></a>   <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>   <span class="fu">check_ct_data</span>(metacore, <span class="at">na_acceptable =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a>   <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
@@ -482,7 +523,8 @@ DM</code></pre>
 <span id="cb17-7"><a href="#cb17-7"></a>   <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata </span></span>
 <span id="cb17-8"><a href="#cb17-8"></a>   <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications </span></span>
 <span id="cb17-9"><a href="#cb17-9"></a>   <span class="fu">xportr_df_label</span>(metacore) <span class="co"># Assigns dataset label from metacore specifications</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stdout">
+</details>
+<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 306 × 49
    STUDYID     USUBJID SUBJID SITEID SITEGR1 ARM   TRT01P TRT01PN TRT01A TRT01AN
    &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
@@ -509,7 +551,10 @@ DM</code></pre>
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -651,9 +696,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -769,6 +828,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -807,7 +952,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
       <a href="../sdtm/examples.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SDTM Examples</span>
       </a>          
@@ -1055,10 +1202,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
-      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
   </div>
 </footer>
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
