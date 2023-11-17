@@ -7,3 +7,12 @@ _freeze
 _site
 site_libs
 .DS_Store
+.Rproj.user
+*.csv
+*.xpt
+*.rds
+project.Rproj
+.Rhistory
+pharmaverse.examples.Rcheck/
+pharmaverse.examples*.tar.gz
+pharmaverse.examples*.tgz
