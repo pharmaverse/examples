@@ -566,9 +566,9 @@ adpc_prefinal <- adpc_baselines %>%
   )
 ```
 
-## Check Data With Metacore
+## Check Data With metacore and metatools
 
-We use `{metacore}` to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
+We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
 
 ```{r}
 #| label: Metacore
