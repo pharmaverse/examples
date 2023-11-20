@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
-    <lastmod>2023-11-19T10:24:15.329Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
-    <lastmod>2023-11-19T10:24:14.621Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adpc.html</loc>
-    <lastmod>2023-11-19T10:24:14.041Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/index.html</loc>
-    <lastmod>2023-11-19T10:23:56.489Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/pharmaverse/examples/session.html</loc>
-    <lastmod>2023-11-19T10:23:55.525Z</lastmod>
+    <lastmod>2023-11-20T10:26:45.674Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/adam/adsl.html</loc>
-    <lastmod>2023-11-19T10:24:00.245Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
-    <lastmod>2023-11-19T10:24:06.665Z</lastmod>
+    <lastmod>2023-11-20T10:26:36.966Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
-    <lastmod>2023-11-19T10:24:14.985Z</lastmod>
+    <lastmod>2023-11-20T10:26:26.846Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
+    <lastmod>2023-11-20T10:26:25.938Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
+    <lastmod>2023-11-20T10:26:27.138Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/index.html</loc>
+    <lastmod>2023-11-20T10:26:27.730Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
+    <lastmod>2023-11-20T10:26:33.658Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adpc.html</loc>
+    <lastmod>2023-11-20T10:26:43.834Z</lastmod>
   </url>
 </urlset>
