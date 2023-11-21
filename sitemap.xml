@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/pharmaverse/examples/session.html</loc>
-    <lastmod>2023-11-20T10:26:45.674Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adsl.html</loc>
-    <lastmod>2023-11-20T10:26:36.966Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
-    <lastmod>2023-11-20T10:26:26.846Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
-    <lastmod>2023-11-20T10:26:25.938Z</lastmod>
+    <lastmod>2023-11-21T10:32:27.012Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
-    <lastmod>2023-11-20T10:26:27.138Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/index.html</loc>
-    <lastmod>2023-11-20T10:26:27.730Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
-    <lastmod>2023-11-20T10:26:33.658Z</lastmod>
+    <lastmod>2023-11-21T10:32:26.340Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/adam/adpc.html</loc>
-    <lastmod>2023-11-20T10:26:43.834Z</lastmod>
+    <lastmod>2023-11-21T10:32:25.760Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/index.html</loc>
+    <lastmod>2023-11-21T10:32:09.444Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/session.html</loc>
+    <lastmod>2023-11-21T10:32:08.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adsl.html</loc>
+    <lastmod>2023-11-21T10:32:13.144Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
+    <lastmod>2023-11-21T10:32:18.984Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
+    <lastmod>2023-11-21T10:32:26.676Z</lastmod>
   </url>
 </urlset>
