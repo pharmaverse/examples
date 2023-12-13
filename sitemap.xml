@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
+    <lastmod>2023-12-13T10:26:01.807Z</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/pharmaverse/examples/session.html</loc>
-    <lastmod>2023-12-12T10:27:04.511Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
-    <lastmod>2023-12-12T10:27:02.311Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
-    <lastmod>2023-12-12T10:26:55.010Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/index.html</loc>
-    <lastmod>2023-12-12T10:26:44.398Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
-    <lastmod>2023-12-12T10:26:45.542Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/pharmaverse/examples/adam/adsl.html</loc>
-    <lastmod>2023-12-12T10:26:49.338Z</lastmod>
+    <lastmod>2023-12-13T10:26:01.111Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/pharmaverse/examples/adam/adpc.html</loc>
-    <lastmod>2023-12-12T10:27:01.955Z</lastmod>
+    <lastmod>2023-12-13T10:25:55.259Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/pharmaverse/examples/tlg/test.html</loc>
-    <lastmod>2023-12-12T10:27:02.651Z</lastmod>
+    <loc>https://github.com/pharmaverse/examples/index.html</loc>
+    <lastmod>2023-12-13T10:25:41.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adppk.html</loc>
+    <lastmod>2023-12-13T10:25:48.215Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/adam/adsl.html</loc>
+    <lastmod>2023-12-13T10:25:58.635Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/sdtm/examples.html</loc>
+    <lastmod>2023-12-13T10:25:59.211Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/pharmaverse/examples/tlg/index.html</loc>
+    <lastmod>2023-12-13T10:26:01.459Z</lastmod>
   </url>
 </urlset>
