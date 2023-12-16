@@ -493,11 +493,12 @@ cookieconsent.run({
 <span id="cb8-10"><a href="#cb8-10"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
 <span id="cb8-11"><a href="#cb8-11"></a>    ),</span>
 <span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
-<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="find-previous-nominal-dose" class="level3">
@@ -510,11 +511,12 @@ cookieconsent.run({
 <span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
 <span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
 <span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine-pc-and-ex-data" class="level3">
@@ -1435,321 +1437,323 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb18-240"><a href="#cb18-240"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
 <span id="cb18-241"><a href="#cb18-241"></a>    ),</span>
 <span id="cb18-242"><a href="#cb18-242"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb18-243"><a href="#cb18-243"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb18-244"><a href="#cb18-244"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
-<span id="cb18-245"><a href="#cb18-245"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb18-246"><a href="#cb18-246"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb18-247"><a href="#cb18-247"></a>  )</span>
-<span id="cb18-248"><a href="#cb18-248"></a><span class="in">```</span></span>
-<span id="cb18-249"><a href="#cb18-249"></a></span>
-<span id="cb18-250"><a href="#cb18-250"></a><span class="fu">### Find Previous Nominal Dose</span></span>
-<span id="cb18-251"><a href="#cb18-251"></a></span>
-<span id="cb18-254"><a href="#cb18-254"></a><span class="in">```{r}</span></span>
-<span id="cb18-255"><a href="#cb18-255"></a><span class="co">#| label: Previous Nominal Dose</span></span>
-<span id="cb18-256"><a href="#cb18-256"></a></span>
-<span id="cb18-257"><a href="#cb18-257"></a>adppk_nom_prev <span class="ot">&lt;-</span> adppk_prev <span class="sc">%&gt;%</span></span>
-<span id="cb18-258"><a href="#cb18-258"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb18-259"><a href="#cb18-259"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb18-260"><a href="#cb18-260"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb18-261"><a href="#cb18-261"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb18-262"><a href="#cb18-262"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
-<span id="cb18-263"><a href="#cb18-263"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb18-264"><a href="#cb18-264"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb18-265"><a href="#cb18-265"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
-<span id="cb18-266"><a href="#cb18-266"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb18-267"><a href="#cb18-267"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb18-268"><a href="#cb18-268"></a>  )</span>
-<span id="cb18-269"><a href="#cb18-269"></a><span class="in">```</span></span>
-<span id="cb18-270"><a href="#cb18-270"></a></span>
-<span id="cb18-271"><a href="#cb18-271"></a><span class="fu">### Combine PC and EX Data</span></span>
+<span id="cb18-243"><a href="#cb18-243"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb18-244"><a href="#cb18-244"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-245"><a href="#cb18-245"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
+<span id="cb18-246"><a href="#cb18-246"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb18-247"><a href="#cb18-247"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb18-248"><a href="#cb18-248"></a>  )</span>
+<span id="cb18-249"><a href="#cb18-249"></a><span class="in">```</span></span>
+<span id="cb18-250"><a href="#cb18-250"></a></span>
+<span id="cb18-251"><a href="#cb18-251"></a><span class="fu">### Find Previous Nominal Dose</span></span>
+<span id="cb18-252"><a href="#cb18-252"></a></span>
+<span id="cb18-255"><a href="#cb18-255"></a><span class="in">```{r}</span></span>
+<span id="cb18-256"><a href="#cb18-256"></a><span class="co">#| label: Previous Nominal Dose</span></span>
+<span id="cb18-257"><a href="#cb18-257"></a></span>
+<span id="cb18-258"><a href="#cb18-258"></a>adppk_nom_prev <span class="ot">&lt;-</span> adppk_prev <span class="sc">%&gt;%</span></span>
+<span id="cb18-259"><a href="#cb18-259"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb18-260"><a href="#cb18-260"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb18-261"><a href="#cb18-261"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb18-262"><a href="#cb18-262"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb18-263"><a href="#cb18-263"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
+<span id="cb18-264"><a href="#cb18-264"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb18-265"><a href="#cb18-265"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb18-266"><a href="#cb18-266"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb18-267"><a href="#cb18-267"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
+<span id="cb18-268"><a href="#cb18-268"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb18-269"><a href="#cb18-269"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb18-270"><a href="#cb18-270"></a>  )</span>
+<span id="cb18-271"><a href="#cb18-271"></a><span class="in">```</span></span>
 <span id="cb18-272"><a href="#cb18-272"></a></span>
-<span id="cb18-273"><a href="#cb18-273"></a>Here we combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records. We will derive the relative time variables <span class="in">`AFRLT`</span> (Actual Relative Time from First Dose), <span class="in">`APRLT`</span> (Actual Relative Time from Previous Dose), and <span class="in">`NPRLT`</span> (Nominal Relative Time from Previous Dose). </span>
+<span id="cb18-273"><a href="#cb18-273"></a><span class="fu">### Combine PC and EX Data</span></span>
 <span id="cb18-274"><a href="#cb18-274"></a></span>
-<span id="cb18-277"><a href="#cb18-277"></a><span class="in">```{r}</span></span>
-<span id="cb18-278"><a href="#cb18-278"></a><span class="co">#| label: Combine</span></span>
-<span id="cb18-279"><a href="#cb18-279"></a></span>
-<span id="cb18-280"><a href="#cb18-280"></a>adppk_aprlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adppk_nom_prev, ex_exp) <span class="sc">%&gt;%</span></span>
-<span id="cb18-281"><a href="#cb18-281"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
-<span id="cb18-282"><a href="#cb18-282"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-283"><a href="#cb18-283"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb18-284"><a href="#cb18-284"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb18-285"><a href="#cb18-285"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
-<span id="cb18-286"><a href="#cb18-286"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-287"><a href="#cb18-287"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
-<span id="cb18-288"><a href="#cb18-288"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb18-289"><a href="#cb18-289"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
-<span id="cb18-290"><a href="#cb18-290"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
-<span id="cb18-291"><a href="#cb18-291"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb18-292"><a href="#cb18-292"></a>    <span class="at">new_var =</span> AFRLT,</span>
-<span id="cb18-293"><a href="#cb18-293"></a>    <span class="at">start_date =</span> FANLDTM,</span>
-<span id="cb18-294"><a href="#cb18-294"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb18-295"><a href="#cb18-295"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb18-296"><a href="#cb18-296"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb18-297"><a href="#cb18-297"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb18-298"><a href="#cb18-298"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-299"><a href="#cb18-299"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (APRLT)</span></span>
-<span id="cb18-300"><a href="#cb18-300"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb18-301"><a href="#cb18-301"></a>    <span class="at">new_var =</span> APRLT,</span>
-<span id="cb18-302"><a href="#cb18-302"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
-<span id="cb18-303"><a href="#cb18-303"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb18-304"><a href="#cb18-304"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb18-305"><a href="#cb18-305"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb18-306"><a href="#cb18-306"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb18-307"><a href="#cb18-307"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-308"><a href="#cb18-308"></a>  <span class="co"># Derive APRLT</span></span>
-<span id="cb18-309"><a href="#cb18-309"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-310"><a href="#cb18-310"></a>    <span class="at">APRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-311"><a href="#cb18-311"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb18-312"><a href="#cb18-312"></a>      <span class="fu">is.na</span>(APRLT) <span class="sc">~</span> AFRLT,</span>
-<span id="cb18-313"><a href="#cb18-313"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> APRLT</span>
-<span id="cb18-314"><a href="#cb18-314"></a>    ),</span>
-<span id="cb18-315"><a href="#cb18-315"></a>    <span class="at">NPRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-316"><a href="#cb18-316"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb18-317"><a href="#cb18-317"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
-<span id="cb18-318"><a href="#cb18-318"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
-<span id="cb18-319"><a href="#cb18-319"></a>    )</span>
-<span id="cb18-320"><a href="#cb18-320"></a>  )</span>
-<span id="cb18-321"><a href="#cb18-321"></a><span class="in">```</span></span>
-<span id="cb18-322"><a href="#cb18-322"></a></span>
-<span id="cb18-323"><a href="#cb18-323"></a><span class="fu">### Derive Analysis Variables</span></span>
+<span id="cb18-275"><a href="#cb18-275"></a>Here we combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records. We will derive the relative time variables <span class="in">`AFRLT`</span> (Actual Relative Time from First Dose), <span class="in">`APRLT`</span> (Actual Relative Time from Previous Dose), and <span class="in">`NPRLT`</span> (Nominal Relative Time from Previous Dose). </span>
+<span id="cb18-276"><a href="#cb18-276"></a></span>
+<span id="cb18-279"><a href="#cb18-279"></a><span class="in">```{r}</span></span>
+<span id="cb18-280"><a href="#cb18-280"></a><span class="co">#| label: Combine</span></span>
+<span id="cb18-281"><a href="#cb18-281"></a></span>
+<span id="cb18-282"><a href="#cb18-282"></a>adppk_aprlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adppk_nom_prev, ex_exp) <span class="sc">%&gt;%</span></span>
+<span id="cb18-283"><a href="#cb18-283"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
+<span id="cb18-284"><a href="#cb18-284"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-285"><a href="#cb18-285"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-286"><a href="#cb18-286"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-287"><a href="#cb18-287"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
+<span id="cb18-288"><a href="#cb18-288"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-289"><a href="#cb18-289"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
+<span id="cb18-290"><a href="#cb18-290"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-291"><a href="#cb18-291"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
+<span id="cb18-292"><a href="#cb18-292"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
+<span id="cb18-293"><a href="#cb18-293"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb18-294"><a href="#cb18-294"></a>    <span class="at">new_var =</span> AFRLT,</span>
+<span id="cb18-295"><a href="#cb18-295"></a>    <span class="at">start_date =</span> FANLDTM,</span>
+<span id="cb18-296"><a href="#cb18-296"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb18-297"><a href="#cb18-297"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb18-298"><a href="#cb18-298"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-299"><a href="#cb18-299"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb18-300"><a href="#cb18-300"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-301"><a href="#cb18-301"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (APRLT)</span></span>
+<span id="cb18-302"><a href="#cb18-302"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb18-303"><a href="#cb18-303"></a>    <span class="at">new_var =</span> APRLT,</span>
+<span id="cb18-304"><a href="#cb18-304"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
+<span id="cb18-305"><a href="#cb18-305"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb18-306"><a href="#cb18-306"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb18-307"><a href="#cb18-307"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb18-308"><a href="#cb18-308"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb18-309"><a href="#cb18-309"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-310"><a href="#cb18-310"></a>  <span class="co"># Derive APRLT</span></span>
+<span id="cb18-311"><a href="#cb18-311"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-312"><a href="#cb18-312"></a>    <span class="at">APRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-313"><a href="#cb18-313"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb18-314"><a href="#cb18-314"></a>      <span class="fu">is.na</span>(APRLT) <span class="sc">~</span> AFRLT,</span>
+<span id="cb18-315"><a href="#cb18-315"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> APRLT</span>
+<span id="cb18-316"><a href="#cb18-316"></a>    ),</span>
+<span id="cb18-317"><a href="#cb18-317"></a>    <span class="at">NPRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-318"><a href="#cb18-318"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb18-319"><a href="#cb18-319"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
+<span id="cb18-320"><a href="#cb18-320"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
+<span id="cb18-321"><a href="#cb18-321"></a>    )</span>
+<span id="cb18-322"><a href="#cb18-322"></a>  )</span>
+<span id="cb18-323"><a href="#cb18-323"></a><span class="in">```</span></span>
 <span id="cb18-324"><a href="#cb18-324"></a></span>
-<span id="cb18-325"><a href="#cb18-325"></a>The expected analysis variable for <span class="in">`ADPPK`</span> is <span class="in">`DV`</span> or dependent variable. For this example <span class="in">`DV`</span> is set to the numeric concentration value <span class="in">`PCSTRESN`</span>. We will also include <span class="in">`AVAL`</span> equivalent to <span class="in">`DV`</span> for consistency with CDISC ADaM standards. <span class="in">`MDV`</span> missing dependent variable will also be included.</span>
+<span id="cb18-325"><a href="#cb18-325"></a><span class="fu">### Derive Analysis Variables</span></span>
 <span id="cb18-326"><a href="#cb18-326"></a></span>
-<span id="cb18-329"><a href="#cb18-329"></a><span class="in">```{r}</span></span>
-<span id="cb18-330"><a href="#cb18-330"></a><span class="co">#| label: Analysis Variables</span></span>
-<span id="cb18-331"><a href="#cb18-331"></a><span class="co"># ---- Derive Analysis Variables ----</span></span>
-<span id="cb18-332"><a href="#cb18-332"></a><span class="co"># Derive actual dose DOSEA and planned dose DOSEP,</span></span>
-<span id="cb18-333"><a href="#cb18-333"></a><span class="co"># Derive AVAL and DV</span></span>
-<span id="cb18-334"><a href="#cb18-334"></a></span>
-<span id="cb18-335"><a href="#cb18-335"></a>adppk_aval <span class="ot">&lt;-</span> adppk_aprlt <span class="sc">%&gt;%</span></span>
-<span id="cb18-336"><a href="#cb18-336"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-337"><a href="#cb18-337"></a>    <span class="co"># Derive Actual Dose</span></span>
-<span id="cb18-338"><a href="#cb18-338"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-339"><a href="#cb18-339"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb18-340"><a href="#cb18-340"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_first,</span>
-<span id="cb18-341"><a href="#cb18-341"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
-<span id="cb18-342"><a href="#cb18-342"></a>    ),</span>
-<span id="cb18-343"><a href="#cb18-343"></a>    <span class="co"># Derive Planned Dose</span></span>
-<span id="cb18-344"><a href="#cb18-344"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-345"><a href="#cb18-345"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
-<span id="cb18-346"><a href="#cb18-346"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span>,</span>
-<span id="cb18-347"><a href="#cb18-347"></a>      TRT01P <span class="sc">==</span> <span class="st">"Placebo"</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb18-348"><a href="#cb18-348"></a>    ),</span>
-<span id="cb18-349"><a href="#cb18-349"></a>    <span class="co"># Derive PARAMCD</span></span>
-<span id="cb18-350"><a href="#cb18-350"></a>    <span class="at">PARAMCD =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-351"><a href="#cb18-351"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"DOSE"</span>,</span>
-<span id="cb18-352"><a href="#cb18-352"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTESTCD</span>
-<span id="cb18-353"><a href="#cb18-353"></a>    ),</span>
-<span id="cb18-354"><a href="#cb18-354"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
-<span id="cb18-355"><a href="#cb18-355"></a>    <span class="co"># Derive CMT</span></span>
-<span id="cb18-356"><a href="#cb18-356"></a>    <span class="at">CMT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-357"><a href="#cb18-357"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb18-358"><a href="#cb18-358"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">2</span></span>
-<span id="cb18-359"><a href="#cb18-359"></a>    ),</span>
-<span id="cb18-360"><a href="#cb18-360"></a>    <span class="co"># Derive BLQFL/BLQFN</span></span>
-<span id="cb18-361"><a href="#cb18-361"></a>    <span class="at">BLQFL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-362"><a href="#cb18-362"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
-<span id="cb18-363"><a href="#cb18-363"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"N"</span></span>
-<span id="cb18-364"><a href="#cb18-364"></a>    ),</span>
-<span id="cb18-365"><a href="#cb18-365"></a>    <span class="at">BLQFN =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-366"><a href="#cb18-366"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb18-367"><a href="#cb18-367"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb18-368"><a href="#cb18-368"></a>    ),</span>
-<span id="cb18-369"><a href="#cb18-369"></a>    <span class="at">AMT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-370"><a href="#cb18-370"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb18-371"><a href="#cb18-371"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
-<span id="cb18-372"><a href="#cb18-372"></a>    ),</span>
-<span id="cb18-373"><a href="#cb18-373"></a>    <span class="co"># Derive DV and AVAL</span></span>
-<span id="cb18-374"><a href="#cb18-374"></a>    <span class="at">DV =</span> PCSTRESN,</span>
-<span id="cb18-375"><a href="#cb18-375"></a>    <span class="at">DVID =</span> PCTESTCD,</span>
-<span id="cb18-376"><a href="#cb18-376"></a>    <span class="at">AVAL =</span> DV,</span>
-<span id="cb18-377"><a href="#cb18-377"></a>    <span class="at">DVL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-378"><a href="#cb18-378"></a>      DV <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fu">log</span>(DV),</span>
-<span id="cb18-379"><a href="#cb18-379"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
-<span id="cb18-380"><a href="#cb18-380"></a>    ),</span>
-<span id="cb18-381"><a href="#cb18-381"></a>    <span class="co"># Derive MDV</span></span>
-<span id="cb18-382"><a href="#cb18-382"></a>    <span class="at">MDV =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-383"><a href="#cb18-383"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb18-384"><a href="#cb18-384"></a>      <span class="fu">is.na</span>(DV) <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb18-385"><a href="#cb18-385"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb18-386"><a href="#cb18-386"></a>    ),</span>
-<span id="cb18-387"><a href="#cb18-387"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-388"><a href="#cb18-388"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
-<span id="cb18-389"><a href="#cb18-389"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
-<span id="cb18-390"><a href="#cb18-390"></a>    ),</span>
-<span id="cb18-391"><a href="#cb18-391"></a>    <span class="at">RLTU =</span> <span class="st">"h"</span>,</span>
-<span id="cb18-392"><a href="#cb18-392"></a>    <span class="at">USTRESC =</span> PCSTRESC,</span>
-<span id="cb18-393"><a href="#cb18-393"></a>    <span class="at">UDTC =</span> <span class="fu">format_ISO8601</span>(ADTM),</span>
-<span id="cb18-394"><a href="#cb18-394"></a>    <span class="at">II =</span> <span class="fu">if_else</span>(EVID <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb18-395"><a href="#cb18-395"></a>    <span class="at">SS =</span> <span class="fu">if_else</span>(EVID <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
-<span id="cb18-396"><a href="#cb18-396"></a>    <span class="at">ADDL =</span> <span class="dv">0</span>,</span>
-<span id="cb18-397"><a href="#cb18-397"></a>    <span class="at">OCC =</span> <span class="dv">1</span>,</span>
-<span id="cb18-398"><a href="#cb18-398"></a>  )</span>
-<span id="cb18-399"><a href="#cb18-399"></a><span class="in">```</span></span>
-<span id="cb18-400"><a href="#cb18-400"></a></span>
-<span id="cb18-401"><a href="#cb18-401"></a><span class="fu">### Add ASEQ</span></span>
+<span id="cb18-327"><a href="#cb18-327"></a>The expected analysis variable for <span class="in">`ADPPK`</span> is <span class="in">`DV`</span> or dependent variable. For this example <span class="in">`DV`</span> is set to the numeric concentration value <span class="in">`PCSTRESN`</span>. We will also include <span class="in">`AVAL`</span> equivalent to <span class="in">`DV`</span> for consistency with CDISC ADaM standards. <span class="in">`MDV`</span> missing dependent variable will also be included.</span>
+<span id="cb18-328"><a href="#cb18-328"></a></span>
+<span id="cb18-331"><a href="#cb18-331"></a><span class="in">```{r}</span></span>
+<span id="cb18-332"><a href="#cb18-332"></a><span class="co">#| label: Analysis Variables</span></span>
+<span id="cb18-333"><a href="#cb18-333"></a><span class="co"># ---- Derive Analysis Variables ----</span></span>
+<span id="cb18-334"><a href="#cb18-334"></a><span class="co"># Derive actual dose DOSEA and planned dose DOSEP,</span></span>
+<span id="cb18-335"><a href="#cb18-335"></a><span class="co"># Derive AVAL and DV</span></span>
+<span id="cb18-336"><a href="#cb18-336"></a></span>
+<span id="cb18-337"><a href="#cb18-337"></a>adppk_aval <span class="ot">&lt;-</span> adppk_aprlt <span class="sc">%&gt;%</span></span>
+<span id="cb18-338"><a href="#cb18-338"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-339"><a href="#cb18-339"></a>    <span class="co"># Derive Actual Dose</span></span>
+<span id="cb18-340"><a href="#cb18-340"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-341"><a href="#cb18-341"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb18-342"><a href="#cb18-342"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_first,</span>
+<span id="cb18-343"><a href="#cb18-343"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
+<span id="cb18-344"><a href="#cb18-344"></a>    ),</span>
+<span id="cb18-345"><a href="#cb18-345"></a>    <span class="co"># Derive Planned Dose</span></span>
+<span id="cb18-346"><a href="#cb18-346"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-347"><a href="#cb18-347"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
+<span id="cb18-348"><a href="#cb18-348"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span>,</span>
+<span id="cb18-349"><a href="#cb18-349"></a>      TRT01P <span class="sc">==</span> <span class="st">"Placebo"</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb18-350"><a href="#cb18-350"></a>    ),</span>
+<span id="cb18-351"><a href="#cb18-351"></a>    <span class="co"># Derive PARAMCD</span></span>
+<span id="cb18-352"><a href="#cb18-352"></a>    <span class="at">PARAMCD =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-353"><a href="#cb18-353"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"DOSE"</span>,</span>
+<span id="cb18-354"><a href="#cb18-354"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTESTCD</span>
+<span id="cb18-355"><a href="#cb18-355"></a>    ),</span>
+<span id="cb18-356"><a href="#cb18-356"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
+<span id="cb18-357"><a href="#cb18-357"></a>    <span class="co"># Derive CMT</span></span>
+<span id="cb18-358"><a href="#cb18-358"></a>    <span class="at">CMT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-359"><a href="#cb18-359"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb18-360"><a href="#cb18-360"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">2</span></span>
+<span id="cb18-361"><a href="#cb18-361"></a>    ),</span>
+<span id="cb18-362"><a href="#cb18-362"></a>    <span class="co"># Derive BLQFL/BLQFN</span></span>
+<span id="cb18-363"><a href="#cb18-363"></a>    <span class="at">BLQFL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-364"><a href="#cb18-364"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
+<span id="cb18-365"><a href="#cb18-365"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"N"</span></span>
+<span id="cb18-366"><a href="#cb18-366"></a>    ),</span>
+<span id="cb18-367"><a href="#cb18-367"></a>    <span class="at">BLQFN =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-368"><a href="#cb18-368"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb18-369"><a href="#cb18-369"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb18-370"><a href="#cb18-370"></a>    ),</span>
+<span id="cb18-371"><a href="#cb18-371"></a>    <span class="at">AMT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-372"><a href="#cb18-372"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb18-373"><a href="#cb18-373"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
+<span id="cb18-374"><a href="#cb18-374"></a>    ),</span>
+<span id="cb18-375"><a href="#cb18-375"></a>    <span class="co"># Derive DV and AVAL</span></span>
+<span id="cb18-376"><a href="#cb18-376"></a>    <span class="at">DV =</span> PCSTRESN,</span>
+<span id="cb18-377"><a href="#cb18-377"></a>    <span class="at">DVID =</span> PCTESTCD,</span>
+<span id="cb18-378"><a href="#cb18-378"></a>    <span class="at">AVAL =</span> DV,</span>
+<span id="cb18-379"><a href="#cb18-379"></a>    <span class="at">DVL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-380"><a href="#cb18-380"></a>      DV <span class="sc">!=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fu">log</span>(DV),</span>
+<span id="cb18-381"><a href="#cb18-381"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
+<span id="cb18-382"><a href="#cb18-382"></a>    ),</span>
+<span id="cb18-383"><a href="#cb18-383"></a>    <span class="co"># Derive MDV</span></span>
+<span id="cb18-384"><a href="#cb18-384"></a>    <span class="at">MDV =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-385"><a href="#cb18-385"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb18-386"><a href="#cb18-386"></a>      <span class="fu">is.na</span>(DV) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb18-387"><a href="#cb18-387"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb18-388"><a href="#cb18-388"></a>    ),</span>
+<span id="cb18-389"><a href="#cb18-389"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
+<span id="cb18-390"><a href="#cb18-390"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb18-391"><a href="#cb18-391"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
+<span id="cb18-392"><a href="#cb18-392"></a>    ),</span>
+<span id="cb18-393"><a href="#cb18-393"></a>    <span class="at">RLTU =</span> <span class="st">"h"</span>,</span>
+<span id="cb18-394"><a href="#cb18-394"></a>    <span class="at">USTRESC =</span> PCSTRESC,</span>
+<span id="cb18-395"><a href="#cb18-395"></a>    <span class="at">UDTC =</span> <span class="fu">format_ISO8601</span>(ADTM),</span>
+<span id="cb18-396"><a href="#cb18-396"></a>    <span class="at">II =</span> <span class="fu">if_else</span>(EVID <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb18-397"><a href="#cb18-397"></a>    <span class="at">SS =</span> <span class="fu">if_else</span>(EVID <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb18-398"><a href="#cb18-398"></a>    <span class="at">ADDL =</span> <span class="dv">0</span>,</span>
+<span id="cb18-399"><a href="#cb18-399"></a>    <span class="at">OCC =</span> <span class="dv">1</span>,</span>
+<span id="cb18-400"><a href="#cb18-400"></a>  )</span>
+<span id="cb18-401"><a href="#cb18-401"></a><span class="in">```</span></span>
 <span id="cb18-402"><a href="#cb18-402"></a></span>
-<span id="cb18-405"><a href="#cb18-405"></a><span class="in">```{r}</span></span>
-<span id="cb18-406"><a href="#cb18-406"></a><span class="co">#| label: ASEQ</span></span>
-<span id="cb18-407"><a href="#cb18-407"></a><span class="co"># ---- Add ASEQ ----</span></span>
-<span id="cb18-408"><a href="#cb18-408"></a></span>
-<span id="cb18-409"><a href="#cb18-409"></a>adppk_aseq <span class="ot">&lt;-</span> adppk_aval <span class="sc">%&gt;%</span></span>
-<span id="cb18-410"><a href="#cb18-410"></a>  <span class="co"># Calculate ASEQ</span></span>
-<span id="cb18-411"><a href="#cb18-411"></a>  <span class="fu">derive_var_obs_number</span>(</span>
-<span id="cb18-412"><a href="#cb18-412"></a>    <span class="at">new_var =</span> ASEQ,</span>
-<span id="cb18-413"><a href="#cb18-413"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-414"><a href="#cb18-414"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(AFRLT, EVID),</span>
-<span id="cb18-415"><a href="#cb18-415"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb18-416"><a href="#cb18-416"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-417"><a href="#cb18-417"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-418"><a href="#cb18-418"></a>    <span class="at">PROJID =</span> DRUG,</span>
-<span id="cb18-419"><a href="#cb18-419"></a>    <span class="at">PROJIDN =</span> <span class="dv">1</span>,</span>
-<span id="cb18-420"><a href="#cb18-420"></a>    <span class="at">PART =</span> <span class="dv">1</span>,</span>
-<span id="cb18-421"><a href="#cb18-421"></a>  )</span>
-<span id="cb18-422"><a href="#cb18-422"></a><span class="in">```</span></span>
-<span id="cb18-423"><a href="#cb18-423"></a></span>
-<span id="cb18-424"><a href="#cb18-424"></a><span class="fu">## Derive Covariates Using `{metatools}`</span></span>
+<span id="cb18-403"><a href="#cb18-403"></a><span class="fu">### Add ASEQ</span></span>
+<span id="cb18-404"><a href="#cb18-404"></a></span>
+<span id="cb18-407"><a href="#cb18-407"></a><span class="in">```{r}</span></span>
+<span id="cb18-408"><a href="#cb18-408"></a><span class="co">#| label: ASEQ</span></span>
+<span id="cb18-409"><a href="#cb18-409"></a><span class="co"># ---- Add ASEQ ----</span></span>
+<span id="cb18-410"><a href="#cb18-410"></a></span>
+<span id="cb18-411"><a href="#cb18-411"></a>adppk_aseq <span class="ot">&lt;-</span> adppk_aval <span class="sc">%&gt;%</span></span>
+<span id="cb18-412"><a href="#cb18-412"></a>  <span class="co"># Calculate ASEQ</span></span>
+<span id="cb18-413"><a href="#cb18-413"></a>  <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb18-414"><a href="#cb18-414"></a>    <span class="at">new_var =</span> ASEQ,</span>
+<span id="cb18-415"><a href="#cb18-415"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb18-416"><a href="#cb18-416"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(AFRLT, EVID),</span>
+<span id="cb18-417"><a href="#cb18-417"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb18-418"><a href="#cb18-418"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-419"><a href="#cb18-419"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-420"><a href="#cb18-420"></a>    <span class="at">PROJID =</span> DRUG,</span>
+<span id="cb18-421"><a href="#cb18-421"></a>    <span class="at">PROJIDN =</span> <span class="dv">1</span>,</span>
+<span id="cb18-422"><a href="#cb18-422"></a>    <span class="at">PART =</span> <span class="dv">1</span>,</span>
+<span id="cb18-423"><a href="#cb18-423"></a>  )</span>
+<span id="cb18-424"><a href="#cb18-424"></a><span class="in">```</span></span>
 <span id="cb18-425"><a href="#cb18-425"></a></span>
-<span id="cb18-426"><a href="#cb18-426"></a>In this step we will create our numeric covariates using the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
+<span id="cb18-426"><a href="#cb18-426"></a><span class="fu">## Derive Covariates Using `{metatools}`</span></span>
 <span id="cb18-427"><a href="#cb18-427"></a></span>
-<span id="cb18-430"><a href="#cb18-430"></a><span class="in">```{r}</span></span>
-<span id="cb18-431"><a href="#cb18-431"></a><span class="co">#| label: Covariates</span></span>
-<span id="cb18-432"><a href="#cb18-432"></a><span class="co">#---- Derive Covariates ----</span></span>
-<span id="cb18-433"><a href="#cb18-433"></a><span class="co"># Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.</span></span>
-<span id="cb18-434"><a href="#cb18-434"></a></span>
-<span id="cb18-435"><a href="#cb18-435"></a>covar <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb18-436"><a href="#cb18-436"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> STUDYID, <span class="at">out_var =</span> STUDYIDN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-437"><a href="#cb18-437"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> SEX, <span class="at">out_var =</span> SEXN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-438"><a href="#cb18-438"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> RACE, <span class="at">out_var =</span> RACEN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-439"><a href="#cb18-439"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ETHNIC, <span class="at">out_var =</span> AETHNIC) <span class="sc">%&gt;%</span></span>
-<span id="cb18-440"><a href="#cb18-440"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> AETHNIC, <span class="at">out_var =</span> AETHNICN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-441"><a href="#cb18-441"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ARMCD, <span class="at">out_var =</span> COHORT) <span class="sc">%&gt;%</span></span>
-<span id="cb18-442"><a href="#cb18-442"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ARMCD, <span class="at">out_var =</span> COHORTC) <span class="sc">%&gt;%</span></span>
-<span id="cb18-443"><a href="#cb18-443"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> COUNTRY, <span class="at">out_var =</span> COUNTRYN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-444"><a href="#cb18-444"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> COUNTRY, <span class="at">out_var =</span> COUNTRYL) <span class="sc">%&gt;%</span></span>
-<span id="cb18-445"><a href="#cb18-445"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-446"><a href="#cb18-446"></a>    <span class="at">STUDYIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">1</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
-<span id="cb18-447"><a href="#cb18-447"></a>    <span class="at">SITEIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">2</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
-<span id="cb18-448"><a href="#cb18-448"></a>    <span class="at">USUBJIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">3</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
-<span id="cb18-449"><a href="#cb18-449"></a>    <span class="at">SUBJIDN =</span> <span class="fu">as.numeric</span>(SUBJID),</span>
-<span id="cb18-450"><a href="#cb18-450"></a>    <span class="at">ROUTE =</span> <span class="fu">unique</span>(ex<span class="sc">$</span>EXROUTE),</span>
-<span id="cb18-451"><a href="#cb18-451"></a>    <span class="at">FORM =</span> <span class="fu">unique</span>(ex<span class="sc">$</span>EXDOSFRM),</span>
-<span id="cb18-452"><a href="#cb18-452"></a>    <span class="at">REGION1 =</span> COUNTRY,</span>
-<span id="cb18-453"><a href="#cb18-453"></a>    <span class="at">REGION1N =</span> COUNTRYN,</span>
-<span id="cb18-454"><a href="#cb18-454"></a>    <span class="at">SUBJTYPC =</span> <span class="st">"Volunteer"</span>,</span>
-<span id="cb18-455"><a href="#cb18-455"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-456"><a href="#cb18-456"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> FORM, <span class="at">out_var =</span> FORMN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-457"><a href="#cb18-457"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ROUTE, <span class="at">out_var =</span> ROUTEN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-458"><a href="#cb18-458"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> SUBJTYPC, <span class="at">out_var =</span> SUBJTYP)</span>
-<span id="cb18-459"><a href="#cb18-459"></a><span class="in">```</span></span>
-<span id="cb18-460"><a href="#cb18-460"></a></span>
-<span id="cb18-461"><a href="#cb18-461"></a><span class="fu">### Derive Additional Baselines</span></span>
+<span id="cb18-428"><a href="#cb18-428"></a>In this step we will create our numeric covariates using the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
+<span id="cb18-429"><a href="#cb18-429"></a></span>
+<span id="cb18-432"><a href="#cb18-432"></a><span class="in">```{r}</span></span>
+<span id="cb18-433"><a href="#cb18-433"></a><span class="co">#| label: Covariates</span></span>
+<span id="cb18-434"><a href="#cb18-434"></a><span class="co">#---- Derive Covariates ----</span></span>
+<span id="cb18-435"><a href="#cb18-435"></a><span class="co"># Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.</span></span>
+<span id="cb18-436"><a href="#cb18-436"></a></span>
+<span id="cb18-437"><a href="#cb18-437"></a>covar <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb18-438"><a href="#cb18-438"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> STUDYID, <span class="at">out_var =</span> STUDYIDN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-439"><a href="#cb18-439"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> SEX, <span class="at">out_var =</span> SEXN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-440"><a href="#cb18-440"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> RACE, <span class="at">out_var =</span> RACEN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-441"><a href="#cb18-441"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ETHNIC, <span class="at">out_var =</span> AETHNIC) <span class="sc">%&gt;%</span></span>
+<span id="cb18-442"><a href="#cb18-442"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> AETHNIC, <span class="at">out_var =</span> AETHNICN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-443"><a href="#cb18-443"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ARMCD, <span class="at">out_var =</span> COHORT) <span class="sc">%&gt;%</span></span>
+<span id="cb18-444"><a href="#cb18-444"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ARMCD, <span class="at">out_var =</span> COHORTC) <span class="sc">%&gt;%</span></span>
+<span id="cb18-445"><a href="#cb18-445"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> COUNTRY, <span class="at">out_var =</span> COUNTRYN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-446"><a href="#cb18-446"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> COUNTRY, <span class="at">out_var =</span> COUNTRYL) <span class="sc">%&gt;%</span></span>
+<span id="cb18-447"><a href="#cb18-447"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-448"><a href="#cb18-448"></a>    <span class="at">STUDYIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">1</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
+<span id="cb18-449"><a href="#cb18-449"></a>    <span class="at">SITEIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">2</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
+<span id="cb18-450"><a href="#cb18-450"></a>    <span class="at">USUBJIDN =</span> <span class="fu">as.numeric</span>(<span class="fu">word</span>(USUBJID, <span class="dv">3</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">"-"</span>))),</span>
+<span id="cb18-451"><a href="#cb18-451"></a>    <span class="at">SUBJIDN =</span> <span class="fu">as.numeric</span>(SUBJID),</span>
+<span id="cb18-452"><a href="#cb18-452"></a>    <span class="at">ROUTE =</span> <span class="fu">unique</span>(ex<span class="sc">$</span>EXROUTE),</span>
+<span id="cb18-453"><a href="#cb18-453"></a>    <span class="at">FORM =</span> <span class="fu">unique</span>(ex<span class="sc">$</span>EXDOSFRM),</span>
+<span id="cb18-454"><a href="#cb18-454"></a>    <span class="at">REGION1 =</span> COUNTRY,</span>
+<span id="cb18-455"><a href="#cb18-455"></a>    <span class="at">REGION1N =</span> COUNTRYN,</span>
+<span id="cb18-456"><a href="#cb18-456"></a>    <span class="at">SUBJTYPC =</span> <span class="st">"Volunteer"</span>,</span>
+<span id="cb18-457"><a href="#cb18-457"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-458"><a href="#cb18-458"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> FORM, <span class="at">out_var =</span> FORMN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-459"><a href="#cb18-459"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ROUTE, <span class="at">out_var =</span> ROUTEN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-460"><a href="#cb18-460"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> SUBJTYPC, <span class="at">out_var =</span> SUBJTYP)</span>
+<span id="cb18-461"><a href="#cb18-461"></a><span class="in">```</span></span>
 <span id="cb18-462"><a href="#cb18-462"></a></span>
-<span id="cb18-463"><a href="#cb18-463"></a>Next we add additional baselines from vital signs and laboratory data. </span>
+<span id="cb18-463"><a href="#cb18-463"></a><span class="fu">### Derive Additional Baselines</span></span>
 <span id="cb18-464"><a href="#cb18-464"></a></span>
-<span id="cb18-467"><a href="#cb18-467"></a><span class="in">```{r}</span></span>
-<span id="cb18-468"><a href="#cb18-468"></a><span class="co">#| label: Baselines</span></span>
-<span id="cb18-469"><a href="#cb18-469"></a></span>
-<span id="cb18-470"><a href="#cb18-470"></a>labsbl <span class="ot">&lt;-</span> lb <span class="sc">%&gt;%</span></span>
-<span id="cb18-471"><a href="#cb18-471"></a>  <span class="fu">filter</span>(LBBLFL <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> LBTESTCD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CREAT"</span>, <span class="st">"ALT"</span>, <span class="st">"AST"</span>, <span class="st">"BILI"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-472"><a href="#cb18-472"></a>  <span class="fu">mutate</span>(<span class="at">LBTESTCDB =</span> <span class="fu">paste0</span>(LBTESTCD, <span class="st">"BL"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-473"><a href="#cb18-473"></a>  <span class="fu">select</span>(STUDYID, USUBJID, LBTESTCDB, LBSTRESN)</span>
-<span id="cb18-474"><a href="#cb18-474"></a></span>
-<span id="cb18-475"><a href="#cb18-475"></a>covar_vslb <span class="ot">&lt;-</span> covar <span class="sc">%&gt;%</span></span>
-<span id="cb18-476"><a href="#cb18-476"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb18-477"><a href="#cb18-477"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb18-478"><a href="#cb18-478"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
-<span id="cb18-479"><a href="#cb18-479"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-480"><a href="#cb18-480"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN)</span>
-<span id="cb18-481"><a href="#cb18-481"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-482"><a href="#cb18-482"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb18-483"><a href="#cb18-483"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb18-484"><a href="#cb18-484"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb18-485"><a href="#cb18-485"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-486"><a href="#cb18-486"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN)</span>
-<span id="cb18-487"><a href="#cb18-487"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-488"><a href="#cb18-488"></a>  <span class="fu">derive_vars_transposed</span>(</span>
-<span id="cb18-489"><a href="#cb18-489"></a>    <span class="at">dataset_merge =</span> labsbl,</span>
-<span id="cb18-490"><a href="#cb18-490"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-491"><a href="#cb18-491"></a>    <span class="at">key_var =</span> LBTESTCDB,</span>
-<span id="cb18-492"><a href="#cb18-492"></a>    <span class="at">value_var =</span> LBSTRESN</span>
-<span id="cb18-493"><a href="#cb18-493"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-494"><a href="#cb18-494"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-495"><a href="#cb18-495"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
-<span id="cb18-496"><a href="#cb18-496"></a>    <span class="at">BSABL =</span> <span class="fu">compute_bsa</span>(</span>
-<span id="cb18-497"><a href="#cb18-497"></a>      <span class="at">height =</span> HTBL,</span>
-<span id="cb18-498"><a href="#cb18-498"></a>      <span class="at">weight =</span> HTBL,</span>
-<span id="cb18-499"><a href="#cb18-499"></a>      <span class="at">method =</span> <span class="st">"Mosteller"</span></span>
-<span id="cb18-500"><a href="#cb18-500"></a>    ),</span>
-<span id="cb18-501"><a href="#cb18-501"></a>    <span class="at">CRCLBL =</span> <span class="fu">compute_egfr</span>(</span>
-<span id="cb18-502"><a href="#cb18-502"></a>      <span class="at">creat =</span> CREATBL, <span class="at">creatu =</span> <span class="st">"SI"</span>, <span class="at">age =</span> AGE, <span class="at">weight =</span> WTBL, <span class="at">sex =</span> SEX,</span>
-<span id="cb18-503"><a href="#cb18-503"></a>      <span class="at">method =</span> <span class="st">"CRCL"</span></span>
-<span id="cb18-504"><a href="#cb18-504"></a>    ),</span>
-<span id="cb18-505"><a href="#cb18-505"></a>    <span class="at">EGFRBL =</span> <span class="fu">compute_egfr</span>(</span>
-<span id="cb18-506"><a href="#cb18-506"></a>      <span class="at">creat =</span> CREATBL, <span class="at">creatu =</span> <span class="st">"SI"</span>, <span class="at">age =</span> AGE, <span class="at">weight =</span> WTBL, <span class="at">sex =</span> SEX,</span>
-<span id="cb18-507"><a href="#cb18-507"></a>      <span class="at">method =</span> <span class="st">"CKD-EPI"</span></span>
-<span id="cb18-508"><a href="#cb18-508"></a>    )</span>
-<span id="cb18-509"><a href="#cb18-509"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-510"><a href="#cb18-510"></a>  <span class="fu">rename</span>(<span class="at">TBILBL =</span> BILIBL)</span>
-<span id="cb18-511"><a href="#cb18-511"></a><span class="in">```</span></span>
-<span id="cb18-512"><a href="#cb18-512"></a></span>
-<span id="cb18-513"><a href="#cb18-513"></a><span class="fu">### Combine with Covariates</span></span>
+<span id="cb18-465"><a href="#cb18-465"></a>Next we add additional baselines from vital signs and laboratory data. </span>
+<span id="cb18-466"><a href="#cb18-466"></a></span>
+<span id="cb18-469"><a href="#cb18-469"></a><span class="in">```{r}</span></span>
+<span id="cb18-470"><a href="#cb18-470"></a><span class="co">#| label: Baselines</span></span>
+<span id="cb18-471"><a href="#cb18-471"></a></span>
+<span id="cb18-472"><a href="#cb18-472"></a>labsbl <span class="ot">&lt;-</span> lb <span class="sc">%&gt;%</span></span>
+<span id="cb18-473"><a href="#cb18-473"></a>  <span class="fu">filter</span>(LBBLFL <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> LBTESTCD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CREAT"</span>, <span class="st">"ALT"</span>, <span class="st">"AST"</span>, <span class="st">"BILI"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-474"><a href="#cb18-474"></a>  <span class="fu">mutate</span>(<span class="at">LBTESTCDB =</span> <span class="fu">paste0</span>(LBTESTCD, <span class="st">"BL"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-475"><a href="#cb18-475"></a>  <span class="fu">select</span>(STUDYID, USUBJID, LBTESTCDB, LBSTRESN)</span>
+<span id="cb18-476"><a href="#cb18-476"></a></span>
+<span id="cb18-477"><a href="#cb18-477"></a>covar_vslb <span class="ot">&lt;-</span> covar <span class="sc">%&gt;%</span></span>
+<span id="cb18-478"><a href="#cb18-478"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb18-479"><a href="#cb18-479"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb18-480"><a href="#cb18-480"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb18-481"><a href="#cb18-481"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb18-482"><a href="#cb18-482"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN)</span>
+<span id="cb18-483"><a href="#cb18-483"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-484"><a href="#cb18-484"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb18-485"><a href="#cb18-485"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb18-486"><a href="#cb18-486"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb18-487"><a href="#cb18-487"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb18-488"><a href="#cb18-488"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN)</span>
+<span id="cb18-489"><a href="#cb18-489"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-490"><a href="#cb18-490"></a>  <span class="fu">derive_vars_transposed</span>(</span>
+<span id="cb18-491"><a href="#cb18-491"></a>    <span class="at">dataset_merge =</span> labsbl,</span>
+<span id="cb18-492"><a href="#cb18-492"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb18-493"><a href="#cb18-493"></a>    <span class="at">key_var =</span> LBTESTCDB,</span>
+<span id="cb18-494"><a href="#cb18-494"></a>    <span class="at">value_var =</span> LBSTRESN</span>
+<span id="cb18-495"><a href="#cb18-495"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-496"><a href="#cb18-496"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-497"><a href="#cb18-497"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
+<span id="cb18-498"><a href="#cb18-498"></a>    <span class="at">BSABL =</span> <span class="fu">compute_bsa</span>(</span>
+<span id="cb18-499"><a href="#cb18-499"></a>      <span class="at">height =</span> HTBL,</span>
+<span id="cb18-500"><a href="#cb18-500"></a>      <span class="at">weight =</span> HTBL,</span>
+<span id="cb18-501"><a href="#cb18-501"></a>      <span class="at">method =</span> <span class="st">"Mosteller"</span></span>
+<span id="cb18-502"><a href="#cb18-502"></a>    ),</span>
+<span id="cb18-503"><a href="#cb18-503"></a>    <span class="at">CRCLBL =</span> <span class="fu">compute_egfr</span>(</span>
+<span id="cb18-504"><a href="#cb18-504"></a>      <span class="at">creat =</span> CREATBL, <span class="at">creatu =</span> <span class="st">"SI"</span>, <span class="at">age =</span> AGE, <span class="at">weight =</span> WTBL, <span class="at">sex =</span> SEX,</span>
+<span id="cb18-505"><a href="#cb18-505"></a>      <span class="at">method =</span> <span class="st">"CRCL"</span></span>
+<span id="cb18-506"><a href="#cb18-506"></a>    ),</span>
+<span id="cb18-507"><a href="#cb18-507"></a>    <span class="at">EGFRBL =</span> <span class="fu">compute_egfr</span>(</span>
+<span id="cb18-508"><a href="#cb18-508"></a>      <span class="at">creat =</span> CREATBL, <span class="at">creatu =</span> <span class="st">"SI"</span>, <span class="at">age =</span> AGE, <span class="at">weight =</span> WTBL, <span class="at">sex =</span> SEX,</span>
+<span id="cb18-509"><a href="#cb18-509"></a>      <span class="at">method =</span> <span class="st">"CKD-EPI"</span></span>
+<span id="cb18-510"><a href="#cb18-510"></a>    )</span>
+<span id="cb18-511"><a href="#cb18-511"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-512"><a href="#cb18-512"></a>  <span class="fu">rename</span>(<span class="at">TBILBL =</span> BILIBL)</span>
+<span id="cb18-513"><a href="#cb18-513"></a><span class="in">```</span></span>
 <span id="cb18-514"><a href="#cb18-514"></a></span>
-<span id="cb18-515"><a href="#cb18-515"></a>We combine our covariates with the rest of the data</span>
+<span id="cb18-515"><a href="#cb18-515"></a><span class="fu">### Combine with Covariates</span></span>
 <span id="cb18-516"><a href="#cb18-516"></a></span>
-<span id="cb18-519"><a href="#cb18-519"></a><span class="in">```{r}</span></span>
-<span id="cb18-520"><a href="#cb18-520"></a><span class="co">#| label: Combine with Covariates</span></span>
-<span id="cb18-521"><a href="#cb18-521"></a><span class="co"># Combine covariates with APPPK data</span></span>
-<span id="cb18-522"><a href="#cb18-522"></a></span>
-<span id="cb18-523"><a href="#cb18-523"></a>adppk_prefinal <span class="ot">&lt;-</span> adppk_aseq <span class="sc">%&gt;%</span></span>
-<span id="cb18-524"><a href="#cb18-524"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb18-525"><a href="#cb18-525"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(covar_vslb, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
-<span id="cb18-526"><a href="#cb18-526"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb18-527"><a href="#cb18-527"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-528"><a href="#cb18-528"></a>  <span class="fu">arrange</span>(STUDYIDN, USUBJIDN, AFRLT, EVID) <span class="sc">%&gt;%</span></span>
-<span id="cb18-529"><a href="#cb18-529"></a>  <span class="co"># Add RECSEQ</span></span>
-<span id="cb18-530"><a href="#cb18-530"></a>  <span class="co"># Exclude records if needed</span></span>
-<span id="cb18-531"><a href="#cb18-531"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-532"><a href="#cb18-532"></a>    <span class="at">RECSEQ =</span> <span class="fu">row_number</span>(),</span>
-<span id="cb18-533"><a href="#cb18-533"></a>    <span class="at">EXCLFCOM =</span> <span class="st">"None"</span></span>
-<span id="cb18-534"><a href="#cb18-534"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-535"><a href="#cb18-535"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> DVID, <span class="at">out_var =</span> DVIDN) <span class="sc">%&gt;%</span></span>
-<span id="cb18-536"><a href="#cb18-536"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> EXCLFCOM, <span class="at">out_var =</span> EXCLF)</span>
-<span id="cb18-537"><a href="#cb18-537"></a><span class="in">```</span></span>
-<span id="cb18-538"><a href="#cb18-538"></a></span>
-<span id="cb18-539"><a href="#cb18-539"></a><span class="fu">## Check Data With metacore and metatools</span></span>
+<span id="cb18-517"><a href="#cb18-517"></a>We combine our covariates with the rest of the data</span>
+<span id="cb18-518"><a href="#cb18-518"></a></span>
+<span id="cb18-521"><a href="#cb18-521"></a><span class="in">```{r}</span></span>
+<span id="cb18-522"><a href="#cb18-522"></a><span class="co">#| label: Combine with Covariates</span></span>
+<span id="cb18-523"><a href="#cb18-523"></a><span class="co"># Combine covariates with APPPK data</span></span>
+<span id="cb18-524"><a href="#cb18-524"></a></span>
+<span id="cb18-525"><a href="#cb18-525"></a>adppk_prefinal <span class="ot">&lt;-</span> adppk_aseq <span class="sc">%&gt;%</span></span>
+<span id="cb18-526"><a href="#cb18-526"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb18-527"><a href="#cb18-527"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(covar_vslb, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
+<span id="cb18-528"><a href="#cb18-528"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb18-529"><a href="#cb18-529"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-530"><a href="#cb18-530"></a>  <span class="fu">arrange</span>(STUDYIDN, USUBJIDN, AFRLT, EVID) <span class="sc">%&gt;%</span></span>
+<span id="cb18-531"><a href="#cb18-531"></a>  <span class="co"># Add RECSEQ</span></span>
+<span id="cb18-532"><a href="#cb18-532"></a>  <span class="co"># Exclude records if needed</span></span>
+<span id="cb18-533"><a href="#cb18-533"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-534"><a href="#cb18-534"></a>    <span class="at">RECSEQ =</span> <span class="fu">row_number</span>(),</span>
+<span id="cb18-535"><a href="#cb18-535"></a>    <span class="at">EXCLFCOM =</span> <span class="st">"None"</span></span>
+<span id="cb18-536"><a href="#cb18-536"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb18-537"><a href="#cb18-537"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> DVID, <span class="at">out_var =</span> DVIDN) <span class="sc">%&gt;%</span></span>
+<span id="cb18-538"><a href="#cb18-538"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> EXCLFCOM, <span class="at">out_var =</span> EXCLF)</span>
+<span id="cb18-539"><a href="#cb18-539"></a><span class="in">```</span></span>
 <span id="cb18-540"><a href="#cb18-540"></a></span>
-<span id="cb18-541"><a href="#cb18-541"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
+<span id="cb18-541"><a href="#cb18-541"></a><span class="fu">## Check Data With metacore and metatools</span></span>
 <span id="cb18-542"><a href="#cb18-542"></a></span>
-<span id="cb18-545"><a href="#cb18-545"></a><span class="in">```{r}</span></span>
-<span id="cb18-546"><a href="#cb18-546"></a><span class="co">#| label: Metacore</span></span>
-<span id="cb18-547"><a href="#cb18-547"></a><span class="co">#| warning: false</span></span>
-<span id="cb18-548"><a href="#cb18-548"></a></span>
-<span id="cb18-549"><a href="#cb18-549"></a>adppk <span class="ot">&lt;-</span> adppk_prefinal <span class="sc">%&gt;%</span></span>
-<span id="cb18-550"><a href="#cb18-550"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
-<span id="cb18-551"><a href="#cb18-551"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb18-552"><a href="#cb18-552"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb18-553"><a href="#cb18-553"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb18-554"><a href="#cb18-554"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
-<span id="cb18-555"><a href="#cb18-555"></a><span class="in">```</span></span>
-<span id="cb18-556"><a href="#cb18-556"></a></span>
-<span id="cb18-557"><a href="#cb18-557"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
+<span id="cb18-543"><a href="#cb18-543"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
+<span id="cb18-544"><a href="#cb18-544"></a></span>
+<span id="cb18-547"><a href="#cb18-547"></a><span class="in">```{r}</span></span>
+<span id="cb18-548"><a href="#cb18-548"></a><span class="co">#| label: Metacore</span></span>
+<span id="cb18-549"><a href="#cb18-549"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-550"><a href="#cb18-550"></a></span>
+<span id="cb18-551"><a href="#cb18-551"></a>adppk <span class="ot">&lt;-</span> adppk_prefinal <span class="sc">%&gt;%</span></span>
+<span id="cb18-552"><a href="#cb18-552"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
+<span id="cb18-553"><a href="#cb18-553"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb18-554"><a href="#cb18-554"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb18-555"><a href="#cb18-555"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
+<span id="cb18-556"><a href="#cb18-556"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
+<span id="cb18-557"><a href="#cb18-557"></a><span class="in">```</span></span>
 <span id="cb18-558"><a href="#cb18-558"></a></span>
-<span id="cb18-559"><a href="#cb18-559"></a>Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file with <span class="in">`xportr::xportr_write()`</span>. </span>
+<span id="cb18-559"><a href="#cb18-559"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
 <span id="cb18-560"><a href="#cb18-560"></a></span>
-<span id="cb18-563"><a href="#cb18-563"></a><span class="in">```{r}</span></span>
-<span id="cb18-564"><a href="#cb18-564"></a><span class="co">#| label: xportr</span></span>
-<span id="cb18-565"><a href="#cb18-565"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
-<span id="cb18-566"><a href="#cb18-566"></a></span>
-<span id="cb18-567"><a href="#cb18-567"></a>adppk_xpt <span class="ot">&lt;-</span> adppk <span class="sc">%&gt;%</span></span>
-<span id="cb18-568"><a href="#cb18-568"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb18-569"><a href="#cb18-569"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb18-570"><a href="#cb18-570"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb18-571"><a href="#cb18-571"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb18-572"><a href="#cb18-572"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb18-573"><a href="#cb18-573"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adppk.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb18-574"><a href="#cb18-574"></a></span>
-<span id="cb18-575"><a href="#cb18-575"></a><span class="in">```</span></span>
+<span id="cb18-561"><a href="#cb18-561"></a>Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file with <span class="in">`xportr::xportr_write()`</span>. </span>
+<span id="cb18-562"><a href="#cb18-562"></a></span>
+<span id="cb18-565"><a href="#cb18-565"></a><span class="in">```{r}</span></span>
+<span id="cb18-566"><a href="#cb18-566"></a><span class="co">#| label: xportr</span></span>
+<span id="cb18-567"><a href="#cb18-567"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<span id="cb18-568"><a href="#cb18-568"></a></span>
+<span id="cb18-569"><a href="#cb18-569"></a>adppk_xpt <span class="ot">&lt;-</span> adppk <span class="sc">%&gt;%</span></span>
+<span id="cb18-570"><a href="#cb18-570"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb18-571"><a href="#cb18-571"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb18-572"><a href="#cb18-572"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb18-573"><a href="#cb18-573"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb18-574"><a href="#cb18-574"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb18-575"><a href="#cb18-575"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adppk.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span>
+<span id="cb18-576"><a href="#cb18-576"></a></span>
+<span id="cb18-577"><a href="#cb18-577"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -484,27 +484,29 @@ cookieconsent.run({
 <span id="cb8-8"><a href="#cb8-8"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
 <span id="cb8-9"><a href="#cb8-9"></a>    ),</span>
 <span id="cb8-10"><a href="#cb8-10"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
-<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>  )</span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb8-19"><a href="#cb8-19"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb8-20"><a href="#cb8-20"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb8-21"><a href="#cb8-21"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
-<span id="cb8-23"><a href="#cb8-23"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
-<span id="cb8-24"><a href="#cb8-24"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
-<span id="cb8-25"><a href="#cb8-25"></a>    ),</span>
-<span id="cb8-26"><a href="#cb8-26"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb8-27"><a href="#cb8-27"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb8-28"><a href="#cb8-28"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
-<span id="cb8-29"><a href="#cb8-29"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb8-30"><a href="#cb8-30"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a href="#cb8-11"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  )</span>
+<span id="cb8-17"><a href="#cb8-17"></a></span>
+<span id="cb8-18"><a href="#cb8-18"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb8-23"><a href="#cb8-23"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
+<span id="cb8-24"><a href="#cb8-24"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
+<span id="cb8-25"><a href="#cb8-25"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
+<span id="cb8-26"><a href="#cb8-26"></a>    ),</span>
+<span id="cb8-27"><a href="#cb8-27"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb8-28"><a href="#cb8-28"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb8-29"><a href="#cb8-29"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-30"><a href="#cb8-30"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
+<span id="cb8-31"><a href="#cb8-31"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb8-32"><a href="#cb8-32"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="find-previous-and-next-nominal-dose" class="level3">
@@ -518,24 +520,26 @@ cookieconsent.run({
 <span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
 <span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
 <span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>  )</span>
-<span id="cb9-13"><a href="#cb9-13"></a></span>
-<span id="cb9-14"><a href="#cb9-14"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb9-16"><a href="#cb9-16"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb9-17"><a href="#cb9-17"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb9-18"><a href="#cb9-18"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb9-19"><a href="#cb9-19"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
-<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb9-21"><a href="#cb9-21"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb9-22"><a href="#cb9-22"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
-<span id="cb9-23"><a href="#cb9-23"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb9-24"><a href="#cb9-24"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb9-25"><a href="#cb9-25"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  )</span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb9-17"><a href="#cb9-17"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb9-18"><a href="#cb9-18"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
+<span id="cb9-21"><a href="#cb9-21"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb9-22"><a href="#cb9-22"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-24"><a href="#cb9-24"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
+<span id="cb9-25"><a href="#cb9-25"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb9-26"><a href="#cb9-26"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine-pc-and-ex-data" class="level3">
@@ -1471,383 +1475,387 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-235"><a href="#cb21-235"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
 <span id="cb21-236"><a href="#cb21-236"></a>    ),</span>
 <span id="cb21-237"><a href="#cb21-237"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb21-238"><a href="#cb21-238"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb21-239"><a href="#cb21-239"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
-<span id="cb21-240"><a href="#cb21-240"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb21-241"><a href="#cb21-241"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb21-242"><a href="#cb21-242"></a>  )</span>
-<span id="cb21-243"><a href="#cb21-243"></a></span>
-<span id="cb21-244"><a href="#cb21-244"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
-<span id="cb21-245"><a href="#cb21-245"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb21-246"><a href="#cb21-246"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb21-247"><a href="#cb21-247"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb21-248"><a href="#cb21-248"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb21-249"><a href="#cb21-249"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
-<span id="cb21-250"><a href="#cb21-250"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
-<span id="cb21-251"><a href="#cb21-251"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
-<span id="cb21-252"><a href="#cb21-252"></a>    ),</span>
-<span id="cb21-253"><a href="#cb21-253"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb21-254"><a href="#cb21-254"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb21-255"><a href="#cb21-255"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
-<span id="cb21-256"><a href="#cb21-256"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb21-257"><a href="#cb21-257"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb21-258"><a href="#cb21-258"></a>  )</span>
-<span id="cb21-259"><a href="#cb21-259"></a><span class="in">```</span></span>
-<span id="cb21-260"><a href="#cb21-260"></a></span>
-<span id="cb21-261"><a href="#cb21-261"></a><span class="fu">### Find Previous and Next Nominal Dose</span></span>
+<span id="cb21-238"><a href="#cb21-238"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb21-239"><a href="#cb21-239"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-240"><a href="#cb21-240"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
+<span id="cb21-241"><a href="#cb21-241"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb21-242"><a href="#cb21-242"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb21-243"><a href="#cb21-243"></a>  )</span>
+<span id="cb21-244"><a href="#cb21-244"></a></span>
+<span id="cb21-245"><a href="#cb21-245"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
+<span id="cb21-246"><a href="#cb21-246"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb21-247"><a href="#cb21-247"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb21-248"><a href="#cb21-248"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb21-249"><a href="#cb21-249"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb21-250"><a href="#cb21-250"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
+<span id="cb21-251"><a href="#cb21-251"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
+<span id="cb21-252"><a href="#cb21-252"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
+<span id="cb21-253"><a href="#cb21-253"></a>    ),</span>
+<span id="cb21-254"><a href="#cb21-254"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb21-255"><a href="#cb21-255"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb21-256"><a href="#cb21-256"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-257"><a href="#cb21-257"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
+<span id="cb21-258"><a href="#cb21-258"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb21-259"><a href="#cb21-259"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb21-260"><a href="#cb21-260"></a>  )</span>
+<span id="cb21-261"><a href="#cb21-261"></a><span class="in">```</span></span>
 <span id="cb21-262"><a href="#cb21-262"></a></span>
-<span id="cb21-263"><a href="#cb21-263"></a>Use the same method to find the previous and next nominal times. </span>
+<span id="cb21-263"><a href="#cb21-263"></a><span class="fu">### Find Previous and Next Nominal Dose</span></span>
 <span id="cb21-264"><a href="#cb21-264"></a></span>
-<span id="cb21-267"><a href="#cb21-267"></a><span class="in">```{r}</span></span>
-<span id="cb21-268"><a href="#cb21-268"></a><span class="co">#| label: Previous Nominal Dose</span></span>
-<span id="cb21-269"><a href="#cb21-269"></a></span>
-<span id="cb21-270"><a href="#cb21-270"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
-<span id="cb21-271"><a href="#cb21-271"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb21-272"><a href="#cb21-272"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb21-273"><a href="#cb21-273"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb21-274"><a href="#cb21-274"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb21-275"><a href="#cb21-275"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
-<span id="cb21-276"><a href="#cb21-276"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb21-277"><a href="#cb21-277"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb21-278"><a href="#cb21-278"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
-<span id="cb21-279"><a href="#cb21-279"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb21-280"><a href="#cb21-280"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb21-281"><a href="#cb21-281"></a>  )</span>
-<span id="cb21-282"><a href="#cb21-282"></a></span>
-<span id="cb21-283"><a href="#cb21-283"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
-<span id="cb21-284"><a href="#cb21-284"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb21-285"><a href="#cb21-285"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb21-286"><a href="#cb21-286"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb21-287"><a href="#cb21-287"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb21-288"><a href="#cb21-288"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
-<span id="cb21-289"><a href="#cb21-289"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb21-290"><a href="#cb21-290"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb21-291"><a href="#cb21-291"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
-<span id="cb21-292"><a href="#cb21-292"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb21-293"><a href="#cb21-293"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb21-294"><a href="#cb21-294"></a>  )</span>
-<span id="cb21-295"><a href="#cb21-295"></a><span class="in">```</span></span>
-<span id="cb21-296"><a href="#cb21-296"></a></span>
-<span id="cb21-297"><a href="#cb21-297"></a><span class="fu">### Combine PC and EX Data</span></span>
-<span id="cb21-298"><a href="#cb21-298"></a></span>
-<span id="cb21-299"><a href="#cb21-299"></a>Combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records and derive the additional relative time variables. </span>
+<span id="cb21-265"><a href="#cb21-265"></a>Use the same method to find the previous and next nominal times. </span>
+<span id="cb21-266"><a href="#cb21-266"></a></span>
+<span id="cb21-269"><a href="#cb21-269"></a><span class="in">```{r}</span></span>
+<span id="cb21-270"><a href="#cb21-270"></a><span class="co">#| label: Previous Nominal Dose</span></span>
+<span id="cb21-271"><a href="#cb21-271"></a></span>
+<span id="cb21-272"><a href="#cb21-272"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
+<span id="cb21-273"><a href="#cb21-273"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb21-274"><a href="#cb21-274"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb21-275"><a href="#cb21-275"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb21-276"><a href="#cb21-276"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb21-277"><a href="#cb21-277"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
+<span id="cb21-278"><a href="#cb21-278"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb21-279"><a href="#cb21-279"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb21-280"><a href="#cb21-280"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-281"><a href="#cb21-281"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
+<span id="cb21-282"><a href="#cb21-282"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb21-283"><a href="#cb21-283"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb21-284"><a href="#cb21-284"></a>  )</span>
+<span id="cb21-285"><a href="#cb21-285"></a></span>
+<span id="cb21-286"><a href="#cb21-286"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
+<span id="cb21-287"><a href="#cb21-287"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb21-288"><a href="#cb21-288"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb21-289"><a href="#cb21-289"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb21-290"><a href="#cb21-290"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb21-291"><a href="#cb21-291"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
+<span id="cb21-292"><a href="#cb21-292"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb21-293"><a href="#cb21-293"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb21-294"><a href="#cb21-294"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb21-295"><a href="#cb21-295"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
+<span id="cb21-296"><a href="#cb21-296"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb21-297"><a href="#cb21-297"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb21-298"><a href="#cb21-298"></a>  )</span>
+<span id="cb21-299"><a href="#cb21-299"></a><span class="in">```</span></span>
 <span id="cb21-300"><a href="#cb21-300"></a></span>
-<span id="cb21-303"><a href="#cb21-303"></a><span class="in">```{r}</span></span>
-<span id="cb21-304"><a href="#cb21-304"></a><span class="co">#| label: Combine</span></span>
-<span id="cb21-305"><a href="#cb21-305"></a></span>
-<span id="cb21-306"><a href="#cb21-306"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
-<span id="cb21-307"><a href="#cb21-307"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
-<span id="cb21-308"><a href="#cb21-308"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-309"><a href="#cb21-309"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb21-310"><a href="#cb21-310"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT_prev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb21-311"><a href="#cb21-311"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
-<span id="cb21-312"><a href="#cb21-312"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-313"><a href="#cb21-313"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
-<span id="cb21-314"><a href="#cb21-314"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb21-315"><a href="#cb21-315"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
-<span id="cb21-316"><a href="#cb21-316"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
-<span id="cb21-317"><a href="#cb21-317"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb21-318"><a href="#cb21-318"></a>    <span class="at">new_var =</span> AFRLT,</span>
-<span id="cb21-319"><a href="#cb21-319"></a>    <span class="at">start_date =</span> FANLDTM,</span>
-<span id="cb21-320"><a href="#cb21-320"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb21-321"><a href="#cb21-321"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb21-322"><a href="#cb21-322"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-323"><a href="#cb21-323"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb21-324"><a href="#cb21-324"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-325"><a href="#cb21-325"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (ARRLT)</span></span>
-<span id="cb21-326"><a href="#cb21-326"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb21-327"><a href="#cb21-327"></a>    <span class="at">new_var =</span> ARRLT,</span>
-<span id="cb21-328"><a href="#cb21-328"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
-<span id="cb21-329"><a href="#cb21-329"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb21-330"><a href="#cb21-330"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb21-331"><a href="#cb21-331"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-332"><a href="#cb21-332"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb21-333"><a href="#cb21-333"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-334"><a href="#cb21-334"></a>  <span class="co"># Derive Actual Relative Time from Next Dose (AXRLT not kept)</span></span>
-<span id="cb21-335"><a href="#cb21-335"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb21-336"><a href="#cb21-336"></a>    <span class="at">new_var =</span> AXRLT,</span>
-<span id="cb21-337"><a href="#cb21-337"></a>    <span class="at">start_date =</span> ADTM_next,</span>
-<span id="cb21-338"><a href="#cb21-338"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb21-339"><a href="#cb21-339"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb21-340"><a href="#cb21-340"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb21-341"><a href="#cb21-341"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb21-342"><a href="#cb21-342"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-343"><a href="#cb21-343"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-344"><a href="#cb21-344"></a>    <span class="at">ARRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-345"><a href="#cb21-345"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-346"><a href="#cb21-346"></a>      <span class="fu">is.na</span>(ARRLT) <span class="sc">~</span> AXRLT,</span>
-<span id="cb21-347"><a href="#cb21-347"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ARRLT</span>
-<span id="cb21-348"><a href="#cb21-348"></a>    ),</span>
-<span id="cb21-349"><a href="#cb21-349"></a>    <span class="co"># Derive Reference Dose Date</span></span>
-<span id="cb21-350"><a href="#cb21-350"></a>    <span class="at">PCRFTDTM =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-351"><a href="#cb21-351"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> ADTM,</span>
-<span id="cb21-352"><a href="#cb21-352"></a>      <span class="fu">is.na</span>(ADTM_prev) <span class="sc">~</span> ADTM_next,</span>
-<span id="cb21-353"><a href="#cb21-353"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ADTM_prev</span>
-<span id="cb21-354"><a href="#cb21-354"></a>    )</span>
-<span id="cb21-355"><a href="#cb21-355"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-356"><a href="#cb21-356"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
-<span id="cb21-357"><a href="#cb21-357"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-358"><a href="#cb21-358"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-359"><a href="#cb21-359"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-360"><a href="#cb21-360"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
-<span id="cb21-361"><a href="#cb21-361"></a><span class="in">```</span></span>
-<span id="cb21-362"><a href="#cb21-362"></a></span>
-<span id="cb21-363"><a href="#cb21-363"></a><span class="fu">### Derive Nominal Reference</span></span>
-<span id="cb21-364"><a href="#cb21-364"></a></span>
-<span id="cb21-365"><a href="#cb21-365"></a>For nominal relative times we calculate the nominal relative time to reference dose <span class="in">`NRRLT`</span>.</span>
+<span id="cb21-301"><a href="#cb21-301"></a><span class="fu">### Combine PC and EX Data</span></span>
+<span id="cb21-302"><a href="#cb21-302"></a></span>
+<span id="cb21-303"><a href="#cb21-303"></a>Combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records and derive the additional relative time variables. </span>
+<span id="cb21-304"><a href="#cb21-304"></a></span>
+<span id="cb21-307"><a href="#cb21-307"></a><span class="in">```{r}</span></span>
+<span id="cb21-308"><a href="#cb21-308"></a><span class="co">#| label: Combine</span></span>
+<span id="cb21-309"><a href="#cb21-309"></a></span>
+<span id="cb21-310"><a href="#cb21-310"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
+<span id="cb21-311"><a href="#cb21-311"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
+<span id="cb21-312"><a href="#cb21-312"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-313"><a href="#cb21-313"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-314"><a href="#cb21-314"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT_prev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-315"><a href="#cb21-315"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
+<span id="cb21-316"><a href="#cb21-316"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-317"><a href="#cb21-317"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
+<span id="cb21-318"><a href="#cb21-318"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-319"><a href="#cb21-319"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
+<span id="cb21-320"><a href="#cb21-320"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
+<span id="cb21-321"><a href="#cb21-321"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb21-322"><a href="#cb21-322"></a>    <span class="at">new_var =</span> AFRLT,</span>
+<span id="cb21-323"><a href="#cb21-323"></a>    <span class="at">start_date =</span> FANLDTM,</span>
+<span id="cb21-324"><a href="#cb21-324"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb21-325"><a href="#cb21-325"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb21-326"><a href="#cb21-326"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-327"><a href="#cb21-327"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-328"><a href="#cb21-328"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-329"><a href="#cb21-329"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (ARRLT)</span></span>
+<span id="cb21-330"><a href="#cb21-330"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb21-331"><a href="#cb21-331"></a>    <span class="at">new_var =</span> ARRLT,</span>
+<span id="cb21-332"><a href="#cb21-332"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
+<span id="cb21-333"><a href="#cb21-333"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb21-334"><a href="#cb21-334"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb21-335"><a href="#cb21-335"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-336"><a href="#cb21-336"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-337"><a href="#cb21-337"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-338"><a href="#cb21-338"></a>  <span class="co"># Derive Actual Relative Time from Next Dose (AXRLT not kept)</span></span>
+<span id="cb21-339"><a href="#cb21-339"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb21-340"><a href="#cb21-340"></a>    <span class="at">new_var =</span> AXRLT,</span>
+<span id="cb21-341"><a href="#cb21-341"></a>    <span class="at">start_date =</span> ADTM_next,</span>
+<span id="cb21-342"><a href="#cb21-342"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb21-343"><a href="#cb21-343"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb21-344"><a href="#cb21-344"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-345"><a href="#cb21-345"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-346"><a href="#cb21-346"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-347"><a href="#cb21-347"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-348"><a href="#cb21-348"></a>    <span class="at">ARRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-349"><a href="#cb21-349"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-350"><a href="#cb21-350"></a>      <span class="fu">is.na</span>(ARRLT) <span class="sc">~</span> AXRLT,</span>
+<span id="cb21-351"><a href="#cb21-351"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ARRLT</span>
+<span id="cb21-352"><a href="#cb21-352"></a>    ),</span>
+<span id="cb21-353"><a href="#cb21-353"></a>    <span class="co"># Derive Reference Dose Date</span></span>
+<span id="cb21-354"><a href="#cb21-354"></a>    <span class="at">PCRFTDTM =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-355"><a href="#cb21-355"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> ADTM,</span>
+<span id="cb21-356"><a href="#cb21-356"></a>      <span class="fu">is.na</span>(ADTM_prev) <span class="sc">~</span> ADTM_next,</span>
+<span id="cb21-357"><a href="#cb21-357"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ADTM_prev</span>
+<span id="cb21-358"><a href="#cb21-358"></a>    )</span>
+<span id="cb21-359"><a href="#cb21-359"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-360"><a href="#cb21-360"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
+<span id="cb21-361"><a href="#cb21-361"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-362"><a href="#cb21-362"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-363"><a href="#cb21-363"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-364"><a href="#cb21-364"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
+<span id="cb21-365"><a href="#cb21-365"></a><span class="in">```</span></span>
 <span id="cb21-366"><a href="#cb21-366"></a></span>
-<span id="cb21-369"><a href="#cb21-369"></a><span class="in">```{r}</span></span>
-<span id="cb21-370"><a href="#cb21-370"></a><span class="co">#| label: Nominal Reference</span></span>
-<span id="cb21-371"><a href="#cb21-371"></a></span>
-<span id="cb21-372"><a href="#cb21-372"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
-<span id="cb21-373"><a href="#cb21-373"></a></span>
-<span id="cb21-374"><a href="#cb21-374"></a>adpc_nrrlt <span class="ot">&lt;-</span> adpc_arrlt <span class="sc">%&gt;%</span></span>
-<span id="cb21-375"><a href="#cb21-375"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-376"><a href="#cb21-376"></a>    <span class="at">NRRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-377"><a href="#cb21-377"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-378"><a href="#cb21-378"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
-<span id="cb21-379"><a href="#cb21-379"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
-<span id="cb21-380"><a href="#cb21-380"></a>    ),</span>
-<span id="cb21-381"><a href="#cb21-381"></a>    <span class="at">NXRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-382"><a href="#cb21-382"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-383"><a href="#cb21-383"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_next</span>
-<span id="cb21-384"><a href="#cb21-384"></a>    )</span>
-<span id="cb21-385"><a href="#cb21-385"></a>  )</span>
-<span id="cb21-386"><a href="#cb21-386"></a><span class="in">```</span></span>
-<span id="cb21-387"><a href="#cb21-387"></a></span>
-<span id="cb21-388"><a href="#cb21-388"></a><span class="fu">### Derive Analysis Variables</span></span>
-<span id="cb21-389"><a href="#cb21-389"></a></span>
-<span id="cb21-390"><a href="#cb21-390"></a>Here we derive the analysis variables such as <span class="in">`AVAL`</span> and <span class="in">`ATPTREF`</span>.</span>
+<span id="cb21-367"><a href="#cb21-367"></a><span class="fu">### Derive Nominal Reference</span></span>
+<span id="cb21-368"><a href="#cb21-368"></a></span>
+<span id="cb21-369"><a href="#cb21-369"></a>For nominal relative times we calculate the nominal relative time to reference dose <span class="in">`NRRLT`</span>.</span>
+<span id="cb21-370"><a href="#cb21-370"></a></span>
+<span id="cb21-373"><a href="#cb21-373"></a><span class="in">```{r}</span></span>
+<span id="cb21-374"><a href="#cb21-374"></a><span class="co">#| label: Nominal Reference</span></span>
+<span id="cb21-375"><a href="#cb21-375"></a></span>
+<span id="cb21-376"><a href="#cb21-376"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
+<span id="cb21-377"><a href="#cb21-377"></a></span>
+<span id="cb21-378"><a href="#cb21-378"></a>adpc_nrrlt <span class="ot">&lt;-</span> adpc_arrlt <span class="sc">%&gt;%</span></span>
+<span id="cb21-379"><a href="#cb21-379"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-380"><a href="#cb21-380"></a>    <span class="at">NRRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-381"><a href="#cb21-381"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-382"><a href="#cb21-382"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
+<span id="cb21-383"><a href="#cb21-383"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
+<span id="cb21-384"><a href="#cb21-384"></a>    ),</span>
+<span id="cb21-385"><a href="#cb21-385"></a>    <span class="at">NXRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-386"><a href="#cb21-386"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-387"><a href="#cb21-387"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_next</span>
+<span id="cb21-388"><a href="#cb21-388"></a>    )</span>
+<span id="cb21-389"><a href="#cb21-389"></a>  )</span>
+<span id="cb21-390"><a href="#cb21-390"></a><span class="in">```</span></span>
 <span id="cb21-391"><a href="#cb21-391"></a></span>
-<span id="cb21-394"><a href="#cb21-394"></a><span class="in">```{r}</span></span>
-<span id="cb21-395"><a href="#cb21-395"></a><span class="co">#| label: Analysis Variables</span></span>
-<span id="cb21-396"><a href="#cb21-396"></a></span>
-<span id="cb21-397"><a href="#cb21-397"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
-<span id="cb21-398"><a href="#cb21-398"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-399"><a href="#cb21-399"></a>    <span class="at">ATPTN =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-400"><a href="#cb21-400"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-401"><a href="#cb21-401"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPTNUM</span>
-<span id="cb21-402"><a href="#cb21-402"></a>    ),</span>
-<span id="cb21-403"><a href="#cb21-403"></a>    <span class="at">ATPT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-404"><a href="#cb21-404"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Dose"</span>,</span>
-<span id="cb21-405"><a href="#cb21-405"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPT</span>
+<span id="cb21-392"><a href="#cb21-392"></a><span class="fu">### Derive Analysis Variables</span></span>
+<span id="cb21-393"><a href="#cb21-393"></a></span>
+<span id="cb21-394"><a href="#cb21-394"></a>Here we derive the analysis variables such as <span class="in">`AVAL`</span> and <span class="in">`ATPTREF`</span>.</span>
+<span id="cb21-395"><a href="#cb21-395"></a></span>
+<span id="cb21-398"><a href="#cb21-398"></a><span class="in">```{r}</span></span>
+<span id="cb21-399"><a href="#cb21-399"></a><span class="co">#| label: Analysis Variables</span></span>
+<span id="cb21-400"><a href="#cb21-400"></a></span>
+<span id="cb21-401"><a href="#cb21-401"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
+<span id="cb21-402"><a href="#cb21-402"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-403"><a href="#cb21-403"></a>    <span class="at">ATPTN =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-404"><a href="#cb21-404"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-405"><a href="#cb21-405"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPTNUM</span>
 <span id="cb21-406"><a href="#cb21-406"></a>    ),</span>
-<span id="cb21-407"><a href="#cb21-407"></a>    <span class="at">ATPTREF =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-408"><a href="#cb21-408"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> AVISIT,</span>
-<span id="cb21-409"><a href="#cb21-409"></a>      <span class="fu">is.na</span>(AVISIT_prev) <span class="sc">~</span> AVISIT_next,</span>
-<span id="cb21-410"><a href="#cb21-410"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> AVISIT_prev</span>
-<span id="cb21-411"><a href="#cb21-411"></a>    ),</span>
-<span id="cb21-412"><a href="#cb21-412"></a>    <span class="co"># Derive baseline flag for pre-dose records</span></span>
-<span id="cb21-413"><a href="#cb21-413"></a>    <span class="at">ABLFL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-414"><a href="#cb21-414"></a>      ATPT <span class="sc">==</span> <span class="st">"Pre-dose"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
-<span id="cb21-415"><a href="#cb21-415"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb21-416"><a href="#cb21-416"></a>    ),</span>
-<span id="cb21-417"><a href="#cb21-417"></a>    <span class="co"># Derive BASETYPE</span></span>
-<span id="cb21-418"><a href="#cb21-418"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(ATPTREF, <span class="st">"Baseline"</span>),</span>
-<span id="cb21-419"><a href="#cb21-419"></a></span>
-<span id="cb21-420"><a href="#cb21-420"></a>    <span class="co"># Derive Actual Dose</span></span>
-<span id="cb21-421"><a href="#cb21-421"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-422"><a href="#cb21-422"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb21-423"><a href="#cb21-423"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_next,</span>
-<span id="cb21-424"><a href="#cb21-424"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
-<span id="cb21-425"><a href="#cb21-425"></a>    ),</span>
-<span id="cb21-426"><a href="#cb21-426"></a>    <span class="co"># Derive Planned Dose</span></span>
-<span id="cb21-427"><a href="#cb21-427"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-428"><a href="#cb21-428"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
-<span id="cb21-429"><a href="#cb21-429"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span></span>
-<span id="cb21-430"><a href="#cb21-430"></a>    ),</span>
-<span id="cb21-431"><a href="#cb21-431"></a>    <span class="at">DOSEU =</span> <span class="st">"mg"</span>,</span>
-<span id="cb21-432"><a href="#cb21-432"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-433"><a href="#cb21-433"></a>  <span class="co"># Derive relative time units</span></span>
-<span id="cb21-434"><a href="#cb21-434"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-435"><a href="#cb21-435"></a>    <span class="at">FRLTU =</span> <span class="st">"h"</span>,</span>
-<span id="cb21-436"><a href="#cb21-436"></a>    <span class="at">RRLTU =</span> <span class="st">"h"</span>,</span>
-<span id="cb21-437"><a href="#cb21-437"></a>    <span class="co"># Derive PARAMCD</span></span>
-<span id="cb21-438"><a href="#cb21-438"></a>    <span class="at">PARAMCD =</span> <span class="fu">coalesce</span>(PCTESTCD, <span class="st">"DOSE"</span>),</span>
-<span id="cb21-439"><a href="#cb21-439"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
-<span id="cb21-440"><a href="#cb21-440"></a>    <span class="co"># Derive AVAL</span></span>
-<span id="cb21-441"><a href="#cb21-441"></a>    <span class="at">AVAL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-442"><a href="#cb21-442"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb21-443"><a href="#cb21-443"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb21-444"><a href="#cb21-444"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fl">0.5</span> <span class="sc">*</span> ALLOQ,</span>
-<span id="cb21-445"><a href="#cb21-445"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESN</span>
-<span id="cb21-446"><a href="#cb21-446"></a>    ),</span>
-<span id="cb21-447"><a href="#cb21-447"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
-<span id="cb21-448"><a href="#cb21-448"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSU,</span>
-<span id="cb21-449"><a href="#cb21-449"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
+<span id="cb21-407"><a href="#cb21-407"></a>    <span class="at">ATPT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-408"><a href="#cb21-408"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Dose"</span>,</span>
+<span id="cb21-409"><a href="#cb21-409"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPT</span>
+<span id="cb21-410"><a href="#cb21-410"></a>    ),</span>
+<span id="cb21-411"><a href="#cb21-411"></a>    <span class="at">ATPTREF =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-412"><a href="#cb21-412"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> AVISIT,</span>
+<span id="cb21-413"><a href="#cb21-413"></a>      <span class="fu">is.na</span>(AVISIT_prev) <span class="sc">~</span> AVISIT_next,</span>
+<span id="cb21-414"><a href="#cb21-414"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> AVISIT_prev</span>
+<span id="cb21-415"><a href="#cb21-415"></a>    ),</span>
+<span id="cb21-416"><a href="#cb21-416"></a>    <span class="co"># Derive baseline flag for pre-dose records</span></span>
+<span id="cb21-417"><a href="#cb21-417"></a>    <span class="at">ABLFL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-418"><a href="#cb21-418"></a>      ATPT <span class="sc">==</span> <span class="st">"Pre-dose"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
+<span id="cb21-419"><a href="#cb21-419"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb21-420"><a href="#cb21-420"></a>    ),</span>
+<span id="cb21-421"><a href="#cb21-421"></a>    <span class="co"># Derive BASETYPE</span></span>
+<span id="cb21-422"><a href="#cb21-422"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(ATPTREF, <span class="st">"Baseline"</span>),</span>
+<span id="cb21-423"><a href="#cb21-423"></a></span>
+<span id="cb21-424"><a href="#cb21-424"></a>    <span class="co"># Derive Actual Dose</span></span>
+<span id="cb21-425"><a href="#cb21-425"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-426"><a href="#cb21-426"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb21-427"><a href="#cb21-427"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_next,</span>
+<span id="cb21-428"><a href="#cb21-428"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
+<span id="cb21-429"><a href="#cb21-429"></a>    ),</span>
+<span id="cb21-430"><a href="#cb21-430"></a>    <span class="co"># Derive Planned Dose</span></span>
+<span id="cb21-431"><a href="#cb21-431"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-432"><a href="#cb21-432"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
+<span id="cb21-433"><a href="#cb21-433"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span></span>
+<span id="cb21-434"><a href="#cb21-434"></a>    ),</span>
+<span id="cb21-435"><a href="#cb21-435"></a>    <span class="at">DOSEU =</span> <span class="st">"mg"</span>,</span>
+<span id="cb21-436"><a href="#cb21-436"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-437"><a href="#cb21-437"></a>  <span class="co"># Derive relative time units</span></span>
+<span id="cb21-438"><a href="#cb21-438"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-439"><a href="#cb21-439"></a>    <span class="at">FRLTU =</span> <span class="st">"h"</span>,</span>
+<span id="cb21-440"><a href="#cb21-440"></a>    <span class="at">RRLTU =</span> <span class="st">"h"</span>,</span>
+<span id="cb21-441"><a href="#cb21-441"></a>    <span class="co"># Derive PARAMCD</span></span>
+<span id="cb21-442"><a href="#cb21-442"></a>    <span class="at">PARAMCD =</span> <span class="fu">coalesce</span>(PCTESTCD, <span class="st">"DOSE"</span>),</span>
+<span id="cb21-443"><a href="#cb21-443"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
+<span id="cb21-444"><a href="#cb21-444"></a>    <span class="co"># Derive AVAL</span></span>
+<span id="cb21-445"><a href="#cb21-445"></a>    <span class="at">AVAL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-446"><a href="#cb21-446"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb21-447"><a href="#cb21-447"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb21-448"><a href="#cb21-448"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fl">0.5</span> <span class="sc">*</span> ALLOQ,</span>
+<span id="cb21-449"><a href="#cb21-449"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESN</span>
 <span id="cb21-450"><a href="#cb21-450"></a>    ),</span>
-<span id="cb21-451"><a href="#cb21-451"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">if_else</span>(PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span>, PCSTRESC, <span class="fu">prettyNum</span>(<span class="fu">signif</span>(AVAL, <span class="at">digits =</span> <span class="dv">3</span>))),</span>
-<span id="cb21-452"><a href="#cb21-452"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-453"><a href="#cb21-453"></a>  <span class="co"># Add SRCSEQ</span></span>
-<span id="cb21-454"><a href="#cb21-454"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-455"><a href="#cb21-455"></a>    <span class="at">SRCDOM =</span> DOMAIN,</span>
-<span id="cb21-456"><a href="#cb21-456"></a>    <span class="at">SRCVAR =</span> <span class="st">"SEQ"</span>,</span>
-<span id="cb21-457"><a href="#cb21-457"></a>    <span class="at">SRCSEQ =</span> <span class="fu">coalesce</span>(PCSEQ, EXSEQ)</span>
-<span id="cb21-458"><a href="#cb21-458"></a>  )</span>
-<span id="cb21-459"><a href="#cb21-459"></a><span class="in">```</span></span>
-<span id="cb21-460"><a href="#cb21-460"></a></span>
-<span id="cb21-461"><a href="#cb21-461"></a><span class="fu">### Derive DTYPE Copy Records</span></span>
-<span id="cb21-462"><a href="#cb21-462"></a></span>
-<span id="cb21-463"><a href="#cb21-463"></a>The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose. </span>
+<span id="cb21-451"><a href="#cb21-451"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
+<span id="cb21-452"><a href="#cb21-452"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSU,</span>
+<span id="cb21-453"><a href="#cb21-453"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
+<span id="cb21-454"><a href="#cb21-454"></a>    ),</span>
+<span id="cb21-455"><a href="#cb21-455"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">if_else</span>(PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span>, PCSTRESC, <span class="fu">prettyNum</span>(<span class="fu">signif</span>(AVAL, <span class="at">digits =</span> <span class="dv">3</span>))),</span>
+<span id="cb21-456"><a href="#cb21-456"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-457"><a href="#cb21-457"></a>  <span class="co"># Add SRCSEQ</span></span>
+<span id="cb21-458"><a href="#cb21-458"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-459"><a href="#cb21-459"></a>    <span class="at">SRCDOM =</span> DOMAIN,</span>
+<span id="cb21-460"><a href="#cb21-460"></a>    <span class="at">SRCVAR =</span> <span class="st">"SEQ"</span>,</span>
+<span id="cb21-461"><a href="#cb21-461"></a>    <span class="at">SRCSEQ =</span> <span class="fu">coalesce</span>(PCSEQ, EXSEQ)</span>
+<span id="cb21-462"><a href="#cb21-462"></a>  )</span>
+<span id="cb21-463"><a href="#cb21-463"></a><span class="in">```</span></span>
 <span id="cb21-464"><a href="#cb21-464"></a></span>
-<span id="cb21-467"><a href="#cb21-467"></a><span class="in">```{r}</span></span>
-<span id="cb21-468"><a href="#cb21-468"></a><span class="co">#| label: DTYPE</span></span>
-<span id="cb21-469"><a href="#cb21-469"></a></span>
-<span id="cb21-470"><a href="#cb21-470"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
-<span id="cb21-471"><a href="#cb21-471"></a>  <span class="fu">filter</span>(NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> NXRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> EVID <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISIT_next)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-472"><a href="#cb21-472"></a>  <span class="fu">select</span>(<span class="sc">-</span>PCRFTDT, <span class="sc">-</span>PCRFTTM) <span class="sc">%&gt;%</span></span>
-<span id="cb21-473"><a href="#cb21-473"></a>  <span class="co"># Re-derive variables in for DTYPE copy records</span></span>
-<span id="cb21-474"><a href="#cb21-474"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-475"><a href="#cb21-475"></a>    <span class="at">ABLFL =</span> <span class="cn">NA_character_</span>,</span>
-<span id="cb21-476"><a href="#cb21-476"></a>    <span class="at">ATPTREF =</span> AVISIT_next,</span>
-<span id="cb21-477"><a href="#cb21-477"></a>    <span class="at">ARRLT =</span> AXRLT,</span>
-<span id="cb21-478"><a href="#cb21-478"></a>    <span class="at">NRRLT =</span> NXRLT,</span>
-<span id="cb21-479"><a href="#cb21-479"></a>    <span class="at">PCRFTDTM =</span> ADTM_next,</span>
-<span id="cb21-480"><a href="#cb21-480"></a>    <span class="at">DOSEA =</span> EXDOSE_next,</span>
-<span id="cb21-481"><a href="#cb21-481"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(AVISIT_next, <span class="st">"Baseline"</span>),</span>
-<span id="cb21-482"><a href="#cb21-482"></a>    <span class="at">ATPT =</span> <span class="st">"Pre-dose"</span>,</span>
-<span id="cb21-483"><a href="#cb21-483"></a>    <span class="at">ATPTN =</span> NFRLT,</span>
-<span id="cb21-484"><a href="#cb21-484"></a>    <span class="at">ABLFL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb21-485"><a href="#cb21-485"></a>    <span class="at">DTYPE =</span> <span class="st">"COPY"</span></span>
-<span id="cb21-486"><a href="#cb21-486"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-487"><a href="#cb21-487"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-488"><a href="#cb21-488"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
-<span id="cb21-489"><a href="#cb21-489"></a><span class="in">```</span></span>
-<span id="cb21-490"><a href="#cb21-490"></a></span>
-<span id="cb21-491"><a href="#cb21-491"></a><span class="fu">### Combine Original and DTYPE Copy</span></span>
-<span id="cb21-492"><a href="#cb21-492"></a></span>
-<span id="cb21-493"><a href="#cb21-493"></a>Now the duplicated records are combined with the original records.</span>
+<span id="cb21-465"><a href="#cb21-465"></a><span class="fu">### Derive DTYPE Copy Records</span></span>
+<span id="cb21-466"><a href="#cb21-466"></a></span>
+<span id="cb21-467"><a href="#cb21-467"></a>The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose. </span>
+<span id="cb21-468"><a href="#cb21-468"></a></span>
+<span id="cb21-471"><a href="#cb21-471"></a><span class="in">```{r}</span></span>
+<span id="cb21-472"><a href="#cb21-472"></a><span class="co">#| label: DTYPE</span></span>
+<span id="cb21-473"><a href="#cb21-473"></a></span>
+<span id="cb21-474"><a href="#cb21-474"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
+<span id="cb21-475"><a href="#cb21-475"></a>  <span class="fu">filter</span>(NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> NXRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> EVID <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISIT_next)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-476"><a href="#cb21-476"></a>  <span class="fu">select</span>(<span class="sc">-</span>PCRFTDT, <span class="sc">-</span>PCRFTTM) <span class="sc">%&gt;%</span></span>
+<span id="cb21-477"><a href="#cb21-477"></a>  <span class="co"># Re-derive variables in for DTYPE copy records</span></span>
+<span id="cb21-478"><a href="#cb21-478"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-479"><a href="#cb21-479"></a>    <span class="at">ABLFL =</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb21-480"><a href="#cb21-480"></a>    <span class="at">ATPTREF =</span> AVISIT_next,</span>
+<span id="cb21-481"><a href="#cb21-481"></a>    <span class="at">ARRLT =</span> AXRLT,</span>
+<span id="cb21-482"><a href="#cb21-482"></a>    <span class="at">NRRLT =</span> NXRLT,</span>
+<span id="cb21-483"><a href="#cb21-483"></a>    <span class="at">PCRFTDTM =</span> ADTM_next,</span>
+<span id="cb21-484"><a href="#cb21-484"></a>    <span class="at">DOSEA =</span> EXDOSE_next,</span>
+<span id="cb21-485"><a href="#cb21-485"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(AVISIT_next, <span class="st">"Baseline"</span>),</span>
+<span id="cb21-486"><a href="#cb21-486"></a>    <span class="at">ATPT =</span> <span class="st">"Pre-dose"</span>,</span>
+<span id="cb21-487"><a href="#cb21-487"></a>    <span class="at">ATPTN =</span> NFRLT,</span>
+<span id="cb21-488"><a href="#cb21-488"></a>    <span class="at">ABLFL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb21-489"><a href="#cb21-489"></a>    <span class="at">DTYPE =</span> <span class="st">"COPY"</span></span>
+<span id="cb21-490"><a href="#cb21-490"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-491"><a href="#cb21-491"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-492"><a href="#cb21-492"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
+<span id="cb21-493"><a href="#cb21-493"></a><span class="in">```</span></span>
 <span id="cb21-494"><a href="#cb21-494"></a></span>
-<span id="cb21-497"><a href="#cb21-497"></a><span class="in">```{r}</span></span>
-<span id="cb21-498"><a href="#cb21-498"></a><span class="co">#| label: Combine DTYPE</span></span>
-<span id="cb21-499"><a href="#cb21-499"></a></span>
-<span id="cb21-500"><a href="#cb21-500"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
-<span id="cb21-501"><a href="#cb21-501"></a>  <span class="fu">arrange</span>(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) <span class="sc">%&gt;%</span></span>
-<span id="cb21-502"><a href="#cb21-502"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-503"><a href="#cb21-503"></a>    <span class="co"># Derive MRRLT, ANL01FL and ANL02FL</span></span>
-<span id="cb21-504"><a href="#cb21-504"></a>    <span class="at">MRRLT =</span> <span class="fu">if_else</span>(ARRLT <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, ARRLT),</span>
-<span id="cb21-505"><a href="#cb21-505"></a>    <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb21-506"><a href="#cb21-506"></a>    <span class="at">ANL02FL =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(DTYPE), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>),</span>
-<span id="cb21-507"><a href="#cb21-507"></a>  )</span>
-<span id="cb21-508"><a href="#cb21-508"></a><span class="in">```</span></span>
-<span id="cb21-509"><a href="#cb21-509"></a></span>
-<span id="cb21-510"><a href="#cb21-510"></a><span class="fu">### Derive BASE and CHG</span></span>
-<span id="cb21-511"><a href="#cb21-511"></a></span>
-<span id="cb21-514"><a href="#cb21-514"></a><span class="in">```{r}</span></span>
-<span id="cb21-515"><a href="#cb21-515"></a><span class="co">#| label: BASE</span></span>
-<span id="cb21-516"><a href="#cb21-516"></a></span>
-<span id="cb21-517"><a href="#cb21-517"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
-<span id="cb21-518"><a href="#cb21-518"></a></span>
-<span id="cb21-519"><a href="#cb21-519"></a>adpc_base <span class="ot">&lt;-</span> adpc_dtype <span class="sc">%&gt;%</span></span>
-<span id="cb21-520"><a href="#cb21-520"></a>  <span class="fu">derive_var_base</span>(</span>
-<span id="cb21-521"><a href="#cb21-521"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, BASETYPE),</span>
-<span id="cb21-522"><a href="#cb21-522"></a>    <span class="at">source_var =</span> AVAL,</span>
-<span id="cb21-523"><a href="#cb21-523"></a>    <span class="at">new_var =</span> BASE,</span>
-<span id="cb21-524"><a href="#cb21-524"></a>    <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
-<span id="cb21-525"><a href="#cb21-525"></a>  )</span>
-<span id="cb21-526"><a href="#cb21-526"></a></span>
-<span id="cb21-527"><a href="#cb21-527"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span>
-<span id="cb21-528"><a href="#cb21-528"></a><span class="in">```</span></span>
-<span id="cb21-529"><a href="#cb21-529"></a></span>
-<span id="cb21-530"><a href="#cb21-530"></a><span class="fu">### Derive `PARAM` with `{metatools}`</span></span>
-<span id="cb21-531"><a href="#cb21-531"></a></span>
-<span id="cb21-532"><a href="#cb21-532"></a>Here we derive <span class="in">`PARAM`</span> and <span class="in">`PARAMN`</span> using <span class="in">`create_var_from_codelist()`</span> from <span class="in">`{metatools}`</span>.</span>
+<span id="cb21-495"><a href="#cb21-495"></a><span class="fu">### Combine Original and DTYPE Copy</span></span>
+<span id="cb21-496"><a href="#cb21-496"></a></span>
+<span id="cb21-497"><a href="#cb21-497"></a>Now the duplicated records are combined with the original records.</span>
+<span id="cb21-498"><a href="#cb21-498"></a></span>
+<span id="cb21-501"><a href="#cb21-501"></a><span class="in">```{r}</span></span>
+<span id="cb21-502"><a href="#cb21-502"></a><span class="co">#| label: Combine DTYPE</span></span>
+<span id="cb21-503"><a href="#cb21-503"></a></span>
+<span id="cb21-504"><a href="#cb21-504"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
+<span id="cb21-505"><a href="#cb21-505"></a>  <span class="fu">arrange</span>(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) <span class="sc">%&gt;%</span></span>
+<span id="cb21-506"><a href="#cb21-506"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-507"><a href="#cb21-507"></a>    <span class="co"># Derive MRRLT, ANL01FL and ANL02FL</span></span>
+<span id="cb21-508"><a href="#cb21-508"></a>    <span class="at">MRRLT =</span> <span class="fu">if_else</span>(ARRLT <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, ARRLT),</span>
+<span id="cb21-509"><a href="#cb21-509"></a>    <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb21-510"><a href="#cb21-510"></a>    <span class="at">ANL02FL =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(DTYPE), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>),</span>
+<span id="cb21-511"><a href="#cb21-511"></a>  )</span>
+<span id="cb21-512"><a href="#cb21-512"></a><span class="in">```</span></span>
+<span id="cb21-513"><a href="#cb21-513"></a></span>
+<span id="cb21-514"><a href="#cb21-514"></a><span class="fu">### Derive BASE and CHG</span></span>
+<span id="cb21-515"><a href="#cb21-515"></a></span>
+<span id="cb21-518"><a href="#cb21-518"></a><span class="in">```{r}</span></span>
+<span id="cb21-519"><a href="#cb21-519"></a><span class="co">#| label: BASE</span></span>
+<span id="cb21-520"><a href="#cb21-520"></a></span>
+<span id="cb21-521"><a href="#cb21-521"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
+<span id="cb21-522"><a href="#cb21-522"></a></span>
+<span id="cb21-523"><a href="#cb21-523"></a>adpc_base <span class="ot">&lt;-</span> adpc_dtype <span class="sc">%&gt;%</span></span>
+<span id="cb21-524"><a href="#cb21-524"></a>  <span class="fu">derive_var_base</span>(</span>
+<span id="cb21-525"><a href="#cb21-525"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, BASETYPE),</span>
+<span id="cb21-526"><a href="#cb21-526"></a>    <span class="at">source_var =</span> AVAL,</span>
+<span id="cb21-527"><a href="#cb21-527"></a>    <span class="at">new_var =</span> BASE,</span>
+<span id="cb21-528"><a href="#cb21-528"></a>    <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
+<span id="cb21-529"><a href="#cb21-529"></a>  )</span>
+<span id="cb21-530"><a href="#cb21-530"></a></span>
+<span id="cb21-531"><a href="#cb21-531"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span>
+<span id="cb21-532"><a href="#cb21-532"></a><span class="in">```</span></span>
 <span id="cb21-533"><a href="#cb21-533"></a></span>
-<span id="cb21-536"><a href="#cb21-536"></a><span class="in">```{r}</span></span>
-<span id="cb21-537"><a href="#cb21-537"></a><span class="co">#| label: ASEQ</span></span>
-<span id="cb21-538"><a href="#cb21-538"></a></span>
-<span id="cb21-539"><a href="#cb21-539"></a><span class="co"># ---- Add ASEQ ----</span></span>
-<span id="cb21-540"><a href="#cb21-540"></a></span>
-<span id="cb21-541"><a href="#cb21-541"></a>adpc_aseq <span class="ot">&lt;-</span> adpc_chg <span class="sc">%&gt;%</span></span>
-<span id="cb21-542"><a href="#cb21-542"></a>  <span class="co"># Calculate ASEQ</span></span>
-<span id="cb21-543"><a href="#cb21-543"></a>  <span class="fu">derive_var_obs_number</span>(</span>
-<span id="cb21-544"><a href="#cb21-544"></a>    <span class="at">new_var =</span> ASEQ,</span>
-<span id="cb21-545"><a href="#cb21-545"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb21-546"><a href="#cb21-546"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, BASETYPE, EVID, AVISITN, ATPTN, DTYPE),</span>
-<span id="cb21-547"><a href="#cb21-547"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb21-548"><a href="#cb21-548"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-549"><a href="#cb21-549"></a>  <span class="co"># Derive PARAM and PARAMN using metatools</span></span>
-<span id="cb21-550"><a href="#cb21-550"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAM) <span class="sc">%&gt;%</span></span>
-<span id="cb21-551"><a href="#cb21-551"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span>
-<span id="cb21-552"><a href="#cb21-552"></a><span class="in">```</span></span>
-<span id="cb21-553"><a href="#cb21-553"></a></span>
-<span id="cb21-554"><a href="#cb21-554"></a><span class="fu">### Derive Additional Baselines</span></span>
-<span id="cb21-555"><a href="#cb21-555"></a></span>
-<span id="cb21-556"><a href="#cb21-556"></a>Here we derive additional baseline values from <span class="in">`VS`</span> for baseline height <span class="in">`HTBL`</span> and weight <span class="in">`WTBL`</span> and compute the body mass index (BMI) with <span class="in">`compute_bmi()`</span>. </span>
+<span id="cb21-534"><a href="#cb21-534"></a><span class="fu">### Derive `PARAM` with `{metatools}`</span></span>
+<span id="cb21-535"><a href="#cb21-535"></a></span>
+<span id="cb21-536"><a href="#cb21-536"></a>Here we derive <span class="in">`PARAM`</span> and <span class="in">`PARAMN`</span> using <span class="in">`create_var_from_codelist()`</span> from <span class="in">`{metatools}`</span>.</span>
+<span id="cb21-537"><a href="#cb21-537"></a></span>
+<span id="cb21-540"><a href="#cb21-540"></a><span class="in">```{r}</span></span>
+<span id="cb21-541"><a href="#cb21-541"></a><span class="co">#| label: ASEQ</span></span>
+<span id="cb21-542"><a href="#cb21-542"></a></span>
+<span id="cb21-543"><a href="#cb21-543"></a><span class="co"># ---- Add ASEQ ----</span></span>
+<span id="cb21-544"><a href="#cb21-544"></a></span>
+<span id="cb21-545"><a href="#cb21-545"></a>adpc_aseq <span class="ot">&lt;-</span> adpc_chg <span class="sc">%&gt;%</span></span>
+<span id="cb21-546"><a href="#cb21-546"></a>  <span class="co"># Calculate ASEQ</span></span>
+<span id="cb21-547"><a href="#cb21-547"></a>  <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb21-548"><a href="#cb21-548"></a>    <span class="at">new_var =</span> ASEQ,</span>
+<span id="cb21-549"><a href="#cb21-549"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb21-550"><a href="#cb21-550"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, BASETYPE, EVID, AVISITN, ATPTN, DTYPE),</span>
+<span id="cb21-551"><a href="#cb21-551"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb21-552"><a href="#cb21-552"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-553"><a href="#cb21-553"></a>  <span class="co"># Derive PARAM and PARAMN using metatools</span></span>
+<span id="cb21-554"><a href="#cb21-554"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAM) <span class="sc">%&gt;%</span></span>
+<span id="cb21-555"><a href="#cb21-555"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span>
+<span id="cb21-556"><a href="#cb21-556"></a><span class="in">```</span></span>
 <span id="cb21-557"><a href="#cb21-557"></a></span>
-<span id="cb21-560"><a href="#cb21-560"></a><span class="in">```{r}</span></span>
-<span id="cb21-561"><a href="#cb21-561"></a><span class="co">#| label: Baselines</span></span>
-<span id="cb21-562"><a href="#cb21-562"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
-<span id="cb21-563"><a href="#cb21-563"></a></span>
-<span id="cb21-564"><a href="#cb21-564"></a>adpc_baselines <span class="ot">&lt;-</span> adpc_aseq <span class="sc">%&gt;%</span></span>
-<span id="cb21-565"><a href="#cb21-565"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb21-566"><a href="#cb21-566"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb21-567"><a href="#cb21-567"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
-<span id="cb21-568"><a href="#cb21-568"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb21-569"><a href="#cb21-569"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN, <span class="at">HTBLU =</span> VSSTRESU)</span>
-<span id="cb21-570"><a href="#cb21-570"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-571"><a href="#cb21-571"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb21-572"><a href="#cb21-572"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb21-573"><a href="#cb21-573"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb21-574"><a href="#cb21-574"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb21-575"><a href="#cb21-575"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN, <span class="at">WTBLU =</span> VSSTRESU)</span>
-<span id="cb21-576"><a href="#cb21-576"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb21-577"><a href="#cb21-577"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb21-578"><a href="#cb21-578"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
-<span id="cb21-579"><a href="#cb21-579"></a>    <span class="at">BMIBLU =</span> <span class="st">"kg/m^2"</span></span>
-<span id="cb21-580"><a href="#cb21-580"></a>  )</span>
-<span id="cb21-581"><a href="#cb21-581"></a><span class="in">```</span></span>
-<span id="cb21-582"><a href="#cb21-582"></a></span>
-<span id="cb21-583"><a href="#cb21-583"></a><span class="fu">### Combine with ADSL</span></span>
-<span id="cb21-584"><a href="#cb21-584"></a></span>
-<span id="cb21-585"><a href="#cb21-585"></a>If needed, the other <span class="in">`ADSL`</span> variables can now be added:</span>
+<span id="cb21-558"><a href="#cb21-558"></a><span class="fu">### Derive Additional Baselines</span></span>
+<span id="cb21-559"><a href="#cb21-559"></a></span>
+<span id="cb21-560"><a href="#cb21-560"></a>Here we derive additional baseline values from <span class="in">`VS`</span> for baseline height <span class="in">`HTBL`</span> and weight <span class="in">`WTBL`</span> and compute the body mass index (BMI) with <span class="in">`compute_bmi()`</span>. </span>
+<span id="cb21-561"><a href="#cb21-561"></a></span>
+<span id="cb21-564"><a href="#cb21-564"></a><span class="in">```{r}</span></span>
+<span id="cb21-565"><a href="#cb21-565"></a><span class="co">#| label: Baselines</span></span>
+<span id="cb21-566"><a href="#cb21-566"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
+<span id="cb21-567"><a href="#cb21-567"></a></span>
+<span id="cb21-568"><a href="#cb21-568"></a>adpc_baselines <span class="ot">&lt;-</span> adpc_aseq <span class="sc">%&gt;%</span></span>
+<span id="cb21-569"><a href="#cb21-569"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb21-570"><a href="#cb21-570"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb21-571"><a href="#cb21-571"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb21-572"><a href="#cb21-572"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb21-573"><a href="#cb21-573"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN, <span class="at">HTBLU =</span> VSSTRESU)</span>
+<span id="cb21-574"><a href="#cb21-574"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-575"><a href="#cb21-575"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb21-576"><a href="#cb21-576"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb21-577"><a href="#cb21-577"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb21-578"><a href="#cb21-578"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb21-579"><a href="#cb21-579"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN, <span class="at">WTBLU =</span> VSSTRESU)</span>
+<span id="cb21-580"><a href="#cb21-580"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-581"><a href="#cb21-581"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-582"><a href="#cb21-582"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
+<span id="cb21-583"><a href="#cb21-583"></a>    <span class="at">BMIBLU =</span> <span class="st">"kg/m^2"</span></span>
+<span id="cb21-584"><a href="#cb21-584"></a>  )</span>
+<span id="cb21-585"><a href="#cb21-585"></a><span class="in">```</span></span>
 <span id="cb21-586"><a href="#cb21-586"></a></span>
-<span id="cb21-589"><a href="#cb21-589"></a><span class="in">```{r}</span></span>
-<span id="cb21-590"><a href="#cb21-590"></a><span class="co">#| label: Combine with ADSL</span></span>
-<span id="cb21-591"><a href="#cb21-591"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
-<span id="cb21-592"><a href="#cb21-592"></a></span>
-<span id="cb21-593"><a href="#cb21-593"></a><span class="co"># Add all ADSL variables</span></span>
-<span id="cb21-594"><a href="#cb21-594"></a>adpc_prefinal <span class="ot">&lt;-</span> adpc_baselines <span class="sc">%&gt;%</span></span>
-<span id="cb21-595"><a href="#cb21-595"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb21-596"><a href="#cb21-596"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
-<span id="cb21-597"><a href="#cb21-597"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb21-598"><a href="#cb21-598"></a>  )</span>
-<span id="cb21-599"><a href="#cb21-599"></a><span class="in">```</span></span>
-<span id="cb21-600"><a href="#cb21-600"></a></span>
-<span id="cb21-601"><a href="#cb21-601"></a><span class="fu">## Check Data With metacore and metatools</span></span>
-<span id="cb21-602"><a href="#cb21-602"></a></span>
-<span id="cb21-603"><a href="#cb21-603"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
+<span id="cb21-587"><a href="#cb21-587"></a><span class="fu">### Combine with ADSL</span></span>
+<span id="cb21-588"><a href="#cb21-588"></a></span>
+<span id="cb21-589"><a href="#cb21-589"></a>If needed, the other <span class="in">`ADSL`</span> variables can now be added:</span>
+<span id="cb21-590"><a href="#cb21-590"></a></span>
+<span id="cb21-593"><a href="#cb21-593"></a><span class="in">```{r}</span></span>
+<span id="cb21-594"><a href="#cb21-594"></a><span class="co">#| label: Combine with ADSL</span></span>
+<span id="cb21-595"><a href="#cb21-595"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
+<span id="cb21-596"><a href="#cb21-596"></a></span>
+<span id="cb21-597"><a href="#cb21-597"></a><span class="co"># Add all ADSL variables</span></span>
+<span id="cb21-598"><a href="#cb21-598"></a>adpc_prefinal <span class="ot">&lt;-</span> adpc_baselines <span class="sc">%&gt;%</span></span>
+<span id="cb21-599"><a href="#cb21-599"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb21-600"><a href="#cb21-600"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
+<span id="cb21-601"><a href="#cb21-601"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb21-602"><a href="#cb21-602"></a>  )</span>
+<span id="cb21-603"><a href="#cb21-603"></a><span class="in">```</span></span>
 <span id="cb21-604"><a href="#cb21-604"></a></span>
-<span id="cb21-607"><a href="#cb21-607"></a><span class="in">```{r}</span></span>
-<span id="cb21-608"><a href="#cb21-608"></a><span class="co">#| label: Metacore</span></span>
-<span id="cb21-609"><a href="#cb21-609"></a><span class="co">#| warning: false</span></span>
-<span id="cb21-610"><a href="#cb21-610"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
-<span id="cb21-611"><a href="#cb21-611"></a>adpc <span class="ot">&lt;-</span> adpc_prefinal <span class="sc">%&gt;%</span></span>
-<span id="cb21-612"><a href="#cb21-612"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
-<span id="cb21-613"><a href="#cb21-613"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb21-614"><a href="#cb21-614"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb21-615"><a href="#cb21-615"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb21-616"><a href="#cb21-616"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
-<span id="cb21-617"><a href="#cb21-617"></a><span class="in">```</span></span>
-<span id="cb21-618"><a href="#cb21-618"></a></span>
-<span id="cb21-619"><a href="#cb21-619"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
-<span id="cb21-620"><a href="#cb21-620"></a></span>
-<span id="cb21-621"><a href="#cb21-621"></a>Using <span class="in">`{xportr}`</span> we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <span class="in">`xportr::xportr_write()`</span> to produce the XPT file.</span>
+<span id="cb21-605"><a href="#cb21-605"></a><span class="fu">## Check Data With metacore and metatools</span></span>
+<span id="cb21-606"><a href="#cb21-606"></a></span>
+<span id="cb21-607"><a href="#cb21-607"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
+<span id="cb21-608"><a href="#cb21-608"></a></span>
+<span id="cb21-611"><a href="#cb21-611"></a><span class="in">```{r}</span></span>
+<span id="cb21-612"><a href="#cb21-612"></a><span class="co">#| label: Metacore</span></span>
+<span id="cb21-613"><a href="#cb21-613"></a><span class="co">#| warning: false</span></span>
+<span id="cb21-614"><a href="#cb21-614"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
+<span id="cb21-615"><a href="#cb21-615"></a>adpc <span class="ot">&lt;-</span> adpc_prefinal <span class="sc">%&gt;%</span></span>
+<span id="cb21-616"><a href="#cb21-616"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
+<span id="cb21-617"><a href="#cb21-617"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb21-618"><a href="#cb21-618"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb21-619"><a href="#cb21-619"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
+<span id="cb21-620"><a href="#cb21-620"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
+<span id="cb21-621"><a href="#cb21-621"></a><span class="in">```</span></span>
 <span id="cb21-622"><a href="#cb21-622"></a></span>
-<span id="cb21-625"><a href="#cb21-625"></a><span class="in">```{r}</span></span>
-<span id="cb21-626"><a href="#cb21-626"></a><span class="co">#| label: xportr</span></span>
-<span id="cb21-627"><a href="#cb21-627"></a><span class="co">#| warning: false</span></span>
-<span id="cb21-628"><a href="#cb21-628"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
-<span id="cb21-629"><a href="#cb21-629"></a></span>
-<span id="cb21-630"><a href="#cb21-630"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb21-631"><a href="#cb21-631"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb21-632"><a href="#cb21-632"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb21-633"><a href="#cb21-633"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb21-634"><a href="#cb21-634"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb21-635"><a href="#cb21-635"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb21-636"><a href="#cb21-636"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file </span></span>
-<span id="cb21-637"><a href="#cb21-637"></a>  </span>
-<span id="cb21-638"><a href="#cb21-638"></a><span class="in">```</span></span>
+<span id="cb21-623"><a href="#cb21-623"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
+<span id="cb21-624"><a href="#cb21-624"></a></span>
+<span id="cb21-625"><a href="#cb21-625"></a>Using <span class="in">`{xportr}`</span> we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <span class="in">`xportr::xportr_write()`</span> to produce the XPT file.</span>
+<span id="cb21-626"><a href="#cb21-626"></a></span>
+<span id="cb21-629"><a href="#cb21-629"></a><span class="in">```{r}</span></span>
+<span id="cb21-630"><a href="#cb21-630"></a><span class="co">#| label: xportr</span></span>
+<span id="cb21-631"><a href="#cb21-631"></a><span class="co">#| warning: false</span></span>
+<span id="cb21-632"><a href="#cb21-632"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<span id="cb21-633"><a href="#cb21-633"></a></span>
+<span id="cb21-634"><a href="#cb21-634"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb21-635"><a href="#cb21-635"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb21-636"><a href="#cb21-636"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb21-637"><a href="#cb21-637"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb21-638"><a href="#cb21-638"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb21-639"><a href="#cb21-639"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb21-640"><a href="#cb21-640"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file </span></span>
+<span id="cb21-641"><a href="#cb21-641"></a>  </span>
+<span id="cb21-642"><a href="#cb21-642"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
