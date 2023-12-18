@@ -24,33 +24,6 @@ library(dplyr)
 
 adsl <- adsl %>%
   df_explicit_na()
-
-# Create categorical variables
-adsl <- adsl %>%
-  mutate(
-    SEX = factor(case_when(
-      SEX == "M" ~ "Male",
-      SEX == "F" ~ "Female",
-      SEX == "U" ~ "Unknown",
-      SEX == "UNDIFFERENTIATED" ~ "Undifferentiated"
-    )),
-    AGEGR1 = factor(
-      case_when(
-        between(AGE, 18, 40) ~ "18-40",
-        between(AGE, 41, 64) ~ "41-64",
-        AGE > 64 ~ ">=65"
-      ),
-      levels = c("18-40", "41-64", ">=65")
-    ),
-    BMRKR1_CAT = factor(
-      case_when(
-        BMRKR1 < 3.5 ~ "LOW",
-        BMRKR1 >= 3.5 & BMRKR1 < 10 ~ "MEDIUM",
-        BMRKR1 >= 10 ~ "HIGH"
-      ),
-      levels = c("LOW", "MEDIUM", "HIGH")
-    )
-  )
 ```
 
 ## Start preprocessing
@@ -74,14 +47,6 @@ adsl <- adsl %>%
         AGE > 64 ~ ">=65"
       ),
       levels = c("18-40", "41-64", ">=65")
-    ),
-    BMRKR1_CAT = factor(
-      case_when(
-        BMRKR1 < 3.5 ~ "LOW",
-        BMRKR1 >= 3.5 & BMRKR1 < 10 ~ "MEDIUM",
-        BMRKR1 >= 10 ~ "HIGH"
-      ),
-      levels = c("LOW", "MEDIUM", "HIGH")
     )
   )
 ```
@@ -91,14 +56,12 @@ adsl <- adsl %>%
 Now we create the demographic table.
 
 ```{r table}
-vars <- c("AGE", "AGEGR1", "SEX", "RACE", "BMRKR1", "BMRKR1_CAT")
+vars <- c("AGE", "AGEGR1", "SEX", "RACE")
 var_labels <- c(
   "Age (yr)",
   "Age group",
   "Sex",
-  "Race",
-  "Continous Level Biomarker 1",
-  "Categorical Level Biomarker 1"
+  "Race"
 )
 
 lyt <- basic_table(show_colcounts = TRUE) %>%
