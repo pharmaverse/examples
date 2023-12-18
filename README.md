@@ -30,7 +30,7 @@ clinical reporting workflows!
 Anyone can add examples to this repo for usage of any pharmaverse packages.
 To do this make an issue with your idea and the maintainer team will contact
 you to provide you the necessary repo access.
-You can then branch of `main` and create a PR where one of the maintainer
+You can then branch off `main` and create a PR where one of the maintainer
 team would review and approve to get your contribution published.
 
 One note to dependencies is we don't use `renv` here to manage this examples
@@ -43,5 +43,5 @@ You could even use the Posit Cloud environment for these contributions, but if n
 be sure you have installed the latest CRAN versions of all the packages being used.
 
 We recommend you notify the maintainers of all the packages used in your example,
-as then they are more likely to help notify us if ever anything changes in their
+as then they are more likely to help inform us if ever anything changes in their
 packages that breaks any of our examples.
