@@ -27,6 +27,7 @@ adsl <- adsl %>%
 
 adae <- adae %>%
   df_explicit_na()
+```
 
 ## Start preprocessing
 
