@@ -22,6 +22,17 @@ packages can be used in conjunction - more thorough examples of individual
 package usages would always be covered in the package site vignettes and no
 need to repeat here.
 
-If you'd like to try out any of these examples in a live R session (via Posit
-Cloud) or if you are interesting in contributing an article to this book, then
+## Posit Cloud
+Each example can be explored via a live and interactive Posit Cloud environment
+(preconfigured with all required package installations).
+Click here: ["Launch Posit Cloud"](https://posit.cloud/content/7279124) to
+try out any of the examples code.
+You can do this by clicking File: Open File: and then choosing whichever example,
+e.g. `adam/adsl.qmd`. You could ignore the text sections and run the R code
+blocks.
+Feel free to try out customizing any of the examples to better fit any of
+your own internal clinical reporting workflows!
+
+## Contributing
+If you are interesting in contributing an article to this book, then
 see more in our GitHub repo README.
