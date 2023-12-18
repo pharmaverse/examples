@@ -1,17 +1,28 @@
 ---
 title: "Demographic Table"
-order: 2
+order: 1
 ---
 
-## Data Setup
+## Introduction
 
-```{r setup, message=FALSE, warning=FALSE, results='hold'}}
-#| code-fold: show
+This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
 
+The packages used with a brief description of their purpose are as follows:
+
+* [`{rtables}`](https://roche.github.io/rtables/index.html): designed to create and display complex tables with R.
+* [`{tern}`](https://insightsengineering.github.io/tern/main/index.html): contains analysis functions to create tables and graphs used for clinical trial reporting.
+
+## Load Data and Required pharmaverse Package
+
+After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries across groups of categorical variables in a data frame `adsl`.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
+library(pharmaverseadam)
+library(rtables)
 library(tern)
 library(dplyr)
 
-adsl <- tern_ex_adsl %>%
+adsl <- adsl %>%
   df_explicit_na()
 
 # Create categorical variables
@@ -42,7 +53,42 @@ adsl <- adsl %>%
   )
 ```
 
+## Start preprocessing
+
+Now we will add some pre-processing to create some extra formatted variables ready for display in the table.
+
+```{r preproc}
+# Create categorical variables
+adsl <- adsl %>%
+  mutate(
+    SEX = factor(case_when(
+      SEX == "M" ~ "Male",
+      SEX == "F" ~ "Female",
+      SEX == "U" ~ "Unknown",
+      SEX == "UNDIFFERENTIATED" ~ "Undifferentiated"
+    )),
+    AGEGR1 = factor(
+      case_when(
+        between(AGE, 18, 40) ~ "18-40",
+        between(AGE, 41, 64) ~ "41-64",
+        AGE > 64 ~ ">=65"
+      ),
+      levels = c("18-40", "41-64", ">=65")
+    ),
+    BMRKR1_CAT = factor(
+      case_when(
+        BMRKR1 < 3.5 ~ "LOW",
+        BMRKR1 >= 3.5 & BMRKR1 < 10 ~ "MEDIUM",
+        BMRKR1 >= 10 ~ "HIGH"
+      ),
+      levels = c("LOW", "MEDIUM", "HIGH")
+    )
+  )
+```
+
 ## Demographic table
+
+Now we create the demographic table.
 
 ```{r table}
 vars <- c("AGE", "AGEGR1", "SEX", "RACE", "BMRKR1", "BMRKR1_CAT")
