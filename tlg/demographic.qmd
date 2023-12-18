@@ -1,0 +1,79 @@
+---
+title: "Demographic Table"
+order: 1
+---
+
+## Introduction
+
+This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
+
+The packages used with a brief description of their purpose are as follows:
+
+* [`{rtables}`](https://insightsengineering.github.io/rtables/): designed to create and display complex tables with R.
+* [`{tern}`](https://insightsengineering.github.io/tern/): contains analysis functions to create tables and graphs used for clinical trial reporting.
+
+## Load Data and Required pharmaverse Package
+
+After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl`.
+
+Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
+library(pharmaverseadam)
+library(tern)
+library(dplyr)
+
+adsl <- adsl %>%
+  df_explicit_na()
+```
+
+## Start preprocessing
+
+Now we will add some pre-processing to create some extra formatted variables ready for display in the table.
+
+```{r preproc}
+# Create categorical variables
+adsl <- adsl %>%
+  mutate(
+    SEX = factor(case_when(
+      SEX == "M" ~ "Male",
+      SEX == "F" ~ "Female",
+      SEX == "U" ~ "Unknown",
+      SEX == "UNDIFFERENTIATED" ~ "Undifferentiated"
+    )),
+    AGEGR1 = factor(
+      case_when(
+        between(AGE, 18, 40) ~ "18-40",
+        between(AGE, 41, 64) ~ "41-64",
+        AGE > 64 ~ ">=65"
+      ),
+      levels = c("18-40", "41-64", ">=65")
+    )
+  )
+```
+
+## Demographic table
+
+Now we create the demographic table.
+
+```{r table}
+vars <- c("AGE", "AGEGR1", "SEX", "RACE")
+var_labels <- c(
+  "Age (yr)",
+  "Age group",
+  "Sex",
+  "Race"
+)
+
+lyt <- basic_table(show_colcounts = TRUE) %>%
+  split_cols_by(var = "ACTARM") %>%
+  add_overall_col("All Patients") %>%
+  analyze_vars(
+    vars = vars,
+    var_labels = var_labels
+  )
+
+result <- build_table(lyt, adsl)
+
+result
+```
