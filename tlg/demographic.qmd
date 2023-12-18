@@ -9,8 +9,8 @@ This guide will show you how pharmaverse packages, along with some from tidyvers
 
 The packages used with a brief description of their purpose are as follows:
 
-* [`{rtables}`](https://roche.github.io/rtables/index.html): designed to create and display complex tables with R.
-* [`{tern}`](https://insightsengineering.github.io/tern/main/index.html): contains analysis functions to create tables and graphs used for clinical trial reporting.
+* [`{rtables}`](https://insightsengineering.github.io/rtables/): designed to create and display complex tables with R.
+* [`{tern}`](https://insightsengineering.github.io/tern/): contains analysis functions to create tables and graphs used for clinical trial reporting.
 
 ## Load Data and Required pharmaverse Package
 
