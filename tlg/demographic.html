@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pharmaverse examples - test</title>
+<title>pharmaverse examples - Demographic Table</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,6 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../tlg/adverse_events.html" rel="next">
 <link href="../tlg/index.html" rel="prev">
 <link href="../assets/img/pharmaverse.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
@@ -118,12 +119,13 @@ cookieconsent.run({
 
 
 <link rel="stylesheet" href="../assets/css/style.scss">
-<meta property="og:title" content="pharmaverse examples - test">
+<meta property="og:title" content="pharmaverse examples - Demographic Table">
 <meta property="og:description" content="">
 <meta property="og:site-name" content="`pharmaverse` examples">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -167,7 +169,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/index.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/test.html">test</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/index.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/demographic.html">Demographic Table</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -248,8 +250,14 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tlg/test.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">test</span></a>
+  <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Demographic Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/adverse_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adverse Events</span></a>
   </div>
 </li>
       </ul>
@@ -272,7 +280,7 @@ cookieconsent.run({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">test</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Demographic Table</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
@@ -287,13 +295,106 @@ cookieconsent.run({
 
 </header>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.</p>
-<p>Curabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.</p>
-<p>Maecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> data as an input.</p>
+<p>The packages used with a brief description of their purpose are as follows:</p>
+<ul>
+<li><a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
+<li><a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
+</ul>
+</section>
+<section id="load-data-and-required-pharmaverse-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-package">Load Data and Required pharmaverse Package</h2>
+<p>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <code>adsl</code>.</p>
+<p>Note that <code>{tern}</code> depends on <code>{rtables}</code> so the latter is automatically attached.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tern)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="start-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="start-preprocessing">Start preprocessing</h2>
+<p>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Create categorical variables</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">SEX =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb2-5"><a href="#cb2-5"></a>      SEX <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>      SEX <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>      SEX <span class="sc">==</span> <span class="st">"U"</span> <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>      SEX <span class="sc">==</span> <span class="st">"UNDIFFERENTIATED"</span> <span class="sc">~</span> <span class="st">"Undifferentiated"</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    )),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">AGEGR1 =</span> <span class="fu">factor</span>(</span>
+<span id="cb2-11"><a href="#cb2-11"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb2-12"><a href="#cb2-12"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>      ),</span>
+<span id="cb2-16"><a href="#cb2-16"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    )</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="demographic-table" class="level2">
+<h2 class="anchored" data-anchor-id="demographic-table">Demographic table</h2>
+<p>Now we create the demographic table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="st">"Race"</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  )</span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl)</span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                       Placebo     Screen Failure   Xanomeline High Dose   Xanomeline Low Dose   All Patients
+                                       (N=86)          (N=52)              (N=72)                (N=96)            (N=306)   
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Age (yr)                                                                                                                     
+  n                                      86              52                  72                    96                306     
+  Mean (SD)                          75.2 (8.6)      75.1 (9.7)          73.8 (7.9)            76.0 (8.1)         75.1 (8.5) 
+  Median                                76.0            76.0                75.5                  78.0               77.0    
+  Min - Max                          52.0 - 89.0    50.0 - 89.0         56.0 - 88.0            51.0 - 88.0       50.0 - 89.0 
+Age group                                                                                                                    
+  n                                      86              52                  72                    96                306     
+  18-40                                   0              0                   0                      0                 0      
+  41-64                              14 (16.3%)      9 (17.3%)           11 (15.3%)             8 (8.3%)          42 (13.7%) 
+  &gt;=65                               72 (83.7%)      43 (82.7%)          61 (84.7%)            88 (91.7%)        264 (86.3%) 
+Sex                                                                                                                          
+  n                                      86              52                  72                    96                306     
+  Female                             53 (61.6%)      36 (69.2%)          35 (48.6%)            55 (57.3%)        179 (58.5%) 
+  Male                               33 (38.4%)      16 (30.8%)          37 (51.4%)            41 (42.7%)        127 (41.5%) 
+Race                                                                                                                         
+  n                                      86              52                  72                    96                306     
+  AMERICAN INDIAN OR ALASKA NATIVE        0           1 (1.9%)            1 (1.4%)                  0              2 (0.7%)  
+  ASIAN                                   0           2 (3.8%)               0                      0              2 (0.7%)  
+  BLACK OR AFRICAN AMERICAN           8 (9.3%)       6 (11.5%)           9 (12.5%)              6 (6.2%)          29 (9.5%)  
+  WHITE                              78 (90.7%)      43 (82.7%)          62 (86.1%)            90 (93.8%)        273 (89.2%) </code></pre>
+</div>
+</div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -702,17 +803,90 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../tlg/adverse_events.html" class="pagination-link">
+        <span class="nav-page-text">Adverse Events</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "test"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor nulla ac libero varius pellentesque. Mauris at nisi a sapien commodo aliquet. Nulla sit amet magna vitae ante vestibulum semper. Integer hendrerit sem diam, et suscipit enim rhoncus vel. Mauris id feugiat est. Duis condimentum sagittis mattis. Donec vel varius elit. Fusce tristique et risus quis fermentum. Maecenas cursus congue tristique. Phasellus odio sapien, placerat vitae mattis nec, sagittis in libero. Praesent vitae congue est. Morbi a odio non ex gravida commodo sed eleifend nibh.</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>Curabitur vitae nibh sit amet turpis viverra consequat. Sed egestas urna ac magna rhoncus viverra. Pellentesque id consequat purus. Ut ullamcorper, elit at pretium pellentesque, neque elit blandit diam, ut vehicula lectus enim fringilla dolor. Ut eget ante dui. Mauris vel dignissim nunc. Integer eget vehicula tellus. Etiam dignissim bibendum massa nec porta. Phasellus vehicula id lorem vitae commodo.</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>Maecenas iaculis eros ut velit egestas sodales. Curabitur dapibus felis nulla, vel lobortis ante rutrum lacinia. Nam turpis arcu, scelerisque faucibus luctus eget, pellentesque ut nisl. Donec mollis justo vitae tincidunt consectetur. Donec malesuada non tortor eget ullamcorper. Mauris pulvinar imperdiet dolor ac elementum. Vestibulum malesuada in est non pulvinar.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="an">title:</span><span class="co"> "Demographic Table"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">---</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">## Introduction</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>The packages used with a brief description of their purpose are as follows:</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">## Load Data and Required pharmaverse Package</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
+<span id="cb5-18"><a href="#cb5-18"></a></span>
+<span id="cb5-19"><a href="#cb5-19"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="fu">library</span>(tern)</span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-25"><a href="#cb5-25"></a></span>
+<span id="cb5-26"><a href="#cb5-26"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="in">```</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="fu">## Start preprocessing</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a></span>
+<span id="cb5-32"><a href="#cb5-32"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
+<span id="cb5-33"><a href="#cb5-33"></a></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="in">```{r preproc}</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="co"># Create categorical variables</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-38"><a href="#cb5-38"></a>    <span class="at">SEX =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb5-39"><a href="#cb5-39"></a>      SEX <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb5-40"><a href="#cb5-40"></a>      SEX <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb5-41"><a href="#cb5-41"></a>      SEX <span class="sc">==</span> <span class="st">"U"</span> <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
+<span id="cb5-42"><a href="#cb5-42"></a>      SEX <span class="sc">==</span> <span class="st">"UNDIFFERENTIATED"</span> <span class="sc">~</span> <span class="st">"Undifferentiated"</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    )),</span>
+<span id="cb5-44"><a href="#cb5-44"></a>    <span class="at">AGEGR1 =</span> <span class="fu">factor</span>(</span>
+<span id="cb5-45"><a href="#cb5-45"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb5-46"><a href="#cb5-46"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb5-47"><a href="#cb5-47"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb5-48"><a href="#cb5-48"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb5-49"><a href="#cb5-49"></a>      ),</span>
+<span id="cb5-50"><a href="#cb5-50"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>)</span>
+<span id="cb5-51"><a href="#cb5-51"></a>    )</span>
+<span id="cb5-52"><a href="#cb5-52"></a>  )</span>
+<span id="cb5-53"><a href="#cb5-53"></a><span class="in">```</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a></span>
+<span id="cb5-55"><a href="#cb5-55"></a><span class="fu">## Demographic table</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a></span>
+<span id="cb5-57"><a href="#cb5-57"></a>Now we create the demographic table.</span>
+<span id="cb5-58"><a href="#cb5-58"></a></span>
+<span id="cb5-59"><a href="#cb5-59"></a><span class="in">```{r table}</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb5-61"><a href="#cb5-61"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-62"><a href="#cb5-62"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb5-63"><a href="#cb5-63"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb5-64"><a href="#cb5-64"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb5-65"><a href="#cb5-65"></a>  <span class="st">"Race"</span></span>
+<span id="cb5-66"><a href="#cb5-66"></a>)</span>
+<span id="cb5-67"><a href="#cb5-67"></a></span>
+<span id="cb5-68"><a href="#cb5-68"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-69"><a href="#cb5-69"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb5-72"><a href="#cb5-72"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb5-73"><a href="#cb5-73"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb5-74"><a href="#cb5-74"></a>  )</span>
+<span id="cb5-75"><a href="#cb5-75"></a></span>
+<span id="cb5-76"><a href="#cb5-76"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl)</span>
+<span id="cb5-77"><a href="#cb5-77"></a></span>
+<span id="cb5-78"><a href="#cb5-78"></a>result</span>
+<span id="cb5-79"><a href="#cb5-79"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
