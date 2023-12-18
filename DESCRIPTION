@@ -16,6 +16,7 @@ Imports:
     metatools,
     pharmaversesdtm,
     pharmaverseadam,
+    rtables,
     stringr,
     tern,
     tidyr,
