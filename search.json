@@ -144,7 +144,21 @@
     "href": "index.html",
     "title": "pharmaverse examples",
     "section": "",
-    "text": "The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to compliment each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.\nThis book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses. The examples use consistent source SDTMs to create ADaMs (such as ADSL, ADPC, ADPPK) and using these as input to produce some familiar Tables/Listings/Graphs and associated interactive displays (via Shiny).\nOther examples may be included here, e.g. Therapeutic Area specifics (such as Oncology or Vaccines).\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.\nIf you’d like to try out any of these examples in a live R session (via Posit Cloud) or if you are interesting in contributing an article to this book, then see more in our GitHub repo README."
+    "text": "The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to compliment each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.\nThis book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses, such as ADaM and Tables/Listings/Graphs. The examples use consistent source test SDTMs and ADaMs from {pharmaversesdtm} and {pharmaverseadam} respectively.\nWe’ll endeavour to include a selection of examples here over time, e.g. to help users when trying out the packages for PK/PD or Therapeutic Area specific (such as Oncology or Vaccines) analyses.\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here."
+  },
+  {
+    "objectID": "index.html#posit-cloud",
+    "href": "index.html#posit-cloud",
+    "title": "pharmaverse examples",
+    "section": "Posit Cloud",
+    "text": "Posit Cloud\nEach example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations). Click here: “Launch Posit Cloud” to try out any of the examples code. You can do this by clicking File: Open File: and then choosing whichever example, e.g. adam/adsl.qmd. You could ignore the text sections and run the R code blocks. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!"
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "pharmaverse examples",
+    "section": "Contributing",
+    "text": "Contributing\nIf you are interesting in contributing an article to this book, then see more in our GitHub repo README."
   },
   {
     "objectID": "adam/adpc.html",

@@ -294,14 +294,21 @@ cookieconsent.run({
 </header>
 
 <p>The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to compliment each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.</p>
-<p>This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses. The examples use consistent source SDTMs to create ADaMs (such as <code>ADSL</code>, <code>ADPC</code>, <code>ADPPK</code>) and using these as input to produce some familiar Tables/Listings/Graphs and associated interactive displays (via Shiny).</p>
-<p>Other examples may be included here, e.g.&nbsp;Therapeutic Area specifics (such as Oncology or Vaccines).</p>
+<p>This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses, such as ADaM and Tables/Listings/Graphs. The examples use consistent source test SDTMs and ADaMs from <code>{pharmaversesdtm}</code> and <code>{pharmaverseadam}</code> respectively.</p>
+<p>We’ll endeavour to include a selection of examples here over time, e.g.&nbsp;to help users when trying out the packages for PK/PD or Therapeutic Area specific (such as Oncology or Vaccines) analyses.</p>
 <p>Note that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.</p>
-<p>If you’d like to try out any of these examples in a live R session (via Posit Cloud) or if you are interesting in contributing an article to this book, then see more in our GitHub repo README.</p>
+<section id="posit-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="posit-cloud">Posit Cloud</h2>
+<p>Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations). Click here: <a href="https://posit.cloud/content/7279124">“Launch Posit Cloud”</a> to try out any of the examples code. You can do this by clicking File: Open File: and then choosing whichever example, e.g.&nbsp;<code>adam/adsl.qmd</code>. You could ignore the text sections and run the R code blocks. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!</p>
+</section>
+<section id="contributing" class="level2">
+<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
+<p>If you are interesting in contributing an article to this book, then see more in our GitHub repo README.</p>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -714,22 +721,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-9"><a href="#cb1-9"></a>make complex tasks increasingly simple.</span>
 <span id="cb1-10"><a href="#cb1-10"></a></span>
 <span id="cb1-11"><a href="#cb1-11"></a>This book contains end-to-end examples of using pharmaverse packages together to</span>
-<span id="cb1-12"><a href="#cb1-12"></a>achieve common clinical reporting analyses.</span>
-<span id="cb1-13"><a href="#cb1-13"></a>The examples use consistent source SDTMs to create ADaMs (such as <span class="in">`ADSL`</span>, <span class="in">`ADPC`</span>, <span class="in">`ADPPK`</span>)</span>
-<span id="cb1-14"><a href="#cb1-14"></a>and using these as input to produce some familiar Tables/Listings/Graphs and</span>
-<span id="cb1-15"><a href="#cb1-15"></a>associated interactive displays (via Shiny).</span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a>Other examples may be included here, e.g. Therapeutic Area</span>
-<span id="cb1-18"><a href="#cb1-18"></a>specifics (such as Oncology or Vaccines).</span>
+<span id="cb1-12"><a href="#cb1-12"></a>achieve common clinical reporting analyses, such as ADaM and Tables/Listings/Graphs.</span>
+<span id="cb1-13"><a href="#cb1-13"></a>The examples use consistent source test SDTMs and ADaMs from <span class="in">`{pharmaversesdtm}`</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>and <span class="in">`{pharmaverseadam}`</span> respectively.</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a>We'll endeavour to include a selection of examples here over time, e.g. to help</span>
+<span id="cb1-17"><a href="#cb1-17"></a>users when trying out the packages for PK/PD or Therapeutic Area specific</span>
+<span id="cb1-18"><a href="#cb1-18"></a>(such as Oncology or Vaccines) analyses.</span>
 <span id="cb1-19"><a href="#cb1-19"></a></span>
 <span id="cb1-20"><a href="#cb1-20"></a>Note that this examples book should only be used to show how collections of</span>
 <span id="cb1-21"><a href="#cb1-21"></a>packages can be used in conjunction - more thorough examples of individual</span>
 <span id="cb1-22"><a href="#cb1-22"></a>package usages would always be covered in the package site vignettes and no</span>
 <span id="cb1-23"><a href="#cb1-23"></a>need to repeat here.</span>
 <span id="cb1-24"><a href="#cb1-24"></a></span>
-<span id="cb1-25"><a href="#cb1-25"></a>If you'd like to try out any of these examples in a live R session (via Posit</span>
-<span id="cb1-26"><a href="#cb1-26"></a>Cloud) or if you are interesting in contributing an article to this book, then</span>
-<span id="cb1-27"><a href="#cb1-27"></a>see more in our GitHub repo README.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="fu">## Posit Cloud</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>Each example can be explored via a live and interactive Posit Cloud environment</span>
+<span id="cb1-27"><a href="#cb1-27"></a>(preconfigured with all required package installations).</span>
+<span id="cb1-28"><a href="#cb1-28"></a>Click here: <span class="co">[</span><span class="ot">"Launch Posit Cloud"</span><span class="co">](https://posit.cloud/content/7279124)</span> to</span>
+<span id="cb1-29"><a href="#cb1-29"></a>try out any of the examples code.</span>
+<span id="cb1-30"><a href="#cb1-30"></a>You can do this by clicking File: Open File: and then choosing whichever example,</span>
+<span id="cb1-31"><a href="#cb1-31"></a>e.g. <span class="in">`adam/adsl.qmd`</span>. You could ignore the text sections and run the R code</span>
+<span id="cb1-32"><a href="#cb1-32"></a>blocks.</span>
+<span id="cb1-33"><a href="#cb1-33"></a>Feel free to try out customizing any of the examples to better fit any of</span>
+<span id="cb1-34"><a href="#cb1-34"></a>your own internal clinical reporting workflows!</span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="fu">## Contributing</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>If you are interesting in contributing an article to this book, then</span>
+<span id="cb1-38"><a href="#cb1-38"></a>see more in our GitHub repo README.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
