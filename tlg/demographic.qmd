@@ -14,7 +14,7 @@ The packages used with a brief description of their purpose are as follows:
 
 ## Load Data and Required pharmaverse Package
 
-After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries across groups of categorical variables in a data frame `adsl`.
+After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl`.
 
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(pharmaverseadam)
