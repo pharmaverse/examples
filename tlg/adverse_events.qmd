@@ -35,7 +35,6 @@ adae <- adae %>%
 Now we will add some pre-processing to add labels ready for display in the table and how the output will be split.
 
 ```{r preproc}
-
 adae <- adae %>%
   var_relabel(
     AEBODSYS = "MedDRA System Organ Class",
