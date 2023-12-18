@@ -22,9 +22,13 @@ need to repeat here.
 # Posit Cloud
 Each example can be explored via a live and interactive Posit Cloud environment
 (preconfigured with all required package installations).
-Please click the "Launch Posit Cloud" button to work with the live code. _TO BE ADDED_
-Feel free to copy the repo and customize any examples for your own internal
-clinical reporting workflows!
+Click here: ["Launch Posit Cloud"](https://posit.cloud/content/7279124) to
+try out any of the examples code.
+You can do this by clicking File: Open File: and then choosing whichever example,
+e.g. adam/adsl.qmd. You could ignore the text sections and run the R code
+blocks.
+Feel free to try out customizing any of the examples to better fit any of
+your own internal clinical reporting workflows!
 
 # Contributing
 Anyone can add examples to this repo for usage of any pharmaverse packages.
