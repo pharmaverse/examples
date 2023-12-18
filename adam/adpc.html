@@ -309,7 +309,8 @@ cookieconsent.run({
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(metatools)</span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(pharmaversesdtm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(pharmaversesdtm)</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(pharmaverseadam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="next-load-specifications-for-metacore" class="level2">
@@ -332,12 +333,11 @@ cookieconsent.run({
 <span id="cb3-4"><a href="#cb3-4"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="fu">data</span>(<span class="st">"vs"</span>)</span>
 <span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">data</span>(<span class="st">"admiral_adsl"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="fu">data</span>(<span class="st">"adsl"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a>adsl <span class="ot">&lt;-</span> admiral_adsl</span>
-<span id="cb3-10"><a href="#cb3-10"></a>ex <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ex)</span>
-<span id="cb3-11"><a href="#cb3-11"></a>pc <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(pc)</span>
-<span id="cb3-12"><a href="#cb3-12"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9"></a>ex <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ex)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>pc <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(pc)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="derivations" class="level2">
@@ -1281,36 +1281,36 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-22"><a href="#cb21-22"></a><span class="fu">library</span>(metatools)</span>
 <span id="cb21-23"><a href="#cb21-23"></a><span class="fu">library</span>(xportr)</span>
 <span id="cb21-24"><a href="#cb21-24"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb21-25"><a href="#cb21-25"></a><span class="in">```</span></span>
-<span id="cb21-26"><a href="#cb21-26"></a></span>
-<span id="cb21-27"><a href="#cb21-27"></a><span class="fu">## Next Load Specifications for Metacore</span></span>
-<span id="cb21-28"><a href="#cb21-28"></a></span>
-<span id="cb21-29"><a href="#cb21-29"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function. </span>
-<span id="cb21-30"><a href="#cb21-30"></a></span>
-<span id="cb21-31"><a href="#cb21-31"></a><span class="in">```{r echo=TRUE}</span></span>
-<span id="cb21-32"><a href="#cb21-32"></a><span class="co">#| label: Load Specs</span></span>
-<span id="cb21-33"><a href="#cb21-33"></a><span class="co">#| warning: false</span></span>
-<span id="cb21-34"><a href="#cb21-34"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
-<span id="cb21-35"><a href="#cb21-35"></a></span>
-<span id="cb21-36"><a href="#cb21-36"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-37"><a href="#cb21-37"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPC"</span>)</span>
-<span id="cb21-38"><a href="#cb21-38"></a><span class="in">```</span></span>
-<span id="cb21-39"><a href="#cb21-39"></a></span>
-<span id="cb21-40"><a href="#cb21-40"></a><span class="fu">## Load Source Datasets</span></span>
-<span id="cb21-41"><a href="#cb21-41"></a></span>
-<span id="cb21-42"><a href="#cb21-42"></a>We will load are SDTM data from <span class="in">`{pharmaversesdtm}`</span>. The main components of this will be exposure data from <span class="in">`EX`</span> and pharmacokinetic concentration data from <span class="in">`PC`</span>. We will use <span class="in">`ADSL`</span> for baseline characteristics and we will derive additional baselines from vital signs <span class="in">`VS`</span>.</span>
-<span id="cb21-43"><a href="#cb21-43"></a></span>
-<span id="cb21-46"><a href="#cb21-46"></a><span class="in">```{r}</span></span>
-<span id="cb21-47"><a href="#cb21-47"></a><span class="co">#| label: Load Source</span></span>
-<span id="cb21-48"><a href="#cb21-48"></a><span class="co"># ---- Load source datasets ----</span></span>
-<span id="cb21-49"><a href="#cb21-49"></a><span class="co"># Load PC, EX, VS, LB and ADSL</span></span>
-<span id="cb21-50"><a href="#cb21-50"></a><span class="fu">data</span>(<span class="st">"pc"</span>)</span>
-<span id="cb21-51"><a href="#cb21-51"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span>
-<span id="cb21-52"><a href="#cb21-52"></a><span class="fu">data</span>(<span class="st">"vs"</span>)</span>
-<span id="cb21-53"><a href="#cb21-53"></a></span>
-<span id="cb21-54"><a href="#cb21-54"></a><span class="fu">data</span>(<span class="st">"admiral_adsl"</span>)</span>
-<span id="cb21-55"><a href="#cb21-55"></a></span>
-<span id="cb21-56"><a href="#cb21-56"></a>adsl <span class="ot">&lt;-</span> admiral_adsl</span>
+<span id="cb21-25"><a href="#cb21-25"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb21-26"><a href="#cb21-26"></a><span class="in">```</span></span>
+<span id="cb21-27"><a href="#cb21-27"></a></span>
+<span id="cb21-28"><a href="#cb21-28"></a><span class="fu">## Next Load Specifications for Metacore</span></span>
+<span id="cb21-29"><a href="#cb21-29"></a></span>
+<span id="cb21-30"><a href="#cb21-30"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function. </span>
+<span id="cb21-31"><a href="#cb21-31"></a></span>
+<span id="cb21-32"><a href="#cb21-32"></a><span class="in">```{r echo=TRUE}</span></span>
+<span id="cb21-33"><a href="#cb21-33"></a><span class="co">#| label: Load Specs</span></span>
+<span id="cb21-34"><a href="#cb21-34"></a><span class="co">#| warning: false</span></span>
+<span id="cb21-35"><a href="#cb21-35"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
+<span id="cb21-36"><a href="#cb21-36"></a></span>
+<span id="cb21-37"><a href="#cb21-37"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-38"><a href="#cb21-38"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPC"</span>)</span>
+<span id="cb21-39"><a href="#cb21-39"></a><span class="in">```</span></span>
+<span id="cb21-40"><a href="#cb21-40"></a></span>
+<span id="cb21-41"><a href="#cb21-41"></a><span class="fu">## Load Source Datasets</span></span>
+<span id="cb21-42"><a href="#cb21-42"></a></span>
+<span id="cb21-43"><a href="#cb21-43"></a>We will load are SDTM data from <span class="in">`{pharmaversesdtm}`</span>. The main components of this will be exposure data from <span class="in">`EX`</span> and pharmacokinetic concentration data from <span class="in">`PC`</span>. We will use <span class="in">`ADSL`</span> for baseline characteristics and we will derive additional baselines from vital signs <span class="in">`VS`</span>.</span>
+<span id="cb21-44"><a href="#cb21-44"></a></span>
+<span id="cb21-47"><a href="#cb21-47"></a><span class="in">```{r}</span></span>
+<span id="cb21-48"><a href="#cb21-48"></a><span class="co">#| label: Load Source</span></span>
+<span id="cb21-49"><a href="#cb21-49"></a><span class="co"># ---- Load source datasets ----</span></span>
+<span id="cb21-50"><a href="#cb21-50"></a><span class="co"># Load PC, EX, VS, LB and ADSL</span></span>
+<span id="cb21-51"><a href="#cb21-51"></a><span class="fu">data</span>(<span class="st">"pc"</span>)</span>
+<span id="cb21-52"><a href="#cb21-52"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span>
+<span id="cb21-53"><a href="#cb21-53"></a><span class="fu">data</span>(<span class="st">"vs"</span>)</span>
+<span id="cb21-54"><a href="#cb21-54"></a></span>
+<span id="cb21-55"><a href="#cb21-55"></a><span class="fu">data</span>(<span class="st">"adsl"</span>)</span>
+<span id="cb21-56"><a href="#cb21-56"></a></span>
 <span id="cb21-57"><a href="#cb21-57"></a>ex <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ex)</span>
 <span id="cb21-58"><a href="#cb21-58"></a>pc <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(pc)</span>
 <span id="cb21-59"><a href="#cb21-59"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span>
