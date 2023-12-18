@@ -6,13 +6,13 @@ will ever completely cover all your needs, but by piecing them together we can
 make complex tasks increasingly simple.
 
 This book contains end-to-end examples of using pharmaverse packages together to
-achieve common clinical reporting analyses.
-The examples use consistent source SDTMs to create ADaMs (such as ADSL and ADAE)
-and using these as input to produce some familiar Tables/Listings/Graphs and
-associated interactive displays (via Shiny).
+achieve common clinical reporting analyses, such as ADaM and Tables/Listings/Graphs.
+The examples use consistent source test SDTMs and ADaMs from {pharmaversesdtm}
+and {pharmaverseadam} respectively.
 
-Other examples may be included here, e.g. for PK/PD or Therapeutic Area
-specifics (such as Oncology or Vaccines).
+We'll endeavour to include a selection of examples here over time, e.g. to help
+users when trying out the packages for PK/PD or Therapeutic Area specific
+(such as Oncology or Vaccines) analyses.
 
 Note that this examples book should only be used to show how collections of
 packages can be used in conjunction - more thorough examples of individual
