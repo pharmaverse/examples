@@ -23,6 +23,7 @@ library(metatools)
 library(xportr)
 library(readr)
 library(pharmaversesdtm)
+library(pharmaverseadam)
 ```
 
 ## Next Load Specifications for Metacore
@@ -50,8 +51,7 @@ data("ex")
 data("vs")
 data("lb")
 
-data("admiral_adsl")
-adsl <- admiral_adsl
+data("adsl")
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
