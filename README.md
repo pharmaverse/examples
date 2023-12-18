@@ -45,3 +45,6 @@ be sure you have installed the latest CRAN versions of all the packages being us
 We recommend you notify the maintainers of all the packages used in your example,
 as then they are more likely to help inform us if ever anything changes in their
 packages that breaks any of our examples.
+
+If ever unsure of anything feel free to reach out to Ross Farrugia via pharmaverse
+Slack (https://pharmaverse.slack.com/).
