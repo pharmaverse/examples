@@ -16,9 +16,10 @@ The packages used with a brief description of their purpose are as follows:
 
 After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl`.
 
+Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
+
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(pharmaverseadam)
-library(rtables)
 library(tern)
 library(dplyr)
 
