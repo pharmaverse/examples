@@ -15,6 +15,7 @@ Imports:
     metacore,
     metatools,
     pharmaversesdtm,
+    pharmaverseadam,
     stringr,
     tern,
     tidyr,
