@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -85,7 +85,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -94,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -111,6 +117,8 @@ cookieconsent.run({
   "notice_banner_reject_button_hide":false,
   "preferences_center_close_button_hide":false,
   "website_name":""
+  ,
+"language":"en-US"
   });
 });
 </script> 
@@ -121,36 +129,36 @@ cookieconsent.run({
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="pharmaverse examples - ADPC">
 <meta property="og:description" content="">
-<meta property="og:site-name" content="`pharmaverse` examples">
+<meta property="og:image" content="https://github.com/pharmaverse/examples/adam/assets/img/pharmaverse.png">
+<meta property="og:site_name" content="`pharmaverse` examples">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand navbar-dark ">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title"><code>pharmaverse</code> examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://pharmaverse.org" rel="" target=""><i class="bi bi-house" role="img" aria-label="pharmaverse">
+    <a class="nav-link" href="https://pharmaverse.org"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/" rel="" target=""><i class="bi bi-slack" role="img" aria-label="Slack">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/pharmaverse/examples" rel="" target=""><i class="bi bi-github" role="img" aria-label="Repository">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           <div class="quarto-navbar-tools">
@@ -166,19 +174,19 @@ cookieconsent.run({
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adpc.html">ADPC</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adpc.html">ADPC</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -272,20 +280,20 @@ cookieconsent.run({
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adpc.html">ADPC</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">ADPC</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -293,7 +301,9 @@ cookieconsent.run({
   </div>
   
 
+
 </header>
+
 
 <p>The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<a href="https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0" class="uri">https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0</a>). This example presented uses underlying <code>EX</code> and <code>PC</code> domains where the <code>EX</code> and <code>PC</code> domains represent data as collected and the <code>ADPC</code> ADaM is output. For more details see the <code>{admiral}</code> <a href="https://pharmaverse.github.io/admiral/articles/pk_adnca.html" target="_blank">vignette</a>.</p>
 <section id="first-load-packages" class="level2">
@@ -889,6 +899,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
   }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
   const toggleColorMode = (alternate) => {
     // Switch the stylesheets
     const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
@@ -955,13 +992,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -1091,10 +1130,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1104,8 +1142,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1118,6 +1165,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1161,6 +1327,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1186,6 +1353,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1247,12 +1440,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../adam/adsl.html" class="pagination-link">
+      <a href="../adam/adsl.html" class="pagination-link  aria-label=" adsl"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADSL</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../adam/adppk.html" class="pagination-link">
+      <a href="../adam/adppk.html" class="pagination-link" aria-label="ADPPK">
         <span class="nav-page-text">ADPPK</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1271,17 +1464,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-12"><a href="#cb21-12"></a>The source SDTM data will come from the CDISC pilot study data stored in <span class="in">`{pharmaversesdtm}`</span>.</span>
 <span id="cb21-13"><a href="#cb21-13"></a></span>
 <span id="cb21-14"><a href="#cb21-14"></a><span class="in">```{r echo=TRUE, message=FALSE}</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a><span class="co">#| label: Load Packages</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="co"># Load Packages</span></span>
-<span id="cb21-17"><a href="#cb21-17"></a><span class="fu">library</span>(admiral)</span>
-<span id="cb21-18"><a href="#cb21-18"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb21-19"><a href="#cb21-19"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb21-20"><a href="#cb21-20"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb21-21"><a href="#cb21-21"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb21-22"><a href="#cb21-22"></a><span class="fu">library</span>(metatools)</span>
-<span id="cb21-23"><a href="#cb21-23"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb21-24"><a href="#cb21-24"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb21-25"><a href="#cb21-25"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb21-15"><a href="#cb21-15"></a><span class="in">#| label: Load Packages</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a><span class="in"># Load Packages</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a><span class="in">library(admiral)</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a><span class="in">library(dplyr)</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a><span class="in">library(lubridate)</span></span>
+<span id="cb21-20"><a href="#cb21-20"></a><span class="in">library(stringr)</span></span>
+<span id="cb21-21"><a href="#cb21-21"></a><span class="in">library(metacore)</span></span>
+<span id="cb21-22"><a href="#cb21-22"></a><span class="in">library(metatools)</span></span>
+<span id="cb21-23"><a href="#cb21-23"></a><span class="in">library(xportr)</span></span>
+<span id="cb21-24"><a href="#cb21-24"></a><span class="in">library(pharmaversesdtm)</span></span>
+<span id="cb21-25"><a href="#cb21-25"></a><span class="in">library(pharmaverseadam)</span></span>
 <span id="cb21-26"><a href="#cb21-26"></a><span class="in">```</span></span>
 <span id="cb21-27"><a href="#cb21-27"></a></span>
 <span id="cb21-28"><a href="#cb21-28"></a><span class="fu">## Next Load Specifications for Metacore</span></span>
@@ -1289,12 +1482,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb21-30"><a href="#cb21-30"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function. </span>
 <span id="cb21-31"><a href="#cb21-31"></a></span>
 <span id="cb21-32"><a href="#cb21-32"></a><span class="in">```{r echo=TRUE}</span></span>
-<span id="cb21-33"><a href="#cb21-33"></a><span class="co">#| label: Load Specs</span></span>
-<span id="cb21-34"><a href="#cb21-34"></a><span class="co">#| warning: false</span></span>
-<span id="cb21-35"><a href="#cb21-35"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
+<span id="cb21-33"><a href="#cb21-33"></a><span class="in">#| label: Load Specs</span></span>
+<span id="cb21-34"><a href="#cb21-34"></a><span class="in">#| warning: false</span></span>
+<span id="cb21-35"><a href="#cb21-35"></a><span class="in"># ---- Load Specs for Metacore ----</span></span>
 <span id="cb21-36"><a href="#cb21-36"></a></span>
-<span id="cb21-37"><a href="#cb21-37"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-38"><a href="#cb21-38"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPC"</span>)</span>
+<span id="cb21-37"><a href="#cb21-37"></a><span class="in">metacore &lt;- spec_to_metacore("pk_spec.xlsx") %&gt;%</span></span>
+<span id="cb21-38"><a href="#cb21-38"></a><span class="in">  select_dataset("ADPC")</span></span>
 <span id="cb21-39"><a href="#cb21-39"></a><span class="in">```</span></span>
 <span id="cb21-40"><a href="#cb21-40"></a></span>
 <span id="cb21-41"><a href="#cb21-41"></a><span class="fu">## Load Source Datasets</span></span>
@@ -1871,12 +2064,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
 
 
 
