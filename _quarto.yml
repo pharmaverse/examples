@@ -18,7 +18,7 @@ website:
     copy-button: true
   page-navigation: true
   reader-mode: true
-  site-url: https://github.com/pharmaverse/examples
+  site-url: https://pharmaverse.github.io/examples/
   repo-url: https://github.com/pharmaverse/examples
   repo-branch: main
   cookie-consent: true
@@ -29,7 +29,7 @@ website:
     search: true
     right:
       - icon: house
-        href: https://pharmaverse.org
+        href: https://pharmaverse.github.io/examples/
         aria-label: pharmaverse
       - icon: slack
         href: https://app.slack.com/client/T028PB489D3/
