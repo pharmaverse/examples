@@ -33,9 +33,8 @@ your own internal clinical reporting workflows!
 # Contributing
 Anyone can suggest ideas for examples to this repo for usage of any pharmaverse packages.
 To do this, make an issue [here](https://github.com/pharmaverse/examples/issues)
-with your idea. Any new issues should be added to our
-[project board](https://github.com/orgs/pharmaverse/projects/24/views/1) which
-you can select under the Projects section of the issue, and choose "Status: Backlog".
+with your idea. Any new issues get automatically added to our
+[project board](https://github.com/orgs/pharmaverse/projects/24/views/1).
 
 Our team will periodically review and choose which backlog issues are prioritized.
 If you'd be willing to contribute towards adding the example yourself, then let
