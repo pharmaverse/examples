@@ -1,1 +1,1 @@
-Sitemap: https://github.com/pharmaverse/examples/sitemap.xml
+Sitemap: https://pharmaverse.github.io/examples/sitemap.xml
