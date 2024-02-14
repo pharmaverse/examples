@@ -36,7 +36,20 @@ Feel free to try out customizing any of the examples to better fit any of
 your own internal clinical reporting workflows!
 
 ### Locally
-To run all of the examples provided locally, first run the following line in your R console to install required packages.
+To run examples locally, you can either:
+
+* Download the [repository](https://github.com/pharmaverse/examples) and run the following to install dependencies
+
+```r
+if(!require(remotes)) {
+  install.packages("remotes")
+}
+remotes::install_deps(dependencies = TRUE)
+```
+
+or,
+
+* Use the code provided below to install the necessary packages, then copy and paste the example code directly into your R console.
 
 ```r
 install.packages(c("admiral", "dplyr", "lubridate", "metacore", "metatools", "pharmaversesdtm", "pharmaverseadam", "stringr", "tern", "tidyr", "xportr"))
