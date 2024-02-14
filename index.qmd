@@ -22,7 +22,9 @@ packages can be used in conjunction - more thorough examples of individual
 package usages would always be covered in the package site vignettes and no
 need to repeat here.
 
-## Posit Cloud
+## Running the examples
+
+### Posit Cloud
 Each example can be explored via a live and interactive Posit Cloud environment
 (preconfigured with all required package installations).
 Click here: ["Launch Posit Cloud"](https://posit.cloud/content/7279124) to
@@ -32,6 +34,13 @@ e.g. `adam/adsl.qmd`. You could ignore the text sections and run the R code
 blocks.
 Feel free to try out customizing any of the examples to better fit any of
 your own internal clinical reporting workflows!
+
+### Locally
+To run all of the examples provided locally, first run the following line in your R console to install required packages.
+
+```r
+install.packages(c("admiral", "dplyr", "lubridate", "metacore", "metatools", "pharmaversesdtm", "pharmaverseadam", "stringr", "tern", "tidyr", "xportr"))
+```
 
 ## Contributing
 If you are interesting in contributing an article to this book, then
