@@ -46,6 +46,7 @@ if(!require(pak)) {
 }
 pak::pak()
 ```
+*Tip: If you prefer to run the examples as `.R` files instead of quarto documents, you can convert the `.qmd` files into Rscripts with [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*
 
 or,
 
