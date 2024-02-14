@@ -52,8 +52,20 @@ or,
 
 * Use the code provided below to install the necessary packages, then copy and paste the example code directly into your R console.
 
-```r
-install.packages(c("admiral", "dplyr", "lubridate", "metacore", "metatools", "pharmaversesdtm", "pharmaverseadam", "stringr", "tern", "tidyr", "xportr"))
+```{r results = "asis", echo = FALSE}
+deps <- desc::desc(file = "DESCRIPTION")$get_deps()
+imported_deps <- deps[deps$type == "Imports" & deps$package != "desc", "package"]
+
+cat(
+  paste0(
+    "```r\n",
+    "install.packages(c(",
+    paste0("'", imported_deps, "'", collapse = ", "),
+    "))\n",
+    "```"
+  )
+)
+
 ```
 
 ## Contributing
