@@ -41,10 +41,10 @@ To run examples locally, you can either:
 * Download the [repository](https://github.com/pharmaverse/examples) and run the following to install dependencies
 
 ```r
-if(!require(remotes)) {
-  install.packages("remotes")
+if(!require(pak)) {
+  install.packages("pak")
 }
-remotes::install_deps(dependencies = TRUE)
+pak::pak()
 ```
 
 or,
