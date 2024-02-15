@@ -21,8 +21,7 @@ Imports:
     stringr,
     tern,
     tidyr,
-    xportr,
-    desc
+    xportr
 Suggests:
     knitr,
     rmarkdown
