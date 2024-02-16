@@ -38,7 +38,7 @@ your own internal clinical reporting workflows!
 ### Locally
 To run examples locally, you can either:
 
-* Download the [repository](https://github.com/pharmaverse/examples) and run the following to install dependencies
+* Download the [repository](https://github.com/pharmaverse/examples) and run the following in the R console inside the project folder to install dependencies
 
 ```r
 if(!require(pak)) {
@@ -47,14 +47,6 @@ if(!require(pak)) {
 pak::pak()
 ```
 *Tip: If you prefer to run the examples as `.R` files instead of quarto documents, you can convert the `.qmd` files into Rscripts with [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*
-
-or,
-
-* Use the code provided below to install the necessary packages, then copy and paste the example code directly into your R console.
-
-```r
-install.packages(c("admiral", "dplyr", "lubridate", "metacore", "metatools", "pharmaversesdtm", "pharmaverseadam", "stringr", "tern", "tidyr", "xportr"))
-```
 
 ## Contributing
 If you are interesting in contributing an article to this book, then
