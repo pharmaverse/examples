@@ -3,6 +3,12 @@ title: "ADPPK"
 order: 3
 ---
 
+```{r echo=TRUE}
+# Save a local copy of the R code
+knitr::purl("adppk.qmd")
+
+```
+
 The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
 
 ## First Load Packages
