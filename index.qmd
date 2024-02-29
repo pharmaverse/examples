@@ -36,9 +36,7 @@ Feel free to try out customizing any of the examples to better fit any of
 your own internal clinical reporting workflows!
 
 ### Locally
-To run examples locally, you can either:
-
-* Download the [repository](https://github.com/pharmaverse/examples) and run the following in the R console inside the project folder to install dependencies
+To run examples locally, download the [repository](https://github.com/pharmaverse/examples) and run the following in the R console inside the project folder to install dependencies
 
 ```r
 if(!require(pak)) {
