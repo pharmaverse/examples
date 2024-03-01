@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>pharmaverse examples - ADSL</title>
 <style>
 code{white-space: pre-wrap;}
@@ -19,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -74,13 +78,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -89,11 +99,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -104,42 +117,51 @@ cookieconsent.run({
   "notice_banner_reject_button_hide":false,
   "preferences_center_close_button_hide":false,
   "website_name":""
+  ,
+"language":"en-US"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="pharmaverse examples - ADSL">
 <meta property="og:description" content="">
-<meta property="og:site-name" content="pharmaverse examples">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/adam/assets/img/pharmaverse.png">
+<meta property="og:site_name" content="pharmaverse examples">
 </head>
+
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-    <a class="nav-link" href="https://pharmaverse.github.io/examples/" rel="" target=""><i class="bi bi-house" role="img" aria-label="pharmaverse">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/" rel="" target=""><i class="bi bi-slack" role="img" aria-label="Slack">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/pharmaverse/examples" rel="" target=""><i class="bi bi-github" role="img" aria-label="Repository">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -149,23 +171,30 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adsl.html">ADSL</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adsl.html">ADSL</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -180,15 +209,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -197,8 +226,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ADSL</span></a>
@@ -217,7 +246,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
@@ -226,8 +255,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -240,7 +269,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -249,18 +278,22 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADAM</a></li><li class="breadcrumb-item"><a href="../adam/adsl.html">ADSL</a></li></ol></nav>
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">ADSL</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -268,21 +301,24 @@ cookieconsent.run({
   </div>
   
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <code>ADSL</code> end-to-end, using <a href="https://pharmaverse.github.io/pharmaversesdtm/main/">pharmaversesdtm</a> SDTM data as input.</p>
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <code>ADSL</code> end-to-end, using <code>{pharmaversesdtm}</code> SDTM data as input.</p>
 <p>The four packages used with a brief description of their purpose are as follows:</p>
 <ul>
-<li>
-<a href="https://atorus-research.github.io/metacore/"><code>{metacore}</code></a>: provides harmonized metadata/specifications object.</li>
-<li>
-<a href="https://pharmaverse.github.io/metatools/"><code>{metatools}</code></a>: uses the provided metadata to build/enhance and check the dataset.</li>
-<li>
-<a href="https://pharmaverse.github.io/admiral/index.html"><code>{admiral}</code></a>: provides the ADaM derivations.</li>
-<li>
-<a href="https://atorus-research.github.io/xportr/"><code>{xportr}</code></a>: delivers the SAS transport file (XPT) and eSub checks.</li>
+<li><a href="https://atorus-research.github.io/metacore/"><code>{metacore}</code></a>: provides harmonized metadata/specifications object.</li>
+<li><a href="https://pharmaverse.github.io/metatools/"><code>{metatools}</code></a>: uses the provided metadata to build/enhance and check the dataset.</li>
+<li><a href="https://pharmaverse.github.io/admiral/index.html"><code>{admiral}</code></a>: provides the ADaM derivations.</li>
+<li><a href="https://atorus-research.github.io/xportr/"><code>{xportr}</code></a>: delivers the SAS transport file (XPT) and eSub checks.</li>
 </ul>
-<p>It is important to understand <a href="https://atorus-research.github.io/metacore/">metacore</a> objects by reading through the above linked package site, as these are fundamental to being able to use <a href="https://pharmaverse.github.io/metatools/">metatools</a> and <a href="https://github.com/atorus-research/xportr">xportr</a>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</p>
-</section><section id="load-data-and-required-pharmaverse-packages" class="level2"><h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-packages">Load Data and Required pharmaverse Packages</h2>
+<p>It is important to understand <code>{metacore}</code> objects by reading through the above linked package site, as these are fundamental to being able to use <code>{metatools}</code> and <code>{xportr}</code>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</p>
+</section>
+<section id="load-data-and-required-pharmaverse-packages" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-packages">Load Data and Required pharmaverse Packages</h2>
 <p>The first step is to load our pharmaverse packages and input data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
@@ -299,14 +335,14 @@ cookieconsent.run({
 <span id="cb1-12"><a href="#cb1-12"></a><span class="fu">data</span>(<span class="st">"dm"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Next we need to load the specification file in the form of a <a href="https://atorus-research.github.io/metacore/">metacore</a> object.</p>
+<p>Next we need to load the specification file in the form of a <code>{metacore}</code> object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Read in metacore object </span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">load</span>(<span class="fu">metacore_example</span>(<span class="st">"pilot_ADaM.rda"</span>))</span>
 <span id="cb2-3"><a href="#cb2-3"></a>metacore <span class="ot">&lt;-</span> metacore <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4"></a>   <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is an example of how a <a href="https://atorus-research.github.io/metacore/">metacore</a> object looks showing variable level metadata:</p>
+<p>Here is an example of how a <code>{metacore}</code> object looks showing variable level metadata:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>metacore<span class="sc">$</span>ds_vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -326,8 +362,10 @@ cookieconsent.run({
 # ℹ 39 more rows</code></pre>
 </div>
 </div>
-</section><section id="start-building-derivations" class="level2"><h2 class="anchored" data-anchor-id="start-building-derivations">Start Building Derivations</h2>
-<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don’t you can call <code><a href="https://pharmaverse.github.io/metatools/reference/build_from_derived.html">metatools::build_from_derived()</a></code> with just an empty list and the error will tell you which datasets you need to supply.</p>
+</section>
+<section id="start-building-derivations" class="level2">
+<h2 class="anchored" data-anchor-id="start-building-derivations">Start Building Derivations</h2>
+<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don’t you can call <code>metatools::build_from_derived()</code> with just an empty list and the error will tell you which datasets you need to supply.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">build_from_derived</span>(metacore, <span class="fu">list</span>(), <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
@@ -335,7 +373,7 @@ cookieconsent.run({
 DM</code></pre>
 </div>
 </div>
-<p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code><a href="https://pharmaverse.github.io/metatools/reference/build_from_derived.html">metatools::build_from_derived()</a></code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
+<p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code>metatools::build_from_derived()</code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adsl_preds <span class="ot">&lt;-</span> <span class="fu">build_from_derived</span>(metacore, </span>
 <span id="cb7-2"><a href="#cb7-2"></a>                                 <span class="at">ds_list =</span> <span class="fu">list</span>(<span class="st">"dm"</span> <span class="ot">=</span> dm), </span>
@@ -358,7 +396,7 @@ DM</code></pre>
 # ℹ 3 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <a href="https://atorus-research.github.io/metacore/">metacore</a> object and see the controlled terminology for <code>AGEGR1</code>.</p>
+<p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <code>{metacore}</code> object and see the controlled terminology for <code>AGEGR1</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -370,8 +408,8 @@ DM</code></pre>
 3 &gt;80   &gt;80   </code></pre>
 </div>
 </div>
-<p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code><a href="https://pharmaverse.github.io/metatools/reference/create_cat_var.html">metatools::create_cat_var()</a></code> takes in a <a href="https://atorus-research.github.io/metacore/">metacore</a> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
-<p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <a href="https://atorus-research.github.io/metacore/">metacore</a> object with the <code><a href="https://pharmaverse.github.io/metatools/reference/create_var_from_codelist.html">metatools::create_var_from_codelist()</a></code> function.</p>
+<p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code>metatools::create_cat_var()</code> takes in a <code>{metacore}</code> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
+<p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <code>{metacore}</code> object with the <code>metatools::create_var_from_codelist()</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span> </span>
 <span id="cb11-2"><a href="#cb11-2"></a>   <span class="fu">create_cat_var</span>(metacore, <span class="at">ref_var =</span> AGE, </span>
@@ -403,7 +441,7 @@ DM</code></pre>
 #   AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <a href="https://pharmaverse.github.io/admiral/">admiral</a> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
+<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <code>{admiral}</code> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">derive_vars_dtm</span>(</span>
@@ -471,8 +509,10 @@ DM</code></pre>
 #   TRTDURD &lt;dbl&gt;, SAFFL &lt;chr&gt;</code></pre>
 </div>
 </div>
-</section><section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2"><h2 class="anchored" data-anchor-id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h2>
-<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <a href="https://pharmaverse.github.io/metatools/">metatools</a>, whereas the others focused around applying attributes to prepare for XPT come from <a href="https://github.com/atorus-research/xportr">xportr</a>. At the end you could add a call to <code><a href="https://rdrr.io/pkg/xportr/man/xportr_write.html">xportr::xportr_write()</a></code> to produce the XPT file.</p>
+</section>
+<section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2">
+<h2 class="anchored" data-anchor-id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h2>
+<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <code>{metatools}</code>, whereas the others focused around applying attributes to prepare for XPT come from <code>{xportr}</code>. At the end you could add a call to <code>xportr::xportr_write()</code> to produce the XPT file.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>adsl_raw <span class="sc">%&gt;%</span> </span>
 <span id="cb17-2"><a href="#cb17-2"></a>   <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
@@ -510,7 +550,10 @@ DM</code></pre>
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -551,6 +594,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -619,13 +689,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -755,10 +827,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -768,8 +839,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -782,6 +862,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -825,6 +1024,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -850,6 +1050,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -908,13 +1134,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
-      <a href="../sdtm/examples.html" class="pagination-link">
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../sdtm/examples.html" class="pagination-link" aria-label="SDTM Examples">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">SDTM Examples</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../adam/adpc.html" class="pagination-link">
+      <a href="../adam/adpc.html" class="pagination-link" aria-label="ADPC">
         <span class="nav-page-text">ADPC</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -942,28 +1170,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-21"><a href="#cb19-21"></a>The first step is to load our pharmaverse packages and input data.</span>
 <span id="cb19-22"><a href="#cb19-22"></a></span>
 <span id="cb19-23"><a href="#cb19-23"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb19-24"><a href="#cb19-24"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb19-25"><a href="#cb19-25"></a><span class="fu">library</span>(metatools)</span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb19-27"><a href="#cb19-27"></a><span class="fu">library</span>(admiral)</span>
-<span id="cb19-28"><a href="#cb19-28"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb19-29"><a href="#cb19-29"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb19-30"><a href="#cb19-30"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb19-31"><a href="#cb19-31"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb19-32"><a href="#cb19-32"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb19-24"><a href="#cb19-24"></a><span class="in">library(metacore)</span></span>
+<span id="cb19-25"><a href="#cb19-25"></a><span class="in">library(metatools)</span></span>
+<span id="cb19-26"><a href="#cb19-26"></a><span class="in">library(pharmaversesdtm)</span></span>
+<span id="cb19-27"><a href="#cb19-27"></a><span class="in">library(admiral)</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a><span class="in">library(xportr)</span></span>
+<span id="cb19-29"><a href="#cb19-29"></a><span class="in">library(dplyr)</span></span>
+<span id="cb19-30"><a href="#cb19-30"></a><span class="in">library(tidyr)</span></span>
+<span id="cb19-31"><a href="#cb19-31"></a><span class="in">library(lubridate)</span></span>
+<span id="cb19-32"><a href="#cb19-32"></a><span class="in">library(stringr)</span></span>
 <span id="cb19-33"><a href="#cb19-33"></a></span>
-<span id="cb19-34"><a href="#cb19-34"></a><span class="co"># Read in input SDTM data </span></span>
-<span id="cb19-35"><a href="#cb19-35"></a><span class="fu">data</span>(<span class="st">"dm"</span>)</span>
-<span id="cb19-36"><a href="#cb19-36"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span>
+<span id="cb19-34"><a href="#cb19-34"></a><span class="in"># Read in input SDTM data </span></span>
+<span id="cb19-35"><a href="#cb19-35"></a><span class="in">data("dm")</span></span>
+<span id="cb19-36"><a href="#cb19-36"></a><span class="in">data("ex")</span></span>
 <span id="cb19-37"><a href="#cb19-37"></a><span class="in">```</span></span>
 <span id="cb19-38"><a href="#cb19-38"></a></span>
 <span id="cb19-39"><a href="#cb19-39"></a>Next we need to load the specification file in the form of a <span class="in">`{metacore}`</span> object.</span>
 <span id="cb19-40"><a href="#cb19-40"></a></span>
 <span id="cb19-41"><a href="#cb19-41"></a><span class="in">```{r metacore, warning=FALSE, results='hold'}</span></span>
-<span id="cb19-42"><a href="#cb19-42"></a><span class="co"># Read in metacore object </span></span>
-<span id="cb19-43"><a href="#cb19-43"></a><span class="fu">load</span>(<span class="fu">metacore_example</span>(<span class="st">"pilot_ADaM.rda"</span>))</span>
-<span id="cb19-44"><a href="#cb19-44"></a>metacore <span class="ot">&lt;-</span> metacore <span class="sc">%&gt;%</span> </span>
-<span id="cb19-45"><a href="#cb19-45"></a>   <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span>
+<span id="cb19-42"><a href="#cb19-42"></a><span class="in"># Read in metacore object </span></span>
+<span id="cb19-43"><a href="#cb19-43"></a><span class="in">load(metacore_example("pilot_ADaM.rda"))</span></span>
+<span id="cb19-44"><a href="#cb19-44"></a><span class="in">metacore &lt;- metacore %&gt;% </span></span>
+<span id="cb19-45"><a href="#cb19-45"></a><span class="in">   select_dataset("ADSL")</span></span>
 <span id="cb19-46"><a href="#cb19-46"></a><span class="in">```</span></span>
 <span id="cb19-47"><a href="#cb19-47"></a></span>
 <span id="cb19-48"><a href="#cb19-48"></a>Here is an example of how a <span class="in">`{metacore}`</span> object looks showing variable level metadata:</span>
@@ -977,16 +1205,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-58"><a href="#cb19-58"></a>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don't you can call <span class="in">`metatools::build_from_derived()`</span> with just an empty list and the error will tell you which datasets you need to supply.</span>
 <span id="cb19-59"><a href="#cb19-59"></a></span>
 <span id="cb19-60"><a href="#cb19-60"></a><span class="in">```{r, error=TRUE}</span></span>
-<span id="cb19-61"><a href="#cb19-61"></a><span class="fu">build_from_derived</span>(metacore, <span class="fu">list</span>(), <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb19-61"><a href="#cb19-61"></a><span class="in">build_from_derived(metacore, list(), predecessor_only = FALSE)</span></span>
 <span id="cb19-62"><a href="#cb19-62"></a><span class="in">```</span></span>
 <span id="cb19-63"><a href="#cb19-63"></a></span>
 <span id="cb19-64"><a href="#cb19-64"></a>In this case all the columns come from <span class="in">`DM`</span> so that is the only dataset we will pass into <span class="in">`metatools::build_from_derived()`</span>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</span>
 <span id="cb19-65"><a href="#cb19-65"></a></span>
 <span id="cb19-66"><a href="#cb19-66"></a><span class="in">```{r demographcis}</span></span>
-<span id="cb19-67"><a href="#cb19-67"></a>adsl_preds <span class="ot">&lt;-</span> <span class="fu">build_from_derived</span>(metacore, </span>
-<span id="cb19-68"><a href="#cb19-68"></a>                                 <span class="at">ds_list =</span> <span class="fu">list</span>(<span class="st">"dm"</span> <span class="ot">=</span> dm), </span>
-<span id="cb19-69"><a href="#cb19-69"></a>                                 <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>, <span class="at">keep =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-70"><a href="#cb19-70"></a><span class="fu">head</span>(adsl_preds, <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb19-67"><a href="#cb19-67"></a><span class="in">adsl_preds &lt;- build_from_derived(metacore, </span></span>
+<span id="cb19-68"><a href="#cb19-68"></a><span class="in">                                 ds_list = list("dm" = dm), </span></span>
+<span id="cb19-69"><a href="#cb19-69"></a><span class="in">                                 predecessor_only = FALSE, keep = TRUE)</span></span>
+<span id="cb19-70"><a href="#cb19-70"></a><span class="in">head(adsl_preds, n=10)</span></span>
 <span id="cb19-71"><a href="#cb19-71"></a><span class="in">```</span></span>
 <span id="cb19-72"><a href="#cb19-72"></a></span>
 <span id="cb19-73"><a href="#cb19-73"></a>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <span class="in">`AGEGR1`</span>. The metacore object holds all the metadata needed to make <span class="in">`ADSL`</span>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <span class="in">`{metacore}`</span> object and see the controlled terminology for <span class="in">`AGEGR1`</span>.</span>
@@ -1000,102 +1228,102 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-83"><a href="#cb19-83"></a>Using a similar philosophy we can create the numeric version of <span class="in">`RACE`</span> using the controlled terminology stored in the <span class="in">`{metacore}`</span> object with the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
 <span id="cb19-84"><a href="#cb19-84"></a></span>
 <span id="cb19-85"><a href="#cb19-85"></a><span class="in">```{r ct}</span></span>
-<span id="cb19-86"><a href="#cb19-86"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span> </span>
-<span id="cb19-87"><a href="#cb19-87"></a>   <span class="fu">create_cat_var</span>(metacore, <span class="at">ref_var =</span> AGE, </span>
-<span id="cb19-88"><a href="#cb19-88"></a>                  <span class="at">grp_var =</span> AGEGR1, <span class="at">num_grp_var =</span> AGEGR1N) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-89"><a href="#cb19-89"></a>   <span class="fu">create_var_from_codelist</span>(<span class="at">metacore =</span> metacore, </span>
-<span id="cb19-90"><a href="#cb19-90"></a>                            <span class="at">input_var =</span> RACE, </span>
-<span id="cb19-91"><a href="#cb19-91"></a>                            <span class="at">out_var =</span> RACEN) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-92"><a href="#cb19-92"></a>   <span class="co">#Removing screen failures from ARM and TRT01P to match the define and FDA guidence</span></span>
-<span id="cb19-93"><a href="#cb19-93"></a>   <span class="fu">mutate</span>(<span class="at">ARM =</span> <span class="fu">if_else</span>(ARM <span class="sc">==</span> <span class="st">"Screen Failure"</span>, <span class="cn">NA_character_</span>, ARM),</span>
-<span id="cb19-94"><a href="#cb19-94"></a>          <span class="at">TRT01P =</span> <span class="fu">if_else</span>(TRT01P <span class="sc">==</span> <span class="st">"Screen Failure"</span>, <span class="cn">NA_character_</span>, TRT01P)</span>
-<span id="cb19-95"><a href="#cb19-95"></a>   )</span>
+<span id="cb19-86"><a href="#cb19-86"></a><span class="in">adsl_ct &lt;- adsl_preds %&gt;% </span></span>
+<span id="cb19-87"><a href="#cb19-87"></a><span class="in">   create_cat_var(metacore, ref_var = AGE, </span></span>
+<span id="cb19-88"><a href="#cb19-88"></a><span class="in">                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %&gt;% </span></span>
+<span id="cb19-89"><a href="#cb19-89"></a><span class="in">   create_var_from_codelist(metacore = metacore, </span></span>
+<span id="cb19-90"><a href="#cb19-90"></a><span class="in">                            input_var = RACE, </span></span>
+<span id="cb19-91"><a href="#cb19-91"></a><span class="in">                            out_var = RACEN) %&gt;% </span></span>
+<span id="cb19-92"><a href="#cb19-92"></a><span class="in">   #Removing screen failures from ARM and TRT01P to match the define and FDA guidence</span></span>
+<span id="cb19-93"><a href="#cb19-93"></a><span class="in">   mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),</span></span>
+<span id="cb19-94"><a href="#cb19-94"></a><span class="in">          TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)</span></span>
+<span id="cb19-95"><a href="#cb19-95"></a><span class="in">   )</span></span>
 <span id="cb19-96"><a href="#cb19-96"></a></span>
-<span id="cb19-97"><a href="#cb19-97"></a><span class="fu">head</span>(adsl_ct, <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb19-97"><a href="#cb19-97"></a><span class="in">head(adsl_ct, n=10)</span></span>
 <span id="cb19-98"><a href="#cb19-98"></a><span class="in">```</span></span>
 <span id="cb19-99"><a href="#cb19-99"></a></span>
 <span id="cb19-100"><a href="#cb19-100"></a>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <span class="in">`{admiral}`</span> template and <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html)</span> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</span>
 <span id="cb19-101"><a href="#cb19-101"></a></span>
 <span id="cb19-102"><a href="#cb19-102"></a><span class="in">```{r exposure}</span></span>
-<span id="cb19-103"><a href="#cb19-103"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
-<span id="cb19-104"><a href="#cb19-104"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb19-105"><a href="#cb19-105"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
-<span id="cb19-106"><a href="#cb19-106"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXST"</span></span>
-<span id="cb19-107"><a href="#cb19-107"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-108"><a href="#cb19-108"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb19-109"><a href="#cb19-109"></a>    <span class="at">dtc =</span> EXENDTC,</span>
-<span id="cb19-110"><a href="#cb19-110"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXEN"</span>,</span>
-<span id="cb19-111"><a href="#cb19-111"></a>    <span class="at">time_imputation =</span> <span class="st">"last"</span></span>
-<span id="cb19-112"><a href="#cb19-112"></a>  )</span>
+<span id="cb19-103"><a href="#cb19-103"></a><span class="in">ex_ext &lt;- ex %&gt;%</span></span>
+<span id="cb19-104"><a href="#cb19-104"></a><span class="in">  derive_vars_dtm(</span></span>
+<span id="cb19-105"><a href="#cb19-105"></a><span class="in">    dtc = EXSTDTC,</span></span>
+<span id="cb19-106"><a href="#cb19-106"></a><span class="in">    new_vars_prefix = "EXST"</span></span>
+<span id="cb19-107"><a href="#cb19-107"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb19-108"><a href="#cb19-108"></a><span class="in">  derive_vars_dtm(</span></span>
+<span id="cb19-109"><a href="#cb19-109"></a><span class="in">    dtc = EXENDTC,</span></span>
+<span id="cb19-110"><a href="#cb19-110"></a><span class="in">    new_vars_prefix = "EXEN",</span></span>
+<span id="cb19-111"><a href="#cb19-111"></a><span class="in">    time_imputation = "last"</span></span>
+<span id="cb19-112"><a href="#cb19-112"></a><span class="in">  )</span></span>
 <span id="cb19-113"><a href="#cb19-113"></a></span>
-<span id="cb19-114"><a href="#cb19-114"></a>adsl_raw <span class="ot">&lt;-</span> adsl_ct <span class="sc">%&gt;%</span></span>
-<span id="cb19-115"><a href="#cb19-115"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb19-116"><a href="#cb19-116"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
-<span id="cb19-117"><a href="#cb19-117"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
-<span id="cb19-118"><a href="#cb19-118"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb19-119"><a href="#cb19-119"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="fu">nchar</span>(EXSTDTC) <span class="sc">&gt;=</span> <span class="dv">10</span>,</span>
-<span id="cb19-120"><a href="#cb19-120"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTSDTM =</span> EXSTDTM),</span>
-<span id="cb19-121"><a href="#cb19-121"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXSTDTM, EXSEQ),</span>
-<span id="cb19-122"><a href="#cb19-122"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb19-123"><a href="#cb19-123"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb19-124"><a href="#cb19-124"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-125"><a href="#cb19-125"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb19-126"><a href="#cb19-126"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
-<span id="cb19-127"><a href="#cb19-127"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
-<span id="cb19-128"><a href="#cb19-128"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb19-129"><a href="#cb19-129"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="fu">nchar</span>(EXENDTC) <span class="sc">&gt;=</span> <span class="dv">10</span>,</span>
-<span id="cb19-130"><a href="#cb19-130"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTEDTM =</span> EXENDTM),</span>
-<span id="cb19-131"><a href="#cb19-131"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXENDTM, EXSEQ),</span>
-<span id="cb19-132"><a href="#cb19-132"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb19-133"><a href="#cb19-133"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb19-134"><a href="#cb19-134"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-135"><a href="#cb19-135"></a>   <span class="fu">derive_vars_dtm_to_dt</span>(<span class="at">source_vars =</span> <span class="fu">exprs</span>(TRTSDTM, TRTEDTM)) <span class="sc">%&gt;%</span>  <span class="co">#Convert Datetime variables to date </span></span>
-<span id="cb19-136"><a href="#cb19-136"></a>   <span class="fu">derive_var_trtdurd</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb19-137"><a href="#cb19-137"></a>   <span class="fu">derive_var_merged_exist_flag</span>(</span>
-<span id="cb19-138"><a href="#cb19-138"></a>     <span class="at">dataset_add =</span> ex,</span>
-<span id="cb19-139"><a href="#cb19-139"></a>     <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb19-140"><a href="#cb19-140"></a>     <span class="at">new_var =</span> SAFFL,</span>
-<span id="cb19-141"><a href="#cb19-141"></a>     <span class="at">condition =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>)))</span>
-<span id="cb19-142"><a href="#cb19-142"></a>   ) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-143"><a href="#cb19-143"></a>   <span class="fu">drop_unspec_vars</span>(metacore) <span class="co">#This will drop any columns that aren't specified in the metacore object</span></span>
+<span id="cb19-114"><a href="#cb19-114"></a><span class="in">adsl_raw &lt;- adsl_ct %&gt;%</span></span>
+<span id="cb19-115"><a href="#cb19-115"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb19-116"><a href="#cb19-116"></a><span class="in">    dataset_add = ex_ext,</span></span>
+<span id="cb19-117"><a href="#cb19-117"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
+<span id="cb19-118"><a href="#cb19-118"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
+<span id="cb19-119"><a href="#cb19-119"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; nchar(EXSTDTC) &gt;= 10,</span></span>
+<span id="cb19-120"><a href="#cb19-120"></a><span class="in">    new_vars = exprs(TRTSDTM = EXSTDTM),</span></span>
+<span id="cb19-121"><a href="#cb19-121"></a><span class="in">    order = exprs(EXSTDTM, EXSEQ),</span></span>
+<span id="cb19-122"><a href="#cb19-122"></a><span class="in">    mode = "first",</span></span>
+<span id="cb19-123"><a href="#cb19-123"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb19-124"><a href="#cb19-124"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb19-125"><a href="#cb19-125"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb19-126"><a href="#cb19-126"></a><span class="in">    dataset_add = ex_ext,</span></span>
+<span id="cb19-127"><a href="#cb19-127"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
+<span id="cb19-128"><a href="#cb19-128"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
+<span id="cb19-129"><a href="#cb19-129"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; nchar(EXENDTC) &gt;= 10,</span></span>
+<span id="cb19-130"><a href="#cb19-130"></a><span class="in">    new_vars = exprs(TRTEDTM = EXENDTM),</span></span>
+<span id="cb19-131"><a href="#cb19-131"></a><span class="in">    order = exprs(EXENDTM, EXSEQ),</span></span>
+<span id="cb19-132"><a href="#cb19-132"></a><span class="in">    mode = "last",</span></span>
+<span id="cb19-133"><a href="#cb19-133"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb19-134"><a href="#cb19-134"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb19-135"><a href="#cb19-135"></a><span class="in">   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %&gt;%  #Convert Datetime variables to date </span></span>
+<span id="cb19-136"><a href="#cb19-136"></a><span class="in">   derive_var_trtdurd() %&gt;% </span></span>
+<span id="cb19-137"><a href="#cb19-137"></a><span class="in">   derive_var_merged_exist_flag(</span></span>
+<span id="cb19-138"><a href="#cb19-138"></a><span class="in">     dataset_add = ex,</span></span>
+<span id="cb19-139"><a href="#cb19-139"></a><span class="in">     by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb19-140"><a href="#cb19-140"></a><span class="in">     new_var = SAFFL,</span></span>
+<span id="cb19-141"><a href="#cb19-141"></a><span class="in">     condition = (EXDOSE &gt; 0 | (EXDOSE == 0 &amp; str_detect(EXTRT, "PLACEBO")))</span></span>
+<span id="cb19-142"><a href="#cb19-142"></a><span class="in">   ) %&gt;% </span></span>
+<span id="cb19-143"><a href="#cb19-143"></a><span class="in">   drop_unspec_vars(metacore) #This will drop any columns that aren't specified in the metacore object</span></span>
 <span id="cb19-144"><a href="#cb19-144"></a></span>
-<span id="cb19-145"><a href="#cb19-145"></a><span class="fu">head</span>(adsl_raw, <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb19-145"><a href="#cb19-145"></a><span class="in">head(adsl_raw, n=10)</span></span>
 <span id="cb19-146"><a href="#cb19-146"></a><span class="in">```</span></span>
 <span id="cb19-147"><a href="#cb19-147"></a></span>
 <span id="cb19-148"><a href="#cb19-148"></a><span class="in">```{r, warning=FALSE, message=FALSE, include=FALSE}</span></span>
-<span id="cb19-149"><a href="#cb19-149"></a><span class="co"># Create dummy variables to match metacore specs to avoid later errors</span></span>
-<span id="cb19-150"><a href="#cb19-150"></a><span class="co"># In practice these would be mainly created using derivation functions from admiral</span></span>
-<span id="cb19-151"><a href="#cb19-151"></a>adsl_raw <span class="ot">&lt;-</span> adsl_raw <span class="sc">%&gt;%</span></span>
-<span id="cb19-152"><a href="#cb19-152"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-153"><a href="#cb19-153"></a>    <span class="at">SITEGR1 =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-154"><a href="#cb19-154"></a>    <span class="at">TRT01PN =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-155"><a href="#cb19-155"></a>    <span class="at">TRT01A =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-156"><a href="#cb19-156"></a>    <span class="at">TRT01AN =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-157"><a href="#cb19-157"></a>    <span class="at">AVGDD =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-158"><a href="#cb19-158"></a>    <span class="at">CUMDOSE =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-159"><a href="#cb19-159"></a>    <span class="at">ITTFL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-160"><a href="#cb19-160"></a>    <span class="at">EFFFL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-161"><a href="#cb19-161"></a>    <span class="at">COMP8FL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-162"><a href="#cb19-162"></a>    <span class="at">COMP16FL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-163"><a href="#cb19-163"></a>    <span class="at">COMP24FL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-164"><a href="#cb19-164"></a>    <span class="at">DISCONFL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-165"><a href="#cb19-165"></a>    <span class="at">DSRAEFL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-166"><a href="#cb19-166"></a>    <span class="at">BMIBL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-167"><a href="#cb19-167"></a>    <span class="at">BMIBLGR1 =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-168"><a href="#cb19-168"></a>    <span class="at">HEIGHTBL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-169"><a href="#cb19-169"></a>    <span class="at">WEIGHTBL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-170"><a href="#cb19-170"></a>    <span class="at">EDUCLVL =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-171"><a href="#cb19-171"></a>    <span class="at">DISONSDT =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-172"><a href="#cb19-172"></a>    <span class="at">DURDIS =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-173"><a href="#cb19-173"></a>    <span class="at">DURDSGR1 =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-174"><a href="#cb19-174"></a>    <span class="at">VISIT1DT =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-175"><a href="#cb19-175"></a>    <span class="at">VISNUMEN =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-176"><a href="#cb19-176"></a>    <span class="at">RFENDT =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-177"><a href="#cb19-177"></a>    <span class="at">DCDECOD =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-178"><a href="#cb19-178"></a>    <span class="at">EOSSTT =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-179"><a href="#cb19-179"></a>    <span class="at">DCSREAS =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-180"><a href="#cb19-180"></a>    <span class="at">MMSETOT =</span> <span class="cn">NA</span></span>
-<span id="cb19-181"><a href="#cb19-181"></a>  )</span>
+<span id="cb19-149"><a href="#cb19-149"></a><span class="in"># Create dummy variables to match metacore specs to avoid later errors</span></span>
+<span id="cb19-150"><a href="#cb19-150"></a><span class="in"># In practice these would be mainly created using derivation functions from admiral</span></span>
+<span id="cb19-151"><a href="#cb19-151"></a><span class="in">adsl_raw &lt;- adsl_raw %&gt;%</span></span>
+<span id="cb19-152"><a href="#cb19-152"></a><span class="in">  mutate(</span></span>
+<span id="cb19-153"><a href="#cb19-153"></a><span class="in">    SITEGR1 = NA,</span></span>
+<span id="cb19-154"><a href="#cb19-154"></a><span class="in">    TRT01PN = NA,</span></span>
+<span id="cb19-155"><a href="#cb19-155"></a><span class="in">    TRT01A = NA,</span></span>
+<span id="cb19-156"><a href="#cb19-156"></a><span class="in">    TRT01AN = NA,</span></span>
+<span id="cb19-157"><a href="#cb19-157"></a><span class="in">    AVGDD = NA,</span></span>
+<span id="cb19-158"><a href="#cb19-158"></a><span class="in">    CUMDOSE = NA,</span></span>
+<span id="cb19-159"><a href="#cb19-159"></a><span class="in">    ITTFL = NA,</span></span>
+<span id="cb19-160"><a href="#cb19-160"></a><span class="in">    EFFFL = NA,</span></span>
+<span id="cb19-161"><a href="#cb19-161"></a><span class="in">    COMP8FL = NA,</span></span>
+<span id="cb19-162"><a href="#cb19-162"></a><span class="in">    COMP16FL = NA,</span></span>
+<span id="cb19-163"><a href="#cb19-163"></a><span class="in">    COMP24FL = NA,</span></span>
+<span id="cb19-164"><a href="#cb19-164"></a><span class="in">    DISCONFL = NA,</span></span>
+<span id="cb19-165"><a href="#cb19-165"></a><span class="in">    DSRAEFL = NA,</span></span>
+<span id="cb19-166"><a href="#cb19-166"></a><span class="in">    BMIBL = NA,</span></span>
+<span id="cb19-167"><a href="#cb19-167"></a><span class="in">    BMIBLGR1 = NA,</span></span>
+<span id="cb19-168"><a href="#cb19-168"></a><span class="in">    HEIGHTBL = NA,</span></span>
+<span id="cb19-169"><a href="#cb19-169"></a><span class="in">    WEIGHTBL = NA,</span></span>
+<span id="cb19-170"><a href="#cb19-170"></a><span class="in">    EDUCLVL = NA,</span></span>
+<span id="cb19-171"><a href="#cb19-171"></a><span class="in">    DISONSDT = NA,</span></span>
+<span id="cb19-172"><a href="#cb19-172"></a><span class="in">    DURDIS = NA,</span></span>
+<span id="cb19-173"><a href="#cb19-173"></a><span class="in">    DURDSGR1 = NA,</span></span>
+<span id="cb19-174"><a href="#cb19-174"></a><span class="in">    VISIT1DT = NA,</span></span>
+<span id="cb19-175"><a href="#cb19-175"></a><span class="in">    VISNUMEN = NA,</span></span>
+<span id="cb19-176"><a href="#cb19-176"></a><span class="in">    RFENDT = NA,</span></span>
+<span id="cb19-177"><a href="#cb19-177"></a><span class="in">    DCDECOD = NA,</span></span>
+<span id="cb19-178"><a href="#cb19-178"></a><span class="in">    EOSSTT = NA,</span></span>
+<span id="cb19-179"><a href="#cb19-179"></a><span class="in">    DCSREAS = NA,</span></span>
+<span id="cb19-180"><a href="#cb19-180"></a><span class="in">    MMSETOT = NA</span></span>
+<span id="cb19-181"><a href="#cb19-181"></a><span class="in">  )</span></span>
 <span id="cb19-182"><a href="#cb19-182"></a><span class="in">```</span></span>
 <span id="cb19-183"><a href="#cb19-183"></a></span>
 <span id="cb19-184"><a href="#cb19-184"></a><span class="fu">## Apply Metadata to Create an eSub XPT and Perform Associated Checks</span></span>
@@ -1104,29 +1332,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-187"><a href="#cb19-187"></a></span>
 <span id="cb19-188"><a href="#cb19-188"></a><span class="in">```{r checks, warning=FALSE, message=FALSE}</span></span>
 <span id="cb19-189"><a href="#cb19-189"></a></span>
-<span id="cb19-190"><a href="#cb19-190"></a>adsl_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb19-191"><a href="#cb19-191"></a>   <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb19-192"><a href="#cb19-192"></a>   <span class="fu">check_ct_data</span>(metacore, <span class="at">na_acceptable =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb19-193"><a href="#cb19-193"></a>   <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb19-194"><a href="#cb19-194"></a>   <span class="fu">sort_by_key</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Sorts the rows by the sort keys </span></span>
-<span id="cb19-195"><a href="#cb19-195"></a>   <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb19-196"><a href="#cb19-196"></a>   <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata </span></span>
-<span id="cb19-197"><a href="#cb19-197"></a>   <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications </span></span>
-<span id="cb19-198"><a href="#cb19-198"></a>   <span class="fu">xportr_df_label</span>(metacore) <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb19-190"><a href="#cb19-190"></a><span class="in">adsl_raw %&gt;% </span></span>
+<span id="cb19-191"><a href="#cb19-191"></a><span class="in">   check_variables(metacore) %&gt;% # Check all variables specified are present and no more</span></span>
+<span id="cb19-192"><a href="#cb19-192"></a><span class="in">   check_ct_data(metacore, na_acceptable = TRUE) %&gt;% # Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb19-193"><a href="#cb19-193"></a><span class="in">   order_cols(metacore) %&gt;% # Orders the columns according to the spec</span></span>
+<span id="cb19-194"><a href="#cb19-194"></a><span class="in">   sort_by_key(metacore) %&gt;% # Sorts the rows by the sort keys </span></span>
+<span id="cb19-195"><a href="#cb19-195"></a><span class="in">   xportr_type(metacore) %&gt;% # Coerce variable type to match spec</span></span>
+<span id="cb19-196"><a href="#cb19-196"></a><span class="in">   xportr_length(metacore) %&gt;% # Assigns SAS length from a variable level metadata </span></span>
+<span id="cb19-197"><a href="#cb19-197"></a><span class="in">   xportr_label(metacore) %&gt;% # Assigns variable label from metacore specifications </span></span>
+<span id="cb19-198"><a href="#cb19-198"></a><span class="in">   xportr_df_label(metacore) # Assigns dataset label from metacore specifications</span></span>
 <span id="cb19-199"><a href="#cb19-199"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
