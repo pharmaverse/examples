@@ -52,7 +52,7 @@ website:
         - auto: tlg
         - text: "---"
         - file: session.qmd
-        - text: Pharmaverse Site
+        - text: Pharmaverse Home
           href: https://pharmaverse.org/        
 
 format:
