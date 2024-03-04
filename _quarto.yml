@@ -52,6 +52,8 @@ website:
         - auto: tlg
         - text: "---"
         - file: session.qmd
+        - text: Pharmaverse Site
+          href: https://pharmaverse.org/        
 
 format:
   html:
