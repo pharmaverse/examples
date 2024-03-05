@@ -41,7 +41,7 @@ website:
     - id: sidebar
       style: docked
       collapse-level: 1
-      logo: assets/img/pharmaverse.png
+      logo: assets/img/Pharmaverse_examples.png
       border: true
       contents:
         - file: index.qmd
