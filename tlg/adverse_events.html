@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.550">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>pharmaverse examples - Adverse Events</title>
 <style>
 code{white-space: pre-wrap;}
@@ -19,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -60,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../tlg/demographic.html" rel="prev">
-<link href="../assets/img/pharmaverse_examples.png" rel="icon" type="image/png">
+<link href="../assets/img/pharmaverse.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -73,13 +77,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,11 +98,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -103,42 +116,51 @@ cookieconsent.run({
   "notice_banner_reject_button_hide":false,
   "preferences_center_close_button_hide":false,
   "website_name":""
+  ,
+"language":"en-US"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="pharmaverse examples - Adverse Events">
 <meta property="og:description" content="">
-<meta property="og:site-name" content="pharmaverse examples">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/tlg/assets/img/pharmaverse.png">
+<meta property="og:site_name" content="pharmaverse examples">
 </head>
+
 <body class="nav-sidebar docked nav-fixed">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand navbar-dark "><div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
-    <a class="nav-link" href="https://pharmaverse.github.io/examples/" rel="" target=""><i class="bi bi-house" role="img" aria-label="pharmaverse">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/" rel="" target=""><i class="bi bi-slack" role="img" aria-label="Slack">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/pharmaverse/examples" rel="" target=""><i class="bi bi-github" role="img" aria-label="Repository">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -148,23 +170,30 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/adverse_events.html">Adverse Events</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/adverse_events.html">Adverse Events</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/pharmaverse.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -179,15 +208,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
@@ -196,8 +225,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -216,7 +245,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -225,8 +254,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -239,7 +268,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -248,18 +277,22 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/adverse_events.html">Adverse Events</a></li></ol></nav>
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Adverse Events</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -267,17 +300,23 @@ cookieconsent.run({
   </div>
   
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the <a href="https://pharmaverse.github.io/pharmaverseadam/main/">pharmaverseadam</a> <code>ADSL</code> and <code>ADAE</code> data as an input.</p>
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> and <code>ADAE</code> data as an input.</p>
 <p>The packages used with a brief description of their purpose are as follows:</p>
 <ul>
-<li>
-<a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
-<li>
-<a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
-</ul></section><section id="load-data-and-required-pharmaverse-package" class="level2"><h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-package">Load Data and Required pharmaverse Package</h2>
+<li><a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
+<li><a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
+</ul>
+</section>
+<section id="load-data-and-required-pharmaverse-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-package">Load Data and Required pharmaverse Package</h2>
 <p>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <code>adsl</code> and <code>adae</code>.</p>
-<p>Note that <a href="https://github.com/insightsengineering/tern">tern</a> depends on <a href="https://github.com/insightsengineering/rtables">rtables</a> so the latter is automatically attached.</p>
+<p>Note that <code>{tern}</code> depends on <code>{rtables}</code> so the latter is automatically attached.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tern)</span>
@@ -289,7 +328,9 @@ cookieconsent.run({
 <span id="cb1-8"><a href="#cb1-8"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="start-preprocessing" class="level2"><h2 class="anchored" data-anchor-id="start-preprocessing">Start preprocessing</h2>
+</section>
+<section id="start-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="start-preprocessing">Start preprocessing</h2>
 <p>Now we will add some pre-processing to add labels ready for display in the table and how the output will be split.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
@@ -302,7 +343,9 @@ cookieconsent.run({
 <span id="cb2-8"><a href="#cb2-8"></a><span class="co"># Define the split function</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>split_fun <span class="ot">&lt;-</span> drop_split_levels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="adverse-events-table" class="level2"><h2 class="anchored" data-anchor-id="adverse-events-table">Adverse Events table</h2>
+</section>
+<section id="adverse-events-table" class="level2">
+<h2 class="anchored" data-anchor-id="adverse-events-table">Adverse Events table</h2>
 <p>Now we create the Adverse Events table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
@@ -334,9 +377,9 @@ cookieconsent.run({
 <span id="cb3-27"><a href="#cb3-27"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb3-28"><a href="#cb3-28"></a>  <span class="fu">count_occurrences</span>(</span>
 <span id="cb3-29"><a href="#cb3-29"></a>    <span class="at">vars =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="cb3-30"><a href="#cb3-30"></a>    <span class="at">.indent_mods =</span> <span class="sc">-</span>1L</span>
+<span id="cb3-30"><a href="#cb3-30"></a>    <span class="at">.indent_mods =</span> <span class="sc">-</span><span class="dv">1</span>L</span>
 <span id="cb3-31"><a href="#cb3-31"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a>  <span class="fu">append_varlabels</span>(adae, <span class="st">"AEDECOD"</span>, <span class="at">indent =</span> 1L)</span>
+<span id="cb3-32"><a href="#cb3-32"></a>  <span class="fu">append_varlabels</span>(adae, <span class="st">"AEDECOD"</span>, <span class="at">indent =</span> <span class="dv">1</span>L)</span>
 <span id="cb3-33"><a href="#cb3-33"></a></span>
 <span id="cb3-34"><a href="#cb3-34"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, <span class="at">df =</span> adae, <span class="at">alt_counts_df =</span> adsl)</span>
 <span id="cb3-35"><a href="#cb3-35"></a></span>
@@ -664,7 +707,10 @@ VASCULAR DISORDERS
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -705,6 +751,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -773,13 +846,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -909,10 +984,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -922,8 +996,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -936,6 +1019,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -979,6 +1181,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1004,6 +1207,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1062,8 +1291,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
-      <a href="../tlg/demographic.html" class="pagination-link">
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../tlg/demographic.html" class="pagination-link" aria-label="Demographic Table">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Demographic Table</span>
       </a>          
   </div>
@@ -1091,15 +1322,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-19"><a href="#cb5-19"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
 <span id="cb5-20"><a href="#cb5-20"></a></span>
 <span id="cb5-21"><a href="#cb5-21"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="fu">library</span>(tern)</span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="in">library(pharmaverseadam)</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="in">library(tern)</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="in">library(dplyr)</span></span>
 <span id="cb5-25"><a href="#cb5-25"></a></span>
-<span id="cb5-26"><a href="#cb5-26"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="in">  df_explicit_na()</span></span>
 <span id="cb5-28"><a href="#cb5-28"></a></span>
-<span id="cb5-29"><a href="#cb5-29"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="in">adae &lt;- adae %&gt;%</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="in">  df_explicit_na()</span></span>
 <span id="cb5-31"><a href="#cb5-31"></a><span class="in">```</span></span>
 <span id="cb5-32"><a href="#cb5-32"></a></span>
 <span id="cb5-33"><a href="#cb5-33"></a><span class="fu">## Start preprocessing</span></span>
@@ -1107,15 +1338,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-35"><a href="#cb5-35"></a>Now we will add some pre-processing to add labels ready for display in the table and how the output will be split.</span>
 <span id="cb5-36"><a href="#cb5-36"></a></span>
 <span id="cb5-37"><a href="#cb5-37"></a><span class="in">```{r preproc}</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a>  <span class="fu">var_relabel</span>(</span>
-<span id="cb5-40"><a href="#cb5-40"></a>    <span class="at">AEBODSYS =</span> <span class="st">"MedDRA System Organ Class"</span>,</span>
-<span id="cb5-41"><a href="#cb5-41"></a>    <span class="at">AEDECOD =</span> <span class="st">"MedDRA Preferred Term"</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a>  <span class="fu">filter</span>(SAFFL <span class="sc">==</span> <span class="st">"Y"</span>)</span>
+<span id="cb5-38"><a href="#cb5-38"></a><span class="in">adae &lt;- adae %&gt;%</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="in">  var_relabel(</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="in">    AEBODSYS = "MedDRA System Organ Class",</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a><span class="in">    AEDECOD = "MedDRA Preferred Term"</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a><span class="in">  filter(SAFFL == "Y")</span></span>
 <span id="cb5-44"><a href="#cb5-44"></a></span>
-<span id="cb5-45"><a href="#cb5-45"></a><span class="co"># Define the split function</span></span>
-<span id="cb5-46"><a href="#cb5-46"></a>split_fun <span class="ot">&lt;-</span> drop_split_levels</span>
+<span id="cb5-45"><a href="#cb5-45"></a><span class="in"># Define the split function</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a><span class="in">split_fun &lt;- drop_split_levels</span></span>
 <span id="cb5-47"><a href="#cb5-47"></a><span class="in">```</span></span>
 <span id="cb5-48"><a href="#cb5-48"></a></span>
 <span id="cb5-49"><a href="#cb5-49"></a><span class="fu">## Adverse Events table</span></span>
@@ -1123,55 +1354,60 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-51"><a href="#cb5-51"></a>Now we create the Adverse Events table.</span>
 <span id="cb5-52"><a href="#cb5-52"></a></span>
 <span id="cb5-53"><a href="#cb5-53"></a><span class="in">```{r table}</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-55"><a href="#cb5-55"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-56"><a href="#cb5-56"></a>  <span class="fu">add_overall_col</span>(<span class="at">label =</span> <span class="st">"All Patients"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-57"><a href="#cb5-57"></a>  <span class="fu">analyze_num_patients</span>(</span>
-<span id="cb5-58"><a href="#cb5-58"></a>    <span class="at">vars =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="cb5-59"><a href="#cb5-59"></a>    <span class="at">.stats =</span> <span class="fu">c</span>(<span class="st">"unique"</span>, <span class="st">"nonunique"</span>),</span>
-<span id="cb5-60"><a href="#cb5-60"></a>    <span class="at">.labels =</span> <span class="fu">c</span>(</span>
-<span id="cb5-61"><a href="#cb5-61"></a>      <span class="at">unique =</span> <span class="st">"Total number of patients with at least one adverse event"</span>,</span>
-<span id="cb5-62"><a href="#cb5-62"></a>      <span class="at">nonunique =</span> <span class="st">"Overall total number of events"</span></span>
-<span id="cb5-63"><a href="#cb5-63"></a>    )</span>
-<span id="cb5-64"><a href="#cb5-64"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-65"><a href="#cb5-65"></a>  <span class="fu">split_rows_by</span>(</span>
-<span id="cb5-66"><a href="#cb5-66"></a>    <span class="st">"AEBODSYS"</span>,</span>
-<span id="cb5-67"><a href="#cb5-67"></a>    <span class="at">child_labels =</span> <span class="st">"visible"</span>,</span>
-<span id="cb5-68"><a href="#cb5-68"></a>    <span class="at">nested =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb5-69"><a href="#cb5-69"></a>    <span class="at">split_fun =</span> split_fun,</span>
-<span id="cb5-70"><a href="#cb5-70"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span>,</span>
-<span id="cb5-71"><a href="#cb5-71"></a>    <span class="at">split_label =</span> <span class="fu">obj_label</span>(adae<span class="sc">$</span>AEBODSYS)</span>
-<span id="cb5-72"><a href="#cb5-72"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-73"><a href="#cb5-73"></a>  <span class="fu">summarize_num_patients</span>(</span>
-<span id="cb5-74"><a href="#cb5-74"></a>    <span class="at">var =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="cb5-75"><a href="#cb5-75"></a>    <span class="at">.stats =</span> <span class="fu">c</span>(<span class="st">"unique"</span>, <span class="st">"nonunique"</span>),</span>
-<span id="cb5-76"><a href="#cb5-76"></a>    <span class="at">.labels =</span> <span class="fu">c</span>(</span>
-<span id="cb5-77"><a href="#cb5-77"></a>      <span class="at">unique =</span> <span class="st">"Total number of patients with at least one adverse event"</span>,</span>
-<span id="cb5-78"><a href="#cb5-78"></a>      <span class="at">nonunique =</span> <span class="st">"Total number of events"</span></span>
-<span id="cb5-79"><a href="#cb5-79"></a>    )</span>
-<span id="cb5-80"><a href="#cb5-80"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-81"><a href="#cb5-81"></a>  <span class="fu">count_occurrences</span>(</span>
-<span id="cb5-82"><a href="#cb5-82"></a>    <span class="at">vars =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="cb5-83"><a href="#cb5-83"></a>    <span class="at">.indent_mods =</span> <span class="sc">-</span>1L</span>
-<span id="cb5-84"><a href="#cb5-84"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-85"><a href="#cb5-85"></a>  <span class="fu">append_varlabels</span>(adae, <span class="st">"AEDECOD"</span>, <span class="at">indent =</span> 1L)</span>
+<span id="cb5-54"><a href="#cb5-54"></a><span class="in">lyt &lt;- basic_table(show_colcounts = TRUE) %&gt;%</span></span>
+<span id="cb5-55"><a href="#cb5-55"></a><span class="in">  split_cols_by(var = "ACTARM") %&gt;%</span></span>
+<span id="cb5-56"><a href="#cb5-56"></a><span class="in">  add_overall_col(label = "All Patients") %&gt;%</span></span>
+<span id="cb5-57"><a href="#cb5-57"></a><span class="in">  analyze_num_patients(</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a><span class="in">    vars = "USUBJID",</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a><span class="in">    .stats = c("unique", "nonunique"),</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a><span class="in">    .labels = c(</span></span>
+<span id="cb5-61"><a href="#cb5-61"></a><span class="in">      unique = "Total number of patients with at least one adverse event",</span></span>
+<span id="cb5-62"><a href="#cb5-62"></a><span class="in">      nonunique = "Overall total number of events"</span></span>
+<span id="cb5-63"><a href="#cb5-63"></a><span class="in">    )</span></span>
+<span id="cb5-64"><a href="#cb5-64"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a><span class="in">  split_rows_by(</span></span>
+<span id="cb5-66"><a href="#cb5-66"></a><span class="in">    "AEBODSYS",</span></span>
+<span id="cb5-67"><a href="#cb5-67"></a><span class="in">    child_labels = "visible",</span></span>
+<span id="cb5-68"><a href="#cb5-68"></a><span class="in">    nested = FALSE,</span></span>
+<span id="cb5-69"><a href="#cb5-69"></a><span class="in">    split_fun = split_fun,</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a><span class="in">    label_pos = "topleft",</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a><span class="in">    split_label = obj_label(adae$AEBODSYS)</span></span>
+<span id="cb5-72"><a href="#cb5-72"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a><span class="in">  summarize_num_patients(</span></span>
+<span id="cb5-74"><a href="#cb5-74"></a><span class="in">    var = "USUBJID",</span></span>
+<span id="cb5-75"><a href="#cb5-75"></a><span class="in">    .stats = c("unique", "nonunique"),</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a><span class="in">    .labels = c(</span></span>
+<span id="cb5-77"><a href="#cb5-77"></a><span class="in">      unique = "Total number of patients with at least one adverse event",</span></span>
+<span id="cb5-78"><a href="#cb5-78"></a><span class="in">      nonunique = "Total number of events"</span></span>
+<span id="cb5-79"><a href="#cb5-79"></a><span class="in">    )</span></span>
+<span id="cb5-80"><a href="#cb5-80"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb5-81"><a href="#cb5-81"></a><span class="in">  count_occurrences(</span></span>
+<span id="cb5-82"><a href="#cb5-82"></a><span class="in">    vars = "AEDECOD",</span></span>
+<span id="cb5-83"><a href="#cb5-83"></a><span class="in">    .indent_mods = -1L</span></span>
+<span id="cb5-84"><a href="#cb5-84"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a><span class="in">  append_varlabels(adae, "AEDECOD", indent = 1L)</span></span>
 <span id="cb5-86"><a href="#cb5-86"></a></span>
-<span id="cb5-87"><a href="#cb5-87"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, <span class="at">df =</span> adae, <span class="at">alt_counts_df =</span> adsl)</span>
+<span id="cb5-87"><a href="#cb5-87"></a><span class="in">result &lt;- build_table(lyt, df = adae, alt_counts_df = adsl)</span></span>
 <span id="cb5-88"><a href="#cb5-88"></a></span>
-<span id="cb5-89"><a href="#cb5-89"></a>result</span>
+<span id="cb5-89"><a href="#cb5-89"></a><span class="in">result</span></span>
 <span id="cb5-90"><a href="#cb5-90"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
-    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
