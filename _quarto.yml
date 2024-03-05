@@ -9,9 +9,9 @@ project:
 
 website:
   title: "pharmaverse examples"
-  image: assets/img/pharmaverse.png
+  image: assets/img/pharmaverse_examples.png
   open-graph: true
-  favicon: assets/img/pharmaverse.png
+  favicon: assets/img/pharmaverse_examples.png
   search:
     location: navbar
     type: overlay
