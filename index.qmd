@@ -29,9 +29,8 @@ Each example can be explored via a live and interactive Posit Cloud environment
 (preconfigured with all required package installations).
 Click here: ["Launch Posit Cloud"](https://posit.cloud/content/7279124) to
 try out any of the examples code.
-You can do this by clicking File: Open File: and then choosing whichever example,
-e.g. `adam/adsl.qmd`. You could ignore the text sections and run the R code
-blocks.
+You can do this by clicking File: Open File: and then choosing whichever example script,
+e.g. `adam/adsl.R`. 
 Feel free to try out customizing any of the examples to better fit any of
 your own internal clinical reporting workflows!
 
@@ -44,7 +43,7 @@ if(!require(pak)) {
 }
 pak::pak()
 ```
-*Tip: If you prefer to run the examples as `.R` files instead of quarto documents, you can convert the `.qmd` files into Rscripts with [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*
+*Note: the R scripts are generated from `.qmd` files automatically using [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*
 
 ## Contributing
 If you are interesting in contributing an article to this book, then

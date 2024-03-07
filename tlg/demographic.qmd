@@ -3,6 +3,11 @@ title: "Demographic Table"
 order: 1
 ---
 
+```{r setup script, include=FALSE, purl=FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 ## Introduction
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
