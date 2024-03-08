@@ -6,7 +6,9 @@ Authors@R:
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = c("aut", "cre"),
     person("Ross", "Farrugia", "ross.farrugia@roche.com", role = "aut"),
     person("Ben", "Straub", "ben.x.straub@gsk.com", role = "aut"),
-    person("Jeffrey", "Dickinson", role = "aut")
+    person("Jeffrey", "Dickinson", role = "aut"),
+    person("Ege Can", "Taşlıçukur", role = "aut"),
+    person("Vedha", "Viyash", role = "aut")
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
