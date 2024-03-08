@@ -49,3 +49,5 @@ pak::pak()
 ## Contributing
 If you are interesting in contributing an article to this book, then
 see more in our GitHub repo README.
+
+You can see a list of current contributors via our GitHub repo DESCRIPTION file.
