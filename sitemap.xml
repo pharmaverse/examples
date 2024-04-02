@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pharmaverse.github.io/examples/adam/adppk.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/index.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
+    <loc>https://pharmaverse.github.io/examples/tlg/adverse_events.html</loc>
+    <lastmod>2024-04-02T17:00:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/examples/session.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/sdtm/examples.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/tlg/adverse_events.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/tlg/demographic.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
+    <lastmod>2024-04-02T16:59:36.000Z</lastmod>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/examples/adam/adpc.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
+    <lastmod>2024-04-02T16:59:27.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/adam/adppk.html</loc>
+    <lastmod>2024-04-02T16:58:54.000Z</lastmod>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/examples/adam/adsl.html</loc>
-    <lastmod>2024-03-27T10:22:56.102Z</lastmod>
+    <lastmod>2024-04-02T16:59:06.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/sdtm/examples.html</loc>
+    <lastmod>2024-04-02T16:59:29.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/index.html</loc>
+    <lastmod>2024-04-02T16:59:37.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/tlg/demographic.html</loc>
+    <lastmod>2024-04-02T16:59:45.000Z</lastmod>
   </url>
 </urlset>
