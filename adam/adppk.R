@@ -261,7 +261,8 @@ adppk_aval <- adppk_aprlt %>%
     # Derive CMT
     CMT = case_when(
       EVID == 1 ~ 1,
-      TRUE ~ 2
+      PCSPEC == "PLASMA" ~ 2,
+      TRUE ~ 3
     ),
     # Derive BLQFL/BLQFN
     BLQFL = case_when(
@@ -311,7 +312,7 @@ adppk_aseq <- adppk_aval %>%
   derive_var_obs_number(
     new_var = ASEQ,
     by_vars = exprs(STUDYID, USUBJID),
-    order = exprs(AFRLT, EVID),
+    order = exprs(AFRLT, EVID, CMT),
     check_type = "error"
   ) %>%
   mutate(
@@ -422,7 +423,7 @@ adppk <- adppk_prefinal %>%
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adppk_xpt <- adppk %>%
-  xportr_type(metacore) %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADPPK") %>% # Coerce variable type to match spec
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications

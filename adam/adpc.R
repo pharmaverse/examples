@@ -288,6 +288,7 @@ adpc_nrrlt <- adpc_arrlt %>%
 ## ----r------------------------------------------------------------------------
 adpc_aval <- adpc_nrrlt %>%
   mutate(
+    PARCAT1 = PCSPEC,
     ATPTN = case_when(
       EVID == 1 ~ 0,
       TRUE ~ PCTPTNUM
@@ -385,7 +386,7 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
 
 adpc_base <- adpc_dtype %>%
   derive_var_base(
-    by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),
+    by_vars = exprs(STUDYID, USUBJID, PARAMCD, PARCAT1, BASETYPE),
     source_var = AVAL,
     new_var = BASE,
     filter = ABLFL == "Y"
@@ -401,7 +402,7 @@ adpc_aseq <- adpc_chg %>%
   derive_var_obs_number(
     new_var = ASEQ,
     by_vars = exprs(STUDYID, USUBJID),
-    order = exprs(ADTM, BASETYPE, EVID, AVISITN, ATPTN, DTYPE),
+    order = exprs(ADTM, BASETYPE, EVID, AVISITN, ATPTN, PARCAT1, DTYPE),
     check_type = "error"
   ) %>%
   # Derive PARAM and PARAMN using metatools
@@ -452,7 +453,7 @@ adpc <- adpc_prefinal %>%
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adpc_xpt <- adpc %>%
-  xportr_type(metacore) %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADPC") %>% # Coerce variable type to match spec
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
