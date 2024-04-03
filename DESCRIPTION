@@ -4,8 +4,8 @@ Title: Pharmaverse Examples
 Version: 0.1
 Authors@R:
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = c("aut", "cre"),
-    person("Ross", "Farrugia", "ross.farrugia@roche.com", role = "aut"),
-    person("Ben", "Straub", "ben.x.straub@gsk.com", role = "aut"),
+    person("Ross", "Farrugia", , "ross.farrugia@roche.com", role = "aut"),
+    person("Ben", "Straub", , "ben.x.straub@gsk.com", role = "aut"),
     person("Jeffrey", "Dickinson", role = "aut"),
     person("David", "Blair", role = "aut")
 Description: This is not a package, but we just use this file to declare
