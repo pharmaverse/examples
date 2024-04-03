@@ -307,7 +307,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="running-the-examples">Running the examples</h2>
 <section id="posit-cloud" class="level3">
 <h3 class="anchored" data-anchor-id="posit-cloud">Posit Cloud</h3>
-<p>Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations). Click here: <a href="https://posit.cloud/content/7279124">“Launch Posit Cloud”</a> to try out any of the examples code. You can do this by clicking File: Open File: and then choosing whichever example, e.g.&nbsp;<code>adam/adsl.qmd</code>. You could ignore the text sections and run the R code blocks. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!</p>
+<p>Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations). Click here: <a href="https://posit.cloud/content/7279124">“Launch Posit Cloud”</a> to try out any of the examples code. You can do this by clicking File: Open File: and then choosing whichever example script, e.g.&nbsp;<code>adam/adsl.R</code>. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!</p>
 </section>
 <section id="locally" class="level3">
 <h3 class="anchored" data-anchor-id="locally">Locally</h3>
@@ -316,7 +316,7 @@ cookieconsent.run({
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>}</span>
 <span id="cb1-4"><a href="#cb1-4"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Tip: If you prefer to run the examples as <code>.R</code> files instead of quarto documents, you can convert the <code>.qmd</code> files into Rscripts with <a href="https://bookdown.org/yihui/rmarkdown-cookbook/purl.html"><code>knitr::purl</code></a>.</em></p>
+<p><em>Note: the R scripts are generated from <code>.qmd</code> files automatically using <a href="https://bookdown.org/yihui/rmarkdown-cookbook/purl.html"><code>knitr::purl</code></a>.</em></p>
 </section>
 </section>
 <section id="contributing" class="level2">
@@ -759,26 +759,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-29"><a href="#cb2-29"></a>(preconfigured with all required package installations).</span>
 <span id="cb2-30"><a href="#cb2-30"></a>Click here: <span class="co">[</span><span class="ot">"Launch Posit Cloud"</span><span class="co">](https://posit.cloud/content/7279124)</span> to</span>
 <span id="cb2-31"><a href="#cb2-31"></a>try out any of the examples code.</span>
-<span id="cb2-32"><a href="#cb2-32"></a>You can do this by clicking File: Open File: and then choosing whichever example,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>e.g. <span class="in">`adam/adsl.qmd`</span>. You could ignore the text sections and run the R code</span>
-<span id="cb2-34"><a href="#cb2-34"></a>blocks.</span>
-<span id="cb2-35"><a href="#cb2-35"></a>Feel free to try out customizing any of the examples to better fit any of</span>
-<span id="cb2-36"><a href="#cb2-36"></a>your own internal clinical reporting workflows!</span>
-<span id="cb2-37"><a href="#cb2-37"></a></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="fu">### Locally</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a>To run examples locally, download the <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/pharmaverse/examples)</span> and run the following in the R console inside the project folder to install dependencies</span>
-<span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="in">```r</span></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pak)) {</span>
-<span id="cb2-43"><a href="#cb2-43"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
-<span id="cb2-44"><a href="#cb2-44"></a>}</span>
-<span id="cb2-45"><a href="#cb2-45"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="in">```</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a>*Tip: If you prefer to run the examples as `.R` files instead of quarto documents, you can convert the `.qmd` files into Rscripts with [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*</span>
-<span id="cb2-48"><a href="#cb2-48"></a></span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="fu">## Contributing</span></span>
-<span id="cb2-50"><a href="#cb2-50"></a>If you are interesting in contributing an article to this book, then</span>
-<span id="cb2-51"><a href="#cb2-51"></a>see more in our GitHub repo README.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-32"><a href="#cb2-32"></a>You can do this by clicking File: Open File: and then choosing whichever example script,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>e.g. <span class="in">`adam/adsl.R`</span>. </span>
+<span id="cb2-34"><a href="#cb2-34"></a>Feel free to try out customizing any of the examples to better fit any of</span>
+<span id="cb2-35"><a href="#cb2-35"></a>your own internal clinical reporting workflows!</span>
+<span id="cb2-36"><a href="#cb2-36"></a></span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="fu">### Locally</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>To run examples locally, download the <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/pharmaverse/examples)</span> and run the following in the R console inside the project folder to install dependencies</span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="in">```r</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pak)) {</span>
+<span id="cb2-42"><a href="#cb2-42"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
+<span id="cb2-43"><a href="#cb2-43"></a>}</span>
+<span id="cb2-44"><a href="#cb2-44"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="in">```</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a>*Note: the R scripts are generated from `.qmd` files automatically using [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*</span>
+<span id="cb2-47"><a href="#cb2-47"></a></span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="fu">## Contributing</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a>If you are interesting in contributing an article to this book, then</span>
+<span id="cb2-50"><a href="#cb2-50"></a>see more in our GitHub repo README.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

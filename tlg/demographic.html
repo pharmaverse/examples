@@ -781,80 +781,85 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-3"><a href="#cb5-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="co">---</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="fu">## Introduction</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a></span>
-<span id="cb5-8"><a href="#cb5-8"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
-<span id="cb5-9"><a href="#cb5-9"></a></span>
-<span id="cb5-10"><a href="#cb5-10"></a>The packages used with a brief description of their purpose are as follows:</span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> knitr<span class="sc">::</span>hook_purl)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="in">```</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="fu">## Introduction</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
 <span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">## Load Data and Required pharmaverse Package</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>The packages used with a brief description of their purpose are as follows:</span>
 <span id="cb5-16"><a href="#cb5-16"></a></span>
-<span id="cb5-17"><a href="#cb5-17"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
-<span id="cb5-18"><a href="#cb5-18"></a></span>
-<span id="cb5-19"><a href="#cb5-19"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="fu">library</span>(tern)</span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="fu">## Load Data and Required pharmaverse Package</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
 <span id="cb5-25"><a href="#cb5-25"></a></span>
-<span id="cb5-26"><a href="#cb5-26"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>  <span class="fu">df_explicit_na</span>()</span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="in">```</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="fu">## Start preprocessing</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a></span>
-<span id="cb5-32"><a href="#cb5-32"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
-<span id="cb5-33"><a href="#cb5-33"></a></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="in">```{r preproc}</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="co"># Create categorical variables</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-38"><a href="#cb5-38"></a>    <span class="at">SEX =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
-<span id="cb5-39"><a href="#cb5-39"></a>      SEX <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
-<span id="cb5-40"><a href="#cb5-40"></a>      SEX <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
-<span id="cb5-41"><a href="#cb5-41"></a>      SEX <span class="sc">==</span> <span class="st">"U"</span> <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
-<span id="cb5-42"><a href="#cb5-42"></a>      SEX <span class="sc">==</span> <span class="st">"UNDIFFERENTIATED"</span> <span class="sc">~</span> <span class="st">"Undifferentiated"</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a>    )),</span>
-<span id="cb5-44"><a href="#cb5-44"></a>    <span class="at">AGEGR1 =</span> <span class="fu">factor</span>(</span>
-<span id="cb5-45"><a href="#cb5-45"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb5-46"><a href="#cb5-46"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
-<span id="cb5-47"><a href="#cb5-47"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
-<span id="cb5-48"><a href="#cb5-48"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
-<span id="cb5-49"><a href="#cb5-49"></a>      ),</span>
-<span id="cb5-50"><a href="#cb5-50"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>)</span>
-<span id="cb5-51"><a href="#cb5-51"></a>    )</span>
-<span id="cb5-52"><a href="#cb5-52"></a>  )</span>
-<span id="cb5-53"><a href="#cb5-53"></a><span class="in">```</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a></span>
-<span id="cb5-55"><a href="#cb5-55"></a><span class="fu">## Demographic table</span></span>
-<span id="cb5-56"><a href="#cb5-56"></a></span>
-<span id="cb5-57"><a href="#cb5-57"></a>Now we create the demographic table.</span>
-<span id="cb5-58"><a href="#cb5-58"></a></span>
-<span id="cb5-59"><a href="#cb5-59"></a><span class="in">```{r table}</span></span>
-<span id="cb5-60"><a href="#cb5-60"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb5-61"><a href="#cb5-61"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb5-62"><a href="#cb5-62"></a>  <span class="st">"Age (yr)"</span>,</span>
-<span id="cb5-63"><a href="#cb5-63"></a>  <span class="st">"Age group"</span>,</span>
-<span id="cb5-64"><a href="#cb5-64"></a>  <span class="st">"Sex"</span>,</span>
-<span id="cb5-65"><a href="#cb5-65"></a>  <span class="st">"Race"</span></span>
-<span id="cb5-66"><a href="#cb5-66"></a>)</span>
-<span id="cb5-67"><a href="#cb5-67"></a></span>
-<span id="cb5-68"><a href="#cb5-68"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-69"><a href="#cb5-69"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-70"><a href="#cb5-70"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-71"><a href="#cb5-71"></a>  <span class="fu">analyze_vars</span>(</span>
-<span id="cb5-72"><a href="#cb5-72"></a>    <span class="at">vars =</span> vars,</span>
-<span id="cb5-73"><a href="#cb5-73"></a>    <span class="at">var_labels =</span> var_labels</span>
-<span id="cb5-74"><a href="#cb5-74"></a>  )</span>
-<span id="cb5-75"><a href="#cb5-75"></a></span>
-<span id="cb5-76"><a href="#cb5-76"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl)</span>
-<span id="cb5-77"><a href="#cb5-77"></a></span>
-<span id="cb5-78"><a href="#cb5-78"></a>result</span>
-<span id="cb5-79"><a href="#cb5-79"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb5-28"><a href="#cb5-28"></a><span class="fu">library</span>(tern)</span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-30"><a href="#cb5-30"></a></span>
+<span id="cb5-31"><a href="#cb5-31"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb5-33"><a href="#cb5-33"></a><span class="in">```</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a></span>
+<span id="cb5-35"><a href="#cb5-35"></a><span class="fu">## Start preprocessing</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a></span>
+<span id="cb5-37"><a href="#cb5-37"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
+<span id="cb5-38"><a href="#cb5-38"></a></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="in">```{r preproc}</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="co"># Create categorical variables</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="at">SEX =</span> <span class="fu">factor</span>(<span class="fu">case_when</span>(</span>
+<span id="cb5-44"><a href="#cb5-44"></a>      SEX <span class="sc">==</span> <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"Male"</span>,</span>
+<span id="cb5-45"><a href="#cb5-45"></a>      SEX <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"Female"</span>,</span>
+<span id="cb5-46"><a href="#cb5-46"></a>      SEX <span class="sc">==</span> <span class="st">"U"</span> <span class="sc">~</span> <span class="st">"Unknown"</span>,</span>
+<span id="cb5-47"><a href="#cb5-47"></a>      SEX <span class="sc">==</span> <span class="st">"UNDIFFERENTIATED"</span> <span class="sc">~</span> <span class="st">"Undifferentiated"</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a>    )),</span>
+<span id="cb5-49"><a href="#cb5-49"></a>    <span class="at">AGEGR1 =</span> <span class="fu">factor</span>(</span>
+<span id="cb5-50"><a href="#cb5-50"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb5-51"><a href="#cb5-51"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb5-52"><a href="#cb5-52"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb5-53"><a href="#cb5-53"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a>      ),</span>
+<span id="cb5-55"><a href="#cb5-55"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>)</span>
+<span id="cb5-56"><a href="#cb5-56"></a>    )</span>
+<span id="cb5-57"><a href="#cb5-57"></a>  )</span>
+<span id="cb5-58"><a href="#cb5-58"></a><span class="in">```</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a></span>
+<span id="cb5-60"><a href="#cb5-60"></a><span class="fu">## Demographic table</span></span>
+<span id="cb5-61"><a href="#cb5-61"></a></span>
+<span id="cb5-62"><a href="#cb5-62"></a>Now we create the demographic table.</span>
+<span id="cb5-63"><a href="#cb5-63"></a></span>
+<span id="cb5-64"><a href="#cb5-64"></a><span class="in">```{r table}</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb5-66"><a href="#cb5-66"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-67"><a href="#cb5-67"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb5-68"><a href="#cb5-68"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb5-69"><a href="#cb5-69"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb5-70"><a href="#cb5-70"></a>  <span class="st">"Race"</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a>)</span>
+<span id="cb5-72"><a href="#cb5-72"></a></span>
+<span id="cb5-73"><a href="#cb5-73"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-74"><a href="#cb5-74"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-75"><a href="#cb5-75"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb5-77"><a href="#cb5-77"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb5-78"><a href="#cb5-78"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb5-79"><a href="#cb5-79"></a>  )</span>
+<span id="cb5-80"><a href="#cb5-80"></a></span>
+<span id="cb5-81"><a href="#cb5-81"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl)</span>
+<span id="cb5-82"><a href="#cb5-82"></a></span>
+<span id="cb5-83"><a href="#cb5-83"></a>result</span>
+<span id="cb5-84"><a href="#cb5-84"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
