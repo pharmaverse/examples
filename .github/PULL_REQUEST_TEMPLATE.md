@@ -2,7 +2,7 @@
 
 *DESCRIPTION GOES HERE*
 
-Before you submit your pull request, take a look at the following checklist. If any are not applicable, leave them unchecked. Many thanks for your contribution! 
+Before you submit your pull request, take a look at the following checklist. Many thanks for your contribution! 
 
 - [ ] **Title:** Place `Closes #<insert_issue_number>` at the beginning of your PR title. Use the Edit button in the top-right if you need to update.
 - [ ] **Linked Issue:** Ensure the related issue is linked in the "Development Section" on the right-hand side.
