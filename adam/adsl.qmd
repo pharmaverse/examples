@@ -188,7 +188,7 @@ adsl_raw %>%
    check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
    order_cols(metacore) %>% # Orders the columns according to the spec
    sort_by_key(metacore) %>% # Sorts the rows by the sort keys 
-   xportr_type(metacore) %>% # Coerce variable type to match spec
+   xportr_type(metacore, domain = "ADSL") %>% # Coerce variable type to match spec
    xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata 
    xportr_label(metacore) %>% # Assigns variable label from metacore specifications 
    xportr_df_label(metacore) # Assigns dataset label from metacore specifications
