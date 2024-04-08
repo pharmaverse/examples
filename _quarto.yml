@@ -1,5 +1,4 @@
 project:
-  type: website
   preview:
     port: 4200
     browser: true
