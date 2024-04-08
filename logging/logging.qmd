@@ -1,0 +1,915 @@
+---
+title: "The Difference Between `logr` And `logrx`"
+format: 
+  html:
+    code-overflow: wrap
+---
+
+```{css, echo=FALSE}
+.output-block {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+```
+
+The [`logr`](https://github.com/dbosak01/logr/) package for R aims to provide a straightforward logging system tailored for everyday users, such as statisticians and educators, emphasizing simplicity in recording program execution. In contrast, [`logrx`](https://github.com/pharmaverse/logrx/) offers an advanced logging mechanism designed specifically for clinical reporting, featuring easy traceability and reproducibility of R script executions with capabilities suited for more technical users.
+
+Both packages are used for keeping a record of what happens when R scripts are run, but they differ in what they offer and who they're for. When choosing between them, you should consider what you need for your particular situation.
+
+### Execution
+
+Each package differs notably in the approach to generating a log file. The `logr` package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the `logrx` package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission.
+
+::: {.panel-tabset}
+
+## `logr`
+
+```{r, eval=FALSE}
+#| class: output-block
+# file: script.R
+library(dplyr)
+library(logr)
+
+file_path <- "script.log"
+log_file <- log_open(file_path)
+
+log_print("Analyzing Fuel Efficiency Trends in Cars")
+
+average_mpg <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(average_mpg = mean(mpg, na.rm = TRUE))
+
+log_print(average_mpg)
+
+model <- lm(mpg ~ wt, data = mtcars)
+summary(model)
+
+log_print(model)
+
+log_close() # log file path: log/script.log
+```
+
+<br>
+
+```{t}
+#| class: output-block
+========================================================================= 
+Log Path: ./log/script.log 
+Working Directory: /Users/davidblair/My Drive/Appsilon/Work Projects/examples 
+User Name: davidblair 
+R Version: 4.3.3 (2024-02-29) 
+Machine: Davids-Air.localdomain arm64 
+Operating System: Darwin 23.4.0 Darwin Kernel Version 23.4.0: Fri Mar 15 00:12:41 PDT 2024; root:xnu-10063.101.17~1/RELEASE_ARM64_T8103 
+Base Packages: stats graphics grDevices utils datasets methods base 
+Other Packages: dplyr_1.1.4 logr_1.3.6 
+Log Start Time: 2024-04-08 13:25:53.22436 
+========================================================================= 
+
+Analyzing Fuel Efficiency Trends in Cars 
+
+NOTE: Log Print Time:  2024-04-08 13:25:53.226347 
+NOTE: Elapsed Time: 0.00139403343200684 secs 
+
+# A tibble: 3 × 2
+    cyl average_mpg
+  <dbl>       <dbl>
+1     4        26.7
+2     6        19.7
+3     8        15.1
+
+NOTE: Data frame has 3 rows and 2 columns. 
+
+NOTE: Log Print Time:  2024-04-08 13:25:53.254377 
+NOTE: Elapsed Time: 0.0280299186706543 secs 
+
+
+Call:
+lm(formula = mpg ~ wt, data = mtcars)
+
+Coefficients:
+(Intercept)           wt  
+     37.285       -5.344  
+
+
+NOTE: Log Print Time:  2024-04-08 13:25:53.267483 
+NOTE: Elapsed Time: 0.013106107711792 secs 
+
+========================================================================= 
+Log End Time: 2024-04-08 13:25:53.286294 
+Log Elapsed Time: 0 00:00:00 
+========================================================================= 
+```
+
+## `logrx`
+
+From the R terminal: 
+```{r, eval=FALSE}
+logrx::axecute("script.R")
+```
+
+From the Command Line: 
+```{bash, eval=FALSE}
+Rscript -e "logrx::axecute('script.R')"
+```
+
+
+
+```{t}
+#| class: output-block
+--------------------------------------------------------------------------------
+-                                logrx Metadata                                -
+--------------------------------------------------------------------------------
+This log was generated using logrx 0.3.0
+logrx package version: 0.3.0
+logrx build: CRAN (R 4.3.1)
+logrx link to repository: https://github.com/pharmaverse/logrx
+--------------------------------------------------------------------------------
+-                          User and File Information                           -
+--------------------------------------------------------------------------------
+User: davidblair
+File Name: script.R
+File Path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+File HashSum: 76f9dd029df25ba4f65de72631fac248fa30d7d5
+--------------------------------------------------------------------------------
+-                             Session Information                              -
+--------------------------------------------------------------------------------
+─ Session info ─────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.3.3 (2024-02-29)
+ os       macOS Sonoma 14.4.1
+ system   aarch64, darwin20
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       Europe/London
+ date     2024-04-08
+ pandoc   NA
+
+─ Packages ─────────────────────────────────────────────────────────────────────
+ ! package     * version date (UTC) lib source
+   cachem        1.0.8   2023-05-01 [1] CRAN (R 4.3.0)
+   callr         3.7.6   2024-03-25 [1] CRAN (R 4.3.1)
+   cli           3.6.2   2023-12-11 [1] CRAN (R 4.3.1)
+   common        1.1.2   2024-03-05 [1] CRAN (R 4.3.1)
+   curl          5.2.1   2024-03-01 [1] CRAN (R 4.3.1)
+   desc          1.4.3   2023-12-10 [1] CRAN (R 4.3.1)
+   devtools      2.4.5   2022-10-11 [1] CRAN (R 4.3.0)
+   digest        0.6.35  2024-03-11 [1] CRAN (R 4.3.1)
+   dplyr       * 1.1.4   2023-11-17 [1] CRAN (R 4.3.1)
+   ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.3.0)
+   fansi         1.0.6   2023-12-08 [1] CRAN (R 4.3.1)
+   fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.3.0)
+   fs            1.6.3   2023-07-20 [1] CRAN (R 4.3.0)
+   generics      0.1.3   2022-07-05 [1] CRAN (R 4.3.0)
+   glue          1.7.0   2024-01-09 [1] CRAN (R 4.3.1)
+   htmltools     0.5.8.1 2024-04-04 [1] CRAN (R 4.3.1)
+   htmlwidgets   1.6.4   2023-12-06 [1] CRAN (R 4.3.1)
+   httpuv        1.6.15  2024-03-26 [1] CRAN (R 4.3.1)
+   later         1.3.2   2023-12-06 [1] CRAN (R 4.3.1)
+   lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.3.1)
+ V logr        * 1.3.7   2024-02-24 [1] CRAN (R 4.3.1) (on disk 1.3.6)
+   logrx         0.3.0   2023-10-17 [1] CRAN (R 4.3.1)
+   magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.3.0)
+   memoise       2.0.1   2021-11-26 [1] CRAN (R 4.3.0)
+   mime          0.12    2021-09-28 [1] CRAN (R 4.3.0)
+   miniUI        0.1.1.1 2018-05-18 [1] CRAN (R 4.3.0)
+   pillar        1.9.0   2023-03-22 [1] CRAN (R 4.3.0)
+   pkgbuild      1.4.4   2024-03-17 [1] CRAN (R 4.3.1)
+   pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.3.0)
+   pkgload       1.3.4   2024-01-16 [1] CRAN (R 4.3.1)
+   processx      3.8.4   2024-03-16 [1] CRAN (R 4.3.1)
+   profvis       0.3.8   2023-05-02 [1] CRAN (R 4.3.0)
+   promises      1.2.1   2023-08-10 [1] CRAN (R 4.3.0)
+   ps            1.7.6   2024-01-18 [1] CRAN (R 4.3.1)
+   purrr         1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
+   R6            2.5.1   2021-08-19 [1] CRAN (R 4.3.0)
+   Rcpp          1.0.12  2024-01-09 [1] CRAN (R 4.3.1)
+   remotes       2.4.2.1 2023-07-18 [1] CRAN (R 4.3.0)
+   rlang         1.1.3   2024-01-10 [1] CRAN (R 4.3.1)
+   rstudioapi    0.15.0  2023-07-07 [1] CRAN (R 4.3.0)
+   sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
+   shiny         1.8.1.1 2024-04-02 [1] CRAN (R 4.3.1)
+   stringi       1.8.3   2023-12-11 [1] CRAN (R 4.3.1)
+   stringr       1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
+   tibble        3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
+   tidyr         1.3.1   2024-01-24 [1] CRAN (R 4.3.1)
+   tidyselect    1.2.1   2024-03-11 [1] CRAN (R 4.3.1)
+   urlchecker    1.0.1   2021-11-30 [1] CRAN (R 4.3.0)
+   usethis       2.2.3   2024-02-19 [1] CRAN (R 4.3.1)
+   utf8          1.2.4   2023-10-22 [1] CRAN (R 4.3.1)
+   vctrs         0.6.5   2023-12-01 [1] CRAN (R 4.3.1)
+   waiter        0.2.5   2022-01-03 [1] CRAN (R 4.3.0)
+   withr         3.0.0   2024-01-16 [1] CRAN (R 4.3.1)
+   xtable        1.8-4   2019-04-21 [1] CRAN (R 4.3.0)
+
+ [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
+
+ V ── Loaded and on-disk version mismatch.
+
+─ External software ────────────────────────────────────────────────────────────
+ setting        value
+ cairo
+ cairoFT
+ pango
+ png
+ jpeg
+ tiff
+ tcl
+ curl           8.4.0
+ zlib           1.2.12
+ bzlib          1.0.8, 13-Jul-2019
+ xz             5.4.4
+ PCRE           10.42 2022-12-11
+ ICU            74.1
+ TRE            TRE 0.8.0 R_fixes (BSD)
+ iconv          Apple or GNU libiconv 1.11
+ readline       5.2
+
+	  BLAS           /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib
+
+	  lapack         /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib
+ lapack_version 3.11.0
+
+─ Python configuration ─────────────────────────────────────────────────────────
+ Python is not available
+
+────────────────────────────────────────────────────────────────────────────────
+--------------------------------------------------------------------------------
+-                               Masked Functions                               -
+--------------------------------------------------------------------------------
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
+function `plot` from {package:base} by package:graphics
+function `body<-` from {package:base} by package:methods
+function `kronecker` from {package:base} by package:methods
+--------------------------------------------------------------------------------
+-                          Used Package and Functions                          -
+--------------------------------------------------------------------------------
+{package:base} library, mean, summary
+{package:dplyr} %>%, group_by, summarise
+{package:stats} lm
+--------------------------------------------------------------------------------
+-                         Program Run Time Information                         -
+--------------------------------------------------------------------------------
+Start time: 2024-04-08 14:15:26 BST
+End time: 2024-04-08 14:15:26 BST
+Run time: 0 seconds
+--------------------------------------------------------------------------------
+-                             Errors and Warnings                              -
+--------------------------------------------------------------------------------
+Errors:
+	
+
+Warnings:
+	
+--------------------------------------------------------------------------------
+-                         Messages, Output, and Result                         -
+--------------------------------------------------------------------------------
+Messages:
+	
+Output:
+	
+
+Result:
+	
+	Call:
+	lm(formula = mpg ~ wt, data = mtcars)
+	
+	Residuals:
+	    Min      1Q  Median      3Q     Max 
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+	
+	Coefficients:
+	            Estimate Std. Error t value Pr(>|t|)    
+	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 3.046 on 30 degrees of freedom
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+	
+--------------------------------------------------------------------------------
+-                               Log Output File                                -
+--------------------------------------------------------------------------------
+Log name: script.log
+Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+
+```
+:::
+
+### Information in the Log
+
+The `logrx` package offers more detailed output compared to `logr`, as outlined in the following table. A key distinction is that `logrx` automatically logs code output. In `logr`,  you manually specify all of the output to be included in the log.
+
+```{=html}
+<style>
+  .scrollable-tbody {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>logr</th>
+      <th>logrx</th>
+    </tr>
+  </thead>
+  <tbody class="scrollable-tbody">
+    <tr>
+      <td>Log Path</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Working Directory</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>User Name</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>R Version</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Machine</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Operating System</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Base Packages</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Other Packages</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Log Start Time</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Warnings and Errors</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Elapsed Time</td>
+      <td>✔</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>File Hash</td>
+      <td></td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Package Dependencies</td>
+      <td></td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>External Software</td>
+      <td></td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Masked Functions</td>
+      <td></td>
+      <td>✔</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Linting
+
+The `logrx` tool enables the inclusion of `lintR` output within log messages (line 146 - 165 below). To utilize this feature, configure the `log.rx.lint` global option with a selection of lint rules. A comprehensive list of available rules can be accessed [here](https://lintr.r-lib.org/reference/linters.html).
+
+```{r, eval=FALSE}
+options(log.rx.lint = list(
+  lintr::line_length_linter(20)
+))
+
+library(logrx)
+axecute("script.R")
+```
+
+
+
+```{t}
+#| class: output-block
+--------------------------------------------------------------------------------
+-                                logrx Metadata                                -
+--------------------------------------------------------------------------------
+This log was generated using logrx 0.3.0
+logrx package version: 0.3.0
+logrx build: CRAN (R 4.3.1)
+logrx link to repository: https://github.com/pharmaverse/logrx
+--------------------------------------------------------------------------------
+-                          User and File Information                           -
+--------------------------------------------------------------------------------
+User: davidblair
+File Name: script.R
+File Path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+File HashSum: 76f9dd029df25ba4f65de72631fac248fa30d7d5
+--------------------------------------------------------------------------------
+-                             Session Information                              -
+--------------------------------------------------------------------------------
+─ Session info ─────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.3.3 (2024-02-29)
+ os       macOS Sonoma 14.4.1
+ system   aarch64, darwin20
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       Europe/London
+ date     2024-04-08
+ pandoc   NA
+
+─ Packages ─────────────────────────────────────────────────────────────────────
+ ! package      * version date (UTC) lib source
+   backports      1.4.1   2021-12-13 [1] CRAN (R 4.3.0)
+   cachem         1.0.8   2023-05-01 [1] CRAN (R 4.3.0)
+   callr          3.7.6   2024-03-25 [1] CRAN (R 4.3.1)
+   cli            3.6.2   2023-12-11 [1] CRAN (R 4.3.1)
+   common         1.1.2   2024-03-05 [1] CRAN (R 4.3.1)
+   crayon         1.5.2   2022-09-29 [1] CRAN (R 4.3.0)
+   curl           5.2.1   2024-03-01 [1] CRAN (R 4.3.1)
+   cyclocomp      1.1.1   2023-08-30 [1] CRAN (R 4.3.0)
+   desc           1.4.3   2023-12-10 [1] CRAN (R 4.3.1)
+   devtools       2.4.5   2022-10-11 [1] CRAN (R 4.3.0)
+   digest         0.6.35  2024-03-11 [1] CRAN (R 4.3.1)
+   dplyr        * 1.1.4   2023-11-17 [1] CRAN (R 4.3.1)
+   ellipsis       0.3.2   2021-04-29 [1] CRAN (R 4.3.0)
+   fansi          1.0.6   2023-12-08 [1] CRAN (R 4.3.1)
+   fastmap        1.1.1   2023-02-24 [1] CRAN (R 4.3.0)
+   fs             1.6.3   2023-07-20 [1] CRAN (R 4.3.0)
+   generics       0.1.3   2022-07-05 [1] CRAN (R 4.3.0)
+   glue           1.7.0   2024-01-09 [1] CRAN (R 4.3.1)
+   htmltools      0.5.8.1 2024-04-04 [1] CRAN (R 4.3.1)
+   htmlwidgets    1.6.4   2023-12-06 [1] CRAN (R 4.3.1)
+   httpuv         1.6.15  2024-03-26 [1] CRAN (R 4.3.1)
+   later          1.3.2   2023-12-06 [1] CRAN (R 4.3.1)
+   lazyeval       0.2.2   2019-03-15 [1] CRAN (R 4.3.0)
+   lifecycle      1.0.4   2023-11-07 [1] CRAN (R 4.3.1)
+   lintr          3.1.2   2024-03-25 [1] CRAN (R 4.3.1)
+ V logr         * 1.3.7   2024-02-24 [1] CRAN (R 4.3.1) (on disk 1.3.6)
+   logrx        * 0.3.0   2023-10-17 [1] CRAN (R 4.3.1)
+   magrittr       2.0.3   2022-03-30 [1] CRAN (R 4.3.0)
+   memoise        2.0.1   2021-11-26 [1] CRAN (R 4.3.0)
+   mime           0.12    2021-09-28 [1] CRAN (R 4.3.0)
+   miniUI         0.1.1.1 2018-05-18 [1] CRAN (R 4.3.0)
+   pillar         1.9.0   2023-03-22 [1] CRAN (R 4.3.0)
+   pkgbuild       1.4.4   2024-03-17 [1] CRAN (R 4.3.1)
+   pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.3.0)
+   pkgload        1.3.4   2024-01-16 [1] CRAN (R 4.3.1)
+   processx       3.8.4   2024-03-16 [1] CRAN (R 4.3.1)
+   profvis        0.3.8   2023-05-02 [1] CRAN (R 4.3.0)
+   promises       1.2.1   2023-08-10 [1] CRAN (R 4.3.0)
+   ps             1.7.6   2024-01-18 [1] CRAN (R 4.3.1)
+   purrr          1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
+   R6             2.5.1   2021-08-19 [1] CRAN (R 4.3.0)
+   Rcpp           1.0.12  2024-01-09 [1] CRAN (R 4.3.1)
+   remotes        2.4.2.1 2023-07-18 [1] CRAN (R 4.3.0)
+   rex            1.2.1   2021-11-26 [1] CRAN (R 4.3.0)
+   rlang          1.1.3   2024-01-10 [1] CRAN (R 4.3.1)
+   rstudioapi     0.15.0  2023-07-07 [1] CRAN (R 4.3.0)
+   sessioninfo    1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
+   shiny          1.8.1.1 2024-04-02 [1] CRAN (R 4.3.1)
+   stringi        1.8.3   2023-12-11 [1] CRAN (R 4.3.1)
+   stringr        1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
+   tibble         3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
+   tidyr          1.3.1   2024-01-24 [1] CRAN (R 4.3.1)
+   tidyselect     1.2.1   2024-03-11 [1] CRAN (R 4.3.1)
+   urlchecker     1.0.1   2021-11-30 [1] CRAN (R 4.3.0)
+   usethis        2.2.3   2024-02-19 [1] CRAN (R 4.3.1)
+   utf8           1.2.4   2023-10-22 [1] CRAN (R 4.3.1)
+   vctrs          0.6.5   2023-12-01 [1] CRAN (R 4.3.1)
+   waiter         0.2.5   2022-01-03 [1] CRAN (R 4.3.0)
+   withr          3.0.0   2024-01-16 [1] CRAN (R 4.3.1)
+   xml2           1.3.6   2023-12-04 [1] CRAN (R 4.3.1)
+   xmlparsedata   1.0.5   2021-03-06 [1] CRAN (R 4.3.0)
+   xtable         1.8-4   2019-04-21 [1] CRAN (R 4.3.0)
+
+ [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
+
+ V ── Loaded and on-disk version mismatch.
+
+─ External software ────────────────────────────────────────────────────────────
+ setting        value
+ cairo
+ cairoFT
+ pango
+ png
+ jpeg
+ tiff
+ tcl
+ curl           8.4.0
+ zlib           1.2.12
+ bzlib          1.0.8, 13-Jul-2019
+ xz             5.4.4
+ PCRE           10.42 2022-12-11
+ ICU            74.1
+ TRE            TRE 0.8.0 R_fixes (BSD)
+ iconv          Apple or GNU libiconv 1.11
+ readline       5.2
+
+	  BLAS           /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib
+
+	  lapack         /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib
+ lapack_version 3.11.0
+
+─ Python configuration ─────────────────────────────────────────────────────────
+ Python is not available
+
+────────────────────────────────────────────────────────────────────────────────
+--------------------------------------------------------------------------------
+-                               Masked Functions                               -
+--------------------------------------------------------------------------------
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
+function `plot` from {package:base} by package:graphics
+function `body<-` from {package:base} by package:methods
+function `kronecker` from {package:base} by package:methods
+--------------------------------------------------------------------------------
+-                          Used Package and Functions                          -
+--------------------------------------------------------------------------------
+{package:base} library, mean, summary
+{package:dplyr} %>%, group_by, summarise
+{package:stats} lm
+--------------------------------------------------------------------------------
+-                                Linter Results                                -
+--------------------------------------------------------------------------------
+Line 1 [line_length_linter] Lines should not be more than 20 characters. This
+line is 22 characters.
+
+Line 5 [line_length_linter] Lines should not be more than 20 characters. This
+line is 25 characters.
+
+Line 7 [line_length_linter] Lines should not be more than 20 characters. This
+line is 25 characters.
+
+Line 9 [line_length_linter] Lines should not be more than 20 characters. This
+line is 50 characters.
+
+Line 11 [line_length_linter] Lines should not be more than 20 characters.
+This line is 36 characters.
+
+Line 14 [line_length_linter] Lines should not be more than 20 characters.
+This line is 27 characters.
+--------------------------------------------------------------------------------
+-                         Program Run Time Information                         -
+--------------------------------------------------------------------------------
+Start time: 2024-04-08 15:26:12 BST
+End time: 2024-04-08 15:26:12 BST
+Run time: 0 seconds
+--------------------------------------------------------------------------------
+-                             Errors and Warnings                              -
+--------------------------------------------------------------------------------
+Errors:
+	
+
+Warnings:
+	
+--------------------------------------------------------------------------------
+-                         Messages, Output, and Result                         -
+--------------------------------------------------------------------------------
+Messages:
+	
+Output:
+	
+
+Result:
+	
+	Call:
+	lm(formula = mpg ~ wt, data = mtcars)
+	
+	Residuals:
+	    Min      1Q  Median      3Q     Max 
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+	
+	Coefficients:
+	            Estimate Std. Error t value Pr(>|t|)    
+	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 3.046 on 30 degrees of freedom
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+	
+--------------------------------------------------------------------------------
+-                               Log Output File                                -
+--------------------------------------------------------------------------------
+Log name: script.log
+Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+```
+
+### Global Options
+
+We've previously discussed the global options in the `logrx` package that enable the inclusion of `lintr` output in the log. There are several key differences between the global options in `logrx` and those in `logr`. The options in `logr` primarily focus on managing script output, whereas those in `logrx` influence the scope of information included, regardless of the script output.
+
+::: {.panel-tabset}
+
+## `logr`
+
+1. `logr.autolog`: Enables automatic logging for various `dplyr` and `tidyr` functions.
+2. `logr.compact`: Removes any blanks spaces between log entries.
+3. `logr.traceback`: Includes the full traceback for errors.
+4. `logr.warnings`: Retrieves warnings encountered during log file generation, used with `getOption`.
+5. `logr.on`: Controls whether the `logr` log is active.
+6. `logr.notes`: Includes notes within the log.
+
+## `logrx`
+
+1. `log.rx`: A blank log environment for storing log elements during execution.
+2. `log.rx.exec.env`: The execution environment for program code.
+3. `log.rx.lint`: Contains `lintr` functions/rules for script analysis.
+4. `log.rx.approved`: Specifies the location of approved functions.
+
+:::
+
+### Approved Functions
+
+`logrx` features the ability to designate approved functions, highlighting any functions in the script not on this list within the log file. This enhances traceability of package and function use within a validated environment.
+
+To utilize this feature, begin by creating a list of approved functions:
+```{r}
+approved_pkgs <- list(base = "mean",
+                      dplyr = "All")
+```
+
+Next, build the `approved_pkgs` list and save its contents to a file:
+```{r}
+library(logrx)
+build_approved(approved_pkgs, file = "approved.rds")
+```
+
+Finally, assign the file to the global option `log.rx.approved`. This ensures the analysis is incorporated into the log (refer to lines 140 - 145 below):
+```{r}
+options(log.rv.approved = "approved.rds")
+```
+
+
+
+```{r, eval=FALSE}
+axecute("script.R")
+```
+
+
+
+```{t}
+#| class: output-block
+--------------------------------------------------------------------------------
+-                                logrx Metadata                                -
+--------------------------------------------------------------------------------
+This log was generated using logrx 0.3.0
+logrx package version: 0.3.0
+logrx build: CRAN (R 4.3.1)
+logrx link to repository: https://github.com/pharmaverse/logrx
+--------------------------------------------------------------------------------
+-                          User and File Information                           -
+--------------------------------------------------------------------------------
+User: davidblair
+File Name: script.R
+File Path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+File HashSum: 76f9dd029df25ba4f65de72631fac248fa30d7d5
+--------------------------------------------------------------------------------
+-                             Session Information                              -
+--------------------------------------------------------------------------------
+─ Session info ─────────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.3.3 (2024-02-29)
+ os       macOS Sonoma 14.4.1
+ system   aarch64, darwin20
+ ui       X11
+ language (EN)
+ collate  en_US.UTF-8
+ ctype    en_US.UTF-8
+ tz       Europe/London
+ date     2024-04-08
+ pandoc   NA
+
+─ Packages ─────────────────────────────────────────────────────────────────────
+ ! package      * version date (UTC) lib source
+   backports      1.4.1   2021-12-13 [1] CRAN (R 4.3.0)
+   cachem         1.0.8   2023-05-01 [1] CRAN (R 4.3.0)
+   callr          3.7.6   2024-03-25 [1] CRAN (R 4.3.1)
+   cli            3.6.2   2023-12-11 [1] CRAN (R 4.3.1)
+   common         1.1.2   2024-03-05 [1] CRAN (R 4.3.1)
+   crayon         1.5.2   2022-09-29 [1] CRAN (R 4.3.0)
+   curl           5.2.1   2024-03-01 [1] CRAN (R 4.3.1)
+   cyclocomp      1.1.1   2023-08-30 [1] CRAN (R 4.3.0)
+   desc           1.4.3   2023-12-10 [1] CRAN (R 4.3.1)
+   devtools       2.4.5   2022-10-11 [1] CRAN (R 4.3.0)
+   digest         0.6.35  2024-03-11 [1] CRAN (R 4.3.1)
+   dplyr        * 1.1.4   2023-11-17 [1] CRAN (R 4.3.1)
+   ellipsis       0.3.2   2021-04-29 [1] CRAN (R 4.3.0)
+   fansi          1.0.6   2023-12-08 [1] CRAN (R 4.3.1)
+   fastmap        1.1.1   2023-02-24 [1] CRAN (R 4.3.0)
+   fs             1.6.3   2023-07-20 [1] CRAN (R 4.3.0)
+   generics       0.1.3   2022-07-05 [1] CRAN (R 4.3.0)
+   glue           1.7.0   2024-01-09 [1] CRAN (R 4.3.1)
+   htmltools      0.5.8.1 2024-04-04 [1] CRAN (R 4.3.1)
+   htmlwidgets    1.6.4   2023-12-06 [1] CRAN (R 4.3.1)
+   httpuv         1.6.15  2024-03-26 [1] CRAN (R 4.3.1)
+   later          1.3.2   2023-12-06 [1] CRAN (R 4.3.1)
+   lazyeval       0.2.2   2019-03-15 [1] CRAN (R 4.3.0)
+   lifecycle      1.0.4   2023-11-07 [1] CRAN (R 4.3.1)
+   lintr          3.1.2   2024-03-25 [1] CRAN (R 4.3.1)
+ V logr         * 1.3.7   2024-02-24 [1] CRAN (R 4.3.1) (on disk 1.3.6)
+   logrx        * 0.3.0   2023-10-17 [1] CRAN (R 4.3.1)
+   magrittr       2.0.3   2022-03-30 [1] CRAN (R 4.3.0)
+   memoise        2.0.1   2021-11-26 [1] CRAN (R 4.3.0)
+   mime           0.12    2021-09-28 [1] CRAN (R 4.3.0)
+   miniUI         0.1.1.1 2018-05-18 [1] CRAN (R 4.3.0)
+   pillar         1.9.0   2023-03-22 [1] CRAN (R 4.3.0)
+   pkgbuild       1.4.4   2024-03-17 [1] CRAN (R 4.3.1)
+   pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.3.0)
+   pkgload        1.3.4   2024-01-16 [1] CRAN (R 4.3.1)
+   processx       3.8.4   2024-03-16 [1] CRAN (R 4.3.1)
+   profvis        0.3.8   2023-05-02 [1] CRAN (R 4.3.0)
+   promises       1.2.1   2023-08-10 [1] CRAN (R 4.3.0)
+   ps             1.7.6   2024-01-18 [1] CRAN (R 4.3.1)
+   purrr          1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
+   R6             2.5.1   2021-08-19 [1] CRAN (R 4.3.0)
+   Rcpp           1.0.12  2024-01-09 [1] CRAN (R 4.3.1)
+   remotes        2.4.2.1 2023-07-18 [1] CRAN (R 4.3.0)
+   rex            1.2.1   2021-11-26 [1] CRAN (R 4.3.0)
+   rlang          1.1.3   2024-01-10 [1] CRAN (R 4.3.1)
+   rstudioapi     0.15.0  2023-07-07 [1] CRAN (R 4.3.0)
+   sessioninfo    1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
+   shiny          1.8.1.1 2024-04-02 [1] CRAN (R 4.3.1)
+   stringi        1.8.3   2023-12-11 [1] CRAN (R 4.3.1)
+   stringr        1.5.1   2023-11-14 [1] CRAN (R 4.3.1)
+   tibble         3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
+   tidyr          1.3.1   2024-01-24 [1] CRAN (R 4.3.1)
+   tidyselect     1.2.1   2024-03-11 [1] CRAN (R 4.3.1)
+   urlchecker     1.0.1   2021-11-30 [1] CRAN (R 4.3.0)
+   usethis        2.2.3   2024-02-19 [1] CRAN (R 4.3.1)
+   utf8           1.2.4   2023-10-22 [1] CRAN (R 4.3.1)
+   vctrs          0.6.5   2023-12-01 [1] CRAN (R 4.3.1)
+   waiter         0.2.5   2022-01-03 [1] CRAN (R 4.3.0)
+   withr          3.0.0   2024-01-16 [1] CRAN (R 4.3.1)
+   xml2           1.3.6   2023-12-04 [1] CRAN (R 4.3.1)
+   xmlparsedata   1.0.5   2021-03-06 [1] CRAN (R 4.3.0)
+   xtable         1.8-4   2019-04-21 [1] CRAN (R 4.3.0)
+
+ [1] /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library
+
+ V ── Loaded and on-disk version mismatch.
+
+─ External software ────────────────────────────────────────────────────────────
+ setting        value
+ cairo
+ cairoFT
+ pango
+ png
+ jpeg
+ tiff
+ tcl
+ curl           8.4.0
+ zlib           1.2.12
+ bzlib          1.0.8, 13-Jul-2019
+ xz             5.4.4
+ PCRE           10.42 2022-12-11
+ ICU            74.1
+ TRE            TRE 0.8.0 R_fixes (BSD)
+ iconv          Apple or GNU libiconv 1.11
+ readline       5.2
+
+	  BLAS           /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib
+
+	  lapack         /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib
+ lapack_version 3.11.0
+
+─ Python configuration ─────────────────────────────────────────────────────────
+ Python is not available
+
+────────────────────────────────────────────────────────────────────────────────
+--------------------------------------------------------------------------------
+-                               Masked Functions                               -
+--------------------------------------------------------------------------------
+function `filter` from {package:stats} by package:dplyr
+function `lag` from {package:stats} by package:dplyr
+function `intersect` from {package:base} by package:dplyr
+function `setdiff` from {package:base} by package:dplyr
+function `setequal` from {package:base} by package:dplyr
+function `union` from {package:base} by package:dplyr
+function `plot` from {package:base} by package:graphics
+function `body<-` from {package:base} by package:methods
+function `kronecker` from {package:base} by package:methods
+--------------------------------------------------------------------------------
+-                          Used Package and Functions                          -
+--------------------------------------------------------------------------------
+{package:base} library, mean, summary
+{package:dplyr} %>%, group_by, summarise
+{package:stats} lm
+--------------------------------------------------------------------------------
+-                       Unapproved Package and Functions                       -
+--------------------------------------------------------------------------------
+{package:base} library, summary
+{package:stats} lm
+--------------------------------------------------------------------------------
+-                                Linter Results                                -
+--------------------------------------------------------------------------------
+Line 1 [line_length_linter] Lines should not be more than 20 characters. This
+line is 22 characters.
+
+Line 5 [line_length_linter] Lines should not be more than 20 characters. This
+line is 25 characters.
+
+Line 7 [line_length_linter] Lines should not be more than 20 characters. This
+line is 25 characters.
+
+Line 9 [line_length_linter] Lines should not be more than 20 characters. This
+line is 50 characters.
+
+Line 11 [line_length_linter] Lines should not be more than 20 characters.
+This line is 36 characters.
+
+Line 14 [line_length_linter] Lines should not be more than 20 characters.
+This line is 27 characters.
+--------------------------------------------------------------------------------
+-                         Program Run Time Information                         -
+--------------------------------------------------------------------------------
+Start time: 2024-04-08 16:03:28 BST
+End time: 2024-04-08 16:03:28 BST
+Run time: 0 seconds
+--------------------------------------------------------------------------------
+-                             Errors and Warnings                              -
+--------------------------------------------------------------------------------
+Errors:
+	
+
+Warnings:
+	
+--------------------------------------------------------------------------------
+-                         Messages, Output, and Result                         -
+--------------------------------------------------------------------------------
+Messages:
+	
+Output:
+	
+
+Result:
+	
+	Call:
+	lm(formula = mpg ~ wt, data = mtcars)
+	
+	Residuals:
+	    Min      1Q  Median      3Q     Max 
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
+	
+	Coefficients:
+	            Estimate Std. Error t value Pr(>|t|)    
+	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
+	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 3.046 on 30 degrees of freedom
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+	
+--------------------------------------------------------------------------------
+-                               Log Output File                                -
+--------------------------------------------------------------------------------
+Log name: script.log
+Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
+```
+
+
+### Summary
+
+The decision between using `logr` and `logrx` hinges on specific needs. `logr` offers greater control over the output, at the expense of detailed environmental context. Conversely, `logrx` provides more comprehensive details and quicker log generation, along with better support for command line execution, but offers less control over the output.
