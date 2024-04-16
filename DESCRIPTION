@@ -12,6 +12,7 @@ Description: This is not a package, but we just use this file to declare
 URL: https://github.com/pharmaverse/examples
 Imports:
     admiraldev, 
+    admiralonco,
     admiral,
     dplyr,
     lubridate,
