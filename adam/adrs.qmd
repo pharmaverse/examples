@@ -1,0 +1,126 @@
+---
+title: Creating ADRS with PFS Parameters
+---
+
+```{r setup, include = FALSE}
+library(admiraldev)
+```
+
+
+The Analysis Dataset for Response in Solid Tumors (ADRS) is designed for use in oncology clinical trials to capture tumor response data based on a standardized criteria. ADRS facilitates the evaluation of various response endpoints, one of which is Progression-Free Survival (PFS).
+
+PFS is a key measure inicating the length of time during  and after medication that a patients disease does not worsen. 
+
+This document provides a guide on constructing an ADRS dataset with PFS parameters using the  `admiralonco` package.
+
+### Required Packages
+The packages below are required to construct the ADRS dataset with PFS parameters. 
+```{r, output = FALSE}
+library(pharmaversesdtm)
+library(pharmaverseadam)
+library(admiraldev)
+library(admiral)
+library(admiralonco)
+library(dplyr)
+```
+
+### Load Example Data
+Data necessary for the analysis is loaded.
+```{r}
+data("adsl")
+data("rs_onco_recist")
+```
+
+- `adsl`: This dataset contains demographic and baseline information and is taken from the `pharmaverseadam` package.
+- `rs_onco_recist` and `tu_onco_recist`: These datasets contain oncology-specific data where `rs` is response summaries and `tu` is tumor measurements. They are from the `pharmaversestdm` package. 
+
+### Define Progression Events
+The `rs_onco_recist` is filtered to include only records where the test code is "PD" to ensure that only data relevent to disease progression is selected. 
+```{r}
+rs_pd_event <- rs_onco_recist %>%
+  filter(RSTESTCD == "PD") %>%
+  mutate(
+    ADT = as.Date(RSDTC),
+    CNSR = 0,
+    PARAMCD = "PFS",
+    PARAM = "Progression-Free Survival"
+  )
+```
+
+### Define Censoring Events
+Subjects who are not recorded as dead are considered censored at their last alive visit date. 
+```{r}
+adsl_censor <- adsl %>%
+  filter(is.na(DTHDT)) %>%
+  mutate(
+    ADT = as.Date(LSTALVDT),
+    CNSR = 1
+  )
+```
+
+### Derive Time-to-Event Parameters
+Using the `derive_param_tte` function the `admiral` package is used to derive the PFS parameter based on the start date `RANDDT`, event conditions, and censor conditions provided. The events and censors are specified using `event_source` and `censor_source`. 
+
+```{r}
+source_datasets <- list(
+  adsl = adsl, 
+  rs_pd = rs_pd_event, 
+  adsl_censor = adsl_censor
+)
+
+adrs_pfs <- derive_param_tte(
+  dataset_adsl = adsl,
+  start_date = RANDDT,
+  event_conditions = list(pd_event = event_source(dataset_name = "rs_pd", date = ADT)),
+  censor_conditions = list(adsl_censor = censor_source(dataset_name = "adsl_censor", date = ADT)),
+  source_datasets = source_datasets,
+  set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression-Free Survival")
+)
+```
+
+### Derive Analysis Value
+`AVAL` (Analysis Value) representing the duration in days from randomization to the event or censoring, is calculated. 
+
+```{r}
+adrs_pfs <- derive_vars_duration(
+  dataset = adrs_pfs,
+  new_var = AVAL,
+  start_date = STARTDT,
+  end_date = ADT,
+  out_unit = "days"
+)
+```
+
+### Merge Additional ADSL Variables
+Additional variables from `ADSL` that are not already in `adrs_pfs` are merged into the dataset, ensuring that all relevent ptient information is included. 
+
+```{r}
+additional_adsl_vars <- setdiff(names(adsl), names(adrs_pfs))
+
+additional_adsl_vars_exprs <- lapply(additional_adsl_vars, as.name)
+
+adrs_pfs <- adrs_pfs %>%
+  derive_vars_merged(
+    dataset_add = adsl,
+    new_vars = additional_adsl_vars_exprs,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+### Result
+We've successfully constructed our final `adrs` dataset. Below, you can find a selection of columns that contain the most critical information.
+
+```{r, eval=TRUE, echo=FALSE}
+dataset_vignette(
+  dataset = adrs_pfs, 
+  display_vars = exprs(USUBJID, PARAMCD, PARAM, STARTDT, ADT, CNSR, AVAL)
+)
+```
+
+In this dataset: 
+
+1. `PARAMCD` is "PFS" and `PARAM` is "Progression Free Survival", identifying the type of analysis. 
+2. `CNSR` indicates if the observation is censored (1 in this case indicates censored). 
+3. `ADT` is the date on which the progression or death was observed, or the date of censoring. 
+4. `STARTDT` is the start date from which the PFS duration is calculated.
+5. `AVAL` gives the number of days from the start date to the event/censoring date. 
