@@ -11,6 +11,7 @@ Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
 Imports:
+    admiraldev, 
     admiral,
     dplyr,
     lubridate,
