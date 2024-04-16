@@ -1,0 +1,110 @@
+---
+title: ADTTE with PFS Parameters
+---
+
+```{r setup, include = FALSE}
+library(admiraldev)
+```
+
+Analysis Dataset Time-to-Event (ADTTE) is a standardized dataset used in the statistical analysis of time-to-event data in clinical trials, particularly in oncology and its structure is designed to facilitate this. It focuses on endpoints that are based on the time until a certain event occurs, such as disease progression, recurrence, or death. 
+
+Progression-Free-Survival (PFS) is a common and crucial endpoint in cancer clinical trials. It measures the length of time during and after treatment that a patient lives with the disease without it getting worse. 
+
+This example outlines the creation of an ADTTE dataset focusing on Progression-Free Survival using the `admiralonco` package. 
+
+### Required packages
+The packages below are required to construct the ADTTE with PFS parameters.
+```{r, output=FALSE}
+library(admiral)
+library(admiralonco)
+library(pharmaverseadam)
+library(dplyr)
+library(lubridate)
+```
+
+### Read in Data
+Data necessary for the analysis is loaded from the `pharmaverseadam` package.
+
+```{r}
+data("adsl")
+data("adrs_onco")
+
+adrs <- adrs_onco # renamed for convenience
+```
+
+`adsl` contains subject-level information like treatment group, demographic data, etc. `adrs_onco` contains detailed records about adverse events or disease progression specific to oncology. 
+
+### Derive Parameters for Time-to-Event Analysis
+This is where the time-to-event parameters are defined. These parameters are used to determine when and how each patient's data is censored or when an event occurs. This can be done using the `derive_param_tte` function from `admiral`.
+
+```{r}
+adtte <- derive_param_tte(
+    dataset_adsl = adsl,
+    start_date = RANDDT,
+    event_conditions = list(death_event, pd_event), 
+    censor_conditions = list(lasta_censor, rand_censor), 
+    source_datasets = list(adsl = adsl, adrs = adrs), 
+    set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression Free Survival")
+  )
+```
+
+Within in context of PFS:
+
+1. `start_date` is where you start counting for the time-to-event analysis. 
+2. `event_conditions` lists the conditions under which an event is recorded. 
+3. `censor_conditions` are conditions under which the data is censored. This occurs when there is no event, and the analysis period ends without the primary endpoint occurring. 
+
+### Calculate Analysis Value (AVAL)
+The `AVAL` variable represents the time from the start date (`STARTDT`) to the event or censor date (`ADT`). It can be calculated using the `derive_vars_duration` function from `admiral`.
+
+```{r}
+adtte <- adtte |> 
+  derive_vars_duration(
+    new_var = AVAL,
+    start_date = STARTDT,
+    end_date = ADT,
+    out_unit = "days"
+  )
+```
+
+### Derive Analysis Sequence Number (ASEQ)
+`ASEQ` helps in managing the sequence of observations per subject, ensuring that each event is properly ordered and uniquely identifiable. This is achieved using the `derive_var_obs_number` function from `admiral`.
+
+```{r}
+adtte <- adtte |>
+  derive_var_obs_number(
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(PARAMCD),
+    check_type = "error" 
+  )
+```
+
+### Add ADSL Variables
+Finally, additional variables from the `adsl` dataset are merged in the main dataset. This adds additional demographic or treatment-related information which can be used for more detailed analysis or stratification in reports. 
+
+```{r}
+adtte <- adtte |>
+  derive_vars_merged(
+    dataset_add = adsl,
+    new_vars = exprs(ARMCD, ARM, ACTARMCD, ACTARM, AGE, SEX),
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+### Result
+We've successfully constructed our final `adtte` dataset. Below, you can find a selection of columns that contain the most critical information.
+
+```{r, eval=TRUE, echo=FALSE}
+dataset_vignette(
+  adtte,
+  display_vars = exprs(STUDYID, USUBJID, PARAMCD, PARAM, CNSR, ADT, STARTDT, AVAL)
+)
+```
+
+In this dataset: 
+
+1. `PARAMCD` is "PFS" and `PARAM` is "Progression Free Survival", identifying the type of analysis. 
+2. `CNSR` indicates if the observation is censored (1 in this case indicates censored). 
+3. `ADT` is the date on which the progression or death was observed, or the date of censoring. 
+4. `STARTDT` is the start date from which the PFS duration is calculated.
+5. `AVAL` gives the number of days from the start date to the event/censoring date. 
