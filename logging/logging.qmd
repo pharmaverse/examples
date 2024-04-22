@@ -306,7 +306,7 @@ Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
 
 ### Information in the Log
 
-The `logrx` package offers more detailed output compared to `logr`, as outlined in the following table. A key distinction is that `logrx` automatically logs code output. In `logr`,  you manually specify all of the output to be included in the log.
+The `logrx` package offers more detailed output compared to `logr`, as outlined in the following table. A key distinction is that `logrx` automatically logs code output. In `logr`, the user has control over what does or does not get logged. The user can specify which variables, objects, or datasets to send to the log. If the 'autolog' feature is activated, output from dplyr and sassy functions are logged automatically.
 
 ```{=html}
 <style>
