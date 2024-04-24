@@ -6,121 +6,210 @@ title: Creating ADRS with PFS Parameters
 library(admiraldev)
 ```
 
+The Analysis Data Review Set (ADRS) serves as a dataset in clinical trials, particularly in the field of oncology, for monitoring disease progression and therapeutic efficacy. 
 
-The Analysis Dataset for Response in Solid Tumors (ADRS) is designed for use in oncology clinical trials to capture tumor response data based on a standardized criteria. ADRS facilitates the evaluation of various response endpoints, one of which is Progression-Free Survival (PFS).
-
-PFS is a key measure inicating the length of time during  and after medication that a patients disease does not worsen. 
-
-This document provides a guide on constructing an ADRS dataset with PFS parameters using the  `admiralonco` package.
+ADRS is structured to capture and organize data points pertinent to efficacy endpoints like Progression-Free Survival (PFS). PFS is a vital metric that measures the amount of time a patient lives without their disease worsening after commencing treatment.
+ 
+Below you'll find instructions on creating an ADRS dataset tailored for PFS parameters using the `admiral` and `admiralonco`packages from the pharmaverse. 
 
 ### Required Packages
-The packages below are required to construct the ADRS dataset with PFS parameters. 
-```{r, output = FALSE}
-library(pharmaversesdtm)
-library(pharmaverseadam)
-library(admiraldev)
+The packages below are required to construct an ADRS focusing on PFS parameters. 
+```{r, output=FALSE}
 library(admiral)
 library(admiralonco)
+library(pharmaverseadam)
+library(pharmaversesdtm)
 library(dplyr)
 ```
 
-### Load Example Data
-Data necessary for the analysis is loaded.
+### Loading Data
+Data necessary for the analysis is loaded from the `pharmaverseadam` and `pharmaversestdm` packages. 
 ```{r}
 data("adsl")
 data("rs_onco_recist")
+
+rs <- rs_onco_recist
+rs <- convert_blanks_to_na(rs)
 ```
 
-- `adsl`: This dataset contains demographic and baseline information and is taken from the `pharmaverseadam` package.
-- `rs_onco_recist` and `tu_onco_recist`: These datasets contain oncology-specific data where `rs` is response summaries and `tu` is tumor measurements. They are from the `pharmaversestdm` package. 
+`adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data. The `rs_onco_recist` dataset is preprocessed, ensuring the data is clean for analysis. 
 
-### Define Progression Events
-The `rs_onco_recist` is filtered to include only records where the test code is "PD" to ensure that only data relevent to disease progression is selected. 
+### Merging Data
+`RANDDT` (randomization date) is merged  from `ADSL` into `rs`, aligning data by study and subject identifiers. 
 ```{r}
-rs_pd_event <- rs_onco_recist %>%
-  filter(RSTESTCD == "PD") %>%
+adsl_vars <- exprs(RANDDT)
+adrs <- derive_vars_merged(
+  rs,
+  dataset_add = adsl,
+  new_vars = adsl_vars,
+  by_vars = exprs(STUDYID, USUBJID)
+)
+```
+
+### Preprocessing 
+The data is filtered to include only investigators overall responses and new columns are added to categorize the type of response. Some minor modifications are made to rename `RSSTRESC` to `AVALC` and map character response values in `AVALC` to numeric in `AVAL`.
+```{r}
+adrs <- adrs |>
+  filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") |>
   mutate(
-    ADT = as.Date(RSDTC),
-    CNSR = 0,
-    PARAMCD = "PFS",
-    PARAM = "Progression-Free Survival"
+    PARAMCD = "OVR",
+    PARAM = "Overall Response by Investigator",
+    PARCAT1 = "Tumor Response",
+    PARCAT2 = "Investigator",
+    PARCAT3 = "RECIST 1.1"
+  )
+
+adrs <- adrs |>
+  mutate(
+    AVALC = RSSTRESC,
+    AVAL = aval_resp(AVALC)
   )
 ```
 
-### Define Censoring Events
-Subjects who are not recorded as dead are considered censored at their last alive visit date. 
+### Handling Date Variables
+Missing parts of dates are imputed, assuming the last possible date. Further information can be found in the `admiral` documentation [here](https://pharmaverse.github.io/admiral/reference/derive_vars_dt.html)
+
 ```{r}
-adsl_censor <- adsl %>%
-  filter(is.na(DTHDT)) %>%
-  mutate(
-    ADT = as.Date(LSTALVDT),
-    CNSR = 1
+adrs <- adrs |>
+  derive_vars_dt(
+    dtc = RSDTC,
+    new_vars_prefix = "A",
+    highest_imputation = "D",
+    date_imputation = "last"
+  ) |>
+  mutate(AVISIT = VISIT)
+```
+
+### Applying the Worst Response Function
+A function is constructed to rank responses from worst to best. The `derive_var_relative_flag` function is then used to flag the worst response for further analysis, considering only valid assessments from the randomization date onwards. 
+
+```{r}
+worst_resp <- function(arg) {
+  case_when(
+    arg == "NE" ~ 1,
+    arg == "CR" ~ 2,
+    arg == "PR" ~ 3,
+    arg == "SD" ~ 4,
+    arg == "NON-CR/NON-PD" ~ 5,
+    arg == "PD" ~ 6,
+    TRUE ~ 0
+  )
+}
+
+adrs <- adrs |>
+  restrict_derivation(
+    derivation = derive_var_extreme_flag,
+    args = params(
+      by_vars = exprs(STUDYID, USUBJID, ADT),
+      order = exprs(worst_resp(AVALC), RSSEQ),
+      new_var = ANL01FL,
+      mode = "last"
+    ),
+    filter = !is.na(AVAL) & ADT >= RANDDT
   )
 ```
 
-### Derive Time-to-Event Parameters
-Using the `derive_param_tte` function the `admiral` package is used to derive the PFS parameter based on the start date `RANDDT`, event conditions, and censor conditions provided. The events and censors are specified using `event_source` and `censor_source`. 
-
+### Flagging Progressive Disease
+The records up to the first occurrence of progressive disease are flagged, a critical endpoint in oncology studies. 
 ```{r}
-source_datasets <- list(
-  adsl = adsl, 
-  rs_pd = rs_pd_event, 
-  adsl_censor = adsl_censor
-)
-
-adrs_pfs <- derive_param_tte(
-  dataset_adsl = adsl,
-  start_date = RANDDT,
-  event_conditions = list(pd_event = event_source(dataset_name = "rs_pd", date = ADT)),
-  censor_conditions = list(adsl_censor = censor_source(dataset_name = "adsl_censor", date = ADT)),
-  source_datasets = source_datasets,
-  set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression-Free Survival")
-)
+adrs <- adrs |>
+  derive_var_relative_flag(
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(ADT, RSSEQ),
+    new_var = ANL02FL,
+    condition = AVALC == "PD",
+    mode = "first",
+    selection = "before",
+    inclusive = TRUE
+  )
 ```
 
-### Derive Analysis Value
-`AVAL` (Analysis Value) representing the duration in days from randomization to the event or censoring, is calculated. 
-
+### Deriving Parameters for Progressive Disease and Last Assessment 
+The first instance of disease progression for each subject is derived. This is specifically marked by the endpoint 'PD' (Progressive Disease). 
 ```{r}
-adrs_pfs <- derive_vars_duration(
-  dataset = adrs_pfs,
-  new_var = AVAL,
-  start_date = STARTDT,
-  end_date = ADT,
-  out_unit = "days"
-)
+adrs <- adrs |>
+  derive_extreme_records(
+    dataset_ref = adsl,
+    dataset_add = adrs,
+    by_vars = exprs(STUDYID, USUBJID),
+    filter_add = PARAMCD == "OVR" & AVALC == "PD" & ANL01FL == "Y",
+    order = exprs(ADT, RSSEQ),
+    mode = "first",
+    exist_flag = AVALC,
+    false_value = "N",
+    set_values_to = exprs(
+      PARAMCD = "PD",
+      PARAM = "Disease Progression by Investigator",
+      PARCAT1 = "Tumor Response",
+      PARCAT2 = "Investigator",
+      PARCAT3 = "RECIST 1.1",
+      AVAL = yn_to_numeric(AVALC),
+      ANL01FL = "Y"
+    )
+  )
 ```
 
-### Merge Additional ADSL Variables
-Additional variables from `ADSL` that are not already in `adrs_pfs` are merged into the dataset, ensuring that all relevent ptient information is included. 
-
+### Handling Death Data
+We next need to process the death data. The function `derive_extreme_records` is used to identify the first occurrence of a death event for each patient, ensuring it is recorded and flagged for analysis. 
 ```{r}
-additional_adsl_vars <- setdiff(names(adsl), names(adrs_pfs))
+adsldth <- adsl |>
+  select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
-additional_adsl_vars_exprs <- lapply(additional_adsl_vars, as.name)
+adrs <- adrs |>
+  derive_extreme_records(
+    dataset_ref = adsldth,
+    dataset_add = adsldth,
+    by_vars = exprs(STUDYID, USUBJID),
+    filter_add = !is.na(DTHDT),
+    exist_flag = AVALC,
+    false_value = "N",
+    set_values_to = exprs(
+      PARAMCD = "DEATH",
+      PARAM = "Death",
+      PARCAT1 = "Reference Event",
+      AVAL = yn_to_numeric(AVALC),
+      ANL01FL = "Y",
+      ADT = DTHDT
+    )
+  ) |>
+  select(-DTHDT)
+```
 
-adrs_pfs <- adrs_pfs %>%
+### Merging Additional ADSL Variables
+additional variables are merged rom `adsl` into the main dataset, enriching it with more subject-level details. 
+```{r}
+adrs <- adrs |>
   derive_vars_merged(
-    dataset_add = adsl,
-    new_vars = additional_adsl_vars_exprs,
+    dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
   )
 ```
 
 ### Result
-We've successfully constructed our final `adrs` dataset. Below, you can find a selection of columns that contain the most critical information.
+We've successfully constructed our final ADRS dataset. Below, you can find a selection of columns that contain the most critical information.
 
-```{r, eval=TRUE, echo=FALSE}
+```{r echo=FALSE}
+adrs_vig <- adrs |> 
+  select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
+         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC)
+
 dataset_vignette(
-  dataset = adrs_pfs, 
-  display_vars = exprs(USUBJID, PARAMCD, PARAM, STARTDT, ADT, CNSR, AVAL)
+  dataset = adrs |> head(),
+  display_vars = exprs(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
+         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC) 
 )
 ```
 
 In this dataset: 
 
-1. `PARAMCD` is "PFS" and `PARAM` is "Progression Free Survival", identifying the type of analysis. 
-2. `CNSR` indicates if the observation is censored (1 in this case indicates censored). 
-3. `ADT` is the date on which the progression or death was observed, or the date of censoring. 
-4. `STARTDT` is the start date from which the PFS duration is calculated.
-5. `AVAL` gives the number of days from the start date to the event/censoring date. 
+- **PARAMCD**: Represents the parameter code, here "OVR" for "Overall Response", indicating the type of data recorded.
+- **PARAM**: Describes the content of the record, specifically "Overall Response by Investigator", indicating it reflects the investigator's assessment of patient response.
+- **PARCAT1**: Category of the parameter, "Tumor Response", classifying the type of outcome measured.
+- **PARCAT2**: Indicates the assessor, here "Investigator", showing who evaluated the response.
+- **PARCAT3**: Denotes the criteria used, "RECIST 1.1", which is a standard for assessing tumor response in trials.
+- **ADT**: The actual date of the assessment, showing when each response was evaluated.
+- **AVALC**: Represents the assessed value of response, e.g., "SD" (Stable Disease), "NE" (Not Evaluable), "CR" (Complete Response), "PD" (Progressive Disease), reflecting the condition of the disease at the time of assessment.
+- **AVAL**: Numeric code of the response, where 1 is best (CR) and 6 is worst (NE), used for statistical analysis.
+- **ANL01FL**: A flag ('Y' for yes) indicating that the record is valid for analysis.
+- **ANL02FL**: This flag indicates whether the record is before the first occurrence of progressive disease ('Y' for yes, 'NA' for not applicable).
+- **RSDTC**: The reported date of the assessment, which should align with ADT but may be less precise (e.g., missing day component).
