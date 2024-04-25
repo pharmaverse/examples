@@ -50,6 +50,7 @@ website:
         - auto: sdtm
         - auto: adam
         - auto: tlg
+        - auto: logging
         - text: "---"
         - file: session.qmd
         - text: Pharmaverse Home
