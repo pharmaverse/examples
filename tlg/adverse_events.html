@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.554">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>pharmaverse examples - Adverse Events</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,12 +56,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../logging/logging.html" rel="next">
 <link href="../tlg/demographic.html" rel="prev">
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
@@ -73,7 +78,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -98,7 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -113,24 +121,31 @@ cookieconsent.run({
 "language":"en-US"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="pharmaverse examples - Adverse Events">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://pharmaverse.github.io/examples/tlg/assets/img/Pharmaverse_examples.png">
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
+
 <body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
 <span class="menu-text"></span></a>
@@ -146,7 +161,7 @@ cookieconsent.run({
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -156,7 +171,9 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -164,15 +181,20 @@ cookieconsent.run({
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -187,15 +209,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
@@ -204,8 +226,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -224,7 +246,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
@@ -233,8 +255,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -247,7 +269,24 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Difference Between <code>logr</code> And <code>logrx</code></span></a>
+  </div>
 </li>
+      </ul>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -262,12 +301,16 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/adverse_events.html">Adverse Events</a></li></ol></nav><div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/adverse_events.html">Adverse Events</a></li></ol></nav>
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Adverse Events</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
@@ -282,17 +325,22 @@ cookieconsent.run({
   
 
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the <a href="https://pharmaverse.github.io/pharmaverseadam/main/">pharmaverseadam</a> <code>ADSL</code> and <code>ADAE</code> data as an input.</p>
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> and <code>ADAE</code> data as an input.</p>
 <p>The packages used with a brief description of their purpose are as follows:</p>
 <ul>
-<li>
-<a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
-<li>
-<a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
-</ul></section><section id="load-data-and-required-pharmaverse-package" class="level2"><h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-package">Load Data and Required pharmaverse Package</h2>
+<li><a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
+<li><a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
+</ul>
+</section>
+<section id="load-data-and-required-pharmaverse-package" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-package">Load Data and Required pharmaverse Package</h2>
 <p>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <code>adsl</code> and <code>adae</code>.</p>
-<p>Note that <a href="https://insightsengineering.github.io/tern/">tern</a> depends on <a href="https://github.com/insightsengineering/rtables">rtables</a> so the latter is automatically attached.</p>
+<p>Note that <code>{tern}</code> depends on <code>{rtables}</code> so the latter is automatically attached.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tern)</span>
@@ -304,7 +352,9 @@ cookieconsent.run({
 <span id="cb1-8"><a href="#cb1-8"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="start-preprocessing" class="level2"><h2 class="anchored" data-anchor-id="start-preprocessing">Start preprocessing</h2>
+</section>
+<section id="start-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="start-preprocessing">Start preprocessing</h2>
 <p>Now we will add some pre-processing to add labels ready for display in the table and how the output will be split.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>adae <span class="ot">&lt;-</span> adae <span class="sc">%&gt;%</span></span>
@@ -317,7 +367,9 @@ cookieconsent.run({
 <span id="cb2-8"><a href="#cb2-8"></a><span class="co"># Define the split function</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>split_fun <span class="ot">&lt;-</span> drop_split_levels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="adverse-events-table" class="level2"><h2 class="anchored" data-anchor-id="adverse-events-table">Adverse Events table</h2>
+</section>
+<section id="adverse-events-table" class="level2">
+<h2 class="anchored" data-anchor-id="adverse-events-table">Adverse Events table</h2>
 <p>Now we create the Adverse Events table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
@@ -679,7 +731,10 @@ VASCULAR DISORDERS
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1282,12 +1337,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
       <a href="../tlg/demographic.html" class="pagination-link" aria-label="Demographic Table">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Demographic Table</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../logging/logging.html" class="pagination-link" aria-label="The Difference Between `logr` And `logrx`">
+        <span class="nav-page-text">The Difference Between <code>logr</code> And <code>logrx</code></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
@@ -1387,7 +1447,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-95"><a href="#cb5-95"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1399,6 +1460,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
