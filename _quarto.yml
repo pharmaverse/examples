@@ -1,5 +1,6 @@
 project:
   type: website
+  execute-dir: project
   preview:
     port: 4200
     browser: true

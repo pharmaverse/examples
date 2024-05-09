@@ -13,7 +13,7 @@ library(pharmaverseadam)
 ## ----r echo=TRUE--------------------------------------------------------------
 # ---- Load Specs for Metacore ----
 
-metacore <- spec_to_metacore("pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADPC")
 
 ## ----r------------------------------------------------------------------------

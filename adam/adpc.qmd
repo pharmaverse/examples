@@ -38,7 +38,7 @@ We have saved our specifications in an Excel file and will load them into `{meta
 #| warning: false
 # ---- Load Specs for Metacore ----
 
-metacore <- spec_to_metacore("../metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADPC")
 ```
 
