@@ -3,6 +3,10 @@ title: "ADSL"
 order: 1
 ---
 
+```{r setup script, include=FALSE, purl=FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+```
+
 ## Introduction
 
 This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as `ADSL` end-to-end, using `{pharmaversesdtm}` SDTM data as input.

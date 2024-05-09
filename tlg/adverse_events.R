@@ -1,29 +1,4 @@
----
-title: "Adverse Events"
-order: 2
----
-
-
-```{r setup script, include=FALSE, purl=FALSE}
-knitr::knit_hooks$set(purl = knitr::hook_purl)
-```
-
-## Introduction
-
-This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the `{pharmaverseadam}` `ADSL` and `ADAE` data as an input.
-
-The packages used with a brief description of their purpose are as follows:
-
-* [`{rtables}`](https://insightsengineering.github.io/rtables/): designed to create and display complex tables with R.
-* [`{tern}`](https://insightsengineering.github.io/tern/): contains analysis functions to create tables and graphs used for clinical trial reporting.
-
-## Load Data and Required pharmaverse Package
-
-After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl` and `adae`.
-
-Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
-
-```{r setup, message=FALSE, warning=FALSE, results='hold'}
+## ----r setup, message=FALSE, warning=FALSE, results='hold'--------------------
 library(pharmaverseadam)
 library(tern)
 library(dplyr)
@@ -33,13 +8,8 @@ adsl <- adsl %>%
 
 adae <- adae %>%
   df_explicit_na()
-```
 
-## Start preprocessing
-
-Now we will add some pre-processing to add labels ready for display in the table and how the output will be split.
-
-```{r preproc}
+## ----r preproc----------------------------------------------------------------
 adae <- adae %>%
   var_relabel(
     AEBODSYS = "MedDRA System Organ Class",
@@ -49,13 +19,8 @@ adae <- adae %>%
 
 # Define the split function
 split_fun <- drop_split_levels
-```
 
-## Adverse Events table
-
-Now we create the Adverse Events table.
-
-```{r table}
+## ----r table------------------------------------------------------------------
 lyt <- basic_table(show_colcounts = TRUE) %>%
   split_cols_by(var = "ACTARM") %>%
   add_overall_col(label = "All Patients") %>%
@@ -92,4 +57,4 @@ lyt <- basic_table(show_colcounts = TRUE) %>%
 result <- build_table(lyt, df = adae, alt_counts_df = adsl)
 
 result
-```
+
