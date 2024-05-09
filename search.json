@@ -91,7 +91,7 @@
     "href": "adam/adpc.html#next-load-specifications-for-metacore",
     "title": "ADPC",
     "section": "Next Load Specifications for Metacore",
-    "text": "Next Load Specifications for Metacore\nWe have saved our specifications in an Excel file and will load them into metacore with the metacore::spec_to_metacore() function.\n\n# ---- Load Specs for Metacore ----\n\nmetacore &lt;- spec_to_metacore(\"../metadata/pk_spec.xlsx\") %&gt;%\n  select_dataset(\"ADPC\")",
+    "text": "Next Load Specifications for Metacore\nWe have saved our specifications in an Excel file and will load them into metacore with the metacore::spec_to_metacore() function.\n\n# ---- Load Specs for Metacore ----\n\nmetacore &lt;- spec_to_metacore(\"./metadata/pk_spec.xlsx\") %&gt;%\n  select_dataset(\"ADPC\")",
     "crumbs": [
       "ADAM",
       "ADPC"
@@ -168,7 +168,7 @@
     "href": "adam/adppk.html#next-load-specifications-for-metacore",
     "title": "ADPPK",
     "section": "Next Load Specifications for Metacore",
-    "text": "Next Load Specifications for Metacore\nWe have saved our specifications in an Excel file and will load them into metacore with the metacore::spec_to_metacore() function.\n\n# ---- Load Specs for Metacore ----\nmetacore &lt;- spec_to_metacore(\"../metadata/pk_spec.xlsx\") %&gt;%\n  select_dataset(\"ADPPK\")",
+    "text": "Next Load Specifications for Metacore\nWe have saved our specifications in an Excel file and will load them into metacore with the metacore::spec_to_metacore() function.\n\n# ---- Load Specs for Metacore ----\nmetacore &lt;- spec_to_metacore(\"./metadata/pk_spec.xlsx\") %&gt;%\n  select_dataset(\"ADPPK\")",
     "crumbs": [
       "ADAM",
       "ADPPK"

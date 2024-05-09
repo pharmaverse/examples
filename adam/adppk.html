@@ -304,7 +304,7 @@ cookieconsent.run({
 <p>We have saved our specifications in an Excel file and will load them into <a href="https://atorus-research.github.io/metacore/">metacore</a> with the <code><a href="https://atorus-research.github.io/metacore/reference/spec_to_metacore.html">metacore::spec_to_metacore()</a></code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"../metadata/pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPPK"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="load-source-datasets" class="level2"><h2 class="anchored" data-anchor-id="load-source-datasets">Load Source Datasets</h2>
@@ -1416,7 +1416,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-38"><a href="#cb19-38"></a><span class="in">#| label: Load Specs</span></span>
 <span id="cb19-39"><a href="#cb19-39"></a><span class="in">#| warning: false</span></span>
 <span id="cb19-40"><a href="#cb19-40"></a><span class="in"># ---- Load Specs for Metacore ----</span></span>
-<span id="cb19-41"><a href="#cb19-41"></a><span class="in">metacore &lt;- spec_to_metacore("../metadata/pk_spec.xlsx") %&gt;%</span></span>
+<span id="cb19-41"><a href="#cb19-41"></a><span class="in">metacore &lt;- spec_to_metacore("./metadata/pk_spec.xlsx") %&gt;%</span></span>
 <span id="cb19-42"><a href="#cb19-42"></a><span class="in">  select_dataset("ADPPK")</span></span>
 <span id="cb19-43"><a href="#cb19-43"></a><span class="in">```</span></span>
 <span id="cb19-44"><a href="#cb19-44"></a></span>
