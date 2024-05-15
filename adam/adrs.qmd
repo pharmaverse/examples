@@ -187,7 +187,7 @@ adrs <- adrs |>
 ```
 
 ### Result
-We've successfully constructed our final ADRS dataset. Below, you can find a selection of columns that contain the most critical information.
+We've successfully constructed our final `ADRS` dataset. Below, you can find a selection of columns that contain the most critical information.
 
 ```{r echo=FALSE}
 adrs_vig <- adrs |> 
