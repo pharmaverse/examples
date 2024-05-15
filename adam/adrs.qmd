@@ -14,7 +14,7 @@ The Response Analysis Dataset (`ADRS`) serves as a dataset in oncology clinical 
 Below you'll find instructions on creating an `ADRS` dataset tailored for PFS parameters using the `{admiral}` and `{admiralonco}` packages from the pharmaverse. 
 
 ### Required Packages
-The packages below are required to construct an ADRS focusing on PFS parameters. 
+The packages below are required to construct an `ADRS` focusing on parameters that will be needed to construct a PFS time to event endpoint. 
 ```{r, output=FALSE}
 library(admiral)
 library(admiralonco)
