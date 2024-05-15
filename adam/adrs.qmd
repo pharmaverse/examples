@@ -24,7 +24,7 @@ library(dplyr)
 ```
 
 ### Loading Data
-Data necessary for the analysis is loaded from the `pharmaverseadam` and `pharmaversestdm` packages. 
+Data necessary for the analysis is loaded from the `{pharmaverseadam}` and `{pharmaversestdm}` packages. 
 ```{r}
 data("adsl")
 data("rs_onco_recist")
