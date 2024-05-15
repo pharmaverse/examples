@@ -151,7 +151,7 @@ adrs <- adrs |>
 ```
 
 ### Handling Death Data
-We next need to process the death data. The function `derive_extreme_records` is used to identify the first occurrence of a death event for each patient, ensuring it is recorded and flagged for analysis. 
+We next need to process the death data. The function `admiral::derive_extreme_records()` is used to identify a death event for each patient.
 ```{r}
 adsldth <- adsl |>
   select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
