@@ -177,7 +177,7 @@ adrs <- adrs |>
 ```
 
 ### Merging Additional ADSL Variables
-additional variables are merged rom `adsl` into the main dataset, enriching it with more subject-level details. 
+Additional variables are merged from `adsl` into the dataset, enriching it with more subject-level details. 
 ```{r}
 adrs <- adrs |>
   derive_vars_merged(
