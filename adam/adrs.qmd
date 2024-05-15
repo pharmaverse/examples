@@ -7,7 +7,7 @@ order: 4
 library(admiraldev)
 ```
 
-The Analysis Data Review Set (ADRS) serves as a dataset in clinical trials, particularly in the field of oncology, for monitoring disease progression and therapeutic efficacy. 
+The Response Analysis Dataset (`ADRS`) serves as a dataset in oncology clinical trials for monitoring disease response or progression and therapeutic efficacy. 
 
 ADRS is structured to capture and organize data points pertinent to efficacy endpoints like Progression-Free Survival (PFS). PFS is a vital metric that measures the amount of time a patient lives without their disease worsening after commencing treatment.
  
