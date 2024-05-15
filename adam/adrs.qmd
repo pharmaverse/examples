@@ -33,7 +33,7 @@ rs <- rs_onco_recist
 rs <- convert_blanks_to_na(rs)
 ```
 
-`adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data. The `rs_onco_recist` dataset is preprocessed, ensuring the data is clean for analysis. 
+`adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data.
 
 ### Merging Data
 `RANDDT` (randomization date) is merged  from `ADSL` into `rs`, aligning data by study and subject identifiers. 
