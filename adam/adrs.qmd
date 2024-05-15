@@ -82,7 +82,7 @@ adrs <- adrs |>
 ```
 
 ### Applying the Worst Response Function
-A function is constructed to rank responses from worst to best. The `derive_var_relative_flag` function is then used to flag the worst response for further analysis, considering only valid assessments from the randomization date onwards. 
+A function is constructed to rank responses from worst to best. The `admiral::derive_var_relative_flag()` function is then used to create a flag (`ANL01FL`) for the worst response at each date for further analysis, considering only valid assessments from the randomization date onwards. 
 
 ```{r}
 worst_resp <- function(arg) {
