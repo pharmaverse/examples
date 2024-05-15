@@ -11,7 +11,7 @@ The Response Analysis Dataset (`ADRS`) serves as a dataset in oncology clinical 
 
 `ADRS` is structured to capture and organize data points pertinent to being able to subsequently derive common efficacy endpoints like Progression-Free Survival (PFS). PFS is a vital metric that measures the amount of time a patient lives without their disease worsening or death after commencing treatment.
  
-Below you'll find instructions on creating an ADRS dataset tailored for PFS parameters using the `admiral` and `admiralonco`packages from the pharmaverse. 
+Below you'll find instructions on creating an `ADRS` dataset tailored for PFS parameters using the `{admiral}` and `{admiralonco}` packages from the pharmaverse. 
 
 ### Required Packages
 The packages below are required to construct an ADRS focusing on PFS parameters. 
