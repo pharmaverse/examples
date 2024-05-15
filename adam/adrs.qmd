@@ -208,9 +208,4 @@ In this dataset:
 - **PARCAT1**: Category of the parameter, "Tumor Response", classifying the type of outcome measured.
 - **PARCAT2**: Indicates the assessor, here "Investigator", showing who evaluated the response.
 - **PARCAT3**: Denotes the criteria used, "RECIST 1.1", which is a standard for assessing solid tumor response in trials.
-- **ADT**: The actual date of the assessment, showing when each response was evaluated.
-- **AVALC**: Represents the assessed value of response, e.g., "SD" (Stable Disease), "NE" (Not Evaluable), "CR" (Complete Response), "PR" (Partial Response), "PD" (Progressive Disease), reflecting the condition of the disease at the time of assessment.
-- **AVAL**: Numeric code of the response, where 1 is best (CR) and 6 is worst (NE), used for statistical analysis.
-- **ANL01FL**: A flag ('Y' for yes) indicating that the record is valid for analysis.
-- **ANL02FL**: This flag indicates whether the record is before the first occurrence of progressive disease ('Y' for yes, 'NA' for not applicable).
-- **RSDTC**: The reported date of the assessment, which should align with ADT but may be less precise (e.g., missing day component).
+- **ADT**: The actual date of the assessment, showing when each response was evaluated. 
