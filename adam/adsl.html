@@ -357,6 +357,7 @@ cookieconsent.run({
 <span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Read in input SDTM data </span></span>
 <span id="cb1-12"><a href="#cb1-12"></a><span class="fu">data</span>(<span class="st">"dm"</span>)</span>
 <span id="cb1-13"><a href="#cb1-13"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>Next we need to load the specification file in the form of a <code>{metacore}</code> object.</p>
 <div class="cell">
@@ -364,6 +365,7 @@ cookieconsent.run({
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">load</span>(<span class="fu">metacore_example</span>(<span class="st">"pilot_ADaM.rda"</span>))</span>
 <span id="cb2-3"><a href="#cb2-3"></a>metacore <span class="ot">&lt;-</span> metacore <span class="sc">%&gt;%</span> </span>
 <span id="cb2-4"><a href="#cb2-4"></a>   <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>Here is an example of how a <code>{metacore}</code> object looks showing variable level metadata:</p>
 <div class="cell">
@@ -384,6 +386,7 @@ cookieconsent.run({
 10 ADSL    TRT01AN       NA    10 FALSE &lt;NA&gt;  NA       
 # ℹ 39 more rows</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 </section>
 <section id="start-building-derivations" class="level2">
@@ -395,6 +398,7 @@ cookieconsent.run({
 <pre><code>Error in build_from_derived(metacore, list(), predecessor_only = FALSE): Not all datasets provided. Please pass the following dataset(s):
 DM</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code>metatools::build_from_derived()</code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
 <div class="cell">
@@ -418,6 +422,7 @@ DM</code></pre>
 10 CDISCPILOT01 01-701… 1115   701    Xano…    84 YEARS WHITE M     NOT H… &lt;NA&gt; 
 # ℹ 3 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <code>{metacore}</code> object and see the controlled terminology for <code>AGEGR1</code>.</p>
 <div class="cell">
@@ -430,6 +435,7 @@ DM</code></pre>
 2 65-80 65-80 
 3 &gt;80   &gt;80   </code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code>metatools::create_cat_var()</code> takes in a <code>{metacore}</code> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
 <p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <code>{metacore}</code> object with the <code>metatools::create_var_from_codelist()</code> function.</p>
@@ -463,6 +469,7 @@ DM</code></pre>
 # ℹ 6 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;, AGEGR1 &lt;chr&gt;,
 #   AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 <p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <code>{admiral}</code> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
 <div class="cell">
@@ -531,6 +538,7 @@ DM</code></pre>
 #   AGEGR1 &lt;chr&gt;, AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;, TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;,
 #   TRTDURD &lt;dbl&gt;, SAFFL &lt;chr&gt;</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 </section>
 <section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2">
@@ -568,6 +576,7 @@ DM</code></pre>
 #   DISCONFL &lt;chr&gt;, DSRAEFL &lt;chr&gt;, DTHFL &lt;chr&gt;, BMIBL &lt;dbl&gt;, BMIBLGR1 &lt;chr&gt;,
 #   HEIGHTBL &lt;dbl&gt;, WEIGHTBL &lt;dbl&gt;, EDUCLVL &lt;dbl&gt;, DISONSDT &lt;dbl&gt;, …</code></pre>
 </div>
+<p>/home/runner/work/examples/examples/adam/adsl.R</p>
 </div>
 
 

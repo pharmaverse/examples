@@ -345,6 +345,7 @@ cookieconsent.run({
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(pharmaversesdtm)</span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(pharmaverseadam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="next-load-specifications-for-metacore" class="level2">
@@ -354,6 +355,7 @@ cookieconsent.run({
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPPK"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="load-source-datasets" class="level2">
@@ -373,6 +375,7 @@ cookieconsent.run({
 <span id="cb3-11"><a href="#cb3-11"></a>pc <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(pc)</span>
 <span id="cb3-12"><a href="#cb3-12"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span>
 <span id="cb3-13"><a href="#cb3-13"></a>lb <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(lb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="derivations" class="level2">
@@ -409,6 +412,7 @@ cookieconsent.run({
 <span id="cb4-26"><a href="#cb4-26"></a>    <span class="at">DRUG =</span> PCTEST,</span>
 <span id="cb4-27"><a href="#cb4-27"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
 <span id="cb4-28"><a href="#cb4-28"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="get-dosing-information" class="level3">
@@ -452,6 +456,7 @@ cookieconsent.run({
 <span id="cb5-35"><a href="#cb5-35"></a>  <span class="co"># Derive dates from date/times</span></span>
 <span id="cb5-36"><a href="#cb5-36"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-37"><a href="#cb5-37"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="expand-dosing-records" class="level3">
@@ -489,6 +494,7 @@ cookieconsent.run({
 <span id="cb6-29"><a href="#cb6-29"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-30"><a href="#cb6-30"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb6-31"><a href="#cb6-31"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(AENDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="find-first-dose" class="level3">
@@ -515,6 +521,7 @@ cookieconsent.run({
 <span id="cb7-18"><a href="#cb7-18"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
 <span id="cb7-19"><a href="#cb7-19"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
 <span id="cb7-20"><a href="#cb7-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="find-previous-dose" class="level3">
@@ -539,6 +546,7 @@ cookieconsent.run({
 <span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
 <span id="cb8-17"><a href="#cb8-17"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
 <span id="cb8-18"><a href="#cb8-18"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="find-previous-nominal-dose" class="level3">
@@ -557,6 +565,7 @@ cookieconsent.run({
 <span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
 <span id="cb9-12"><a href="#cb9-12"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
 <span id="cb9-13"><a href="#cb9-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="combine-pc-and-ex-data" class="level3">
@@ -604,6 +613,7 @@ cookieconsent.run({
 <span id="cb10-39"><a href="#cb10-39"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
 <span id="cb10-40"><a href="#cb10-40"></a>    )</span>
 <span id="cb10-41"><a href="#cb10-41"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="derive-analysis-variables" class="level3">
@@ -679,6 +689,7 @@ cookieconsent.run({
 <span id="cb11-67"><a href="#cb11-67"></a>    <span class="at">ADDL =</span> <span class="dv">0</span>,</span>
 <span id="cb11-68"><a href="#cb11-68"></a>    <span class="at">OCC =</span> <span class="dv">1</span>,</span>
 <span id="cb11-69"><a href="#cb11-69"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="add-aseq" class="level3">
@@ -699,6 +710,7 @@ cookieconsent.run({
 <span id="cb12-13"><a href="#cb12-13"></a>    <span class="at">PROJIDN =</span> <span class="dv">1</span>,</span>
 <span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">PART =</span> <span class="dv">1</span>,</span>
 <span id="cb12-15"><a href="#cb12-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 </section>
@@ -733,6 +745,7 @@ cookieconsent.run({
 <span id="cb13-25"><a href="#cb13-25"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> FORM, <span class="at">out_var =</span> FORMN) <span class="sc">%&gt;%</span></span>
 <span id="cb13-26"><a href="#cb13-26"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> ROUTE, <span class="at">out_var =</span> ROUTEN) <span class="sc">%&gt;%</span></span>
 <span id="cb13-27"><a href="#cb13-27"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> SUBJTYPC, <span class="at">out_var =</span> SUBJTYP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 <section id="derive-additional-baselines" class="level3">
 <h3 class="anchored" data-anchor-id="derive-additional-baselines">Derive Additional Baselines</h3>
@@ -779,6 +792,7 @@ cookieconsent.run({
 <span id="cb14-39"><a href="#cb14-39"></a>    )</span>
 <span id="cb14-40"><a href="#cb14-40"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb14-41"><a href="#cb14-41"></a>  <span class="fu">rename</span>(<span class="at">TBILBL =</span> BILIBL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="combine-with-covariates" class="level3">
@@ -801,6 +815,7 @@ cookieconsent.run({
 <span id="cb15-14"><a href="#cb15-14"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> DVID, <span class="at">out_var =</span> DVIDN) <span class="sc">%&gt;%</span></span>
 <span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> EXCLFCOM, <span class="at">out_var =</span> EXCLF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 </section>
@@ -814,6 +829,7 @@ cookieconsent.run({
 <span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
 <span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
 <span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 </section>
 <section id="apply-labels-and-formats-with-xportr" class="level2">
@@ -829,6 +845,7 @@ cookieconsent.run({
 <span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
 <span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
 <span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adppk.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>/home/runner/work/examples/examples/adam/adppk.R</p>
 </div>
 
 
