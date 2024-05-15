@@ -192,7 +192,7 @@ We've successfully constructed our final `ADRS` dataset. Below, you can find a s
 ```{r echo=FALSE}
 adrs_vig <- adrs |> 
   select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC)
+         ADT, AVALC, AVAL, ANL01FL)
 
 dataset_vignette(
   dataset = adrs |> head(),
