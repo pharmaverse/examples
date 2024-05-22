@@ -47,6 +47,10 @@ adrs <- derive_vars_merged(
 )
 ```
 
+```{r, echo=FALSE}
+head(adrs, n = 10)
+```
+
 ### Preprocessing 
 The data is filtered to include only investigators overall responses and new columns are added to categorize the type of response. Some minor modifications are made to rename `RSSTRESC` to `AVALC` and map character response values in `AVALC` to numeric in `AVAL`.
 ```{r}
@@ -67,6 +71,10 @@ adrs_rn <- adrs_ovr |>
   )
 ```
 
+```{r, echo=FALSE}
+head(adrs_rn, n = 10)
+```
+
 ### Handling Date Variables
 Missing parts of dates are imputed, assuming the last possible date. Further information can be found in the `admiral` documentation [here](https://pharmaverse.github.io/admiral/reference/derive_vars_dt.html)
 
@@ -79,6 +87,10 @@ adrs_dtpt <- adrs_rn |>
     date_imputation = "last"
   ) |>
   mutate(AVISIT = VISIT)
+```
+
+```{r, echo=FALSE}
+head(adrs_dtpt, n = 10)
 ```
 
 ### Applying the Worst Response Function
@@ -108,6 +120,10 @@ adrs_rk <- adrs_dtpt |>
     ),
     filter = !is.na(AVAL) & ADT >= RANDDT
   )
+```
+
+```{r, echo=FALSE}
+head(adrs_rk, n = 10)
 ```
 
 ### Flagging Progressive Disease
@@ -150,6 +166,10 @@ adrs_fdp <- adrs_flg |>
   )
 ```
 
+```{r, echo=FALSE}
+head(adrs_fdp, n = 10)
+```
+
 ### Handling Death Data
 We next need to process the death data. The function `admiral::derive_extreme_records()` is used to identify a death event for each patient.
 ```{r}
@@ -174,6 +194,10 @@ adrs_de <- adrs_fdp |>
     )
   ) |>
   select(-DTHDT)
+```
+
+```{r, echo=FALSE}
+head(adrs_de, n = 10)
 ```
 
 ### Merging Additional ADSL Variables
