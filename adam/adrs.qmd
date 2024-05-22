@@ -126,28 +126,13 @@ adrs_rk <- adrs_dtpt |>
 head(adrs_rk, n = 10)
 ```
 
-### Flagging Progressive Disease
-The records up to the first occurrence of progressive disease are flagged, a critical endpoint in oncology studies. 
-```{r}
-adrs_flg <- adrs_rk |>
-  derive_var_relative_flag(
-    by_vars = exprs(STUDYID, USUBJID),
-    order = exprs(ADT, RSSEQ),
-    new_var = ANL02FL,
-    condition = AVALC == "PD",
-    mode = "first",
-    selection = "before",
-    inclusive = TRUE
-  )
-```
-
 ### Deriving Parameters for Progressive Disease and Last Assessment 
 The first instance of disease progression for each subject is derived. This is specifically marked by the endpoint 'PD' (Progressive Disease). 
 ```{r}
-adrs_fdp <- adrs_flg |>
+adrs_fdp <- adrs_rk |>
   derive_extreme_records(
     dataset_ref = adsl,
-    dataset_add = adrs_flg,
+    dataset_add = adrs_rk,
     by_vars = exprs(STUDYID, USUBJID),
     filter_add = PARAMCD == "OVR" & AVALC == "PD" & ANL01FL == "Y",
     order = exprs(ADT, RSSEQ),
@@ -216,12 +201,12 @@ We've successfully constructed our final `ADRS` dataset. Below, you can find a s
 ```{r echo=FALSE}
 adrs_vig <- adrs_mrg |> 
   select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC)
+         ADT, AVALC, AVAL, ANL01FL, RSDTC)
 
 dataset_vignette(
   dataset = adrs_vig |> head(),
   display_vars = exprs(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC) 
+         ADT, AVALC, AVAL, ANL01FL, RSDTC) 
 )
 ```
 
