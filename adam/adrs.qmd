@@ -126,7 +126,7 @@ adrs_rk <- adrs_dtpt |>
 head(adrs_rk, n = 10)
 ```
 
-### Deriving Parameters for Progressive Disease and Last Assessment 
+### Deriving Parameters for Progressive Disease
 The first instance of disease progression for each subject is derived. This is specifically marked by the endpoint 'PD' (Progressive Disease). 
 ```{r}
 adrs_fdp <- adrs_rk |>
@@ -155,13 +155,45 @@ adrs_fdp <- adrs_rk |>
 head(adrs_fdp, n = 10)
 ```
 
+### Deriving Last Disease Assessment Parameter
+   
+The `ADRS` dataset should include parameters that mark the last disease assessment for each subject. This can be achieved using `admiral::derive_extreme_records()`, which identifies the latest assessment based on specific conditions.
+   
+Here, we derive a new parameter for the last disease assessment.
+   
+```{r}
+adrs_last <- adrs_fdp |>
+ derive_extreme_records(
+   dataset_ref = adsl,
+   dataset_add = adrs_fdp,
+   by_vars = exprs(STUDYID, USUBJID),
+   filter_add = PARAMCD == "OVR" & ANL01FL == "Y",
+   order = exprs(ADT, RSSEQ),
+   mode = "last",
+   set_values_to = exprs(
+     PARAMCD = "LSTA",
+     PARAM = "Last Disease Assessment by Investigator",
+     PARCAT1 = "Tumor Response",
+     PARCAT2 = "Investigator",
+     PARCAT3 = "RECIST 1.1",
+     ANL01FL = "Y"
+   )
+ )
+```
+
+```{r, echo=FALSE}
+head(adrs_last, n = 10)
+```
+
+This parameter will provide critical information about the most recent evaluation of disease status for each patient.
+
 ### Handling Death Data
 We next need to process the death data. The function `admiral::derive_extreme_records()` is used to identify a death event for each patient.
 ```{r}
 adsldth <- adsl |>
   select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
-adrs_de <- adrs_fdp |>
+adrs_de <- adrs_last |>
   derive_extreme_records(
     dataset_ref = adsldth,
     dataset_add = adsldth,
