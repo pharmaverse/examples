@@ -231,15 +231,9 @@ adrs_mrg <- adrs_de |>
 We've successfully constructed our final `ADRS` dataset. Below, you can find a selection of columns that contain the most critical information.
 
 ```{r echo=FALSE}
-adrs_vig <- adrs_mrg |> 
+adrs_mrg |> 
   select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, RSDTC)
-
-dataset_vignette(
-  dataset = adrs_vig |> head(),
-  display_vars = exprs(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, RSDTC) 
-)
+         ADT, AVALC, AVAL, ANL01FL, RSDTC) |> head(n = 10)
 ```
 
 In this dataset: 
