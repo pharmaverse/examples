@@ -50,7 +50,7 @@ adrs <- derive_vars_merged(
 ### Preprocessing 
 The data is filtered to include only investigators overall responses and new columns are added to categorize the type of response. Some minor modifications are made to rename `RSSTRESC` to `AVALC` and map character response values in `AVALC` to numeric in `AVAL`.
 ```{r}
-adrs <- adrs |>
+adrs_ovr <- adrs |>
   filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") |>
   mutate(
     PARAMCD = "OVR",
@@ -60,7 +60,7 @@ adrs <- adrs |>
     PARCAT3 = "RECIST 1.1"
   )
 
-adrs <- adrs |>
+adrs_rn <- adrs_ovr |>
   mutate(
     AVALC = RSSTRESC,
     AVAL = aval_resp(AVALC)
@@ -71,7 +71,7 @@ adrs <- adrs |>
 Missing parts of dates are imputed, assuming the last possible date. Further information can be found in the `admiral` documentation [here](https://pharmaverse.github.io/admiral/reference/derive_vars_dt.html)
 
 ```{r}
-adrs <- adrs |>
+adrs_dtpt <- adrs_rn |>
   derive_vars_dt(
     dtc = RSDTC,
     new_vars_prefix = "A",
@@ -97,7 +97,7 @@ worst_resp <- function(arg) {
   )
 }
 
-adrs <- adrs |>
+adrs_rk <- adrs_dtpt |>
   restrict_derivation(
     derivation = derive_var_extreme_flag,
     args = params(
@@ -113,7 +113,7 @@ adrs <- adrs |>
 ### Flagging Progressive Disease
 The records up to the first occurrence of progressive disease are flagged, a critical endpoint in oncology studies. 
 ```{r}
-adrs <- adrs |>
+adrs_flg <- adrs_rk |>
   derive_var_relative_flag(
     by_vars = exprs(STUDYID, USUBJID),
     order = exprs(ADT, RSSEQ),
@@ -128,10 +128,10 @@ adrs <- adrs |>
 ### Deriving Parameters for Progressive Disease and Last Assessment 
 The first instance of disease progression for each subject is derived. This is specifically marked by the endpoint 'PD' (Progressive Disease). 
 ```{r}
-adrs <- adrs |>
+adrs_fdp <- adrs_flg |>
   derive_extreme_records(
     dataset_ref = adsl,
-    dataset_add = adrs,
+    dataset_add = adrs_flg,
     by_vars = exprs(STUDYID, USUBJID),
     filter_add = PARAMCD == "OVR" & AVALC == "PD" & ANL01FL == "Y",
     order = exprs(ADT, RSSEQ),
@@ -156,7 +156,7 @@ We next need to process the death data. The function `admiral::derive_extreme_re
 adsldth <- adsl |>
   select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
-adrs <- adrs |>
+adrs_de <- adrs_fdp |>
   derive_extreme_records(
     dataset_ref = adsldth,
     dataset_add = adsldth,
@@ -179,7 +179,7 @@ adrs <- adrs |>
 ### Merging Additional ADSL Variables
 Additional variables are merged from `adsl` into the dataset, enriching it with more subject-level details. 
 ```{r}
-adrs <- adrs |>
+adrs_mrg <- adrs_de |>
   derive_vars_merged(
     dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
@@ -190,12 +190,12 @@ adrs <- adrs |>
 We've successfully constructed our final `ADRS` dataset. Below, you can find a selection of columns that contain the most critical information.
 
 ```{r echo=FALSE}
-adrs_vig <- adrs |> 
+adrs_vig <- adrs_mrg |> 
   select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL)
+         ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC)
 
 dataset_vignette(
-  dataset = adrs |> head(),
+  dataset = adrs_vig |> head(),
   display_vars = exprs(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
          ADT, AVALC, AVAL, ANL01FL, ANL02FL, RSDTC) 
 )
