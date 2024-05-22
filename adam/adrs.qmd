@@ -19,21 +19,16 @@ library(pharmaversesdtm)
 library(dplyr)
 ```
 
-### Loading Data
-Data necessary for the analysis is loaded from the `{pharmaverseadam}` and `{pharmaversestdm}` packages. 
+### Preparing Data
+Data necessary for the analysis is loaded from the `{pharmaverseadam}` and `{pharmaversestdm}` packages. `adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data. `RANDDT` (randomization date) is then merged  from `adsl` into `rs`, aligning data by study and subject identifiers. 
+
 ```{r}
 data("adsl")
 data("rs_onco_recist")
 
 rs <- rs_onco_recist
 rs <- convert_blanks_to_na(rs)
-```
 
-`adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data.
-
-### Merging Data
-`RANDDT` (randomization date) is merged  from `adsl` into `rs`, aligning data by study and subject identifiers. 
-```{r}
 adsl_vars <- exprs(RANDDT)
 adrs <- derive_vars_merged(
   rs,
