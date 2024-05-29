@@ -89,7 +89,10 @@ ex_dates <- ex %>%
   # Derive event ID and nominal relative time from first dose (NFRLT)
   mutate(
     EVID = 1,
-    NFRLT = 24 * (VISITDY - 1), .after = USUBJID
+    NFRLT = case_when(
+      VISITDY == 1 ~ 0,
+      TRUE ~ 24 * VISITDY
+    )
   ) %>%
   # Set missing end dates to start date
   mutate(AENDTM = case_when(
@@ -429,5 +432,4 @@ adppk_xpt <- adppk %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adppk.xpt")) # Write xpt v5 transport file
-
 
