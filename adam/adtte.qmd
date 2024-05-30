@@ -1,111 +1,219 @@
 ---
-title: ADTTE
-order: 5
+title: "ADTTE"
+order: 4
 ---
 
 ```{r setup, include = FALSE}
-library(admiraldev)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 ```
 
-Analysis Dataset Time-to-Event (ADTTE) is a standardized dataset used in the statistical analysis of time-to-event data in clinical trials, particularly in oncology and its structure is designed to facilitate this. It focuses on endpoints that are based on the time until a certain event occurs, such as disease progression, recurrence, or death. 
+# Introduction
 
-Progression-Free-Survival (PFS) is a common and crucial endpoint in cancer clinical trials. It measures the length of time during and after treatment that a patient lives with the disease without it getting worse. 
+This article provides a step-by-step explanation for creating an ADaM `ADTTE` (Time-to-Event) dataset with common oncology endpoint parameters using the `{admiral}`, `{admiralonco}`, `{metacore}`, `{metatools}`, and `{xportr}` packages. ADTTE datasets often involve calculating time-to-event variables for endpoints such as Overall Survival (OS) and Progression-Free Survival (PFS).
 
-This example outlines the creation of an ADTTE dataset focusing on Progression-Free Survival using the `admiralonco` package. 
+For the purpose of this example, we will use the `adsl` and `adrs_onco` datasets.
 
-### Required packages
-The packages below are required to construct the ADTTE with PFS parameters.
-```{r, output=FALSE}
+# Load Required Packages
+
+First, we will load the necessary packages:
+
+```{r message=FALSE, warning=FALSE}
 library(admiral)
 library(admiralonco)
-library(pharmaverseadam)
 library(dplyr)
 library(lubridate)
+library(metacore)
+library(metatools)
+library(xportr)
+library(pharmaverseadam)
 ```
 
-### Read in Data
-Data necessary for the analysis is loaded from the `pharmaverseadam` package.
+# Load Specifications and Source Data
 
-```{r}
+We will load our specification file into a `{metacore}` object to trace the dataset variables and attributes. Then, we will read the source data (`adsl` and `adrs_onco`).
+
+```{r, warni}
+# Load metacore specifications
+metacore <- spec_to_metacore("adam_spec.xlsx") %>%
+  select_dataset("ADTTE")
+
+# Load source datasets
 data("adsl")
 data("adrs_onco")
 
-adrs <- adrs_onco # renamed for convenience
+adrs <- adrs_onco %>%
+  convert_blanks_to_na()
 ```
 
-`adsl` contains subject-level information like treatment group, demographic data, etc. `adrs_onco` contains detailed records about adverse events or disease progression specific to oncology. 
+```{r, echo=FALSE}
+# Show the first few rows of ADSL and ADRS
+head(adsl, n=10)
+head(adrs, n=10)
+```
 
-### Derive Parameters for Time-to-Event Analysis
-This is where the time-to-event parameters are defined. These parameters are used to determine when and how each patient's data is censored or when an event occurs. This can be done using the `derive_param_tte` function from `admiral`.
+# Define Event and Censoring Sources
+
+We define event and censoring sources using the `admiral::event_source` and `admiral::censor_source` functions. This forms the basis for calculating time-to-event endpoints.
 
 ```{r}
+# Define event and censoring sources
+death_event <- event_source(
+  dataset_name = "adsl",
+  date = DTHDT,
+  set_values_to = exprs(
+    EVNTDESC = "Death",
+    SRCDOM = "ADSL",
+    SRCVAR = "DTHDT"
+  )
+)
+
+pd_event <- event_source(
+  dataset_name = "adrs",
+  filter = PARAMCD == "PD" & ANL01FL == "Y",
+  date = ADT,
+  set_values_to = exprs(
+    EVNTDESC = "Progressive Disease",
+    SRCDOM = "ADRS",
+    SRCVAR = "ADT"
+  )
+)
+
+lastalive_censor <- censor_source(
+  dataset_name = "adsl",
+  date = LSTALVDT,
+  set_values_to = exprs(
+    EVNTDESC = "Last Known Alive",
+    CNSDTDSC = "Last Known Alive Date",
+    SRCDOM = "ADSL",
+    SRCVAR = "LSTALVDT"
+  )
+)
+
+rand_censor <- censor_source(
+  dataset_name = "adsl",
+  date = RANDDT,
+  set_values_to = exprs(
+    EVNTDESC = "Randomization Date",
+    CNSDTDSC = "Randomization Date",
+    SRCDOM = "ADSL",
+    SRCVAR = "RANDDT"
+  )
+)
+```
+
+# Derive Time-to-Event Parameters
+
+The `admiral::derive_param_tte` function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).
+
+```{r}
+# Derive Overall Survival (OS)
 adtte <- derive_param_tte(
+  dataset_adsl = adsl,
+  start_date = RANDDT,
+  event_conditions = list(death_event),
+  censor_conditions = list(lastalive_censor, rand_censor),
+  source_datasets = list(adsl = adsl, adrs = adrs),
+  set_values_to = exprs(PARAMCD = "OS", PARAM = "Overall Survival")
+)
+
+# Derive Progression-Free Survival (PFS)
+adtte <- adtte %>%
+  derive_param_tte(
     dataset_adsl = adsl,
     start_date = RANDDT,
-    event_conditions = list(death_event, pd_event), 
-    censor_conditions = list(lasta_censor, rand_censor), 
-    source_datasets = list(adsl = adsl, adrs = adrs), 
-    set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression Free Survival")
+    event_conditions = list(pd_event, death_event),
+    censor_conditions = list(lastalive_censor, rand_censor),
+    source_datasets = list(adsl = adsl, adrs = adrs),
+    set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression-Free Survival")
   )
 ```
 
-Within in context of PFS:
+```{r, echo=FALSE}
+# Display first few rows of ADTTE
+head(adtte, n=10)
+```
 
-1. `start_date` is where you start counting for the time-to-event analysis. 
-2. `event_conditions` lists the conditions under which an event is recorded. 
-3. `censor_conditions` are conditions under which the data is censored. This occurs when there is no event, and the analysis period ends without the primary endpoint occurring. 
+# Derive Analysis Value (`AVAL`)
 
-### Calculate Analysis Value (AVAL)
-The `AVAL` variable represents the time from the start date (`STARTDT`) to the event or censor date (`ADT`). It can be calculated using the `derive_vars_duration` function from `admiral`.
+The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration` function.
 
 ```{r}
-adtte <- adtte |> 
+# Derive analysis value
+adtte <- adtte %>%
   derive_vars_duration(
     new_var = AVAL,
     start_date = STARTDT,
-    end_date = ADT,
-    out_unit = "days"
+    end_date = ADT
   )
 ```
 
-### Derive Analysis Sequence Number (ASEQ)
-`ASEQ` helps in managing the sequence of observations per subject, ensuring that each event is properly ordered and uniquely identifiable. This is achieved using the `derive_var_obs_number` function from `admiral`.
+```{r, echo=FALSE}
+# Display first few rows with AVAL
+head(adtte, n=10)
+```
+
+# Derive Analysis Sequence Number (`ASEQ`)
+
+We derive the sequence number for each record to uniquely identify them using the `admiral::derive_var_obs_number` function.
 
 ```{r}
-adtte <- adtte |>
+# Derive analysis sequence number
+adtte <- adtte %>%
   derive_var_obs_number(
     by_vars = exprs(STUDYID, USUBJID),
     order = exprs(PARAMCD),
-    check_type = "error" 
+    check_type = "error"
   )
 ```
 
-### Add ADSL Variables
-Finally, additional variables from the `adsl` dataset are merged in the main dataset. This adds additional demographic or treatment-related information which can be used for more detailed analysis or stratification in reports. 
+```{r, echo=FALSE}
+# Display first few rows with ASEQ
+head(adtte, n=10)
+```
+
+# Add ADSL Variables
+
+Additional variables from the `ADSL` dataset are merged into the `ADTTE` dataset using the `admiral::derive_vars_merged` function to enrich it.
 
 ```{r}
-adtte <- adtte |>
+# Add ADSL variables
+adtte <- adtte %>%
   derive_vars_merged(
     dataset_add = adsl,
-    new_vars = exprs(ARMCD, ARM, ACTARMCD, ACTARM, AGE, SEX),
     by_vars = exprs(STUDYID, USUBJID)
   )
 ```
 
-### Result
-We've successfully constructed our final `adtte` dataset. Below, you can find a selection of columns that contain the most critical information.
-
-```{r, eval=TRUE, echo=FALSE}
-dataset_vignette(
-  adtte,
-  display_vars = exprs(STUDYID, USUBJID, PARAMCD, PARAM, CNSR, ADT, STARTDT, AVAL)
-)
+```{r, echo=FALSE}
+# Display first few rows with merged ADSL variables
+head(adtte, n=10)
 ```
 
-In this dataset: 
+# Apply Metadata and eSub Checks
 
-1. `PARAMCD` is "PFS" and `PARAM` is "Progression Free Survival", identifying the type of analysis. 
-2. `CNSR` indicates if the observation is censored (1 in this case indicates censored). 
-3. `ADT` is the date on which the progression or death was observed, or the date of censoring. 
-4. `STARTDT` is the start date from which the PFS duration is calculated.
-5. `AVAL` gives the number of days from the start date to the event/censoring date. 
+We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
+
+```{r, eval=FALSE}
+# Apply metadata and perform checks
+adtte <- adtte %>%
+  check_variables(metacore) %>%
+  check_ct_data(metacore) %>%
+  order_cols(metacore) %>%
+  sort_by_key(metacore) %>%
+  xportr_type(metacore, domain = "ADTTE") %>%
+  xportr_length(metacore) %>%
+  xportr_label(metacore) %>%
+  xportr_df_label(metacore)
+  
+# Write dataset to XPT file (optional)
+dir <- tempdir()
+xportr_write(adtte, file.path(dir, "adtte.xpt"))
+```
+
+```{r, echo=FALSE}
+# Display final ADTTE dataset
+head(adtte, n=10)
+```
