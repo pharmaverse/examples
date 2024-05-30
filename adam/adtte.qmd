@@ -37,7 +37,7 @@ We will load our specification file into a `{metacore}` object to trace the data
 
 ```{r, warni}
 # Load metacore specifications
-metacore <- spec_to_metacore("adam_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/adam_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets

@@ -36,7 +36,7 @@ library(stringr)
 Load the specifications stored in an Excel file into a `{metacore}` object.
 
 ```{r read-specs}
-metacore <- metacore::spec_to_metacore("adam_spec.xlsx") %>%
+metacore <- metacore::spec_to_metacore("./metadata/adam_spec.xlsx") %>%
   metacore::select_dataset("ADRS")
 ```
 
