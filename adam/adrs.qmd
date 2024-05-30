@@ -1,103 +1,132 @@
 ---
-title: ADRS
+title: "ADRS"
 order: 4
 ---
 
-The Response Analysis Dataset (`ADRS`) serves as a dataset in oncology clinical trials for monitoring disease response or progression and therapeutic efficacy. 
+```{r setup script, include=FALSE, purl=FALSE}
+knitr::knit_hooks$set(purl = knitr::hook_purl)
+```
 
-`ADRS` is structured to capture and organize data points pertinent to being able to subsequently derive common efficacy endpoints like Progression-Free Survival (PFS). PFS is a vital metric that measures the amount of time a patient lives without their disease worsening or death after commencing treatment.
- 
-This guide provides instructions on creating an `ADRS` dataset tailored for PFS parameters using packages from the pharmaverse along with some from tidyverse. `ADSL` and SDTM data is used as input. 
+# Introduction
 
-### Load Data and Required pharmaverse Packages
-The packages below are required to construct an `ADRS` focusing on parameters that will be needed to construct a PFS time to event endpoint. Three further packages are used in this guide for working with metadata and validator applications. A brief description of their purpose is found below:
+The Response Analysis Dataset (`ADRS`) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an `ADRS` ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include `CR` (Complete Response), `PR` (Partial Response), `SD` (Stable Disease), `NON-CR/NON-PD` (Non-CR/Non-PD), `PD` (Progressive Disease), and `NE` (Not Evaluable).
 
--   [`{metacore}`](https://atorus-research.github.io/metacore/): provides harmonized metadata/specifications object.
--   [`{metatools}`](https://pharmaverse.github.io/metatools/): uses the provided metadata to build/enhance and check the dataset.
--   [`{admiral}`](https://pharmaverse.github.io/admiral/index.html): provides the ADaM derivations.
--   [`{xportr}`](https://atorus-research.github.io/xportr/): delivers the SAS transport file (XPT) and eSub checks.
+This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).
 
-```{r, output=FALSE}
+# Load Packages
+
+First, we load the necessary packages required for creating the `ADRS` dataset.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(admiral)
 library(admiralonco)
-library(pharmaverseadam)
-library(pharmaversesdtm)
-library(dplyr)
 library(metacore)
 library(metatools)
 library(xportr)
+library(pharmaversesdtm)
+library(pharmaverseadam)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(stringr)
 ```
 
-Data necessary for the analysis is loaded from the `{pharmaverseadam}` and `{pharmaversestdm}` packages. `adsl` contains subject-level data and `rs_onco_recist` holds oncology-specific response data. `RANDDT` (randomization date) is then merged  from `adsl` into `rs`, aligning data by study and subject identifiers. 
+# Load Specifications for Metacore
 
-```{r}
+Load the specifications stored in an Excel file into a `{metacore}` object.
+
+```{r read-specs}
+metacore <- metacore::spec_to_metacore("adam_spec.xlsx") %>%
+  metacore::select_dataset("ADRS")
+```
+
+# Load Source Datasets
+
+We load the required SDTM datasets (`RS`, `TU`) and ADaM dataset (`ADSL`) necessary for creating the `ADRS` dataset.
+
+```{r load-data}
 data("adsl")
 data("rs_onco_recist")
+data("tu_onco_recist")
 
 rs <- rs_onco_recist
-rs <- convert_blanks_to_na(rs)
+tu <- tu_onco_recist
 
+# Convert blanks to NA
+rs <- admiral::convert_blanks_to_na(rs)
+tu <- admiral::convert_blanks_to_na(tu)
+```
+
+# Merging ADSL with RS
+
+Merge `ADSL` to the `RS` domain by selecting only the necessary variables for derivations.
+
+```{r merge-adsl-rs}
 adsl_vars <- exprs(RANDDT)
-adrs <- derive_vars_merged(
+adrs_merged <- admiral::derive_vars_merged(
   rs,
   dataset_add = adsl,
   new_vars = adsl_vars,
   by_vars = exprs(STUDYID, USUBJID)
 )
+head(adrs_merged, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs, n = 10)
-```
+# Pre-processing of Input Records
 
-### Preprocessing 
-The data is filtered to include only investigators overall responses and new columns are added to categorize the type of response. Some minor modifications are made to rename `RSSTRESC` to `AVALC` and map character response values in `AVALC` to numeric in `AVAL`.
-```{r}
-adrs_ovr <- adrs |>
-  filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") |>
-  mutate(
+## Select Overall Response Records and Set Parameter Details
+
+Filter the `RS` domain to include only overall response records assessed by the investigator and set the parameter details accordingly.
+
+```{r set-param-details}
+adrs_ovr <- adrs_merged %>%
+  dplyr::filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") %>%
+  dplyr::mutate(
     PARAMCD = "OVR",
     PARAM = "Overall Response by Investigator",
     PARCAT1 = "Tumor Response",
     PARCAT2 = "Investigator",
     PARCAT3 = "RECIST 1.1"
   )
-
-adrs_rn <- adrs_ovr |>
-  mutate(
-    AVALC = RSSTRESC,
-    AVAL = aval_resp(AVALC)
-  )
+head(adrs_ovr, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs_rn, n = 10)
-```
+## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`
 
-### Handling Date Variables
-Missing parts of dates are imputed, assuming the last possible date. Further information can be found in the `admiral` documentation [here](https://pharmaverse.github.io/admiral/reference/derive_vars_dt.html)
+Impute missing dates and derive analysis dates and visits.
 
-```{r}
-adrs_dtpt <- adrs_rn |>
-  derive_vars_dt(
+```{r impute-dates}
+adrs_imputed <- adrs_ovr %>%
+  admiral::derive_vars_dt(
     dtc = RSDTC,
     new_vars_prefix = "A",
     highest_imputation = "D",
     date_imputation = "last"
-  ) |>
-  mutate(AVISIT = VISIT)
+  ) %>%
+  dplyr::mutate(AVISIT = VISIT)
+head(adrs_imputed, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs_dtpt, n = 10)
+## Derive `AVALC` and `AVAL`
+
+Populate `AVALC` with assessed values and create the numeric version `AVAL`.
+
+```{r derive-aval}
+adrs_aval <- adrs_imputed %>%
+  dplyr::mutate(
+    AVALC = RSSTRESC,
+    AVAL = admiralonco::aval_resp(AVALC)
+  )
+head(adrs_aval, n=10)
 ```
 
-### Applying the Worst Response Function
-A function is constructed to rank responses from worst to best. The `admiral::derive_var_relative_flag()` function is then used to create a flag (`ANL01FL`) for the worst response at each date for further analysis, considering only valid assessments from the randomization date onwards. 
+## Flag Worst Assessment at Each Date (`ANL01FL`)
 
-```{r}
+Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.
+
+```{r flag-worst-assessment}
 worst_resp <- function(arg) {
-  case_when(
+  dplyr::case_when(
     arg == "NE" ~ 1,
     arg == "CR" ~ 2,
     arg == "PR" ~ 3,
@@ -108,10 +137,10 @@ worst_resp <- function(arg) {
   )
 }
 
-adrs_rk <- adrs_dtpt |>
-  restrict_derivation(
-    derivation = derive_var_extreme_flag,
-    args = params(
+adrs_anl01fl <- adrs_aval %>%
+  admiral::restrict_derivation(
+    derivation = admiral::derive_var_extreme_flag,
+    args = admiral::params(
       by_vars = exprs(STUDYID, USUBJID, ADT),
       order = exprs(worst_resp(AVALC), RSSEQ),
       new_var = ANL01FL,
@@ -119,19 +148,20 @@ adrs_rk <- adrs_dtpt |>
     ),
     filter = !is.na(AVAL) & ADT >= RANDDT
   )
+head(adrs_anl01fl, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs_rk, n = 10)
-```
+# Deriving Parameters
 
-### Deriving Parameters for Progressive Disease
-The first instance of disease progression for each subject is derived. This is specifically marked by the endpoint 'PD' (Progressive Disease). 
-```{r}
-adrs_fdp <- adrs_rk |>
-  derive_extreme_records(
+## Derive Progressive Disease Parameter
+
+Use the `admiral::derive_extreme_records()` function to find the date of first `PD`.
+
+```{r derive-pd}
+adrs_pd <- adrs_anl01fl %>%
+  admiral::derive_extreme_records(
     dataset_ref = adsl,
-    dataset_add = adrs_rk,
+    dataset_add = adrs_anl01fl,
     by_vars = exprs(STUDYID, USUBJID),
     filter_add = PARAMCD == "OVR" & AVALC == "PD" & ANL01FL == "Y",
     order = exprs(ADT, RSSEQ),
@@ -144,56 +174,23 @@ adrs_fdp <- adrs_rk |>
       PARCAT1 = "Tumor Response",
       PARCAT2 = "Investigator",
       PARCAT3 = "RECIST 1.1",
-      AVAL = yn_to_numeric(AVALC),
+      AVAL = admiral::yn_to_numeric(AVALC),
       ANL01FL = "Y"
     )
   )
+head(adrs_pd, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs_fdp, n = 10)
-```
+## Derive Death Parameter
 
-### Deriving Last Disease Assessment Parameter
-   
-The `ADRS` dataset should include parameters that mark the last disease assessment for each subject. This can be achieved using `admiral::derive_extreme_records()`, which identifies the latest assessment based on specific conditions.
-   
-Here, we derive a new parameter for the last disease assessment.
-   
-```{r}
-adrs_last <- adrs_fdp |>
- derive_extreme_records(
-   dataset_ref = adsl,
-   dataset_add = adrs_fdp,
-   by_vars = exprs(STUDYID, USUBJID),
-   filter_add = PARAMCD == "OVR" & ANL01FL == "Y",
-   order = exprs(ADT, RSSEQ),
-   mode = "last",
-   set_values_to = exprs(
-     PARAMCD = "LSTA",
-     PARAM = "Last Disease Assessment by Investigator",
-     PARCAT1 = "Tumor Response",
-     PARCAT2 = "Investigator",
-     PARCAT3 = "RECIST 1.1",
-     ANL01FL = "Y"
-   )
- )
-```
+Create a new death parameter using the death date from `ADSL`.
 
-```{r, echo=FALSE}
-head(adrs_last, n = 10)
-```
+```{r derive-death}
+adsldth <- adsl %>%
+  dplyr::select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
-This parameter will provide critical information about the most recent evaluation of disease status for each patient.
-
-### Handling Death Data
-We next need to process the death data. The function `admiral::derive_extreme_records()` is used to identify a death event for each patient.
-```{r}
-adsldth <- adsl |>
-  select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
-
-adrs_de <- adrs_last |>
-  derive_extreme_records(
+adrs_death <- adrs_pd %>%
+  admiral::derive_extreme_records(
     dataset_ref = adsldth,
     dataset_add = adsldth,
     by_vars = exprs(STUDYID, USUBJID),
@@ -204,42 +201,65 @@ adrs_de <- adrs_last |>
       PARAMCD = "DEATH",
       PARAM = "Death",
       PARCAT1 = "Reference Event",
-      AVAL = yn_to_numeric(AVALC),
+      AVAL = admiral::yn_to_numeric(AVALC),
       ANL01FL = "Y",
       ADT = DTHDT
     )
-  ) |>
-  select(-DTHDT)
+  ) %>%
+  dplyr::select(-DTHDT)
+head(adrs_death, n=10)
 ```
 
-```{r, echo=FALSE}
-head(adrs_de, n = 10)
-```
+## Derive Last Disease Assessment Parameter
 
-### Merging Additional ADSL Variables
-Additional variables are merged from `adsl` into the dataset, enriching it with more subject-level details. 
-```{r}
-adrs_mrg <- adrs_de |>
-  derive_vars_merged(
-    dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
-    by_vars = exprs(STUDYID, USUBJID)
+Create a parameter for the last disease assessment.
+
+```{r derive-lsta}
+adrs_lsta <- adrs_death %>%
+  admiral::derive_extreme_records(
+    dataset_ref = adsl,
+    dataset_add = adrs_death,
+    by_vars = exprs(STUDYID, USUBJID),
+    filter_add = PARAMCD == "OVR" & ANL01FL == "Y",
+    order = exprs(ADT, RSSEQ),
+    mode = "last",
+    set_values_to = exprs(
+      PARAMCD = "LSTA",
+      PARAM = "Last Disease Assessment by Investigator",
+      PARCAT1 = "Tumor Response",
+      PARCAT2 = "Investigator",
+      PARCAT3 = "RECIST 1.1",
+      ANL01FL = "Y"
+    )
   )
+head(adrs_lsta, n=10)
 ```
 
-### Result
-We've successfully constructed our final `ADRS` dataset. Below, you can find a selection of columns that contain the most critical information.
+# Apply Metadata and Perform Associated Checks
 
-```{r echo=FALSE}
-adrs_mrg |> 
-  select(PARAMCD, PARAM, PARCAT1, PARCAT2, PARCAT3,
-         ADT, AVALC, AVAL, ANL01FL, RSDTC) |> head(n = 10)
+Apply metadata and conduct checks to ensure data quality and compliance.
+
+```{r apply-metadata-check, eval=FALSE}
+adrs_checked <- adrs_lsta %>%
+  metatools::drop_unspec_vars(metacore) %>% # Drop variables not specified in metadata
+  metatools::check_variables(metacore) %>% # Check all variables specified are present and no more
+  metatools::check_ct_data(metacore) %>% # Check controlled terminology
+  metatools::order_cols(metacore) %>% # Order columns according to metadata
+  metatools::sort_by_key(metacore) # Sort rows by sort keys
 ```
 
-In this dataset: 
+# Apply Labels and Formats with xportr
 
-- **PARAMCD**: Represents the parameter code, here "OVR" for "Overall Response", indicating the type of data recorded.
-- **PARAM**: Describes the content of the record, specifically "Overall Response by Investigator", indicating it reflects the investigator's assessment of patient response.
-- **PARCAT1**: Category of the parameter, "Tumor Response", classifying the type of outcome measured.
-- **PARCAT2**: Indicates the assessor, here "Investigator", showing who evaluated the response.
-- **PARCAT3**: Denotes the criteria used, "RECIST 1.1", which is a standard for assessing solid tumor response in trials.
-- **ADT**: The actual date of the assessment, showing when each response was evaluated. 
+Finally, apply labels, formats, and export the dataset to an XPT file.
+
+```{r xportr}
+dir <- tempdir() # Specify the directory for saving the XPT file
+
+adrs_xpt <- adrs_lsta %>%
+  xportr::xportr_type(metacore, domain = "ADRS") %>% # Coerce variable types to match metadata
+  xportr::xportr_length(metacore) %>% # Assign variable lengths from metadata
+  xportr::xportr_label(metacore) %>% # Assign variable labels from metadata
+  xportr::xportr_format(metacore) %>% # Assign variable formats from metadata
+  xportr::xportr_df_label(metacore) %>% # Assign dataset labels from metadata
+  xportr::xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file
+```
