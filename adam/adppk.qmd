@@ -4,7 +4,8 @@ order: 3
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-knitr::knit_hooks$set(purl = knitr::hook_purl)
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
 ```
 
 The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
@@ -32,7 +33,7 @@ library(pharmaverseadam)
 
 ## Next Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. 
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
 
 ```{r echo=TRUE, message=FALSE}
 #| label: Load Specs
@@ -265,7 +266,7 @@ adppk_nom_prev <- adppk_prev %>%
 
 ### Combine PC and EX Data
 
-Here we combine `PC` and `EX` records. We will derive the relative time variables `AFRLT` (Actual Relative Time from First Dose), `APRLT` (Actual Relative Time from Previous Dose), and `NPRLT` (Nominal Relative Time from Previous Dose). 
+Here we combine `PC` and `EX` records. We will derive the relative time variables `AFRLT` (Actual Relative Time from First Dose), `APRLT` (Actual Relative Time from Previous Dose), and `NPRLT` (Nominal Relative Time from Previous Dose).
 
 ```{r}
 #| label: Combine
@@ -448,7 +449,7 @@ covar <- adsl %>%
 
 ### Derive Additional Baselines
 
-Next we add additional baselines from vital signs and laboratory data. 
+Next we add additional baselines from vital signs and laboratory data.
 
 ```{r}
 #| label: Baselines
@@ -538,7 +539,7 @@ adppk <- adppk_prefinal %>%
 
 ## Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`. 
+Using {xportr} we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
 #| label: xportr

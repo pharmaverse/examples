@@ -1,6 +1,6 @@
 ---
-editor: 
-  markdown: 
+editor:
+  markdown:
     wrap: 72
 ---
 
@@ -49,7 +49,8 @@ New Quarto pages should include the code snippet at the top for the
 scripts to be produced.
 
 ```{r setup script, include=FALSE, purl=FALSE}
-knitr::knit_hooks$set(purl = knitr::hook_purl)
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
 ```
 
 # Contributing
