@@ -4,7 +4,8 @@ order: 2
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-knitr::knit_hooks$set(purl = knitr::hook_purl)
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
 ```
 
 The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0>). This example presented uses underlying `EX` and `PC` domains where the `EX` and `PC` domains represent data as collected and the `ADPC` ADaM is output. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
@@ -31,7 +32,7 @@ library(pharmaverseadam)
 
 ## Next Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. 
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
 
 ```{r echo=TRUE}
 #| label: Load Specs
@@ -257,7 +258,7 @@ adpc_next <- adpc_prev %>%
 
 ### Find Previous and Next Nominal Dose
 
-Use the same method to find the previous and next nominal times. 
+Use the same method to find the previous and next nominal times.
 
 ```{r}
 #| label: Previous Nominal Dose
@@ -293,7 +294,7 @@ adpc_nom_next <- adpc_nom_prev %>%
 
 ### Combine PC and EX Data
 
-Combine `PC` and `EX` records and derive the additional relative time variables. 
+Combine `PC` and `EX` records and derive the additional relative time variables.
 
 ```{r}
 #| label: Combine
@@ -452,7 +453,7 @@ adpc_aval <- adpc_nrrlt %>%
 
 ### Derive DTYPE Copy Records
 
-The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose. 
+The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose.
 
 ```{r}
 #| label: DTYPE
@@ -537,7 +538,7 @@ adpc_aseq <- adpc_chg %>%
 
 ### Derive Additional Baselines
 
-Here we derive additional baseline values from `VS` for baseline height `HTBL` and weight `WTBL` and compute the body mass index (BMI) with `compute_bmi()`. 
+Here we derive additional baseline values from `VS` for baseline height `HTBL` and weight `WTBL` and compute the body mass index (BMI) with `compute_bmi()`.
 
 ```{r}
 #| label: Baselines

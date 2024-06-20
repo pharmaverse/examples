@@ -1,6 +1,6 @@
 ---
 title: "The Difference Between `logr` And `logrx`"
-format: 
+format:
   html:
     code-overflow: wrap
 ---
@@ -53,22 +53,22 @@ log_close() # log file path: log/script.log
 
 ```{t}
 #| class: output-block
-========================================================================= 
-Log Path: ./log/script.log 
-Working Directory: /Users/davidblair/My Drive/Appsilon/Work Projects/examples 
-User Name: davidblair 
-R Version: 4.3.3 (2024-02-29) 
-Machine: Davids-Air.localdomain arm64 
-Operating System: Darwin 23.4.0 Darwin Kernel Version 23.4.0: Fri Mar 15 00:12:41 PDT 2024; root:xnu-10063.101.17~1/RELEASE_ARM64_T8103 
-Base Packages: stats graphics grDevices utils datasets methods base 
-Other Packages: dplyr_1.1.4 logr_1.3.6 
-Log Start Time: 2024-04-08 13:25:53.22436 
-========================================================================= 
+=========================================================================
+Log Path: ./log/script.log
+Working Directory: /Users/davidblair/My Drive/Appsilon/Work Projects/examples
+User Name: davidblair
+R Version: 4.3.3 (2024-02-29)
+Machine: Davids-Air.localdomain arm64
+Operating System: Darwin 23.4.0 Darwin Kernel Version 23.4.0: Fri Mar 15 00:12:41 PDT 2024; root:xnu-10063.101.17~1/RELEASE_ARM64_T8103
+Base Packages: stats graphics grDevices utils datasets methods base
+Other Packages: dplyr_1.1.4 logr_1.3.6
+Log Start Time: 2024-04-08 13:25:53.22436
+=========================================================================
 
-Analyzing Fuel Efficiency Trends in Cars 
+Analyzing Fuel Efficiency Trends in Cars
 
-NOTE: Log Print Time:  2024-04-08 13:25:53.226347 
-NOTE: Elapsed Time: 0.00139403343200684 secs 
+NOTE: Log Print Time:  2024-04-08 13:25:53.226347
+NOTE: Elapsed Time: 0.00139403343200684 secs
 
 # A tibble: 3 × 2
     cyl average_mpg
@@ -77,37 +77,37 @@ NOTE: Elapsed Time: 0.00139403343200684 secs
 2     6        19.7
 3     8        15.1
 
-NOTE: Data frame has 3 rows and 2 columns. 
+NOTE: Data frame has 3 rows and 2 columns.
 
-NOTE: Log Print Time:  2024-04-08 13:25:53.254377 
-NOTE: Elapsed Time: 0.0280299186706543 secs 
+NOTE: Log Print Time:  2024-04-08 13:25:53.254377
+NOTE: Elapsed Time: 0.0280299186706543 secs
 
 
 Call:
 lm(formula = mpg ~ wt, data = mtcars)
 
 Coefficients:
-(Intercept)           wt  
-     37.285       -5.344  
+(Intercept)           wt
+     37.285       -5.344
 
 
-NOTE: Log Print Time:  2024-04-08 13:25:53.267483 
-NOTE: Elapsed Time: 0.013106107711792 secs 
+NOTE: Log Print Time:  2024-04-08 13:25:53.267483
+NOTE: Elapsed Time: 0.013106107711792 secs
 
-========================================================================= 
-Log End Time: 2024-04-08 13:25:53.286294 
-Log Elapsed Time: 0 00:00:00 
-========================================================================= 
+=========================================================================
+Log End Time: 2024-04-08 13:25:53.286294
+Log Elapsed Time: 0 00:00:00
+=========================================================================
 ```
 
 ## `logrx`
 
-From the R terminal: 
+From the R terminal:
 ```{r, eval=FALSE}
 logrx::axecute("script.R")
 ```
 
-From the Command Line: 
+From the Command Line:
 ```{bash, eval=FALSE}
 Rscript -e "logrx::axecute('script.R')"
 ```
@@ -263,38 +263,38 @@ Run time: 0 seconds
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-	
+
 
 Warnings:
-	
+
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-	
+
 Output:
-	
+
 
 Result:
-	
+
 	Call:
 	lm(formula = mpg ~ wt, data = mtcars)
-	
+
 	Residuals:
-	    Min      1Q  Median      3Q     Max 
-	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
-	
+	    Min      1Q  Median      3Q     Max
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727
+
 	Coefficients:
-	            Estimate Std. Error t value Pr(>|t|)    
+	            Estimate Std. Error t value Pr(>|t|)
 	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
 	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
 	---
 	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-	
+
 	Residual standard error: 3.046 on 30 degrees of freedom
-	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446
 	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
-	
+
 --------------------------------------------------------------------------------
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
@@ -596,38 +596,38 @@ Run time: 0 seconds
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-	
+
 
 Warnings:
-	
+
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-	
+
 Output:
-	
+
 
 Result:
-	
+
 	Call:
 	lm(formula = mpg ~ wt, data = mtcars)
-	
+
 	Residuals:
-	    Min      1Q  Median      3Q     Max 
-	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
-	
+	    Min      1Q  Median      3Q     Max
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727
+
 	Coefficients:
-	            Estimate Std. Error t value Pr(>|t|)    
+	            Estimate Std. Error t value Pr(>|t|)
 	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
 	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
 	---
 	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-	
+
 	Residual standard error: 3.046 on 30 degrees of freedom
-	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446
 	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
-	
+
 --------------------------------------------------------------------------------
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
@@ -870,38 +870,38 @@ Run time: 0 seconds
 -                             Errors and Warnings                              -
 --------------------------------------------------------------------------------
 Errors:
-	
+
 
 Warnings:
-	
+
 --------------------------------------------------------------------------------
 -                         Messages, Output, and Result                         -
 --------------------------------------------------------------------------------
 Messages:
-	
+
 Output:
-	
+
 
 Result:
-	
+
 	Call:
 	lm(formula = mpg ~ wt, data = mtcars)
-	
+
 	Residuals:
-	    Min      1Q  Median      3Q     Max 
-	-4.5432 -2.3647 -0.1252  1.4096  6.8727 
-	
+	    Min      1Q  Median      3Q     Max
+	-4.5432 -2.3647 -0.1252  1.4096  6.8727
+
 	Coefficients:
-	            Estimate Std. Error t value Pr(>|t|)    
+	            Estimate Std. Error t value Pr(>|t|)
 	(Intercept)  37.2851     1.8776  19.858  < 2e-16 ***
 	wt           -5.3445     0.5591  -9.559 1.29e-10 ***
 	---
 	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-	
+
 	Residual standard error: 3.046 on 30 degrees of freedom
-	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+	Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446
 	F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
-	
+
 --------------------------------------------------------------------------------
 -                               Log Output File                                -
 --------------------------------------------------------------------------------
