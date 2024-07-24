@@ -392,8 +392,7 @@ cookieconsent.run({
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">build_from_derived</span>(metacore, <span class="fu">list</span>(), <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in build_from_derived(metacore, list(), predecessor_only = FALSE): Not all datasets provided. Please pass the following dataset(s):
-DM</code></pre>
+<pre><code>Error in names(ds_list) &lt;- unlist(str_split(str_remove(str_remove(deparse(substitute(ds_list)), : 'names' attribute [1] must be the same length as the vector [0]</code></pre>
 </div>
 </div>
 <p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code>metatools::build_from_derived()</code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
