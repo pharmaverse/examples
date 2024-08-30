@@ -272,12 +272,29 @@ cookieconsent.run({
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Logs</span></a>
+ <span class="menu-text">Interactive</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./interactive/teal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>teal</code> applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./logging/logging.html" class="sidebar-item-text sidebar-link">
@@ -353,10 +370,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
- [1] compiler_4.4.1    fastmap_1.2.0     cli_3.6.3         tools_4.4.1      
- [5] htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.28    knitr_1.48       
- [9] jsonlite_1.8.8    xfun_0.47         digest_0.6.37     rlang_1.1.4      
-[13] evaluate_0.24.0  </code></pre>
+ [1] htmlwidgets_1.6.4 compiler_4.4.1    fastmap_1.2.0     cli_3.6.3        
+ [5] tools_4.4.1       htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.28   
+ [9] knitr_1.48        jsonlite_1.8.8    xfun_0.47         digest_0.6.37    
+[13] rlang_1.1.4       evaluate_0.24.0  </code></pre>
 </div>
 </div>
 </section>
@@ -386,6 +403,22 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.1.0</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">anytime</td>
+<td style="text-align: left;">0.3.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">archive</td>
+<td style="text-align: left;">1.1.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">askpass</td>
+<td style="text-align: left;">1.2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">assertthat</td>
+<td style="text-align: left;">0.2.1</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">backports</td>
 <td style="text-align: left;">1.5.0</td>
 </tr>
@@ -394,12 +427,20 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">0.1-3</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">BH</td>
+<td style="text-align: left;">1.84.0-0</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">bit</td>
 <td style="text-align: left;">4.0.5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">bit64</td>
 <td style="text-align: left;">4.0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">brio</td>
+<td style="text-align: left;">1.1.5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">broom</td>
@@ -414,56 +455,80 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.1.0</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">callr</td>
+<td style="text-align: left;">3.7.6</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">car</td>
 <td style="text-align: left;">3.1-2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">carData</td>
 <td style="text-align: left;">3.0-5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cellranger</td>
 <td style="text-align: left;">1.1.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">checkmate</td>
 <td style="text-align: left;">2.3.2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cli</td>
 <td style="text-align: left;">3.6.3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">clipr</td>
 <td style="text-align: left;">0.8.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">colorspace</td>
 <td style="text-align: left;">2.1-1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">common</td>
 <td style="text-align: left;">1.1.3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">commonmark</td>
 <td style="text-align: left;">1.9.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cowplot</td>
 <td style="text-align: left;">1.1.3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cpp11</td>
 <td style="text-align: left;">0.5.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">crayon</td>
 <td style="text-align: left;">1.5.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">crosstalk</td>
+<td style="text-align: left;">1.2.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">curl</td>
+<td style="text-align: left;">5.2.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data.table</td>
+<td style="text-align: left;">1.16.0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Deriv</td>
 <td style="text-align: left;">4.1.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">desc</td>
+<td style="text-align: left;">1.4.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">diffobj</td>
+<td style="text-align: left;">0.3.5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">digest</td>
@@ -478,52 +543,124 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.1.4</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">DT</td>
+<td style="text-align: left;">0.33</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">emmeans</td>
 <td style="text-align: left;">1.10.4</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">estimability</td>
 <td style="text-align: left;">1.5.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">evaluate</td>
 <td style="text-align: left;">0.24.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">fansi</td>
 <td style="text-align: left;">1.0.6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">farver</td>
 <td style="text-align: left;">2.1.2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">fastmap</td>
 <td style="text-align: left;">1.2.0</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">filelock</td>
+<td style="text-align: left;">1.0.3</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">flextable</td>
+<td style="text-align: left;">0.9.6</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">fontawesome</td>
 <td style="text-align: left;">0.5.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fontBitstreamVera</td>
+<td style="text-align: left;">0.1.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fontLiberation</td>
+<td style="text-align: left;">0.1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fontquiver</td>
+<td style="text-align: left;">0.2.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">forcats</td>
 <td style="text-align: left;">1.0.0</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">foreach</td>
+<td style="text-align: left;">1.5.2</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">formatters</td>
 <td style="text-align: left;">0.5.8</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">fs</td>
 <td style="text-align: left;">1.6.4</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">gdtools</td>
+<td style="text-align: left;">0.4.0</td>
+</tr>
 <tr class="odd">
+<td style="text-align: left;">geeasy</td>
+<td style="text-align: left;">0.1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geeM</td>
+<td style="text-align: left;">0.10.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geepack</td>
+<td style="text-align: left;">1.3.11</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">generics</td>
 <td style="text-align: left;">0.1.3</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">ggformula</td>
+<td style="text-align: left;">0.12.0</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">ggmosaic</td>
+<td style="text-align: left;">0.3.3</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">ggplot2</td>
 <td style="text-align: left;">3.5.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ggrepel</td>
+<td style="text-align: left;">0.9.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ggridges</td>
+<td style="text-align: left;">0.5.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gh</td>
+<td style="text-align: left;">1.4.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gitcreds</td>
+<td style="text-align: left;">0.1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glmnet</td>
+<td style="text-align: left;">4.1-8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">glue</td>
@@ -554,20 +691,44 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">0.5.8.1</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">htmlwidgets</td>
+<td style="text-align: left;">1.6.4</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">httpuv</td>
 <td style="text-align: left;">1.6.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">httr</td>
+<td style="text-align: left;">1.4.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">httr2</td>
+<td style="text-align: left;">1.0.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ini</td>
+<td style="text-align: left;">0.3.1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">isoband</td>
 <td style="text-align: left;">0.2.7</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">iterators</td>
+<td style="text-align: left;">1.0.14</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">jquerylib</td>
 <td style="text-align: left;">0.1.4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">jsonlite</td>
 <td style="text-align: left;">1.8.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">kinship2</td>
+<td style="text-align: left;">1.9.6.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">knitr</td>
@@ -578,8 +739,16 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">0.4.3</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">labelled</td>
+<td style="text-align: left;">2.13.0</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">later</td>
 <td style="text-align: left;">1.3.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lazyeval</td>
+<td style="text-align: left;">0.2.2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lifecycle</td>
@@ -590,12 +759,20 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.1-35.5</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">logger</td>
+<td style="text-align: left;">0.3.0</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">logr</td>
 <td style="text-align: left;">1.3.8</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">logrx</td>
 <td style="text-align: left;">0.3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lpSolve</td>
+<td style="text-align: left;">5.6.20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">lubridate</td>
@@ -614,48 +791,72 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">2.0.1</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">MESS</td>
+<td style="text-align: left;">0.5.12</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">metacore</td>
 <td style="text-align: left;">0.1.3</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">metatools</td>
 <td style="text-align: left;">0.1.6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">microbenchmark</td>
 <td style="text-align: left;">1.4.10</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">mime</td>
 <td style="text-align: left;">0.12</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">miniUI</td>
 <td style="text-align: left;">0.1.1.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">minqa</td>
 <td style="text-align: left;">1.2.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mmrm</td>
+<td style="text-align: left;">0.3.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">modelr</td>
 <td style="text-align: left;">0.1.11</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">mosaicCore</td>
+<td style="text-align: left;">0.9.4.0</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">munsell</td>
 <td style="text-align: left;">0.5.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">mvtnorm</td>
 <td style="text-align: left;">1.2-6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">nloptr</td>
 <td style="text-align: left;">2.1.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">numDeriv</td>
 <td style="text-align: left;">2016.8-1.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">officer</td>
+<td style="text-align: left;">0.6.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">openssl</td>
+<td style="text-align: left;">2.2.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">parallelly</td>
+<td style="text-align: left;">1.38.0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">pbkrtest</td>
@@ -674,32 +875,96 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.9.0</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">pkgbuild</td>
+<td style="text-align: left;">1.4.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pkgcache</td>
+<td style="text-align: left;">2.2.2</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">pkgconfig</td>
 <td style="text-align: left;">2.0.3</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">pkgdepends</td>
+<td style="text-align: left;">0.7.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pkgload</td>
+<td style="text-align: left;">1.4.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">plotly</td>
+<td style="text-align: left;">4.10.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">plyr</td>
+<td style="text-align: left;">1.8.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">praise</td>
+<td style="text-align: left;">1.0.0</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">prettyunits</td>
 <td style="text-align: left;">1.2.0</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">processx</td>
+<td style="text-align: left;">3.8.4</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">productplots</td>
+<td style="text-align: left;">0.1.1</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">progress</td>
 <td style="text-align: left;">1.2.3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">promises</td>
 <td style="text-align: left;">1.3.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ps</td>
+<td style="text-align: left;">1.7.7</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">purrr</td>
 <td style="text-align: left;">1.0.2</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">quadprog</td>
+<td style="text-align: left;">1.5-8</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">quantreg</td>
 <td style="text-align: left;">5.98</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">R.cache</td>
+<td style="text-align: left;">0.16.0</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">R.methodsS3</td>
+<td style="text-align: left;">1.8.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R.oo</td>
+<td style="text-align: left;">1.26.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R.utils</td>
+<td style="text-align: left;">2.12.3</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">R6</td>
 <td style="text-align: left;">2.5.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ragg</td>
+<td style="text-align: left;">1.3.2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">rappdirs</td>
@@ -718,60 +983,116 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.0.13</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">RcppArmadillo</td>
+<td style="text-align: left;">14.0.0-1</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">RcppEigen</td>
 <td style="text-align: left;">0.3.4.0.2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Rdpack</td>
 <td style="text-align: left;">2.6.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">readr</td>
 <td style="text-align: left;">2.1.5</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">readxl</td>
 <td style="text-align: left;">1.4.3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">rematch</td>
 <td style="text-align: left;">2.0.0</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">rematch2</td>
+<td style="text-align: left;">2.1.2</td>
+</tr>
 <tr class="even">
+<td style="text-align: left;">renv</td>
+<td style="text-align: left;">1.0.7</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">rlang</td>
 <td style="text-align: left;">1.1.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rlistings</td>
+<td style="text-align: left;">0.2.9</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">rmarkdown</td>
 <td style="text-align: left;">2.28</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">rprojroot</td>
+<td style="text-align: left;">2.0.4</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">rstudioapi</td>
 <td style="text-align: left;">0.16.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">rtables</td>
 <td style="text-align: left;">0.6.9</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">sass</td>
 <td style="text-align: left;">0.4.9</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">scales</td>
 <td style="text-align: left;">1.3.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">sessioninfo</td>
 <td style="text-align: left;">1.2.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shape</td>
+<td style="text-align: left;">1.4.6.1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">shiny</td>
 <td style="text-align: left;">1.9.1</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">shinybusy</td>
+<td style="text-align: left;">0.3.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shinycssloaders</td>
+<td style="text-align: left;">1.1.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shinyjs</td>
+<td style="text-align: left;">2.1.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shinylive</td>
+<td style="text-align: left;">0.2.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shinyTree</td>
+<td style="text-align: left;">0.3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shinyvalidate</td>
+<td style="text-align: left;">0.1.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shinyWidgets</td>
+<td style="text-align: left;">0.8.6</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">sourcetools</td>
 <td style="text-align: left;">0.1.7-1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sparkline</td>
+<td style="text-align: left;">2.0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SparseM</td>
@@ -786,28 +1107,100 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.5.1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">tern</td>
-<td style="text-align: left;">0.9.5</td>
+<td style="text-align: left;">styler</td>
+<td style="text-align: left;">1.10.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">tibble</td>
-<td style="text-align: left;">3.2.1</td>
+<td style="text-align: left;">sys</td>
+<td style="text-align: left;">3.4.2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">tidyr</td>
-<td style="text-align: left;">1.3.1</td>
+<td style="text-align: left;">systemfonts</td>
+<td style="text-align: left;">1.1.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">tidyselect</td>
-<td style="text-align: left;">1.2.1</td>
+<td style="text-align: left;">teal</td>
+<td style="text-align: left;">0.15.2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">timechange</td>
+<td style="text-align: left;">teal.code</td>
+<td style="text-align: left;">0.5.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">teal.data</td>
+<td style="text-align: left;">0.6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">teal.logger</td>
+<td style="text-align: left;">0.2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">teal.modules.clinical</td>
+<td style="text-align: left;">0.9.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">teal.modules.general</td>
 <td style="text-align: left;">0.3.0</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">teal.reporter</td>
+<td style="text-align: left;">0.3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">teal.slice</td>
+<td style="text-align: left;">0.5.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">teal.transform</td>
+<td style="text-align: left;">0.5.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">teal.widgets</td>
+<td style="text-align: left;">0.4.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tern</td>
+<td style="text-align: left;">0.9.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tern.gee</td>
+<td style="text-align: left;">0.1.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tern.mmrm</td>
+<td style="text-align: left;">0.3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">testthat</td>
+<td style="text-align: left;">3.2.1.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">textshaping</td>
+<td style="text-align: left;">0.4.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tibble</td>
+<td style="text-align: left;">3.2.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tidyr</td>
+<td style="text-align: left;">1.3.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidyselect</td>
+<td style="text-align: left;">1.2.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">timechange</td>
+<td style="text-align: left;">0.3.0</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">tinytex</td>
 <td style="text-align: left;">0.52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TMB</td>
+<td style="text-align: left;">1.9.14</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">tzdb</td>
@@ -818,12 +1211,20 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">1.2.4</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">uuid</td>
+<td style="text-align: left;">1.2-1</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">vctrs</td>
 <td style="text-align: left;">0.6.5</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">viridisLite</td>
 <td style="text-align: left;">0.4.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">vistime</td>
+<td style="text-align: left;">1.2.4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">vroom</td>
@@ -832,6 +1233,14 @@ loaded via a namespace (and not attached):
 <tr class="odd">
 <td style="text-align: left;">waiter</td>
 <td style="text-align: left;">0.2.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">waldo</td>
+<td style="text-align: left;">0.5.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">whisker</td>
+<td style="text-align: left;">0.4.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">withr</td>
@@ -858,122 +1267,126 @@ loaded via a namespace (and not attached):
 <td style="text-align: left;">2.3.10</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">zip</td>
+<td style="text-align: left;">2.3.1</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">pak</td>
 <td style="text-align: left;">0.8.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">boot</td>
 <td style="text-align: left;">1.3-30</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">class</td>
 <td style="text-align: left;">7.3-22</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">cluster</td>
 <td style="text-align: left;">2.1.6</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">codetools</td>
 <td style="text-align: left;">0.2-20</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">compiler</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">datasets</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">foreign</td>
 <td style="text-align: left;">0.8-86</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">graphics</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">grDevices</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">grid</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">KernSmooth</td>
 <td style="text-align: left;">2.23-24</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">lattice</td>
 <td style="text-align: left;">0.22-6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">MASS</td>
 <td style="text-align: left;">7.3-60.2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Matrix</td>
 <td style="text-align: left;">1.7-0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">methods</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">mgcv</td>
 <td style="text-align: left;">1.9-1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">nlme</td>
 <td style="text-align: left;">3.1-164</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">nnet</td>
 <td style="text-align: left;">7.3-19</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">parallel</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">rpart</td>
 <td style="text-align: left;">4.1.23</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">spatial</td>
 <td style="text-align: left;">7.3-17</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">splines</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">stats</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">stats4</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">survival</td>
 <td style="text-align: left;">3.6-4</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">tcltk</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">tools</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">utils</td>
 <td style="text-align: left;">4.4.1</td>
 </tr>
