@@ -1,0 +1,221 @@
+---
+title: "`teal` applications"
+order: 1
+---
+
+[`teal`](https://insightsengineering.github.io/teal/latest-tag/) is a Shiny-based framework that streamlines the process of creating an application for clinical trials data. App developers are required to specify input data as well as analysis modules choosing from a wide range of available modules or creating their own module.
+
+The main features of a `teal` app include:
+
+* filter panel allowing to filtering input data for e.g. subgroup analysis
+* reproducibility code for each output
+* reporter to export the results
+* and more...
+
+Please visit [`teal` package webpage](https://insightsengineering.github.io/teal/latest-tag/) to see more. Please also see [`teal.gallery`](https://insightsengineering.github.io/teal.gallery/) for more examples.
+
+Below you can find a few examples using [WebR](https://docs.r-wasm.org/webr/latest/) (via [Shinylive](https://shiny.posit.co/py/docs/shinylive.html)). This will run applications directly in the browser without any server in the background. You are free to change the source code and the application will refresh accordingly.
+
+# A simple example for non-clinical trials data with custom module
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 800
+#| components: [viewer, editor]
+#| layout: vertical
+library(teal)
+
+app <- init(
+  data = teal_data(iris = iris),
+  modules = list(
+    module(
+      label = "iris histogram",
+      server = function(input, output, session, data) {
+        updateSelectInput(session = session,
+                          inputId =  "var",
+                          choices = names(data()[["iris"]])[1:4])
+
+        output$hist <- renderPlot({
+          req(input$var)
+          hist(x = data()[["iris"]][[input$var]])
+        })
+      },
+      ui = function(id) {
+        ns <- NS(id)
+        list(
+          selectInput(inputId = ns("var"),
+                      label =  "Column name",
+                      choices = NULL),
+          plotOutput(outputId = ns("hist"))
+        )
+      }
+    )
+  )
+)
+
+shinyApp(app$ui, app$server)
+```
+
+# A simple example for clinical trials data with custom module
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 800
+#| components: [viewer, editor]
+#| layout: vertical
+library(teal)
+library(tern)
+library(dplyr)
+
+adsl <- tern_ex_adsl %>%
+  df_explicit_na()
+
+app <- init(
+  data = cdisc_data(
+    adsl = adsl
+  ),
+  modules = list(
+    module(
+      "demographic table",
+      server = function(input, output, session, data) {
+        output$table <- renderUI({
+          validate(need(input$vars, "Please select summary variables"))
+
+          lyt <- basic_table(show_colcounts = TRUE) %>%
+            split_cols_by(var = "ACTARM") %>%
+            add_overall_col("All Patients") %>%
+            analyze_vars(
+                vars = input$vars,
+                var_labels = var_labels(data()[["adsl"]][, input$vars])
+            )
+
+            result <- build_table(lyt, adsl)
+
+            as_html(result)
+        })
+      },
+      ui = function(id) {
+        ns <- NS(id)
+        list(
+          shiny::selectInput(
+            ns("vars"),
+            "Summary variables",
+            choices = c("AGE", "SEX", "RACE", "STRATA1", "STRATA2", "BMRKR1", "BMRKR2"),
+            selected = c("AGE", "SEX", "RACE"),
+            multiple = TRUE
+          ),
+          uiOutput(ns("table"))
+        )
+      }
+    )
+  )
+)
+
+shinyApp(app$ui, app$server)
+```
+
+# Use pre-created modules
+
+```{shinylive-r}
+#| standalone: true
+#| viewerHeight: 800
+#| components: [viewer, editor]
+#| layout: vertical
+library(teal.modules.clinical)
+library(teal.modules.general)
+library(sparkline)
+library(magrittr)
+
+data <- cdisc_data() %>%
+  within({
+    ADSL <- tmc_ex_adsl
+    ADTTE <- tmc_ex_adtte
+  })
+datanames(data) <- c("ADSL", "ADTTE")
+join_keys(data) <- default_cdisc_join_keys[datanames(data)]
+
+ADSL <- data[["ADSL"]]
+ADTTE <- data[["ADTTE"]]
+
+arm_vars <- c("ARM", "ARMCD", "ACTARMCD")
+strata_vars <- c("STRATA1", "STRATA2")
+facet_vars <- c("BMRKR2", "SEX", "COUNTRY")
+
+cs_arm_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = arm_vars),
+  selected = "ARM"
+)
+
+cs_strata_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = strata_vars),
+  selected = "STRATA1"
+)
+
+cs_facet_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = facet_vars),
+  selected = "BMRKR2"
+)
+
+cs_paramcd_tte <- choices_selected(
+  choices = value_choices(ADTTE, "PARAMCD", "PARAM"),
+  selected = "OS"
+)
+
+date_vars_asl <- names(ADSL)[vapply(ADSL, function(x) inherits(x, c("Date", "POSIXct", "POSIXlt")), logical(1))]
+demog_vars_asl <- names(ADSL)[!(names(ADSL) %in% c("USUBJID", "STUDYID", date_vars_asl))]
+
+arm_ref_comp <- list(
+  ACTARMCD = list(
+    ref = "ARM B",
+    comp = c("ARM A", "ARM C")
+  ),
+  ARM = list(
+    ref = "B: Placebo",
+    comp = c("A: Drug X", "C: Combination")
+  )
+)
+
+
+app <- init(
+  data = data,
+  modules = list(
+    tm_data_table("Data Table"),
+    tm_variable_browser("Variable Browser"),
+    tm_t_summary(
+      label = "Demographic Table",
+      dataname = "ADSL",
+      arm_var = cs_arm_var,
+      summarize_vars = choices_selected(
+        choices = variable_choices(ADSL, demog_vars_asl),
+        selected = c("SEX", "AGE", "RACE")
+      )
+    ),
+    tm_g_km(
+      label = "Kaplan Meier Plot",
+      dataname = "ADTTE",
+      arm_var = cs_arm_var,
+      arm_ref_comp = arm_ref_comp,
+      paramcd = cs_paramcd_tte,
+      facet_var = cs_facet_var,
+      strata_var = cs_strata_var,
+      plot_height = c(1800L, 200L, 4000L)
+    ),
+    tm_t_tte(
+      label = "Time To Event Table",
+      dataname = "ADTTE",
+      arm_var = cs_arm_var,
+      arm_ref_comp = arm_ref_comp,
+      paramcd = cs_paramcd_tte,
+      strata_var = cs_strata_var,
+      time_points = choices_selected(c(182, 243), 182),
+      event_desc_var = choices_selected(
+        variable_choices(ADTTE, "EVNTDESC"),
+        "EVNTDESC",
+        fixed = TRUE
+      )
+    )
+  )
+)
+
+shinyApp(app$ui, app$server)
+```
