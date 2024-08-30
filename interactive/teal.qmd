@@ -123,8 +123,6 @@ shinyApp(app$ui, app$server)
 library(teal.modules.clinical)
 library(teal.modules.general)
 library(sparkline)
-
-library(teal.data)
 library(magrittr)
 
 data <- cdisc_data() %>%
