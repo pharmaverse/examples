@@ -13,6 +13,7 @@ The main features of a `teal` app include:
 * and more...
 
 Please visit [`teal` package webpage](https://insightsengineering.github.io/teal/latest-tag/) to see more. Please also see [`teal.gallery`](https://insightsengineering.github.io/teal.gallery/) for more examples.
+Below you can find a few examples using [WebR](https://docs.r-wasm.org/webr/latest/) (via [Shinylive](https://shiny.posit.co/py/docs/shinylive.html)). This will run applications directly in the browser without any server in the background. You are free to change the source code and the application will refresh accordingly.
 
 # A simple example for non-clinical trials data with custom module
 
