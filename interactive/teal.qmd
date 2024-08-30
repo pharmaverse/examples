@@ -21,21 +21,6 @@ Please visit [`teal` package webpage](https://insightsengineering.github.io/teal
 #| viewerHeight: 800
 #| components: [viewer, editor]
 #| layout: vertical
-
-# -- WEBR HELPERS --
-options(webr_pkg_repos = c("r-universe" = "https://insightsengineering.r-universe.dev", getOption("webr_pkg_repos")))
-if (packageVersion("webr") < "0.3.0") {
-  .e <- as.environment("webr_shims")
-  .e[["library"]] <- function(pkg, ...) {
-    package <- as.character(substitute(pkg))
-    if (length(find.package(package, quiet = TRUE)) == 0) {
-      webr::install(package)
-    }
-    base::library(package, character.only = TRUE, ...)
-  }
-}
-
-# -- APP CODE --
 library(teal)
 
 app <- init(
@@ -76,21 +61,6 @@ shinyApp(app$ui, app$server)
 #| viewerHeight: 800
 #| components: [viewer, editor]
 #| layout: vertical
-
-# -- WEBR HELPERS --
-options(webr_pkg_repos = c("r-universe" = "https://insightsengineering.r-universe.dev", getOption("webr_pkg_repos")))
-if (packageVersion("webr") < "0.3.0") {
-  .e <- as.environment("webr_shims")
-  .e[["library"]] <- function(pkg, ...) {
-    package <- as.character(substitute(pkg))
-    if (length(find.package(package, quiet = TRUE)) == 0) {
-      webr::install(package)
-    }
-    base::library(package, character.only = TRUE, ...)
-  }
-}
-
-# -- APP CODE --
 library(teal)
 library(tern)
 library(dplyr)
@@ -149,21 +119,6 @@ shinyApp(app$ui, app$server)
 #| viewerHeight: 800
 #| components: [viewer, editor]
 #| layout: vertical
-
-# -- WEBR HELPERS --
-options(webr_pkg_repos = c("r-universe" = "https://insightsengineering.r-universe.dev", getOption("webr_pkg_repos")))
-if (packageVersion("webr") < "0.3.0") {
-  .e <- as.environment("webr_shims")
-  .e[["library"]] <- function(pkg, ...) {
-    package <- as.character(substitute(pkg))
-    if (length(find.package(package, quiet = TRUE)) == 0) {
-      webr::install(package)
-    }
-    base::library(package, character.only = TRUE, ...)
-  }
-}
-
-# -- APP CODE --
 library(teal.modules.clinical)
 library(teal.modules.general)
 library(sparkline)
