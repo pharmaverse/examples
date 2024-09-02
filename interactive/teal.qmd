@@ -37,7 +37,11 @@ app <- init(
 
         output$hist <- renderPlot({
           req(input$var)
-          hist(x = data()[["iris"]][[input$var]])
+          hist(
+            x = data()[["iris"]][[input$var]],
+            main = sprintf("Histogram of %s", input$var),
+            xlab = input$var
+          )
         })
       },
       ui = function(id) {
