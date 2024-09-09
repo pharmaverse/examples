@@ -1,9 +1,3 @@
----
-editor:
-  markdown:
-    wrap: 72
----
-
 # Pharmaverse Examples
 
 The true beauty of pharmaverse (and open source in general) is when
