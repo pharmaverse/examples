@@ -9,14 +9,18 @@ Authors@R:
     person("Jeffrey", "Dickinson", role = "aut"),
     person("Ege Can", "Taşlıçukur", role = "aut"),
     person("Vedha", "Viyash", role = "aut"),
-    person("David", "Blair", role = "aut")
+    person("David", "Blair", role = "aut"),
+    person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018"))
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
 Imports:
     admiral,
+    cards,
     dplyr,
+    gtsummary,
     lubridate,
+    labelled,
     magrittr,
     metacore,
     metatools,
