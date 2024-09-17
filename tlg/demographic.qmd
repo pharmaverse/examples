@@ -25,19 +25,14 @@ library(dplyr)
 adsl <- pharmaverseadam::adsl |>
   filter(!ACTARM %in% "Screen Failure") |>
   mutate(
-    SEX = case_when(
-      SEX == "M" ~ "Male",
-      SEX == "F" ~ "Female"
-    ) |>
-      factor(),
+    SEX = case_match(SEX, "M" ~ "Male", "F" ~ "Female"),
     AGEGR1 =
       case_when(
         between(AGE, 18, 40) ~ "18-40",
         between(AGE, 41, 64) ~ "41-64",
         AGE > 64 ~ ">=65"
       ) |>
-      factor(levels = c("18-40", "41-64", ">=65")
-      )
+      factor(levels = c("18-40", "41-64", ">=65"))
   ) |> 
   labelled::set_variable_labels(AGE = "Age (yr)",
                                 AGEGR1 = "Age group",
