@@ -18,6 +18,7 @@ This guide will show you how pharmaverse packages, along with some from tidyvers
 Now we will add some pre-processing to create some extra formatted variables ready for display in the table.
 
 ```{r preproc}
+#| message: false
 library(dplyr)
 
 # Create categorical variables, remove scren failures, and assign column labels
@@ -52,9 +53,10 @@ In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.c
 - The {gtsummary} utilizes ARDs to create tables.
 
 In the example below, we first build an ARD with the needed summary statistics using {cards}.
-Then, we use the ARD to build the demogrphics table.
+Then, we use the ARD to build the demographics table.
 
-```{r}
+```{r gtsummary-table}
+#| message: false
 library(cards)
 library(gtsummary)
 theme_gtsummary_compact() # reduce default padding and font size for a gt table
@@ -67,6 +69,7 @@ ard <-
     ard_categorical(variables = c(AGEGR1, SEX, RACE)),
     .by = ACTARM,      # split results by treatment arm
     .missing = TRUE,   # add information about missingness rates
+    .attributes = TRUE # optionally include column labels in the ARD
   )
 
 # use the ARD to create a demographics table
@@ -85,24 +88,22 @@ tbl_ard_summary(
   modify_footnote(everything() ~ NA) # remove default footnote
 ```
 
-One may also build the deomgraphics in the classic way using `tbl_summary()` from a data frame, then extract the ARD from the table object.
+One may also build the demographics in the classic way using `tbl_summary()` from a data frame, then extract the ARD from the table object.
 
-```{r}
+```{r gtsummary-ard}
 tbl <- adsl |> 
   tbl_summary(
     by = ACTARM, 
     include = c(AGE, AGEGR1, SEX, RACE),
     # display summary stats for AGE on multiple rows
     type = AGE ~ "continuous2",
-    statistic = AGE ~ c("{mean} ({sd})", 
-                        "{median} ({p25}, {p75})", 
-                        "{min}, {max}"),
+    statistic = AGE ~ c("{mean} ({sd})", "{median} ({p25}, {p75})", "{min}, {max}"),
     missing = "always"
   ) |> 
   bold_labels() |> 
   modify_footnote(everything() ~ NA) # remove default footnote
 
-gather_ard(tbl)
+gather_ard(tbl)[[1]] |> select(-gts_column) # removing column so ARD fits on page
 ```
 
 ## {rtables} & {tern}
@@ -116,7 +117,7 @@ After installation of packages, the first step is to load our pharmaverse packag
 
 Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
 
-```{r setup, message=FALSE, warning=FALSE, results='hold'}
+```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}
 library(tern)
 
 adsl2 <- adsl %>%
@@ -125,7 +126,7 @@ adsl2 <- adsl %>%
 
 Now we create the demographic table.
 
-```{r table}
+```{r rtables-table}
 vars <- c("AGE", "AGEGR1", "SEX", "RACE")
 var_labels <- c(
   "Age (yr)",

@@ -24,7 +24,7 @@ adsl <- pharmaverseadam::adsl |>
                                 SEX = "Sex",
                                 RACE = "Race")
 
-## ----r------------------------------------------------------------------------
+## ----r gtsummary-table--------------------------------------------------------
 library(cards)
 library(gtsummary)
 theme_gtsummary_compact() # reduce default padding and font size for a gt table
@@ -54,7 +54,7 @@ tbl_ard_summary(
   modify_header(all_stat_cols() ~ "**{level}**  \nN = {n}") |> # add Ns to header
   modify_footnote(everything() ~ NA) # remove default footnote
 
-## ----r------------------------------------------------------------------------
+## ----r gtsummary-ard----------------------------------------------------------
 tbl <- adsl |> 
   tbl_summary(
     by = ACTARM, 
@@ -71,13 +71,13 @@ tbl <- adsl |>
 
 gather_ard(tbl)
 
-## ----r setup, message=FALSE, warning=FALSE, results='hold'--------------------
+## ----r rtables-setup, message=FALSE, warning=FALSE, results='hold'------------
 library(tern)
 
 adsl2 <- adsl %>%
   df_explicit_na()
 
-## ----r table------------------------------------------------------------------
+## ----r rtables-table----------------------------------------------------------
 vars <- c("AGE", "AGEGR1", "SEX", "RACE")
 var_labels <- c(
   "Age (yr)",
