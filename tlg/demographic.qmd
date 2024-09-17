@@ -88,6 +88,7 @@ tbl_ard_summary(
 One may also build the demographics in the classic way using `tbl_summary()` from a data frame, then extract the ARD from the table object.
 
 ```{r gtsummary-ard}
+# build demographics table directly from a data frame
 tbl <- adsl |> 
   tbl_summary(
     by = ACTARM, 
@@ -100,6 +101,7 @@ tbl <- adsl |>
   bold_labels() |> 
   modify_footnote(everything() ~ NA) # remove default footnote
 
+# extract ARD from table object
 gather_ard(tbl)[[1]] |> select(-gts_column) # removing column so ARD fits on page
 ```
 
