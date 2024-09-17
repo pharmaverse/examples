@@ -52,6 +52,8 @@ In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.c
 - The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the emerging [CDSIC Analyis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
 - The {gtsummary} utilizes ARDs to create tables.
 
+#### ARD to Table
+
 In the example below, we first build an ARD with the needed summary statistics using {cards}.
 Then, we use the ARD to build the demographics table.
 
@@ -87,6 +89,8 @@ tbl_ard_summary(
   modify_header(all_stat_cols() ~ "**{level}**  \nN = {n}") |> # add Ns to header
   modify_footnote(everything() ~ NA) # remove default footnote
 ```
+
+#### Table to ARD
 
 One may also build the demographics in the classic way using `tbl_summary()` from a data frame, then extract the ARD from the table object.
 
