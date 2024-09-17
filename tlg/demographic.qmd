@@ -74,7 +74,7 @@ ard <-
     .attributes = TRUE # optionally include column labels in the ARD
   )
 
-# use the ARD to create a demographics table
+# use the ARD to create a demographics table using {gtsummary}
 tbl_ard_summary(
   cards = ard, 
   by = ACTARM, 
