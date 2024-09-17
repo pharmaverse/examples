@@ -21,7 +21,7 @@ Now we will add some pre-processing to create some extra formatted variables rea
 #| message: false
 library(dplyr)
 
-# Create categorical variables, remove scren failures, and assign column labels
+# Create categorical variables, remove screen failures, and assign column labels
 adsl <- pharmaverseadam::adsl |>
   filter(!ACTARM %in% "Screen Failure") |>
   mutate(
@@ -80,9 +80,7 @@ tbl_ard_summary(
   by = ACTARM, 
   include = c(AGE, AGEGR1, SEX, RACE),
   type = AGE ~ "continuous2",
-  statistic = AGE ~ c("{mean} ({sd})", 
-                      "{median} ({p25}, {p75})", 
-                      "{min}, {max}"),
+  statistic = AGE ~ c("{mean} ({sd})", "{median} ({p25}, {p75})", "{min}, {max}"),
   missing = "always"
 ) |> 
   bold_labels() |> 
