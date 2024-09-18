@@ -50,7 +50,7 @@ In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.c
 #### ARD ➡ Table
 
 In the example below, we first build an ARD with the needed summary statistics using {cards}.
-Then, we use the ARD to build the demographics table.
+Then, we use the ARD to build the demographics table with {gtsummary}.
 
 ```{r gtsummary-table}
 #| message: false
@@ -65,7 +65,7 @@ ard <-
     ard_continuous(variables = AGE),
     ard_categorical(variables = c(AGEGR1, SEX, RACE)),
     .by = ACTARM,      # split results by treatment arm
-    .missing = TRUE,   # add information about missingness rates
+    .missing = TRUE,   # optionally include information about missingness rates
     .attributes = TRUE # optionally include column labels in the ARD
   )
 
@@ -85,7 +85,7 @@ tbl_ard_summary(
 
 #### Table ➡ ARD
 
-One may also build the demographics in the classic way using `tbl_summary()` from a data frame, then extract the ARD from the table object.
+One may also build the demographics in the classic way using `gtsummary::tbl_summary()` from a data frame, then extract the ARD from the table object.
 
 ```{r gtsummary-ard}
 # build demographics table directly from a data frame
