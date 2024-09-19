@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pharmaverse.github.io/examples/logging/logging.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/index.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/tlg/demographic.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
     <loc>https://pharmaverse.github.io/examples/session.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/adam/adsl.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/adam/adppk.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/adam/adpc.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://pharmaverse.github.io/examples/interactive/teal.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
+    <lastmod>2024-09-19T10:27:18.532Z</lastmod>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/examples/tlg/adverse_events.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
+    <lastmod>2024-09-19T10:27:18.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/adam/adppk.html</loc>
+    <lastmod>2024-09-19T10:27:18.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/adam/adsl.html</loc>
+    <lastmod>2024-09-19T10:27:18.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/index.html</loc>
+    <lastmod>2024-09-19T10:27:18.531Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/adam/adpc.html</loc>
+    <lastmod>2024-09-19T10:27:18.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/tlg/demographic.html</loc>
+    <lastmod>2024-09-19T10:27:18.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/interactive/teal.html</loc>
+    <lastmod>2024-09-19T10:27:18.531Z</lastmod>
   </url>
   <url>
     <loc>https://pharmaverse.github.io/examples/sdtm/examples.html</loc>
-    <lastmod>2024-09-18T10:27:27.750Z</lastmod>
+    <lastmod>2024-09-19T10:27:18.532Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pharmaverse.github.io/examples/logging/logging.html</loc>
+    <lastmod>2024-09-19T10:27:18.531Z</lastmod>
   </url>
 </urlset>
