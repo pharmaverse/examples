@@ -48,7 +48,7 @@ adsl <- pharmaverseadam::adsl |>
 
 In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.com/gtsummary/) and [{cards}](https://insightsengineering.github.io/cards/) packages to create a demographics tables.
 
-- The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the [CDSIC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
+- The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
 - The {gtsummary} utilizes ARDs to create tables.
 
 #### ARD ➡ Table
