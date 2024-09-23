@@ -58,11 +58,7 @@ metacore$ds_vars
 
 ## Start Building Derivations
 
-The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. You might know which datasets you are going to pull from directly already, but if you don't you can call `metatools::build_from_derived()` with just an empty list and the error will tell you which datasets you need to supply.
-
-```{r, error=TRUE}
-build_from_derived(metacore, list(), predecessor_only = FALSE)
-```
+The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.
 
 In this case all the columns come from `DM` so that is the only dataset we will pass into `metatools::build_from_derived()`. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
 
@@ -90,7 +86,7 @@ adsl_ct <- adsl_preds %>%
    create_var_from_codelist(metacore = metacore,
                             input_var = RACE,
                             out_var = RACEN) %>%
-   #Removing screen failures from ARM and TRT01P to match the define and FDA guidence
+   # Removing screen failures from ARM and TRT01P to match the define and FDA guidance
    mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),
           TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)
    )
@@ -133,7 +129,7 @@ adsl_raw <- adsl_ct %>%
     mode = "last",
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
-   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  #Convert Datetime variables to date
+   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
    derive_var_trtdurd() %>%
    derive_var_merged_exist_flag(
      dataset_add = ex,
@@ -141,7 +137,7 @@ adsl_raw <- adsl_ct %>%
      new_var = SAFFL,
      condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
    ) %>%
-   drop_unspec_vars(metacore) #This will drop any columns that aren't specified in the metacore object
+   drop_unspec_vars(metacore) # This will drop any columns that aren't specified in the metacore object
 
 head(adsl_raw, n=10)
 ```
