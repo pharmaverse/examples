@@ -28,6 +28,7 @@ library(metatools)
 library(xportr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
+library(reactable)
 ```
 
 ## Next Load Specifications for Metacore
@@ -98,6 +99,8 @@ pc_dates <- pc %>%
     DRUG = PCTEST,
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
+
+reactable(pc_dates)
 ```
 
 ### Get Dosing Information
@@ -145,6 +148,8 @@ ex_dates <- ex %>%
   # Derive dates from date/times
   derive_vars_dtm_to_dt(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_dt(exprs(AENDTM))
+
+reactable(ex_dates)
 ```
 
 ### Expand Dosing Records
@@ -186,6 +191,8 @@ ex_exp <- ex_dates %>%
   derive_vars_dtm_to_tm(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(AENDTM)) %>%
   derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
+
+reactable(ex_exp)
 ```
 
 ### Find First Dose
@@ -212,6 +219,8 @@ adpc_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
+
+reactable(adpc_first_dose)
 ```
 
 ### Find Previous Dose and Next Dose
@@ -254,6 +263,8 @@ adpc_next <- adpc_prev %>%
     mode = "first",
     check_type = "none"
   )
+
+reactable(adpc_prev)
 ```
 
 ### Find Previous and Next Nominal Dose
@@ -354,6 +365,8 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
   derive_vars_dtm_to_tm(exprs(FANLDTM)) %>%
   derive_vars_dtm_to_dt(exprs(PCRFTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
+
+reactable(adpc_arrlt)
 ```
 
 ### Derive Nominal Reference
@@ -449,6 +462,8 @@ adpc_aval <- adpc_nrrlt %>%
     SRCVAR = "SEQ",
     SRCSEQ = coalesce(PCSEQ, EXSEQ)
   )
+
+reactable(adpc_aval)
 ```
 
 ### Derive DTYPE Copy Records
@@ -477,6 +492,8 @@ dtype <- adpc_aval %>%
   ) %>%
   derive_vars_dtm_to_dt(exprs(PCRFTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
+
+reactable(dtype)
 ```
 
 ### Combine Original and DTYPE Copy
@@ -593,6 +610,8 @@ adpc <- adpc_prefinal %>%
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
+
+reactable(adpc)
 ```
 
 ## Apply Labels and Formats with xportr
