@@ -35,9 +35,11 @@ library(pharmaverseadam)
 
 We will load our specification file into a `{metacore}` object to trace the dataset variables and attributes. Then, we will read the source data (`adsl` and `adrs_onco`).
 
-```{r, warni}
+```{r read-specs}
+#| warning: false
+
 # Load metacore specifications
-metacore <- spec_to_metacore("./metadata/adam_spec.xlsx") %>%
+metacore <- spec_to_metacore("../metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets

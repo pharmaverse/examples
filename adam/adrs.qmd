@@ -26,7 +26,6 @@ library(xportr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
 library(dplyr)
-library(tidyr)
 library(lubridate)
 library(stringr)
 ```
@@ -36,8 +35,9 @@ library(stringr)
 Load the specifications stored in an Excel file into a `{metacore}` object.
 
 ```{r read-specs}
-metacore <- metacore::spec_to_metacore("./metadata/adam_spec.xlsx") %>%
-  metacore::select_dataset("ADRS")
+#| warning: false
+metacore <- spec_to_metacore("../metadata/onco_spec.xlsx") %>%
+  select_dataset("ADRS")
 ```
 
 # Load Source Datasets
@@ -53,8 +53,8 @@ rs <- rs_onco_recist
 tu <- tu_onco_recist
 
 # Convert blanks to NA
-rs <- admiral::convert_blanks_to_na(rs)
-tu <- admiral::convert_blanks_to_na(tu)
+rs <- convert_blanks_to_na(rs)
+tu <- convert_blanks_to_na(tu)
 ```
 
 # Merging ADSL with RS
@@ -63,7 +63,7 @@ Merge `ADSL` to the `RS` domain by selecting only the necessary variables for de
 
 ```{r merge-adsl-rs}
 adsl_vars <- exprs(RANDDT)
-adrs_merged <- admiral::derive_vars_merged(
+adrs_merged <- derive_vars_merged(
   rs,
   dataset_add = adsl,
   new_vars = adsl_vars,
@@ -80,8 +80,8 @@ Filter the `RS` domain to include only overall response records assessed by the 
 
 ```{r set-param-details}
 adrs_ovr <- adrs_merged %>%
-  dplyr::filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") %>%
-  dplyr::mutate(
+  filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") %>%
+  mutate(
     PARAMCD = "OVR",
     PARAM = "Overall Response by Investigator",
     PARCAT1 = "Tumor Response",
@@ -97,13 +97,13 @@ Impute missing dates and derive analysis dates and visits.
 
 ```{r impute-dates}
 adrs_imputed <- adrs_ovr %>%
-  admiral::derive_vars_dt(
+  derive_vars_dt(
     dtc = RSDTC,
     new_vars_prefix = "A",
     highest_imputation = "D",
     date_imputation = "last"
   ) %>%
-  dplyr::mutate(AVISIT = VISIT)
+  mutate(AVISIT = VISIT)
 head(adrs_imputed, n=10)
 ```
 
@@ -113,9 +113,9 @@ Populate `AVALC` with assessed values and create the numeric version `AVAL`.
 
 ```{r derive-aval}
 adrs_aval <- adrs_imputed %>%
-  dplyr::mutate(
+  mutate(
     AVALC = RSSTRESC,
-    AVAL = admiralonco::aval_resp(AVALC)
+    AVAL = aval_resp(AVALC)
   )
 head(adrs_aval, n=10)
 ```
@@ -126,7 +126,7 @@ Flag the worst assessment at each date, considering only valid assessments from 
 
 ```{r flag-worst-assessment}
 worst_resp <- function(arg) {
-  dplyr::case_when(
+  case_when(
     arg == "NE" ~ 1,
     arg == "CR" ~ 2,
     arg == "PR" ~ 3,
@@ -138,9 +138,9 @@ worst_resp <- function(arg) {
 }
 
 adrs_anl01fl <- adrs_aval %>%
-  admiral::restrict_derivation(
-    derivation = admiral::derive_var_extreme_flag,
-    args = admiral::params(
+  restrict_derivation(
+    derivation = derive_var_extreme_flag,
+    args = params(
       by_vars = exprs(STUDYID, USUBJID, ADT),
       order = exprs(worst_resp(AVALC), RSSEQ),
       new_var = ANL01FL,
@@ -155,11 +155,11 @@ head(adrs_anl01fl, n=10)
 
 ## Derive Progressive Disease Parameter
 
-Use the `admiral::derive_extreme_records()` function to find the date of first `PD`.
+Use the `derive_extreme_records()` function to find the date of first `PD`.
 
 ```{r derive-pd}
 adrs_pd <- adrs_anl01fl %>%
-  admiral::derive_extreme_records(
+  derive_extreme_records(
     dataset_ref = adsl,
     dataset_add = adrs_anl01fl,
     by_vars = exprs(STUDYID, USUBJID),
@@ -174,7 +174,7 @@ adrs_pd <- adrs_anl01fl %>%
       PARCAT1 = "Tumor Response",
       PARCAT2 = "Investigator",
       PARCAT3 = "RECIST 1.1",
-      AVAL = admiral::yn_to_numeric(AVALC),
+      AVAL = yn_to_numeric(AVALC),
       ANL01FL = "Y"
     )
   )
@@ -187,10 +187,10 @@ Create a new death parameter using the death date from `ADSL`.
 
 ```{r derive-death}
 adsldth <- adsl %>%
-  dplyr::select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
+  select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
 adrs_death <- adrs_pd %>%
-  admiral::derive_extreme_records(
+  derive_extreme_records(
     dataset_ref = adsldth,
     dataset_add = adsldth,
     by_vars = exprs(STUDYID, USUBJID),
@@ -201,12 +201,12 @@ adrs_death <- adrs_pd %>%
       PARAMCD = "DEATH",
       PARAM = "Death",
       PARCAT1 = "Reference Event",
-      AVAL = admiral::yn_to_numeric(AVALC),
+      AVAL = yn_to_numeric(AVALC),
       ANL01FL = "Y",
       ADT = DTHDT
     )
   ) %>%
-  dplyr::select(-DTHDT)
+  select(-DTHDT)
 head(adrs_death, n=10)
 ```
 
@@ -216,7 +216,7 @@ Create a parameter for the last disease assessment.
 
 ```{r derive-lsta}
 adrs_lsta <- adrs_death %>%
-  admiral::derive_extreme_records(
+  derive_extreme_records(
     dataset_ref = adsl,
     dataset_add = adrs_death,
     by_vars = exprs(STUDYID, USUBJID),
@@ -241,11 +241,11 @@ Apply metadata and conduct checks to ensure data quality and compliance.
 
 ```{r apply-metadata-check, eval=FALSE}
 adrs_checked <- adrs_lsta %>%
-  metatools::drop_unspec_vars(metacore) %>% # Drop variables not specified in metadata
-  metatools::check_variables(metacore) %>% # Check all variables specified are present and no more
-  metatools::check_ct_data(metacore) %>% # Check controlled terminology
-  metatools::order_cols(metacore) %>% # Order columns according to metadata
-  metatools::sort_by_key(metacore) # Sort rows by sort keys
+  drop_unspec_vars(metacore) %>% # Drop variables not specified in metadata
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Check controlled terminology
+  order_cols(metacore) %>% # Order columns according to metadata
+  sort_by_key(metacore) # Sort rows by sort keys
 ```
 
 # Apply Labels and Formats with xportr
@@ -256,10 +256,10 @@ Finally, apply labels, formats, and export the dataset to an XPT file.
 dir <- tempdir() # Specify the directory for saving the XPT file
 
 adrs_xpt <- adrs_lsta %>%
-  xportr::xportr_type(metacore, domain = "ADRS") %>% # Coerce variable types to match metadata
-  xportr::xportr_length(metacore) %>% # Assign variable lengths from metadata
-  xportr::xportr_label(metacore) %>% # Assign variable labels from metadata
-  xportr::xportr_format(metacore) %>% # Assign variable formats from metadata
-  xportr::xportr_df_label(metacore) %>% # Assign dataset labels from metadata
-  xportr::xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file
+  xportr_type(metacore, domain = "ADRS") %>% # Coerce variable types to match metadata
+  xportr_length(metacore) %>% # Assign variable lengths from metadata
+  xportr_label(metacore) %>% # Assign variable labels from metadata
+  xportr_format(metacore) %>% # Assign variable formats from metadata
+  xportr_df_label(metacore) %>% # Assign dataset labels from metadata
+  xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file
 ```
