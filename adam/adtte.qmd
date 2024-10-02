@@ -141,7 +141,7 @@ head(adtte_pfs, n=10)
 
 # Derive Analysis Value (`AVAL`)
 
-The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration` function.
+The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration()` function.
 
 ```{r}
 # Derive analysis value
