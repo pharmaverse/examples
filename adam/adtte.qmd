@@ -39,7 +39,7 @@ We will load our specification file into a `{metacore}` object to trace the data
 #| warning: false
 
 # Load metacore specifications
-metacore <- spec_to_metacore("../metadata/onco_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets
@@ -200,17 +200,17 @@ head(adtte_adsl, n=10)
 We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
 
 ```{r, message=FALSE, warning=FALSE}
-# Clean up specs
-adtte_adsl_cleaned <- adtte_adsl %>%
-  add_variables(metacore) %>%
-  drop_unspec_vars(metacore)
-
 # Apply metadata and perform checks
-adtte_final <- adtte_adsl_cleaned %>%
+adtte_adsl_checked <- adtte_adsl %>%
+  add_variables(metacore) %>%
+  drop_unspec_vars(metacore) %>%
   check_variables(metacore) %>%
   check_ct_data(metacore) %>%
   order_cols(metacore) %>%
-  sort_by_key(metacore) %>%
+  sort_by_key(metacore)
+
+# Apply apply labels, formats, and export the dataset to an XPT file.
+adtte_final <- adtte_adsl_checked %>%
   xportr_type(metacore, domain = "ADTTE") %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%

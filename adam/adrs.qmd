@@ -36,7 +36,7 @@ Load the specifications stored in an Excel file into a `{metacore}` object.
 
 ```{r read-specs}
 #| warning: false
-metacore <- spec_to_metacore("../metadata/onco_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADRS")
 ```
 
@@ -239,8 +239,9 @@ head(adrs_lsta, n=10)
 
 Apply metadata and conduct checks to ensure data quality and compliance.
 
-```{r apply-metadata-check, eval=FALSE}
+```{r apply-metadata-check, message=FALSE, warning=FALSE}
 adrs_checked <- adrs_lsta %>%
+  add_variables(metacore) %>% # Add variables specified in the metadata
   drop_unspec_vars(metacore) %>% # Drop variables not specified in metadata
   check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Check controlled terminology
@@ -255,7 +256,7 @@ Finally, apply labels, formats, and export the dataset to an XPT file.
 ```{r xportr}
 dir <- tempdir() # Specify the directory for saving the XPT file
 
-adrs_xpt <- adrs_lsta %>%
+adrs_xpt <- adrs_checked %>%
   xportr_type(metacore, domain = "ADRS") %>% # Coerce variable types to match metadata
   xportr_length(metacore) %>% # Assign variable lengths from metadata
   xportr_label(metacore) %>% # Assign variable labels from metadata
