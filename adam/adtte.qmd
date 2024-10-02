@@ -160,7 +160,7 @@ head(adtte_aval, n=10)
 
 # Derive Analysis Sequence Number (`ASEQ`)
 
-We derive the sequence number for each record to uniquely identify them using the `admiral::derive_var_obs_number` function.
+We derive the sequence number for each record to uniquely identify them using the `admiral::derive_var_obs_number()` function.
 
 ```{r}
 # Derive analysis sequence number
