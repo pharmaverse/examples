@@ -33,7 +33,7 @@ library(pharmaverseadam)
 
 # Load Specifications and Source Data
 
-We will load our specification file into a `{metacore}` object to trace the dataset variables and attributes. Then, we will read the source data (`adsl` and `adrs_onco`).
+We will load our specification file into a `{metacore}` object to trace the dataset variables and attributes. Then, we will read the source data.
 
 ```{r read-specs}
 #| warning: false
