@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 
 This article provides a step-by-step explanation for creating an ADaM `ADTTE` (Time-to-Event) dataset with common oncology endpoint parameters using key pharmaverse packages along with tidyverse components. `ADTTE` datasets often involve calculating time-to-event variables for endpoints such as Overall Survival (OS) and Progression-Free Survival (PFS).
 
-For the purpose of this example, we will use the `adsl` and `adrs_onco` datasets.
+For the purpose of this example, we will use the `ADSL` and `ADRS_ONCO` datasets from `{pharmaverseadam}`.
 
 # Load Required Packages
 
