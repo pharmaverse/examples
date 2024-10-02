@@ -46,8 +46,7 @@ metacore <- spec_to_metacore("../metadata/onco_spec.xlsx") %>%
 data("adsl")
 data("adrs_onco")
 
-adrs <- adrs_onco %>%
-  convert_blanks_to_na()
+adrs <- adrs_onco
 ```
 
 ```{r, echo=FALSE}
@@ -63,12 +62,13 @@ We define event and censoring sources using the `admiral::event_source` and `adm
 ```{r}
 # Define event and censoring sources
 death_event <- event_source(
-  dataset_name = "adsl",
-  date = DTHDT,
+  dataset_name = "adrs",
+  filter = PARAMCD == "DEATH" & AVALC == "Y" & ANL01FL == "Y",
+  date = ADT,
   set_values_to = exprs(
     EVNTDESC = "Death",
-    SRCDOM = "ADSL",
-    SRCVAR = "DTHDT"
+    SRCDOM = "ADRS",
+    SRCVAR = "ADT"
   )
 )
 
@@ -83,14 +83,15 @@ pd_event <- event_source(
   )
 )
 
-lastalive_censor <- censor_source(
-  dataset_name = "adsl",
-  date = LSTALVDT,
+lasta_censor <- censor_source(
+  dataset_name = "adrs",
+  filter = PARAMCD == "LSTA" & ANL01FL == "Y",
+  date = ADT,
   set_values_to = exprs(
-    EVNTDESC = "Last Known Alive",
-    CNSDTDSC = "Last Known Alive Date",
-    SRCDOM = "ADSL",
-    SRCVAR = "LSTALVDT"
+    EVNTDESC = "Progression Free Alive",
+    CNSDTDSC = "Last Tumor Assessment",
+    SRCDOM = "ADRS",
+    SRCVAR = "ADT"
   )
 )
 
@@ -116,18 +117,18 @@ adtte <- derive_param_tte(
   dataset_adsl = adsl,
   start_date = RANDDT,
   event_conditions = list(death_event),
-  censor_conditions = list(lastalive_censor, rand_censor),
+  censor_conditions = list(lasta_censor, rand_censor),
   source_datasets = list(adsl = adsl, adrs = adrs),
   set_values_to = exprs(PARAMCD = "OS", PARAM = "Overall Survival")
 )
 
 # Derive Progression-Free Survival (PFS)
-adtte <- adtte %>%
+adtte_pfs <- adtte %>%
   derive_param_tte(
     dataset_adsl = adsl,
     start_date = RANDDT,
     event_conditions = list(pd_event, death_event),
-    censor_conditions = list(lastalive_censor, rand_censor),
+    censor_conditions = list(lasta_censor, rand_censor),
     source_datasets = list(adsl = adsl, adrs = adrs),
     set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression-Free Survival")
   )
@@ -135,7 +136,7 @@ adtte <- adtte %>%
 
 ```{r, echo=FALSE}
 # Display first few rows of ADTTE
-head(adtte, n=10)
+head(adtte_pfs, n=10)
 ```
 
 # Derive Analysis Value (`AVAL`)
@@ -144,7 +145,7 @@ The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_
 
 ```{r}
 # Derive analysis value
-adtte <- adtte %>%
+adtte_aval <- adtte_pfs %>%
   derive_vars_duration(
     new_var = AVAL,
     start_date = STARTDT,
@@ -154,7 +155,7 @@ adtte <- adtte %>%
 
 ```{r, echo=FALSE}
 # Display first few rows with AVAL
-head(adtte, n=10)
+head(adtte_aval, n=10)
 ```
 
 # Derive Analysis Sequence Number (`ASEQ`)
@@ -163,7 +164,7 @@ We derive the sequence number for each record to uniquely identify them using th
 
 ```{r}
 # Derive analysis sequence number
-adtte <- adtte %>%
+adtte_aseq <- adtte_aval %>%
   derive_var_obs_number(
     by_vars = exprs(STUDYID, USUBJID),
     order = exprs(PARAMCD),
@@ -173,7 +174,7 @@ adtte <- adtte %>%
 
 ```{r, echo=FALSE}
 # Display first few rows with ASEQ
-head(adtte, n=10)
+head(adtte_aseq, n=10)
 ```
 
 # Add ADSL Variables
@@ -182,7 +183,7 @@ Additional variables from the `ADSL` dataset are merged into the `ADTTE` dataset
 
 ```{r}
 # Add ADSL variables
-adtte <- adtte %>%
+adtte_adsl <- adtte_aseq %>%
   derive_vars_merged(
     dataset_add = adsl,
     by_vars = exprs(STUDYID, USUBJID)
@@ -191,16 +192,21 @@ adtte <- adtte %>%
 
 ```{r, echo=FALSE}
 # Display first few rows with merged ADSL variables
-head(adtte, n=10)
+head(adtte_adsl, n=10)
 ```
 
 # Apply Metadata and eSub Checks
 
 We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
 
-```{r, eval=FALSE}
+```{r, message=FALSE, warning=FALSE}
+# Clean up specs
+adtte_adsl_cleaned <- adtte_adsl %>%
+  add_variables(metacore) %>%
+  drop_unspec_vars(metacore)
+
 # Apply metadata and perform checks
-adtte <- adtte %>%
+adtte_final <- adtte_adsl_cleaned %>%
   check_variables(metacore) %>%
   check_ct_data(metacore) %>%
   order_cols(metacore) %>%
@@ -212,10 +218,10 @@ adtte <- adtte %>%
   
 # Write dataset to XPT file (optional)
 dir <- tempdir()
-xportr_write(adtte, file.path(dir, "adtte.xpt"))
+xportr_write(adtte_final, file.path(dir, "adtte.xpt"))
 ```
 
 ```{r, echo=FALSE}
 # Display final ADTTE dataset
-head(adtte, n=10)
+head(adtte_final, n=10)
 ```
