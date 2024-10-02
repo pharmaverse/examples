@@ -109,7 +109,7 @@ rand_censor <- censor_source(
 
 # Derive Time-to-Event Parameters
 
-The `admiral::derive_param_tte` function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).
+The `admiral::derive_param_tte()` function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).
 
 ```{r}
 # Derive Overall Survival (OS)
