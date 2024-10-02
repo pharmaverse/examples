@@ -57,7 +57,7 @@ head(adrs, n=10)
 
 # Define Event and Censoring Sources
 
-We define event and censoring sources using the `admiral::event_source` and `admiral::censor_source` functions. This forms the basis for calculating time-to-event endpoints.
+We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints.
 
 ```{r}
 # Define event and censoring sources
