@@ -1,5 +1,6 @@
 project:
   type: website
+  execute-dir: project
   preview:
     port: 4200
     browser: true
@@ -50,10 +51,15 @@ website:
         - auto: sdtm
         - auto: adam
         - auto: tlg
+        - auto: interactive
+        - auto: logging
         - text: "---"
         - file: session.qmd
         - text: Pharmaverse Home
-          href: https://pharmaverse.org/        
+          href: https://pharmaverse.org/
+
+filters:
+  - shinylive
 
 format:
   html:
@@ -80,6 +86,3 @@ format:
     number-sections: false
     lang: en-US
     page-layout: full
-
-
-

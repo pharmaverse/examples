@@ -3,6 +3,12 @@ title: "Adverse Events"
 order: 2
 ---
 
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
+
 ## Introduction
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the `{pharmaverseadam}` `ADSL` and `ADAE` data as an input.
