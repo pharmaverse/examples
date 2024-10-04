@@ -3,7 +3,10 @@ title: "ADTTE"
 order: 4
 ---
 
-```{r setup, include = FALSE}
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
