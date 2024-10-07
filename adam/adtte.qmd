@@ -86,6 +86,17 @@ pd_event <- event_source(
   )
 )
 
+lastalive_censor <- censor_source(
+  dataset_name = "adsl",
+  date = LSTALVDT,
+  set_values_to = exprs(
+    EVNTDESC = "Last Known Alive",
+    CNSDTDSC = "Last Known Alive Date",
+    SRCDOM = "ADSL",
+    SRCVAR = "LSTALVDT"
+  )
+)
+
 lasta_censor <- censor_source(
   dataset_name = "adrs",
   filter = PARAMCD == "LSTA" & ANL01FL == "Y",
@@ -120,7 +131,7 @@ adtte <- derive_param_tte(
   dataset_adsl = adsl,
   start_date = RANDDT,
   event_conditions = list(death_event),
-  censor_conditions = list(lasta_censor, rand_censor),
+  censor_conditions = list(lastalive_censor, rand_censor),
   source_datasets = list(adsl = adsl, adrs = adrs),
   set_values_to = exprs(PARAMCD = "OS", PARAM = "Overall Survival")
 )
