@@ -1,16 +1,11 @@
 ---
 title: "ADTTE"
-order: 4
+order: 5
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
 invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
-
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
 ```
 
 # Introduction
@@ -50,12 +45,6 @@ data("adsl")
 data("adrs_onco")
 
 adrs <- adrs_onco
-```
-
-```{r, echo=FALSE}
-# Show the first few rows of ADSL and ADRS
-head(adsl, n=10)
-head(adrs, n=10)
 ```
 
 # Define Event and Censoring Sources
@@ -148,11 +137,6 @@ adtte_pfs <- adtte %>%
   )
 ```
 
-```{r, echo=FALSE}
-# Display first few rows of ADTTE
-head(adtte_pfs, n=10)
-```
-
 # Derive Analysis Value (`AVAL`)
 
 The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration()` function.
@@ -165,11 +149,6 @@ adtte_aval <- adtte_pfs %>%
     start_date = STARTDT,
     end_date = ADT
   )
-```
-
-```{r, echo=FALSE}
-# Display first few rows with AVAL
-head(adtte_aval, n=10)
 ```
 
 # Derive Analysis Sequence Number (`ASEQ`)
@@ -186,14 +165,9 @@ adtte_aseq <- adtte_aval %>%
   )
 ```
 
-```{r, echo=FALSE}
-# Display first few rows with ASEQ
-head(adtte_aseq, n=10)
-```
-
 # Add ADSL Variables
 
-Additional variables from the `ADSL` dataset are merged into the `ADTTE` dataset using the `admiral::derive_vars_merged` function to enrich it.
+Additional variables from the `ADSL` dataset are merged into the `ADTTE` dataset using the `admiral::derive_vars_merged()` function to enrich it.
 
 ```{r}
 # Add ADSL variables
@@ -202,11 +176,6 @@ adtte_adsl <- adtte_aseq %>%
     dataset_add = adsl,
     by_vars = exprs(STUDYID, USUBJID)
   )
-```
-
-```{r, echo=FALSE}
-# Display first few rows with merged ADSL variables
-head(adtte_adsl, n=10)
 ```
 
 # Apply Metadata and eSub Checks
@@ -233,9 +202,4 @@ adtte_final <- adtte_adsl_checked %>%
 # Write dataset to XPT file (optional)
 dir <- tempdir()
 xportr_write(adtte_final, file.path(dir, "adtte.xpt"))
-```
-
-```{r, echo=FALSE}
-# Display final ADTTE dataset
-head(adtte_final, n=10)
 ```

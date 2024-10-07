@@ -70,7 +70,6 @@ adrs_merged <- derive_vars_merged(
   new_vars = adsl_vars,
   by_vars = exprs(STUDYID, USUBJID)
 )
-head(adrs_merged, n=10)
 ```
 
 # Pre-processing of Input Records
@@ -89,7 +88,6 @@ adrs_ovr <- adrs_merged %>%
     PARCAT2 = "Investigator",
     PARCAT3 = "RECIST 1.1"
   )
-head(adrs_ovr, n=10)
 ```
 
 ## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`
@@ -105,7 +103,6 @@ adrs_imputed <- adrs_ovr %>%
     date_imputation = "last"
   ) %>%
   mutate(AVISIT = VISIT)
-head(adrs_imputed, n=10)
 ```
 
 ## Derive `AVALC` and `AVAL`
@@ -118,7 +115,6 @@ adrs_aval <- adrs_imputed %>%
     AVALC = RSSTRESC,
     AVAL = aval_resp(AVALC)
   )
-head(adrs_aval, n=10)
 ```
 
 ## Flag Worst Assessment at Each Date (`ANL01FL`)
@@ -149,14 +145,13 @@ adrs_anl01fl <- adrs_aval %>%
     ),
     filter = !is.na(AVAL) & ADT >= RANDDT
   )
-head(adrs_anl01fl, n=10)
 ```
 
 # Deriving Parameters
 
 ## Derive Progressive Disease Parameter
 
-Use the `derive_extreme_records()` function to find the date of first `PD`.
+Use the `admiral::derive_extreme_records()` function to find the date of first `PD`.
 
 ```{r derive-pd}
 adrs_pd <- adrs_anl01fl %>%
@@ -179,7 +174,6 @@ adrs_pd <- adrs_anl01fl %>%
       ANL01FL = "Y"
     )
   )
-head(adrs_pd, n=10)
 ```
 
 ## Derive Death Parameter
@@ -208,7 +202,6 @@ adrs_death <- adrs_pd %>%
     )
   ) %>%
   select(-DTHDT)
-head(adrs_death, n=10)
 ```
 
 ## Derive Last Disease Assessment Parameter
@@ -233,7 +226,6 @@ adrs_lsta <- adrs_death %>%
       ANL01FL = "Y"
     )
   )
-head(adrs_lsta, n=10)
 ```
 
 # Apply Metadata and Perform Associated Checks
