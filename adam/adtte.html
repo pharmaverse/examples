@@ -390,290 +390,156 @@ cookieconsent.run({
 <span id="cb2-8"><a href="#cb2-8"></a></span>
 <span id="cb2-9"><a href="#cb2-9"></a>adrs <span class="ot">&lt;-</span> adrs_onco</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 54
-#&gt;    STUDYID     USUBJID SUBJID RFSTDTC RFENDTC RFXSTDTC RFXENDTC RFICDTC RFPENDTC
-#&gt;    &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;   
-#&gt;  1 CDISCPILOT… 01-701… 1015   2014-0… 2014-0… 2014-01… 2014-07… &lt;NA&gt;    2014-07…
-#&gt;  2 CDISCPILOT… 01-701… 1023   2012-0… 2012-0… 2012-08… 2012-09… &lt;NA&gt;    2013-02…
-#&gt;  3 CDISCPILOT… 01-701… 1028   2013-0… 2014-0… 2013-07… 2014-01… &lt;NA&gt;    2014-01…
-#&gt;  4 CDISCPILOT… 01-701… 1033   2014-0… 2014-0… 2014-03… 2014-03… &lt;NA&gt;    2014-09…
-#&gt;  5 CDISCPILOT… 01-701… 1034   2014-0… 2014-1… 2014-07… 2014-12… &lt;NA&gt;    2014-12…
-#&gt;  6 CDISCPILOT… 01-701… 1047   2013-0… 2013-0… 2013-02… 2013-03… &lt;NA&gt;    2013-07…
-#&gt;  7 CDISCPILOT… 01-701… 1057   &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    2013-12…
-#&gt;  8 CDISCPILOT… 01-701… 1097   2014-0… 2014-0… 2014-01… 2014-07… &lt;NA&gt;    2014-07…
-#&gt;  9 CDISCPILOT… 01-701… 1111   2012-0… 2012-0… 2012-09… 2012-09… &lt;NA&gt;    2013-02…
-#&gt; 10 CDISCPILOT… 01-701… 1115   2012-1… 2013-0… 2012-11… 2013-01… &lt;NA&gt;    2013-05…
-#&gt; # ℹ 45 more variables: DTHDTC &lt;chr&gt;, DTHFL &lt;chr&gt;, SITEID &lt;chr&gt;, AGE &lt;dbl&gt;,
-#&gt; #   AGEU &lt;chr&gt;, SEX &lt;chr&gt;, RACE &lt;chr&gt;, ETHNIC &lt;chr&gt;, ARMCD &lt;chr&gt;, ARM &lt;chr&gt;,
-#&gt; #   ACTARMCD &lt;chr&gt;, ACTARM &lt;chr&gt;, COUNTRY &lt;chr&gt;, DMDTC &lt;chr&gt;, DMDY &lt;dbl&gt;,
-#&gt; #   TRT01P &lt;chr&gt;, TRT01A &lt;chr&gt;, TRTSDTM &lt;dttm&gt;, TRTSTMF &lt;chr&gt;, TRTEDTM &lt;dttm&gt;,
-#&gt; #   TRTETMF &lt;chr&gt;, TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;, TRTDURD &lt;dbl&gt;, SCRFDT &lt;date&gt;,
-#&gt; #   EOSDT &lt;date&gt;, EOSSTT &lt;chr&gt;, FRVDT &lt;date&gt;, RANDDT &lt;date&gt;, DTHDT &lt;date&gt;,
-#&gt; #   DTHDTF &lt;chr&gt;, DTHADY &lt;dbl&gt;, LDDTHELD &lt;dbl&gt;, DTHCAUS &lt;chr&gt;, DTHDOM &lt;chr&gt;, …
-#&gt; # A tibble: 10 × 79
-#&gt;    DOMAIN STUDYID USUBJID VISITNUM VISIT RSTESTCD RSTEST RSORRES RSSTRESC RSEVAL
-#&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; 
-#&gt;  1 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt;  2 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt;  3 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt;  4 &lt;NA&gt;   CDISCP… 01-701…       NA &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;  
-#&gt;  5 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt;  6 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt;  7 &lt;NA&gt;   CDISCP… 01-701…       NA &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;  
-#&gt;  8 &lt;NA&gt;   CDISCP… 01-701…       NA &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;  
-#&gt;  9 RS     CDISCP… 01-701…        4 WEEK… OVRLRESP Overa… CR      CR       INVES…
-#&gt; 10 &lt;NA&gt;   CDISCP… 01-701…       NA &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;     &lt;NA&gt;  
-#&gt; # ℹ 69 more variables: RSEVALID &lt;chr&gt;, RSACPTFL &lt;chr&gt;, RSDTC &lt;chr&gt;,
-#&gt; #   RSSEQ &lt;int&gt;, RANDDT &lt;date&gt;, PARAMCD &lt;chr&gt;, PARAM &lt;chr&gt;, PARCAT1 &lt;chr&gt;,
-#&gt; #   PARCAT2 &lt;chr&gt;, PARCAT3 &lt;chr&gt;, ADT &lt;date&gt;, ADTF &lt;chr&gt;, AVISIT &lt;chr&gt;,
-#&gt; #   AVALC &lt;chr&gt;, AVAL &lt;dbl&gt;, ANL01FL &lt;chr&gt;, ANL02FL &lt;chr&gt;, ASEQ &lt;int&gt;,
-#&gt; #   SUBJID &lt;chr&gt;, RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, RFXSTDTC &lt;chr&gt;, RFXENDTC &lt;chr&gt;,
-#&gt; #   RFICDTC &lt;chr&gt;, RFPENDTC &lt;chr&gt;, DTHDTC &lt;chr&gt;, DTHFL &lt;chr&gt;, SITEID &lt;chr&gt;,
-#&gt; #   AGE &lt;dbl&gt;, AGEU &lt;chr&gt;, SEX &lt;chr&gt;, RACE &lt;chr&gt;, ETHNIC &lt;chr&gt;, ARMCD &lt;chr&gt;, …</code></pre>
-</div>
 </section>
 <section id="define-event-and-censoring-sources" class="level1">
 <h1>Define Event and Censoring Sources</h1>
 <p>We define event and censoring sources using the <code>admiral::event_source()</code> and <code>admiral::censor_source()</code> functions. This forms the basis for calculating time-to-event endpoints.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Define event and censoring sources</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>death_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Death"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  )</span>
-<span id="cb4-11"><a href="#cb4-11"></a>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a>pd_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
-<span id="cb4-14"><a href="#cb4-14"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb4-15"><a href="#cb4-15"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb4-17"><a href="#cb4-17"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb4-18"><a href="#cb4-18"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progressive Disease"</span>,</span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb4-20"><a href="#cb4-20"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>  )</span>
-<span id="cb4-22"><a href="#cb4-22"></a>)</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a>lastalive_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb4-25"><a href="#cb4-25"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
-<span id="cb4-26"><a href="#cb4-26"></a>  <span class="at">date =</span> LSTALVDT,</span>
-<span id="cb4-27"><a href="#cb4-27"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb4-28"><a href="#cb4-28"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Last Known Alive"</span>,</span>
-<span id="cb4-29"><a href="#cb4-29"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Known Alive Date"</span>,</span>
-<span id="cb4-30"><a href="#cb4-30"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb4-31"><a href="#cb4-31"></a>    <span class="at">SRCVAR =</span> <span class="st">"LSTALVDT"</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a>  )</span>
-<span id="cb4-33"><a href="#cb4-33"></a>)</span>
-<span id="cb4-34"><a href="#cb4-34"></a></span>
-<span id="cb4-35"><a href="#cb4-35"></a>lasta_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb4-36"><a href="#cb4-36"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb4-37"><a href="#cb4-37"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb4-38"><a href="#cb4-38"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb4-39"><a href="#cb4-39"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb4-40"><a href="#cb4-40"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progression Free Alive"</span>,</span>
-<span id="cb4-41"><a href="#cb4-41"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Tumor Assessment"</span>,</span>
-<span id="cb4-42"><a href="#cb4-42"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb4-43"><a href="#cb4-43"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a>  )</span>
-<span id="cb4-45"><a href="#cb4-45"></a>)</span>
-<span id="cb4-46"><a href="#cb4-46"></a></span>
-<span id="cb4-47"><a href="#cb4-47"></a>rand_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb4-48"><a href="#cb4-48"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
-<span id="cb4-49"><a href="#cb4-49"></a>  <span class="at">date =</span> RANDDT,</span>
-<span id="cb4-50"><a href="#cb4-50"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb4-51"><a href="#cb4-51"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Randomization Date"</span>,</span>
-<span id="cb4-52"><a href="#cb4-52"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Randomization Date"</span>,</span>
-<span id="cb4-53"><a href="#cb4-53"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb4-54"><a href="#cb4-54"></a>    <span class="at">SRCVAR =</span> <span class="st">"RANDDT"</span></span>
-<span id="cb4-55"><a href="#cb4-55"></a>  )</span>
-<span id="cb4-56"><a href="#cb4-56"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Define event and censoring sources</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>death_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Death"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  )</span>
+<span id="cb3-11"><a href="#cb3-11"></a>)</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a>pd_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progressive Disease"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  )</span>
+<span id="cb3-22"><a href="#cb3-22"></a>)</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>lastalive_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb3-25"><a href="#cb3-25"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="at">date =</span> LSTALVDT,</span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Last Known Alive"</span>,</span>
+<span id="cb3-29"><a href="#cb3-29"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Known Alive Date"</span>,</span>
+<span id="cb3-30"><a href="#cb3-30"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb3-31"><a href="#cb3-31"></a>    <span class="at">SRCVAR =</span> <span class="st">"LSTALVDT"</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a>  )</span>
+<span id="cb3-33"><a href="#cb3-33"></a>)</span>
+<span id="cb3-34"><a href="#cb3-34"></a></span>
+<span id="cb3-35"><a href="#cb3-35"></a>lasta_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb3-36"><a href="#cb3-36"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb3-38"><a href="#cb3-38"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb3-39"><a href="#cb3-39"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb3-40"><a href="#cb3-40"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progression Free Alive"</span>,</span>
+<span id="cb3-41"><a href="#cb3-41"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Tumor Assessment"</span>,</span>
+<span id="cb3-42"><a href="#cb3-42"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb3-43"><a href="#cb3-43"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>  )</span>
+<span id="cb3-45"><a href="#cb3-45"></a>)</span>
+<span id="cb3-46"><a href="#cb3-46"></a></span>
+<span id="cb3-47"><a href="#cb3-47"></a>rand_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb3-48"><a href="#cb3-48"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
+<span id="cb3-49"><a href="#cb3-49"></a>  <span class="at">date =</span> RANDDT,</span>
+<span id="cb3-50"><a href="#cb3-50"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb3-51"><a href="#cb3-51"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Randomization Date"</span>,</span>
+<span id="cb3-52"><a href="#cb3-52"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Randomization Date"</span>,</span>
+<span id="cb3-53"><a href="#cb3-53"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb3-54"><a href="#cb3-54"></a>    <span class="at">SRCVAR =</span> <span class="st">"RANDDT"</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>  )</span>
+<span id="cb3-56"><a href="#cb3-56"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="derive-time-to-event-parameters" class="level1">
 <h1>Derive Time-to-Event Parameters</h1>
 <p>The <code>admiral::derive_param_tte()</code> function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Derive Overall Survival (OS)</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>adtte <span class="ot">&lt;-</span> <span class="fu">derive_param_tte</span>(</span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">dataset_adsl =</span> adsl,</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">start_date =</span> RANDDT,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="at">event_conditions =</span> <span class="fu">list</span>(death_event),</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="at">censor_conditions =</span> <span class="fu">list</span>(lastalive_censor, rand_censor),</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"OS"</span>, <span class="at">PARAM =</span> <span class="st">"Overall Survival"</span>)</span>
-<span id="cb5-9"><a href="#cb5-9"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># Derive Progression-Free Survival (PFS)</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a>adtte_pfs <span class="ot">&lt;-</span> adtte <span class="sc">%&gt;%</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">derive_param_tte</span>(</span>
-<span id="cb5-14"><a href="#cb5-14"></a>    <span class="at">dataset_adsl =</span> adsl,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="at">start_date =</span> RANDDT,</span>
-<span id="cb5-16"><a href="#cb5-16"></a>    <span class="at">event_conditions =</span> <span class="fu">list</span>(pd_event, death_event),</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    <span class="at">censor_conditions =</span> <span class="fu">list</span>(lasta_censor, rand_censor),</span>
-<span id="cb5-18"><a href="#cb5-18"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"PFS"</span>, <span class="at">PARAM =</span> <span class="st">"Progression-Free Survival"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 11
-#&gt;    STUDYID   USUBJID ADT        EVNTDESC SRCDOM SRCVAR  CNSR CNSDTDSC STARTDT   
-#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;    &lt;date&gt;    
-#&gt;  1 CDISCPIL… 01-701… 2014-07-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-02
-#&gt;  2 CDISCPIL… 01-701… 2012-09-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-08-05
-#&gt;  3 CDISCPIL… 01-701… 2014-01-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-07-19
-#&gt;  4 CDISCPIL… 01-701… 2014-04-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-18
-#&gt;  5 CDISCPIL… 01-701… 2014-12-30 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-07-01
-#&gt;  6 CDISCPIL… 01-701… 2013-04-07 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-02-12
-#&gt;  7 CDISCPIL… 01-701… 2014-07-09 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-01
-#&gt;  8 CDISCPIL… 01-701… 2012-09-17 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-09-07
-#&gt;  9 CDISCPIL… 01-701… 2013-01-23 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-11-30
-#&gt; 10 CDISCPIL… 01-701… 2014-09-09 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-12
-#&gt; # ℹ 2 more variables: PARAMCD &lt;chr&gt;, PARAM &lt;chr&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Derive Overall Survival (OS)</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>adtte <span class="ot">&lt;-</span> <span class="fu">derive_param_tte</span>(</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">dataset_adsl =</span> adsl,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">start_date =</span> RANDDT,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">event_conditions =</span> <span class="fu">list</span>(death_event),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">censor_conditions =</span> <span class="fu">list</span>(lastalive_censor, rand_censor),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"OS"</span>, <span class="at">PARAM =</span> <span class="st">"Overall Survival"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># Derive Progression-Free Survival (PFS)</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>adtte_pfs <span class="ot">&lt;-</span> adtte <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">derive_param_tte</span>(</span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="at">dataset_adsl =</span> adsl,</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="at">start_date =</span> RANDDT,</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="at">event_conditions =</span> <span class="fu">list</span>(pd_event, death_event),</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="at">censor_conditions =</span> <span class="fu">list</span>(lasta_censor, rand_censor),</span>
+<span id="cb4-18"><a href="#cb4-18"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"PFS"</span>, <span class="at">PARAM =</span> <span class="st">"Progression-Free Survival"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="derive-analysis-value-aval" class="level1">
 <h1>Derive Analysis Value (<code>AVAL</code>)</h1>
 <p>The analysis value (<code>AVAL</code>) can be derived by calling the <code>admiral::derive_vars_duration()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Derive analysis value</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>adtte_aval <span class="ot">&lt;-</span> adtte_pfs <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">new_var =</span> AVAL,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">start_date =</span> STARTDT,</span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">end_date =</span> ADT</span>
-<span id="cb7-7"><a href="#cb7-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 12
-#&gt;    STUDYID   USUBJID ADT        EVNTDESC SRCDOM SRCVAR  CNSR CNSDTDSC STARTDT   
-#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;    &lt;date&gt;    
-#&gt;  1 CDISCPIL… 01-701… 2014-07-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-02
-#&gt;  2 CDISCPIL… 01-701… 2012-09-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-08-05
-#&gt;  3 CDISCPIL… 01-701… 2014-01-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-07-19
-#&gt;  4 CDISCPIL… 01-701… 2014-04-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-18
-#&gt;  5 CDISCPIL… 01-701… 2014-12-30 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-07-01
-#&gt;  6 CDISCPIL… 01-701… 2013-04-07 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-02-12
-#&gt;  7 CDISCPIL… 01-701… 2014-07-09 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-01
-#&gt;  8 CDISCPIL… 01-701… 2012-09-17 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-09-07
-#&gt;  9 CDISCPIL… 01-701… 2013-01-23 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-11-30
-#&gt; 10 CDISCPIL… 01-701… 2014-09-09 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-12
-#&gt; # ℹ 3 more variables: PARAMCD &lt;chr&gt;, PARAM &lt;chr&gt;, AVAL &lt;dbl&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Derive analysis value</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>adtte_aval <span class="ot">&lt;-</span> adtte_pfs <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">new_var =</span> AVAL,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">start_date =</span> STARTDT,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">end_date =</span> ADT</span>
+<span id="cb5-7"><a href="#cb5-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="derive-analysis-sequence-number-aseq" class="level1">
 <h1>Derive Analysis Sequence Number (<code>ASEQ</code>)</h1>
 <p>We derive the sequence number for each record to uniquely identify them using the <code>admiral::derive_var_obs_number()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Derive analysis sequence number</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>adtte_aseq <span class="ot">&lt;-</span> adtte_aval <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">derive_var_obs_number</span>(</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD),</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 13
-#&gt;    STUDYID   USUBJID ADT        EVNTDESC SRCDOM SRCVAR  CNSR CNSDTDSC STARTDT   
-#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;    &lt;date&gt;    
-#&gt;  1 CDISCPIL… 01-701… 2014-07-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-02
-#&gt;  2 CDISCPIL… 01-701… 2014-03-06 Progres… ADRS   ADT        1 Last Tu… 2014-01-02
-#&gt;  3 CDISCPIL… 01-701… 2012-09-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-08-05
-#&gt;  4 CDISCPIL… 01-701… 2012-08-05 Randomi… ADSL   RANDDT     1 Randomi… 2012-08-05
-#&gt;  5 CDISCPIL… 01-701… 2014-01-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-07-19
-#&gt;  6 CDISCPIL… 01-701… 2013-08-30 Progres… ADRS   ADT        0 &lt;NA&gt;     2013-07-19
-#&gt;  7 CDISCPIL… 01-701… 2014-04-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-18
-#&gt;  8 CDISCPIL… 01-701… 2014-03-18 Randomi… ADSL   RANDDT     1 Randomi… 2014-03-18
-#&gt;  9 CDISCPIL… 01-701… 2014-12-30 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-07-01
-#&gt; 10 CDISCPIL… 01-701… 2014-08-12 Progres… ADRS   ADT        1 Last Tu… 2014-07-01
-#&gt; # ℹ 4 more variables: PARAMCD &lt;chr&gt;, PARAM &lt;chr&gt;, AVAL &lt;dbl&gt;, ASEQ &lt;int&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Derive analysis sequence number</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>adtte_aseq <span class="ot">&lt;-</span> adtte_aval <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD),</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="add-adsl-variables" class="level1">
 <h1>Add ADSL Variables</h1>
-<p>Additional variables from the <code>ADSL</code> dataset are merged into the <code>ADTTE</code> dataset using the <code>admiral::derive_vars_merged</code> function to enrich it.</p>
+<p>Additional variables from the <code>ADSL</code> dataset are merged into the <code>ADTTE</code> dataset using the <code>admiral::derive_vars_merged()</code> function to enrich it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Add ADSL variables</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>adtte_adsl <span class="ot">&lt;-</span> adtte_aseq <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb11-6"><a href="#cb11-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 65
-#&gt;    STUDYID   USUBJID ADT        EVNTDESC SRCDOM SRCVAR  CNSR CNSDTDSC STARTDT   
-#&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;date&gt;     &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;    &lt;date&gt;    
-#&gt;  1 CDISCPIL… 01-701… 2014-07-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-01-02
-#&gt;  2 CDISCPIL… 01-701… 2014-03-06 Progres… ADRS   ADT        1 Last Tu… 2014-01-02
-#&gt;  3 CDISCPIL… 01-701… 2012-09-02 Last Kn… ADSL   LSTAL…     1 Last Kn… 2012-08-05
-#&gt;  4 CDISCPIL… 01-701… 2012-08-05 Randomi… ADSL   RANDDT     1 Randomi… 2012-08-05
-#&gt;  5 CDISCPIL… 01-701… 2014-01-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2013-07-19
-#&gt;  6 CDISCPIL… 01-701… 2013-08-30 Progres… ADRS   ADT        0 &lt;NA&gt;     2013-07-19
-#&gt;  7 CDISCPIL… 01-701… 2014-04-14 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-03-18
-#&gt;  8 CDISCPIL… 01-701… 2014-03-18 Randomi… ADSL   RANDDT     1 Randomi… 2014-03-18
-#&gt;  9 CDISCPIL… 01-701… 2014-12-30 Last Kn… ADSL   LSTAL…     1 Last Kn… 2014-07-01
-#&gt; 10 CDISCPIL… 01-701… 2014-08-12 Progres… ADRS   ADT        1 Last Tu… 2014-07-01
-#&gt; # ℹ 56 more variables: PARAMCD &lt;chr&gt;, PARAM &lt;chr&gt;, AVAL &lt;dbl&gt;, ASEQ &lt;int&gt;,
-#&gt; #   SUBJID &lt;chr&gt;, RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, RFXSTDTC &lt;chr&gt;, RFXENDTC &lt;chr&gt;,
-#&gt; #   RFICDTC &lt;chr&gt;, RFPENDTC &lt;chr&gt;, DTHDTC &lt;chr&gt;, DTHFL &lt;chr&gt;, SITEID &lt;chr&gt;,
-#&gt; #   AGE &lt;dbl&gt;, AGEU &lt;chr&gt;, SEX &lt;chr&gt;, RACE &lt;chr&gt;, ETHNIC &lt;chr&gt;, ARMCD &lt;chr&gt;,
-#&gt; #   ARM &lt;chr&gt;, ACTARMCD &lt;chr&gt;, ACTARM &lt;chr&gt;, COUNTRY &lt;chr&gt;, DMDTC &lt;chr&gt;,
-#&gt; #   DMDY &lt;dbl&gt;, TRT01P &lt;chr&gt;, TRT01A &lt;chr&gt;, TRTSDTM &lt;dttm&gt;, TRTSTMF &lt;chr&gt;,
-#&gt; #   TRTEDTM &lt;dttm&gt;, TRTETMF &lt;chr&gt;, TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;, …</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Add ADSL variables</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>adtte_adsl <span class="ot">&lt;-</span> adtte_aseq <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="apply-metadata-and-esub-checks" class="level1">
 <h1>Apply Metadata and eSub Checks</h1>
 <p>We use <code>{metatools}</code> and <code>{xportr}</code> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Apply metadata and perform checks</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>adtte_adsl_checked <span class="ot">&lt;-</span> adtte_adsl <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">sort_by_key</span>(metacore)</span>
-<span id="cb13-9"><a href="#cb13-9"></a></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="co"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>adtte_final <span class="ot">&lt;-</span> adtte_adsl_checked <span class="sc">%&gt;%</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADTTE"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">xportr_df_label</span>(metacore)</span>
-<span id="cb13-16"><a href="#cb13-16"></a>  </span>
-<span id="cb13-17"><a href="#cb13-17"></a><span class="co"># Write dataset to XPT file (optional)</span></span>
-<span id="cb13-18"><a href="#cb13-18"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
-<span id="cb13-19"><a href="#cb13-19"></a><span class="fu">xportr_write</span>(adtte_final, <span class="fu">file.path</span>(dir, <span class="st">"adtte.xpt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<pre><code>#&gt; # A tibble: 10 × 44
-#&gt;    STUDYID  USUBJID SUBJID SITEID  ASEQ REGION1 COUNTRY ETHNIC   AGE AGEU   AAGE
-#&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
-#&gt;  1 CDISCPI… 01-701… 1015   701        1 NA      USA     HISPA…    63 YEARS    NA
-#&gt;  2 CDISCPI… 01-701… 1015   701        2 NA      USA     HISPA…    63 YEARS    NA
-#&gt;  3 CDISCPI… 01-701… 1023   701        1 NA      USA     HISPA…    64 YEARS    NA
-#&gt;  4 CDISCPI… 01-701… 1023   701        2 NA      USA     HISPA…    64 YEARS    NA
-#&gt;  5 CDISCPI… 01-701… 1028   701        1 NA      USA     NOT H…    71 YEARS    NA
-#&gt;  6 CDISCPI… 01-701… 1028   701        2 NA      USA     NOT H…    71 YEARS    NA
-#&gt;  7 CDISCPI… 01-701… 1033   701        1 NA      USA     NOT H…    74 YEARS    NA
-#&gt;  8 CDISCPI… 01-701… 1033   701        2 NA      USA     NOT H…    74 YEARS    NA
-#&gt;  9 CDISCPI… 01-701… 1034   701        1 NA      USA     NOT H…    77 YEARS    NA
-#&gt; 10 CDISCPI… 01-701… 1034   701        2 NA      USA     NOT H…    77 YEARS    NA
-#&gt; # ℹ 33 more variables: AAGEU &lt;chr&gt;, SEX &lt;chr&gt;, RACE &lt;chr&gt;, ITTFL &lt;chr&gt;,
-#&gt; #   SAFFL &lt;chr&gt;, TRT01P &lt;chr&gt;, TRT01A &lt;chr&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;,
-#&gt; #   TRTSDT &lt;date&gt;, TRTEDTM &lt;dttm&gt;, TRTEDT &lt;date&gt;, DCUTDT &lt;date&gt;,
-#&gt; #   LSTALVDT &lt;date&gt;, PARAM &lt;chr&gt;, PARAMCD &lt;chr&gt;, PARCAT1 &lt;chr&gt;, PARCAT2 &lt;chr&gt;,
-#&gt; #   PARCAT3 &lt;chr&gt;, AVAL &lt;dbl&gt;, AVALU &lt;chr&gt;, STARTDT &lt;date&gt;, STARTDTF &lt;chr&gt;,
-#&gt; #   ADT &lt;date&gt;, ADTF &lt;chr&gt;, ADY &lt;int&gt;, CNSR &lt;int&gt;, EVNTDESC &lt;chr&gt;,
-#&gt; #   CNSDTDSC &lt;chr&gt;, SRCDOM &lt;chr&gt;, SRCVAR &lt;chr&gt;, SRCSEQ &lt;int&gt;, ANL01FL &lt;chr&gt;</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Apply metadata and perform checks</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>adtte_adsl_checked <span class="ot">&lt;-</span> adtte_adsl <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">sort_by_key</span>(metacore)</span>
+<span id="cb8-9"><a href="#cb8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>adtte_final <span class="ot">&lt;-</span> adtte_adsl_checked <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADTTE"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">xportr_df_label</span>(metacore)</span>
+<span id="cb8-16"><a href="#cb8-16"></a>  </span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co"># Write dataset to XPT file (optional)</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="fu">xportr_write</span>(adtte_final, <span class="fu">file.path</span>(dir, <span class="st">"adtte.xpt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -1309,247 +1175,211 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb15" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">---</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="an">title:</span><span class="co"> "ADTTE"</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="an">order:</span><span class="co"> 4</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">---</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="in">knitr::opts_chunk$set(</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="in">  collapse = TRUE,</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="in">  comment = "#&gt;"</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="in">)</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="in">```</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="fu"># Introduction</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a></span>
-<span id="cb15-18"><a href="#cb15-18"></a>This article provides a step-by-step explanation for creating an ADaM <span class="in">`ADTTE`</span> (Time-to-Event) dataset with common oncology endpoint parameters using key pharmaverse packages along with tidyverse components. <span class="in">`ADTTE`</span> datasets often involve calculating time-to-event variables for endpoints such as Overall Survival (OS) and Progression-Free Survival (PFS).</span>
-<span id="cb15-19"><a href="#cb15-19"></a></span>
-<span id="cb15-20"><a href="#cb15-20"></a>For the purpose of this example, we will use the <span class="in">`ADSL`</span> and <span class="in">`ADRS_ONCO`</span> datasets from <span class="in">`{pharmaverseadam}`</span>.</span>
-<span id="cb15-21"><a href="#cb15-21"></a></span>
-<span id="cb15-22"><a href="#cb15-22"></a><span class="fu"># Load Required Packages</span></span>
-<span id="cb15-23"><a href="#cb15-23"></a></span>
-<span id="cb15-24"><a href="#cb15-24"></a>First, we will load the necessary packages:</span>
-<span id="cb15-25"><a href="#cb15-25"></a></span>
-<span id="cb15-26"><a href="#cb15-26"></a><span class="in">```{r message=FALSE, warning=FALSE}</span></span>
-<span id="cb15-27"><a href="#cb15-27"></a><span class="in">library(admiral)</span></span>
-<span id="cb15-28"><a href="#cb15-28"></a><span class="in">library(admiralonco)</span></span>
-<span id="cb15-29"><a href="#cb15-29"></a><span class="in">library(dplyr)</span></span>
-<span id="cb15-30"><a href="#cb15-30"></a><span class="in">library(lubridate)</span></span>
-<span id="cb15-31"><a href="#cb15-31"></a><span class="in">library(metacore)</span></span>
-<span id="cb15-32"><a href="#cb15-32"></a><span class="in">library(metatools)</span></span>
-<span id="cb15-33"><a href="#cb15-33"></a><span class="in">library(xportr)</span></span>
-<span id="cb15-34"><a href="#cb15-34"></a><span class="in">library(pharmaverseadam)</span></span>
-<span id="cb15-35"><a href="#cb15-35"></a><span class="in">```</span></span>
-<span id="cb15-36"><a href="#cb15-36"></a></span>
-<span id="cb15-37"><a href="#cb15-37"></a><span class="fu"># Load Specifications and Source Data</span></span>
-<span id="cb15-38"><a href="#cb15-38"></a></span>
-<span id="cb15-39"><a href="#cb15-39"></a>We will load our specification file into a <span class="in">`{metacore}`</span> object to trace the dataset variables and attributes. Then, we will read the source data.</span>
-<span id="cb15-40"><a href="#cb15-40"></a></span>
-<span id="cb15-41"><a href="#cb15-41"></a><span class="in">```{r read-specs}</span></span>
-<span id="cb15-42"><a href="#cb15-42"></a><span class="in">#| warning: false</span></span>
-<span id="cb15-43"><a href="#cb15-43"></a></span>
-<span id="cb15-44"><a href="#cb15-44"></a><span class="in"># Load metacore specifications</span></span>
-<span id="cb15-45"><a href="#cb15-45"></a><span class="in">metacore &lt;- spec_to_metacore("./metadata/onco_spec.xlsx") %&gt;%</span></span>
-<span id="cb15-46"><a href="#cb15-46"></a><span class="in">  select_dataset("ADTTE")</span></span>
-<span id="cb15-47"><a href="#cb15-47"></a></span>
-<span id="cb15-48"><a href="#cb15-48"></a><span class="in"># Load source datasets</span></span>
-<span id="cb15-49"><a href="#cb15-49"></a><span class="in">data("adsl")</span></span>
-<span id="cb15-50"><a href="#cb15-50"></a><span class="in">data("adrs_onco")</span></span>
-<span id="cb15-51"><a href="#cb15-51"></a></span>
-<span id="cb15-52"><a href="#cb15-52"></a><span class="in">adrs &lt;- adrs_onco</span></span>
-<span id="cb15-53"><a href="#cb15-53"></a><span class="in">```</span></span>
-<span id="cb15-54"><a href="#cb15-54"></a></span>
-<span id="cb15-55"><a href="#cb15-55"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-56"><a href="#cb15-56"></a><span class="in"># Show the first few rows of ADSL and ADRS</span></span>
-<span id="cb15-57"><a href="#cb15-57"></a><span class="in">head(adsl, n=10)</span></span>
-<span id="cb15-58"><a href="#cb15-58"></a><span class="in">head(adrs, n=10)</span></span>
-<span id="cb15-59"><a href="#cb15-59"></a><span class="in">```</span></span>
-<span id="cb15-60"><a href="#cb15-60"></a></span>
-<span id="cb15-61"><a href="#cb15-61"></a><span class="fu"># Define Event and Censoring Sources</span></span>
-<span id="cb15-62"><a href="#cb15-62"></a></span>
-<span id="cb15-63"><a href="#cb15-63"></a>We define event and censoring sources using the <span class="in">`admiral::event_source()`</span> and <span class="in">`admiral::censor_source()`</span> functions. This forms the basis for calculating time-to-event endpoints.</span>
-<span id="cb15-64"><a href="#cb15-64"></a></span>
-<span id="cb15-67"><a href="#cb15-67"></a><span class="in">```{r}</span></span>
-<span id="cb15-68"><a href="#cb15-68"></a><span class="co"># Define event and censoring sources</span></span>
-<span id="cb15-69"><a href="#cb15-69"></a>death_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
-<span id="cb15-70"><a href="#cb15-70"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb15-71"><a href="#cb15-71"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb15-72"><a href="#cb15-72"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb15-73"><a href="#cb15-73"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb15-74"><a href="#cb15-74"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Death"</span>,</span>
-<span id="cb15-75"><a href="#cb15-75"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb15-76"><a href="#cb15-76"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb15-77"><a href="#cb15-77"></a>  )</span>
-<span id="cb15-78"><a href="#cb15-78"></a>)</span>
-<span id="cb15-79"><a href="#cb15-79"></a></span>
-<span id="cb15-80"><a href="#cb15-80"></a>pd_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
-<span id="cb15-81"><a href="#cb15-81"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb15-82"><a href="#cb15-82"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb15-83"><a href="#cb15-83"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb15-84"><a href="#cb15-84"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb15-85"><a href="#cb15-85"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progressive Disease"</span>,</span>
-<span id="cb15-86"><a href="#cb15-86"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb15-87"><a href="#cb15-87"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb15-88"><a href="#cb15-88"></a>  )</span>
-<span id="cb15-89"><a href="#cb15-89"></a>)</span>
-<span id="cb15-90"><a href="#cb15-90"></a></span>
-<span id="cb15-91"><a href="#cb15-91"></a>lastalive_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb15-92"><a href="#cb15-92"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
-<span id="cb15-93"><a href="#cb15-93"></a>  <span class="at">date =</span> LSTALVDT,</span>
-<span id="cb15-94"><a href="#cb15-94"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb15-95"><a href="#cb15-95"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Last Known Alive"</span>,</span>
-<span id="cb15-96"><a href="#cb15-96"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Known Alive Date"</span>,</span>
-<span id="cb15-97"><a href="#cb15-97"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb15-98"><a href="#cb15-98"></a>    <span class="at">SRCVAR =</span> <span class="st">"LSTALVDT"</span></span>
-<span id="cb15-99"><a href="#cb15-99"></a>  )</span>
-<span id="cb15-100"><a href="#cb15-100"></a>)</span>
-<span id="cb15-101"><a href="#cb15-101"></a></span>
-<span id="cb15-102"><a href="#cb15-102"></a>lasta_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb15-103"><a href="#cb15-103"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
-<span id="cb15-104"><a href="#cb15-104"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb15-105"><a href="#cb15-105"></a>  <span class="at">date =</span> ADT,</span>
-<span id="cb15-106"><a href="#cb15-106"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb15-107"><a href="#cb15-107"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progression Free Alive"</span>,</span>
-<span id="cb15-108"><a href="#cb15-108"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Tumor Assessment"</span>,</span>
-<span id="cb15-109"><a href="#cb15-109"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
-<span id="cb15-110"><a href="#cb15-110"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
-<span id="cb15-111"><a href="#cb15-111"></a>  )</span>
-<span id="cb15-112"><a href="#cb15-112"></a>)</span>
-<span id="cb15-113"><a href="#cb15-113"></a></span>
-<span id="cb15-114"><a href="#cb15-114"></a>rand_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
-<span id="cb15-115"><a href="#cb15-115"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
-<span id="cb15-116"><a href="#cb15-116"></a>  <span class="at">date =</span> RANDDT,</span>
-<span id="cb15-117"><a href="#cb15-117"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb15-118"><a href="#cb15-118"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Randomization Date"</span>,</span>
-<span id="cb15-119"><a href="#cb15-119"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Randomization Date"</span>,</span>
-<span id="cb15-120"><a href="#cb15-120"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb15-121"><a href="#cb15-121"></a>    <span class="at">SRCVAR =</span> <span class="st">"RANDDT"</span></span>
-<span id="cb15-122"><a href="#cb15-122"></a>  )</span>
-<span id="cb15-123"><a href="#cb15-123"></a>)</span>
-<span id="cb15-124"><a href="#cb15-124"></a><span class="in">```</span></span>
-<span id="cb15-125"><a href="#cb15-125"></a></span>
-<span id="cb15-126"><a href="#cb15-126"></a><span class="fu"># Derive Time-to-Event Parameters</span></span>
-<span id="cb15-127"><a href="#cb15-127"></a></span>
-<span id="cb15-128"><a href="#cb15-128"></a>The <span class="in">`admiral::derive_param_tte()`</span> function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).</span>
-<span id="cb15-129"><a href="#cb15-129"></a></span>
-<span id="cb15-132"><a href="#cb15-132"></a><span class="in">```{r}</span></span>
-<span id="cb15-133"><a href="#cb15-133"></a><span class="co"># Derive Overall Survival (OS)</span></span>
-<span id="cb15-134"><a href="#cb15-134"></a>adtte <span class="ot">&lt;-</span> <span class="fu">derive_param_tte</span>(</span>
-<span id="cb15-135"><a href="#cb15-135"></a>  <span class="at">dataset_adsl =</span> adsl,</span>
-<span id="cb15-136"><a href="#cb15-136"></a>  <span class="at">start_date =</span> RANDDT,</span>
-<span id="cb15-137"><a href="#cb15-137"></a>  <span class="at">event_conditions =</span> <span class="fu">list</span>(death_event),</span>
-<span id="cb15-138"><a href="#cb15-138"></a>  <span class="at">censor_conditions =</span> <span class="fu">list</span>(lastalive_censor, rand_censor),</span>
-<span id="cb15-139"><a href="#cb15-139"></a>  <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
-<span id="cb15-140"><a href="#cb15-140"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"OS"</span>, <span class="at">PARAM =</span> <span class="st">"Overall Survival"</span>)</span>
-<span id="cb15-141"><a href="#cb15-141"></a>)</span>
-<span id="cb15-142"><a href="#cb15-142"></a></span>
-<span id="cb15-143"><a href="#cb15-143"></a><span class="co"># Derive Progression-Free Survival (PFS)</span></span>
-<span id="cb15-144"><a href="#cb15-144"></a>adtte_pfs <span class="ot">&lt;-</span> adtte <span class="sc">%&gt;%</span></span>
-<span id="cb15-145"><a href="#cb15-145"></a>  <span class="fu">derive_param_tte</span>(</span>
-<span id="cb15-146"><a href="#cb15-146"></a>    <span class="at">dataset_adsl =</span> adsl,</span>
-<span id="cb15-147"><a href="#cb15-147"></a>    <span class="at">start_date =</span> RANDDT,</span>
-<span id="cb15-148"><a href="#cb15-148"></a>    <span class="at">event_conditions =</span> <span class="fu">list</span>(pd_event, death_event),</span>
-<span id="cb15-149"><a href="#cb15-149"></a>    <span class="at">censor_conditions =</span> <span class="fu">list</span>(lasta_censor, rand_censor),</span>
-<span id="cb15-150"><a href="#cb15-150"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
-<span id="cb15-151"><a href="#cb15-151"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"PFS"</span>, <span class="at">PARAM =</span> <span class="st">"Progression-Free Survival"</span>)</span>
-<span id="cb15-152"><a href="#cb15-152"></a>  )</span>
-<span id="cb15-153"><a href="#cb15-153"></a><span class="in">```</span></span>
-<span id="cb15-154"><a href="#cb15-154"></a></span>
-<span id="cb15-155"><a href="#cb15-155"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-156"><a href="#cb15-156"></a><span class="in"># Display first few rows of ADTTE</span></span>
-<span id="cb15-157"><a href="#cb15-157"></a><span class="in">head(adtte_pfs, n=10)</span></span>
-<span id="cb15-158"><a href="#cb15-158"></a><span class="in">```</span></span>
-<span id="cb15-159"><a href="#cb15-159"></a></span>
-<span id="cb15-160"><a href="#cb15-160"></a><span class="fu"># Derive Analysis Value (`AVAL`)</span></span>
-<span id="cb15-161"><a href="#cb15-161"></a></span>
-<span id="cb15-162"><a href="#cb15-162"></a>The analysis value (<span class="in">`AVAL`</span>) can be derived by calling the <span class="in">`admiral::derive_vars_duration()`</span> function.</span>
-<span id="cb15-163"><a href="#cb15-163"></a></span>
-<span id="cb15-166"><a href="#cb15-166"></a><span class="in">```{r}</span></span>
-<span id="cb15-167"><a href="#cb15-167"></a><span class="co"># Derive analysis value</span></span>
-<span id="cb15-168"><a href="#cb15-168"></a>adtte_aval <span class="ot">&lt;-</span> adtte_pfs <span class="sc">%&gt;%</span></span>
-<span id="cb15-169"><a href="#cb15-169"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb15-170"><a href="#cb15-170"></a>    <span class="at">new_var =</span> AVAL,</span>
-<span id="cb15-171"><a href="#cb15-171"></a>    <span class="at">start_date =</span> STARTDT,</span>
-<span id="cb15-172"><a href="#cb15-172"></a>    <span class="at">end_date =</span> ADT</span>
-<span id="cb15-173"><a href="#cb15-173"></a>  )</span>
-<span id="cb15-174"><a href="#cb15-174"></a><span class="in">```</span></span>
-<span id="cb15-175"><a href="#cb15-175"></a></span>
-<span id="cb15-176"><a href="#cb15-176"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-177"><a href="#cb15-177"></a><span class="in"># Display first few rows with AVAL</span></span>
-<span id="cb15-178"><a href="#cb15-178"></a><span class="in">head(adtte_aval, n=10)</span></span>
-<span id="cb15-179"><a href="#cb15-179"></a><span class="in">```</span></span>
-<span id="cb15-180"><a href="#cb15-180"></a></span>
-<span id="cb15-181"><a href="#cb15-181"></a><span class="fu"># Derive Analysis Sequence Number (`ASEQ`)</span></span>
-<span id="cb15-182"><a href="#cb15-182"></a></span>
-<span id="cb15-183"><a href="#cb15-183"></a>We derive the sequence number for each record to uniquely identify them using the <span class="in">`admiral::derive_var_obs_number()`</span> function.</span>
-<span id="cb15-184"><a href="#cb15-184"></a></span>
-<span id="cb15-187"><a href="#cb15-187"></a><span class="in">```{r}</span></span>
-<span id="cb15-188"><a href="#cb15-188"></a><span class="co"># Derive analysis sequence number</span></span>
-<span id="cb15-189"><a href="#cb15-189"></a>adtte_aseq <span class="ot">&lt;-</span> adtte_aval <span class="sc">%&gt;%</span></span>
-<span id="cb15-190"><a href="#cb15-190"></a>  <span class="fu">derive_var_obs_number</span>(</span>
-<span id="cb15-191"><a href="#cb15-191"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb15-192"><a href="#cb15-192"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD),</span>
-<span id="cb15-193"><a href="#cb15-193"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb15-194"><a href="#cb15-194"></a>  )</span>
-<span id="cb15-195"><a href="#cb15-195"></a><span class="in">```</span></span>
-<span id="cb15-196"><a href="#cb15-196"></a></span>
-<span id="cb15-197"><a href="#cb15-197"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-198"><a href="#cb15-198"></a><span class="in"># Display first few rows with ASEQ</span></span>
-<span id="cb15-199"><a href="#cb15-199"></a><span class="in">head(adtte_aseq, n=10)</span></span>
-<span id="cb15-200"><a href="#cb15-200"></a><span class="in">```</span></span>
-<span id="cb15-201"><a href="#cb15-201"></a></span>
-<span id="cb15-202"><a href="#cb15-202"></a><span class="fu"># Add ADSL Variables</span></span>
-<span id="cb15-203"><a href="#cb15-203"></a></span>
-<span id="cb15-204"><a href="#cb15-204"></a>Additional variables from the <span class="in">`ADSL`</span> dataset are merged into the <span class="in">`ADTTE`</span> dataset using the <span class="in">`admiral::derive_vars_merged`</span> function to enrich it.</span>
-<span id="cb15-205"><a href="#cb15-205"></a></span>
-<span id="cb15-208"><a href="#cb15-208"></a><span class="in">```{r}</span></span>
-<span id="cb15-209"><a href="#cb15-209"></a><span class="co"># Add ADSL variables</span></span>
-<span id="cb15-210"><a href="#cb15-210"></a>adtte_adsl <span class="ot">&lt;-</span> adtte_aseq <span class="sc">%&gt;%</span></span>
-<span id="cb15-211"><a href="#cb15-211"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb15-212"><a href="#cb15-212"></a>    <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb15-213"><a href="#cb15-213"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb15-214"><a href="#cb15-214"></a>  )</span>
-<span id="cb15-215"><a href="#cb15-215"></a><span class="in">```</span></span>
-<span id="cb15-216"><a href="#cb15-216"></a></span>
-<span id="cb15-217"><a href="#cb15-217"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-218"><a href="#cb15-218"></a><span class="in"># Display first few rows with merged ADSL variables</span></span>
-<span id="cb15-219"><a href="#cb15-219"></a><span class="in">head(adtte_adsl, n=10)</span></span>
-<span id="cb15-220"><a href="#cb15-220"></a><span class="in">```</span></span>
-<span id="cb15-221"><a href="#cb15-221"></a></span>
-<span id="cb15-222"><a href="#cb15-222"></a><span class="fu"># Apply Metadata and eSub Checks</span></span>
-<span id="cb15-223"><a href="#cb15-223"></a></span>
-<span id="cb15-224"><a href="#cb15-224"></a>We use <span class="in">`{metatools}`</span> and <span class="in">`{xportr}`</span> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</span>
-<span id="cb15-225"><a href="#cb15-225"></a></span>
-<span id="cb15-226"><a href="#cb15-226"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
-<span id="cb15-227"><a href="#cb15-227"></a><span class="in"># Apply metadata and perform checks</span></span>
-<span id="cb15-228"><a href="#cb15-228"></a><span class="in">adtte_adsl_checked &lt;- adtte_adsl %&gt;%</span></span>
-<span id="cb15-229"><a href="#cb15-229"></a><span class="in">  add_variables(metacore) %&gt;%</span></span>
-<span id="cb15-230"><a href="#cb15-230"></a><span class="in">  drop_unspec_vars(metacore) %&gt;%</span></span>
-<span id="cb15-231"><a href="#cb15-231"></a><span class="in">  check_variables(metacore) %&gt;%</span></span>
-<span id="cb15-232"><a href="#cb15-232"></a><span class="in">  check_ct_data(metacore) %&gt;%</span></span>
-<span id="cb15-233"><a href="#cb15-233"></a><span class="in">  order_cols(metacore) %&gt;%</span></span>
-<span id="cb15-234"><a href="#cb15-234"></a><span class="in">  sort_by_key(metacore)</span></span>
-<span id="cb15-235"><a href="#cb15-235"></a></span>
-<span id="cb15-236"><a href="#cb15-236"></a><span class="in"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
-<span id="cb15-237"><a href="#cb15-237"></a><span class="in">adtte_final &lt;- adtte_adsl_checked %&gt;%</span></span>
-<span id="cb15-238"><a href="#cb15-238"></a><span class="in">  xportr_type(metacore, domain = "ADTTE") %&gt;%</span></span>
-<span id="cb15-239"><a href="#cb15-239"></a><span class="in">  xportr_length(metacore) %&gt;%</span></span>
-<span id="cb15-240"><a href="#cb15-240"></a><span class="in">  xportr_label(metacore) %&gt;%</span></span>
-<span id="cb15-241"><a href="#cb15-241"></a><span class="in">  xportr_df_label(metacore)</span></span>
-<span id="cb15-242"><a href="#cb15-242"></a><span class="in">  </span></span>
-<span id="cb15-243"><a href="#cb15-243"></a><span class="in"># Write dataset to XPT file (optional)</span></span>
-<span id="cb15-244"><a href="#cb15-244"></a><span class="in">dir &lt;- tempdir()</span></span>
-<span id="cb15-245"><a href="#cb15-245"></a><span class="in">xportr_write(adtte_final, file.path(dir, "adtte.xpt"))</span></span>
-<span id="cb15-246"><a href="#cb15-246"></a><span class="in">```</span></span>
-<span id="cb15-247"><a href="#cb15-247"></a></span>
-<span id="cb15-248"><a href="#cb15-248"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb15-249"><a href="#cb15-249"></a><span class="in"># Display final ADTTE dataset</span></span>
-<span id="cb15-250"><a href="#cb15-250"></a><span class="in">head(adtte_final, n=10)</span></span>
-<span id="cb15-251"><a href="#cb15-251"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="an">title:</span><span class="co"> "ADTTE"</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="an">order:</span><span class="co"> 5</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">---</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="in">```</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="fu"># Introduction</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a></span>
+<span id="cb9-13"><a href="#cb9-13"></a>This article provides a step-by-step explanation for creating an ADaM <span class="in">`ADTTE`</span> (Time-to-Event) dataset with common oncology endpoint parameters using key pharmaverse packages along with tidyverse components. <span class="in">`ADTTE`</span> datasets often involve calculating time-to-event variables for endpoints such as Overall Survival (OS) and Progression-Free Survival (PFS).</span>
+<span id="cb9-14"><a href="#cb9-14"></a></span>
+<span id="cb9-15"><a href="#cb9-15"></a>For the purpose of this example, we will use the <span class="in">`ADSL`</span> and <span class="in">`ADRS_ONCO`</span> datasets from <span class="in">`{pharmaverseadam}`</span>.</span>
+<span id="cb9-16"><a href="#cb9-16"></a></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="fu"># Load Required Packages</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a></span>
+<span id="cb9-19"><a href="#cb9-19"></a>First, we will load the necessary packages:</span>
+<span id="cb9-20"><a href="#cb9-20"></a></span>
+<span id="cb9-21"><a href="#cb9-21"></a><span class="in">```{r message=FALSE, warning=FALSE}</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a><span class="in">library(admiral)</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a><span class="in">library(admiralonco)</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a><span class="in">library(dplyr)</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a><span class="in">library(lubridate)</span></span>
+<span id="cb9-26"><a href="#cb9-26"></a><span class="in">library(metacore)</span></span>
+<span id="cb9-27"><a href="#cb9-27"></a><span class="in">library(metatools)</span></span>
+<span id="cb9-28"><a href="#cb9-28"></a><span class="in">library(xportr)</span></span>
+<span id="cb9-29"><a href="#cb9-29"></a><span class="in">library(pharmaverseadam)</span></span>
+<span id="cb9-30"><a href="#cb9-30"></a><span class="in">```</span></span>
+<span id="cb9-31"><a href="#cb9-31"></a></span>
+<span id="cb9-32"><a href="#cb9-32"></a><span class="fu"># Load Specifications and Source Data</span></span>
+<span id="cb9-33"><a href="#cb9-33"></a></span>
+<span id="cb9-34"><a href="#cb9-34"></a>We will load our specification file into a <span class="in">`{metacore}`</span> object to trace the dataset variables and attributes. Then, we will read the source data.</span>
+<span id="cb9-35"><a href="#cb9-35"></a></span>
+<span id="cb9-36"><a href="#cb9-36"></a><span class="in">```{r read-specs}</span></span>
+<span id="cb9-37"><a href="#cb9-37"></a><span class="in">#| warning: false</span></span>
+<span id="cb9-38"><a href="#cb9-38"></a></span>
+<span id="cb9-39"><a href="#cb9-39"></a><span class="in"># Load metacore specifications</span></span>
+<span id="cb9-40"><a href="#cb9-40"></a><span class="in">metacore &lt;- spec_to_metacore("./metadata/onco_spec.xlsx") %&gt;%</span></span>
+<span id="cb9-41"><a href="#cb9-41"></a><span class="in">  select_dataset("ADTTE")</span></span>
+<span id="cb9-42"><a href="#cb9-42"></a></span>
+<span id="cb9-43"><a href="#cb9-43"></a><span class="in"># Load source datasets</span></span>
+<span id="cb9-44"><a href="#cb9-44"></a><span class="in">data("adsl")</span></span>
+<span id="cb9-45"><a href="#cb9-45"></a><span class="in">data("adrs_onco")</span></span>
+<span id="cb9-46"><a href="#cb9-46"></a></span>
+<span id="cb9-47"><a href="#cb9-47"></a><span class="in">adrs &lt;- adrs_onco</span></span>
+<span id="cb9-48"><a href="#cb9-48"></a><span class="in">```</span></span>
+<span id="cb9-49"><a href="#cb9-49"></a></span>
+<span id="cb9-50"><a href="#cb9-50"></a><span class="fu"># Define Event and Censoring Sources</span></span>
+<span id="cb9-51"><a href="#cb9-51"></a></span>
+<span id="cb9-52"><a href="#cb9-52"></a>We define event and censoring sources using the <span class="in">`admiral::event_source()`</span> and <span class="in">`admiral::censor_source()`</span> functions. This forms the basis for calculating time-to-event endpoints.</span>
+<span id="cb9-53"><a href="#cb9-53"></a></span>
+<span id="cb9-56"><a href="#cb9-56"></a><span class="in">```{r}</span></span>
+<span id="cb9-57"><a href="#cb9-57"></a><span class="co"># Define event and censoring sources</span></span>
+<span id="cb9-58"><a href="#cb9-58"></a>death_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
+<span id="cb9-59"><a href="#cb9-59"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb9-60"><a href="#cb9-60"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb9-61"><a href="#cb9-61"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb9-62"><a href="#cb9-62"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-63"><a href="#cb9-63"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Death"</span>,</span>
+<span id="cb9-64"><a href="#cb9-64"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb9-65"><a href="#cb9-65"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb9-66"><a href="#cb9-66"></a>  )</span>
+<span id="cb9-67"><a href="#cb9-67"></a>)</span>
+<span id="cb9-68"><a href="#cb9-68"></a></span>
+<span id="cb9-69"><a href="#cb9-69"></a>pd_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
+<span id="cb9-70"><a href="#cb9-70"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb9-71"><a href="#cb9-71"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb9-72"><a href="#cb9-72"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb9-73"><a href="#cb9-73"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-74"><a href="#cb9-74"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progressive Disease"</span>,</span>
+<span id="cb9-75"><a href="#cb9-75"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb9-76"><a href="#cb9-76"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb9-77"><a href="#cb9-77"></a>  )</span>
+<span id="cb9-78"><a href="#cb9-78"></a>)</span>
+<span id="cb9-79"><a href="#cb9-79"></a></span>
+<span id="cb9-80"><a href="#cb9-80"></a>lastalive_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb9-81"><a href="#cb9-81"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
+<span id="cb9-82"><a href="#cb9-82"></a>  <span class="at">date =</span> LSTALVDT,</span>
+<span id="cb9-83"><a href="#cb9-83"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-84"><a href="#cb9-84"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Last Known Alive"</span>,</span>
+<span id="cb9-85"><a href="#cb9-85"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Known Alive Date"</span>,</span>
+<span id="cb9-86"><a href="#cb9-86"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb9-87"><a href="#cb9-87"></a>    <span class="at">SRCVAR =</span> <span class="st">"LSTALVDT"</span></span>
+<span id="cb9-88"><a href="#cb9-88"></a>  )</span>
+<span id="cb9-89"><a href="#cb9-89"></a>)</span>
+<span id="cb9-90"><a href="#cb9-90"></a></span>
+<span id="cb9-91"><a href="#cb9-91"></a>lasta_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb9-92"><a href="#cb9-92"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
+<span id="cb9-93"><a href="#cb9-93"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb9-94"><a href="#cb9-94"></a>  <span class="at">date =</span> ADT,</span>
+<span id="cb9-95"><a href="#cb9-95"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-96"><a href="#cb9-96"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Progression Free Alive"</span>,</span>
+<span id="cb9-97"><a href="#cb9-97"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Last Tumor Assessment"</span>,</span>
+<span id="cb9-98"><a href="#cb9-98"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADRS"</span>,</span>
+<span id="cb9-99"><a href="#cb9-99"></a>    <span class="at">SRCVAR =</span> <span class="st">"ADT"</span></span>
+<span id="cb9-100"><a href="#cb9-100"></a>  )</span>
+<span id="cb9-101"><a href="#cb9-101"></a>)</span>
+<span id="cb9-102"><a href="#cb9-102"></a></span>
+<span id="cb9-103"><a href="#cb9-103"></a>rand_censor <span class="ot">&lt;-</span> <span class="fu">censor_source</span>(</span>
+<span id="cb9-104"><a href="#cb9-104"></a>  <span class="at">dataset_name =</span> <span class="st">"adsl"</span>,</span>
+<span id="cb9-105"><a href="#cb9-105"></a>  <span class="at">date =</span> RANDDT,</span>
+<span id="cb9-106"><a href="#cb9-106"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-107"><a href="#cb9-107"></a>    <span class="at">EVNTDESC =</span> <span class="st">"Randomization Date"</span>,</span>
+<span id="cb9-108"><a href="#cb9-108"></a>    <span class="at">CNSDTDSC =</span> <span class="st">"Randomization Date"</span>,</span>
+<span id="cb9-109"><a href="#cb9-109"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb9-110"><a href="#cb9-110"></a>    <span class="at">SRCVAR =</span> <span class="st">"RANDDT"</span></span>
+<span id="cb9-111"><a href="#cb9-111"></a>  )</span>
+<span id="cb9-112"><a href="#cb9-112"></a>)</span>
+<span id="cb9-113"><a href="#cb9-113"></a><span class="in">```</span></span>
+<span id="cb9-114"><a href="#cb9-114"></a></span>
+<span id="cb9-115"><a href="#cb9-115"></a><span class="fu"># Derive Time-to-Event Parameters</span></span>
+<span id="cb9-116"><a href="#cb9-116"></a></span>
+<span id="cb9-117"><a href="#cb9-117"></a>The <span class="in">`admiral::derive_param_tte()`</span> function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).</span>
+<span id="cb9-118"><a href="#cb9-118"></a></span>
+<span id="cb9-121"><a href="#cb9-121"></a><span class="in">```{r}</span></span>
+<span id="cb9-122"><a href="#cb9-122"></a><span class="co"># Derive Overall Survival (OS)</span></span>
+<span id="cb9-123"><a href="#cb9-123"></a>adtte <span class="ot">&lt;-</span> <span class="fu">derive_param_tte</span>(</span>
+<span id="cb9-124"><a href="#cb9-124"></a>  <span class="at">dataset_adsl =</span> adsl,</span>
+<span id="cb9-125"><a href="#cb9-125"></a>  <span class="at">start_date =</span> RANDDT,</span>
+<span id="cb9-126"><a href="#cb9-126"></a>  <span class="at">event_conditions =</span> <span class="fu">list</span>(death_event),</span>
+<span id="cb9-127"><a href="#cb9-127"></a>  <span class="at">censor_conditions =</span> <span class="fu">list</span>(lastalive_censor, rand_censor),</span>
+<span id="cb9-128"><a href="#cb9-128"></a>  <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
+<span id="cb9-129"><a href="#cb9-129"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"OS"</span>, <span class="at">PARAM =</span> <span class="st">"Overall Survival"</span>)</span>
+<span id="cb9-130"><a href="#cb9-130"></a>)</span>
+<span id="cb9-131"><a href="#cb9-131"></a></span>
+<span id="cb9-132"><a href="#cb9-132"></a><span class="co"># Derive Progression-Free Survival (PFS)</span></span>
+<span id="cb9-133"><a href="#cb9-133"></a>adtte_pfs <span class="ot">&lt;-</span> adtte <span class="sc">%&gt;%</span></span>
+<span id="cb9-134"><a href="#cb9-134"></a>  <span class="fu">derive_param_tte</span>(</span>
+<span id="cb9-135"><a href="#cb9-135"></a>    <span class="at">dataset_adsl =</span> adsl,</span>
+<span id="cb9-136"><a href="#cb9-136"></a>    <span class="at">start_date =</span> RANDDT,</span>
+<span id="cb9-137"><a href="#cb9-137"></a>    <span class="at">event_conditions =</span> <span class="fu">list</span>(pd_event, death_event),</span>
+<span id="cb9-138"><a href="#cb9-138"></a>    <span class="at">censor_conditions =</span> <span class="fu">list</span>(lasta_censor, rand_censor),</span>
+<span id="cb9-139"><a href="#cb9-139"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
+<span id="cb9-140"><a href="#cb9-140"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"PFS"</span>, <span class="at">PARAM =</span> <span class="st">"Progression-Free Survival"</span>)</span>
+<span id="cb9-141"><a href="#cb9-141"></a>  )</span>
+<span id="cb9-142"><a href="#cb9-142"></a><span class="in">```</span></span>
+<span id="cb9-143"><a href="#cb9-143"></a></span>
+<span id="cb9-144"><a href="#cb9-144"></a><span class="fu"># Derive Analysis Value (`AVAL`)</span></span>
+<span id="cb9-145"><a href="#cb9-145"></a></span>
+<span id="cb9-146"><a href="#cb9-146"></a>The analysis value (<span class="in">`AVAL`</span>) can be derived by calling the <span class="in">`admiral::derive_vars_duration()`</span> function.</span>
+<span id="cb9-147"><a href="#cb9-147"></a></span>
+<span id="cb9-150"><a href="#cb9-150"></a><span class="in">```{r}</span></span>
+<span id="cb9-151"><a href="#cb9-151"></a><span class="co"># Derive analysis value</span></span>
+<span id="cb9-152"><a href="#cb9-152"></a>adtte_aval <span class="ot">&lt;-</span> adtte_pfs <span class="sc">%&gt;%</span></span>
+<span id="cb9-153"><a href="#cb9-153"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb9-154"><a href="#cb9-154"></a>    <span class="at">new_var =</span> AVAL,</span>
+<span id="cb9-155"><a href="#cb9-155"></a>    <span class="at">start_date =</span> STARTDT,</span>
+<span id="cb9-156"><a href="#cb9-156"></a>    <span class="at">end_date =</span> ADT</span>
+<span id="cb9-157"><a href="#cb9-157"></a>  )</span>
+<span id="cb9-158"><a href="#cb9-158"></a><span class="in">```</span></span>
+<span id="cb9-159"><a href="#cb9-159"></a></span>
+<span id="cb9-160"><a href="#cb9-160"></a><span class="fu"># Derive Analysis Sequence Number (`ASEQ`)</span></span>
+<span id="cb9-161"><a href="#cb9-161"></a></span>
+<span id="cb9-162"><a href="#cb9-162"></a>We derive the sequence number for each record to uniquely identify them using the <span class="in">`admiral::derive_var_obs_number()`</span> function.</span>
+<span id="cb9-163"><a href="#cb9-163"></a></span>
+<span id="cb9-166"><a href="#cb9-166"></a><span class="in">```{r}</span></span>
+<span id="cb9-167"><a href="#cb9-167"></a><span class="co"># Derive analysis sequence number</span></span>
+<span id="cb9-168"><a href="#cb9-168"></a>adtte_aseq <span class="ot">&lt;-</span> adtte_aval <span class="sc">%&gt;%</span></span>
+<span id="cb9-169"><a href="#cb9-169"></a>  <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb9-170"><a href="#cb9-170"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb9-171"><a href="#cb9-171"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD),</span>
+<span id="cb9-172"><a href="#cb9-172"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb9-173"><a href="#cb9-173"></a>  )</span>
+<span id="cb9-174"><a href="#cb9-174"></a><span class="in">```</span></span>
+<span id="cb9-175"><a href="#cb9-175"></a></span>
+<span id="cb9-176"><a href="#cb9-176"></a><span class="fu"># Add ADSL Variables</span></span>
+<span id="cb9-177"><a href="#cb9-177"></a></span>
+<span id="cb9-178"><a href="#cb9-178"></a>Additional variables from the <span class="in">`ADSL`</span> dataset are merged into the <span class="in">`ADTTE`</span> dataset using the <span class="in">`admiral::derive_vars_merged()`</span> function to enrich it.</span>
+<span id="cb9-179"><a href="#cb9-179"></a></span>
+<span id="cb9-182"><a href="#cb9-182"></a><span class="in">```{r}</span></span>
+<span id="cb9-183"><a href="#cb9-183"></a><span class="co"># Add ADSL variables</span></span>
+<span id="cb9-184"><a href="#cb9-184"></a>adtte_adsl <span class="ot">&lt;-</span> adtte_aseq <span class="sc">%&gt;%</span></span>
+<span id="cb9-185"><a href="#cb9-185"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb9-186"><a href="#cb9-186"></a>    <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb9-187"><a href="#cb9-187"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb9-188"><a href="#cb9-188"></a>  )</span>
+<span id="cb9-189"><a href="#cb9-189"></a><span class="in">```</span></span>
+<span id="cb9-190"><a href="#cb9-190"></a></span>
+<span id="cb9-191"><a href="#cb9-191"></a><span class="fu"># Apply Metadata and eSub Checks</span></span>
+<span id="cb9-192"><a href="#cb9-192"></a></span>
+<span id="cb9-193"><a href="#cb9-193"></a>We use <span class="in">`{metatools}`</span> and <span class="in">`{xportr}`</span> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</span>
+<span id="cb9-194"><a href="#cb9-194"></a></span>
+<span id="cb9-195"><a href="#cb9-195"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
+<span id="cb9-196"><a href="#cb9-196"></a><span class="in"># Apply metadata and perform checks</span></span>
+<span id="cb9-197"><a href="#cb9-197"></a><span class="in">adtte_adsl_checked &lt;- adtte_adsl %&gt;%</span></span>
+<span id="cb9-198"><a href="#cb9-198"></a><span class="in">  add_variables(metacore) %&gt;%</span></span>
+<span id="cb9-199"><a href="#cb9-199"></a><span class="in">  drop_unspec_vars(metacore) %&gt;%</span></span>
+<span id="cb9-200"><a href="#cb9-200"></a><span class="in">  check_variables(metacore) %&gt;%</span></span>
+<span id="cb9-201"><a href="#cb9-201"></a><span class="in">  check_ct_data(metacore) %&gt;%</span></span>
+<span id="cb9-202"><a href="#cb9-202"></a><span class="in">  order_cols(metacore) %&gt;%</span></span>
+<span id="cb9-203"><a href="#cb9-203"></a><span class="in">  sort_by_key(metacore)</span></span>
+<span id="cb9-204"><a href="#cb9-204"></a></span>
+<span id="cb9-205"><a href="#cb9-205"></a><span class="in"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
+<span id="cb9-206"><a href="#cb9-206"></a><span class="in">adtte_final &lt;- adtte_adsl_checked %&gt;%</span></span>
+<span id="cb9-207"><a href="#cb9-207"></a><span class="in">  xportr_type(metacore, domain = "ADTTE") %&gt;%</span></span>
+<span id="cb9-208"><a href="#cb9-208"></a><span class="in">  xportr_length(metacore) %&gt;%</span></span>
+<span id="cb9-209"><a href="#cb9-209"></a><span class="in">  xportr_label(metacore) %&gt;%</span></span>
+<span id="cb9-210"><a href="#cb9-210"></a><span class="in">  xportr_df_label(metacore)</span></span>
+<span id="cb9-211"><a href="#cb9-211"></a><span class="in">  </span></span>
+<span id="cb9-212"><a href="#cb9-212"></a><span class="in"># Write dataset to XPT file (optional)</span></span>
+<span id="cb9-213"><a href="#cb9-213"></a><span class="in">dir &lt;- tempdir()</span></span>
+<span id="cb9-214"><a href="#cb9-214"></a><span class="in">xportr_write(adtte_final, file.path(dir, "adtte.xpt"))</span></span>
+<span id="cb9-215"><a href="#cb9-215"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
