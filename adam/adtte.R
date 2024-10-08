@@ -1,24 +1,4 @@
----
-title: "ADTTE"
-order: 5
----
-
-```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
-knitr::knit_hooks$set(purl = invisible_hook_purl)
-```
-
-# Introduction
-
-This article provides a step-by-step explanation for creating an ADaM `ADTTE` (Time-to-Event) dataset with common oncology endpoint parameters using key pharmaverse packages along with tidyverse components. `ADTTE` datasets often involve calculating time-to-event variables for endpoints such as Overall Survival (OS) and Progression-Free Survival (PFS).
-
-For the purpose of this example, we will use the `ADSL` and `ADRS_ONCO` datasets from `{pharmaverseadam}`.
-
-# Load Required Packages
-
-First, we will load the necessary packages:
-
-```{r message=FALSE, warning=FALSE}
+## ----r message=FALSE, warning=FALSE-------------------------------------------
 library(admiral)
 library(admiralonco)
 library(dplyr)
@@ -27,15 +7,8 @@ library(metacore)
 library(metatools)
 library(xportr)
 library(pharmaverseadam)
-```
 
-# Load Specifications and Source Data
-
-We will load our specification file into a `{metacore}` object to trace the dataset variables and attributes. Then, we will read the source data.
-
-```{r read-specs}
-#| warning: false
-
+## ----r read-specs-------------------------------------------------------------
 # Load metacore specifications
 metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
@@ -45,13 +18,8 @@ data("adsl")
 data("adrs_onco")
 
 adrs <- adrs_onco
-```
 
-# Define Event and Censoring Sources
-
-We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints.
-
-```{r}
+## ----r------------------------------------------------------------------------
 # Define event and censoring sources
 death_event <- event_source(
   dataset_name = "adrs",
@@ -108,13 +76,8 @@ rand_censor <- censor_source(
     SRCVAR = "RANDDT"
   )
 )
-```
 
-# Derive Time-to-Event Parameters
-
-The `admiral::derive_param_tte()` function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).
-
-```{r}
+## ----r------------------------------------------------------------------------
 # Derive Overall Survival (OS)
 adtte <- derive_param_tte(
   dataset_adsl = adsl,
@@ -135,13 +98,8 @@ adtte_pfs <- adtte %>%
     source_datasets = list(adsl = adsl, adrs = adrs),
     set_values_to = exprs(PARAMCD = "PFS", PARAM = "Progression-Free Survival")
   )
-```
 
-# Derive Analysis Value (`AVAL`)
-
-The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration()` function.
-
-```{r}
+## ----r------------------------------------------------------------------------
 # Derive analysis value
 adtte_aval <- adtte_pfs %>%
   derive_vars_duration(
@@ -149,13 +107,8 @@ adtte_aval <- adtte_pfs %>%
     start_date = STARTDT,
     end_date = ADT
   )
-```
 
-# Derive Analysis Sequence Number (`ASEQ`)
-
-We derive the sequence number for each record to uniquely identify them using the `admiral::derive_var_obs_number()` function.
-
-```{r}
+## ----r------------------------------------------------------------------------
 # Derive analysis sequence number
 adtte_aseq <- adtte_aval %>%
   derive_var_obs_number(
@@ -163,26 +116,16 @@ adtte_aseq <- adtte_aval %>%
     order = exprs(PARAMCD),
     check_type = "error"
   )
-```
 
-# Add ADSL Variables
-
-Additional variables from the `ADSL` dataset are merged into the `ADTTE` dataset using the `admiral::derive_vars_merged()` function to enrich it.
-
-```{r}
+## ----r------------------------------------------------------------------------
 # Add ADSL variables
 adtte_adsl <- adtte_aseq %>%
   derive_vars_merged(
     dataset_add = adsl,
     by_vars = exprs(STUDYID, USUBJID)
   )
-```
 
-# Apply Metadata and eSub Checks
-
-We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
-
-```{r, message=FALSE, warning=FALSE}
+## ----r, message=FALSE, warning=FALSE------------------------------------------
 # Apply metadata and perform checks
 adtte_adsl_checked <- adtte_adsl %>%
   add_variables(metacore) %>%
@@ -202,4 +145,4 @@ adtte_final <- adtte_adsl_checked %>%
 # Write dataset to XPT file (optional)
 dir <- tempdir()
 xportr_write(adtte_final, file.path(dir, "adtte.xpt"))
-```
+

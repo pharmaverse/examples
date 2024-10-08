@@ -1,24 +1,4 @@
----
-title: "ADRS"
-order: 4
----
-
-```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
-knitr::knit_hooks$set(purl = invisible_hook_purl)
-```
-
-# Introduction
-
-The Response Analysis Dataset (`ADRS`) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an `ADRS` ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include `CR` (Complete Response), `PR` (Partial Response), `SD` (Stable Disease), `NON-CR/NON-PD` (Non-CR/Non-PD), `PD` (Progressive Disease), and `NE` (Not Evaluable).
-
-This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).
-
-# Load Packages
-
-First, we load the necessary packages required for creating the `ADRS` dataset.
-
-```{r setup, message=FALSE, warning=FALSE, results='hold'}
+## ----r setup, message=FALSE, warning=FALSE, results='hold'--------------------
 library(admiral)
 library(admiralonco)
 library(metacore)
@@ -29,23 +9,12 @@ library(pharmaverseadam)
 library(dplyr)
 library(lubridate)
 library(stringr)
-```
 
-# Load Specifications for Metacore
-
-Load the specifications stored in an Excel file into a `{metacore}` object.
-
-```{r read-specs}
-#| warning: false
+## ----r read-specs-------------------------------------------------------------
 metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADRS")
-```
 
-# Load Source Datasets
-
-We load the required SDTM datasets (`RS`, `TU`) and ADaM dataset (`ADSL`) necessary for creating the `ADRS` dataset.
-
-```{r load-data}
+## ----r load-data--------------------------------------------------------------
 data("adsl")
 data("rs_onco_recist")
 data("tu_onco_recist")
@@ -56,13 +25,8 @@ tu <- tu_onco_recist
 # Convert blanks to NA
 rs <- convert_blanks_to_na(rs)
 tu <- convert_blanks_to_na(tu)
-```
 
-# Merging ADSL with RS
-
-Merge `ADSL` to the `RS` domain by selecting only the necessary variables for derivations.
-
-```{r merge-adsl-rs}
+## ----r merge-adsl-rs----------------------------------------------------------
 adsl_vars <- exprs(RANDDT)
 adrs_merged <- derive_vars_merged(
   rs,
@@ -70,15 +34,8 @@ adrs_merged <- derive_vars_merged(
   new_vars = adsl_vars,
   by_vars = exprs(STUDYID, USUBJID)
 )
-```
 
-# Pre-processing of Input Records
-
-## Select Overall Response Records and Set Parameter Details
-
-Filter the `RS` domain to include only overall response records assessed by the investigator and set the parameter details accordingly.
-
-```{r set-param-details}
+## ----r set-param-details------------------------------------------------------
 adrs_ovr <- adrs_merged %>%
   filter(RSEVAL == "INVESTIGATOR" & RSTESTCD == "OVRLRESP") %>%
   mutate(
@@ -88,13 +45,8 @@ adrs_ovr <- adrs_merged %>%
     PARCAT2 = "Investigator",
     PARCAT3 = "RECIST 1.1"
   )
-```
 
-## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`
-
-Impute missing dates and derive analysis dates and visits.
-
-```{r impute-dates}
+## ----r impute-dates-----------------------------------------------------------
 adrs_imputed <- adrs_ovr %>%
   derive_vars_dt(
     dtc = RSDTC,
@@ -103,25 +55,15 @@ adrs_imputed <- adrs_ovr %>%
     date_imputation = "last"
   ) %>%
   mutate(AVISIT = VISIT)
-```
 
-## Derive `AVALC` and `AVAL`
-
-Populate `AVALC` with assessed values and create the numeric version `AVAL`.
-
-```{r derive-aval}
+## ----r derive-aval------------------------------------------------------------
 adrs_aval <- adrs_imputed %>%
   mutate(
     AVALC = RSSTRESC,
     AVAL = aval_resp(AVALC)
   )
-```
 
-## Flag Worst Assessment at Each Date (`ANL01FL`)
-
-Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.
-
-```{r flag-worst-assessment}
+## ----r flag-worst-assessment--------------------------------------------------
 worst_resp <- function(arg) {
   case_when(
     arg == "NE" ~ 1,
@@ -145,15 +87,8 @@ adrs_anl01fl <- adrs_aval %>%
     ),
     filter = !is.na(AVAL) & ADT >= RANDDT
   )
-```
 
-# Deriving Parameters
-
-## Derive Progressive Disease Parameter
-
-Use the `admiral::derive_extreme_records()` function to find the date of first `PD`.
-
-```{r derive-pd}
+## ----r derive-pd--------------------------------------------------------------
 adrs_pd <- adrs_anl01fl %>%
   derive_extreme_records(
     dataset_ref = adsl,
@@ -174,13 +109,8 @@ adrs_pd <- adrs_anl01fl %>%
       ANL01FL = "Y"
     )
   )
-```
 
-## Derive Death Parameter
-
-Create a new death parameter using the death date from `ADSL`.
-
-```{r derive-death}
+## ----r derive-death-----------------------------------------------------------
 adsldth <- adsl %>%
   select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)
 
@@ -202,13 +132,8 @@ adrs_death <- adrs_pd %>%
     )
   ) %>%
   select(-DTHDT)
-```
 
-## Derive Last Disease Assessment Parameter
-
-Create a parameter for the last disease assessment.
-
-```{r derive-lsta}
+## ----r derive-lsta------------------------------------------------------------
 adrs_lsta <- adrs_death %>%
   derive_extreme_records(
     dataset_ref = adsl,
@@ -226,13 +151,8 @@ adrs_lsta <- adrs_death %>%
       ANL01FL = "Y"
     )
   )
-```
 
-# Apply Metadata and Perform Associated Checks
-
-Apply metadata and conduct checks to ensure data quality and compliance.
-
-```{r apply-metadata-check, message=FALSE, warning=FALSE}
+## ----r apply-metadata-check, message=FALSE, warning=FALSE---------------------
 adrs_checked <- adrs_lsta %>%
   add_variables(metacore) %>% # Add variables specified in the metadata
   drop_unspec_vars(metacore) %>% # Drop variables not specified in metadata
@@ -240,13 +160,8 @@ adrs_checked <- adrs_lsta %>%
   check_ct_data(metacore) %>% # Check controlled terminology
   order_cols(metacore) %>% # Order columns according to metadata
   sort_by_key(metacore) # Sort rows by sort keys
-```
 
-# Apply Labels and Formats with xportr
-
-Finally, apply labels, formats, and export the dataset to an XPT file.
-
-```{r xportr}
+## ----r xportr-----------------------------------------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file
 
 adrs_xpt <- adrs_checked %>%
@@ -256,4 +171,4 @@ adrs_xpt <- adrs_checked %>%
   xportr_format(metacore) %>% # Assign variable formats from metadata
   xportr_df_label(metacore) %>% # Assign dataset labels from metadata
   xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file
-```
+
