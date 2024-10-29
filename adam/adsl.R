@@ -9,25 +9,22 @@ library(tidyr)
 library(lubridate)
 library(stringr)
 
-# Read in input SDTM data 
+# Read in input SDTM data
 data("dm")
 data("ex")
 
 ## ----r metacore, warning=FALSE, results='hold'--------------------------------
-# Read in metacore object 
+# Read in metacore object
 load(metacore_example("pilot_ADaM.rda"))
-metacore <- metacore %>% 
+metacore <- metacore %>%
    select_dataset("ADSL")
 
 ## ----r------------------------------------------------------------------------
 metacore$ds_vars
 
-## ----r, error=TRUE------------------------------------------------------------
-build_from_derived(metacore, list(), predecessor_only = FALSE)
-
-## ----r demographcis-----------------------------------------------------------
-adsl_preds <- build_from_derived(metacore, 
-                                 ds_list = list("dm" = dm), 
+## ----r demographics-----------------------------------------------------------
+adsl_preds <- build_from_derived(metacore,
+                                 ds_list = list("dm" = dm),
                                  predecessor_only = FALSE, keep = TRUE)
 head(adsl_preds, n=10)
 
@@ -35,13 +32,13 @@ head(adsl_preds, n=10)
 get_control_term(metacore, variable = AGEGR1)
 
 ## ----r ct---------------------------------------------------------------------
-adsl_ct <- adsl_preds %>% 
-   create_cat_var(metacore, ref_var = AGE, 
-                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %>% 
-   create_var_from_codelist(metacore = metacore, 
-                            input_var = RACE, 
-                            out_var = RACEN) %>% 
-   #Removing screen failures from ARM and TRT01P to match the define and FDA guidence
+adsl_ct <- adsl_preds %>%
+   create_cat_var(metacore, ref_var = AGE,
+                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %>%
+   create_var_from_codelist(metacore = metacore,
+                            input_var = RACE,
+                            out_var = RACEN) %>%
+   # Removing screen failures from ARM and TRT01P to match the define and FDA guidance
    mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),
           TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)
    )
@@ -81,15 +78,15 @@ adsl_raw <- adsl_ct %>%
     mode = "last",
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
-   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  #Convert Datetime variables to date 
-   derive_var_trtdurd() %>% 
+   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
+   derive_var_trtdurd() %>%
    derive_var_merged_exist_flag(
      dataset_add = ex,
      by_vars = exprs(STUDYID, USUBJID),
      new_var = SAFFL,
      condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
-   ) %>% 
-   drop_unspec_vars(metacore) #This will drop any columns that aren't specified in the metacore object
+   ) %>%
+   drop_unspec_vars(metacore) # This will drop any columns that aren't specified in the metacore object
 
 head(adsl_raw, n=10)
 
@@ -130,13 +127,13 @@ adsl_raw <- adsl_raw %>%
 
 ## ----r checks, warning=FALSE, message=FALSE-----------------------------------
 
-adsl_raw %>% 
+adsl_raw %>%
    check_variables(metacore) %>% # Check all variables specified are present and no more
    check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
    order_cols(metacore) %>% # Orders the columns according to the spec
-   sort_by_key(metacore) %>% # Sorts the rows by the sort keys 
+   sort_by_key(metacore) %>% # Sorts the rows by the sort keys
    xportr_type(metacore, domain = "ADSL") %>% # Coerce variable type to match spec
-   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata 
-   xportr_label(metacore) %>% # Assigns variable label from metacore specifications 
+   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
    xportr_df_label(metacore) # Assigns dataset label from metacore specifications
 
