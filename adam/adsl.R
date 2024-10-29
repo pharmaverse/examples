@@ -22,7 +22,7 @@ metacore <- metacore %>%
 ## ----r------------------------------------------------------------------------
 metacore$ds_vars
 
-## ----r demographcis-----------------------------------------------------------
+## ----r demographics-----------------------------------------------------------
 adsl_preds <- build_from_derived(metacore,
                                  ds_list = list("dm" = dm),
                                  predecessor_only = FALSE, keep = TRUE)
