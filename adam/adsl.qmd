@@ -62,7 +62,7 @@ The first derivation step we are going to do is to pull through all the columns 
 
 In this case all the columns come from `DM` so that is the only dataset we will pass into `metatools::build_from_derived()`. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
 
-```{r demographcis}
+```{r demographics}
 adsl_preds <- build_from_derived(metacore,
                                  ds_list = list("dm" = dm),
                                  predecessor_only = FALSE, keep = TRUE)
