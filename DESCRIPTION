@@ -10,7 +10,8 @@ Authors@R:
     person("Ege Can", "Taşlıçukur", role = "aut"),
     person("Vedha", "Viyash", role = "aut"),
     person("David", "Blair", role = "aut"),
-    person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018"))
+    person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018")),
+    person("Aksel", "Thomsen", , "oath@novonordisk.com", role = "aut")
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
@@ -37,8 +38,11 @@ Imports:
     tidyr,
     xportr,
     logr,
-    logrx
+    logrx,
+    whirl (>= 0.1.6)
 Suggests:
     knitr,
     rmarkdown
 Encoding: UTF-8
+Remotes:  
+    NovoNordisk-OpenSource/whirl
