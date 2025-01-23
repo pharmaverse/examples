@@ -162,7 +162,7 @@ head(adsl_cust %>%  select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
 
-```{r ct}
+```{r codelist}
 adsl_ct <- adsl_ct %>%
    create_var_from_codelist(metacore = metacore,
                             input_var = RACE,
