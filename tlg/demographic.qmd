@@ -13,56 +13,111 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
 
+In the examples below, we illustrate two general approaches for creating a demographics table.
+The first utilizes Analysis Results Datasets---part of the emerging [CDISC Analyis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
+The second is the classic method of creating summary tables directly from a data set.
+
+## Data preprocessing
+
+Now we will add some pre-processing to create some extra formatted variables ready for display in the table.
+
+```{r preproc}
+#| message: false
+library(dplyr)
+
+# Create categorical variables, remove screen failures, and assign column labels
+adsl <- pharmaverseadam::adsl |>
+  filter(!ACTARM %in% "Screen Failure") |>
+  mutate(
+    SEX = case_match(SEX, "M" ~ "MALE", "F" ~ "FEMALE"),
+    AGEGR1 =
+      case_when(
+        between(AGE, 18, 40) ~ "18-40",
+        between(AGE, 41, 64) ~ "41-64",
+        AGE > 64 ~ ">=65"
+      ) |>
+      factor(levels = c("18-40", "41-64", ">=65"))
+  ) |> 
+  labelled::set_variable_labels(AGE = "Age (yr)",
+                                AGEGR1 = "Age group",
+                                SEX = "Sex",
+                                RACE = "Race")
+```
+
+## {gtsummary} & {cards}
+
+In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.com/gtsummary/) and [{cards}](https://insightsengineering.github.io/cards/) packages to create a demographics tables.
+
+- The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
+- The {gtsummary} utilizes ARDs to create tables.
+
+#### ARD ➡ Table
+
+In the example below, we first build an ARD with the needed summary statistics using {cards}.
+Then, we use the ARD to build the demographics table with {gtsummary}.
+
+```{r gtsummary-table}
+#| message: false
+library(cards)
+library(gtsummary)
+theme_gtsummary_compact() # reduce default padding and font size for a gt table
+
+# build the ARD with the needed summary statistics using {cards}
+ard <-
+  ard_stack(
+    adsl, 
+    ard_continuous(variables = AGE),
+    ard_categorical(variables = c(AGEGR1, SEX, RACE)),
+    .by = ACTARM,      # split results by treatment arm
+    .attributes = TRUE # optionally include column labels in the ARD
+  )
+
+# use the ARD to create a demographics table using {gtsummary}
+tbl_ard_summary(
+  cards = ard, 
+  by = ACTARM, 
+  include = c(AGE, AGEGR1, SEX, RACE),
+  type = AGE ~ "continuous2",
+  statistic = AGE ~ c("{N}", "{mean} ({sd})", "{median} ({p25}, {p75})", "{min}, {max}")
+) |> 
+  bold_labels() |> 
+  modify_header(all_stat_cols() ~ "**{level}**  \nN = {n}") |> # add Ns to header
+  modify_footnote(everything() ~ NA) # remove default footnote
+```
+
+#### Table ➡ ARD
+
+One may also build the demographics in the classic way using `gtsummary::tbl_summary()` from a data frame, then extract the ARD from the table object.
+
+```{r gtsummary-ard}
+# build demographics table directly from a data frame
+tbl <- adsl |> tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))
+
+# extract ARD from table object
+gather_ard(tbl)[[1]] |> select(-gts_column) # removing column so ARD fits on page
+```
+
+## {rtables} & {tern}
+
 The packages used with a brief description of their purpose are as follows:
 
 * [`{rtables}`](https://insightsengineering.github.io/rtables/): designed to create and display complex tables with R.
 * [`{tern}`](https://insightsengineering.github.io/tern/): contains analysis functions to create tables and graphs used for clinical trial reporting.
 
-## Load Data and Required pharmaverse Package
-
 After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl`.
 
 Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
 
-```{r setup, message=FALSE, warning=FALSE, results='hold'}
-library(pharmaverseadam)
+```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}
 library(tern)
-library(dplyr)
 
-adsl <- adsl %>%
+adsl2 <- adsl |> 
   df_explicit_na()
 ```
 
-## Start preprocessing
-
-Now we will add some pre-processing to create some extra formatted variables ready for display in the table.
-
-```{r preproc}
-# Create categorical variables
-adsl <- adsl %>%
-  mutate(
-    SEX = factor(case_when(
-      SEX == "M" ~ "Male",
-      SEX == "F" ~ "Female",
-      SEX == "U" ~ "Unknown",
-      SEX == "UNDIFFERENTIATED" ~ "Undifferentiated"
-    )),
-    AGEGR1 = factor(
-      case_when(
-        between(AGE, 18, 40) ~ "18-40",
-        between(AGE, 41, 64) ~ "41-64",
-        AGE > 64 ~ ">=65"
-      ),
-      levels = c("18-40", "41-64", ">=65")
-    )
-  )
-```
-
-## Demographic table
-
 Now we create the demographic table.
 
-```{r table}
+```{r rtables-table}
 vars <- c("AGE", "AGEGR1", "SEX", "RACE")
 var_labels <- c(
   "Age (yr)",
@@ -71,15 +126,15 @@ var_labels <- c(
   "Race"
 )
 
-lyt <- basic_table(show_colcounts = TRUE) %>%
-  split_cols_by(var = "ACTARM") %>%
-  add_overall_col("All Patients") %>%
+lyt <- basic_table(show_colcounts = TRUE) |> 
+  split_cols_by(var = "ACTARM") |> 
+  add_overall_col("All Patients") |> 
   analyze_vars(
     vars = vars,
     var_labels = var_labels
   )
 
-result <- build_table(lyt, adsl)
+result <- build_table(lyt, adsl2)
 
 result
 ```
