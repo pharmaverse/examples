@@ -10,7 +10,8 @@ Authors@R:
     person("Ege Can", "Taşlıçukur", role = "aut"),
     person("Vedha", "Viyash", role = "aut"),
     person("David", "Blair", role = "aut"),
-    person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018"))
+    person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018")),
+    person("Fanny", "Gautier", role = "aut", comment = c(ORCID = "0009-0004-3581-0131"))
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
