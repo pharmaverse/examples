@@ -28,7 +28,7 @@ ae <- convert_blanks_to_na(ae)
 vs <- convert_blanks_to_na(vs)
 suppdm <- convert_blanks_to_na(suppdm)
 
-# Combine Parent and Supp - very handy!
+# Combine Parent and Supp - very handy! ----
 dm_suppdm <- combine_supp(dm, suppdm)
 
 ## ----r metacore, warning=FALSE, results='hold'--------------------------------
@@ -45,10 +45,56 @@ adsl_preds <- build_from_derived(metacore,
                                  ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
                                  predecessor_only = FALSE, keep = FALSE)
 
-## ----r ct---------------------------------------------------------------------
+## ----r------------------------------------------------------------------------
+get_control_term(metacore, variable = AGEGR1)
+
+## ----r grouping_option_1------------------------------------------------------
 adsl_ct <- adsl_preds %>%
   create_cat_var(metacore, ref_var = AGE,
-                 grp_var = AGEGR1, num_grp_var = AGEGR1N) %>% 
+                 grp_var = AGEGR1, num_grp_var = AGEGR1N)
+
+
+## ----r grouping_option_2------------------------------------------------------
+agegr1_lookup <- exprs(
+  ~condition,            ~AGEGR1, ~AGEGR1N,
+  AGE < 18,                "<18",        1,
+  between(AGE, 18, 64),  "18-64",        2,
+  !is.na(AGE),             ">64",        3,
+  is.na(AGE),          "Missing",        4
+)
+
+adsl_cat <- derive_vars_cat(
+  dataset = adsl_preds,
+  definition = agegr1_lookup
+)
+
+## ----r grouping_option_3------------------------------------------------------
+format_agegr1 <- function(var_input) {
+  case_when(
+    var_input < 18 ~ "<18",
+    between(var_input, 18, 64) ~ "18-64",
+    var_input > 64 ~ ">64",
+    TRUE ~ "Missing"
+  )
+}
+
+format_agegr1n <- function(var_input) {
+  case_when(
+    var_input < 18 ~ 1,
+    between(var_input, 18, 64) ~ 2,
+    var_input > 64 ~ 3,
+    TRUE ~ 4
+  )
+}
+
+adsl_cust <- adsl_preds %>%
+  mutate(
+    AGEGR1 = format_agegr1(AGE),
+    AGEGR1N = format_agegr1n(AGE)
+  )
+
+## ----r codelist---------------------------------------------------------------
+adsl_ct <- adsl_ct %>%
   create_var_from_codelist(metacore = metacore,
                            input_var = RACE,
                            out_var = RACEN)
@@ -103,11 +149,16 @@ adsl_raw <- adsl_ct %>%
   ) %>%
   drop_unspec_vars(metacore) # This will drop any columns that are not specified in the metacore object
 
-## ----r treatment, eval=TRUE---------------------------------------------------
+## ----r treatment_char, eval=TRUE----------------------------------------------
 adsl <- adsl_raw %>%
   mutate(TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),
          TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
   )
+
+## ----r treatment_num, eval=TRUE-----------------------------------------------
+adsl <- adsl %>%
+  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
 
 ## ----r disposition, eval=TRUE-------------------------------------------------
 # Convert character date to numeric date without imputation
@@ -125,6 +176,7 @@ adsl <- adsl %>%
     filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD != "SCREEN FAILURE"
   )
 
+## ----r eval=TRUE--------------------------------------------------------------
 format_eosstt <- function(x) {
   case_when(
     x %in% c("COMPLETED") ~ "COMPLETED",
@@ -133,6 +185,7 @@ format_eosstt <- function(x) {
   )
 }
 
+## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_merged(
     dataset_add = ds,
@@ -142,6 +195,7 @@ adsl <- adsl %>%
     missing_values = exprs(EOSSTT = "ONGOING")
   )
 
+## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_dt(
     new_vars_prefix = "DTH",
@@ -150,6 +204,7 @@ adsl <- adsl %>%
     date_imputation = "first"
   ) 
 
+## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_merged(
     dataset_add = ds_ext,
@@ -170,6 +225,7 @@ adsl <- adsl %>%
     filter_add = DSCAT == "OTHER EVENT" & DSDECOD == "FINAL RETRIEVAL VISIT"
   )
 
+## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_duration(
     new_var = DTHADY,
@@ -183,6 +239,7 @@ adsl <- adsl %>%
     add_one = FALSE
   )
 
+## ----r eval=TRUE--------------------------------------------------------------
 assign_randfl <- function(x) {
   if_else(!is.na(x), "Y", NA_character_)
 }
@@ -248,11 +305,6 @@ adsl <- adsl %>%
   derive_vars_cat(
     definition = dthcgr1_lookup
   ) 
-
-adsl <- adsl %>%
-  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
-  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
-
 
 ## ----r checks, warning=FALSE, message=FALSE-----------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file

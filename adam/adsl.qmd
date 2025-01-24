@@ -103,7 +103,7 @@ The function `metatools::create_cat_var()` takes in a `{metacore}` object, a ref
 in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable.
 It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.
 
-```{r ct}
+```{r grouping_option_1}
 adsl_ct <- adsl_preds %>%
    create_cat_var(metacore, ref_var = AGE,
                   grp_var = AGEGR1, num_grp_var = AGEGR1N)
@@ -116,7 +116,7 @@ This function is especially useful if more than one variable needs to be created
 Additionally, one needs to be careful when considering the order of the conditions in the lookup table.
 The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. `!is.na(AGE)` must come after `between(AGE, 18, 64)`.
 
-```{r cat}
+```{r grouping_option_2}
 agegr1_lookup <- exprs(
   ~condition,            ~AGEGR1, ~AGEGR1N,
   AGE < 18,                "<18",        1,
@@ -132,8 +132,10 @@ adsl_cat <- derive_vars_cat(
 
 head(adsl_cat %>%  select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
+
 Option 3: We can also solve this subgroups task with custom functions. 
-```{r custom}
+
+```{r grouping_option_3}
 format_agegr1 <- function(var_input) {
   case_when(
     var_input < 18 ~ "<18",
@@ -160,6 +162,7 @@ adsl_cust <- adsl_preds %>%
 
 head(adsl_cust %>%  select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
+
 Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
 
 ```{r codelist}
@@ -170,6 +173,7 @@ adsl_ct <- adsl_ct %>%
 
 head(adsl_ct, n=10)
 ```
+
 ### Exposure derivations
 
 Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.
@@ -239,7 +243,7 @@ Missing time parts are imputed as first or last for start and end date respectiv
 
 The mapping of the treatment variables is left to the ADaM programmer. An example mapping for a study without periods may be:
 
-```{r treatment, eval=TRUE}
+```{r treatment_char, eval=TRUE}
 adsl <- adsl_raw %>%
   mutate(TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),
          TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
@@ -249,6 +253,17 @@ head(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01A), n=10)
 ```
 
 For studies with periods see the ["Visit and Period Variables" vignette](https://pharmaverse.github.io/admiral/articles/visits_periods.html#periods_adsl).
+
+The corresponding numeric variables can be derived using the `metatools` package with the `{metacore}` objects
+that we created at the very beginning. The function `metatools::create_var_from_codelist()` is used in below example.
+
+```{r treatment_num, eval=TRUE}
+adsl <- adsl %>%
+  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
+
+head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
+```
 
 ### Derive Disposition Variables
 
@@ -485,20 +500,10 @@ adsl <- adsl %>%
   
 head(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n=10) 
 ```
+
 ```{r eval=TRUE}
 head(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) 
 ``` 
-
-We can also assign the Numeric Variables, using the `metatools` package with the `{metacore}` objects
-that we created at the very beginning. The function `metatools::create_var_from_codelist()` is used in below exemple.
-
-```{r eval=TRUE}
-adsl <- adsl %>%
-  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
-  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
-
-head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
-```
 
 ### Apply Metadata to Create an eSub XPT and Perform Associated Checks
 

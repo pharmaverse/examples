@@ -1,4 +1,4 @@
-## ----r message=FALSE, warning=FALSE-------------------------------------------
+## ----r setup, message=FALSE, warning=FALSE, results='hold'--------------------
 library(metacore)
 library(metatools)
 library(pharmaversesdtm)
@@ -9,14 +9,14 @@ library(tidyr)
 library(lubridate)
 library(stringr)
 
-## ----r load-data--------------------------------------------------------------
+# Read in input data
 adsl <- pharmaverseadam::adsl
 vs <- pharmaversesdtm::vs
 
 vs <- convert_blanks_to_na(vs)
 
-## ----r read-specs-------------------------------------------------------------
-# Load metacore specifications
+## ----r echo=TRUE--------------------------------------------------------------
+# ---- Load Specs for Metacore ----
 metacore <- spec_to_metacore(
   path = "./metadata/ADSL_ADVS_spec.xlsx",
   where_sep_sheet = FALSE,
@@ -25,7 +25,7 @@ metacore <- spec_to_metacore(
   select_dataset("ADVS")
 
 ## ----r------------------------------------------------------------------------
-# Select required ADSL variables ----
+# Select required ADSL variables
 adsl_vars <- exprs(TRTSDT, TRTEDT, TRT01A, TRT01P)
 
 # Join ADSL variables with VS
@@ -36,7 +36,8 @@ advs <- vs %>%
     by_vars = exprs(STUDYID, USUBJID)
   )
 
-# Calculate ADT, ADY ----
+## ----r------------------------------------------------------------------------
+# Calculate ADT, ADY
 advs <- advs %>%
   derive_vars_dt(
     new_vars_prefix = "A",
@@ -50,21 +51,22 @@ advs <- advs %>%
     source_vars = exprs(ADT)
   )
 
-# Assign PARAMCD, PARAM, PARAMN ----
+## ----r eval=TRUE, include=FALSE-----------------------------------------------
 param_lookup <- tibble::tribble(
-  ~VSTESTCD, ~PARAMCD, ~PARAM, ~PARAMN,
-  "SYSBP", "SYSBP", " Systolic Blood Pressure (mmHg)", 1,
-  "DIABP", "DIABP", "Diastolic Blood Pressure (mmHg)", 2,
-  "PULSE", "PULSE", "Pulse Rate (beats/min)", 3,
-  "WEIGHT", "WEIGHT", "Weight (kg)", 4,
-  "HEIGHT", "HEIGHT", "Height (cm)", 5,
-  "TEMP", "TEMP", "Temperature (C)", 6,
-  "MAP", "MAP", "Mean Arterial Pressure (mmHg)", 7,
-  "BMI", "BMI", "Body Mass Index(kg/m^2)", 8,
-  "BSA", "BSA", "Body Surface Area(m^2)", 9
+  ~VSTESTCD, ~PARAMCD,                            ~PARAM, ~PARAMN,
+  "SYSBP",    "SYSBP", " Systolic Blood Pressure (mmHg)",        1,
+  "DIABP",    "DIABP", "Diastolic Blood Pressure (mmHg)",        2,
+  "PULSE",    "PULSE",          "Pulse Rate (beats/min)",        3,
+  "WEIGHT",  "WEIGHT",                     "Weight (kg)",        4,
+  "HEIGHT", "HEIGHT",                      "Height (cm)",        5,
+  "TEMP",     "TEMP",                  "Temperature (C)",        6,
+  "MAP",       "MAP",    "Mean Arterial Pressure (mmHg)",        7,
+  "BMI",       "BMI",          "Body Mass Index(kg/m^2)",        8,
+  "BSA",       "BSA",           "Body Surface Area(m^2)",        9
 )
 attr(param_lookup$VSTESTCD, "label") <- "Vital Signs Test Short Name"
 
+## ----r------------------------------------------------------------------------
 advs <- advs %>%
   # Add PARAMCD only - add PARAM etc later
   derive_vars_merged_lookup(
@@ -75,15 +77,15 @@ advs <- advs %>%
     print_not_mapped = TRUE # Printing whether some parameters are not mapped
   )
 
-# Derive Results and Units (AVAL, AVALU) ----
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   mutate(
     AVAL = VSSTRESN,
     AVALU = VSSTRESU
-  )
+  ) 
 
-# Derive Additional Parameters (e.g. MAP, BMI or BSA) ----
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   derive_param_map(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), # Other variables than the defined ones here won't be populated
     set_values_to = exprs(PARAMCD = "MAP"),
@@ -95,8 +97,8 @@ advs <- advs %>%
     hr_code = NULL
   )
 
-# Body Mass Index (BMI)
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   derive_param_computed(
     by_vars = exprs(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     parameters = "WEIGHT",
@@ -109,8 +111,8 @@ advs <- advs %>%
     constant_by_vars = exprs(USUBJID)
   )
 
-# Body Surface Area (BSA)
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   derive_param_bsa(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     method = "Mosteller",
@@ -126,7 +128,7 @@ advs <- advs %>%
     weight_code = "WEIGHT"
   )
 
-# Derive Timing Variables (e.g. AVISIT, ATPT, ATPTN) ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
   mutate(
     ATPTN = VSTPTNUM,
@@ -143,7 +145,7 @@ advs <- advs %>%
     ))
   )
 
-# Derive summary records (e.g. mean of the triplicates at each time point) ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_summary_records(
   dataset = advs,
   dataset_add = advs, # Observations from the specified dataset are going to be used to calculate and added as new records to the input dataset.
@@ -155,7 +157,7 @@ advs <- derive_summary_records(
   )
 )
 
-# Timing Flag Variables (e.g. ONTRTFL) ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_ontrtfl(
   advs,
   start_date = ADT,
@@ -164,7 +166,7 @@ advs <- derive_var_ontrtfl(
   filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment
 )
 
-# Assign Reference Range Indicator (ANRIND) ----
+## ----r include=FALSE----------------------------------------------------------
 range_lookup <- tibble::tribble(
   ~PARAMCD, ~ANRLO, ~ANRHI, ~A1LO, ~A1HI,
   "SYSBP",      90,    130,    70,   140,
@@ -179,6 +181,7 @@ advs <- derive_vars_merged(
   by_vars = exprs(PARAMCD)
 )
 
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_anrind(
   advs,
   # Below arguments are default values and not necessary to add in our case
@@ -186,7 +189,7 @@ advs <- derive_var_anrind(
   use_a1hia1lo = FALSE
 )
 
-# Derive Baseline (BASETYPE, ABLFL, BASE, BNRIND) ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_basetype_records(
   dataset = advs,
   basetypes = exprs(
@@ -197,6 +200,7 @@ advs <- derive_basetype_records(
   )
 )
 
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- restrict_derivation(
   advs,
   derivation = derive_var_extreme_flag,
@@ -209,10 +213,11 @@ advs <- restrict_derivation(
     true_value = "Y"
   ),
   filter = (!is.na(AVAL) &
-    ADT <= TRTSDT & !is.na(BASETYPE) & is.na(DTYPE)
+              ADT <= TRTSDT & !is.na(BASETYPE) & is.na(DTYPE)
   )
 )
 
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_base(
   advs,
   by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),
@@ -220,7 +225,7 @@ advs <- derive_var_base(
   new_var = BASE,
   # Below arguments are default values and not necessary to add in our case
   filter = ABLFL == "Y"
-)
+) 
 
 advs <- derive_var_base(
   advs,
@@ -229,7 +234,7 @@ advs <- derive_var_base(
   new_var = BNRIND
 )
 
-# Derive Change from Baseline (CHG, PCHG) ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- restrict_derivation(
   advs,
   derivation = derive_var_chg,
@@ -242,8 +247,8 @@ advs <- restrict_derivation(
   filter = AVISITN > 0
 )
 
-# Derive Analysis Flags (e.g. ANL01FL) ----
-advs <- restrict_derivation(
+## ----r eval=TRUE--------------------------------------------------------------
+advs <-   restrict_derivation(
   advs,
   derivation = derive_var_extreme_flag,
   args = params(
@@ -257,15 +262,14 @@ advs <- restrict_derivation(
   filter = !is.na(AVISITN) & ONTRTFL == "Y"
 )
 
-# Assign Treatment (TRTA, TRTP) ----
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   mutate(
     TRTP = TRT01P,
     TRTA = TRT01A
   )
 
-# Assign ASEQ
-
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_obs_number(
   advs,
   new_var = ASEQ,
@@ -274,7 +278,7 @@ advs <- derive_var_obs_number(
   check_type = "error"
 )
 
-# Derive Categorization Variables (AVALCATy) ----
+## ----r eval=TRUE--------------------------------------------------------------
 avalcat_lookup <- exprs(
   ~PARAMCD,  ~condition,   ~AVALCAT1, ~AVALCA1N,
   "HEIGHT",  AVAL > 140,   ">140 cm",         1,
@@ -287,8 +291,8 @@ advs <- advs %>%
     by_vars = exprs(PARAMCD)
   )
 
-# Assign Parameter Level Values (PARAM, PARAMN) ----
-advs <- advs %>%
+## ----r eval=TRUE--------------------------------------------------------------
+advs <- advs %>% 
   create_var_from_codelist(
     metacore,
     input_var = PARAMCD,
@@ -301,14 +305,14 @@ advs <- advs %>%
     out_var = PARAMN
   )
 
-# Add ADSL variables ----
+## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
   derive_vars_merged(
     dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
   )
 
-# Apply Metadata and eSub Checks ----
+## ----r, message=FALSE, warning=FALSE------------------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file
 
 # Apply metadata and perform checks
@@ -319,10 +323,10 @@ advs_prefinal <- advs %>%
   sort_by_key(metacore) # Sorts the rows by the sort keys
 
 # Apply apply labels, formats, and export the dataset to an XPT file.
-advs_final <- advs_prefinal %>%
+advs_final <- advs_prefinal %>% 
   xportr_type(metacore) %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%
   xportr_format(metacore, domain = "ADVS") %>%
-  xportr_df_label(metacore, domain = "ADVS") %>%
+  xportr_df_label(metacore, domain = "ADVS") %>% 
   xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
