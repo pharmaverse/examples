@@ -29,6 +29,7 @@ library(xportr)
 library(readr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
+library(reactable)
 ```
 
 ## Next Load Specifications for Metacore
@@ -100,6 +101,8 @@ pc_dates <- pc %>%
     DRUG = PCTEST,
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
+
+reactable(pc_dates)
 ```
 
 ### Get Dosing Information
@@ -148,6 +151,8 @@ ex_dates <- ex %>%
   # Derive dates from date/times
   derive_vars_dtm_to_dt(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_dt(exprs(AENDTM))
+
+reactable(ex_dates)
 ```
 
 ### Expand Dosing Records
@@ -188,6 +193,8 @@ ex_exp <- ex_dates %>%
   derive_vars_dtm_to_tm(exprs(ADTM)) %>%
   derive_vars_dtm_to_tm(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(AENDTM))
+
+reactable(ex_exp)
 ```
 
 ### Find First Dose
@@ -216,6 +223,8 @@ adppk_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
+
+reactable(adppk_first_dose)
 ```
 
 ### Find Previous Dose
@@ -242,6 +251,8 @@ adppk_prev <- adppk_first_dose %>%
     mode = "last",
     check_type = "none"
   )
+
+reactable(adppk_prev)
 ```
 
 ### Find Previous Nominal Dose
@@ -262,6 +273,8 @@ adppk_nom_prev <- adppk_prev %>%
     mode = "last",
     check_type = "none"
   )
+
+reactable(adppk_nom_prev)
 ```
 
 ### Combine PC and EX Data
@@ -312,6 +325,8 @@ adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
       TRUE ~ NFRLT - NFRLT_prev
     )
   )
+
+reactable(adppk_aprlt)
 ```
 
 ### Derive Analysis Variables
@@ -389,6 +404,8 @@ adppk_aval <- adppk_aprlt %>%
     ADDL = 0,
     OCC = 1,
   )
+
+reactable(adppk_aval)
 ```
 
 ### Add ASEQ
@@ -445,6 +462,8 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN) %>%
   create_var_from_codelist(metacore, input_var = SUBJTYPC, out_var = SUBJTYP)
+
+reactable(covar)
 ```
 
 ### Derive Additional Baselines
@@ -495,6 +514,8 @@ covar_vslb <- covar %>%
     )
   ) %>%
   rename(TBILBL = BILIBL)
+
+reactable(covar_vslb)
 ```
 
 ### Combine with Covariates
@@ -535,6 +556,8 @@ adppk <- adppk_prefinal %>%
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
+
+reactable(adppk)
 ```
 
 ## Apply Labels and Formats with xportr

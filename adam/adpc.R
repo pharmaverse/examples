@@ -226,6 +226,8 @@ adpc_nom_next <- adpc_nom_prev %>%
     check_type = "none"
   )
 
+reactable(adpc_nom_prev)
+
 ## ----r------------------------------------------------------------------------
 adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
   group_by(USUBJID, DRUG) %>%
@@ -401,6 +403,8 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
     ANL02FL = if_else(is.na(DTYPE), "Y", NA_character_),
   )
 
+reactable(adpc_dtype)
+
 ## ----r------------------------------------------------------------------------
 # ---- Derive BASE and Calculate Change from Baseline ----
 
@@ -449,6 +453,8 @@ adpc_baselines <- adpc_aseq %>%
     BMIBL = compute_bmi(height = HTBL, weight = WTBL),
     BMIBLU = "kg/m^2"
   )
+
+reactable(adpc_baselines)
 
 ## ----r------------------------------------------------------------------------
 # ---- Add all ADSL variables ----

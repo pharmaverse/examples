@@ -301,6 +301,8 @@ adpc_nom_next <- adpc_nom_prev %>%
     mode = "first",
     check_type = "none"
   )
+
+reactable(adpc_nom_prev)
 ```
 
 ### Combine PC and EX Data
@@ -511,6 +513,8 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
     ANL01FL = "Y",
     ANL02FL = if_else(is.na(DTYPE), "Y", NA_character_),
   )
+
+reactable(adpc_dtype)
 ```
 
 ### Derive BASE and CHG
@@ -578,6 +582,8 @@ adpc_baselines <- adpc_aseq %>%
     BMIBL = compute_bmi(height = HTBL, weight = WTBL),
     BMIBLU = "kg/m^2"
   )
+
+reactable(adpc_baselines)
 ```
 
 ### Combine with ADSL

@@ -10,6 +10,7 @@ library(xportr)
 library(readr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
+library(reactable)
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
 # ---- Load Specs for Metacore ----
@@ -61,6 +62,8 @@ pc_dates <- pc %>%
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
 
+reactable(pc_dates)
+
 ## ----r------------------------------------------------------------------------
 # ---- Get dosing information ----
 
@@ -103,6 +106,8 @@ ex_dates <- ex %>%
   derive_vars_dtm_to_dt(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_dt(exprs(AENDTM))
 
+reactable(ex_dates)
+
 ## ----r------------------------------------------------------------------------
 ex_exp <- ex_dates %>%
   create_single_dose_dataset(
@@ -136,6 +141,8 @@ ex_exp <- ex_dates %>%
   derive_vars_dtm_to_tm(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(AENDTM))
 
+reactable(ex_exp)
+
 ## ----r------------------------------------------------------------------------
 # ---- Find first dose per treatment per subject ----
 # ---- Join with ADPPK data and keep only subjects with dosing ----
@@ -158,6 +165,8 @@ adppk_first_dose <- pc_dates %>%
     AVISIT = paste("Day", AVISITN),
   )
 
+reactable(adppk_first_dose)
+
 ## ----r------------------------------------------------------------------------
 # ---- Find previous dose  ----
 
@@ -178,6 +187,8 @@ adppk_prev <- adppk_first_dose %>%
     check_type = "none"
   )
 
+reactable(adppk_prev)
+
 ## ----r------------------------------------------------------------------------
 adppk_nom_prev <- adppk_prev %>%
   derive_vars_joined(
@@ -192,6 +203,8 @@ adppk_nom_prev <- adppk_prev %>%
     mode = "last",
     check_type = "none"
   )
+
+reactable(adppk_nom_prev)
 
 ## ----r------------------------------------------------------------------------
 adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
@@ -235,6 +248,8 @@ adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
       TRUE ~ NFRLT - NFRLT_prev
     )
   )
+
+reactable(adppk_aprlt)
 
 ## ----r------------------------------------------------------------------------
 # ---- Derive Analysis Variables ----
@@ -307,6 +322,8 @@ adppk_aval <- adppk_aprlt %>%
     OCC = 1,
   )
 
+reactable(adppk_aval)
+
 ## ----r------------------------------------------------------------------------
 # ---- Add ASEQ ----
 
@@ -353,6 +370,8 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN) %>%
   create_var_from_codelist(metacore, input_var = SUBJTYPC, out_var = SUBJTYP)
 
+reactable(covar)
+
 ## ----r------------------------------------------------------------------------
 labsbl <- lb %>%
   filter(LBBLFL == "Y" & LBTESTCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
@@ -396,6 +415,8 @@ covar_vslb <- covar %>%
   ) %>%
   rename(TBILBL = BILIBL)
 
+reactable(covar_vslb)
+
 ## ----r------------------------------------------------------------------------
 # Combine covariates with APPPK data
 
@@ -421,6 +442,8 @@ adppk <- adppk_prefinal %>%
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
+
+reactable(adppk)
 
 ## ----r------------------------------------------------------------------------
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
