@@ -111,7 +111,7 @@ adsl_ct <- adsl_preds %>%
 head(adsl_ct, n=10)
 ```
 
-Option 2: We can create the subgroups using the admiral::derive_vars_cat() function available from {admiral} v1.1.2. 
+Option 2: We can create the subgroups using the admiral::derive_vars_cat() function available since {admiral} v1.2.0. 
 This function is especially useful if more than one variable needs to be created for each condition, e.g., AGEGR1 and AGEGR1N.
 Additionally, one needs to be careful when considering the order of the conditions in the lookup table.
 The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. `!is.na(AGE)` must come after `between(AGE, 18, 64)`.
