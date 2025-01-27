@@ -48,8 +48,8 @@ We have saved our specifications in an Excel file and will load them into `{meta
 # ---- Load Specs for Metacore ----
 metacore <- spec_to_metacore(
   path = "./metadata/ADSL_ADVS_spec.xlsx",
-  where_sep_sheet = FALSE,
-  quiet = TRUE
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
 ) %>%
   select_dataset("ADVS")
 ```

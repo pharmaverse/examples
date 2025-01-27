@@ -66,8 +66,8 @@ Next we need to load the specification file in the form of a `{metacore}` object
 # Read in metacore object
 metacore <- spec_to_metacore(
   path = "./metadata/ADSL_ADVS_spec.xlsx",
-  where_sep_sheet = FALSE,
-  quiet = TRUE
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
 ) %>%
   select_dataset("ADSL")
 ```
@@ -82,6 +82,7 @@ The resulting dataset has all the columns combined and any columns that needed r
 adsl_preds <- build_from_derived(metacore,
                                  ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
                                  predecessor_only = FALSE, keep = FALSE)
+
 head(adsl_preds, n=10)
 ```
 
@@ -218,19 +219,18 @@ adsl_raw <- adsl_ct %>%
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
   # Treatment Start and End Date
-   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
+  derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
   # Treatment Start Time
   derive_vars_dtm_to_tm(source_vars = exprs(TRTSDTM)) %>% 
   # Treatment Duration
-   derive_var_trtdurd() %>%
+  derive_var_trtdurd() %>%
   # Safety Population Flag
-   derive_var_merged_exist_flag(
+  derive_var_merged_exist_flag(
      dataset_add = ex,
      by_vars = exprs(STUDYID, USUBJID),
      new_var = SAFFL,
      condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
-   ) %>%
-   drop_unspec_vars(metacore) # This will drop any columns that are not specified in the metacore object
+   )
 
 head(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)
 ```
