@@ -65,7 +65,7 @@ Next we need to load the specification file in the form of a `{metacore}` object
 ```{r metacore, warning=FALSE, results='hold'}
 # Read in metacore object
 metacore <- spec_to_metacore(
-  path = "./metadata/ADSL_ADVS_spec.xlsx",
+  path = "./metadata/safety_specs.xlsx",
   # All datasets are described in the same sheet
   where_sep_sheet = FALSE
 ) %>%

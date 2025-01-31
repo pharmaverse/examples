@@ -18,7 +18,7 @@ vs <- convert_blanks_to_na(vs)
 ## ----r echo=TRUE--------------------------------------------------------------
 # ---- Load Specs for Metacore ----
 metacore <- spec_to_metacore(
-  path = "./metadata/ADSL_ADVS_spec.xlsx",
+  path = "./metadata/safety_specs.xlsx",
   where_sep_sheet = FALSE,
   quiet = TRUE
 ) %>%

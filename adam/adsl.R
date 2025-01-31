@@ -34,7 +34,7 @@ dm_suppdm <- combine_supp(dm, suppdm)
 ## ----r metacore, warning=FALSE, results='hold'--------------------------------
 # Read in metacore object
 metacore <- spec_to_metacore(
-  path = "./metadata/ADSL_ADVS_spec.xlsx",
+  path = "./metadata/safety_specs.xlsx",
   where_sep_sheet = FALSE,
   quiet = TRUE
 ) %>%
