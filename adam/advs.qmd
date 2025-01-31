@@ -467,7 +467,7 @@ In most finding ADaMs, an analysis flag is derived to identify the appropriate
 observation(s) to use for a particular analysis when a subject has multiple
 observations within a particular timing period.
 
-In this situation, an analysis flag (e.g. `ANLxxFL`) may be used to choose the
+In this situation, an analysis flag (e.g. `ANLzzFL`) may be used to choose the
 appropriate record for analysis.
 
 This flag may be derived using the `{admiral}` function `admiral::derive_var_extreme_flag()`. 
