@@ -104,7 +104,29 @@ head(adsl_preds, n=10)
 Now we have the base dataset, we can start to create some variables.
 There are a few options to create grouping variables and their corresponding numeric variables.
 
-Option 1: We can start with creating the subgroups using the controlled terminology, in this case `AGEGR1`.
+**Option 1:** We can start with creating the subgroups using the **`admiral::derive_vars_cat()`** function available since `{admiral}` v1.2.0. 
+This function is especially useful if more than one variable needs to be created for each condition, e.g., `AGEGR1` and `AGEGR1N`.
+Additionally, one needs to be careful when considering the order of the conditions in the lookup table.
+The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. `!is.na(AGE)` must come after `between(AGE, 18, 64)`.
+
+```{r grouping_option_1}
+agegr1_lookup <- exprs(
+  ~condition,            ~AGEGR1, ~AGEGR1N,
+  is.na(AGE),          "Missing",        4,
+  AGE < 18,                "<18",        1,
+  between(AGE, 18, 64),  "18-64",        2,
+  !is.na(AGE),             ">64",        3
+)
+
+adsl_cat <- derive_vars_cat(
+   dataset = adsl_preds,
+   definition = agegr1_lookup
+ )
+
+head(adsl_cat %>% select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```
+
+Option 2: We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
 The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology,
 which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
 
@@ -117,7 +139,7 @@ The function `metatools::create_cat_var()` takes in a `{metacore}` object, a ref
 in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable.
 It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.
 
-```{r grouping_option_1}
+```{r grouping_option_2}
 adsl_ct <- adsl_preds %>%
    create_cat_var(metacore, ref_var = AGE,
                   grp_var = AGEGR1, num_grp_var = AGEGR1N)
@@ -125,29 +147,7 @@ adsl_ct <- adsl_preds %>%
 head(adsl_ct, n=10)
 ```
 
-Option 2: We can create the subgroups using the `admiral::derive_vars_cat()` function available since `{admiral}` v1.2.0. 
-This function is especially useful if more than one variable needs to be created for each condition, e.g., `AGEGR1` and `AGEGR1N`.
-Additionally, one needs to be careful when considering the order of the conditions in the lookup table.
-The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. `!is.na(AGE)` must come after `between(AGE, 18, 64)`.
-
-```{r grouping_option_2}
-agegr1_lookup <- exprs(
-  ~condition,            ~AGEGR1, ~AGEGR1N,
-  AGE < 18,                "<18",        1,
-  between(AGE, 18, 64),  "18-64",        2,
-  !is.na(AGE),             ">64",        3,
-  is.na(AGE),          "Missing",        4
-)
-
-adsl_cat <- derive_vars_cat(
-   dataset = adsl_preds,
-   definition = agegr1_lookup
- )
-
-head(adsl_cat %>%  select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
-```
-
-Option 3: We can also solve this subgroups task with custom functions. 
+Option 3: Another option to solve this subgroups task is to use custom functions. 
 
 ```{r grouping_option_3}
 format_agegr1 <- function(var_input) {
