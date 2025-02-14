@@ -22,7 +22,19 @@ The four packages used with a brief description of their purpose are as follows:
 It is important to understand `{metacore}` objects by reading through the above linked package site, as these are fundamental to being able to use `{metatools}` and `{xportr}`.
 Each company may need to build a specification reader to create these objects from their source standard specification templates.
 
-## Load Data and Required pharmaverse Packages
+## Programming Flow
+
+* [Load Data and Required pharmaverse Packages](#loaddata)
+* [Start Building Derivations](#dmvars)
+* [Grouping Variables](#groupingvars)
+* [Exposure Derivations](#expo)
+* [Derive Treatment Variables](#treatmentvars)
+* [Derive Disposition Variables](#dispovars)
+* [Derive Cause of Death](#deathvars)
+* [Derive Other Grouping Variables](#othgrpvars)
+* [Apply Metadata to Create an eSub XPT and Perform Associated Checks](#metacore_xportr)
+
+## Load Data and Required pharmaverse Packages {#loaddata}
 
 The first step is to load our pharmaverse packages and input data.
 
@@ -71,7 +83,8 @@ metacore <- spec_to_metacore(
 ) %>%
   select_dataset("ADSL")
 ```
-## Start Building Derivations
+
+## Start Building Derivations {#dmvars}
 
 The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.
 
@@ -86,7 +99,7 @@ adsl_preds <- build_from_derived(metacore,
 head(adsl_preds, n=10)
 ```
 
-### Grouping variables
+### Grouping Variables {#groupingvars}
 
 Now we have the base dataset, we can start to create some variables.
 There are a few options to create grouping variables and their corresponding numeric variables.
@@ -175,7 +188,7 @@ adsl_ct <- adsl_ct %>%
 head(adsl_ct, n=10)
 ```
 
-### Exposure derivations
+### Exposure Derivations {#expovars}
 
 Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.
 Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/articles/adsl.html) in practice,
@@ -239,7 +252,7 @@ This call returns the original data frame with the column `TRTSDTM`, `TRTSTMF`, 
 Exposure observations with incomplete date and zero doses of non placebo treatments are ignored.
 Missing time parts are imputed as first or last for start and end date respectively.
 
-### Derive Treatment Variables
+### Derive Treatment Variables {#treatmentvars}
 
 The mapping of the treatment variables is left to the ADaM programmer. An example mapping for a study without periods may be:
 
@@ -265,7 +278,7 @@ adsl <- adsl %>%
 head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
 ```
 
-### Derive Disposition Variables
+### Derive Disposition Variables {#dispovars}
 
 The functions `admiral::derive_vars_dt()` and `admiral::derive_vars_merged()` can be used to derive disposition dates.
 First the character disposition date (`DS.DSSTDTC`) is converted to a numeric date (`DSSTDT`) calling `admiral::derive_vars_dt()`.
@@ -414,7 +427,7 @@ adsl <- adsl %>%
 head(adsl %>% select(STUDYID, USUBJID, RANDDT, RANDFL), n=10)
 ```
 
-### Derive Cause of Death
+### Derive Cause of Death {#deathvars}
 
 The cause of death (`DTHCAUS`) can be derived using the function `admiral::derive_vars_extreme_event()`.
 
@@ -457,7 +470,7 @@ adsl <- adsl %>%
 head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %>%  filter(!is.na(DTHDT)), n=10)
 ```
 
-### Derive Grouping Variables
+### Derive Other Grouping Variables {#othgrpvars}
 
 Following the derivation of `DTHCAUS` and related traceability variables, it is then possible to derive grouping variables such as death categories (`DTHCGRx`),
 region categories (`REGIONx`), and race categories (`RACEx`).
@@ -505,7 +518,7 @@ head(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1
 head(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) 
 ``` 
 
-### Apply Metadata to Create an eSub XPT and Perform Associated Checks
+### Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}
 
 Now we have all the variables defined we can run some checks before applying the necessary formatting.
 The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas

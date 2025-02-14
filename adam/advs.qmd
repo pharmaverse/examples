@@ -14,7 +14,30 @@ This article provides a step-by-step explanation for creating an ADaM `ADVS` (Vi
 
 For the purpose of this example, we will use the `ADSL` dataset from `{pharmaverseadam}` and `vs` domain from `{pharmaversesdtm}`.
 
-# Load Data and Required pharmaverse Packages
+## Programming Flow
+
+* [Load Data and Required pharmaverse Packages](#loaddata)
+* [Load Specifications for Metacore](#loadspecs)
+* [Select ADSL Variables](#adslvars)
+* [Start Building Derivations](#startbuild)
+* [Assign `PARAMCD`, `PARAM`, `PARAMN`](#paramvars)
+* [Derive Results and Units (`AVAL`, `AVALU`)](#avalvars)
+* [Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`)](#addparams)
+* [Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`)](#timingvars)
+* [Derive summary records (e.g. mean of the triplicates at each time point)](#summaryrec)
+* [Timing Flag Variables (e.g. `ONTRTFL`)](#ontrtfl)
+* [Assign Reference Range Indicator (`ANRIND`)](#rangeind)
+* [Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`)](#baselinevars)
+* [Derive Change from Baseline (`CHG`, `PCHG`)](#chgpchg)
+* [Derive Analysis Flags (e.g. `ANL01FL`)](#anl01fl)
+* [Assign Treatment (`TRTA`, `TRTP`)](#treatmentvars)
+* [Assign `ASEQ`](#aseq)
+* [Derive Categorization Variables (`AVALCATy`)](#categorizationvars)
+* [Assign Parameter Level Values (`PARAM`, `PARAMN`)](#paramval)
+* [Add ADSL variables](#adslvars)
+* [Apply Metadata and eSub Checks](#metacore_xportr)
+
+# Load Data and Required pharmaverse Packages {#loaddata}
 
 First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
 
@@ -38,7 +61,7 @@ vs <- pharmaversesdtm::vs
 vs <- convert_blanks_to_na(vs)
 ```
 
-# Load Specifications for Metacore
+# Load Specifications for Metacore {#loadspecs}
 
 We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
 
@@ -54,7 +77,7 @@ metacore <- spec_to_metacore(
   select_dataset("ADVS")
 ```
 
-# Select ADSL Variables
+# Select ADSL Variables {#adslvars}
 
 Some variables from the `ADSL` dataset required for the derivations are merged into the `VS` domain using the `admiral::derive_vars_merged()` function.
 The rest of the relevant `ADSL` variables would be added later.
@@ -74,7 +97,7 @@ advs <- vs %>%
 head(advs, n=10)
 ```
 
-# Start Building Derivations
+# Start Building Derivations {#startbuild}
 
 The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
 The resulting dataset has the 2 columns created.
@@ -97,7 +120,7 @@ advs <- advs %>%
 head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n=10)
 ```
 
-## Assign `PARAMCD`, `PARAM`, `PARAMN`
+## Assign `PARAMCD`, `PARAM`, `PARAMN` {#paramvars}
 
 To assign parameter level values such as `PARAMCD`, `PARAM`, `PARAMN`,
 etc., a lookup can be created to join to the source data.
@@ -154,7 +177,7 @@ advs <- advs %>%
 head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n=10)
 ```
 
-## Derive Results and Units (`AVAL`, `AVALU`)
+## Derive Results and Units (`AVAL`, `AVALU`) {#avalvars}
 
 The mapping of `AVAL` and `AVALU` is left to the ADaM programmer. An 
 example mapping may be:
@@ -172,7 +195,7 @@ head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC,
 In this example, as is often the case for ADVS, all `AVAL` values are numeric without any corresponding non-redundant text value for `AVALC`.
 Per recommendation in ADaMIG v1.3 we do not map `AVALC`.
 
-## Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`)
+## Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`) {#addparams}
 
 Optionally derive new parameters creating `PARAMCD` and `AVAL`. Note that only
 variables specified in the `by_vars` argument will be populated in the newly 
@@ -247,7 +270,7 @@ head(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PA
 head(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
 ```
 
-## Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`)
+## Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`) {#timingvars}
 
 Categorical timing variables are protocol and analysis dependent. Below is a simple example. 
 
@@ -272,7 +295,7 @@ advs <- advs %>%
 For assigning visits based on time windows and deriving periods, subperiods, and phase variables see
 the ["Visit and Period Variables" vignette](visits_periods.html).
 
-## Derive summary records (e.g. mean of the triplicates at each time point) ----
+## Derive summary records (e.g. mean of the triplicates at each time point) {#summaryrec}
 
 For adding new records based on aggregating records `admiral::derive_summary_records()`
 can be used. For the new records only the variables specified by `by_vars` and
@@ -295,7 +318,7 @@ advs <- derive_summary_records(
 )
 ```
 
-## Timing Flag Variables (e.g. `ONTRTFL`)
+## Timing Flag Variables (e.g. `ONTRTFL`) {#ontrtfl}
 
 In some analyses, it may be necessary to flag an observation as on-treatment.
 The admiral function `admiral::derive_var_ontrtfl()` can be used.
@@ -317,7 +340,7 @@ advs <- derive_var_ontrtfl(
 head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)
 ```
 
-## Assign Reference Range Indicator (`ANRIND`)
+## Assign Reference Range Indicator (`ANRIND`) {#rangeind}
 
 The admiral function `derive_var_anrind()` may be used to derive the reference
 range indicator `ANRIND`.
@@ -356,7 +379,7 @@ advs <- derive_var_anrind(
 head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)
 ```
 
-## Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`)
+## Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`) {#baselinevars}
 
 The `BASETYPE` should be derived using the function `admiral::derive_basetype_records()`.
 The parameter `basetypes` of this function requires a named list of expression 
@@ -433,7 +456,7 @@ advs <- derive_var_base(
 head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)
 ```
 
-## Derive Change from Baseline (`CHG`, `PCHG`)
+## Derive Change from Baseline (`CHG`, `PCHG`) {#chgpchg}
 
 Change and percent change from baseline can be derived using the `{admiral}` 
 functions `admiral::derive_var_chg()` and `admiral::derive_var_pchg()`.  These functions expect `AVAL` 
@@ -461,7 +484,7 @@ advs <- restrict_derivation(
 head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)
 ```
 
-## Derive Analysis Flags (e.g. `ANL01FL`)
+## Derive Analysis Flags (e.g. `ANL01FL`) {#anl01fl}
 
 In most finding ADaMs, an analysis flag is derived to identify the appropriate 
 observation(s) to use for a particular analysis when a subject has multiple
@@ -494,7 +517,7 @@ advs <-   restrict_derivation(
 head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)
 ```
 
-## Assign Treatment (`TRTA`, `TRTP`)
+## Assign Treatment (`TRTA`, `TRTP`) {#treatmentvars}
 
 `TRTA` and `TRTP` must match at least one value of the character treatment
 variables in ADSL (e.g., `TRTxxA`/`TRTxxP`, `TRTSEQA`/`TRTSEQP`,
@@ -514,7 +537,7 @@ count(advs, TRTP, TRTA, TRT01P, TRT01A)
 
 For studies with periods see the ["Visit and Period Variables" vignette](visits_periods.html#treatment_bds).
 
-## Assign `ASEQ`
+## Assign `ASEQ` {#aseq}
 
 The `{admiral}` function `admiral::derive_var_obs_number()` can be used to derive `ASEQ`. An 
 example call is:
@@ -533,7 +556,7 @@ advs <- derive_var_obs_number(
 head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)
 ```
 
-## Derive Categorization Variables (`AVALCATy`)
+## Derive Categorization Variables (`AVALCATy`) {#categorizationvars}
 
 We can use the `admiral::derive_vars_cat()` function to derive the categorization variables.
 
@@ -555,7 +578,7 @@ advs <- advs %>%
 head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)
 ```
 
-## Assign Parameter Level Values (`PARAM`, `PARAMN`)
+## Assign Parameter Level Values (`PARAM`, `PARAMN`) {#paramval}
 
 When all `PARAMCD` have been derived and added to the dataset, the other information 
 from the look-up table (`PARAM`, `PARAMN`,...) should be added using `admiral::derive_vars_merged()` function.
@@ -582,7 +605,7 @@ advs <- advs %>%
 head(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)
 ```
 
-## Add ADSL variables
+## Add ADSL variables {#adslvars}
 
 If needed, the other `ADSL` variables can now be added.
 List of ADSL variables already merged held in vector `adsl_vars`
@@ -599,7 +622,7 @@ advs <- advs %>%
 head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)
 ```
 
-# Apply Metadata and eSub Checks
+# Apply Metadata and eSub Checks {#metacore_xportr}
 
 We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
 
