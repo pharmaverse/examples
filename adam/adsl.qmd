@@ -255,7 +255,8 @@ adsl_raw <- adsl_ct %>%
 head(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)
 ```
 
-This call returns the original data frame with the column `TRTSDTM`, `TRTSTMF`, `TRTEDTM`, and `TRTETMF` added.
+This call returns the original data frame with the corresponding treatment variables added, such as `TRTSDTM`, `TRTSTMF`, `TRTEDTM`, `TRTETMF`, `TRTDURD`, etc.,
+as well as the Safety Population Flag `SAFFL`.
 Exposure observations with incomplete date and zero doses of non placebo treatments are ignored.
 Missing time parts are imputed as first or last for start and end date respectively.
 
