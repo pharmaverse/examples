@@ -201,7 +201,7 @@ Now we have sorted out what we can easily do with controlled terminology it is t
 Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/articles/adsl.html) in practice,
 but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there.
 We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment start time, the treatment duration, and the safety population flag.
-Note that the populations flags are mainly company/study specific no dedicated functions are provided, but in most cases they can easily be derived using `admiral::derive_var_merged_exist_flag()`.
+Note that the populations flags are mainly company- or study-specific, therefore, no dedicated functions are provided, but in most cases they can easily be derived using `admiral::derive_var_merged_exist_flag()`.
 
 ```{r exposure}
 ex_ext <- ex %>%
