@@ -67,7 +67,12 @@ ex <- convert_blanks_to_na(ex)
 ae <- convert_blanks_to_na(ae)
 vs <- convert_blanks_to_na(vs)
 suppdm <- convert_blanks_to_na(suppdm)
+```
 
+While loading our input data, we can combine the `dm` domain and the `suppdm` supplementary domain for easier use in the next steps.
+Using the `metatools::combine_supp()` function avoids the need to manually transpose and merge the supplementary dataset with the corresponding domain.
+
+```{r combine, message=FALSE, warning=FALSE, results='hold'}
 # Combine Parent and Supp - very handy! ----
 dm_suppdm <- combine_supp(dm, suppdm)
 ```
@@ -87,8 +92,10 @@ metacore <- spec_to_metacore(
 ## Start Building Derivations {#dmvars}
 
 The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.
+In this case, all the required columns come from `DM` and `SUPPDM`, so these are the only datasets we will pass into `metatools::build_from_derived()`.
+As previously mentioned, we have combined `DM`and `SUPPDM` data for easier use. Specifically, the parameters from `SUPPDM`, contained within the `[SUPPDM.QNAM]` variable, have been transposed into separate variables.
+However the ADaMs specifications still reference `DM` and `SUPPDM` as the provenance of the variables. Setting `ds_list = list("dm" = dm_suppdm)` alone does not retrieve the variables from `SUPPDM`. Therefore, it is necessary to call these two references separately within the `metatools::build_from_derived()` function, even though they ultimately point to the same combined `dm_suppdm` dataset.
 
-In this case all the columns come from `DM` and `SUPPDM`so that are the only datasets we will pass into `metatools::build_from_derived()`.
 The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
 
 ```{r demographics}
