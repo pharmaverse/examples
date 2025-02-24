@@ -150,20 +150,20 @@ head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 Option 3: Another option to solve this subgroups task is to use custom functions. 
 
 ```{r grouping_option_3}
-format_agegr1 <- function(var_input) {
+format_agegr1 <- function(age) {
   case_when(
-    var_input < 18 ~ "<18",
-    between(var_input, 18, 64) ~ "18-64",
-    var_input > 64 ~ ">64",
+    age < 18 ~ "<18",
+    between(age, 18, 64) ~ "18-64",
+    age > 64 ~ ">64",
     TRUE ~ "Missing"
   )
 }
 
-format_agegr1n <- function(var_input) {
+format_agegr1n <- function(age) {
   case_when(
-    var_input < 18 ~ 1,
-    between(var_input, 18, 64) ~ 2,
-    var_input > 64 ~ 3,
+    age < 18 ~ 1,
+    between(age, 18, 64) ~ 2,
+    age > 64 ~ 3,
     TRUE ~ 4
   )
 }
