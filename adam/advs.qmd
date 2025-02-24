@@ -583,8 +583,16 @@ head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVA
 When all `PARAMCD` have been derived and added to the dataset, the other information 
 from the look-up table (`PARAM`, `PARAMN`,...) should be added using `admiral::derive_vars_merged()` function.
 
-The other way to assign the parameter level values is using the `metatools` package with the `{metacore}` objects
-that we created at the beginning. The function `metatools::create_var_from_codelist()` is used in below exemple.
+Another way to assign parameter-level values is by using the `metatools` package with the `{metacore}` objects 
+we created at the beginning. To use the `metatools::create_var_from_codelist()` function, as shown in the example below, certain prerequisites must be met.
+Specifically, this function relies on code/decode pairs from a `{metacore}` object. Therefore, these pairs must be defined in the corresponding ADaMs specifications
+before creating the `{metacore}` object. 
+
+We can look into the `{metacore}` object and see these pairs for the `PARAM` variable.
+
+```{r}
+get_control_term(metacore, variable = PARAM)
+```
 
 ```{r eval=TRUE}
 advs <- advs %>% 
