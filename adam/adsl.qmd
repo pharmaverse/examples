@@ -123,7 +123,7 @@ adsl_cat <- derive_vars_cat(
    definition = agegr1_lookup
  )
 
-head(adsl_cat %>% select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+head(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
 Option 2: We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
@@ -144,7 +144,7 @@ adsl_ct <- adsl_preds %>%
    create_cat_var(metacore, ref_var = AGE,
                   grp_var = AGEGR1, num_grp_var = AGEGR1N)
 
-head(adsl_ct, n=10)
+head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
 Option 3: Another option to solve this subgroups task is to use custom functions. 
@@ -174,7 +174,7 @@ adsl_cust <- adsl_preds %>%
     AGEGR1N = format_agegr1n(AGE)
     )
 
-head(adsl_cust %>%  select(USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+head(adsl_cust %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
 Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
@@ -185,7 +185,7 @@ adsl_ct <- adsl_ct %>%
                             input_var = RACE,
                             out_var = RACEN)
 
-head(adsl_ct, n=10)
+head(adsl_ct %>% select(STUDYID, USUBJID, RACE, RACEN), n=10)
 ```
 
 ### Exposure Derivations {#expovars}
