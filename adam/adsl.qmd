@@ -154,7 +154,7 @@ adsl_ct <- adsl_preds %>%
 head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
-Option 3: Another option to solve this subgroups task is to use custom functions. 
+**Option 3:** Another option to solve this subgroups task is to use custom functions. 
 
 ```{r grouping_option_3}
 format_agegr1 <- function(age) {
