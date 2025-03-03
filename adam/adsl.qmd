@@ -133,7 +133,7 @@ adsl_cat <- derive_vars_cat(
 head(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
-Option 2: We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
+**Option 2:** We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
 The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology,
 which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
 
@@ -154,7 +154,7 @@ adsl_ct <- adsl_preds %>%
 head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
 ```
 
-Option 3: Another option to solve this subgroups task is to use custom functions. 
+**Option 3:** Another option to solve this subgroups task is to use custom functions. 
 
 ```{r grouping_option_3}
 format_agegr1 <- function(age) {
