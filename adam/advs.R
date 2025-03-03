@@ -19,8 +19,8 @@ vs <- convert_blanks_to_na(vs)
 # ---- Load Specs for Metacore ----
 metacore <- spec_to_metacore(
   path = "./metadata/safety_specs.xlsx",
-  where_sep_sheet = FALSE,
-  quiet = TRUE
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
 ) %>%
   select_dataset("ADVS")
 
@@ -36,6 +36,8 @@ advs <- vs %>%
     by_vars = exprs(STUDYID, USUBJID)
   )
 
+head(advs, n=10)
+
 ## ----r------------------------------------------------------------------------
 # Calculate ADT, ADY
 advs <- advs %>%
@@ -50,6 +52,8 @@ advs <- advs %>%
     reference_date = TRTSDT,
     source_vars = exprs(ADT)
   )
+
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n=10)
 
 ## ----r eval=TRUE, include=FALSE-----------------------------------------------
 param_lookup <- tibble::tribble(
@@ -77,12 +81,16 @@ advs <- advs %>%
     print_not_mapped = TRUE # Printing whether some parameters are not mapped
   )
 
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>% 
   mutate(
     AVAL = VSSTRESN,
     AVALU = VSSTRESU
   ) 
+
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n=10)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>% 
@@ -128,6 +136,15 @@ advs <- advs %>%
     weight_code = "WEIGHT"
   )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "MAP") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
   mutate(
@@ -166,6 +183,9 @@ advs <- derive_var_ontrtfl(
   filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment
 )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)
+
 ## ----r include=FALSE----------------------------------------------------------
 range_lookup <- tibble::tribble(
   ~PARAMCD, ~ANRLO, ~ANRHI, ~A1LO, ~A1HI,
@@ -189,6 +209,9 @@ advs <- derive_var_anrind(
   use_a1hia1lo = FALSE
 )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_basetype_records(
   dataset = advs,
@@ -199,6 +222,8 @@ advs <- derive_basetype_records(
     "LAST" = is.na(ATPTN)
   )
 )
+
+count(advs, ATPT, ATPTN, BASETYPE)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- restrict_derivation(
@@ -217,6 +242,9 @@ advs <- restrict_derivation(
   )
 )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n=30)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_base(
   advs,
@@ -234,6 +262,9 @@ advs <- derive_var_base(
   new_var = BNRIND
 )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- restrict_derivation(
   advs,
@@ -246,6 +277,9 @@ advs <- restrict_derivation(
   derivation = derive_var_pchg,
   filter = AVISITN > 0
 )
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <-   restrict_derivation(
@@ -262,12 +296,17 @@ advs <-   restrict_derivation(
   filter = !is.na(AVISITN) & ONTRTFL == "Y"
 )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>% 
   mutate(
     TRTP = TRT01P,
     TRTA = TRT01A
   )
+
+count(advs, TRTP, TRTA, TRT01P, TRT01A)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_obs_number(
@@ -277,6 +316,9 @@ advs <- derive_var_obs_number(
   order = exprs(PARAMCD, ADT, AVISITN, VISITNUM, ATPTN, DTYPE),
   check_type = "error"
 )
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 avalcat_lookup <- exprs(
@@ -290,6 +332,12 @@ advs <- advs %>%
     definition = avalcat_lookup,
     by_vars = exprs(PARAMCD)
   )
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)
+
+## ----r------------------------------------------------------------------------
+get_control_term(metacore, variable = PARAM)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>% 
@@ -305,12 +353,18 @@ advs <- advs %>%
     out_var = PARAMN
   )
 
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
   derive_vars_merged(
     dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
   )
+
+## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
+head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)
 
 ## ----r, message=FALSE, warning=FALSE------------------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file
@@ -330,3 +384,4 @@ advs_final <- advs_prefinal %>%
   xportr_format(metacore, domain = "ADVS") %>%
   xportr_df_label(metacore, domain = "ADVS") %>% 
   xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
+

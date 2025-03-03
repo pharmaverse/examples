@@ -28,6 +28,7 @@ ae <- convert_blanks_to_na(ae)
 vs <- convert_blanks_to_na(vs)
 suppdm <- convert_blanks_to_na(suppdm)
 
+## ----r combine, message=FALSE, warning=FALSE, results='hold'------------------
 # Combine Parent and Supp - very handy! ----
 dm_suppdm <- combine_supp(dm, suppdm)
 
@@ -35,8 +36,8 @@ dm_suppdm <- combine_supp(dm, suppdm)
 # Read in metacore object
 metacore <- spec_to_metacore(
   path = "./metadata/safety_specs.xlsx",
-  where_sep_sheet = FALSE,
-  quiet = TRUE
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
 ) %>%
   select_dataset("ADSL")
 
@@ -45,22 +46,15 @@ adsl_preds <- build_from_derived(metacore,
                                  ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
                                  predecessor_only = FALSE, keep = FALSE)
 
-## ----r------------------------------------------------------------------------
-get_control_term(metacore, variable = AGEGR1)
+head(adsl_preds, n=10)
 
 ## ----r grouping_option_1------------------------------------------------------
-adsl_ct <- adsl_preds %>%
-  create_cat_var(metacore, ref_var = AGE,
-                 grp_var = AGEGR1, num_grp_var = AGEGR1N)
-
-
-## ----r grouping_option_2------------------------------------------------------
 agegr1_lookup <- exprs(
   ~condition,            ~AGEGR1, ~AGEGR1N,
+  is.na(AGE),          "Missing",        4,
   AGE < 18,                "<18",        1,
   between(AGE, 18, 64),  "18-64",        2,
-  !is.na(AGE),             ">64",        3,
-  is.na(AGE),          "Missing",        4
+  !is.na(AGE),             ">64",        3
 )
 
 adsl_cat <- derive_vars_cat(
@@ -68,21 +62,33 @@ adsl_cat <- derive_vars_cat(
   definition = agegr1_lookup
 )
 
+head(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+
+## ----r------------------------------------------------------------------------
+get_control_term(metacore, variable = AGEGR1)
+
+## ----r grouping_option_2------------------------------------------------------
+adsl_ct <- adsl_preds %>%
+  create_cat_var(metacore, ref_var = AGE,
+                 grp_var = AGEGR1, num_grp_var = AGEGR1N)
+
+head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+
 ## ----r grouping_option_3------------------------------------------------------
-format_agegr1 <- function(var_input) {
+format_agegr1 <- function(age) {
   case_when(
-    var_input < 18 ~ "<18",
-    between(var_input, 18, 64) ~ "18-64",
-    var_input > 64 ~ ">64",
+    age < 18 ~ "<18",
+    between(age, 18, 64) ~ "18-64",
+    age > 64 ~ ">64",
     TRUE ~ "Missing"
   )
 }
 
-format_agegr1n <- function(var_input) {
+format_agegr1n <- function(age) {
   case_when(
-    var_input < 18 ~ 1,
-    between(var_input, 18, 64) ~ 2,
-    var_input > 64 ~ 3,
+    age < 18 ~ 1,
+    between(age, 18, 64) ~ 2,
+    age > 64 ~ 3,
     TRUE ~ 4
   )
 }
@@ -93,11 +99,15 @@ adsl_cust <- adsl_preds %>%
     AGEGR1N = format_agegr1n(AGE)
   )
 
+head(adsl_cust %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+
 ## ----r codelist---------------------------------------------------------------
 adsl_ct <- adsl_ct %>%
   create_var_from_codelist(metacore = metacore,
                            input_var = RACE,
                            out_var = RACEN)
+
+head(adsl_ct %>% select(STUDYID, USUBJID, RACE, RACEN), n=10)
 
 ## ----r exposure---------------------------------------------------------------
 ex_ext <- ex %>%
@@ -146,8 +156,9 @@ adsl_raw <- adsl_ct %>%
     by_vars = exprs(STUDYID, USUBJID),
     new_var = SAFFL,
     condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
-  ) %>%
-  drop_unspec_vars(metacore) # This will drop any columns that are not specified in the metacore object
+  )
+
+head(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)
 
 ## ----r treatment_char, eval=TRUE----------------------------------------------
 adsl <- adsl_raw %>%
@@ -155,10 +166,14 @@ adsl <- adsl_raw %>%
          TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
   )
 
+head(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01A), n=10)
+
 ## ----r treatment_num, eval=TRUE-----------------------------------------------
 adsl <- adsl %>%
   create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
   create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
+
+head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
 
 ## ----r disposition, eval=TRUE-------------------------------------------------
 # Convert character date to numeric date without imputation
@@ -195,6 +210,8 @@ adsl <- adsl %>%
     missing_values = exprs(EOSSTT = "ONGOING")
   )
 
+head(adsl %>% select(STUDYID, USUBJID, EOSDT, EOSSTT), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_dt(
@@ -203,6 +220,8 @@ adsl <- adsl %>%
     highest_imputation = "M",
     date_imputation = "first"
   ) 
+
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHDTF), n=10)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
@@ -225,6 +244,8 @@ adsl <- adsl %>%
     filter_add = DSCAT == "OTHER EVENT" & DSDECOD == "FINAL RETRIEVAL VISIT"
   )
 
+head(adsl %>% select(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 adsl <- adsl %>%
   derive_vars_duration(
@@ -239,6 +260,8 @@ adsl <- adsl %>%
     add_one = FALSE
   )
 
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), n=10)
+
 ## ----r eval=TRUE--------------------------------------------------------------
 assign_randfl <- function(x) {
   if_else(!is.na(x), "Y", NA_character_)
@@ -248,6 +271,8 @@ adsl <- adsl %>%
   mutate(
     RANDFL = assign_randfl(RANDDT)
   )
+
+head(adsl %>% select(STUDYID, USUBJID, RANDDT, RANDFL), n=10)
 
 ## ----r death, eval=TRUE-------------------------------------------------------
 adsl <- adsl %>%
@@ -272,6 +297,8 @@ adsl <- adsl %>%
     new_vars = exprs(DTHCAUS, DTHDOM)
   )
 
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %>%  filter(!is.na(DTHDT)), n=10)
+
 ## ----r grouping, eval=TRUE----------------------------------------------------
 region1_lookup <- exprs(
   ~condition,                              ~REGION1, ~REGION1N,
@@ -295,6 +322,7 @@ dthcgr1_lookup <- exprs(
   is.na(DTHDOM),                                                                         NA_character_,        NA
 )
 
+
 adsl <- adsl %>% 
   derive_vars_cat(
     definition = region1_lookup
@@ -305,6 +333,11 @@ adsl <- adsl %>%
   derive_vars_cat(
     definition = dthcgr1_lookup
   ) 
+
+head(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n=10) 
+
+## ----r eval=TRUE--------------------------------------------------------------
+head(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) 
 
 ## ----r checks, warning=FALSE, message=FALSE-----------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file
@@ -319,3 +352,4 @@ adsl %>%
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_df_label(metacore) %>%  # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adsl.xpt"), metadata = metacore, domain = "ADSL")
+
