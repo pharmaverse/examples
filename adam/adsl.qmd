@@ -19,9 +19,22 @@ The four packages used with a brief description of their purpose are as follows:
 -   [`{admiral}`](https://pharmaverse.github.io/admiral/index.html): provides the ADaM derivations.
 -   [`{xportr}`](https://atorus-research.github.io/xportr/): delivers the SAS transport file (XPT) and eSub checks.
 
-It is important to understand `{metacore}` objects by reading through the above linked package site, as these are fundamental to being able to use `{metatools}` and `{xportr}`. Each company may need to build a specification reader to create these objects from their source standard specification templates.
+It is important to understand `{metacore}` objects by reading through the above linked package site, as these are fundamental to being able to use `{metatools}` and `{xportr}`.
+Each company may need to build a specification reader to create these objects from their source standard specification templates.
 
-## Load Data and Required pharmaverse Packages
+## Programming Flow
+
+* [Load Data and Required pharmaverse Packages](#loaddata)
+* [Start Building Derivations](#dmvars)
+* [Grouping Variables](#groupingvars)
+* [Exposure Derivations](#expo)
+* [Derive Treatment Variables](#treatmentvars)
+* [Derive Disposition Variables](#dispovars)
+* [Derive Cause of Death](#deathvars)
+* [Derive Other Grouping Variables](#othgrpvars)
+* [Apply Metadata to Create an eSub XPT and Perform Associated Checks](#metacore_xportr)
+
+## Load Data and Required pharmaverse Packages {#loaddata}
 
 The first step is to load our pharmaverse packages and input data.
 
@@ -37,64 +50,158 @@ library(lubridate)
 library(stringr)
 
 # Read in input SDTM data
-data("dm")
-data("ex")
+dm <- pharmaversesdtm::dm
+ds <- pharmaversesdtm::ds
+ex <- pharmaversesdtm::ex
+ae <- pharmaversesdtm::ae
+vs <- pharmaversesdtm::vs
+suppdm <- pharmaversesdtm::suppdm
+
+# When SAS datasets are imported into R using haven::read_sas(), missing
+# character values from SAS appear as "" characters in R, instead of appearing
+# as NA values. Further details can be obtained via the following link:
+# https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
+dm <- convert_blanks_to_na(dm)
+ds <- convert_blanks_to_na(ds)
+ex <- convert_blanks_to_na(ex)
+ae <- convert_blanks_to_na(ae)
+vs <- convert_blanks_to_na(vs)
+suppdm <- convert_blanks_to_na(suppdm)
+```
+
+While loading our input data, we can combine the `dm` domain and the `suppdm` supplementary domain for easier use in the next steps.
+Using the `metatools::combine_supp()` function avoids the need to manually transpose and merge the supplementary dataset with the corresponding domain.
+
+```{r combine, message=FALSE, warning=FALSE, results='hold'}
+# Combine Parent and Supp - very handy! ----
+dm_suppdm <- combine_supp(dm, suppdm)
 ```
 
 Next we need to load the specification file in the form of a `{metacore}` object.
 
 ```{r metacore, warning=FALSE, results='hold'}
 # Read in metacore object
-load(metacore_example("pilot_ADaM.rda"))
-metacore <- metacore %>%
-   select_dataset("ADSL")
+metacore <- spec_to_metacore(
+  path = "./metadata/safety_specs.xlsx",
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
+) %>%
+  select_dataset("ADSL")
 ```
 
-Here is an example of how a `{metacore}` object looks showing variable level metadata:
-
-```{r}
-metacore$ds_vars
-```
-
-## Start Building Derivations
+## Start Building Derivations {#dmvars}
 
 The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.
+In this case, all the required columns come from `DM` and `SUPPDM`, so these are the only datasets we will pass into `metatools::build_from_derived()`.
+As previously mentioned, we have combined `DM`and `SUPPDM` data for easier use. Specifically, the parameters from `SUPPDM`, contained within the `[SUPPDM.QNAM]` variable, have been transposed into separate variables.
+However the ADaMs specifications still reference `DM` and `SUPPDM` as the provenance of the variables. Setting `ds_list = list("dm" = dm_suppdm)` alone does not retrieve the variables from `SUPPDM`. Therefore, it is necessary to call these two references separately within the `metatools::build_from_derived()` function, even though they ultimately point to the same combined `dm_suppdm` dataset.
 
-In this case all the columns come from `DM` so that is the only dataset we will pass into `metatools::build_from_derived()`. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
+The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.
 
 ```{r demographics}
 adsl_preds <- build_from_derived(metacore,
-                                 ds_list = list("dm" = dm),
-                                 predecessor_only = FALSE, keep = TRUE)
+                                 ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
+                                 predecessor_only = FALSE, keep = FALSE)
+
 head(adsl_preds, n=10)
 ```
 
-Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case `AGEGR1`. The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
+### Grouping Variables {#groupingvars}
+
+Now we have the base dataset, we can start to create some variables.
+There are a few options to create grouping variables and their corresponding numeric variables.
+
+**Option 1:** We can start with creating the subgroups using the **`admiral::derive_vars_cat()`** function available since `{admiral}` v1.2.0. 
+This function is especially useful if more than one variable needs to be created for each condition, e.g., `AGEGR1` and `AGEGR1N`.
+Additionally, one needs to be careful when considering the order of the conditions in the lookup table.
+The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. `!is.na(AGE)` must come after `between(AGE, 18, 64)`.
+
+```{r grouping_option_1}
+agegr1_lookup <- exprs(
+  ~condition,            ~AGEGR1, ~AGEGR1N,
+  is.na(AGE),          "Missing",        4,
+  AGE < 18,                "<18",        1,
+  between(AGE, 18, 64),  "18-64",        2,
+  !is.na(AGE),             ">64",        3
+)
+
+adsl_cat <- derive_vars_cat(
+   dataset = adsl_preds,
+   definition = agegr1_lookup
+ )
+
+head(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```
+
+**Option 2:** We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
+The metacore object holds all the metadata needed to make `ADSL`. Part of that metadata is the controlled terminology,
+which can help automate the creation of subgroups. We can look into the `{metacore}` object and see the controlled terminology for `AGEGR1`.
 
 ```{r}
 get_control_term(metacore, variable = AGEGR1)
 ```
 
-Because this controlled terminology is written in a fairly standard format we can automate the creation of `AGEGR1`. The function `metatools::create_cat_var()` takes in a `{metacore}` object, a reference variable - in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.
+Because this controlled terminology is written in a fairly standard format we can automate the creation of `AGEGR1`.
+The function `metatools::create_cat_var()` takes in a `{metacore}` object, a reference variable -
+in this case `AGE` because that is the continuous variable `AGEGR1` is created from, and the name of the sub-grouped variable.
+It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.
+
+```{r grouping_option_2}
+adsl_ct <- adsl_preds %>%
+   create_cat_var(metacore, ref_var = AGE,
+                  grp_var = AGEGR1, num_grp_var = AGEGR1N)
+
+head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```
+
+**Option 3:** Another option to solve this subgroups task is to use custom functions. 
+
+```{r grouping_option_3}
+format_agegr1 <- function(age) {
+  case_when(
+    age < 18 ~ "<18",
+    between(age, 18, 64) ~ "18-64",
+    age > 64 ~ ">64",
+    TRUE ~ "Missing"
+  )
+}
+
+format_agegr1n <- function(age) {
+  case_when(
+    age < 18 ~ 1,
+    between(age, 18, 64) ~ 2,
+    age > 64 ~ 3,
+    TRUE ~ 4
+  )
+}
+
+adsl_cust <- adsl_preds %>%
+  mutate(
+    AGEGR1 = format_agegr1(AGE),
+    AGEGR1N = format_agegr1n(AGE)
+    )
+
+head(adsl_cust %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```
 
 Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
 
-```{r ct}
-adsl_ct <- adsl_preds %>%
-   create_cat_var(metacore, ref_var = AGE,
-                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %>%
+```{r codelist}
+adsl_ct <- adsl_ct %>%
    create_var_from_codelist(metacore = metacore,
                             input_var = RACE,
-                            out_var = RACEN) %>%
-   # Removing screen failures from ARM and TRT01P to match the define and FDA guidance
-   mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),
-          TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)
-   )
+                            out_var = RACEN)
 
-head(adsl_ct, n=10)
+head(adsl_ct %>% select(STUDYID, USUBJID, RACE, RACEN), n=10)
 ```
 
-Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html) in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.
+### Exposure Derivations {#expovars}
+
+Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.
+Here you could refer directly to using the `{admiral}` template and [vignette](https://pharmaverse.github.io/admiral/articles/adsl.html) in practice,
+but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there.
+We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment start time, the treatment duration, and the safety population flag.
+Note that the populations flags are mainly company- or study-specific, therefore, no dedicated functions are provided, but in most cases they can easily be derived using `admiral::derive_var_merged_exist_flag()`.
 
 ```{r exposure}
 ex_ext <- ex %>%
@@ -109,88 +216,334 @@ ex_ext <- ex %>%
   )
 
 adsl_raw <- adsl_ct %>%
+  # Treatment Start Datetime
   derive_vars_merged(
     dataset_add = ex_ext,
     filter_add = (EXDOSE > 0 |
       (EXDOSE == 0 &
-        str_detect(EXTRT, "PLACEBO"))) & nchar(EXSTDTC) >= 10,
-    new_vars = exprs(TRTSDTM = EXSTDTM),
+        str_detect(EXTRT, "PLACEBO"))) & !is.na(EXSTDTM),
+    new_vars = exprs(TRTSDTM = EXSTDTM, TRTSTMF = EXSTTMF),
     order = exprs(EXSTDTM, EXSEQ),
     mode = "first",
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
+  # Treatment End Datetime
   derive_vars_merged(
     dataset_add = ex_ext,
     filter_add = (EXDOSE > 0 |
       (EXDOSE == 0 &
-        str_detect(EXTRT, "PLACEBO"))) & nchar(EXENDTC) >= 10,
-    new_vars = exprs(TRTEDTM = EXENDTM),
+        str_detect(EXTRT, "PLACEBO"))) & !is.na(EXENDTM),
+    new_vars = exprs(TRTEDTM = EXENDTM, TRTETMF = EXENTMF),
     order = exprs(EXENDTM, EXSEQ),
     mode = "last",
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
-   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
-   derive_var_trtdurd() %>%
-   derive_var_merged_exist_flag(
+  # Treatment Start and End Date
+  derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
+  # Treatment Start Time
+  derive_vars_dtm_to_tm(source_vars = exprs(TRTSDTM)) %>% 
+  # Treatment Duration
+  derive_var_trtdurd() %>%
+  # Safety Population Flag
+  derive_var_merged_exist_flag(
      dataset_add = ex,
      by_vars = exprs(STUDYID, USUBJID),
      new_var = SAFFL,
      condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
-   ) %>%
-   drop_unspec_vars(metacore) # This will drop any columns that aren't specified in the metacore object
+   )
 
-head(adsl_raw, n=10)
+head(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)
 ```
 
-```{r, warning=FALSE, message=FALSE, include=FALSE}
-# Create dummy variables to match metacore specs to avoid later errors
-# In practice these would be mainly created using derivation functions from admiral
-adsl_raw <- adsl_raw %>%
-  mutate(
-    SITEGR1 = NA,
-    TRT01PN = NA,
-    TRT01A = NA,
-    TRT01AN = NA,
-    AVGDD = NA,
-    CUMDOSE = NA,
-    ITTFL = NA,
-    EFFFL = NA,
-    COMP8FL = NA,
-    COMP16FL = NA,
-    COMP24FL = NA,
-    DISCONFL = NA,
-    DSRAEFL = NA,
-    BMIBL = NA,
-    BMIBLGR1 = NA,
-    HEIGHTBL = NA,
-    WEIGHTBL = NA,
-    EDUCLVL = NA,
-    DISONSDT = NA,
-    DURDIS = NA,
-    DURDSGR1 = NA,
-    VISIT1DT = NA,
-    VISNUMEN = NA,
-    RFENDT = NA,
-    DCDECOD = NA,
-    EOSSTT = NA,
-    DCSREAS = NA,
-    MMSETOT = NA
+This call returns the original data frame with the corresponding treatment variables added, such as `TRTSDTM`, `TRTSTMF`, `TRTEDTM`, `TRTETMF`, `TRTDURD`, etc.,
+as well as the Safety Population Flag `SAFFL`.
+Exposure observations with incomplete date and zero doses of non placebo treatments are ignored.
+Missing time parts are imputed as first or last for start and end date respectively.
+
+### Derive Treatment Variables {#treatmentvars}
+
+The mapping of the treatment variables is left to the ADaM programmer. An example mapping for a study without periods may be:
+
+```{r treatment_char, eval=TRUE}
+adsl <- adsl_raw %>%
+  mutate(TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),
+         TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01A), n=10)
+```
+
+For studies with periods see the ["Visit and Period Variables" vignette](https://pharmaverse.github.io/admiral/articles/visits_periods.html#periods_adsl).
+
+The corresponding numeric variables can be derived using the `metatools` package with the `{metacore}` objects
+that we created at the very beginning. The function `metatools::create_var_from_codelist()` is used in below example.
+
+```{r treatment_num, eval=TRUE}
+adsl <- adsl %>%
+  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
+
+head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
+```
+
+### Derive Disposition Variables {#dispovars}
+
+The functions `admiral::derive_vars_dt()` and `admiral::derive_vars_merged()` can be used to derive disposition dates.
+First the character disposition date (`DS.DSSTDTC`) is converted to a numeric date (`DSSTDT`) calling `admiral::derive_vars_dt()`.
+The `DS` dataset is extended by the `DSSTDT` variable because the date is required by other derivations, e.g., `RANDDT` as well.
+Then the relevant disposition date is selected by adjusting the `filter_add` argument.
+
+To add the End of Study date (`EOSDT`) to the input dataset, a call could be:
+
+```{r disposition, eval=TRUE}
+# Convert character date to numeric date without imputation
+ds_ext <- derive_vars_dt(
+  ds,
+  dtc = DSSTDTC,
+  new_vars_prefix = "DSST"
+)
+
+adsl <- adsl %>%
+  derive_vars_merged(
+    dataset_add = ds_ext,
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(EOSDT = DSSTDT),
+    filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD != "SCREEN FAILURE"
   )
 ```
 
-## Apply Metadata to Create an eSub XPT and Perform Associated Checks
+The `admiral::derive_vars_dt()` function allows to impute partial dates as well.
+If imputation is needed and missing days are to be imputed to the first of the month and
+missing months to the first month of the year, set `highest_imputation = "M"`.
 
-Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas the others focused around applying attributes to prepare for XPT come from `{xportr}`. At the end you could add a call to `xportr::xportr_write()` to produce the XPT file.
+
+The End of Study status (`EOSSTT`) based on `DSCAT` and `DSDECOD` from `DS` can be derived
+using the function `admiral::derive_vars_merged()`.
+The relevant observations are selected by adjusting the `filter_add` argument.
+A function mapping `DSDECOD` values to `EOSSTT` values can be defined and used in the
+`new_vars` argument. The mapping for the call below is
+
+- `"COMPLETED"` if `DSDECOD == "COMPLETED"`
+- `NA_character_` if `DSDECOD` is `"SCREEN FAILURE"`
+- `"DISCONTINUED"` otherwise
+
+Example function `format_eosstt()`:
+
+```{r eval=TRUE}
+format_eosstt <- function(x) {
+  case_when(
+    x %in% c("COMPLETED") ~ "COMPLETED",
+    x %in% c("SCREEN FAILURE") ~ NA_character_,
+    TRUE ~ "DISCONTINUED"
+  )
+}
+```
+
+The customized mapping function `format_eosstt()` can now be passed to the main
+function. For subjects without a disposition event the end of study status is
+set to `"ONGOING"` by specifying the `missing_values` argument.
+
+```{r eval=TRUE}
+adsl <- adsl %>%
+  derive_vars_merged(
+    dataset_add = ds,
+    by_vars = exprs(STUDYID, USUBJID),
+    filter_add = DSCAT == "DISPOSITION EVENT",
+    new_vars = exprs(EOSSTT = format_eosstt(DSDECOD)),
+    missing_values = exprs(EOSSTT = "ONGOING")
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, EOSDT, EOSSTT), n=10)
+```
+
+If the derivation must be changed, the user can create his/her own function to map `DSDECOD` to a suitable `EOSSTT` value.
+
+The Imputed Death Date (`DTHDT`) can be derived using the `admiral::derive_vars_dt()` function.
+
+```{r eval=TRUE}
+adsl <- adsl %>%
+  derive_vars_dt(
+    new_vars_prefix = "DTH",
+    dtc = DTHDTC,
+    highest_imputation = "M",
+    date_imputation = "first"
+  ) 
+
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHDTF), n=10)
+```
+
+Further dates such as Randomization Date (`RANDDT`), Screen fail date (`SCRFDT`), and Last Retrieval Date (`FRVDT`),
+can also be derived using `admiral::derive_vars_merged()` since these are selected dates based on filters and merged back to the original dataset.
+
+```{r eval=TRUE}
+adsl <- adsl %>%
+  derive_vars_merged(
+    dataset_add = ds_ext,
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(RANDDT = DSSTDT),
+    filter_add = DSDECOD == "RANDOMIZED",
+  ) %>% 
+  derive_vars_merged(
+    dataset_add = ds_ext,
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(SCRFDT = DSSTDT),
+    filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD == "SCREEN FAILURE"
+  ) %>% 
+  derive_vars_merged(
+    dataset_add = ds_ext,
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(FRVDT = DSSTDT),
+    filter_add = DSCAT == "OTHER EVENT" & DSDECOD == "FINAL RETRIEVAL VISIT"
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), n=10)
+```
+
+The function `admiral::derive_vars_duration()` can now be used to derive duration relative to death like the Relative 
+Day of Death (`DTHADY`) or the numbers of days from last dose to death (`LDDTHELD`).
+
+```{r eval=TRUE}
+adsl <- adsl %>%
+  derive_vars_duration(
+    new_var = DTHADY,
+    start_date = TRTSDT,
+    end_date = DTHDT
+  ) %>% 
+  derive_vars_duration(
+    new_var = LDDTHELD,
+    start_date = TRTEDT,
+    end_date = DTHDT,
+    add_one = FALSE
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), n=10)
+```
+
+Having the Randomization Date added to the dataset also allows to derive a Population Flag.
+Randomized Population Flag (`RANDFL`) can be computed using a customized function.
+
+```{r eval=TRUE}
+assign_randfl <- function(x) {
+  if_else(!is.na(x), "Y", NA_character_)
+}
+
+adsl <- adsl %>% 
+  mutate(
+    RANDFL = assign_randfl(RANDDT)
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, RANDDT, RANDFL), n=10)
+```
+
+### Derive Cause of Death {#deathvars}
+
+The cause of death (`DTHCAUS`) can be derived using the function `admiral::derive_vars_extreme_event()`.
+
+Since the cause of death could be collected/mapped in different domains (e.g. `DS`, `AE`, `DD`), it 
+is important the user specifies the right source(s) to derive the cause of death from.
+
+For example, if the date of death is collected in the `AE` form when the AE is Fatal, the cause of 
+death would be set to the preferred term (`AEDECOD`) of that Fatal AE, while if the date of death is 
+collected in  the `DS` form, the cause of death would be set to the disposition term (`DSTERM`).
+To achieve this, the `event()` objects within `derive_vars_extreme_event()` must be specified and defined such that they fit the 
+study requirement. 
+The function also offers the option to add some traceability variables (e.g. `DTHDOM` would 
+store the domain where the date of death is collected, and `DTHSEQ`could also be added to store the `xxSEQ` value of 
+that domain - but let's keep it simple with `DTHDOM` only).
+The traceability variables should be added to the `event()` calls and included in the `new_vars` parameter of `derive_vars_extreme_event()`.
+
+```{r death, eval=TRUE}
+adsl <- adsl %>%
+  derive_vars_extreme_event(
+    by_vars = exprs(STUDYID, USUBJID),
+    events = list(
+      event(
+        dataset_name = "ae",
+        condition = AEOUT == "FATAL",
+        set_values_to = exprs(DTHCAUS = AEDECOD, DTHDOM = "AE"),
+      ),
+      event(
+        dataset_name = "ds",
+        condition = DSDECOD == "DEATH" & grepl("DEATH DUE TO", DSTERM),
+        set_values_to = exprs(DTHCAUS = DSTERM, DTHDOM = "DS"),
+      )
+    ),
+    source_datasets = list(ae = ae, ds = ds),
+    tmp_event_nr_var = event_nr,
+    order = exprs(event_nr),
+    mode = "first",
+    new_vars = exprs(DTHCAUS, DTHDOM)
+  )
+
+head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %>%  filter(!is.na(DTHDT)), n=10)
+```
+
+### Derive Other Grouping Variables {#othgrpvars}
+
+Following the derivation of `DTHCAUS` and related traceability variables, it is then possible to derive grouping variables such as death categories (`DTHCGRx`),
+region categories (`REGIONx`), and race categories (`RACEx`).
+As previously seen with `AGEGR1`, the `admiral::derive_vars_cat()` function available from version 1.2.0 can create such groups.
+
+```{r grouping, eval=TRUE}
+region1_lookup <- exprs(
+  ~condition,                              ~REGION1, ~REGION1N,
+  COUNTRY %in% c("CAN", "USA"),     "North America",         1,
+  !is.na(COUNTRY),              "Rest of the World",         2,
+  is.na(COUNTRY),                         "Missing",         3
+)
+
+racegr1_lookup <- exprs(
+  ~condition,              ~RACEGR1, ~RACEGR1N,
+  RACE %in% c("WHITE"),     "White",        1,
+  RACE != "WHITE",      "Non-white",        2,
+  is.na(RACE),            "Missing",        3
+  )
+
+dthcgr1_lookup <- exprs(
+  ~condition,                                                                                 ~DTHCGR1, ~DTHCGR1N,
+  DTHDOM == "AE",                                                                      "ADVERSE EVENT",         1,
+  !is.na(DTHDOM) & str_detect(DTHCAUS, "(PROGRESSIVE DISEASE|DISEASE RELAPSE)"), "PROGRESSIVE DISEASE",         2,
+  !is.na(DTHDOM) & !is.na(DTHCAUS),                                                            "OTHER",         3,
+  is.na(DTHDOM),                                                                         NA_character_,        NA
+)
+
+
+adsl <- adsl %>% 
+  derive_vars_cat(
+    definition = region1_lookup
+  ) %>% 
+  derive_vars_cat(
+    definition = racegr1_lookup
+  ) %>% 
+  derive_vars_cat(
+    definition = dthcgr1_lookup
+  ) 
+  
+head(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n=10) 
+```
+
+```{r eval=TRUE}
+head(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) 
+``` 
+
+### Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}
+
+Now we have all the variables defined we can run some checks before applying the necessary formatting.
+The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas
+the others focused around applying attributes to prepare for XPT come from `{xportr}`.
+At the end you can produce the XPT file calling `xportr::xportr_write()`.
 
 ```{r checks, warning=FALSE, message=FALSE}
+dir <- tempdir() # Specify the directory for saving the XPT file
 
-adsl_raw %>%
-   check_variables(metacore) %>% # Check all variables specified are present and no more
-   check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
-   order_cols(metacore) %>% # Orders the columns according to the spec
-   sort_by_key(metacore) %>% # Sorts the rows by the sort keys
-   xportr_type(metacore, domain = "ADSL") %>% # Coerce variable type to match spec
-   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
-   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
-   xportr_df_label(metacore) # Assigns dataset label from metacore specifications
+adsl %>%
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) %>% # Sorts the rows by the sort keys
+  xportr_type(metacore, domain = "ADSL") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_df_label(metacore) %>%  # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adsl.xpt"), metadata = metacore, domain = "ADSL")
 ```
