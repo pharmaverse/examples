@@ -1,0 +1,2520 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ADVS – pharmaverse examples</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tlg/demographic.html" rel="next">
+<link href="../adam/adtte.html" rel="prev">
+<link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5d55598f1afc2fba9c65ebfe6979d427.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5fcf772f6a3722db9767f003e88ff282.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en-US"
+  });
+});
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/style.scss">
+<meta property="og:title" content="ADVS – pharmaverse examples">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/adam/assets/img/Pharmaverse_examples.png">
+<meta property="og:site_name" content="pharmaverse examples">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pharmaverse examples</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADaM</a></li><li class="breadcrumb-item"><a href="../adam/advs.html">ADVS</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">SDTM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SDTM Examples</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">ADaM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adppk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPPK</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adrs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADRS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adtte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADTTE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/advs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">ADVS</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">TLG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demographic Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/adverse_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adverse Events</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interactive</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>teal</code> applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Difference Between <code>logr</code> And <code>logrx</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session Info</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://pharmaverse.org/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmaverse Home</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADaM</a></li><li class="breadcrumb-item"><a href="../adam/advs.html">ADVS</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">ADVS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This article provides a step-by-step explanation for creating an ADaM <code>ADVS</code> (Vital Signs) dataset using key pharmaverse packages along with tidyverse components.</p>
+<p>For the purpose of this example, we will use the <code>ADSL</code> dataset from <code>{pharmaverseadam}</code> and <code>vs</code> domain from <code>{pharmaversesdtm}</code>.</p>
+<section id="programming-flow" class="level2">
+<h2 class="anchored" data-anchor-id="programming-flow">Programming Flow</h2>
+<ul>
+<li><a href="#loaddata">Load Data and Required pharmaverse Packages</a></li>
+<li><a href="#loadspecs">Load Specifications for Metacore</a></li>
+<li><a href="#adslvars">Select ADSL Variables</a></li>
+<li><a href="#startbuild">Start Building Derivations</a></li>
+<li><a href="#paramvars">Assign <code>PARAMCD</code>, <code>PARAM</code>, <code>PARAMN</code></a></li>
+<li><a href="#avalvars">Derive Results and Units (<code>AVAL</code>, <code>AVALU</code>)</a></li>
+<li><a href="#addparams">Derive Additional Parameters (e.g.&nbsp;<code>MAP</code>, <code>BMI</code> or <code>BSA</code> for <code>ADVS</code>)</a></li>
+<li><a href="#timingvars">Derive Timing Variables (e.g.&nbsp;<code>AVISIT</code>, <code>ATPT</code>, <code>ATPTN</code>)</a></li>
+<li><a href="#summaryrec">Derive summary records (e.g.&nbsp;mean of the triplicates at each time point)</a></li>
+<li><a href="#ontrtfl">Timing Flag Variables (e.g.&nbsp;<code>ONTRTFL</code>)</a></li>
+<li><a href="#rangeind">Assign Reference Range Indicator (<code>ANRIND</code>)</a></li>
+<li><a href="#baselinevars">Derive Baseline (<code>BASETYPE</code>, <code>ABLFL</code>, <code>BASE</code>, <code>BNRIND</code>)</a></li>
+<li><a href="#chgpchg">Derive Change from Baseline (<code>CHG</code>, <code>PCHG</code>)</a></li>
+<li><a href="#anl01fl">Derive Analysis Flags (e.g.&nbsp;<code>ANL01FL</code>)</a></li>
+<li><a href="#treatmentvars">Assign Treatment (<code>TRTA</code>, <code>TRTP</code>)</a></li>
+<li><a href="#aseq">Assign <code>ASEQ</code></a></li>
+<li><a href="#categorizationvars">Derive Categorization Variables (<code>AVALCATy</code>)</a></li>
+<li><a href="#paramval">Assign Parameter Level Values (<code>PARAM</code>, <code>PARAMN</code>)</a></li>
+<li><a href="#adslvars">Add ADSL variables</a></li>
+<li><a href="#metacore_xportr">Apply Metadata and eSub Checks</a></li>
+</ul>
+</section>
+</section>
+<section id="loaddata" class="level1">
+<h1>Load Data and Required pharmaverse Packages</h1>
+<p>First we will load the packages required for our project. We will use <code>{admiral}</code> for the creation of analysis data. <code>{admiral}</code> requires <code>{dplyr}</code>, <code>{lubridate}</code> and <code>{stringr}</code>. We will use <code>{metacore}</code> and <code>{metatools}</code> to store and manipulate metadata from our specifications. We will use <code>{xportr}</code> to perform checks on the final data and export to a transport file.</p>
+<p>Then we will load our input data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(metatools)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(pharmaversesdtm)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(admiral)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(xportr)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Read in input data</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<span id="cb1-13"><a href="#cb1-13"></a>vs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>vs</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loadspecs" class="level1">
+<h1>Load Specifications for Metacore</h1>
+<p>We have saved our specifications in an Excel file and will load them into <code>{metacore}</code> with the <code>metacore::spec_to_metacore()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">path =</span> <span class="st">"./metadata/safety_specs.xlsx"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="co"># All datasets are described in the same sheet</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">where_sep_sheet =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADVS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="adslvars" class="level1">
+<h1>Select ADSL Variables</h1>
+<p>Some variables from the <code>ADSL</code> dataset required for the derivations are merged into the <code>VS</code> domain using the <code>admiral::derive_vars_merged()</code> function. The rest of the relevant <code>ADSL</code> variables would be added later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Select required ADSL variables</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(TRTSDT, TRTEDT, TRT01A, TRT01P)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Join ADSL variables with VS</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>advs <span class="ot">&lt;-</span> vs <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  )</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="fu">head</span>(advs, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 28
+   STUDYID  DOMAIN USUBJID VSSEQ VSTESTCD VSTEST VSPOS VSORRES VSORRESU VSSTRESC
+   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;   
+ 1 CDISCPI… VS     01-701…     1 DIABP    Diast… SUPI… 64      mmHg     64      
+ 2 CDISCPI… VS     01-701…     2 DIABP    Diast… STAN… 83      mmHg     83      
+ 3 CDISCPI… VS     01-701…     3 DIABP    Diast… STAN… 57      mmHg     57      
+ 4 CDISCPI… VS     01-701…     4 DIABP    Diast… SUPI… 68      mmHg     68      
+ 5 CDISCPI… VS     01-701…     5 DIABP    Diast… STAN… 59      mmHg     59      
+ 6 CDISCPI… VS     01-701…     6 DIABP    Diast… STAN… 71      mmHg     71      
+ 7 CDISCPI… VS     01-701…     7 DIABP    Diast… SUPI… 56      mmHg     56      
+ 8 CDISCPI… VS     01-701…     8 DIABP    Diast… STAN… 51      mmHg     51      
+ 9 CDISCPI… VS     01-701…     9 DIABP    Diast… STAN… 61      mmHg     61      
+10 CDISCPI… VS     01-701…    10 DIABP    Diast… SUPI… 67      mmHg     67      
+# ℹ 18 more variables: VSSTRESN &lt;dbl&gt;, VSSTRESU &lt;chr&gt;, VSSTAT &lt;chr&gt;,
+#   VSLOC &lt;chr&gt;, VSBLFL &lt;chr&gt;, VISITNUM &lt;dbl&gt;, VISIT &lt;chr&gt;, VISITDY &lt;dbl&gt;,
+#   VSDTC &lt;chr&gt;, VSDY &lt;dbl&gt;, VSTPT &lt;chr&gt;, VSTPTNUM &lt;dbl&gt;, VSELTM &lt;chr&gt;,
+#   VSTPTREF &lt;chr&gt;, TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;, TRT01A &lt;chr&gt;, TRT01P &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="startbuild" class="level1">
+<h1>Start Building Derivations</h1>
+<p>The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from <code>ADSL</code> dataset. The resulting dataset has the 2 columns created.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Calculate ADT, ADY</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">dtc =</span> VSDTC,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">highest_imputation =</span> <span class="st">"n"</span>, <span class="co"># means no imputation is performed on partial/missing dates</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">flag_imputation =</span> <span class="st">"auto"</span> <span class="co"># To automatically create ADTF variable when highest_imputation is "Y", "M" or "D"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">derive_vars_dy</span>(</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="at">reference_date =</span> TRTSDT,</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)</span>
+<span id="cb5-13"><a href="#cb5-13"></a>  )</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">head</span>(advs <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, <span class="sc">!!!</span>adsl_vars, ADT, ADY), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 13
+   STUDYID    USUBJID VISIT VISITNUM VSTESTCD VSTEST VSDTC TRTSDT     TRTEDT    
+   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;     &lt;date&gt;    
+ 1 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 2 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 3 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 4 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 5 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 6 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 7 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 8 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 9 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+10 CDISCPILO… 01-701… AMBU…      3.5 DIABP    Diast… 2014… 2014-01-02 2014-07-02
+# ℹ 4 more variables: TRT01A &lt;chr&gt;, TRT01P &lt;chr&gt;, ADT &lt;date&gt;, ADY &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<section id="paramvars" class="level2">
+<h2 class="anchored" data-anchor-id="paramvars">Assign <code>PARAMCD</code>, <code>PARAM</code>, <code>PARAMN</code></h2>
+<p>To assign parameter level values such as <code>PARAMCD</code>, <code>PARAM</code>, <code>PARAMN</code>, etc., a lookup can be created to join to the source data.</p>
+<p>For example, when creating <code>ADVS</code>, a lookup based on the SDTM <code>--TESTCD</code> value may be created:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><code>VSTESTCD</code></th>
+<th><code>PARAMCD</code></th>
+<th><code>PARAM</code></th>
+<th><code>PARAMN</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SYSBP</td>
+<td>SYSBP</td>
+<td>Systolic Blood Pressure (mmHg)</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>DIABP</td>
+<td>DIABP</td>
+<td>Diastolic Blood Pressure (mmHg)</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>PULSE</td>
+<td>PULSE</td>
+<td>Pulse Rate (beats/min)</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>WEIGHT</td>
+<td>WEIGHT</td>
+<td>Weight (kg)</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>HEIGHT</td>
+<td>HEIGHT</td>
+<td>Height (cm)</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>TEMP</td>
+<td>TEMP</td>
+<td>Temperature (C)</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>MAP</td>
+<td>MAP</td>
+<td>Mean Arterial Pressure</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>BMI</td>
+<td>BMI</td>
+<td>Body Mass Index(kg/m^2)</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>BSA</td>
+<td>BSA</td>
+<td>Body Surface Area(m^2)</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>This lookup may now be joined to the source data:</p>
+<p>At this stage, only <code>PARAMCD</code> is required to perform the derivations. Additional derived parameters may be added, so only <code>PARAMCD</code> is joined to the datasets at this point. All other variables related to <code>PARAMCD</code> (e.g.&nbsp;<code>PARAM</code>, <code>PARAMN</code>, …) will be added when all <code>PARAMCD</code> are derived.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="co"># Add PARAMCD only - add PARAM etc later</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">derive_vars_merged_lookup</span>(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">dataset_add =</span> param_lookup,</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(PARAMCD),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(VSTESTCD),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">print_not_mapped =</span> <span class="cn">TRUE</span> <span class="co"># Printing whether some parameters are not mapped</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>All `VSTESTCD` are mapped.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">head</span>(advs <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, <span class="sc">!!!</span>adsl_vars, ADT, ADY, PARAMCD), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 14
+   STUDYID    USUBJID VISIT VISITNUM VSTESTCD VSTEST VSDTC TRTSDT     TRTEDT    
+   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;     &lt;date&gt;    
+ 1 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 2 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 3 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 4 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 5 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 6 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 7 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 8 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 9 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+10 CDISCPILO… 01-701… AMBU…      3.5 DIABP    Diast… 2014… 2014-01-02 2014-07-02
+# ℹ 5 more variables: TRT01A &lt;chr&gt;, TRT01P &lt;chr&gt;, ADT &lt;date&gt;, ADY &lt;dbl&gt;,
+#   PARAMCD &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="avalvars" class="level2">
+<h2 class="anchored" data-anchor-id="avalvars">Derive Results and Units (<code>AVAL</code>, <code>AVALU</code>)</h2>
+<p>The mapping of <code>AVAL</code> and <code>AVALU</code> is left to the ADaM programmer. An example mapping may be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">AVAL =</span> VSSTRESN,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">AVALU =</span> VSSTRESU</span>
+<span id="cb11-5"><a href="#cb11-5"></a>  ) </span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="fu">head</span>(advs <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, <span class="sc">!!!</span>adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 16
+   STUDYID    USUBJID VISIT VISITNUM VSTESTCD VSTEST VSDTC TRTSDT     TRTEDT    
+   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;date&gt;     &lt;date&gt;    
+ 1 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 2 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 3 CDISCPILO… 01-701… SCRE…      1   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 4 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 5 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 6 CDISCPILO… 01-701… SCRE…      2   DIABP    Diast… 2013… 2014-01-02 2014-07-02
+ 7 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 8 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+ 9 CDISCPILO… 01-701… BASE…      3   DIABP    Diast… 2014… 2014-01-02 2014-07-02
+10 CDISCPILO… 01-701… AMBU…      3.5 DIABP    Diast… 2014… 2014-01-02 2014-07-02
+# ℹ 7 more variables: TRT01A &lt;chr&gt;, TRT01P &lt;chr&gt;, ADT &lt;date&gt;, ADY &lt;dbl&gt;,
+#   PARAMCD &lt;chr&gt;, AVAL &lt;dbl&gt;, AVALU &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>In this example, as is often the case for ADVS, all <code>AVAL</code> values are numeric without any corresponding non-redundant text value for <code>AVALC</code>. Per recommendation in ADaMIG v1.3 we do not map <code>AVALC</code>.</p>
+</section>
+<section id="addparams" class="level2">
+<h2 class="anchored" data-anchor-id="addparams">Derive Additional Parameters (e.g.&nbsp;<code>MAP</code>, <code>BMI</code> or <code>BSA</code> for <code>ADVS</code>)</h2>
+<p>Optionally derive new parameters creating <code>PARAMCD</code> and <code>AVAL</code>. Note that only variables specified in the <code>by_vars</code> argument will be populated in the newly created records. This is relevant to the functions <code>admiral::derive_param_map</code>, <code>admiral::derive_param_bsa</code>, <code>admiral::derive_param_bmi</code>, and <code>admiral::derive_param_qtc</code>.</p>
+<p>Below is an example of creating <code>Mean Arterial Pressure</code> for <code>ADVS</code> using the wrapper function <code>admiral::derive_param_map()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">derive_param_map</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, <span class="sc">!!!</span>adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), <span class="co"># Other variables than the defined ones here won't be populated</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"MAP"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">get_unit_expr =</span> VSSTRESU,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="at">filter =</span> VSSTAT <span class="sc">!=</span> <span class="st">"NOT DONE"</span> <span class="sc">|</span> <span class="fu">is.na</span>(VSSTAT),</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="at">sysbp_code =</span> <span class="st">"SYSBP"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="at">diabp_code =</span> <span class="st">"DIABP"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">hr_code =</span> <span class="cn">NULL</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similarly we could create <code>Body Mass Index</code> (BMI) for <code>ADVS</code> using the wrapper function <code>admiral::derive_param_bmi()</code>, instead we will see in below example how to use the more generic function <code>admiral::derive_param_computed()</code> Note that if height is collected only once use <code>constant_parameters</code> to define the corresponding parameter which will be merged to the other parameters and <code>constant_by_vars</code> to specify the subject-level variable to merge on. Otherwise BMI is only calculated for visits where both parameters <code>HEIGHT</code> and <code>WEIGHT</code> are collected.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">derive_param_computed</span>(</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="at">parameters =</span> <span class="st">"WEIGHT"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb14-6"><a href="#cb14-6"></a>      <span class="at">AVAL =</span> AVAL.WEIGHT <span class="sc">/</span> (AVAL.HEIGHT <span class="sc">/</span> <span class="dv">100</span>)<span class="sc">^</span><span class="dv">2</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>      <span class="at">PARAMCD =</span> <span class="st">"BMI"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8"></a>      <span class="at">AVALU =</span> <span class="st">"kg/m^2"</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    ),</span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="at">constant_parameters =</span> <span class="fu">c</span>(<span class="st">"HEIGHT"</span>),</span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="at">constant_by_vars =</span> <span class="fu">exprs</span>(USUBJID)</span>
+<span id="cb14-12"><a href="#cb14-12"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Likewise, wrapper function <code>admiral::derive_param_bsa()</code> call below, to create parameter <code>Body Surface Area</code> (BSA) for <code>ADVS</code> domain. Note that if height is collected only once use <code>constant_by_vars</code> to specify the subject-level variable to merge on. Otherwise BSA is only calculated for visits where both parameters <code>HEIGHT</code> and <code>WEIGHT</code> are collected.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">derive_param_bsa</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, <span class="sc">!!!</span>adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="at">method =</span> <span class="st">"Mosteller"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb15-6"><a href="#cb15-6"></a>      <span class="at">PARAMCD =</span> <span class="st">"BSA"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>      <span class="at">AVALU =</span> <span class="st">"m^2"</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>    ),</span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="at">get_unit_expr =</span> VSSTRESU,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="at">filter =</span> VSSTAT <span class="sc">!=</span> <span class="st">"NOT DONE"</span> <span class="sc">|</span> <span class="fu">is.na</span>(VSSTAT),</span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="at">constant_by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb15-12"><a href="#cb15-12"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a>    <span class="at">height_code =</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    <span class="at">weight_code =</span> <span class="st">"WEIGHT"</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+   STUDYID      USUBJID     VSTESTCD PARAMCD VISIT             VSTPT  AVAL AVALU
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;             &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 1       AFTE…  86.3 mmHg 
+ 2 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 1       AFTE…  98.3 mmHg 
+ 3 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 1       AFTE…  87   mmHg 
+ 4 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 2       AFTE…  91.3 mmHg 
+ 5 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 2       AFTE…  85   mmHg 
+ 6 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     SCREENING 2       AFTE…  95.7 mmHg 
+ 7 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     BASELINE          AFTE…  80.7 mmHg 
+ 8 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     BASELINE          AFTE…  74.3 mmHg 
+ 9 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     BASELINE          AFTE…  84.3 mmHg 
+10 CDISCPILOT01 01-701-1015 &lt;NA&gt;     MAP     AMBUL ECG PLACEM… AFTE…  90.3 mmHg </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+   STUDYID      USUBJID     VSTESTCD PARAMCD VISIT       VSTPT  AVAL AVALU 
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     SCREENING 1 &lt;NA&gt;   24.9 kg/m^2
+ 2 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     BASELINE    &lt;NA&gt;   25.1 kg/m^2
+ 3 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 2      &lt;NA&gt;   24.5 kg/m^2
+ 4 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 4      &lt;NA&gt;   24.9 kg/m^2
+ 5 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 6      &lt;NA&gt;   24.5 kg/m^2
+ 6 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 8      &lt;NA&gt;   24.5 kg/m^2
+ 7 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 12     &lt;NA&gt;   24.5 kg/m^2
+ 8 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 16     &lt;NA&gt;   24.5 kg/m^2
+ 9 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 20     &lt;NA&gt;   24.5 kg/m^2
+10 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BMI     WEEK 24     &lt;NA&gt;   24.5 kg/m^2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+   STUDYID      USUBJID     VSTESTCD PARAMCD VISIT       VSTPT  AVAL AVALU
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     SCREENING 1 &lt;NA&gt;   1.49 m^2  
+ 2 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     BASELINE    &lt;NA&gt;   1.49 m^2  
+ 3 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 2      &lt;NA&gt;   1.47 m^2  
+ 4 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 4      &lt;NA&gt;   1.49 m^2  
+ 5 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 6      &lt;NA&gt;   1.47 m^2  
+ 6 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 8      &lt;NA&gt;   1.47 m^2  
+ 7 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 12     &lt;NA&gt;   1.47 m^2  
+ 8 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 16     &lt;NA&gt;   1.47 m^2  
+ 9 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 20     &lt;NA&gt;   1.47 m^2  
+10 CDISCPILOT01 01-701-1015 &lt;NA&gt;     BSA     WEEK 24     &lt;NA&gt;   1.47 m^2  </code></pre>
+</div>
+</div>
+</section>
+<section id="timingvars" class="level2">
+<h2 class="anchored" data-anchor-id="timingvars">Derive Timing Variables (e.g.&nbsp;<code>AVISIT</code>, <code>ATPT</code>, <code>ATPTN</code>)</h2>
+<p>Categorical timing variables are protocol and analysis dependent. Below is a simple example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">ATPTN =</span> VSTPTNUM,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="at">ATPT =</span> VSTPT,</span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="at">AVISIT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb19-6"><a href="#cb19-6"></a>      <span class="fu">str_detect</span>(VISIT, <span class="st">"SCREEN|UNSCHED|RETRIEVAL|AMBUL"</span>) <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb19-7"><a href="#cb19-7"></a>      <span class="sc">!</span><span class="fu">is.na</span>(VISIT) <span class="sc">~</span> <span class="fu">str_to_title</span>(VISIT),</span>
+<span id="cb19-8"><a href="#cb19-8"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>    ),</span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="at">AVISITN =</span> <span class="fu">as.numeric</span>(<span class="fu">case_when</span>(</span>
+<span id="cb19-11"><a href="#cb19-11"></a>      VISIT <span class="sc">==</span> <span class="st">"BASELINE"</span> <span class="sc">~</span> <span class="st">"0"</span>,</span>
+<span id="cb19-12"><a href="#cb19-12"></a>      <span class="fu">str_detect</span>(VISIT, <span class="st">"WEEK"</span>) <span class="sc">~</span> <span class="fu">str_trim</span>(<span class="fu">str_replace</span>(VISIT, <span class="st">"WEEK"</span>, <span class="st">""</span>)),</span>
+<span id="cb19-13"><a href="#cb19-13"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>    ))</span>
+<span id="cb19-15"><a href="#cb19-15"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For assigning visits based on time windows and deriving periods, subperiods, and phase variables see the <a href="visits_periods.html">“Visit and Period Variables” vignette</a>.</p>
+</section>
+<section id="summaryrec" class="level2">
+<h2 class="anchored" data-anchor-id="summaryrec">Derive summary records (e.g.&nbsp;mean of the triplicates at each time point)</h2>
+<p>For adding new records based on aggregating records <code>admiral::derive_summary_records()</code> can be used. For the new records only the variables specified by <code>by_vars</code> and <code>set_values_to</code> are populated.</p>
+<p>For each subject, Vital Signs parameter, visit, and date add a record holding the average value for observations on that date. Set <code>DTYPE</code> to <code>AVERAGE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_summary_records</span>(</span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="at">dataset =</span> advs,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="at">dataset_add =</span> advs, <span class="co"># Observations from the specified dataset are going to be used to calculate and added as new records to the input dataset.</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, <span class="sc">!!!</span>adsl_vars, PARAMCD, AVISITN, AVISIT, ADT, ADY, AVALU),</span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL),</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="at">AVAL =</span> <span class="fu">mean</span>(AVAL),</span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="at">DTYPE =</span> <span class="st">"AVERAGE"</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  )</span>
+<span id="cb20-10"><a href="#cb20-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ontrtfl" class="level2">
+<h2 class="anchored" data-anchor-id="ontrtfl">Timing Flag Variables (e.g.&nbsp;<code>ONTRTFL</code>)</h2>
+<p>In some analyses, it may be necessary to flag an observation as on-treatment. The admiral function <code>admiral::derive_var_ontrtfl()</code> can be used.</p>
+<p>For example, if on-treatment is defined as any observation between treatment start and treatment end, the flag may be derived as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_var_ontrtfl</span>(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>  advs,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">start_date =</span> ADT,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="at">ref_start_date =</span> TRTSDT,</span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="at">ref_end_date =</span> TRTEDT,</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="at">filter_pre_timepoint =</span> <span class="fu">toupper</span>(AVISIT) <span class="sc">==</span> <span class="st">"BASELINE"</span> <span class="co"># Observations as not on-treatment</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   USUBJID     PARAMCD ADT        TRTSDT     TRTEDT     ONTRTFL
+   &lt;chr&gt;       &lt;chr&gt;   &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;  
+ 1 01-701-1015 DIABP   2014-01-16 2014-01-02 2014-07-02 Y      
+ 2 01-701-1015 DIABP   2014-01-16 2014-01-02 2014-07-02 Y      
+ 3 01-701-1015 DIABP   2014-01-16 2014-01-02 2014-07-02 Y      
+ 4 01-701-1023 DIABP   2012-08-27 2012-08-05 2012-09-01 Y      
+ 5 01-701-1023 DIABP   2012-08-27 2012-08-05 2012-09-01 Y      
+ 6 01-701-1023 DIABP   2012-08-27 2012-08-05 2012-09-01 Y      
+ 7 01-701-1028 DIABP   2013-08-01 2013-07-19 2014-01-14 Y      
+ 8 01-701-1028 DIABP   2013-08-01 2013-07-19 2014-01-14 Y      
+ 9 01-701-1028 DIABP   2013-08-01 2013-07-19 2014-01-14 Y      
+10 01-701-1033 DIABP   2014-04-01 2014-03-18 2014-03-31 &lt;NA&gt;   </code></pre>
+</div>
+</div>
+</section>
+<section id="rangeind" class="level2">
+<h2 class="anchored" data-anchor-id="rangeind">Assign Reference Range Indicator (<code>ANRIND</code>)</h2>
+<p>The admiral function <code>derive_var_anrind()</code> may be used to derive the reference range indicator <code>ANRIND</code>.</p>
+<p>This function requires the reference range boundaries to exist on the data frame (<code>ANRLO</code>, <code>ANRHI</code>) and also accommodates the additional boundaries <code>A1LO</code> and <code>A1HI</code>.</p>
+<p>The function is called as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_var_anrind</span>(</span>
+<span id="cb23-2"><a href="#cb23-2"></a>  advs,</span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="at">signif_dig =</span> <span class="fu">get_admiral_option</span>(<span class="st">"signif_digits"</span>),</span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="at">use_a1hia1lo =</span> <span class="cn">FALSE</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+   USUBJID     PARAMCD  AVAL ANRLO ANRHI  A1LO  A1HI ANRIND
+   &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 01-701-1015 DIABP      56    60    80    40    90 LOW   
+ 2 01-701-1015 DIABP      50    60    80    40    90 LOW   
+ 3 01-701-1015 DIABP      54    60    80    40    90 LOW   
+ 4 01-701-1023 DIABP      88    60    80    40    90 HIGH  
+ 5 01-701-1023 DIABP      86    60    80    40    90 HIGH  
+ 6 01-701-1023 DIABP      90    60    80    40    90 HIGH  
+ 7 01-701-1028 DIABP      78    60    80    40    90 NORMAL
+ 8 01-701-1028 DIABP      80    60    80    40    90 NORMAL
+ 9 01-701-1028 DIABP      80    60    80    40    90 NORMAL
+10 01-701-1033 DIABP      84    60    80    40    90 HIGH  </code></pre>
+</div>
+</div>
+</section>
+<section id="baselinevars" class="level2">
+<h2 class="anchored" data-anchor-id="baselinevars">Derive Baseline (<code>BASETYPE</code>, <code>ABLFL</code>, <code>BASE</code>, <code>BNRIND</code>)</h2>
+<p>The <code>BASETYPE</code> should be derived using the function <code>admiral::derive_basetype_records()</code>. The parameter <code>basetypes</code> of this function requires a named list of expression detailing how the <code>BASETYPE</code> should be assigned. Note, if a record falls into multiple expressions within the basetypes expression, a row will be produced for each <code>BASETYPE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_basetype_records</span>(</span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="at">dataset =</span> advs,</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  <span class="at">basetypes =</span> <span class="fu">exprs</span>(</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    <span class="st">"LAST: AFTER LYING DOWN FOR 5 MINUTES"</span> <span class="ot">=</span> ATPTN <span class="sc">==</span> <span class="dv">815</span>,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    <span class="st">"LAST: AFTER STANDING FOR 1 MINUTE"</span> <span class="ot">=</span> ATPTN <span class="sc">==</span> <span class="dv">816</span>,</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="st">"LAST: AFTER STANDING FOR 3 MINUTES"</span> <span class="ot">=</span> ATPTN <span class="sc">==</span> <span class="dv">817</span>,</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="st">"LAST"</span> <span class="ot">=</span> <span class="fu">is.na</span>(ATPTN)</span>
+<span id="cb25-8"><a href="#cb25-8"></a>  )</span>
+<span id="cb25-9"><a href="#cb25-9"></a>)</span>
+<span id="cb25-10"><a href="#cb25-10"></a></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="fu">count</span>(advs, ATPT, ATPTN, BASETYPE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  ATPT                           ATPTN BASETYPE                                n
+  &lt;chr&gt;                          &lt;dbl&gt; &lt;chr&gt;                               &lt;int&gt;
+1 AFTER LYING DOWN FOR 5 MINUTES   815 LAST: AFTER LYING DOWN FOR 5 MINUT… 10944
+2 AFTER STANDING FOR 1 MINUTE      816 LAST: AFTER STANDING FOR 1 MINUTE   10938
+3 AFTER STANDING FOR 3 MINUTES     817 LAST: AFTER STANDING FOR 3 MINUTES  10942
+4 &lt;NA&gt;                              NA LAST                                29184</code></pre>
+</div>
+</div>
+<p>It is important to derive <code>BASETYPE</code> first so that it can be utilized in subsequent derivations. This will be important if the data frame contains multiple values for <code>BASETYPE</code>.</p>
+<p>Next, the analysis baseline flag <code>ABLFL</code> can be derived using the <code>{admiral}</code> function <code>admiral::derive_var_extreme_flag()</code>. For example, if baseline is defined as the last non-missing <code>AVAL</code> prior or on <code>TRTSDT</code>, the function call for <code>ABLFL</code> would be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">restrict_derivation</span>(</span>
+<span id="cb27-2"><a href="#cb27-2"></a>  advs,</span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="at">derivation =</span> derive_var_extreme_flag,</span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="at">args =</span> <span class="fu">params</span>(</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, BASETYPE, PARAMCD),</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, VISITNUM, VSSEQ),</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="at">new_var =</span> ABLFL,</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="at">mode =</span> <span class="st">"last"</span>, <span class="co"># Determines of the first or last observation is flagged</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>    <span class="at">true_value =</span> <span class="st">"Y"</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>  ),</span>
+<span id="cb27-12"><a href="#cb27-12"></a>  <span class="at">filter =</span> (<span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a>    ADT <span class="sc">&lt;=</span> TRTSDT <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(BASETYPE) <span class="sc">&amp;</span> <span class="fu">is.na</span>(DTYPE)</span>
+<span id="cb27-14"><a href="#cb27-14"></a>  )</span>
+<span id="cb27-15"><a href="#cb27-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 7
+   USUBJID     BASETYPE                PARAMCD ADT        TRTSDT     ATPTN ABLFL
+   &lt;chr&gt;       &lt;chr&gt;                   &lt;chr&gt;   &lt;date&gt;     &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;
+ 1 01-701-1015 LAST: AFTER LYING DOWN… DIABP   2014-01-02 2014-01-02   815 Y    
+ 2 01-701-1015 LAST: AFTER STANDING F… DIABP   2014-01-02 2014-01-02   816 Y    
+ 3 01-701-1015 LAST: AFTER STANDING F… DIABP   2014-01-02 2014-01-02   817 Y    
+ 4 01-701-1023 LAST: AFTER LYING DOWN… DIABP   2012-08-05 2012-08-05   815 Y    
+ 5 01-701-1023 LAST: AFTER STANDING F… DIABP   2012-08-05 2012-08-05   816 Y    
+ 6 01-701-1023 LAST: AFTER STANDING F… DIABP   2012-08-05 2012-08-05   817 Y    
+ 7 01-701-1028 LAST: AFTER LYING DOWN… DIABP   2013-07-19 2013-07-19   815 Y    
+ 8 01-701-1028 LAST: AFTER STANDING F… DIABP   2013-07-19 2013-07-19   816 Y    
+ 9 01-701-1028 LAST: AFTER STANDING F… DIABP   2013-07-19 2013-07-19   817 Y    
+10 01-701-1033 LAST: AFTER LYING DOWN… DIABP   2014-03-18 2014-03-18   815 Y    
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+<p>Lastly, the <code>BASE</code>, and <code>BNRIND</code> columns can be derived using the <code>{admiral}</code> function <code>admiral::derive_var_base()</code>. Example calls are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_var_base</span>(</span>
+<span id="cb29-2"><a href="#cb29-2"></a>  advs,</span>
+<span id="cb29-3"><a href="#cb29-3"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, BASETYPE),</span>
+<span id="cb29-4"><a href="#cb29-4"></a>  <span class="at">source_var =</span> AVAL,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="at">new_var =</span> BASE,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>  <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>  <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>) </span>
+<span id="cb29-9"><a href="#cb29-9"></a></span>
+<span id="cb29-10"><a href="#cb29-10"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_var_base</span>(</span>
+<span id="cb29-11"><a href="#cb29-11"></a>  advs,</span>
+<span id="cb29-12"><a href="#cb29-12"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, BASETYPE),</span>
+<span id="cb29-13"><a href="#cb29-13"></a>  <span class="at">source_var =</span> ANRIND,</span>
+<span id="cb29-14"><a href="#cb29-14"></a>  <span class="at">new_var =</span> BNRIND</span>
+<span id="cb29-15"><a href="#cb29-15"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   USUBJID     BASETYPE                        PARAMCD ABLFL  BASE ANRIND BNRIND
+   &lt;chr&gt;       &lt;chr&gt;                           &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt; 
+ 1 01-701-1015 LAST: AFTER LYING DOWN FOR 5 M… DIABP   Y        56 LOW    LOW   
+ 2 01-701-1015 LAST: AFTER STANDING FOR 1 MIN… DIABP   Y        51 LOW    LOW   
+ 3 01-701-1015 LAST: AFTER STANDING FOR 3 MIN… DIABP   Y        61 NORMAL NORMAL
+ 4 01-701-1023 LAST: AFTER LYING DOWN FOR 5 M… DIABP   Y        84 HIGH   HIGH  
+ 5 01-701-1023 LAST: AFTER STANDING FOR 1 MIN… DIABP   Y        86 HIGH   HIGH  
+ 6 01-701-1023 LAST: AFTER STANDING FOR 3 MIN… DIABP   Y        88 HIGH   HIGH  
+ 7 01-701-1028 LAST: AFTER LYING DOWN FOR 5 M… DIABP   Y        85 HIGH   HIGH  
+ 8 01-701-1028 LAST: AFTER STANDING FOR 1 MIN… DIABP   Y        76 NORMAL NORMAL
+ 9 01-701-1028 LAST: AFTER STANDING FOR 3 MIN… DIABP   Y        75 NORMAL NORMAL
+10 01-701-1033 LAST: AFTER LYING DOWN FOR 5 M… DIABP   Y        83 HIGH   HIGH  </code></pre>
+</div>
+</div>
+</section>
+<section id="chgpchg" class="level2">
+<h2 class="anchored" data-anchor-id="chgpchg">Derive Change from Baseline (<code>CHG</code>, <code>PCHG</code>)</h2>
+<p>Change and percent change from baseline can be derived using the <code>{admiral}</code> functions <code>admiral::derive_var_chg()</code> and <code>admiral::derive_var_pchg()</code>. These functions expect <code>AVAL</code> and <code>BASE</code> to exist in the data frame. The <code>CHG</code> is simply <code>AVAL - BASE</code> and the <code>PCHG</code> is <code>(AVAL - BASE) / absolute value (BASE) * 100</code>. If the variables should not be derived for all records, e.g., for post-baseline records only, <code>admiral::restrict_derivation()</code> can be used. Examples calls are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">restrict_derivation</span>(</span>
+<span id="cb31-2"><a href="#cb31-2"></a>  advs,</span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="at">derivation =</span> derive_var_chg,</span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="at">filter =</span> AVISITN <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>)</span>
+<span id="cb31-6"><a href="#cb31-6"></a></span>
+<span id="cb31-7"><a href="#cb31-7"></a>advs <span class="ot">&lt;-</span> <span class="fu">restrict_derivation</span>(</span>
+<span id="cb31-8"><a href="#cb31-8"></a>  advs,</span>
+<span id="cb31-9"><a href="#cb31-9"></a>  <span class="at">derivation =</span> derive_var_pchg,</span>
+<span id="cb31-10"><a href="#cb31-10"></a>  <span class="at">filter =</span> AVISITN <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 7
+   USUBJID     PARAMCD VISIT   BASE  AVAL   CHG   PCHG
+   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1 01-701-1015 DIABP   WEEK 2    56    56     0   0   
+ 2 01-701-1015 DIABP   WEEK 8    56    67    11  19.6 
+ 3 01-701-1023 DIABP   WEEK 2    84    88     4   4.76
+ 4 01-701-1028 DIABP   WEEK 2    85    78    -7  -8.24
+ 5 01-701-1028 DIABP   WEEK 8    85    76    -9 -10.6 
+ 6 01-701-1033 DIABP   WEEK 2    83    84     1   1.20
+ 7 01-701-1034 DIABP   WEEK 2    60    81    21  35   
+ 8 01-701-1034 DIABP   WEEK 8    60    73    13  21.7 
+ 9 01-701-1047 DIABP   WEEK 2    61    72    11  18.0 
+10 01-701-1097 DIABP   WEEK 2    72    72     0   0   
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="anl01fl" class="level2">
+<h2 class="anchored" data-anchor-id="anl01fl">Derive Analysis Flags (e.g.&nbsp;<code>ANL01FL</code>)</h2>
+<p>In most finding ADaMs, an analysis flag is derived to identify the appropriate observation(s) to use for a particular analysis when a subject has multiple observations within a particular timing period.</p>
+<p>In this situation, an analysis flag (e.g.&nbsp;<code>ANLzzFL</code>) may be used to choose the appropriate record for analysis.</p>
+<p>This flag may be derived using the <code>{admiral}</code> function <code>admiral::derive_var_extreme_flag()</code>. For this example, we will assume we would like to choose within the Post-Baseline records the latest and highest value by <code>USUBJID</code>, <code>PARAMCD</code>, <code>AVISIT</code>, and <code>ATPT</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>advs <span class="ot">&lt;-</span>   <span class="fu">restrict_derivation</span>(</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  advs,</span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="at">derivation =</span> derive_var_extreme_flag,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="at">args =</span> <span class="fu">params</span>(</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">new_var =</span> ANL01FL,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, AVISIT, ATPT, DTYPE),</span>
+<span id="cb33-7"><a href="#cb33-7"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, AVAL),</span>
+<span id="cb33-8"><a href="#cb33-8"></a>    <span class="at">mode =</span> <span class="st">"last"</span>, <span class="co"># Determines of the first or last observation is flagged - As seen while deriving ABLFL</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="at">true_value =</span> <span class="st">"Y"</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a>    ),</span>
+<span id="cb33-12"><a href="#cb33-12"></a>  <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISITN) <span class="sc">&amp;</span> ONTRTFL <span class="sc">==</span> <span class="st">"Y"</span></span>
+<span id="cb33-13"><a href="#cb33-13"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 7
+   USUBJID     PARAMCD AVISIT ATPTN ADT         AVAL ANL01FL
+   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;  
+ 1 01-701-1015 DIABP   Week 2   815 2014-01-16    56 Y      
+ 2 01-701-1015 DIABP   Week 2   816 2014-01-16    50 Y      
+ 3 01-701-1015 DIABP   Week 2   817 2014-01-16    54 Y      
+ 4 01-701-1015 DIABP   Week 8   815 2014-03-05    67 Y      
+ 5 01-701-1015 DIABP   Week 8   816 2014-03-05    62 Y      
+ 6 01-701-1015 DIABP   Week 8   817 2014-03-05    71 Y      
+ 7 01-701-1023 DIABP   Week 2   815 2012-08-27    88 Y      
+ 8 01-701-1023 DIABP   Week 2   816 2012-08-27    86 Y      
+ 9 01-701-1023 DIABP   Week 2   817 2012-08-27    90 Y      
+10 01-701-1028 DIABP   Week 2   815 2013-08-01    78 Y      
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="treatmentvars" class="level2">
+<h2 class="anchored" data-anchor-id="treatmentvars">Assign Treatment (<code>TRTA</code>, <code>TRTP</code>)</h2>
+<p><code>TRTA</code> and <code>TRTP</code> must match at least one value of the character treatment variables in ADSL (e.g., <code>TRTxxA</code>/<code>TRTxxP</code>, <code>TRTSEQA</code>/<code>TRTSEQP</code>, <code>TRxxAGy</code>/<code>TRxxPGy</code>).</p>
+<p>An example of a simple implementation for a study without periods could be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="at">TRTP =</span> TRT01P,</span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="at">TRTA =</span> TRT01A</span>
+<span id="cb35-5"><a href="#cb35-5"></a>    )</span>
+<span id="cb35-6"><a href="#cb35-6"></a></span>
+<span id="cb35-7"><a href="#cb35-7"></a><span class="fu">count</span>(advs, TRTP, TRTA, TRT01P, TRT01A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  TRTP                 TRTA                 TRT01P               TRT01A        n
+  &lt;chr&gt;                &lt;chr&gt;                &lt;chr&gt;                &lt;chr&gt;     &lt;int&gt;
+1 Placebo              Placebo              Placebo              Placebo   22102
+2 Xanomeline High Dose Xanomeline High Dose Xanomeline High Dose Xanomeli… 16782
+3 Xanomeline High Dose Xanomeline Low Dose  Xanomeline High Dose Xanomeli…  1038
+4 Xanomeline Low Dose  Xanomeline Low Dose  Xanomeline Low Dose  Xanomeli… 17986
+5 &lt;NA&gt;                 &lt;NA&gt;                 &lt;NA&gt;                 &lt;NA&gt;       4100</code></pre>
+</div>
+</div>
+<p>For studies with periods see the <a href="visits_periods.html#treatment_bds">“Visit and Period Variables” vignette</a>.</p>
+</section>
+<section id="aseq" class="level2">
+<h2 class="anchored" data-anchor-id="aseq">Assign <code>ASEQ</code></h2>
+<p>The <code>{admiral}</code> function <code>admiral::derive_var_obs_number()</code> can be used to derive <code>ASEQ</code>. An example call is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>advs <span class="ot">&lt;-</span> <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb37-2"><a href="#cb37-2"></a>  advs,</span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="at">new_var =</span> ASEQ,</span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD, ADT, AVISITN, VISITNUM, ATPTN, DTYPE),</span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 7
+   USUBJID     PARAMCD ADT        AVISITN ATPTN VISIT        ASEQ
+   &lt;chr&gt;       &lt;chr&gt;   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;int&gt;
+ 1 01-701-1015 BMI     2013-12-26      NA    NA SCREENING 1     1
+ 2 01-701-1015 BMI     2013-12-26      NA    NA &lt;NA&gt;            2
+ 3 01-701-1015 BMI     2014-01-02       0    NA BASELINE        3
+ 4 01-701-1015 BMI     2014-01-02       0    NA &lt;NA&gt;            4
+ 5 01-701-1015 BMI     2014-01-16       2    NA WEEK 2          5
+ 6 01-701-1015 BMI     2014-01-16       2    NA &lt;NA&gt;            6
+ 7 01-701-1015 BMI     2014-01-30       4    NA WEEK 4          7
+ 8 01-701-1015 BMI     2014-01-30       4    NA &lt;NA&gt;            8
+ 9 01-701-1015 BMI     2014-02-12       6    NA WEEK 6          9
+10 01-701-1015 BMI     2014-02-12       6    NA &lt;NA&gt;           10
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="categorizationvars" class="level2">
+<h2 class="anchored" data-anchor-id="categorizationvars">Derive Categorization Variables (<code>AVALCATy</code>)</h2>
+<p>We can use the <code>admiral::derive_vars_cat()</code> function to derive the categorization variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>avalcat_lookup <span class="ot">&lt;-</span> <span class="fu">exprs</span>(</span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="sc">~</span>PARAMCD,  <span class="sc">~</span>condition,   <span class="sc">~</span>AVALCAT1, <span class="sc">~</span>AVALCA1N,</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="st">"HEIGHT"</span>,  AVAL <span class="sc">&gt;</span> <span class="dv">140</span>,   <span class="st">"&gt;140 cm"</span>,         <span class="dv">1</span>,</span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="st">"HEIGHT"</span>, AVAL <span class="sc">&lt;=</span> <span class="dv">140</span>, <span class="st">"&lt;= 140 cm"</span>,         <span class="dv">2</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>)</span>
+<span id="cb39-6"><a href="#cb39-6"></a></span>
+<span id="cb39-7"><a href="#cb39-7"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a>  <span class="fu">derive_vars_cat</span>(</span>
+<span id="cb39-9"><a href="#cb39-9"></a>    <span class="at">definition =</span> avalcat_lookup,</span>
+<span id="cb39-10"><a href="#cb39-10"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(PARAMCD)</span>
+<span id="cb39-11"><a href="#cb39-11"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 5
+   USUBJID     PARAMCD  AVAL AVALCA1N AVALCAT1
+   &lt;chr&gt;       &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   
+ 1 01-701-1015 HEIGHT   147.        1 &gt;140 cm 
+ 2 01-701-1015 HEIGHT   147.        1 &gt;140 cm 
+ 3 01-701-1023 HEIGHT   163.        1 &gt;140 cm 
+ 4 01-701-1023 HEIGHT   163.        1 &gt;140 cm 
+ 5 01-701-1028 HEIGHT   178.        1 &gt;140 cm 
+ 6 01-701-1028 HEIGHT   178.        1 &gt;140 cm 
+ 7 01-701-1033 HEIGHT   175.        1 &gt;140 cm 
+ 8 01-701-1033 HEIGHT   175.        1 &gt;140 cm 
+ 9 01-701-1034 HEIGHT   155.        1 &gt;140 cm 
+10 01-701-1034 HEIGHT   155.        1 &gt;140 cm 
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="paramval" class="level2">
+<h2 class="anchored" data-anchor-id="paramval">Assign Parameter Level Values (<code>PARAM</code>, <code>PARAMN</code>)</h2>
+<p>When all <code>PARAMCD</code> have been derived and added to the dataset, the other information from the look-up table (<code>PARAM</code>, <code>PARAMN</code>,…) should be added using <code>admiral::derive_vars_merged()</code> function.</p>
+<p>Another way to assign parameter-level values is by using the <code>metatools</code> package with the <code>{metacore}</code> objects we created at the beginning. To use the <code>metatools::create_var_from_codelist()</code> function, as shown in the example below, certain prerequisites must be met. Specifically, this function relies on code/decode pairs from a <code>{metacore}</code> object. Therefore, these pairs must be defined in the corresponding ADaMs specifications before creating the <code>{metacore}</code> object.</p>
+<p>We can look into the <code>{metacore}</code> object and see these pairs for the <code>PARAM</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> PARAM)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  code   decode                  
+  &lt;chr&gt;  &lt;chr&gt;                   
+1 SYSBP  Systolic Blood Pressure 
+2 DIABP  Diastolic Blood Pressure
+3 PULSE  Pulse Rate              
+4 WEIGHT Weight                  
+5 HEIGHT Height                  
+6 TEMP   Temperature             
+7 MAP    Mean Arterial Pressure  
+8 BMI    Body Mass Index (kg/m^2)
+9 BSA    Body Surface Area (m^2) </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="fu">create_var_from_codelist</span>(</span>
+<span id="cb43-3"><a href="#cb43-3"></a>    metacore,</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    <span class="at">input_var =</span> PARAMCD,</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="at">out_var =</span> PARAM,</span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="at">decode_to_code =</span> <span class="cn">FALSE</span> <span class="co"># input_var is the code column of the codelist</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>    ) <span class="sc">%&gt;%</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">create_var_from_codelist</span>(</span>
+<span id="cb43-9"><a href="#cb43-9"></a>    metacore,</span>
+<span id="cb43-10"><a href="#cb43-10"></a>    <span class="at">input_var =</span> PARAMCD,</span>
+<span id="cb43-11"><a href="#cb43-11"></a>    <span class="at">out_var =</span> PARAMN</span>
+<span id="cb43-12"><a href="#cb43-12"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 5
+   USUBJID     VSTESTCD PARAMCD PARAM                    PARAMN
+   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                     &lt;dbl&gt;
+ 1 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 2 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 3 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 4 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 5 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 6 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 7 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 8 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+ 9 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+10 01-716-1024 &lt;NA&gt;     BMI     Body Mass Index (kg/m^2)      8
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="adslvars" class="level2">
+<h2 class="anchored" data-anchor-id="adslvars">Add ADSL variables</h2>
+<p>If needed, the other <code>ADSL</code> variables can now be added. List of ADSL variables already merged held in vector <code>adsl_vars</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb45-3"><a href="#cb45-3"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
+<span id="cb45-4"><a href="#cb45-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb45-5"><a href="#cb45-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 7
+   USUBJID     RFSTDTC    RFENDTC    DTHDTC DTHFL   AGE AGEU 
+   &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
+ 1 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 2 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 3 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 4 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 5 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 6 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 7 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 8 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+ 9 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+10 01-701-1015 2014-01-02 2014-07-02 &lt;NA&gt;   &lt;NA&gt;     63 YEARS
+# ℹ 20 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="metacore_xportr" class="level1">
+<h1>Apply Metadata and eSub Checks</h1>
+<p>We use <code>{metatools}</code> and <code>{xportr}</code> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a></span>
+<span id="cb47-3"><a href="#cb47-3"></a><span class="co"># Apply metadata and perform checks</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>advs_prefinal <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
+<span id="cb47-6"><a href="#cb47-6"></a>  <span class="fu">check_variables</span>(metacore, <span class="at">dataset_name =</span> <span class="st">"ADVS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb47-7"><a href="#cb47-7"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
+<span id="cb47-8"><a href="#cb47-8"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
+<span id="cb47-9"><a href="#cb47-9"></a></span>
+<span id="cb47-10"><a href="#cb47-10"></a><span class="co"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
+<span id="cb47-11"><a href="#cb47-11"></a>advs_final <span class="ot">&lt;-</span> advs_prefinal <span class="sc">%&gt;%</span> </span>
+<span id="cb47-12"><a href="#cb47-12"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb47-13"><a href="#cb47-13"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb47-15"><a href="#cb47-15"></a>  <span class="fu">xportr_format</span>(metacore, <span class="at">domain =</span> <span class="st">"ADVS"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a>  <span class="fu">xportr_df_label</span>(metacore, <span class="at">domain =</span> <span class="st">"ADVS"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-17"><a href="#cb47-17"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"advs.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADVS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../adam/adtte.html" class="pagination-link" aria-label="ADTTE">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADTTE</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tlg/demographic.html" class="pagination-link" aria-label="Demographic Table">
+        <span class="nav-page-text">Demographic Table</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb48" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1"></a><span class="co">---</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="an">title:</span><span class="co"> "ADVS"</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="an">order:</span><span class="co"> 6</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="co">---</span></span>
+<span id="cb48-5"><a href="#cb48-5"></a></span>
+<span id="cb48-6"><a href="#cb48-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb48-7"><a href="#cb48-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}</span></span>
+<span id="cb48-8"><a href="#cb48-8"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
+<span id="cb48-9"><a href="#cb48-9"></a><span class="in">```</span></span>
+<span id="cb48-10"><a href="#cb48-10"></a></span>
+<span id="cb48-11"><a href="#cb48-11"></a><span class="fu"># Introduction</span></span>
+<span id="cb48-12"><a href="#cb48-12"></a></span>
+<span id="cb48-13"><a href="#cb48-13"></a>This article provides a step-by-step explanation for creating an ADaM <span class="in">`ADVS`</span> (Vital Signs) dataset using key pharmaverse packages along with tidyverse components.</span>
+<span id="cb48-14"><a href="#cb48-14"></a></span>
+<span id="cb48-15"><a href="#cb48-15"></a>For the purpose of this example, we will use the <span class="in">`ADSL`</span> dataset from <span class="in">`{pharmaverseadam}`</span> and <span class="in">`vs`</span> domain from <span class="in">`{pharmaversesdtm}`</span>.</span>
+<span id="cb48-16"><a href="#cb48-16"></a></span>
+<span id="cb48-17"><a href="#cb48-17"></a><span class="fu">## Programming Flow</span></span>
+<span id="cb48-18"><a href="#cb48-18"></a></span>
+<span id="cb48-19"><a href="#cb48-19"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Load Data and Required pharmaverse Packages</span><span class="co">](#loaddata)</span></span>
+<span id="cb48-20"><a href="#cb48-20"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Load Specifications for Metacore</span><span class="co">](#loadspecs)</span></span>
+<span id="cb48-21"><a href="#cb48-21"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Select ADSL Variables</span><span class="co">](#adslvars)</span></span>
+<span id="cb48-22"><a href="#cb48-22"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Start Building Derivations</span><span class="co">](#startbuild)</span></span>
+<span id="cb48-23"><a href="#cb48-23"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Assign `PARAMCD`, `PARAM`, `PARAMN`</span><span class="co">](#paramvars)</span></span>
+<span id="cb48-24"><a href="#cb48-24"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Results and Units (`AVAL`, `AVALU`)</span><span class="co">](#avalvars)</span></span>
+<span id="cb48-25"><a href="#cb48-25"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`)</span><span class="co">](#addparams)</span></span>
+<span id="cb48-26"><a href="#cb48-26"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`)</span><span class="co">](#timingvars)</span></span>
+<span id="cb48-27"><a href="#cb48-27"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive summary records (e.g. mean of the triplicates at each time point)</span><span class="co">](#summaryrec)</span></span>
+<span id="cb48-28"><a href="#cb48-28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Timing Flag Variables (e.g. `ONTRTFL`)</span><span class="co">](#ontrtfl)</span></span>
+<span id="cb48-29"><a href="#cb48-29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Assign Reference Range Indicator (`ANRIND`)</span><span class="co">](#rangeind)</span></span>
+<span id="cb48-30"><a href="#cb48-30"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`)</span><span class="co">](#baselinevars)</span></span>
+<span id="cb48-31"><a href="#cb48-31"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Change from Baseline (`CHG`, `PCHG`)</span><span class="co">](#chgpchg)</span></span>
+<span id="cb48-32"><a href="#cb48-32"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Analysis Flags (e.g. `ANL01FL`)</span><span class="co">](#anl01fl)</span></span>
+<span id="cb48-33"><a href="#cb48-33"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Assign Treatment (`TRTA`, `TRTP`)</span><span class="co">](#treatmentvars)</span></span>
+<span id="cb48-34"><a href="#cb48-34"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Assign `ASEQ`</span><span class="co">](#aseq)</span></span>
+<span id="cb48-35"><a href="#cb48-35"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Categorization Variables (`AVALCATy`)</span><span class="co">](#categorizationvars)</span></span>
+<span id="cb48-36"><a href="#cb48-36"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Assign Parameter Level Values (`PARAM`, `PARAMN`)</span><span class="co">](#paramval)</span></span>
+<span id="cb48-37"><a href="#cb48-37"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Add ADSL variables</span><span class="co">](#adslvars)</span></span>
+<span id="cb48-38"><a href="#cb48-38"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Apply Metadata and eSub Checks</span><span class="co">](#metacore_xportr)</span></span>
+<span id="cb48-39"><a href="#cb48-39"></a></span>
+<span id="cb48-40"><a href="#cb48-40"></a><span class="fu"># Load Data and Required pharmaverse Packages {#loaddata}</span></span>
+<span id="cb48-41"><a href="#cb48-41"></a></span>
+<span id="cb48-42"><a href="#cb48-42"></a>First we will load the packages required for our project. We will use <span class="in">`{admiral}`</span> for the creation of analysis data. <span class="in">`{admiral}`</span> requires <span class="in">`{dplyr}`</span>, <span class="in">`{lubridate}`</span> and <span class="in">`{stringr}`</span>. We will use <span class="in">`{metacore}`</span> and <span class="in">`{metatools}`</span> to store and manipulate metadata from our specifications. We will use <span class="in">`{xportr}`</span> to perform checks on the final data and export to a transport file.</span>
+<span id="cb48-43"><a href="#cb48-43"></a></span>
+<span id="cb48-44"><a href="#cb48-44"></a>Then we will load our input data.</span>
+<span id="cb48-45"><a href="#cb48-45"></a></span>
+<span id="cb48-46"><a href="#cb48-46"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb48-47"><a href="#cb48-47"></a><span class="in">library(metacore)</span></span>
+<span id="cb48-48"><a href="#cb48-48"></a><span class="in">library(metatools)</span></span>
+<span id="cb48-49"><a href="#cb48-49"></a><span class="in">library(pharmaversesdtm)</span></span>
+<span id="cb48-50"><a href="#cb48-50"></a><span class="in">library(admiral)</span></span>
+<span id="cb48-51"><a href="#cb48-51"></a><span class="in">library(xportr)</span></span>
+<span id="cb48-52"><a href="#cb48-52"></a><span class="in">library(dplyr)</span></span>
+<span id="cb48-53"><a href="#cb48-53"></a><span class="in">library(tidyr)</span></span>
+<span id="cb48-54"><a href="#cb48-54"></a><span class="in">library(lubridate)</span></span>
+<span id="cb48-55"><a href="#cb48-55"></a><span class="in">library(stringr)</span></span>
+<span id="cb48-56"><a href="#cb48-56"></a></span>
+<span id="cb48-57"><a href="#cb48-57"></a><span class="in"># Read in input data</span></span>
+<span id="cb48-58"><a href="#cb48-58"></a><span class="in">adsl &lt;- pharmaverseadam::adsl</span></span>
+<span id="cb48-59"><a href="#cb48-59"></a><span class="in">vs &lt;- pharmaversesdtm::vs</span></span>
+<span id="cb48-60"><a href="#cb48-60"></a></span>
+<span id="cb48-61"><a href="#cb48-61"></a><span class="in">vs &lt;- convert_blanks_to_na(vs)</span></span>
+<span id="cb48-62"><a href="#cb48-62"></a><span class="in">```</span></span>
+<span id="cb48-63"><a href="#cb48-63"></a></span>
+<span id="cb48-64"><a href="#cb48-64"></a><span class="fu"># Load Specifications for Metacore {#loadspecs}</span></span>
+<span id="cb48-65"><a href="#cb48-65"></a></span>
+<span id="cb48-66"><a href="#cb48-66"></a>We have saved our specifications in an Excel file and will load them into <span class="in">`{metacore}`</span> with the <span class="in">`metacore::spec_to_metacore()`</span> function.</span>
+<span id="cb48-67"><a href="#cb48-67"></a></span>
+<span id="cb48-68"><a href="#cb48-68"></a><span class="in">```{r echo=TRUE}</span></span>
+<span id="cb48-69"><a href="#cb48-69"></a><span class="in">#| label: Load Specs</span></span>
+<span id="cb48-70"><a href="#cb48-70"></a><span class="in">#| warning: false</span></span>
+<span id="cb48-71"><a href="#cb48-71"></a><span class="in"># ---- Load Specs for Metacore ----</span></span>
+<span id="cb48-72"><a href="#cb48-72"></a><span class="in">metacore &lt;- spec_to_metacore(</span></span>
+<span id="cb48-73"><a href="#cb48-73"></a><span class="in">  path = "./metadata/safety_specs.xlsx",</span></span>
+<span id="cb48-74"><a href="#cb48-74"></a><span class="in">  # All datasets are described in the same sheet</span></span>
+<span id="cb48-75"><a href="#cb48-75"></a><span class="in">  where_sep_sheet = FALSE</span></span>
+<span id="cb48-76"><a href="#cb48-76"></a><span class="in">) %&gt;%</span></span>
+<span id="cb48-77"><a href="#cb48-77"></a><span class="in">  select_dataset("ADVS")</span></span>
+<span id="cb48-78"><a href="#cb48-78"></a><span class="in">```</span></span>
+<span id="cb48-79"><a href="#cb48-79"></a></span>
+<span id="cb48-80"><a href="#cb48-80"></a><span class="fu"># Select ADSL Variables {#adslvars}</span></span>
+<span id="cb48-81"><a href="#cb48-81"></a></span>
+<span id="cb48-82"><a href="#cb48-82"></a>Some variables from the <span class="in">`ADSL`</span> dataset required for the derivations are merged into the <span class="in">`VS`</span> domain using the <span class="in">`admiral::derive_vars_merged()`</span> function.</span>
+<span id="cb48-83"><a href="#cb48-83"></a>The rest of the relevant <span class="in">`ADSL`</span> variables would be added later.</span>
+<span id="cb48-84"><a href="#cb48-84"></a></span>
+<span id="cb48-87"><a href="#cb48-87"></a><span class="in">```{r}</span></span>
+<span id="cb48-88"><a href="#cb48-88"></a><span class="co"># Select required ADSL variables</span></span>
+<span id="cb48-89"><a href="#cb48-89"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(TRTSDT, TRTEDT, TRT01A, TRT01P)</span>
+<span id="cb48-90"><a href="#cb48-90"></a></span>
+<span id="cb48-91"><a href="#cb48-91"></a><span class="co"># Join ADSL variables with VS</span></span>
+<span id="cb48-92"><a href="#cb48-92"></a>advs <span class="ot">&lt;-</span> vs <span class="sc">%&gt;%</span></span>
+<span id="cb48-93"><a href="#cb48-93"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb48-94"><a href="#cb48-94"></a>    <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb48-95"><a href="#cb48-95"></a>    <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb48-96"><a href="#cb48-96"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb48-97"><a href="#cb48-97"></a>  )</span>
+<span id="cb48-98"><a href="#cb48-98"></a></span>
+<span id="cb48-99"><a href="#cb48-99"></a><span class="fu">head</span>(advs, <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb48-100"><a href="#cb48-100"></a><span class="in">```</span></span>
+<span id="cb48-101"><a href="#cb48-101"></a></span>
+<span id="cb48-102"><a href="#cb48-102"></a><span class="fu"># Start Building Derivations {#startbuild}</span></span>
+<span id="cb48-103"><a href="#cb48-103"></a></span>
+<span id="cb48-104"><a href="#cb48-104"></a>The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from <span class="in">`ADSL`</span> dataset.</span>
+<span id="cb48-105"><a href="#cb48-105"></a>The resulting dataset has the 2 columns created.</span>
+<span id="cb48-106"><a href="#cb48-106"></a></span>
+<span id="cb48-109"><a href="#cb48-109"></a><span class="in">```{r}</span></span>
+<span id="cb48-110"><a href="#cb48-110"></a><span class="co"># Calculate ADT, ADY</span></span>
+<span id="cb48-111"><a href="#cb48-111"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb48-112"><a href="#cb48-112"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb48-113"><a href="#cb48-113"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
+<span id="cb48-114"><a href="#cb48-114"></a>    <span class="at">dtc =</span> VSDTC,</span>
+<span id="cb48-115"><a href="#cb48-115"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-116"><a href="#cb48-116"></a>    <span class="at">highest_imputation =</span> <span class="st">"n"</span>, <span class="co"># means no imputation is performed on partial/missing dates</span></span>
+<span id="cb48-117"><a href="#cb48-117"></a>    <span class="at">flag_imputation =</span> <span class="st">"auto"</span> <span class="co"># To automatically create ADTF variable when highest_imputation is "Y", "M" or "D"</span></span>
+<span id="cb48-118"><a href="#cb48-118"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb48-119"><a href="#cb48-119"></a>  <span class="fu">derive_vars_dy</span>(</span>
+<span id="cb48-120"><a href="#cb48-120"></a>    <span class="at">reference_date =</span> TRTSDT,</span>
+<span id="cb48-121"><a href="#cb48-121"></a>    <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)</span>
+<span id="cb48-122"><a href="#cb48-122"></a>  )</span>
+<span id="cb48-123"><a href="#cb48-123"></a></span>
+<span id="cb48-124"><a href="#cb48-124"></a><span class="fu">head</span>(advs <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, <span class="sc">!!!</span>adsl_vars, ADT, ADY), <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb48-125"><a href="#cb48-125"></a><span class="in">```</span></span>
+<span id="cb48-126"><a href="#cb48-126"></a></span>
+<span id="cb48-127"><a href="#cb48-127"></a><span class="fu">## Assign `PARAMCD`, `PARAM`, `PARAMN` {#paramvars}</span></span>
+<span id="cb48-128"><a href="#cb48-128"></a></span>
+<span id="cb48-129"><a href="#cb48-129"></a>To assign parameter level values such as <span class="in">`PARAMCD`</span>, <span class="in">`PARAM`</span>, <span class="in">`PARAMN`</span>,</span>
+<span id="cb48-130"><a href="#cb48-130"></a>etc., a lookup can be created to join to the source data.</span>
+<span id="cb48-131"><a href="#cb48-131"></a></span>
+<span id="cb48-132"><a href="#cb48-132"></a>For example, when creating <span class="in">`ADVS`</span>, a lookup based on the SDTM <span class="in">`--TESTCD`</span> value </span>
+<span id="cb48-133"><a href="#cb48-133"></a>may be created:</span>
+<span id="cb48-134"><a href="#cb48-134"></a></span>
+<span id="cb48-135"><a href="#cb48-135"></a><span class="in">`VSTESTCD`</span> | <span class="in">`PARAMCD`</span> | <span class="in">`PARAM`</span> | <span class="in">`PARAMN`</span> </span>
+<span id="cb48-136"><a href="#cb48-136"></a>--------- | --------- | -------- | ------- </span>
+<span id="cb48-137"><a href="#cb48-137"></a>SYSBP | SYSBP | Systolic Blood Pressure (mmHg) | 1</span>
+<span id="cb48-138"><a href="#cb48-138"></a>DIABP | DIABP | Diastolic Blood Pressure (mmHg) | 2</span>
+<span id="cb48-139"><a href="#cb48-139"></a>PULSE | PULSE | Pulse Rate (beats/min) | 3</span>
+<span id="cb48-140"><a href="#cb48-140"></a>WEIGHT | WEIGHT | Weight (kg) | 4</span>
+<span id="cb48-141"><a href="#cb48-141"></a>HEIGHT | HEIGHT | Height (cm) | 5</span>
+<span id="cb48-142"><a href="#cb48-142"></a>TEMP | TEMP | Temperature (C) | 6</span>
+<span id="cb48-143"><a href="#cb48-143"></a>MAP | MAP | Mean Arterial Pressure | 7</span>
+<span id="cb48-144"><a href="#cb48-144"></a>BMI | BMI | Body Mass Index(kg/m^2) | 8</span>
+<span id="cb48-145"><a href="#cb48-145"></a>BSA | BSA | Body Surface Area(m^2) | 9</span>
+<span id="cb48-146"><a href="#cb48-146"></a></span>
+<span id="cb48-147"><a href="#cb48-147"></a>This lookup may now be joined to the source data:</span>
+<span id="cb48-148"><a href="#cb48-148"></a></span>
+<span id="cb48-149"><a href="#cb48-149"></a><span class="in">```{r eval=TRUE, include=FALSE}</span></span>
+<span id="cb48-150"><a href="#cb48-150"></a><span class="in">param_lookup &lt;- tibble::tribble(</span></span>
+<span id="cb48-151"><a href="#cb48-151"></a><span class="in">  ~VSTESTCD, ~PARAMCD,                            ~PARAM, ~PARAMN,</span></span>
+<span id="cb48-152"><a href="#cb48-152"></a><span class="in">  "SYSBP",    "SYSBP", " Systolic Blood Pressure (mmHg)",        1,</span></span>
+<span id="cb48-153"><a href="#cb48-153"></a><span class="in">  "DIABP",    "DIABP", "Diastolic Blood Pressure (mmHg)",        2,</span></span>
+<span id="cb48-154"><a href="#cb48-154"></a><span class="in">  "PULSE",    "PULSE",          "Pulse Rate (beats/min)",        3,</span></span>
+<span id="cb48-155"><a href="#cb48-155"></a><span class="in">  "WEIGHT",  "WEIGHT",                     "Weight (kg)",        4,</span></span>
+<span id="cb48-156"><a href="#cb48-156"></a><span class="in">  "HEIGHT", "HEIGHT",                      "Height (cm)",        5,</span></span>
+<span id="cb48-157"><a href="#cb48-157"></a><span class="in">  "TEMP",     "TEMP",                  "Temperature (C)",        6,</span></span>
+<span id="cb48-158"><a href="#cb48-158"></a><span class="in">  "MAP",       "MAP",    "Mean Arterial Pressure (mmHg)",        7,</span></span>
+<span id="cb48-159"><a href="#cb48-159"></a><span class="in">  "BMI",       "BMI",          "Body Mass Index(kg/m^2)",        8,</span></span>
+<span id="cb48-160"><a href="#cb48-160"></a><span class="in">  "BSA",       "BSA",           "Body Surface Area(m^2)",        9</span></span>
+<span id="cb48-161"><a href="#cb48-161"></a><span class="in">)</span></span>
+<span id="cb48-162"><a href="#cb48-162"></a><span class="in">attr(param_lookup$VSTESTCD, "label") &lt;- "Vital Signs Test Short Name"</span></span>
+<span id="cb48-163"><a href="#cb48-163"></a><span class="in">```</span></span>
+<span id="cb48-164"><a href="#cb48-164"></a></span>
+<span id="cb48-165"><a href="#cb48-165"></a>At this stage, only <span class="in">`PARAMCD`</span> is required to perform the derivations. Additional</span>
+<span id="cb48-166"><a href="#cb48-166"></a>derived parameters may be added, so only <span class="in">`PARAMCD`</span> is joined to the datasets at</span>
+<span id="cb48-167"><a href="#cb48-167"></a>this point. All other variables related to <span class="in">`PARAMCD`</span> (e.g. <span class="in">`PARAM`</span>, <span class="in">`PARAMN`</span>, ...)</span>
+<span id="cb48-168"><a href="#cb48-168"></a>will be added when all <span class="in">`PARAMCD`</span> are derived.</span>
+<span id="cb48-169"><a href="#cb48-169"></a></span>
+<span id="cb48-172"><a href="#cb48-172"></a><span class="in">```{r}</span></span>
+<span id="cb48-173"><a href="#cb48-173"></a>advs <span class="ot">&lt;-</span> advs <span class="sc">%&gt;%</span></span>
+<span id="cb48-174"><a href="#cb48-174"></a>  <span class="co"># Add PARAMCD only - add PARAM etc later</span></span>
+<span id="cb48-175"><a href="#cb48-175"></a>  <span class="fu">derive_vars_merged_lookup</span>(</span>
+<span id="cb48-176"><a href="#cb48-176"></a>    <span class="at">dataset_add =</span> param_lookup,</span>
+<span id="cb48-177"><a href="#cb48-177"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(PARAMCD),</span>
+<span id="cb48-178"><a href="#cb48-178"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(VSTESTCD),</span>
+<span id="cb48-179"><a href="#cb48-179"></a>    <span class="co"># Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-180"><a href="#cb48-180"></a>    <span class="at">print_not_mapped =</span> <span class="cn">TRUE</span> <span class="co"># Printing whether some parameters are not mapped</span></span>
+<span id="cb48-181"><a href="#cb48-181"></a>  )</span>
+<span id="cb48-182"><a href="#cb48-182"></a></span>
+<span id="cb48-183"><a href="#cb48-183"></a><span class="fu">head</span>(advs <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, <span class="sc">!!!</span>adsl_vars, ADT, ADY, PARAMCD), <span class="at">n=</span><span class="dv">10</span>)</span>
+<span id="cb48-184"><a href="#cb48-184"></a><span class="in">```</span></span>
+<span id="cb48-185"><a href="#cb48-185"></a></span>
+<span id="cb48-186"><a href="#cb48-186"></a><span class="fu">## Derive Results and Units (`AVAL`, `AVALU`) {#avalvars}</span></span>
+<span id="cb48-187"><a href="#cb48-187"></a></span>
+<span id="cb48-188"><a href="#cb48-188"></a>The mapping of <span class="in">`AVAL`</span> and <span class="in">`AVALU`</span> is left to the ADaM programmer. An </span>
+<span id="cb48-189"><a href="#cb48-189"></a>example mapping may be:</span>
+<span id="cb48-190"><a href="#cb48-190"></a></span>
+<span id="cb48-191"><a href="#cb48-191"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-192"><a href="#cb48-192"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-193"><a href="#cb48-193"></a><span class="in">  mutate(</span></span>
+<span id="cb48-194"><a href="#cb48-194"></a><span class="in">    AVAL = VSSTRESN,</span></span>
+<span id="cb48-195"><a href="#cb48-195"></a><span class="in">    AVALU = VSSTRESU</span></span>
+<span id="cb48-196"><a href="#cb48-196"></a><span class="in">  ) </span></span>
+<span id="cb48-197"><a href="#cb48-197"></a></span>
+<span id="cb48-198"><a href="#cb48-198"></a><span class="in">head(advs %&gt;% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n=10)</span></span>
+<span id="cb48-199"><a href="#cb48-199"></a><span class="in">```</span></span>
+<span id="cb48-200"><a href="#cb48-200"></a></span>
+<span id="cb48-201"><a href="#cb48-201"></a>In this example, as is often the case for ADVS, all <span class="in">`AVAL`</span> values are numeric without any corresponding non-redundant text value for <span class="in">`AVALC`</span>.</span>
+<span id="cb48-202"><a href="#cb48-202"></a>Per recommendation in ADaMIG v1.3 we do not map <span class="in">`AVALC`</span>.</span>
+<span id="cb48-203"><a href="#cb48-203"></a></span>
+<span id="cb48-204"><a href="#cb48-204"></a><span class="fu">## Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`) {#addparams}</span></span>
+<span id="cb48-205"><a href="#cb48-205"></a></span>
+<span id="cb48-206"><a href="#cb48-206"></a>Optionally derive new parameters creating <span class="in">`PARAMCD`</span> and <span class="in">`AVAL`</span>. Note that only</span>
+<span id="cb48-207"><a href="#cb48-207"></a>variables specified in the <span class="in">`by_vars`</span> argument will be populated in the newly </span>
+<span id="cb48-208"><a href="#cb48-208"></a>created records. This is relevant to the functions <span class="in">`admiral::derive_param_map`</span>, </span>
+<span id="cb48-209"><a href="#cb48-209"></a><span class="in">`admiral::derive_param_bsa`</span>, <span class="in">`admiral::derive_param_bmi`</span>, and <span class="in">`admiral::derive_param_qtc`</span>. </span>
+<span id="cb48-210"><a href="#cb48-210"></a></span>
+<span id="cb48-211"><a href="#cb48-211"></a>Below is an example of creating <span class="in">`Mean Arterial Pressure`</span> for <span class="in">`ADVS`</span> using the wrapper function <span class="in">`admiral::derive_param_map()`</span> </span>
+<span id="cb48-212"><a href="#cb48-212"></a></span>
+<span id="cb48-213"><a href="#cb48-213"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-214"><a href="#cb48-214"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-215"><a href="#cb48-215"></a><span class="in">  derive_param_map(</span></span>
+<span id="cb48-216"><a href="#cb48-216"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), # Other variables than the defined ones here won't be populated</span></span>
+<span id="cb48-217"><a href="#cb48-217"></a><span class="in">    set_values_to = exprs(PARAMCD = "MAP"),</span></span>
+<span id="cb48-218"><a href="#cb48-218"></a><span class="in">    get_unit_expr = VSSTRESU,</span></span>
+<span id="cb48-219"><a href="#cb48-219"></a><span class="in">    filter = VSSTAT != "NOT DONE" | is.na(VSSTAT),</span></span>
+<span id="cb48-220"><a href="#cb48-220"></a><span class="in">    # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-221"><a href="#cb48-221"></a><span class="in">    sysbp_code = "SYSBP",</span></span>
+<span id="cb48-222"><a href="#cb48-222"></a><span class="in">    diabp_code = "DIABP",</span></span>
+<span id="cb48-223"><a href="#cb48-223"></a><span class="in">    hr_code = NULL</span></span>
+<span id="cb48-224"><a href="#cb48-224"></a><span class="in">  )</span></span>
+<span id="cb48-225"><a href="#cb48-225"></a><span class="in">```</span></span>
+<span id="cb48-226"><a href="#cb48-226"></a></span>
+<span id="cb48-227"><a href="#cb48-227"></a>Similarly we could create <span class="in">`Body Mass Index`</span> (BMI) for <span class="in">`ADVS`</span> using the wrapper function <span class="in">`admiral::derive_param_bmi()`</span>, instead we will see in below example</span>
+<span id="cb48-228"><a href="#cb48-228"></a>how to use the more generic function <span class="in">`admiral::derive_param_computed()`</span></span>
+<span id="cb48-229"><a href="#cb48-229"></a>Note that if height is collected only once use <span class="in">`constant_parameters`</span> to define the corresponding parameter which will be merged to the other parameters and <span class="in">`constant_by_vars`</span> to specify the subject-level variable to merge on.</span>
+<span id="cb48-230"><a href="#cb48-230"></a>Otherwise BMI is only calculated for visits where both parameters <span class="in">`HEIGHT`</span> and <span class="in">`WEIGHT`</span> are collected.</span>
+<span id="cb48-231"><a href="#cb48-231"></a></span>
+<span id="cb48-232"><a href="#cb48-232"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-233"><a href="#cb48-233"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-234"><a href="#cb48-234"></a><span class="in">  derive_param_computed(</span></span>
+<span id="cb48-235"><a href="#cb48-235"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),</span></span>
+<span id="cb48-236"><a href="#cb48-236"></a><span class="in">    parameters = "WEIGHT",</span></span>
+<span id="cb48-237"><a href="#cb48-237"></a><span class="in">    set_values_to = exprs(</span></span>
+<span id="cb48-238"><a href="#cb48-238"></a><span class="in">      AVAL = AVAL.WEIGHT / (AVAL.HEIGHT / 100)^2,</span></span>
+<span id="cb48-239"><a href="#cb48-239"></a><span class="in">      PARAMCD = "BMI",</span></span>
+<span id="cb48-240"><a href="#cb48-240"></a><span class="in">      AVALU = "kg/m^2"</span></span>
+<span id="cb48-241"><a href="#cb48-241"></a><span class="in">    ),</span></span>
+<span id="cb48-242"><a href="#cb48-242"></a><span class="in">    constant_parameters = c("HEIGHT"),</span></span>
+<span id="cb48-243"><a href="#cb48-243"></a><span class="in">    constant_by_vars = exprs(USUBJID)</span></span>
+<span id="cb48-244"><a href="#cb48-244"></a><span class="in">  )</span></span>
+<span id="cb48-245"><a href="#cb48-245"></a><span class="in">```</span></span>
+<span id="cb48-246"><a href="#cb48-246"></a></span>
+<span id="cb48-247"><a href="#cb48-247"></a>Likewise, wrapper function <span class="in">`admiral::derive_param_bsa()`</span> call below, to create parameter <span class="in">`Body Surface Area`</span> (BSA) for <span class="in">`ADVS`</span> domain.</span>
+<span id="cb48-248"><a href="#cb48-248"></a>Note that if height is collected only once use <span class="in">`constant_by_vars`</span> to specify the subject-level variable to merge on.</span>
+<span id="cb48-249"><a href="#cb48-249"></a>Otherwise BSA is only calculated for visits where both parameters <span class="in">`HEIGHT`</span> and <span class="in">`WEIGHT`</span> are collected.</span>
+<span id="cb48-250"><a href="#cb48-250"></a></span>
+<span id="cb48-251"><a href="#cb48-251"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-252"><a href="#cb48-252"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-253"><a href="#cb48-253"></a><span class="in">  derive_param_bsa(</span></span>
+<span id="cb48-254"><a href="#cb48-254"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),</span></span>
+<span id="cb48-255"><a href="#cb48-255"></a><span class="in">    method = "Mosteller",</span></span>
+<span id="cb48-256"><a href="#cb48-256"></a><span class="in">    set_values_to = exprs(</span></span>
+<span id="cb48-257"><a href="#cb48-257"></a><span class="in">      PARAMCD = "BSA",</span></span>
+<span id="cb48-258"><a href="#cb48-258"></a><span class="in">      AVALU = "m^2"</span></span>
+<span id="cb48-259"><a href="#cb48-259"></a><span class="in">    ),</span></span>
+<span id="cb48-260"><a href="#cb48-260"></a><span class="in">    get_unit_expr = VSSTRESU,</span></span>
+<span id="cb48-261"><a href="#cb48-261"></a><span class="in">    filter = VSSTAT != "NOT DONE" | is.na(VSSTAT),</span></span>
+<span id="cb48-262"><a href="#cb48-262"></a><span class="in">    constant_by_vars = exprs(USUBJID),</span></span>
+<span id="cb48-263"><a href="#cb48-263"></a><span class="in">    # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-264"><a href="#cb48-264"></a><span class="in">    height_code = "HEIGHT",</span></span>
+<span id="cb48-265"><a href="#cb48-265"></a><span class="in">    weight_code = "WEIGHT"</span></span>
+<span id="cb48-266"><a href="#cb48-266"></a><span class="in">  )</span></span>
+<span id="cb48-267"><a href="#cb48-267"></a><span class="in">```</span></span>
+<span id="cb48-268"><a href="#cb48-268"></a></span>
+<span id="cb48-269"><a href="#cb48-269"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-270"><a href="#cb48-270"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "MAP") %&gt;% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)</span></span>
+<span id="cb48-271"><a href="#cb48-271"></a><span class="in">```</span></span>
+<span id="cb48-272"><a href="#cb48-272"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-273"><a href="#cb48-273"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "BMI") %&gt;% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)</span></span>
+<span id="cb48-274"><a href="#cb48-274"></a><span class="in">```</span></span>
+<span id="cb48-275"><a href="#cb48-275"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-276"><a href="#cb48-276"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "BSA") %&gt;% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)</span></span>
+<span id="cb48-277"><a href="#cb48-277"></a><span class="in">```</span></span>
+<span id="cb48-278"><a href="#cb48-278"></a></span>
+<span id="cb48-279"><a href="#cb48-279"></a><span class="fu">## Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`) {#timingvars}</span></span>
+<span id="cb48-280"><a href="#cb48-280"></a></span>
+<span id="cb48-281"><a href="#cb48-281"></a>Categorical timing variables are protocol and analysis dependent. Below is a simple example. </span>
+<span id="cb48-282"><a href="#cb48-282"></a></span>
+<span id="cb48-283"><a href="#cb48-283"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-284"><a href="#cb48-284"></a><span class="in">advs &lt;- advs %&gt;%</span></span>
+<span id="cb48-285"><a href="#cb48-285"></a><span class="in">  mutate(</span></span>
+<span id="cb48-286"><a href="#cb48-286"></a><span class="in">    ATPTN = VSTPTNUM,</span></span>
+<span id="cb48-287"><a href="#cb48-287"></a><span class="in">    ATPT = VSTPT,</span></span>
+<span id="cb48-288"><a href="#cb48-288"></a><span class="in">    AVISIT = case_when(</span></span>
+<span id="cb48-289"><a href="#cb48-289"></a><span class="in">      str_detect(VISIT, "SCREEN|UNSCHED|RETRIEVAL|AMBUL") ~ NA_character_,</span></span>
+<span id="cb48-290"><a href="#cb48-290"></a><span class="in">      !is.na(VISIT) ~ str_to_title(VISIT),</span></span>
+<span id="cb48-291"><a href="#cb48-291"></a><span class="in">      TRUE ~ NA_character_</span></span>
+<span id="cb48-292"><a href="#cb48-292"></a><span class="in">    ),</span></span>
+<span id="cb48-293"><a href="#cb48-293"></a><span class="in">    AVISITN = as.numeric(case_when(</span></span>
+<span id="cb48-294"><a href="#cb48-294"></a><span class="in">      VISIT == "BASELINE" ~ "0",</span></span>
+<span id="cb48-295"><a href="#cb48-295"></a><span class="in">      str_detect(VISIT, "WEEK") ~ str_trim(str_replace(VISIT, "WEEK", "")),</span></span>
+<span id="cb48-296"><a href="#cb48-296"></a><span class="in">      TRUE ~ NA_character_</span></span>
+<span id="cb48-297"><a href="#cb48-297"></a><span class="in">    ))</span></span>
+<span id="cb48-298"><a href="#cb48-298"></a><span class="in">  )</span></span>
+<span id="cb48-299"><a href="#cb48-299"></a><span class="in">```</span></span>
+<span id="cb48-300"><a href="#cb48-300"></a></span>
+<span id="cb48-301"><a href="#cb48-301"></a>For assigning visits based on time windows and deriving periods, subperiods, and phase variables see</span>
+<span id="cb48-302"><a href="#cb48-302"></a>the <span class="co">[</span><span class="ot">"Visit and Period Variables" vignette</span><span class="co">](visits_periods.html)</span>.</span>
+<span id="cb48-303"><a href="#cb48-303"></a></span>
+<span id="cb48-304"><a href="#cb48-304"></a><span class="fu">## Derive summary records (e.g. mean of the triplicates at each time point) {#summaryrec}</span></span>
+<span id="cb48-305"><a href="#cb48-305"></a></span>
+<span id="cb48-306"><a href="#cb48-306"></a>For adding new records based on aggregating records <span class="in">`admiral::derive_summary_records()`</span></span>
+<span id="cb48-307"><a href="#cb48-307"></a>can be used. For the new records only the variables specified by <span class="in">`by_vars`</span> and</span>
+<span id="cb48-308"><a href="#cb48-308"></a><span class="in">`set_values_to`</span> are populated.</span>
+<span id="cb48-309"><a href="#cb48-309"></a></span>
+<span id="cb48-310"><a href="#cb48-310"></a>For each subject, Vital Signs parameter, visit, and date add a record holding</span>
+<span id="cb48-311"><a href="#cb48-311"></a>the average value for observations on that date.</span>
+<span id="cb48-312"><a href="#cb48-312"></a>Set <span class="in">`DTYPE`</span> to <span class="in">`AVERAGE`</span>.</span>
+<span id="cb48-313"><a href="#cb48-313"></a></span>
+<span id="cb48-314"><a href="#cb48-314"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-315"><a href="#cb48-315"></a><span class="in">advs &lt;- derive_summary_records(</span></span>
+<span id="cb48-316"><a href="#cb48-316"></a><span class="in">  dataset = advs,</span></span>
+<span id="cb48-317"><a href="#cb48-317"></a><span class="in">  dataset_add = advs, # Observations from the specified dataset are going to be used to calculate and added as new records to the input dataset.</span></span>
+<span id="cb48-318"><a href="#cb48-318"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, PARAMCD, AVISITN, AVISIT, ADT, ADY, AVALU),</span></span>
+<span id="cb48-319"><a href="#cb48-319"></a><span class="in">  filter_add = !is.na(AVAL),</span></span>
+<span id="cb48-320"><a href="#cb48-320"></a><span class="in">  set_values_to = exprs(</span></span>
+<span id="cb48-321"><a href="#cb48-321"></a><span class="in">    AVAL = mean(AVAL),</span></span>
+<span id="cb48-322"><a href="#cb48-322"></a><span class="in">    DTYPE = "AVERAGE"</span></span>
+<span id="cb48-323"><a href="#cb48-323"></a><span class="in">  )</span></span>
+<span id="cb48-324"><a href="#cb48-324"></a><span class="in">)</span></span>
+<span id="cb48-325"><a href="#cb48-325"></a><span class="in">```</span></span>
+<span id="cb48-326"><a href="#cb48-326"></a></span>
+<span id="cb48-327"><a href="#cb48-327"></a><span class="fu">## Timing Flag Variables (e.g. `ONTRTFL`) {#ontrtfl}</span></span>
+<span id="cb48-328"><a href="#cb48-328"></a></span>
+<span id="cb48-329"><a href="#cb48-329"></a>In some analyses, it may be necessary to flag an observation as on-treatment.</span>
+<span id="cb48-330"><a href="#cb48-330"></a>The admiral function <span class="in">`admiral::derive_var_ontrtfl()`</span> can be used.</span>
+<span id="cb48-331"><a href="#cb48-331"></a></span>
+<span id="cb48-332"><a href="#cb48-332"></a>For example, if on-treatment is defined as any observation between treatment</span>
+<span id="cb48-333"><a href="#cb48-333"></a>start and treatment end, the flag may be derived as:</span>
+<span id="cb48-334"><a href="#cb48-334"></a></span>
+<span id="cb48-335"><a href="#cb48-335"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-336"><a href="#cb48-336"></a><span class="in">advs &lt;- derive_var_ontrtfl(</span></span>
+<span id="cb48-337"><a href="#cb48-337"></a><span class="in">  advs,</span></span>
+<span id="cb48-338"><a href="#cb48-338"></a><span class="in">  start_date = ADT,</span></span>
+<span id="cb48-339"><a href="#cb48-339"></a><span class="in">  ref_start_date = TRTSDT,</span></span>
+<span id="cb48-340"><a href="#cb48-340"></a><span class="in">  ref_end_date = TRTEDT,</span></span>
+<span id="cb48-341"><a href="#cb48-341"></a><span class="in">  filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment</span></span>
+<span id="cb48-342"><a href="#cb48-342"></a><span class="in">  )</span></span>
+<span id="cb48-343"><a href="#cb48-343"></a><span class="in">```</span></span>
+<span id="cb48-344"><a href="#cb48-344"></a></span>
+<span id="cb48-345"><a href="#cb48-345"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-346"><a href="#cb48-346"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) == "WEEK 2") %&gt;% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)</span></span>
+<span id="cb48-347"><a href="#cb48-347"></a><span class="in">```</span></span>
+<span id="cb48-348"><a href="#cb48-348"></a></span>
+<span id="cb48-349"><a href="#cb48-349"></a><span class="fu">## Assign Reference Range Indicator (`ANRIND`) {#rangeind}</span></span>
+<span id="cb48-350"><a href="#cb48-350"></a></span>
+<span id="cb48-351"><a href="#cb48-351"></a>The admiral function <span class="in">`derive_var_anrind()`</span> may be used to derive the reference</span>
+<span id="cb48-352"><a href="#cb48-352"></a>range indicator <span class="in">`ANRIND`</span>.</span>
+<span id="cb48-353"><a href="#cb48-353"></a></span>
+<span id="cb48-354"><a href="#cb48-354"></a>This function requires the reference range boundaries to exist on the data frame </span>
+<span id="cb48-355"><a href="#cb48-355"></a>(<span class="in">`ANRLO`</span>, <span class="in">`ANRHI`</span>) and also accommodates the additional boundaries <span class="in">`A1LO`</span> and <span class="in">`A1HI`</span>.</span>
+<span id="cb48-356"><a href="#cb48-356"></a></span>
+<span id="cb48-357"><a href="#cb48-357"></a><span class="in">```{r include=FALSE}</span></span>
+<span id="cb48-358"><a href="#cb48-358"></a><span class="in">range_lookup &lt;- tibble::tribble(</span></span>
+<span id="cb48-359"><a href="#cb48-359"></a><span class="in">  ~PARAMCD, ~ANRLO, ~ANRHI, ~A1LO, ~A1HI,</span></span>
+<span id="cb48-360"><a href="#cb48-360"></a><span class="in">  "SYSBP",      90,    130,    70,   140,</span></span>
+<span id="cb48-361"><a href="#cb48-361"></a><span class="in">  "DIABP",      60,     80,    40,    90,</span></span>
+<span id="cb48-362"><a href="#cb48-362"></a><span class="in">  "PULSE",      60,    100,    40,   110,</span></span>
+<span id="cb48-363"><a href="#cb48-363"></a><span class="in">  "TEMP",     36.5,   37.5,    35,    38</span></span>
+<span id="cb48-364"><a href="#cb48-364"></a><span class="in">)</span></span>
+<span id="cb48-365"><a href="#cb48-365"></a></span>
+<span id="cb48-366"><a href="#cb48-366"></a><span class="in">advs &lt;- derive_vars_merged(</span></span>
+<span id="cb48-367"><a href="#cb48-367"></a><span class="in">  advs,</span></span>
+<span id="cb48-368"><a href="#cb48-368"></a><span class="in">  dataset_add = range_lookup,</span></span>
+<span id="cb48-369"><a href="#cb48-369"></a><span class="in">  by_vars = exprs(PARAMCD)</span></span>
+<span id="cb48-370"><a href="#cb48-370"></a><span class="in">)</span></span>
+<span id="cb48-371"><a href="#cb48-371"></a><span class="in">```</span></span>
+<span id="cb48-372"><a href="#cb48-372"></a></span>
+<span id="cb48-373"><a href="#cb48-373"></a>The function is called as:</span>
+<span id="cb48-374"><a href="#cb48-374"></a></span>
+<span id="cb48-375"><a href="#cb48-375"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-376"><a href="#cb48-376"></a><span class="in">advs &lt;- derive_var_anrind(</span></span>
+<span id="cb48-377"><a href="#cb48-377"></a><span class="in">  advs,</span></span>
+<span id="cb48-378"><a href="#cb48-378"></a><span class="in">  # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-379"><a href="#cb48-379"></a><span class="in">  signif_dig = get_admiral_option("signif_digits"),</span></span>
+<span id="cb48-380"><a href="#cb48-380"></a><span class="in">  use_a1hia1lo = FALSE</span></span>
+<span id="cb48-381"><a href="#cb48-381"></a><span class="in">)</span></span>
+<span id="cb48-382"><a href="#cb48-382"></a><span class="in">```</span></span>
+<span id="cb48-383"><a href="#cb48-383"></a></span>
+<span id="cb48-384"><a href="#cb48-384"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-385"><a href="#cb48-385"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) == "WEEK 2") %&gt;% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)</span></span>
+<span id="cb48-386"><a href="#cb48-386"></a><span class="in">```</span></span>
+<span id="cb48-387"><a href="#cb48-387"></a></span>
+<span id="cb48-388"><a href="#cb48-388"></a><span class="fu">## Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`) {#baselinevars}</span></span>
+<span id="cb48-389"><a href="#cb48-389"></a></span>
+<span id="cb48-390"><a href="#cb48-390"></a>The <span class="in">`BASETYPE`</span> should be derived using the function <span class="in">`admiral::derive_basetype_records()`</span>.</span>
+<span id="cb48-391"><a href="#cb48-391"></a>The parameter <span class="in">`basetypes`</span> of this function requires a named list of expression </span>
+<span id="cb48-392"><a href="#cb48-392"></a>detailing how the <span class="in">`BASETYPE`</span> should be assigned.  Note, if a record falls into</span>
+<span id="cb48-393"><a href="#cb48-393"></a>multiple expressions within the basetypes expression, a row will be produced for </span>
+<span id="cb48-394"><a href="#cb48-394"></a>each <span class="in">`BASETYPE`</span>.</span>
+<span id="cb48-395"><a href="#cb48-395"></a></span>
+<span id="cb48-396"><a href="#cb48-396"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-397"><a href="#cb48-397"></a><span class="in">advs &lt;- derive_basetype_records(</span></span>
+<span id="cb48-398"><a href="#cb48-398"></a><span class="in">  dataset = advs,</span></span>
+<span id="cb48-399"><a href="#cb48-399"></a><span class="in">  basetypes = exprs(</span></span>
+<span id="cb48-400"><a href="#cb48-400"></a><span class="in">    "LAST: AFTER LYING DOWN FOR 5 MINUTES" = ATPTN == 815,</span></span>
+<span id="cb48-401"><a href="#cb48-401"></a><span class="in">    "LAST: AFTER STANDING FOR 1 MINUTE" = ATPTN == 816,</span></span>
+<span id="cb48-402"><a href="#cb48-402"></a><span class="in">    "LAST: AFTER STANDING FOR 3 MINUTES" = ATPTN == 817,</span></span>
+<span id="cb48-403"><a href="#cb48-403"></a><span class="in">    "LAST" = is.na(ATPTN)</span></span>
+<span id="cb48-404"><a href="#cb48-404"></a><span class="in">  )</span></span>
+<span id="cb48-405"><a href="#cb48-405"></a><span class="in">)</span></span>
+<span id="cb48-406"><a href="#cb48-406"></a></span>
+<span id="cb48-407"><a href="#cb48-407"></a><span class="in">count(advs, ATPT, ATPTN, BASETYPE)</span></span>
+<span id="cb48-408"><a href="#cb48-408"></a><span class="in">```</span></span>
+<span id="cb48-409"><a href="#cb48-409"></a></span>
+<span id="cb48-410"><a href="#cb48-410"></a>It is important to derive <span class="in">`BASETYPE`</span> first so that it can be utilized in </span>
+<span id="cb48-411"><a href="#cb48-411"></a>subsequent derivations. This will be important if the data frame contains</span>
+<span id="cb48-412"><a href="#cb48-412"></a>multiple values for <span class="in">`BASETYPE`</span>.</span>
+<span id="cb48-413"><a href="#cb48-413"></a></span>
+<span id="cb48-414"><a href="#cb48-414"></a>Next, the analysis baseline flag <span class="in">`ABLFL`</span> can be derived using the <span class="in">`{admiral}`</span></span>
+<span id="cb48-415"><a href="#cb48-415"></a>function <span class="in">`admiral::derive_var_extreme_flag()`</span>.  For example, if baseline is defined as the last </span>
+<span id="cb48-416"><a href="#cb48-416"></a>non-missing <span class="in">`AVAL`</span> prior or on <span class="in">`TRTSDT`</span>, the function call for <span class="in">`ABLFL`</span> would be:</span>
+<span id="cb48-417"><a href="#cb48-417"></a></span>
+<span id="cb48-418"><a href="#cb48-418"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-419"><a href="#cb48-419"></a><span class="in">advs &lt;- restrict_derivation(</span></span>
+<span id="cb48-420"><a href="#cb48-420"></a><span class="in">  advs,</span></span>
+<span id="cb48-421"><a href="#cb48-421"></a><span class="in">  derivation = derive_var_extreme_flag,</span></span>
+<span id="cb48-422"><a href="#cb48-422"></a><span class="in">  args = params(</span></span>
+<span id="cb48-423"><a href="#cb48-423"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID, BASETYPE, PARAMCD),</span></span>
+<span id="cb48-424"><a href="#cb48-424"></a><span class="in">    order = exprs(ADT, VISITNUM, VSSEQ),</span></span>
+<span id="cb48-425"><a href="#cb48-425"></a><span class="in">    new_var = ABLFL,</span></span>
+<span id="cb48-426"><a href="#cb48-426"></a><span class="in">    mode = "last", # Determines of the first or last observation is flagged</span></span>
+<span id="cb48-427"><a href="#cb48-427"></a><span class="in">    # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-428"><a href="#cb48-428"></a><span class="in">    true_value = "Y"</span></span>
+<span id="cb48-429"><a href="#cb48-429"></a><span class="in">  ),</span></span>
+<span id="cb48-430"><a href="#cb48-430"></a><span class="in">  filter = (!is.na(AVAL) &amp;</span></span>
+<span id="cb48-431"><a href="#cb48-431"></a><span class="in">    ADT &lt;= TRTSDT &amp; !is.na(BASETYPE) &amp; is.na(DTYPE)</span></span>
+<span id="cb48-432"><a href="#cb48-432"></a><span class="in">  )</span></span>
+<span id="cb48-433"><a href="#cb48-433"></a><span class="in">)</span></span>
+<span id="cb48-434"><a href="#cb48-434"></a><span class="in">```</span></span>
+<span id="cb48-435"><a href="#cb48-435"></a></span>
+<span id="cb48-436"><a href="#cb48-436"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-437"><a href="#cb48-437"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %&gt;% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n=30)</span></span>
+<span id="cb48-438"><a href="#cb48-438"></a><span class="in">```</span></span>
+<span id="cb48-439"><a href="#cb48-439"></a></span>
+<span id="cb48-440"><a href="#cb48-440"></a>Lastly, the <span class="in">`BASE`</span>, and  <span class="in">`BNRIND`</span> columns can be derived using the <span class="in">`{admiral}`</span> function</span>
+<span id="cb48-441"><a href="#cb48-441"></a><span class="in">`admiral::derive_var_base()`</span>. Example calls are:</span>
+<span id="cb48-442"><a href="#cb48-442"></a></span>
+<span id="cb48-443"><a href="#cb48-443"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-444"><a href="#cb48-444"></a><span class="in">advs &lt;- derive_var_base(</span></span>
+<span id="cb48-445"><a href="#cb48-445"></a><span class="in">  advs,</span></span>
+<span id="cb48-446"><a href="#cb48-446"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),</span></span>
+<span id="cb48-447"><a href="#cb48-447"></a><span class="in">  source_var = AVAL,</span></span>
+<span id="cb48-448"><a href="#cb48-448"></a><span class="in">  new_var = BASE,</span></span>
+<span id="cb48-449"><a href="#cb48-449"></a><span class="in">  # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-450"><a href="#cb48-450"></a><span class="in">  filter = ABLFL == "Y"</span></span>
+<span id="cb48-451"><a href="#cb48-451"></a><span class="in">) </span></span>
+<span id="cb48-452"><a href="#cb48-452"></a></span>
+<span id="cb48-453"><a href="#cb48-453"></a><span class="in">advs &lt;- derive_var_base(</span></span>
+<span id="cb48-454"><a href="#cb48-454"></a><span class="in">  advs,</span></span>
+<span id="cb48-455"><a href="#cb48-455"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),</span></span>
+<span id="cb48-456"><a href="#cb48-456"></a><span class="in">  source_var = ANRIND,</span></span>
+<span id="cb48-457"><a href="#cb48-457"></a><span class="in">  new_var = BNRIND</span></span>
+<span id="cb48-458"><a href="#cb48-458"></a><span class="in">)</span></span>
+<span id="cb48-459"><a href="#cb48-459"></a><span class="in">```</span></span>
+<span id="cb48-460"><a href="#cb48-460"></a></span>
+<span id="cb48-461"><a href="#cb48-461"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-462"><a href="#cb48-462"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %&gt;% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)</span></span>
+<span id="cb48-463"><a href="#cb48-463"></a><span class="in">```</span></span>
+<span id="cb48-464"><a href="#cb48-464"></a></span>
+<span id="cb48-465"><a href="#cb48-465"></a><span class="fu">## Derive Change from Baseline (`CHG`, `PCHG`) {#chgpchg}</span></span>
+<span id="cb48-466"><a href="#cb48-466"></a></span>
+<span id="cb48-467"><a href="#cb48-467"></a>Change and percent change from baseline can be derived using the <span class="in">`{admiral}`</span> </span>
+<span id="cb48-468"><a href="#cb48-468"></a>functions <span class="in">`admiral::derive_var_chg()`</span> and <span class="in">`admiral::derive_var_pchg()`</span>.  These functions expect <span class="in">`AVAL`</span> </span>
+<span id="cb48-469"><a href="#cb48-469"></a>and <span class="in">`BASE`</span> to exist in the data frame.  The <span class="in">`CHG`</span> is simply <span class="in">`AVAL - BASE`</span> and the</span>
+<span id="cb48-470"><a href="#cb48-470"></a><span class="in">`PCHG`</span> is <span class="in">`(AVAL - BASE) / absolute value (BASE) * 100`</span>.</span>
+<span id="cb48-471"><a href="#cb48-471"></a>If the variables should not be derived for all records, e.g., for post-baseline</span>
+<span id="cb48-472"><a href="#cb48-472"></a>records only, <span class="in">`admiral::restrict_derivation()`</span> can be used.</span>
+<span id="cb48-473"><a href="#cb48-473"></a>Examples calls are:</span>
+<span id="cb48-474"><a href="#cb48-474"></a></span>
+<span id="cb48-475"><a href="#cb48-475"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-476"><a href="#cb48-476"></a><span class="in">advs &lt;- restrict_derivation(</span></span>
+<span id="cb48-477"><a href="#cb48-477"></a><span class="in">  advs,</span></span>
+<span id="cb48-478"><a href="#cb48-478"></a><span class="in">  derivation = derive_var_chg,</span></span>
+<span id="cb48-479"><a href="#cb48-479"></a><span class="in">  filter = AVISITN &gt; 0</span></span>
+<span id="cb48-480"><a href="#cb48-480"></a><span class="in">)</span></span>
+<span id="cb48-481"><a href="#cb48-481"></a></span>
+<span id="cb48-482"><a href="#cb48-482"></a><span class="in">advs &lt;- restrict_derivation(</span></span>
+<span id="cb48-483"><a href="#cb48-483"></a><span class="in">  advs,</span></span>
+<span id="cb48-484"><a href="#cb48-484"></a><span class="in">  derivation = derive_var_pchg,</span></span>
+<span id="cb48-485"><a href="#cb48-485"></a><span class="in">  filter = AVISITN &gt; 0</span></span>
+<span id="cb48-486"><a href="#cb48-486"></a><span class="in">)</span></span>
+<span id="cb48-487"><a href="#cb48-487"></a><span class="in">```</span></span>
+<span id="cb48-488"><a href="#cb48-488"></a></span>
+<span id="cb48-489"><a href="#cb48-489"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-490"><a href="#cb48-490"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %&gt;% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)</span></span>
+<span id="cb48-491"><a href="#cb48-491"></a><span class="in">```</span></span>
+<span id="cb48-492"><a href="#cb48-492"></a></span>
+<span id="cb48-493"><a href="#cb48-493"></a><span class="fu">## Derive Analysis Flags (e.g. `ANL01FL`) {#anl01fl}</span></span>
+<span id="cb48-494"><a href="#cb48-494"></a></span>
+<span id="cb48-495"><a href="#cb48-495"></a>In most finding ADaMs, an analysis flag is derived to identify the appropriate </span>
+<span id="cb48-496"><a href="#cb48-496"></a>observation(s) to use for a particular analysis when a subject has multiple</span>
+<span id="cb48-497"><a href="#cb48-497"></a>observations within a particular timing period.</span>
+<span id="cb48-498"><a href="#cb48-498"></a></span>
+<span id="cb48-499"><a href="#cb48-499"></a>In this situation, an analysis flag (e.g. <span class="in">`ANLzzFL`</span>) may be used to choose the</span>
+<span id="cb48-500"><a href="#cb48-500"></a>appropriate record for analysis.</span>
+<span id="cb48-501"><a href="#cb48-501"></a></span>
+<span id="cb48-502"><a href="#cb48-502"></a>This flag may be derived using the <span class="in">`{admiral}`</span> function <span class="in">`admiral::derive_var_extreme_flag()`</span>. </span>
+<span id="cb48-503"><a href="#cb48-503"></a>For this example, we will assume we would like to choose within the Post-Baseline records the latest and </span>
+<span id="cb48-504"><a href="#cb48-504"></a>highest value by <span class="in">`USUBJID`</span>, <span class="in">`PARAMCD`</span>, <span class="in">`AVISIT`</span>, and <span class="in">`ATPT`</span>.</span>
+<span id="cb48-505"><a href="#cb48-505"></a></span>
+<span id="cb48-506"><a href="#cb48-506"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-507"><a href="#cb48-507"></a><span class="in">advs &lt;-   restrict_derivation(</span></span>
+<span id="cb48-508"><a href="#cb48-508"></a><span class="in">  advs,</span></span>
+<span id="cb48-509"><a href="#cb48-509"></a><span class="in">  derivation = derive_var_extreme_flag,</span></span>
+<span id="cb48-510"><a href="#cb48-510"></a><span class="in">  args = params(</span></span>
+<span id="cb48-511"><a href="#cb48-511"></a><span class="in">    new_var = ANL01FL,</span></span>
+<span id="cb48-512"><a href="#cb48-512"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID, PARAMCD, AVISIT, ATPT, DTYPE),</span></span>
+<span id="cb48-513"><a href="#cb48-513"></a><span class="in">    order = exprs(ADT, AVAL),</span></span>
+<span id="cb48-514"><a href="#cb48-514"></a><span class="in">    mode = "last", # Determines of the first or last observation is flagged - As seen while deriving ABLFL</span></span>
+<span id="cb48-515"><a href="#cb48-515"></a><span class="in">    # Below arguments are default values and not necessary to add in our case</span></span>
+<span id="cb48-516"><a href="#cb48-516"></a><span class="in">    true_value = "Y"</span></span>
+<span id="cb48-517"><a href="#cb48-517"></a><span class="in">    ),</span></span>
+<span id="cb48-518"><a href="#cb48-518"></a><span class="in">  filter = !is.na(AVISITN) &amp; ONTRTFL == "Y"</span></span>
+<span id="cb48-519"><a href="#cb48-519"></a><span class="in">)</span></span>
+<span id="cb48-520"><a href="#cb48-520"></a><span class="in">```</span></span>
+<span id="cb48-521"><a href="#cb48-521"></a></span>
+<span id="cb48-522"><a href="#cb48-522"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-523"><a href="#cb48-523"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "DIABP" &amp; toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %&gt;% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)</span></span>
+<span id="cb48-524"><a href="#cb48-524"></a><span class="in">```</span></span>
+<span id="cb48-525"><a href="#cb48-525"></a></span>
+<span id="cb48-526"><a href="#cb48-526"></a><span class="fu">## Assign Treatment (`TRTA`, `TRTP`) {#treatmentvars}</span></span>
+<span id="cb48-527"><a href="#cb48-527"></a></span>
+<span id="cb48-528"><a href="#cb48-528"></a><span class="in">`TRTA`</span> and <span class="in">`TRTP`</span> must match at least one value of the character treatment</span>
+<span id="cb48-529"><a href="#cb48-529"></a>variables in ADSL (e.g., <span class="in">`TRTxxA`</span>/<span class="in">`TRTxxP`</span>, <span class="in">`TRTSEQA`</span>/<span class="in">`TRTSEQP`</span>,</span>
+<span id="cb48-530"><a href="#cb48-530"></a><span class="in">`TRxxAGy`</span>/<span class="in">`TRxxPGy`</span>).</span>
+<span id="cb48-531"><a href="#cb48-531"></a></span>
+<span id="cb48-532"><a href="#cb48-532"></a>An example of a simple implementation for a study without periods could be:</span>
+<span id="cb48-533"><a href="#cb48-533"></a></span>
+<span id="cb48-534"><a href="#cb48-534"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-535"><a href="#cb48-535"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-536"><a href="#cb48-536"></a><span class="in">  mutate(</span></span>
+<span id="cb48-537"><a href="#cb48-537"></a><span class="in">    TRTP = TRT01P,</span></span>
+<span id="cb48-538"><a href="#cb48-538"></a><span class="in">    TRTA = TRT01A</span></span>
+<span id="cb48-539"><a href="#cb48-539"></a><span class="in">    )</span></span>
+<span id="cb48-540"><a href="#cb48-540"></a></span>
+<span id="cb48-541"><a href="#cb48-541"></a><span class="in">count(advs, TRTP, TRTA, TRT01P, TRT01A)</span></span>
+<span id="cb48-542"><a href="#cb48-542"></a><span class="in">```</span></span>
+<span id="cb48-543"><a href="#cb48-543"></a></span>
+<span id="cb48-544"><a href="#cb48-544"></a>For studies with periods see the <span class="co">[</span><span class="ot">"Visit and Period Variables" vignette</span><span class="co">](visits_periods.html#treatment_bds)</span>.</span>
+<span id="cb48-545"><a href="#cb48-545"></a></span>
+<span id="cb48-546"><a href="#cb48-546"></a><span class="fu">## Assign `ASEQ` {#aseq}</span></span>
+<span id="cb48-547"><a href="#cb48-547"></a></span>
+<span id="cb48-548"><a href="#cb48-548"></a>The <span class="in">`{admiral}`</span> function <span class="in">`admiral::derive_var_obs_number()`</span> can be used to derive <span class="in">`ASEQ`</span>. An </span>
+<span id="cb48-549"><a href="#cb48-549"></a>example call is:</span>
+<span id="cb48-550"><a href="#cb48-550"></a></span>
+<span id="cb48-551"><a href="#cb48-551"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-552"><a href="#cb48-552"></a><span class="in">advs &lt;- derive_var_obs_number(</span></span>
+<span id="cb48-553"><a href="#cb48-553"></a><span class="in">  advs,</span></span>
+<span id="cb48-554"><a href="#cb48-554"></a><span class="in">  new_var = ASEQ,</span></span>
+<span id="cb48-555"><a href="#cb48-555"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb48-556"><a href="#cb48-556"></a><span class="in">  order = exprs(PARAMCD, ADT, AVISITN, VISITNUM, ATPTN, DTYPE),</span></span>
+<span id="cb48-557"><a href="#cb48-557"></a><span class="in">  check_type = "error"</span></span>
+<span id="cb48-558"><a href="#cb48-558"></a><span class="in">)</span></span>
+<span id="cb48-559"><a href="#cb48-559"></a><span class="in">```</span></span>
+<span id="cb48-560"><a href="#cb48-560"></a></span>
+<span id="cb48-561"><a href="#cb48-561"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-562"><a href="#cb48-562"></a><span class="in">head(advs %&gt;% filter(USUBJID == "01-701-1015") %&gt;% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)</span></span>
+<span id="cb48-563"><a href="#cb48-563"></a><span class="in">```</span></span>
+<span id="cb48-564"><a href="#cb48-564"></a></span>
+<span id="cb48-565"><a href="#cb48-565"></a><span class="fu">## Derive Categorization Variables (`AVALCATy`) {#categorizationvars}</span></span>
+<span id="cb48-566"><a href="#cb48-566"></a></span>
+<span id="cb48-567"><a href="#cb48-567"></a>We can use the <span class="in">`admiral::derive_vars_cat()`</span> function to derive the categorization variables.</span>
+<span id="cb48-568"><a href="#cb48-568"></a></span>
+<span id="cb48-569"><a href="#cb48-569"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-570"><a href="#cb48-570"></a><span class="in">avalcat_lookup &lt;- exprs(</span></span>
+<span id="cb48-571"><a href="#cb48-571"></a><span class="in">  ~PARAMCD,  ~condition,   ~AVALCAT1, ~AVALCA1N,</span></span>
+<span id="cb48-572"><a href="#cb48-572"></a><span class="in">  "HEIGHT",  AVAL &gt; 140,   "&gt;140 cm",         1,</span></span>
+<span id="cb48-573"><a href="#cb48-573"></a><span class="in">  "HEIGHT", AVAL &lt;= 140, "&lt;= 140 cm",         2</span></span>
+<span id="cb48-574"><a href="#cb48-574"></a><span class="in">)</span></span>
+<span id="cb48-575"><a href="#cb48-575"></a></span>
+<span id="cb48-576"><a href="#cb48-576"></a><span class="in">advs &lt;- advs %&gt;%</span></span>
+<span id="cb48-577"><a href="#cb48-577"></a><span class="in">  derive_vars_cat(</span></span>
+<span id="cb48-578"><a href="#cb48-578"></a><span class="in">    definition = avalcat_lookup,</span></span>
+<span id="cb48-579"><a href="#cb48-579"></a><span class="in">    by_vars = exprs(PARAMCD)</span></span>
+<span id="cb48-580"><a href="#cb48-580"></a><span class="in">  )</span></span>
+<span id="cb48-581"><a href="#cb48-581"></a><span class="in">```</span></span>
+<span id="cb48-582"><a href="#cb48-582"></a></span>
+<span id="cb48-583"><a href="#cb48-583"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-584"><a href="#cb48-584"></a><span class="in">head(advs %&gt;% filter(PARAMCD == "HEIGHT") %&gt;% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)</span></span>
+<span id="cb48-585"><a href="#cb48-585"></a><span class="in">```</span></span>
+<span id="cb48-586"><a href="#cb48-586"></a></span>
+<span id="cb48-587"><a href="#cb48-587"></a><span class="fu">## Assign Parameter Level Values (`PARAM`, `PARAMN`) {#paramval}</span></span>
+<span id="cb48-588"><a href="#cb48-588"></a></span>
+<span id="cb48-589"><a href="#cb48-589"></a>When all <span class="in">`PARAMCD`</span> have been derived and added to the dataset, the other information </span>
+<span id="cb48-590"><a href="#cb48-590"></a>from the look-up table (<span class="in">`PARAM`</span>, <span class="in">`PARAMN`</span>,...) should be added using <span class="in">`admiral::derive_vars_merged()`</span> function.</span>
+<span id="cb48-591"><a href="#cb48-591"></a></span>
+<span id="cb48-592"><a href="#cb48-592"></a>Another way to assign parameter-level values is by using the <span class="in">`metatools`</span> package with the <span class="in">`{metacore}`</span> objects </span>
+<span id="cb48-593"><a href="#cb48-593"></a>we created at the beginning. To use the <span class="in">`metatools::create_var_from_codelist()`</span> function, as shown in the example below, certain prerequisites must be met.</span>
+<span id="cb48-594"><a href="#cb48-594"></a>Specifically, this function relies on code/decode pairs from a <span class="in">`{metacore}`</span> object. Therefore, these pairs must be defined in the corresponding ADaMs specifications</span>
+<span id="cb48-595"><a href="#cb48-595"></a>before creating the <span class="in">`{metacore}`</span> object. </span>
+<span id="cb48-596"><a href="#cb48-596"></a></span>
+<span id="cb48-597"><a href="#cb48-597"></a>We can look into the <span class="in">`{metacore}`</span> object and see these pairs for the <span class="in">`PARAM`</span> variable.</span>
+<span id="cb48-598"><a href="#cb48-598"></a></span>
+<span id="cb48-601"><a href="#cb48-601"></a><span class="in">```{r}</span></span>
+<span id="cb48-602"><a href="#cb48-602"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> PARAM)</span>
+<span id="cb48-603"><a href="#cb48-603"></a><span class="in">```</span></span>
+<span id="cb48-604"><a href="#cb48-604"></a></span>
+<span id="cb48-605"><a href="#cb48-605"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-606"><a href="#cb48-606"></a><span class="in">advs &lt;- advs %&gt;% </span></span>
+<span id="cb48-607"><a href="#cb48-607"></a><span class="in">  create_var_from_codelist(</span></span>
+<span id="cb48-608"><a href="#cb48-608"></a><span class="in">    metacore,</span></span>
+<span id="cb48-609"><a href="#cb48-609"></a><span class="in">    input_var = PARAMCD,</span></span>
+<span id="cb48-610"><a href="#cb48-610"></a><span class="in">    out_var = PARAM,</span></span>
+<span id="cb48-611"><a href="#cb48-611"></a><span class="in">    decode_to_code = FALSE # input_var is the code column of the codelist</span></span>
+<span id="cb48-612"><a href="#cb48-612"></a><span class="in">    ) %&gt;%</span></span>
+<span id="cb48-613"><a href="#cb48-613"></a><span class="in">  create_var_from_codelist(</span></span>
+<span id="cb48-614"><a href="#cb48-614"></a><span class="in">    metacore,</span></span>
+<span id="cb48-615"><a href="#cb48-615"></a><span class="in">    input_var = PARAMCD,</span></span>
+<span id="cb48-616"><a href="#cb48-616"></a><span class="in">    out_var = PARAMN</span></span>
+<span id="cb48-617"><a href="#cb48-617"></a><span class="in">    )</span></span>
+<span id="cb48-618"><a href="#cb48-618"></a><span class="in">```</span></span>
+<span id="cb48-619"><a href="#cb48-619"></a></span>
+<span id="cb48-620"><a href="#cb48-620"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-621"><a href="#cb48-621"></a><span class="in">head(advs %&gt;% filter(USUBJID == "01-716-1024") %&gt;% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)</span></span>
+<span id="cb48-622"><a href="#cb48-622"></a><span class="in">```</span></span>
+<span id="cb48-623"><a href="#cb48-623"></a></span>
+<span id="cb48-624"><a href="#cb48-624"></a><span class="fu">## Add ADSL variables {#adslvars}</span></span>
+<span id="cb48-625"><a href="#cb48-625"></a></span>
+<span id="cb48-626"><a href="#cb48-626"></a>If needed, the other <span class="in">`ADSL`</span> variables can now be added.</span>
+<span id="cb48-627"><a href="#cb48-627"></a>List of ADSL variables already merged held in vector <span class="in">`adsl_vars`</span></span>
+<span id="cb48-628"><a href="#cb48-628"></a></span>
+<span id="cb48-629"><a href="#cb48-629"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb48-630"><a href="#cb48-630"></a><span class="in">advs &lt;- advs %&gt;%</span></span>
+<span id="cb48-631"><a href="#cb48-631"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb48-632"><a href="#cb48-632"></a><span class="in">    dataset_add = select(adsl, !!!negate_vars(adsl_vars)),</span></span>
+<span id="cb48-633"><a href="#cb48-633"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb48-634"><a href="#cb48-634"></a><span class="in">  )</span></span>
+<span id="cb48-635"><a href="#cb48-635"></a><span class="in">```</span></span>
+<span id="cb48-636"><a href="#cb48-636"></a></span>
+<span id="cb48-637"><a href="#cb48-637"></a><span class="in">```{r, eval=TRUE, echo=FALSE}</span></span>
+<span id="cb48-638"><a href="#cb48-638"></a><span class="in">head(advs %&gt;% filter(USUBJID == "01-701-1015") %&gt;% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)</span></span>
+<span id="cb48-639"><a href="#cb48-639"></a><span class="in">```</span></span>
+<span id="cb48-640"><a href="#cb48-640"></a></span>
+<span id="cb48-641"><a href="#cb48-641"></a><span class="fu"># Apply Metadata and eSub Checks {#metacore_xportr}</span></span>
+<span id="cb48-642"><a href="#cb48-642"></a></span>
+<span id="cb48-643"><a href="#cb48-643"></a>We use <span class="in">`{metatools}`</span> and <span class="in">`{xportr}`</span> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</span>
+<span id="cb48-644"><a href="#cb48-644"></a></span>
+<span id="cb48-645"><a href="#cb48-645"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
+<span id="cb48-646"><a href="#cb48-646"></a><span class="in">dir &lt;- tempdir() # Specify the directory for saving the XPT file</span></span>
+<span id="cb48-647"><a href="#cb48-647"></a></span>
+<span id="cb48-648"><a href="#cb48-648"></a><span class="in"># Apply metadata and perform checks</span></span>
+<span id="cb48-649"><a href="#cb48-649"></a><span class="in">advs_prefinal &lt;- advs %&gt;%</span></span>
+<span id="cb48-650"><a href="#cb48-650"></a><span class="in">  drop_unspec_vars(metacore) %&gt;% # Drop unspecified variables from specs</span></span>
+<span id="cb48-651"><a href="#cb48-651"></a><span class="in">  check_variables(metacore, dataset_name = "ADVS") %&gt;% # Check all variables specified are present and no more</span></span>
+<span id="cb48-652"><a href="#cb48-652"></a><span class="in">  order_cols(metacore) %&gt;% # Orders the columns according to the spec</span></span>
+<span id="cb48-653"><a href="#cb48-653"></a><span class="in">  sort_by_key(metacore) # Sorts the rows by the sort keys</span></span>
+<span id="cb48-654"><a href="#cb48-654"></a></span>
+<span id="cb48-655"><a href="#cb48-655"></a><span class="in"># Apply apply labels, formats, and export the dataset to an XPT file.</span></span>
+<span id="cb48-656"><a href="#cb48-656"></a><span class="in">advs_final &lt;- advs_prefinal %&gt;% </span></span>
+<span id="cb48-657"><a href="#cb48-657"></a><span class="in">  xportr_type(metacore) %&gt;%</span></span>
+<span id="cb48-658"><a href="#cb48-658"></a><span class="in">  xportr_length(metacore) %&gt;%</span></span>
+<span id="cb48-659"><a href="#cb48-659"></a><span class="in">  xportr_label(metacore) %&gt;%</span></span>
+<span id="cb48-660"><a href="#cb48-660"></a><span class="in">  xportr_format(metacore, domain = "ADVS") %&gt;%</span></span>
+<span id="cb48-661"><a href="#cb48-661"></a><span class="in">  xportr_df_label(metacore, domain = "ADVS") %&gt;% </span></span>
+<span id="cb48-662"><a href="#cb48-662"></a><span class="in">  xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")</span></span>
+<span id="cb48-663"><a href="#cb48-663"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

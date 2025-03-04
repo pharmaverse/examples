@@ -257,6 +257,12 @@ cookieconsent.run({
  <span class="menu-text">ADTTE</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/advs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADVS</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -369,8 +375,22 @@ cookieconsent.run({
 </ul>
 <p>It is important to understand <code>{metacore}</code> objects by reading through the above linked package site, as these are fundamental to being able to use <code>{metatools}</code> and <code>{xportr}</code>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</p>
 </section>
-<section id="load-data-and-required-pharmaverse-packages" class="level2">
-<h2 class="anchored" data-anchor-id="load-data-and-required-pharmaverse-packages">Load Data and Required pharmaverse Packages</h2>
+<section id="programming-flow" class="level2">
+<h2 class="anchored" data-anchor-id="programming-flow">Programming Flow</h2>
+<ul>
+<li><a href="#loaddata">Load Data and Required pharmaverse Packages</a></li>
+<li><a href="#dmvars">Start Building Derivations</a></li>
+<li><a href="#groupingvars">Grouping Variables</a></li>
+<li><a href="#expo">Exposure Derivations</a></li>
+<li><a href="#treatmentvars">Derive Treatment Variables</a></li>
+<li><a href="#dispovars">Derive Disposition Variables</a></li>
+<li><a href="#deathvars">Derive Cause of Death</a></li>
+<li><a href="#othgrpvars">Derive Other Grouping Variables</a></li>
+<li><a href="#metacore_xportr">Apply Metadata to Create an eSub XPT and Perform Associated Checks</a></li>
+</ul>
+</section>
+<section id="loaddata" class="level2">
+<h2 class="anchored" data-anchor-id="loaddata">Load Data and Required pharmaverse Packages</h2>
 <p>The first step is to load our pharmaverse packages and input data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
@@ -384,217 +404,657 @@ cookieconsent.run({
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-10"><a href="#cb1-10"></a></span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Read in input SDTM data</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">data</span>(<span class="st">"dm"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">data</span>(<span class="st">"ex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span>
+<span id="cb1-13"><a href="#cb1-13"></a>ds <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>ds</span>
+<span id="cb1-14"><a href="#cb1-14"></a>ex <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>ex</span>
+<span id="cb1-15"><a href="#cb1-15"></a>ae <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>ae</span>
+<span id="cb1-16"><a href="#cb1-16"></a>vs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>vs</span>
+<span id="cb1-17"><a href="#cb1-17"></a>suppdm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>suppdm</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co"># When SAS datasets are imported into R using haven::read_sas(), missing</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co"># character values from SAS appear as "" characters in R, instead of appearing</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># as NA values. Further details can be obtained via the following link:</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co"># https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>dm <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(dm)</span>
+<span id="cb1-24"><a href="#cb1-24"></a>ds <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ds)</span>
+<span id="cb1-25"><a href="#cb1-25"></a>ex <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ex)</span>
+<span id="cb1-26"><a href="#cb1-26"></a>ae <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ae)</span>
+<span id="cb1-27"><a href="#cb1-27"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span>
+<span id="cb1-28"><a href="#cb1-28"></a>suppdm <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(suppdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>While loading our input data, we can combine the <code>dm</code> domain and the <code>suppdm</code> supplementary domain for easier use in the next steps. Using the <code>metatools::combine_supp()</code> function avoids the need to manually transpose and merge the supplementary dataset with the corresponding domain.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Combine Parent and Supp - very handy! ----</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>dm_suppdm <span class="ot">&lt;-</span> <span class="fu">combine_supp</span>(dm, suppdm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next we need to load the specification file in the form of a <code>{metacore}</code> object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Read in metacore object</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">load</span>(<span class="fu">metacore_example</span>(<span class="st">"pilot_ADaM.rda"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3"></a>metacore <span class="ot">&lt;-</span> metacore <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>   <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Here is an example of how a <code>{metacore}</code> object looks showing variable level metadata:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>metacore<span class="sc">$</span>ds_vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 49 × 7
-   dataset variable key_seq order keep  core  supp_flag
-   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;lgl&gt; &lt;chr&gt; &lt;lgl&gt;    
- 1 ADSL    STUDYID       NA     1 FALSE &lt;NA&gt;  NA       
- 2 ADSL    USUBJID        1     2 FALSE &lt;NA&gt;  NA       
- 3 ADSL    SUBJID        NA     3 FALSE &lt;NA&gt;  NA       
- 4 ADSL    SITEID        NA     4 FALSE &lt;NA&gt;  NA       
- 5 ADSL    SITEGR1       NA     5 FALSE &lt;NA&gt;  NA       
- 6 ADSL    ARM           NA     6 FALSE &lt;NA&gt;  NA       
- 7 ADSL    TRT01P        NA     7 FALSE &lt;NA&gt;  NA       
- 8 ADSL    TRT01PN       NA     8 FALSE &lt;NA&gt;  NA       
- 9 ADSL    TRT01A        NA     9 FALSE &lt;NA&gt;  NA       
-10 ADSL    TRT01AN       NA    10 FALSE &lt;NA&gt;  NA       
-# ℹ 39 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Read in metacore object</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">path =</span> <span class="st">"./metadata/safety_specs.xlsx"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="co"># All datasets are described in the same sheet</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">where_sep_sheet =</span> <span class="cn">FALSE</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+ Metadata successfully imported</code></pre>
 </div>
 </div>
 </section>
-<section id="start-building-derivations" class="level2">
-<h2 class="anchored" data-anchor-id="start-building-derivations">Start Building Derivations</h2>
-<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.</p>
-<p>In this case all the columns come from <code>DM</code> so that is the only dataset we will pass into <code>metatools::build_from_derived()</code>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
+<section id="dmvars" class="level2">
+<h2 class="anchored" data-anchor-id="dmvars">Start Building Derivations</h2>
+<p>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets. In this case, all the required columns come from <code>DM</code> and <code>SUPPDM</code>, so these are the only datasets we will pass into <code>metatools::build_from_derived()</code>. As previously mentioned, we have combined <code>DM</code>and <code>SUPPDM</code> data for easier use. Specifically, the parameters from <code>SUPPDM</code>, contained within the <code>[SUPPDM.QNAM]</code> variable, have been transposed into separate variables. However the ADaMs specifications still reference <code>DM</code> and <code>SUPPDM</code> as the provenance of the variables. Setting <code>ds_list = list("dm" = dm_suppdm)</code> alone does not retrieve the variables from <code>SUPPDM</code>. Therefore, it is necessary to call these two references separately within the <code>metatools::build_from_derived()</code> function, even though they ultimately point to the same combined <code>dm_suppdm</code> dataset.</p>
+<p>The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adsl_preds <span class="ot">&lt;-</span> <span class="fu">build_from_derived</span>(metacore,</span>
-<span id="cb5-2"><a href="#cb5-2"></a>                                 <span class="at">ds_list =</span> <span class="fu">list</span>(<span class="st">"dm"</span> <span class="ot">=</span> dm),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                                 <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>, <span class="at">keep =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">head</span>(adsl_preds, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>                                 <span class="at">ds_list =</span> <span class="fu">list</span>(<span class="st">"dm"</span> <span class="ot">=</span> dm_suppdm, <span class="st">"suppdm"</span> <span class="ot">=</span> dm_suppdm),</span>
+<span id="cb5-3"><a href="#cb5-3"></a>                                 <span class="at">predecessor_only =</span> <span class="cn">FALSE</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Not all datasets provided. Only variables from DM, SUPPDM will be gathered.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">head</span>(adsl_preds, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 14
-   STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
-   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
- 1 CDISCPILOT01 01-701… 1015   701    Plac…    63 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 2 CDISCPILOT01 01-701… 1023   701    Plac…    64 YEARS WHITE M     HISPA… &lt;NA&gt; 
- 3 CDISCPILOT01 01-701… 1028   701    Xano…    71 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 4 CDISCPILOT01 01-701… 1033   701    Xano…    74 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 5 CDISCPILOT01 01-701… 1034   701    Xano…    77 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 6 CDISCPILOT01 01-701… 1047   701    Plac…    85 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 7 CDISCPILOT01 01-701… 1057   701    Scre…    59 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 8 CDISCPILOT01 01-701… 1097   701    Xano…    68 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 9 CDISCPILOT01 01-701… 1111   701    Xano…    81 YEARS WHITE F     NOT H… &lt;NA&gt; 
-10 CDISCPILOT01 01-701… 1115   701    Xano…    84 YEARS WHITE M     NOT H… &lt;NA&gt; 
-# ℹ 3 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 10 × 17
+   STUDYID    USUBJID SUBJID SITEID COUNTRY   AGE AGEU  SEX   RACE  ETHNIC ARM  
+   &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
+ 1 CDISCPILO… 01-701… 1015   701    USA        63 YEARS F     WHITE HISPA… Plac…
+ 2 CDISCPILO… 01-701… 1023   701    USA        64 YEARS M     WHITE HISPA… Plac…
+ 3 CDISCPILO… 01-701… 1028   701    USA        71 YEARS M     WHITE NOT H… Xano…
+ 4 CDISCPILO… 01-701… 1033   701    USA        74 YEARS M     WHITE NOT H… Xano…
+ 5 CDISCPILO… 01-701… 1034   701    USA        77 YEARS F     WHITE NOT H… Xano…
+ 6 CDISCPILO… 01-701… 1047   701    USA        85 YEARS F     WHITE NOT H… Plac…
+ 7 CDISCPILO… 01-701… 1057   701    USA        59 YEARS F     WHITE HISPA… Scre…
+ 8 CDISCPILO… 01-701… 1097   701    USA        68 YEARS M     WHITE NOT H… Xano…
+ 9 CDISCPILO… 01-701… 1111   701    USA        81 YEARS F     WHITE NOT H… Xano…
+10 CDISCPILO… 01-701… 1115   701    USA        84 YEARS M     WHITE NOT H… Xano…
+# ℹ 6 more variables: ARMCD &lt;chr&gt;, ACTARM &lt;chr&gt;, ACTARMCD &lt;chr&gt;, DTHDTC &lt;chr&gt;,
+#   DTHFL &lt;chr&gt;, ITTFL &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <code>{metacore}</code> object and see the controlled terminology for <code>AGEGR1</code>.</p>
+<section id="groupingvars" class="level3">
+<h3 class="anchored" data-anchor-id="groupingvars">Grouping Variables</h3>
+<p>Now we have the base dataset, we can start to create some variables. There are a few options to create grouping variables and their corresponding numeric variables.</p>
+<p><strong>Option 1:</strong> We can start with creating the subgroups using the <strong><code>admiral::derive_vars_cat()</code></strong> function available since <code>{admiral}</code> v1.2.0. This function is especially useful if more than one variable needs to be created for each condition, e.g., <code>AGEGR1</code> and <code>AGEGR1N</code>. Additionally, one needs to be careful when considering the order of the conditions in the lookup table. The category is assigned based on the first match. That means <em>catch-all</em> conditions must come after specific conditions, e.g.&nbsp;<code>!is.na(AGE)</code> must come after <code>between(AGE, 18, 64)</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>agegr1_lookup <span class="ot">&lt;-</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="sc">~</span>condition,            <span class="sc">~</span>AGEGR1, <span class="sc">~</span>AGEGR1N,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">is.na</span>(AGE),          <span class="st">"Missing"</span>,        <span class="dv">4</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  AGE <span class="sc">&lt;</span> <span class="dv">18</span>,                <span class="st">"&lt;18"</span>,        <span class="dv">1</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">64</span>),  <span class="st">"18-64"</span>,        <span class="dv">2</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="sc">!</span><span class="fu">is.na</span>(AGE),             <span class="st">"&gt;64"</span>,        <span class="dv">3</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a>adsl_cat <span class="ot">&lt;-</span> <span class="fu">derive_vars_cat</span>(</span>
+<span id="cb9-10"><a href="#cb9-10"></a>   <span class="at">dataset =</span> adsl_preds,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>   <span class="at">definition =</span> agegr1_lookup</span>
+<span id="cb9-12"><a href="#cb9-12"></a> )</span>
+<span id="cb9-13"><a href="#cb9-13"></a></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="fu">head</span>(adsl_cat <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   STUDYID      USUBJID       AGE AGEU  AGEGR1 AGEGR1N
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015    63 YEARS 18-64        2
+ 2 CDISCPILOT01 01-701-1023    64 YEARS 18-64        2
+ 3 CDISCPILOT01 01-701-1028    71 YEARS &gt;64          3
+ 4 CDISCPILOT01 01-701-1033    74 YEARS &gt;64          3
+ 5 CDISCPILOT01 01-701-1034    77 YEARS &gt;64          3
+ 6 CDISCPILOT01 01-701-1047    85 YEARS &gt;64          3
+ 7 CDISCPILOT01 01-701-1057    59 YEARS 18-64        2
+ 8 CDISCPILOT01 01-701-1097    68 YEARS &gt;64          3
+ 9 CDISCPILOT01 01-701-1111    81 YEARS &gt;64          3
+10 CDISCPILOT01 01-701-1115    84 YEARS &gt;64          3</code></pre>
+</div>
+</div>
+<p><strong>Option 2:</strong> We can also create the subgroups using the controlled terminology, in this case <code>AGEGR1</code>. The metacore object holds all the metadata needed to make <code>ADSL</code>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <code>{metacore}</code> object and see the controlled terminology for <code>AGEGR1</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   code  decode
   &lt;chr&gt; &lt;chr&gt; 
-1 &lt;65   &lt;65   
-2 65-80 65-80 
-3 &gt;80   &gt;80   </code></pre>
+1 &lt;18   &lt;18   
+2 18-64 18-64 
+3 &gt;64   &gt;64   </code></pre>
 </div>
 </div>
 <p>Because this controlled terminology is written in a fairly standard format we can automate the creation of <code>AGEGR1</code>. The function <code>metatools::create_cat_var()</code> takes in a <code>{metacore}</code> object, a reference variable - in this case <code>AGE</code> because that is the continuous variable <code>AGEGR1</code> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>   <span class="fu">create_cat_var</span>(metacore, <span class="at">ref_var =</span> AGE,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>                  <span class="at">grp_var =</span> AGEGR1, <span class="at">num_grp_var =</span> AGEGR1N)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">head</span>(adsl_ct <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   STUDYID      USUBJID       AGE AGEU  AGEGR1 AGEGR1N
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015    63 YEARS 18-64        2
+ 2 CDISCPILOT01 01-701-1023    64 YEARS 18-64        2
+ 3 CDISCPILOT01 01-701-1028    71 YEARS &gt;64          3
+ 4 CDISCPILOT01 01-701-1033    74 YEARS &gt;64          3
+ 5 CDISCPILOT01 01-701-1034    77 YEARS &gt;64          3
+ 6 CDISCPILOT01 01-701-1047    85 YEARS &gt;64          3
+ 7 CDISCPILOT01 01-701-1057    59 YEARS 18-64        2
+ 8 CDISCPILOT01 01-701-1097    68 YEARS &gt;64          3
+ 9 CDISCPILOT01 01-701-1111    81 YEARS &gt;64          3
+10 CDISCPILOT01 01-701-1115    84 YEARS &gt;64          3</code></pre>
+</div>
+</div>
+<p><strong>Option 3:</strong> Another option to solve this subgroups task is to use custom functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>format_agegr1 <span class="ot">&lt;-</span> <span class="cf">function</span>(age) {</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">"&lt;18"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">between</span>(age, <span class="dv">18</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"18-64"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>    age <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;64"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Missing"</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  )</span>
+<span id="cb15-8"><a href="#cb15-8"></a>}</span>
+<span id="cb15-9"><a href="#cb15-9"></a></span>
+<span id="cb15-10"><a href="#cb15-10"></a>format_agegr1n <span class="ot">&lt;-</span> <span class="cf">function</span>(age) {</span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb15-12"><a href="#cb15-12"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    <span class="fu">between</span>(age, <span class="dv">18</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    age <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb15-15"><a href="#cb15-15"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">4</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>  )</span>
+<span id="cb15-17"><a href="#cb15-17"></a>}</span>
+<span id="cb15-18"><a href="#cb15-18"></a></span>
+<span id="cb15-19"><a href="#cb15-19"></a>adsl_cust <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span></span>
+<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-21"><a href="#cb15-21"></a>    <span class="at">AGEGR1 =</span> <span class="fu">format_agegr1</span>(AGE),</span>
+<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">AGEGR1N =</span> <span class="fu">format_agegr1n</span>(AGE)</span>
+<span id="cb15-23"><a href="#cb15-23"></a>    )</span>
+<span id="cb15-24"><a href="#cb15-24"></a></span>
+<span id="cb15-25"><a href="#cb15-25"></a><span class="fu">head</span>(adsl_cust <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   STUDYID      USUBJID       AGE AGEU  AGEGR1 AGEGR1N
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015    63 YEARS 18-64        2
+ 2 CDISCPILOT01 01-701-1023    64 YEARS 18-64        2
+ 3 CDISCPILOT01 01-701-1028    71 YEARS &gt;64          3
+ 4 CDISCPILOT01 01-701-1033    74 YEARS &gt;64          3
+ 5 CDISCPILOT01 01-701-1034    77 YEARS &gt;64          3
+ 6 CDISCPILOT01 01-701-1047    85 YEARS &gt;64          3
+ 7 CDISCPILOT01 01-701-1057    59 YEARS 18-64        2
+ 8 CDISCPILOT01 01-701-1097    68 YEARS &gt;64          3
+ 9 CDISCPILOT01 01-701-1111    81 YEARS &gt;64          3
+10 CDISCPILOT01 01-701-1115    84 YEARS &gt;64          3</code></pre>
+</div>
+</div>
 <p>Using a similar philosophy we can create the numeric version of <code>RACE</code> using the controlled terminology stored in the <code>{metacore}</code> object with the <code>metatools::create_var_from_codelist()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_preds <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>   <span class="fu">create_cat_var</span>(metacore, <span class="at">ref_var =</span> AGE,</span>
-<span id="cb9-3"><a href="#cb9-3"></a>                  <span class="at">grp_var =</span> AGEGR1, <span class="at">num_grp_var =</span> AGEGR1N) <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>   <span class="fu">create_var_from_codelist</span>(<span class="at">metacore =</span> metacore,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>                            <span class="at">input_var =</span> RACE,</span>
-<span id="cb9-6"><a href="#cb9-6"></a>                            <span class="at">out_var =</span> RACEN) <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a>   <span class="co"># Removing screen failures from ARM and TRT01P to match the define and FDA guidance</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>   <span class="fu">mutate</span>(<span class="at">ARM =</span> <span class="fu">if_else</span>(ARM <span class="sc">==</span> <span class="st">"Screen Failure"</span>, <span class="cn">NA_character_</span>, ARM),</span>
-<span id="cb9-9"><a href="#cb9-9"></a>          <span class="at">TRT01P =</span> <span class="fu">if_else</span>(TRT01P <span class="sc">==</span> <span class="st">"Screen Failure"</span>, <span class="cn">NA_character_</span>, TRT01P)</span>
-<span id="cb9-10"><a href="#cb9-10"></a>   )</span>
-<span id="cb9-11"><a href="#cb9-11"></a></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="fu">head</span>(adsl_ct, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>adsl_ct <span class="ot">&lt;-</span> adsl_ct <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>   <span class="fu">create_var_from_codelist</span>(<span class="at">metacore =</span> metacore,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>                            <span class="at">input_var =</span> RACE,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>                            <span class="at">out_var =</span> RACEN)</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="fu">head</span>(adsl_ct <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, RACE, RACEN), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 17
-   STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
-   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
- 1 CDISCPILOT01 01-701… 1015   701    Plac…    63 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 2 CDISCPILOT01 01-701… 1023   701    Plac…    64 YEARS WHITE M     HISPA… &lt;NA&gt; 
- 3 CDISCPILOT01 01-701… 1028   701    Xano…    71 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 4 CDISCPILOT01 01-701… 1033   701    Xano…    74 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 5 CDISCPILOT01 01-701… 1034   701    Xano…    77 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 6 CDISCPILOT01 01-701… 1047   701    Plac…    85 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 7 CDISCPILOT01 01-701… 1057   701    &lt;NA&gt;     59 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 8 CDISCPILOT01 01-701… 1097   701    Xano…    68 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 9 CDISCPILOT01 01-701… 1111   701    Xano…    81 YEARS WHITE F     NOT H… &lt;NA&gt; 
-10 CDISCPILOT01 01-701… 1115   701    Xano…    84 YEARS WHITE M     NOT H… &lt;NA&gt; 
-# ℹ 6 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;, AGEGR1 &lt;chr&gt;,
-#   AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <code>{admiral}</code> template and <a href="https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXST"</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">dtc =</span> EXENDTC,</span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXEN"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    <span class="at">time_imputation =</span> <span class="st">"last"</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a>  )</span>
-<span id="cb11-11"><a href="#cb11-11"></a></span>
-<span id="cb11-12"><a href="#cb11-12"></a>adsl_raw <span class="ot">&lt;-</span> adsl_ct <span class="sc">%&gt;%</span></span>
-<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb11-14"><a href="#cb11-14"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
-<span id="cb11-15"><a href="#cb11-15"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb11-17"><a href="#cb11-17"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="fu">nchar</span>(EXSTDTC) <span class="sc">&gt;=</span> <span class="dv">10</span>,</span>
-<span id="cb11-18"><a href="#cb11-18"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTSDTM =</span> EXSTDTM),</span>
-<span id="cb11-19"><a href="#cb11-19"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXSTDTM, EXSEQ),</span>
-<span id="cb11-20"><a href="#cb11-20"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb11-21"><a href="#cb11-21"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb11-22"><a href="#cb11-22"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb11-23"><a href="#cb11-23"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb11-24"><a href="#cb11-24"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
-<span id="cb11-25"><a href="#cb11-25"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
-<span id="cb11-26"><a href="#cb11-26"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
-<span id="cb11-27"><a href="#cb11-27"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="fu">nchar</span>(EXENDTC) <span class="sc">&gt;=</span> <span class="dv">10</span>,</span>
-<span id="cb11-28"><a href="#cb11-28"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTEDTM =</span> EXENDTM),</span>
-<span id="cb11-29"><a href="#cb11-29"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXENDTM, EXSEQ),</span>
-<span id="cb11-30"><a href="#cb11-30"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb11-31"><a href="#cb11-31"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb11-32"><a href="#cb11-32"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb11-33"><a href="#cb11-33"></a>   <span class="fu">derive_vars_dtm_to_dt</span>(<span class="at">source_vars =</span> <span class="fu">exprs</span>(TRTSDTM, TRTEDTM)) <span class="sc">%&gt;%</span>  <span class="co"># Convert Datetime variables to date</span></span>
-<span id="cb11-34"><a href="#cb11-34"></a>   <span class="fu">derive_var_trtdurd</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-35"><a href="#cb11-35"></a>   <span class="fu">derive_var_merged_exist_flag</span>(</span>
-<span id="cb11-36"><a href="#cb11-36"></a>     <span class="at">dataset_add =</span> ex,</span>
-<span id="cb11-37"><a href="#cb11-37"></a>     <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb11-38"><a href="#cb11-38"></a>     <span class="at">new_var =</span> SAFFL,</span>
-<span id="cb11-39"><a href="#cb11-39"></a>     <span class="at">condition =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>)))</span>
-<span id="cb11-40"><a href="#cb11-40"></a>   ) <span class="sc">%&gt;%</span></span>
-<span id="cb11-41"><a href="#cb11-41"></a>   <span class="fu">drop_unspec_vars</span>(metacore) <span class="co"># This will drop any columns that aren't specified in the metacore object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following variable(s) were dropped:
-  TRTSDTM
-  TRTEDTM</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">head</span>(adsl_raw, <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 21
-   STUDYID      USUBJID SUBJID SITEID ARM     AGE AGEU  RACE  SEX   ETHNIC DTHFL
-   &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
- 1 CDISCPILOT01 01-701… 1015   701    Plac…    63 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 2 CDISCPILOT01 01-701… 1023   701    Plac…    64 YEARS WHITE M     HISPA… &lt;NA&gt; 
- 3 CDISCPILOT01 01-701… 1028   701    Xano…    71 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 4 CDISCPILOT01 01-701… 1033   701    Xano…    74 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 5 CDISCPILOT01 01-701… 1034   701    Xano…    77 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 6 CDISCPILOT01 01-701… 1047   701    Plac…    85 YEARS WHITE F     NOT H… &lt;NA&gt; 
- 7 CDISCPILOT01 01-701… 1057   701    &lt;NA&gt;     59 YEARS WHITE F     HISPA… &lt;NA&gt; 
- 8 CDISCPILOT01 01-701… 1097   701    Xano…    68 YEARS WHITE M     NOT H… &lt;NA&gt; 
- 9 CDISCPILOT01 01-701… 1111   701    Xano…    81 YEARS WHITE F     NOT H… &lt;NA&gt; 
-10 CDISCPILOT01 01-701… 1115   701    Xano…    84 YEARS WHITE M     NOT H… &lt;NA&gt; 
-# ℹ 10 more variables: RFSTDTC &lt;chr&gt;, RFENDTC &lt;chr&gt;, TRT01P &lt;chr&gt;,
-#   AGEGR1 &lt;chr&gt;, AGEGR1N &lt;dbl&gt;, RACEN &lt;dbl&gt;, TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;,
-#   TRTDURD &lt;dbl&gt;, SAFFL &lt;chr&gt;</code></pre>
+<pre><code># A tibble: 10 × 4
+   STUDYID      USUBJID     RACE  RACEN
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt; &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015 WHITE     4
+ 2 CDISCPILOT01 01-701-1023 WHITE     4
+ 3 CDISCPILOT01 01-701-1028 WHITE     4
+ 4 CDISCPILOT01 01-701-1033 WHITE     4
+ 5 CDISCPILOT01 01-701-1034 WHITE     4
+ 6 CDISCPILOT01 01-701-1047 WHITE     4
+ 7 CDISCPILOT01 01-701-1057 WHITE     4
+ 8 CDISCPILOT01 01-701-1097 WHITE     4
+ 9 CDISCPILOT01 01-701-1111 WHITE     4
+10 CDISCPILOT01 01-701-1115 WHITE     4</code></pre>
 </div>
 </div>
 </section>
-<section id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks" class="level2">
-<h2 class="anchored" data-anchor-id="apply-metadata-to-create-an-esub-xpt-and-perform-associated-checks">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h2>
-<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <code>{metatools}</code>, whereas the others focused around applying attributes to prepare for XPT come from <code>{xportr}</code>. At the end you could add a call to <code>xportr::xportr_write()</code> to produce the XPT file.</p>
+<section id="expovars" class="level3">
+<h3 class="anchored" data-anchor-id="expovars">Exposure Derivations</h3>
+<p>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <code>{admiral}</code> template and <a href="https://pharmaverse.github.io/admiral/articles/adsl.html">vignette</a> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment start time, the treatment duration, and the safety population flag. Note that the populations flags are mainly company- or study-specific, therefore, no dedicated functions are provided, but in most cases they can easily be derived using <code>admiral::derive_var_merged_exist_flag()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>adsl_raw <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>   <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>   <span class="fu">check_ct_data</span>(metacore, <span class="at">na_acceptable =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>   <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a>   <span class="fu">sort_by_key</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Sorts the rows by the sort keys</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>   <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb15-7"><a href="#cb15-7"></a>   <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>   <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb15-9"><a href="#cb15-9"></a>   <span class="fu">xportr_df_label</span>(metacore) <span class="co"># Assigns dataset label from metacore specifications</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>ex_ext <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">derive_vars_dtm</span>(</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXST"</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">derive_vars_dtm</span>(</span>
+<span id="cb19-7"><a href="#cb19-7"></a>    <span class="at">dtc =</span> EXENDTC,</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"EXEN"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9"></a>    <span class="at">time_imputation =</span> <span class="st">"last"</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  )</span>
+<span id="cb19-11"><a href="#cb19-11"></a></span>
+<span id="cb19-12"><a href="#cb19-12"></a>adsl_raw <span class="ot">&lt;-</span> adsl_ct <span class="sc">%&gt;%</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>  <span class="co"># Treatment Start Datetime</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb19-15"><a href="#cb19-15"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
+<span id="cb19-16"><a href="#cb19-16"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb19-18"><a href="#cb19-18"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(EXSTDTM),</span>
+<span id="cb19-19"><a href="#cb19-19"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTSDTM =</span> EXSTDTM, <span class="at">TRTSTMF =</span> EXSTTMF),</span>
+<span id="cb19-20"><a href="#cb19-20"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXSTDTM, EXSEQ),</span>
+<span id="cb19-21"><a href="#cb19-21"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb19-22"><a href="#cb19-22"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb19-23"><a href="#cb19-23"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-24"><a href="#cb19-24"></a>  <span class="co"># Treatment End Datetime</span></span>
+<span id="cb19-25"><a href="#cb19-25"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb19-26"><a href="#cb19-26"></a>    <span class="at">dataset_add =</span> ex_ext,</span>
+<span id="cb19-27"><a href="#cb19-27"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span></span>
+<span id="cb19-28"><a href="#cb19-28"></a>      (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span></span>
+<span id="cb19-29"><a href="#cb19-29"></a>        <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>))) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(EXENDTM),</span>
+<span id="cb19-30"><a href="#cb19-30"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">TRTEDTM =</span> EXENDTM, <span class="at">TRTETMF =</span> EXENTMF),</span>
+<span id="cb19-31"><a href="#cb19-31"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(EXENDTM, EXSEQ),</span>
+<span id="cb19-32"><a href="#cb19-32"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb19-33"><a href="#cb19-33"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb19-34"><a href="#cb19-34"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-35"><a href="#cb19-35"></a>  <span class="co"># Treatment Start and End Date</span></span>
+<span id="cb19-36"><a href="#cb19-36"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="at">source_vars =</span> <span class="fu">exprs</span>(TRTSDTM, TRTEDTM)) <span class="sc">%&gt;%</span>  <span class="co"># Convert Datetime variables to date</span></span>
+<span id="cb19-37"><a href="#cb19-37"></a>  <span class="co"># Treatment Start Time</span></span>
+<span id="cb19-38"><a href="#cb19-38"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="at">source_vars =</span> <span class="fu">exprs</span>(TRTSDTM)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-39"><a href="#cb19-39"></a>  <span class="co"># Treatment Duration</span></span>
+<span id="cb19-40"><a href="#cb19-40"></a>  <span class="fu">derive_var_trtdurd</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-41"><a href="#cb19-41"></a>  <span class="co"># Safety Population Flag</span></span>
+<span id="cb19-42"><a href="#cb19-42"></a>  <span class="fu">derive_var_merged_exist_flag</span>(</span>
+<span id="cb19-43"><a href="#cb19-43"></a>     <span class="at">dataset_add =</span> ex,</span>
+<span id="cb19-44"><a href="#cb19-44"></a>     <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-45"><a href="#cb19-45"></a>     <span class="at">new_var =</span> SAFFL,</span>
+<span id="cb19-46"><a href="#cb19-46"></a>     <span class="at">condition =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> (EXDOSE <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">str_detect</span>(EXTRT, <span class="st">"PLACEBO"</span>)))</span>
+<span id="cb19-47"><a href="#cb19-47"></a>   )</span>
+<span id="cb19-48"><a href="#cb19-48"></a></span>
+<span id="cb19-49"><a href="#cb19-49"></a><span class="fu">head</span>(adsl_raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 306 × 49
-   STUDYID     USUBJID SUBJID SITEID SITEGR1 ARM   TRT01P TRT01PN TRT01A TRT01AN
-   &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;
- 1 CDISCPILOT… 01-701… 1015   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA
- 2 CDISCPILOT… 01-701… 1023   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA
- 3 CDISCPILOT… 01-701… 1028   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
- 4 CDISCPILOT… 01-701… 1033   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
- 5 CDISCPILOT… 01-701… 1034   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
- 6 CDISCPILOT… 01-701… 1047   701    &lt;NA&gt;    Plac… Place…      NA &lt;NA&gt;        NA
- 7 CDISCPILOT… 01-701… 1057   701    &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;        NA &lt;NA&gt;        NA
- 8 CDISCPILOT… 01-701… 1097   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
- 9 CDISCPILOT… 01-701… 1111   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
-10 CDISCPILOT… 01-701… 1115   701    &lt;NA&gt;    Xano… Xanom…      NA &lt;NA&gt;        NA
-# ℹ 296 more rows
-# ℹ 39 more variables: TRTSDT &lt;date&gt;, TRTEDT &lt;date&gt;, TRTDURD &lt;dbl&gt;,
-#   AVGDD &lt;dbl&gt;, CUMDOSE &lt;dbl&gt;, AGE &lt;dbl&gt;, AGEGR1 &lt;chr&gt;, AGEGR1N &lt;dbl&gt;,
-#   AGEU &lt;chr&gt;, RACE &lt;chr&gt;, RACEN &lt;dbl&gt;, SEX &lt;chr&gt;, ETHNIC &lt;chr&gt;, SAFFL &lt;chr&gt;,
-#   ITTFL &lt;chr&gt;, EFFFL &lt;chr&gt;, COMP8FL &lt;chr&gt;, COMP16FL &lt;chr&gt;, COMP24FL &lt;chr&gt;,
-#   DISCONFL &lt;chr&gt;, DSRAEFL &lt;chr&gt;, DTHFL &lt;chr&gt;, BMIBL &lt;dbl&gt;, BMIBLGR1 &lt;chr&gt;,
-#   HEIGHTBL &lt;dbl&gt;, WEIGHTBL &lt;dbl&gt;, EDUCLVL &lt;dbl&gt;, DISONSDT &lt;dbl&gt;, …</code></pre>
+<pre><code># A tibble: 10 × 11
+   STUDYID      USUBJID     TRTSDTM             TRTSTM TRTSTMF TRTSDT    
+   &lt;chr&gt;        &lt;chr&gt;       &lt;dttm&gt;              &lt;time&gt; &lt;chr&gt;   &lt;date&gt;    
+ 1 CDISCPILOT01 01-701-1015 2014-01-02 00:00:00 00'00" H       2014-01-02
+ 2 CDISCPILOT01 01-701-1023 2012-08-05 00:00:00 00'00" H       2012-08-05
+ 3 CDISCPILOT01 01-701-1028 2013-07-19 00:00:00 00'00" H       2013-07-19
+ 4 CDISCPILOT01 01-701-1033 2014-03-18 00:00:00 00'00" H       2014-03-18
+ 5 CDISCPILOT01 01-701-1034 2014-07-01 00:00:00 00'00" H       2014-07-01
+ 6 CDISCPILOT01 01-701-1047 2013-02-12 00:00:00 00'00" H       2013-02-12
+ 7 CDISCPILOT01 01-701-1057 NA                     NA  &lt;NA&gt;    NA        
+ 8 CDISCPILOT01 01-701-1097 2014-01-01 00:00:00 00'00" H       2014-01-01
+ 9 CDISCPILOT01 01-701-1111 2012-09-07 00:00:00 00'00" H       2012-09-07
+10 CDISCPILOT01 01-701-1115 2012-11-30 00:00:00 00'00" H       2012-11-30
+# ℹ 5 more variables: TRTEDTM &lt;dttm&gt;, TRTETMF &lt;chr&gt;, TRTEDT &lt;date&gt;,
+#   TRTDURD &lt;dbl&gt;, SAFFL &lt;chr&gt;</code></pre>
 </div>
+</div>
+<p>This call returns the original data frame with the corresponding treatment variables added, such as <code>TRTSDTM</code>, <code>TRTSTMF</code>, <code>TRTEDTM</code>, <code>TRTETMF</code>, <code>TRTDURD</code>, etc., as well as the Safety Population Flag <code>SAFFL</code>. Exposure observations with incomplete date and zero doses of non placebo treatments are ignored. Missing time parts are imputed as first or last for start and end date respectively.</p>
+</section>
+<section id="treatmentvars" class="level3">
+<h3 class="anchored" data-anchor-id="treatmentvars">Derive Treatment Variables</h3>
+<p>The mapping of the treatment variables is left to the ADaM programmer. An example mapping for a study without periods may be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>adsl <span class="ot">&lt;-</span> adsl_raw <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">mutate</span>(<span class="at">TRT01P =</span> <span class="fu">if_else</span>(ARM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Screen Failure"</span>, <span class="st">"Not Assigned"</span>, <span class="st">"Not Treated"</span>), <span class="st">"No Treatment"</span>, ARM),</span>
+<span id="cb21-3"><a href="#cb21-3"></a>         <span class="at">TRT01A =</span> <span class="fu">if_else</span>(ACTARM <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Screen Failure"</span>, <span class="st">"Not Assigned"</span>, <span class="st">"Not Treated"</span>), <span class="st">"No Treatment"</span>, ACTARM)</span>
+<span id="cb21-4"><a href="#cb21-4"></a>  )</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, TRT01P, TRT01A), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   STUDYID      USUBJID     TRT01P               TRT01A              
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;                &lt;chr&gt;               
+ 1 CDISCPILOT01 01-701-1015 Placebo              Placebo             
+ 2 CDISCPILOT01 01-701-1023 Placebo              Placebo             
+ 3 CDISCPILOT01 01-701-1028 Xanomeline High Dose Xanomeline High Dose
+ 4 CDISCPILOT01 01-701-1033 Xanomeline Low Dose  Xanomeline Low Dose 
+ 5 CDISCPILOT01 01-701-1034 Xanomeline High Dose Xanomeline High Dose
+ 6 CDISCPILOT01 01-701-1047 Placebo              Placebo             
+ 7 CDISCPILOT01 01-701-1057 No Treatment         No Treatment        
+ 8 CDISCPILOT01 01-701-1097 Xanomeline Low Dose  Xanomeline Low Dose 
+ 9 CDISCPILOT01 01-701-1111 Xanomeline Low Dose  Xanomeline Low Dose 
+10 CDISCPILOT01 01-701-1115 Xanomeline Low Dose  Xanomeline Low Dose </code></pre>
+</div>
+</div>
+<p>For studies with periods see the <a href="https://pharmaverse.github.io/admiral/articles/visits_periods.html#periods_adsl">“Visit and Period Variables” vignette</a>.</p>
+<p>The corresponding numeric variables can be derived using the <code>metatools</code> package with the <code>{metacore}</code> objects that we created at the very beginning. The function <code>metatools::create_var_from_codelist()</code> is used in below example.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> TRT01P, <span class="at">out_var =</span> TRT01PN) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> TRT01A, <span class="at">out_var =</span> TRT01AN)</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span>  <span class="fu">select</span>(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   STUDYID      USUBJID     TRT01P               TRT01PN TRT01A          TRT01AN
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015 Placebo                    1 Placebo               1
+ 2 CDISCPILOT01 01-701-1023 Placebo                    1 Placebo               1
+ 3 CDISCPILOT01 01-701-1028 Xanomeline High Dose       2 Xanomeline Hig…       2
+ 4 CDISCPILOT01 01-701-1033 Xanomeline Low Dose        3 Xanomeline Low…       3
+ 5 CDISCPILOT01 01-701-1034 Xanomeline High Dose       2 Xanomeline Hig…       2
+ 6 CDISCPILOT01 01-701-1047 Placebo                    1 Placebo               1
+ 7 CDISCPILOT01 01-701-1057 No Treatment             888 No Treatment        888
+ 8 CDISCPILOT01 01-701-1097 Xanomeline Low Dose        3 Xanomeline Low…       3
+ 9 CDISCPILOT01 01-701-1111 Xanomeline Low Dose        3 Xanomeline Low…       3
+10 CDISCPILOT01 01-701-1115 Xanomeline Low Dose        3 Xanomeline Low…       3</code></pre>
+</div>
+</div>
+</section>
+<section id="dispovars" class="level3">
+<h3 class="anchored" data-anchor-id="dispovars">Derive Disposition Variables</h3>
+<p>The functions <code>admiral::derive_vars_dt()</code> and <code>admiral::derive_vars_merged()</code> can be used to derive disposition dates. First the character disposition date (<code>DS.DSSTDTC</code>) is converted to a numeric date (<code>DSSTDT</code>) calling <code>admiral::derive_vars_dt()</code>. The <code>DS</code> dataset is extended by the <code>DSSTDT</code> variable because the date is required by other derivations, e.g., <code>RANDDT</code> as well. Then the relevant disposition date is selected by adjusting the <code>filter_add</code> argument.</p>
+<p>To add the End of Study date (<code>EOSDT</code>) to the input dataset, a call could be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Convert character date to numeric date without imputation</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>ds_ext <span class="ot">&lt;-</span> <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>  ds,</span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="at">dtc =</span> DSSTDTC,</span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="at">new_vars_prefix =</span> <span class="st">"DSST"</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>)</span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb25-10"><a href="#cb25-10"></a>    <span class="at">dataset_add =</span> ds_ext,</span>
+<span id="cb25-11"><a href="#cb25-11"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">EOSDT =</span> DSSTDT),</span>
+<span id="cb25-13"><a href="#cb25-13"></a>    <span class="at">filter_add =</span> DSCAT <span class="sc">==</span> <span class="st">"DISPOSITION EVENT"</span> <span class="sc">&amp;</span> DSDECOD <span class="sc">!=</span> <span class="st">"SCREEN FAILURE"</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>admiral::derive_vars_dt()</code> function allows to impute partial dates as well. If imputation is needed and missing days are to be imputed to the first of the month and missing months to the first month of the year, set <code>highest_imputation = "M"</code>.</p>
+<p>The End of Study status (<code>EOSSTT</code>) based on <code>DSCAT</code> and <code>DSDECOD</code> from <code>DS</code> can be derived using the function <code>admiral::derive_vars_merged()</code>. The relevant observations are selected by adjusting the <code>filter_add</code> argument. A function mapping <code>DSDECOD</code> values to <code>EOSSTT</code> values can be defined and used in the <code>new_vars</code> argument. The mapping for the call below is</p>
+<ul>
+<li><code>"COMPLETED"</code> if <code>DSDECOD == "COMPLETED"</code></li>
+<li><code>NA_character_</code> if <code>DSDECOD</code> is <code>"SCREEN FAILURE"</code></li>
+<li><code>"DISCONTINUED"</code> otherwise</li>
+</ul>
+<p>Example function <code>format_eosstt()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>format_eosstt <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb26-3"><a href="#cb26-3"></a>    x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"COMPLETED"</span>) <span class="sc">~</span> <span class="st">"COMPLETED"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SCREEN FAILURE"</span>) <span class="sc">~</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"DISCONTINUED"</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>  )</span>
+<span id="cb26-7"><a href="#cb26-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The customized mapping function <code>format_eosstt()</code> can now be passed to the main function. For subjects without a disposition event the end of study status is set to <code>"ONGOING"</code> by specifying the <code>missing_values</code> argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="at">dataset_add =</span> ds,</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb27-5"><a href="#cb27-5"></a>    <span class="at">filter_add =</span> DSCAT <span class="sc">==</span> <span class="st">"DISPOSITION EVENT"</span>,</span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">EOSSTT =</span> <span class="fu">format_eosstt</span>(DSDECOD)),</span>
+<span id="cb27-7"><a href="#cb27-7"></a>    <span class="at">missing_values =</span> <span class="fu">exprs</span>(<span class="at">EOSSTT =</span> <span class="st">"ONGOING"</span>)</span>
+<span id="cb27-8"><a href="#cb27-8"></a>  )</span>
+<span id="cb27-9"><a href="#cb27-9"></a></span>
+<span id="cb27-10"><a href="#cb27-10"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, EOSDT, EOSSTT), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   STUDYID      USUBJID     EOSDT      EOSSTT      
+   &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt;     &lt;chr&gt;       
+ 1 CDISCPILOT01 01-701-1015 2014-07-02 COMPLETED   
+ 2 CDISCPILOT01 01-701-1023 2012-09-02 DISCONTINUED
+ 3 CDISCPILOT01 01-701-1028 2014-01-14 COMPLETED   
+ 4 CDISCPILOT01 01-701-1033 2014-04-14 DISCONTINUED
+ 5 CDISCPILOT01 01-701-1034 2014-12-30 COMPLETED   
+ 6 CDISCPILOT01 01-701-1047 2013-03-29 DISCONTINUED
+ 7 CDISCPILOT01 01-701-1057 NA         &lt;NA&gt;        
+ 8 CDISCPILOT01 01-701-1097 2014-07-09 COMPLETED   
+ 9 CDISCPILOT01 01-701-1111 2012-09-17 DISCONTINUED
+10 CDISCPILOT01 01-701-1115 2013-01-23 DISCONTINUED</code></pre>
+</div>
+</div>
+<p>If the derivation must be changed, the user can create his/her own function to map <code>DSDECOD</code> to a suitable <code>EOSSTT</code> value.</p>
+<p>The Imputed Death Date (<code>DTHDT</code>) can be derived using the <code>admiral::derive_vars_dt()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"DTH"</span>,</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="at">dtc =</span> DTHDTC,</span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="at">highest_imputation =</span> <span class="st">"M"</span>,</span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="at">date_imputation =</span> <span class="st">"first"</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>  ) </span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, DTHDTF), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   STUDYID      USUBJID     DTHDT  DTHDTF
+   &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt; &lt;chr&gt; 
+ 1 CDISCPILOT01 01-701-1015 NA     &lt;NA&gt;  
+ 2 CDISCPILOT01 01-701-1023 NA     &lt;NA&gt;  
+ 3 CDISCPILOT01 01-701-1028 NA     &lt;NA&gt;  
+ 4 CDISCPILOT01 01-701-1033 NA     &lt;NA&gt;  
+ 5 CDISCPILOT01 01-701-1034 NA     &lt;NA&gt;  
+ 6 CDISCPILOT01 01-701-1047 NA     &lt;NA&gt;  
+ 7 CDISCPILOT01 01-701-1057 NA     &lt;NA&gt;  
+ 8 CDISCPILOT01 01-701-1097 NA     &lt;NA&gt;  
+ 9 CDISCPILOT01 01-701-1111 NA     &lt;NA&gt;  
+10 CDISCPILOT01 01-701-1115 NA     &lt;NA&gt;  </code></pre>
+</div>
+</div>
+<p>Further dates such as Randomization Date (<code>RANDDT</code>), Screen fail date (<code>SCRFDT</code>), and Last Retrieval Date (<code>FRVDT</code>), can also be derived using <code>admiral::derive_vars_merged()</code> since these are selected dates based on filters and merged back to the original dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb31-3"><a href="#cb31-3"></a>    <span class="at">dataset_add =</span> ds_ext,</span>
+<span id="cb31-4"><a href="#cb31-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb31-5"><a href="#cb31-5"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">RANDDT =</span> DSSTDT),</span>
+<span id="cb31-6"><a href="#cb31-6"></a>    <span class="at">filter_add =</span> DSDECOD <span class="sc">==</span> <span class="st">"RANDOMIZED"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb31-9"><a href="#cb31-9"></a>    <span class="at">dataset_add =</span> ds_ext,</span>
+<span id="cb31-10"><a href="#cb31-10"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb31-11"><a href="#cb31-11"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">SCRFDT =</span> DSSTDT),</span>
+<span id="cb31-12"><a href="#cb31-12"></a>    <span class="at">filter_add =</span> DSCAT <span class="sc">==</span> <span class="st">"DISPOSITION EVENT"</span> <span class="sc">&amp;</span> DSDECOD <span class="sc">==</span> <span class="st">"SCREEN FAILURE"</span></span>
+<span id="cb31-13"><a href="#cb31-13"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-14"><a href="#cb31-14"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb31-15"><a href="#cb31-15"></a>    <span class="at">dataset_add =</span> ds_ext,</span>
+<span id="cb31-16"><a href="#cb31-16"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb31-17"><a href="#cb31-17"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">FRVDT =</span> DSSTDT),</span>
+<span id="cb31-18"><a href="#cb31-18"></a>    <span class="at">filter_add =</span> DSCAT <span class="sc">==</span> <span class="st">"OTHER EVENT"</span> <span class="sc">&amp;</span> DSDECOD <span class="sc">==</span> <span class="st">"FINAL RETRIEVAL VISIT"</span></span>
+<span id="cb31-19"><a href="#cb31-19"></a>  )</span>
+<span id="cb31-20"><a href="#cb31-20"></a></span>
+<span id="cb31-21"><a href="#cb31-21"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   STUDYID      USUBJID     RANDDT     SCRFDT     FRVDT     
+   &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt;     &lt;date&gt;     &lt;date&gt;    
+ 1 CDISCPILOT01 01-701-1015 2014-01-02 NA         NA        
+ 2 CDISCPILOT01 01-701-1023 2012-08-05 NA         2013-02-18
+ 3 CDISCPILOT01 01-701-1028 2013-07-19 NA         NA        
+ 4 CDISCPILOT01 01-701-1033 2014-03-18 NA         2014-09-15
+ 5 CDISCPILOT01 01-701-1034 2014-07-01 NA         NA        
+ 6 CDISCPILOT01 01-701-1047 2013-02-12 NA         2013-07-28
+ 7 CDISCPILOT01 01-701-1057 NA         2013-12-20 NA        
+ 8 CDISCPILOT01 01-701-1097 2014-01-01 NA         NA        
+ 9 CDISCPILOT01 01-701-1111 2012-09-07 NA         2013-02-22
+10 CDISCPILOT01 01-701-1115 2012-11-30 NA         2013-05-20</code></pre>
+</div>
+</div>
+<p>The function <code>admiral::derive_vars_duration()</code> can now be used to derive duration relative to death like the Relative Day of Death (<code>DTHADY</code>) or the numbers of days from last dose to death (<code>LDDTHELD</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="at">new_var =</span> DTHADY,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="at">start_date =</span> TRTSDT,</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">end_date =</span> DTHDT</span>
+<span id="cb33-6"><a href="#cb33-6"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb33-8"><a href="#cb33-8"></a>    <span class="at">new_var =</span> LDDTHELD,</span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="at">start_date =</span> TRTEDT,</span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="at">end_date =</span> DTHDT,</span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>  )</span>
+<span id="cb33-13"><a href="#cb33-13"></a></span>
+<span id="cb33-14"><a href="#cb33-14"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 7
+   STUDYID      USUBJID     DTHDT  TRTSDT     TRTEDT     DTHADY LDDTHELD
+   &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt; &lt;date&gt;     &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015 NA     2014-01-02 2014-07-02     NA       NA
+ 2 CDISCPILOT01 01-701-1023 NA     2012-08-05 2012-09-01     NA       NA
+ 3 CDISCPILOT01 01-701-1028 NA     2013-07-19 2014-01-14     NA       NA
+ 4 CDISCPILOT01 01-701-1033 NA     2014-03-18 2014-03-31     NA       NA
+ 5 CDISCPILOT01 01-701-1034 NA     2014-07-01 2014-12-30     NA       NA
+ 6 CDISCPILOT01 01-701-1047 NA     2013-02-12 2013-03-09     NA       NA
+ 7 CDISCPILOT01 01-701-1057 NA     NA         NA             NA       NA
+ 8 CDISCPILOT01 01-701-1097 NA     2014-01-01 2014-07-09     NA       NA
+ 9 CDISCPILOT01 01-701-1111 NA     2012-09-07 2012-09-16     NA       NA
+10 CDISCPILOT01 01-701-1115 NA     2012-11-30 2013-01-23     NA       NA</code></pre>
+</div>
+</div>
+<p>Having the Randomization Date added to the dataset also allows to derive a Population Flag. Randomized Population Flag (<code>RANDFL</code>) can be computed using a customized function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>assign_randfl <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">if_else</span>(<span class="sc">!</span><span class="fu">is.na</span>(x), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>}</span>
+<span id="cb35-4"><a href="#cb35-4"></a></span>
+<span id="cb35-5"><a href="#cb35-5"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="#cb35-6"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="at">RANDFL =</span> <span class="fu">assign_randfl</span>(RANDDT)</span>
+<span id="cb35-8"><a href="#cb35-8"></a>  )</span>
+<span id="cb35-9"><a href="#cb35-9"></a></span>
+<span id="cb35-10"><a href="#cb35-10"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, RANDDT, RANDFL), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 4
+   STUDYID      USUBJID     RANDDT     RANDFL
+   &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt;     &lt;chr&gt; 
+ 1 CDISCPILOT01 01-701-1015 2014-01-02 Y     
+ 2 CDISCPILOT01 01-701-1023 2012-08-05 Y     
+ 3 CDISCPILOT01 01-701-1028 2013-07-19 Y     
+ 4 CDISCPILOT01 01-701-1033 2014-03-18 Y     
+ 5 CDISCPILOT01 01-701-1034 2014-07-01 Y     
+ 6 CDISCPILOT01 01-701-1047 2013-02-12 Y     
+ 7 CDISCPILOT01 01-701-1057 NA         &lt;NA&gt;  
+ 8 CDISCPILOT01 01-701-1097 2014-01-01 Y     
+ 9 CDISCPILOT01 01-701-1111 2012-09-07 Y     
+10 CDISCPILOT01 01-701-1115 2012-11-30 Y     </code></pre>
+</div>
+</div>
+</section>
+<section id="deathvars" class="level3">
+<h3 class="anchored" data-anchor-id="deathvars">Derive Cause of Death</h3>
+<p>The cause of death (<code>DTHCAUS</code>) can be derived using the function <code>admiral::derive_vars_extreme_event()</code>.</p>
+<p>Since the cause of death could be collected/mapped in different domains (e.g.&nbsp;<code>DS</code>, <code>AE</code>, <code>DD</code>), it is important the user specifies the right source(s) to derive the cause of death from.</p>
+<p>For example, if the date of death is collected in the <code>AE</code> form when the AE is Fatal, the cause of death would be set to the preferred term (<code>AEDECOD</code>) of that Fatal AE, while if the date of death is collected in the <code>DS</code> form, the cause of death would be set to the disposition term (<code>DSTERM</code>). To achieve this, the <code>event()</code> objects within <code>derive_vars_extreme_event()</code> must be specified and defined such that they fit the study requirement. The function also offers the option to add some traceability variables (e.g.&nbsp;<code>DTHDOM</code> would store the domain where the date of death is collected, and <code>DTHSEQ</code>could also be added to store the <code>xxSEQ</code> value of that domain - but let’s keep it simple with <code>DTHDOM</code> only). The traceability variables should be added to the <code>event()</code> calls and included in the <code>new_vars</code> parameter of <code>derive_vars_extreme_event()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">derive_vars_extreme_event</span>(</span>
+<span id="cb37-3"><a href="#cb37-3"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb37-4"><a href="#cb37-4"></a>    <span class="at">events =</span> <span class="fu">list</span>(</span>
+<span id="cb37-5"><a href="#cb37-5"></a>      <span class="fu">event</span>(</span>
+<span id="cb37-6"><a href="#cb37-6"></a>        <span class="at">dataset_name =</span> <span class="st">"ae"</span>,</span>
+<span id="cb37-7"><a href="#cb37-7"></a>        <span class="at">condition =</span> AEOUT <span class="sc">==</span> <span class="st">"FATAL"</span>,</span>
+<span id="cb37-8"><a href="#cb37-8"></a>        <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">DTHCAUS =</span> AEDECOD, <span class="at">DTHDOM =</span> <span class="st">"AE"</span>),</span>
+<span id="cb37-9"><a href="#cb37-9"></a>      ),</span>
+<span id="cb37-10"><a href="#cb37-10"></a>      <span class="fu">event</span>(</span>
+<span id="cb37-11"><a href="#cb37-11"></a>        <span class="at">dataset_name =</span> <span class="st">"ds"</span>,</span>
+<span id="cb37-12"><a href="#cb37-12"></a>        <span class="at">condition =</span> DSDECOD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"DEATH DUE TO"</span>, DSTERM),</span>
+<span id="cb37-13"><a href="#cb37-13"></a>        <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">DTHCAUS =</span> DSTERM, <span class="at">DTHDOM =</span> <span class="st">"DS"</span>),</span>
+<span id="cb37-14"><a href="#cb37-14"></a>      )</span>
+<span id="cb37-15"><a href="#cb37-15"></a>    ),</span>
+<span id="cb37-16"><a href="#cb37-16"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">ae =</span> ae, <span class="at">ds =</span> ds),</span>
+<span id="cb37-17"><a href="#cb37-17"></a>    <span class="at">tmp_event_nr_var =</span> event_nr,</span>
+<span id="cb37-18"><a href="#cb37-18"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(event_nr),</span>
+<span id="cb37-19"><a href="#cb37-19"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb37-20"><a href="#cb37-20"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(DTHCAUS, DTHDOM)</span>
+<span id="cb37-21"><a href="#cb37-21"></a>  )</span>
+<span id="cb37-22"><a href="#cb37-22"></a></span>
+<span id="cb37-23"><a href="#cb37-23"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) <span class="sc">%&gt;%</span>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DTHDT)), <span class="at">n=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  STUDYID      USUBJID     DTHDT      DTHCAUS               DTHDOM
+  &lt;chr&gt;        &lt;chr&gt;       &lt;date&gt;     &lt;chr&gt;                 &lt;chr&gt; 
+1 CDISCPILOT01 01-701-1211 2013-01-14 SUDDEN DEATH          AE    
+2 CDISCPILOT01 01-704-1445 2014-11-01 COMPLETED SUICIDE     AE    
+3 CDISCPILOT01 01-710-1083 2013-08-02 MYOCARDIAL INFARCTION AE    </code></pre>
+</div>
+</div>
+</section>
+<section id="othgrpvars" class="level3">
+<h3 class="anchored" data-anchor-id="othgrpvars">Derive Other Grouping Variables</h3>
+<p>Following the derivation of <code>DTHCAUS</code> and related traceability variables, it is then possible to derive grouping variables such as death categories (<code>DTHCGRx</code>), region categories (<code>REGIONx</code>), and race categories (<code>RACEx</code>). As previously seen with <code>AGEGR1</code>, the <code>admiral::derive_vars_cat()</code> function available from version 1.2.0 can create such groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>region1_lookup <span class="ot">&lt;-</span> <span class="fu">exprs</span>(</span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="sc">~</span>condition,                              <span class="sc">~</span>REGION1, <span class="sc">~</span>REGION1N,</span>
+<span id="cb39-3"><a href="#cb39-3"></a>  COUNTRY <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CAN"</span>, <span class="st">"USA"</span>),     <span class="st">"North America"</span>,         <span class="dv">1</span>,</span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="sc">!</span><span class="fu">is.na</span>(COUNTRY),              <span class="st">"Rest of the World"</span>,         <span class="dv">2</span>,</span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">is.na</span>(COUNTRY),                         <span class="st">"Missing"</span>,         <span class="dv">3</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>)</span>
+<span id="cb39-7"><a href="#cb39-7"></a></span>
+<span id="cb39-8"><a href="#cb39-8"></a>racegr1_lookup <span class="ot">&lt;-</span> <span class="fu">exprs</span>(</span>
+<span id="cb39-9"><a href="#cb39-9"></a>  <span class="sc">~</span>condition,              <span class="sc">~</span>RACEGR1, <span class="sc">~</span>RACEGR1N,</span>
+<span id="cb39-10"><a href="#cb39-10"></a>  RACE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"WHITE"</span>),     <span class="st">"White"</span>,        <span class="dv">1</span>,</span>
+<span id="cb39-11"><a href="#cb39-11"></a>  RACE <span class="sc">!=</span> <span class="st">"WHITE"</span>,      <span class="st">"Non-white"</span>,        <span class="dv">2</span>,</span>
+<span id="cb39-12"><a href="#cb39-12"></a>  <span class="fu">is.na</span>(RACE),            <span class="st">"Missing"</span>,        <span class="dv">3</span></span>
+<span id="cb39-13"><a href="#cb39-13"></a>  )</span>
+<span id="cb39-14"><a href="#cb39-14"></a></span>
+<span id="cb39-15"><a href="#cb39-15"></a>dthcgr1_lookup <span class="ot">&lt;-</span> <span class="fu">exprs</span>(</span>
+<span id="cb39-16"><a href="#cb39-16"></a>  <span class="sc">~</span>condition,                                                                                 <span class="sc">~</span>DTHCGR1, <span class="sc">~</span>DTHCGR1N,</span>
+<span id="cb39-17"><a href="#cb39-17"></a>  DTHDOM <span class="sc">==</span> <span class="st">"AE"</span>,                                                                      <span class="st">"ADVERSE EVENT"</span>,         <span class="dv">1</span>,</span>
+<span id="cb39-18"><a href="#cb39-18"></a>  <span class="sc">!</span><span class="fu">is.na</span>(DTHDOM) <span class="sc">&amp;</span> <span class="fu">str_detect</span>(DTHCAUS, <span class="st">"(PROGRESSIVE DISEASE|DISEASE RELAPSE)"</span>), <span class="st">"PROGRESSIVE DISEASE"</span>,         <span class="dv">2</span>,</span>
+<span id="cb39-19"><a href="#cb39-19"></a>  <span class="sc">!</span><span class="fu">is.na</span>(DTHDOM) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHCAUS),                                                            <span class="st">"OTHER"</span>,         <span class="dv">3</span>,</span>
+<span id="cb39-20"><a href="#cb39-20"></a>  <span class="fu">is.na</span>(DTHDOM),                                                                         <span class="cn">NA_character_</span>,        <span class="cn">NA</span></span>
+<span id="cb39-21"><a href="#cb39-21"></a>)</span>
+<span id="cb39-22"><a href="#cb39-22"></a></span>
+<span id="cb39-23"><a href="#cb39-23"></a></span>
+<span id="cb39-24"><a href="#cb39-24"></a>adsl <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span> </span>
+<span id="cb39-25"><a href="#cb39-25"></a>  <span class="fu">derive_vars_cat</span>(</span>
+<span id="cb39-26"><a href="#cb39-26"></a>    <span class="at">definition =</span> region1_lookup</span>
+<span id="cb39-27"><a href="#cb39-27"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-28"><a href="#cb39-28"></a>  <span class="fu">derive_vars_cat</span>(</span>
+<span id="cb39-29"><a href="#cb39-29"></a>    <span class="at">definition =</span> racegr1_lookup</span>
+<span id="cb39-30"><a href="#cb39-30"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-31"><a href="#cb39-31"></a>  <span class="fu">derive_vars_cat</span>(</span>
+<span id="cb39-32"><a href="#cb39-32"></a>    <span class="at">definition =</span> dthcgr1_lookup</span>
+<span id="cb39-33"><a href="#cb39-33"></a>  ) </span>
+<span id="cb39-34"><a href="#cb39-34"></a>  </span>
+<span id="cb39-35"><a href="#cb39-35"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), <span class="at">n=</span><span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 8
+   STUDYID      USUBJID     COUNTRY REGION1      REGION1N RACE  RACEGR1 RACEGR1N
+   &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
+ 1 CDISCPILOT01 01-701-1015 USA     North Ameri…        1 WHITE White          1
+ 2 CDISCPILOT01 01-701-1023 USA     North Ameri…        1 WHITE White          1
+ 3 CDISCPILOT01 01-701-1028 USA     North Ameri…        1 WHITE White          1
+ 4 CDISCPILOT01 01-701-1033 USA     North Ameri…        1 WHITE White          1
+ 5 CDISCPILOT01 01-701-1034 USA     North Ameri…        1 WHITE White          1
+ 6 CDISCPILOT01 01-701-1047 USA     North Ameri…        1 WHITE White          1
+ 7 CDISCPILOT01 01-701-1057 USA     North Ameri…        1 WHITE White          1
+ 8 CDISCPILOT01 01-701-1097 USA     North Ameri…        1 WHITE White          1
+ 9 CDISCPILOT01 01-701-1111 USA     North Ameri…        1 WHITE White          1
+10 CDISCPILOT01 01-701-1115 USA     North Ameri…        1 WHITE White          1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">head</span>(adsl <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(DTHDT)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), <span class="at">n=</span><span class="dv">10</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 6
+  STUDYID      USUBJID     DTHDOM DTHCAUS               DTHCGR1       DTHCGR1N
+  &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;                 &lt;chr&gt;            &lt;dbl&gt;
+1 CDISCPILOT01 01-701-1211 AE     SUDDEN DEATH          ADVERSE EVENT        1
+2 CDISCPILOT01 01-704-1445 AE     COMPLETED SUICIDE     ADVERSE EVENT        1
+3 CDISCPILOT01 01-710-1083 AE     MYOCARDIAL INFARCTION ADVERSE EVENT        1</code></pre>
+</div>
+</div>
+</section>
+<section id="metacore_xportr" class="level3">
+<h3 class="anchored" data-anchor-id="metacore_xportr">Apply Metadata to Create an eSub XPT and Perform Associated Checks</h3>
+<p>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <code>{metatools}</code>, whereas the others focused around applying attributes to prepare for XPT come from <code>{xportr}</code>. At the end you can produce the XPT file calling <code>xportr::xportr_write()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a>adsl <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>  <span class="fu">check_ct_data</span>(metacore, <span class="at">na_acceptable =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Sorts the rows by the sort keys</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb43-9"><a href="#cb43-9"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb43-11"><a href="#cb43-11"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span>  <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1222,202 +1682,555 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="an">title:</span><span class="co"> "ADSL"</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co">---</span></span>
-<span id="cb17-5"><a href="#cb17-5"></a></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="in">```</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="fu">## Introduction</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a></span>
-<span id="cb17-13"><a href="#cb17-13"></a>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <span class="in">`ADSL`</span> end-to-end, using <span class="in">`{pharmaversesdtm}`</span> SDTM data as input.</span>
-<span id="cb17-14"><a href="#cb17-14"></a></span>
-<span id="cb17-15"><a href="#cb17-15"></a>The four packages used with a brief description of their purpose are as follows:</span>
-<span id="cb17-16"><a href="#cb17-16"></a></span>
-<span id="cb17-17"><a href="#cb17-17"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{metacore}`</span><span class="co">](https://atorus-research.github.io/metacore/)</span>: provides harmonized metadata/specifications object.</span>
-<span id="cb17-18"><a href="#cb17-18"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{metatools}`</span><span class="co">](https://pharmaverse.github.io/metatools/)</span>: uses the provided metadata to build/enhance and check the dataset.</span>
-<span id="cb17-19"><a href="#cb17-19"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{admiral}`</span><span class="co">](https://pharmaverse.github.io/admiral/index.html)</span>: provides the ADaM derivations.</span>
-<span id="cb17-20"><a href="#cb17-20"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{xportr}`</span><span class="co">](https://atorus-research.github.io/xportr/)</span>: delivers the SAS transport file (XPT) and eSub checks.</span>
-<span id="cb17-21"><a href="#cb17-21"></a></span>
-<span id="cb17-22"><a href="#cb17-22"></a>It is important to understand <span class="in">`{metacore}`</span> objects by reading through the above linked package site, as these are fundamental to being able to use <span class="in">`{metatools}`</span> and <span class="in">`{xportr}`</span>. Each company may need to build a specification reader to create these objects from their source standard specification templates.</span>
-<span id="cb17-23"><a href="#cb17-23"></a></span>
-<span id="cb17-24"><a href="#cb17-24"></a><span class="fu">## Load Data and Required pharmaverse Packages</span></span>
-<span id="cb17-25"><a href="#cb17-25"></a></span>
-<span id="cb17-26"><a href="#cb17-26"></a>The first step is to load our pharmaverse packages and input data.</span>
-<span id="cb17-27"><a href="#cb17-27"></a></span>
-<span id="cb17-28"><a href="#cb17-28"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb17-29"><a href="#cb17-29"></a><span class="in">library(metacore)</span></span>
-<span id="cb17-30"><a href="#cb17-30"></a><span class="in">library(metatools)</span></span>
-<span id="cb17-31"><a href="#cb17-31"></a><span class="in">library(pharmaversesdtm)</span></span>
-<span id="cb17-32"><a href="#cb17-32"></a><span class="in">library(admiral)</span></span>
-<span id="cb17-33"><a href="#cb17-33"></a><span class="in">library(xportr)</span></span>
-<span id="cb17-34"><a href="#cb17-34"></a><span class="in">library(dplyr)</span></span>
-<span id="cb17-35"><a href="#cb17-35"></a><span class="in">library(tidyr)</span></span>
-<span id="cb17-36"><a href="#cb17-36"></a><span class="in">library(lubridate)</span></span>
-<span id="cb17-37"><a href="#cb17-37"></a><span class="in">library(stringr)</span></span>
-<span id="cb17-38"><a href="#cb17-38"></a></span>
-<span id="cb17-39"><a href="#cb17-39"></a><span class="in"># Read in input SDTM data</span></span>
-<span id="cb17-40"><a href="#cb17-40"></a><span class="in">data("dm")</span></span>
-<span id="cb17-41"><a href="#cb17-41"></a><span class="in">data("ex")</span></span>
-<span id="cb17-42"><a href="#cb17-42"></a><span class="in">```</span></span>
-<span id="cb17-43"><a href="#cb17-43"></a></span>
-<span id="cb17-44"><a href="#cb17-44"></a>Next we need to load the specification file in the form of a <span class="in">`{metacore}`</span> object.</span>
-<span id="cb17-45"><a href="#cb17-45"></a></span>
-<span id="cb17-46"><a href="#cb17-46"></a><span class="in">```{r metacore, warning=FALSE, results='hold'}</span></span>
-<span id="cb17-47"><a href="#cb17-47"></a><span class="in"># Read in metacore object</span></span>
-<span id="cb17-48"><a href="#cb17-48"></a><span class="in">load(metacore_example("pilot_ADaM.rda"))</span></span>
-<span id="cb17-49"><a href="#cb17-49"></a><span class="in">metacore &lt;- metacore %&gt;%</span></span>
-<span id="cb17-50"><a href="#cb17-50"></a><span class="in">   select_dataset("ADSL")</span></span>
-<span id="cb17-51"><a href="#cb17-51"></a><span class="in">```</span></span>
-<span id="cb17-52"><a href="#cb17-52"></a></span>
-<span id="cb17-53"><a href="#cb17-53"></a>Here is an example of how a <span class="in">`{metacore}`</span> object looks showing variable level metadata:</span>
-<span id="cb17-54"><a href="#cb17-54"></a></span>
-<span id="cb17-57"><a href="#cb17-57"></a><span class="in">```{r}</span></span>
-<span id="cb17-58"><a href="#cb17-58"></a>metacore<span class="sc">$</span>ds_vars</span>
-<span id="cb17-59"><a href="#cb17-59"></a><span class="in">```</span></span>
-<span id="cb17-60"><a href="#cb17-60"></a></span>
-<span id="cb17-61"><a href="#cb17-61"></a><span class="fu">## Start Building Derivations</span></span>
-<span id="cb17-62"><a href="#cb17-62"></a></span>
-<span id="cb17-63"><a href="#cb17-63"></a>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.</span>
-<span id="cb17-64"><a href="#cb17-64"></a></span>
-<span id="cb17-65"><a href="#cb17-65"></a>In this case all the columns come from <span class="in">`DM`</span> so that is the only dataset we will pass into <span class="in">`metatools::build_from_derived()`</span>. The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</span>
-<span id="cb17-66"><a href="#cb17-66"></a></span>
-<span id="cb17-67"><a href="#cb17-67"></a><span class="in">```{r demographics}</span></span>
-<span id="cb17-68"><a href="#cb17-68"></a><span class="in">adsl_preds &lt;- build_from_derived(metacore,</span></span>
-<span id="cb17-69"><a href="#cb17-69"></a><span class="in">                                 ds_list = list("dm" = dm),</span></span>
-<span id="cb17-70"><a href="#cb17-70"></a><span class="in">                                 predecessor_only = FALSE, keep = TRUE)</span></span>
-<span id="cb17-71"><a href="#cb17-71"></a><span class="in">head(adsl_preds, n=10)</span></span>
-<span id="cb17-72"><a href="#cb17-72"></a><span class="in">```</span></span>
-<span id="cb17-73"><a href="#cb17-73"></a></span>
-<span id="cb17-74"><a href="#cb17-74"></a>Now we have the base dataset, we can start to create some variables. We can start with creating the subgroups using the controlled terminology, in this case <span class="in">`AGEGR1`</span>. The metacore object holds all the metadata needed to make <span class="in">`ADSL`</span>. Part of that metadata is the controlled terminology, which can help automate the creation of subgroups. We can look into the <span class="in">`{metacore}`</span> object and see the controlled terminology for <span class="in">`AGEGR1`</span>.</span>
-<span id="cb17-75"><a href="#cb17-75"></a></span>
-<span id="cb17-78"><a href="#cb17-78"></a><span class="in">```{r}</span></span>
-<span id="cb17-79"><a href="#cb17-79"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span>
-<span id="cb17-80"><a href="#cb17-80"></a><span class="in">```</span></span>
-<span id="cb17-81"><a href="#cb17-81"></a></span>
-<span id="cb17-82"><a href="#cb17-82"></a>Because this controlled terminology is written in a fairly standard format we can automate the creation of <span class="in">`AGEGR1`</span>. The function <span class="in">`metatools::create_cat_var()`</span> takes in a <span class="in">`{metacore}`</span> object, a reference variable - in this case <span class="in">`AGE`</span> because that is the continuous variable <span class="in">`AGEGR1`</span> is created from, and the name of the sub-grouped variable. It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</span>
-<span id="cb17-83"><a href="#cb17-83"></a></span>
-<span id="cb17-84"><a href="#cb17-84"></a>Using a similar philosophy we can create the numeric version of <span class="in">`RACE`</span> using the controlled terminology stored in the <span class="in">`{metacore}`</span> object with the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
-<span id="cb17-85"><a href="#cb17-85"></a></span>
-<span id="cb17-86"><a href="#cb17-86"></a><span class="in">```{r ct}</span></span>
-<span id="cb17-87"><a href="#cb17-87"></a><span class="in">adsl_ct &lt;- adsl_preds %&gt;%</span></span>
-<span id="cb17-88"><a href="#cb17-88"></a><span class="in">   create_cat_var(metacore, ref_var = AGE,</span></span>
-<span id="cb17-89"><a href="#cb17-89"></a><span class="in">                  grp_var = AGEGR1, num_grp_var = AGEGR1N) %&gt;%</span></span>
-<span id="cb17-90"><a href="#cb17-90"></a><span class="in">   create_var_from_codelist(metacore = metacore,</span></span>
-<span id="cb17-91"><a href="#cb17-91"></a><span class="in">                            input_var = RACE,</span></span>
-<span id="cb17-92"><a href="#cb17-92"></a><span class="in">                            out_var = RACEN) %&gt;%</span></span>
-<span id="cb17-93"><a href="#cb17-93"></a><span class="in">   # Removing screen failures from ARM and TRT01P to match the define and FDA guidance</span></span>
-<span id="cb17-94"><a href="#cb17-94"></a><span class="in">   mutate(ARM = if_else(ARM == "Screen Failure", NA_character_, ARM),</span></span>
-<span id="cb17-95"><a href="#cb17-95"></a><span class="in">          TRT01P = if_else(TRT01P == "Screen Failure", NA_character_, TRT01P)</span></span>
-<span id="cb17-96"><a href="#cb17-96"></a><span class="in">   )</span></span>
-<span id="cb17-97"><a href="#cb17-97"></a></span>
-<span id="cb17-98"><a href="#cb17-98"></a><span class="in">head(adsl_ct, n=10)</span></span>
-<span id="cb17-99"><a href="#cb17-99"></a><span class="in">```</span></span>
-<span id="cb17-100"><a href="#cb17-100"></a></span>
-<span id="cb17-101"><a href="#cb17-101"></a>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables. Here you could refer directly to using the <span class="in">`{admiral}`</span> template and <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://pharmaverse.github.io/admiral/cran-release/articles/adsl.html)</span> in practice, but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there. We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment duration, and the safety population flag.</span>
-<span id="cb17-102"><a href="#cb17-102"></a></span>
-<span id="cb17-103"><a href="#cb17-103"></a><span class="in">```{r exposure}</span></span>
-<span id="cb17-104"><a href="#cb17-104"></a><span class="in">ex_ext &lt;- ex %&gt;%</span></span>
-<span id="cb17-105"><a href="#cb17-105"></a><span class="in">  derive_vars_dtm(</span></span>
-<span id="cb17-106"><a href="#cb17-106"></a><span class="in">    dtc = EXSTDTC,</span></span>
-<span id="cb17-107"><a href="#cb17-107"></a><span class="in">    new_vars_prefix = "EXST"</span></span>
-<span id="cb17-108"><a href="#cb17-108"></a><span class="in">  ) %&gt;%</span></span>
-<span id="cb17-109"><a href="#cb17-109"></a><span class="in">  derive_vars_dtm(</span></span>
-<span id="cb17-110"><a href="#cb17-110"></a><span class="in">    dtc = EXENDTC,</span></span>
-<span id="cb17-111"><a href="#cb17-111"></a><span class="in">    new_vars_prefix = "EXEN",</span></span>
-<span id="cb17-112"><a href="#cb17-112"></a><span class="in">    time_imputation = "last"</span></span>
-<span id="cb17-113"><a href="#cb17-113"></a><span class="in">  )</span></span>
-<span id="cb17-114"><a href="#cb17-114"></a></span>
-<span id="cb17-115"><a href="#cb17-115"></a><span class="in">adsl_raw &lt;- adsl_ct %&gt;%</span></span>
-<span id="cb17-116"><a href="#cb17-116"></a><span class="in">  derive_vars_merged(</span></span>
-<span id="cb17-117"><a href="#cb17-117"></a><span class="in">    dataset_add = ex_ext,</span></span>
-<span id="cb17-118"><a href="#cb17-118"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
-<span id="cb17-119"><a href="#cb17-119"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
-<span id="cb17-120"><a href="#cb17-120"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; nchar(EXSTDTC) &gt;= 10,</span></span>
-<span id="cb17-121"><a href="#cb17-121"></a><span class="in">    new_vars = exprs(TRTSDTM = EXSTDTM),</span></span>
-<span id="cb17-122"><a href="#cb17-122"></a><span class="in">    order = exprs(EXSTDTM, EXSEQ),</span></span>
-<span id="cb17-123"><a href="#cb17-123"></a><span class="in">    mode = "first",</span></span>
-<span id="cb17-124"><a href="#cb17-124"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
-<span id="cb17-125"><a href="#cb17-125"></a><span class="in">  ) %&gt;%</span></span>
-<span id="cb17-126"><a href="#cb17-126"></a><span class="in">  derive_vars_merged(</span></span>
-<span id="cb17-127"><a href="#cb17-127"></a><span class="in">    dataset_add = ex_ext,</span></span>
-<span id="cb17-128"><a href="#cb17-128"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
-<span id="cb17-129"><a href="#cb17-129"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
-<span id="cb17-130"><a href="#cb17-130"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; nchar(EXENDTC) &gt;= 10,</span></span>
-<span id="cb17-131"><a href="#cb17-131"></a><span class="in">    new_vars = exprs(TRTEDTM = EXENDTM),</span></span>
-<span id="cb17-132"><a href="#cb17-132"></a><span class="in">    order = exprs(EXENDTM, EXSEQ),</span></span>
-<span id="cb17-133"><a href="#cb17-133"></a><span class="in">    mode = "last",</span></span>
-<span id="cb17-134"><a href="#cb17-134"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
-<span id="cb17-135"><a href="#cb17-135"></a><span class="in">  ) %&gt;%</span></span>
-<span id="cb17-136"><a href="#cb17-136"></a><span class="in">   derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %&gt;%  # Convert Datetime variables to date</span></span>
-<span id="cb17-137"><a href="#cb17-137"></a><span class="in">   derive_var_trtdurd() %&gt;%</span></span>
-<span id="cb17-138"><a href="#cb17-138"></a><span class="in">   derive_var_merged_exist_flag(</span></span>
-<span id="cb17-139"><a href="#cb17-139"></a><span class="in">     dataset_add = ex,</span></span>
-<span id="cb17-140"><a href="#cb17-140"></a><span class="in">     by_vars = exprs(STUDYID, USUBJID),</span></span>
-<span id="cb17-141"><a href="#cb17-141"></a><span class="in">     new_var = SAFFL,</span></span>
-<span id="cb17-142"><a href="#cb17-142"></a><span class="in">     condition = (EXDOSE &gt; 0 | (EXDOSE == 0 &amp; str_detect(EXTRT, "PLACEBO")))</span></span>
-<span id="cb17-143"><a href="#cb17-143"></a><span class="in">   ) %&gt;%</span></span>
-<span id="cb17-144"><a href="#cb17-144"></a><span class="in">   drop_unspec_vars(metacore) # This will drop any columns that aren't specified in the metacore object</span></span>
-<span id="cb17-145"><a href="#cb17-145"></a></span>
-<span id="cb17-146"><a href="#cb17-146"></a><span class="in">head(adsl_raw, n=10)</span></span>
-<span id="cb17-147"><a href="#cb17-147"></a><span class="in">```</span></span>
-<span id="cb17-148"><a href="#cb17-148"></a></span>
-<span id="cb17-149"><a href="#cb17-149"></a><span class="in">```{r, warning=FALSE, message=FALSE, include=FALSE}</span></span>
-<span id="cb17-150"><a href="#cb17-150"></a><span class="in"># Create dummy variables to match metacore specs to avoid later errors</span></span>
-<span id="cb17-151"><a href="#cb17-151"></a><span class="in"># In practice these would be mainly created using derivation functions from admiral</span></span>
-<span id="cb17-152"><a href="#cb17-152"></a><span class="in">adsl_raw &lt;- adsl_raw %&gt;%</span></span>
-<span id="cb17-153"><a href="#cb17-153"></a><span class="in">  mutate(</span></span>
-<span id="cb17-154"><a href="#cb17-154"></a><span class="in">    SITEGR1 = NA,</span></span>
-<span id="cb17-155"><a href="#cb17-155"></a><span class="in">    TRT01PN = NA,</span></span>
-<span id="cb17-156"><a href="#cb17-156"></a><span class="in">    TRT01A = NA,</span></span>
-<span id="cb17-157"><a href="#cb17-157"></a><span class="in">    TRT01AN = NA,</span></span>
-<span id="cb17-158"><a href="#cb17-158"></a><span class="in">    AVGDD = NA,</span></span>
-<span id="cb17-159"><a href="#cb17-159"></a><span class="in">    CUMDOSE = NA,</span></span>
-<span id="cb17-160"><a href="#cb17-160"></a><span class="in">    ITTFL = NA,</span></span>
-<span id="cb17-161"><a href="#cb17-161"></a><span class="in">    EFFFL = NA,</span></span>
-<span id="cb17-162"><a href="#cb17-162"></a><span class="in">    COMP8FL = NA,</span></span>
-<span id="cb17-163"><a href="#cb17-163"></a><span class="in">    COMP16FL = NA,</span></span>
-<span id="cb17-164"><a href="#cb17-164"></a><span class="in">    COMP24FL = NA,</span></span>
-<span id="cb17-165"><a href="#cb17-165"></a><span class="in">    DISCONFL = NA,</span></span>
-<span id="cb17-166"><a href="#cb17-166"></a><span class="in">    DSRAEFL = NA,</span></span>
-<span id="cb17-167"><a href="#cb17-167"></a><span class="in">    BMIBL = NA,</span></span>
-<span id="cb17-168"><a href="#cb17-168"></a><span class="in">    BMIBLGR1 = NA,</span></span>
-<span id="cb17-169"><a href="#cb17-169"></a><span class="in">    HEIGHTBL = NA,</span></span>
-<span id="cb17-170"><a href="#cb17-170"></a><span class="in">    WEIGHTBL = NA,</span></span>
-<span id="cb17-171"><a href="#cb17-171"></a><span class="in">    EDUCLVL = NA,</span></span>
-<span id="cb17-172"><a href="#cb17-172"></a><span class="in">    DISONSDT = NA,</span></span>
-<span id="cb17-173"><a href="#cb17-173"></a><span class="in">    DURDIS = NA,</span></span>
-<span id="cb17-174"><a href="#cb17-174"></a><span class="in">    DURDSGR1 = NA,</span></span>
-<span id="cb17-175"><a href="#cb17-175"></a><span class="in">    VISIT1DT = NA,</span></span>
-<span id="cb17-176"><a href="#cb17-176"></a><span class="in">    VISNUMEN = NA,</span></span>
-<span id="cb17-177"><a href="#cb17-177"></a><span class="in">    RFENDT = NA,</span></span>
-<span id="cb17-178"><a href="#cb17-178"></a><span class="in">    DCDECOD = NA,</span></span>
-<span id="cb17-179"><a href="#cb17-179"></a><span class="in">    EOSSTT = NA,</span></span>
-<span id="cb17-180"><a href="#cb17-180"></a><span class="in">    DCSREAS = NA,</span></span>
-<span id="cb17-181"><a href="#cb17-181"></a><span class="in">    MMSETOT = NA</span></span>
-<span id="cb17-182"><a href="#cb17-182"></a><span class="in">  )</span></span>
-<span id="cb17-183"><a href="#cb17-183"></a><span class="in">```</span></span>
-<span id="cb17-184"><a href="#cb17-184"></a></span>
-<span id="cb17-185"><a href="#cb17-185"></a><span class="fu">## Apply Metadata to Create an eSub XPT and Perform Associated Checks</span></span>
-<span id="cb17-186"><a href="#cb17-186"></a></span>
-<span id="cb17-187"><a href="#cb17-187"></a>Now we have all the variables defined we can run some checks before applying the necessary formatting. The top four functions performing checks and sorting/ordering come from <span class="in">`{metatools}`</span>, whereas the others focused around applying attributes to prepare for XPT come from <span class="in">`{xportr}`</span>. At the end you could add a call to <span class="in">`xportr::xportr_write()`</span> to produce the XPT file.</span>
-<span id="cb17-188"><a href="#cb17-188"></a></span>
-<span id="cb17-189"><a href="#cb17-189"></a><span class="in">```{r checks, warning=FALSE, message=FALSE}</span></span>
-<span id="cb17-190"><a href="#cb17-190"></a></span>
-<span id="cb17-191"><a href="#cb17-191"></a><span class="in">adsl_raw %&gt;%</span></span>
-<span id="cb17-192"><a href="#cb17-192"></a><span class="in">   check_variables(metacore) %&gt;% # Check all variables specified are present and no more</span></span>
-<span id="cb17-193"><a href="#cb17-193"></a><span class="in">   check_ct_data(metacore, na_acceptable = TRUE) %&gt;% # Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb17-194"><a href="#cb17-194"></a><span class="in">   order_cols(metacore) %&gt;% # Orders the columns according to the spec</span></span>
-<span id="cb17-195"><a href="#cb17-195"></a><span class="in">   sort_by_key(metacore) %&gt;% # Sorts the rows by the sort keys</span></span>
-<span id="cb17-196"><a href="#cb17-196"></a><span class="in">   xportr_type(metacore, domain = "ADSL") %&gt;% # Coerce variable type to match spec</span></span>
-<span id="cb17-197"><a href="#cb17-197"></a><span class="in">   xportr_length(metacore) %&gt;% # Assigns SAS length from a variable level metadata</span></span>
-<span id="cb17-198"><a href="#cb17-198"></a><span class="in">   xportr_label(metacore) %&gt;% # Assigns variable label from metacore specifications</span></span>
-<span id="cb17-199"><a href="#cb17-199"></a><span class="in">   xportr_df_label(metacore) # Assigns dataset label from metacore specifications</span></span>
-<span id="cb17-200"><a href="#cb17-200"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb44" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1"></a><span class="co">---</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="an">title:</span><span class="co"> "ADSL"</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a><span class="co">---</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a></span>
+<span id="cb44-6"><a href="#cb44-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
+<span id="cb44-9"><a href="#cb44-9"></a><span class="in">```</span></span>
+<span id="cb44-10"><a href="#cb44-10"></a></span>
+<span id="cb44-11"><a href="#cb44-11"></a><span class="fu">## Introduction</span></span>
+<span id="cb44-12"><a href="#cb44-12"></a></span>
+<span id="cb44-13"><a href="#cb44-13"></a>This guide will show you how four pharmaverse packages, along with some from tidyverse, can be used to create an ADaM such as <span class="in">`ADSL`</span> end-to-end, using <span class="in">`{pharmaversesdtm}`</span> SDTM data as input.</span>
+<span id="cb44-14"><a href="#cb44-14"></a></span>
+<span id="cb44-15"><a href="#cb44-15"></a>The four packages used with a brief description of their purpose are as follows:</span>
+<span id="cb44-16"><a href="#cb44-16"></a></span>
+<span id="cb44-17"><a href="#cb44-17"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{metacore}`</span><span class="co">](https://atorus-research.github.io/metacore/)</span>: provides harmonized metadata/specifications object.</span>
+<span id="cb44-18"><a href="#cb44-18"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{metatools}`</span><span class="co">](https://pharmaverse.github.io/metatools/)</span>: uses the provided metadata to build/enhance and check the dataset.</span>
+<span id="cb44-19"><a href="#cb44-19"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{admiral}`</span><span class="co">](https://pharmaverse.github.io/admiral/index.html)</span>: provides the ADaM derivations.</span>
+<span id="cb44-20"><a href="#cb44-20"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{xportr}`</span><span class="co">](https://atorus-research.github.io/xportr/)</span>: delivers the SAS transport file (XPT) and eSub checks.</span>
+<span id="cb44-21"><a href="#cb44-21"></a></span>
+<span id="cb44-22"><a href="#cb44-22"></a>It is important to understand <span class="in">`{metacore}`</span> objects by reading through the above linked package site, as these are fundamental to being able to use <span class="in">`{metatools}`</span> and <span class="in">`{xportr}`</span>.</span>
+<span id="cb44-23"><a href="#cb44-23"></a>Each company may need to build a specification reader to create these objects from their source standard specification templates.</span>
+<span id="cb44-24"><a href="#cb44-24"></a></span>
+<span id="cb44-25"><a href="#cb44-25"></a><span class="fu">## Programming Flow</span></span>
+<span id="cb44-26"><a href="#cb44-26"></a></span>
+<span id="cb44-27"><a href="#cb44-27"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Load Data and Required pharmaverse Packages</span><span class="co">](#loaddata)</span></span>
+<span id="cb44-28"><a href="#cb44-28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Start Building Derivations</span><span class="co">](#dmvars)</span></span>
+<span id="cb44-29"><a href="#cb44-29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Grouping Variables</span><span class="co">](#groupingvars)</span></span>
+<span id="cb44-30"><a href="#cb44-30"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Exposure Derivations</span><span class="co">](#expo)</span></span>
+<span id="cb44-31"><a href="#cb44-31"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Treatment Variables</span><span class="co">](#treatmentvars)</span></span>
+<span id="cb44-32"><a href="#cb44-32"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Disposition Variables</span><span class="co">](#dispovars)</span></span>
+<span id="cb44-33"><a href="#cb44-33"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Cause of Death</span><span class="co">](#deathvars)</span></span>
+<span id="cb44-34"><a href="#cb44-34"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Derive Other Grouping Variables</span><span class="co">](#othgrpvars)</span></span>
+<span id="cb44-35"><a href="#cb44-35"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Apply Metadata to Create an eSub XPT and Perform Associated Checks</span><span class="co">](#metacore_xportr)</span></span>
+<span id="cb44-36"><a href="#cb44-36"></a></span>
+<span id="cb44-37"><a href="#cb44-37"></a><span class="fu">## Load Data and Required pharmaverse Packages {#loaddata}</span></span>
+<span id="cb44-38"><a href="#cb44-38"></a></span>
+<span id="cb44-39"><a href="#cb44-39"></a>The first step is to load our pharmaverse packages and input data.</span>
+<span id="cb44-40"><a href="#cb44-40"></a></span>
+<span id="cb44-41"><a href="#cb44-41"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb44-42"><a href="#cb44-42"></a><span class="in">library(metacore)</span></span>
+<span id="cb44-43"><a href="#cb44-43"></a><span class="in">library(metatools)</span></span>
+<span id="cb44-44"><a href="#cb44-44"></a><span class="in">library(pharmaversesdtm)</span></span>
+<span id="cb44-45"><a href="#cb44-45"></a><span class="in">library(admiral)</span></span>
+<span id="cb44-46"><a href="#cb44-46"></a><span class="in">library(xportr)</span></span>
+<span id="cb44-47"><a href="#cb44-47"></a><span class="in">library(dplyr)</span></span>
+<span id="cb44-48"><a href="#cb44-48"></a><span class="in">library(tidyr)</span></span>
+<span id="cb44-49"><a href="#cb44-49"></a><span class="in">library(lubridate)</span></span>
+<span id="cb44-50"><a href="#cb44-50"></a><span class="in">library(stringr)</span></span>
+<span id="cb44-51"><a href="#cb44-51"></a></span>
+<span id="cb44-52"><a href="#cb44-52"></a><span class="in"># Read in input SDTM data</span></span>
+<span id="cb44-53"><a href="#cb44-53"></a><span class="in">dm &lt;- pharmaversesdtm::dm</span></span>
+<span id="cb44-54"><a href="#cb44-54"></a><span class="in">ds &lt;- pharmaversesdtm::ds</span></span>
+<span id="cb44-55"><a href="#cb44-55"></a><span class="in">ex &lt;- pharmaversesdtm::ex</span></span>
+<span id="cb44-56"><a href="#cb44-56"></a><span class="in">ae &lt;- pharmaversesdtm::ae</span></span>
+<span id="cb44-57"><a href="#cb44-57"></a><span class="in">vs &lt;- pharmaversesdtm::vs</span></span>
+<span id="cb44-58"><a href="#cb44-58"></a><span class="in">suppdm &lt;- pharmaversesdtm::suppdm</span></span>
+<span id="cb44-59"><a href="#cb44-59"></a></span>
+<span id="cb44-60"><a href="#cb44-60"></a><span class="in"># When SAS datasets are imported into R using haven::read_sas(), missing</span></span>
+<span id="cb44-61"><a href="#cb44-61"></a><span class="in"># character values from SAS appear as "" characters in R, instead of appearing</span></span>
+<span id="cb44-62"><a href="#cb44-62"></a><span class="in"># as NA values. Further details can be obtained via the following link:</span></span>
+<span id="cb44-63"><a href="#cb44-63"></a><span class="in"># https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values</span></span>
+<span id="cb44-64"><a href="#cb44-64"></a><span class="in">dm &lt;- convert_blanks_to_na(dm)</span></span>
+<span id="cb44-65"><a href="#cb44-65"></a><span class="in">ds &lt;- convert_blanks_to_na(ds)</span></span>
+<span id="cb44-66"><a href="#cb44-66"></a><span class="in">ex &lt;- convert_blanks_to_na(ex)</span></span>
+<span id="cb44-67"><a href="#cb44-67"></a><span class="in">ae &lt;- convert_blanks_to_na(ae)</span></span>
+<span id="cb44-68"><a href="#cb44-68"></a><span class="in">vs &lt;- convert_blanks_to_na(vs)</span></span>
+<span id="cb44-69"><a href="#cb44-69"></a><span class="in">suppdm &lt;- convert_blanks_to_na(suppdm)</span></span>
+<span id="cb44-70"><a href="#cb44-70"></a><span class="in">```</span></span>
+<span id="cb44-71"><a href="#cb44-71"></a></span>
+<span id="cb44-72"><a href="#cb44-72"></a>While loading our input data, we can combine the <span class="in">`dm`</span> domain and the <span class="in">`suppdm`</span> supplementary domain for easier use in the next steps.</span>
+<span id="cb44-73"><a href="#cb44-73"></a>Using the <span class="in">`metatools::combine_supp()`</span> function avoids the need to manually transpose and merge the supplementary dataset with the corresponding domain.</span>
+<span id="cb44-74"><a href="#cb44-74"></a></span>
+<span id="cb44-75"><a href="#cb44-75"></a><span class="in">```{r combine, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb44-76"><a href="#cb44-76"></a><span class="in"># Combine Parent and Supp - very handy! ----</span></span>
+<span id="cb44-77"><a href="#cb44-77"></a><span class="in">dm_suppdm &lt;- combine_supp(dm, suppdm)</span></span>
+<span id="cb44-78"><a href="#cb44-78"></a><span class="in">```</span></span>
+<span id="cb44-79"><a href="#cb44-79"></a></span>
+<span id="cb44-80"><a href="#cb44-80"></a>Next we need to load the specification file in the form of a <span class="in">`{metacore}`</span> object.</span>
+<span id="cb44-81"><a href="#cb44-81"></a></span>
+<span id="cb44-82"><a href="#cb44-82"></a><span class="in">```{r metacore, warning=FALSE, results='hold'}</span></span>
+<span id="cb44-83"><a href="#cb44-83"></a><span class="in"># Read in metacore object</span></span>
+<span id="cb44-84"><a href="#cb44-84"></a><span class="in">metacore &lt;- spec_to_metacore(</span></span>
+<span id="cb44-85"><a href="#cb44-85"></a><span class="in">  path = "./metadata/safety_specs.xlsx",</span></span>
+<span id="cb44-86"><a href="#cb44-86"></a><span class="in">  # All datasets are described in the same sheet</span></span>
+<span id="cb44-87"><a href="#cb44-87"></a><span class="in">  where_sep_sheet = FALSE</span></span>
+<span id="cb44-88"><a href="#cb44-88"></a><span class="in">) %&gt;%</span></span>
+<span id="cb44-89"><a href="#cb44-89"></a><span class="in">  select_dataset("ADSL")</span></span>
+<span id="cb44-90"><a href="#cb44-90"></a><span class="in">```</span></span>
+<span id="cb44-91"><a href="#cb44-91"></a></span>
+<span id="cb44-92"><a href="#cb44-92"></a><span class="fu">## Start Building Derivations {#dmvars}</span></span>
+<span id="cb44-93"><a href="#cb44-93"></a></span>
+<span id="cb44-94"><a href="#cb44-94"></a>The first derivation step we are going to do is to pull through all the columns that come directly from the SDTM datasets.</span>
+<span id="cb44-95"><a href="#cb44-95"></a>In this case, all the required columns come from <span class="in">`DM`</span> and <span class="in">`SUPPDM`</span>, so these are the only datasets we will pass into <span class="in">`metatools::build_from_derived()`</span>.</span>
+<span id="cb44-96"><a href="#cb44-96"></a>As previously mentioned, we have combined <span class="in">`DM`</span>and <span class="in">`SUPPDM`</span> data for easier use. Specifically, the parameters from <span class="in">`SUPPDM`</span>, contained within the <span class="in">`[SUPPDM.QNAM]`</span> variable, have been transposed into separate variables.</span>
+<span id="cb44-97"><a href="#cb44-97"></a>However the ADaMs specifications still reference <span class="in">`DM`</span> and <span class="in">`SUPPDM`</span> as the provenance of the variables. Setting <span class="in">`ds_list = list("dm" = dm_suppdm)`</span> alone does not retrieve the variables from <span class="in">`SUPPDM`</span>. Therefore, it is necessary to call these two references separately within the <span class="in">`metatools::build_from_derived()`</span> function, even though they ultimately point to the same combined <span class="in">`dm_suppdm`</span> dataset.</span>
+<span id="cb44-98"><a href="#cb44-98"></a></span>
+<span id="cb44-99"><a href="#cb44-99"></a>The resulting dataset has all the columns combined and any columns that needed renaming between SDTM and ADaM are renamed.</span>
+<span id="cb44-100"><a href="#cb44-100"></a></span>
+<span id="cb44-101"><a href="#cb44-101"></a><span class="in">```{r demographics}</span></span>
+<span id="cb44-102"><a href="#cb44-102"></a><span class="in">adsl_preds &lt;- build_from_derived(metacore,</span></span>
+<span id="cb44-103"><a href="#cb44-103"></a><span class="in">                                 ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),</span></span>
+<span id="cb44-104"><a href="#cb44-104"></a><span class="in">                                 predecessor_only = FALSE, keep = FALSE)</span></span>
+<span id="cb44-105"><a href="#cb44-105"></a></span>
+<span id="cb44-106"><a href="#cb44-106"></a><span class="in">head(adsl_preds, n=10)</span></span>
+<span id="cb44-107"><a href="#cb44-107"></a><span class="in">```</span></span>
+<span id="cb44-108"><a href="#cb44-108"></a></span>
+<span id="cb44-109"><a href="#cb44-109"></a><span class="fu">### Grouping Variables {#groupingvars}</span></span>
+<span id="cb44-110"><a href="#cb44-110"></a></span>
+<span id="cb44-111"><a href="#cb44-111"></a>Now we have the base dataset, we can start to create some variables.</span>
+<span id="cb44-112"><a href="#cb44-112"></a>There are a few options to create grouping variables and their corresponding numeric variables.</span>
+<span id="cb44-113"><a href="#cb44-113"></a></span>
+<span id="cb44-114"><a href="#cb44-114"></a>**Option 1:** We can start with creating the subgroups using the **`admiral::derive_vars_cat()`** function available since <span class="in">`{admiral}`</span> v1.2.0. </span>
+<span id="cb44-115"><a href="#cb44-115"></a>This function is especially useful if more than one variable needs to be created for each condition, e.g., <span class="in">`AGEGR1`</span> and <span class="in">`AGEGR1N`</span>.</span>
+<span id="cb44-116"><a href="#cb44-116"></a>Additionally, one needs to be careful when considering the order of the conditions in the lookup table.</span>
+<span id="cb44-117"><a href="#cb44-117"></a>The category is assigned based on the first match. That means *catch-all* conditions must come after specific conditions, e.g. <span class="in">`!is.na(AGE)`</span> must come after <span class="in">`between(AGE, 18, 64)`</span>.</span>
+<span id="cb44-118"><a href="#cb44-118"></a></span>
+<span id="cb44-119"><a href="#cb44-119"></a><span class="in">```{r grouping_option_1}</span></span>
+<span id="cb44-120"><a href="#cb44-120"></a><span class="in">agegr1_lookup &lt;- exprs(</span></span>
+<span id="cb44-121"><a href="#cb44-121"></a><span class="in">  ~condition,            ~AGEGR1, ~AGEGR1N,</span></span>
+<span id="cb44-122"><a href="#cb44-122"></a><span class="in">  is.na(AGE),          "Missing",        4,</span></span>
+<span id="cb44-123"><a href="#cb44-123"></a><span class="in">  AGE &lt; 18,                "&lt;18",        1,</span></span>
+<span id="cb44-124"><a href="#cb44-124"></a><span class="in">  between(AGE, 18, 64),  "18-64",        2,</span></span>
+<span id="cb44-125"><a href="#cb44-125"></a><span class="in">  !is.na(AGE),             "&gt;64",        3</span></span>
+<span id="cb44-126"><a href="#cb44-126"></a><span class="in">)</span></span>
+<span id="cb44-127"><a href="#cb44-127"></a></span>
+<span id="cb44-128"><a href="#cb44-128"></a><span class="in">adsl_cat &lt;- derive_vars_cat(</span></span>
+<span id="cb44-129"><a href="#cb44-129"></a><span class="in">   dataset = adsl_preds,</span></span>
+<span id="cb44-130"><a href="#cb44-130"></a><span class="in">   definition = agegr1_lookup</span></span>
+<span id="cb44-131"><a href="#cb44-131"></a><span class="in"> )</span></span>
+<span id="cb44-132"><a href="#cb44-132"></a></span>
+<span id="cb44-133"><a href="#cb44-133"></a><span class="in">head(adsl_cat %&gt;% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)</span></span>
+<span id="cb44-134"><a href="#cb44-134"></a><span class="in">```</span></span>
+<span id="cb44-135"><a href="#cb44-135"></a></span>
+<span id="cb44-136"><a href="#cb44-136"></a>**Option 2:** We can also create the subgroups using the controlled terminology, in this case <span class="in">`AGEGR1`</span>.</span>
+<span id="cb44-137"><a href="#cb44-137"></a>The metacore object holds all the metadata needed to make <span class="in">`ADSL`</span>. Part of that metadata is the controlled terminology,</span>
+<span id="cb44-138"><a href="#cb44-138"></a>which can help automate the creation of subgroups. We can look into the <span class="in">`{metacore}`</span> object and see the controlled terminology for <span class="in">`AGEGR1`</span>.</span>
+<span id="cb44-139"><a href="#cb44-139"></a></span>
+<span id="cb44-142"><a href="#cb44-142"></a><span class="in">```{r}</span></span>
+<span id="cb44-143"><a href="#cb44-143"></a><span class="fu">get_control_term</span>(metacore, <span class="at">variable =</span> AGEGR1)</span>
+<span id="cb44-144"><a href="#cb44-144"></a><span class="in">```</span></span>
+<span id="cb44-145"><a href="#cb44-145"></a></span>
+<span id="cb44-146"><a href="#cb44-146"></a>Because this controlled terminology is written in a fairly standard format we can automate the creation of <span class="in">`AGEGR1`</span>.</span>
+<span id="cb44-147"><a href="#cb44-147"></a>The function <span class="in">`metatools::create_cat_var()`</span> takes in a <span class="in">`{metacore}`</span> object, a reference variable -</span>
+<span id="cb44-148"><a href="#cb44-148"></a>in this case <span class="in">`AGE`</span> because that is the continuous variable <span class="in">`AGEGR1`</span> is created from, and the name of the sub-grouped variable.</span>
+<span id="cb44-149"><a href="#cb44-149"></a>It will take the controlled terminology from the sub-grouped variable and group the reference variables accordingly.</span>
+<span id="cb44-150"><a href="#cb44-150"></a></span>
+<span id="cb44-151"><a href="#cb44-151"></a><span class="in">```{r grouping_option_2}</span></span>
+<span id="cb44-152"><a href="#cb44-152"></a><span class="in">adsl_ct &lt;- adsl_preds %&gt;%</span></span>
+<span id="cb44-153"><a href="#cb44-153"></a><span class="in">   create_cat_var(metacore, ref_var = AGE,</span></span>
+<span id="cb44-154"><a href="#cb44-154"></a><span class="in">                  grp_var = AGEGR1, num_grp_var = AGEGR1N)</span></span>
+<span id="cb44-155"><a href="#cb44-155"></a></span>
+<span id="cb44-156"><a href="#cb44-156"></a><span class="in">head(adsl_ct %&gt;% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)</span></span>
+<span id="cb44-157"><a href="#cb44-157"></a><span class="in">```</span></span>
+<span id="cb44-158"><a href="#cb44-158"></a></span>
+<span id="cb44-159"><a href="#cb44-159"></a>**Option 3:** Another option to solve this subgroups task is to use custom functions. </span>
+<span id="cb44-160"><a href="#cb44-160"></a></span>
+<span id="cb44-161"><a href="#cb44-161"></a><span class="in">```{r grouping_option_3}</span></span>
+<span id="cb44-162"><a href="#cb44-162"></a><span class="in">format_agegr1 &lt;- function(age) {</span></span>
+<span id="cb44-163"><a href="#cb44-163"></a><span class="in">  case_when(</span></span>
+<span id="cb44-164"><a href="#cb44-164"></a><span class="in">    age &lt; 18 ~ "&lt;18",</span></span>
+<span id="cb44-165"><a href="#cb44-165"></a><span class="in">    between(age, 18, 64) ~ "18-64",</span></span>
+<span id="cb44-166"><a href="#cb44-166"></a><span class="in">    age &gt; 64 ~ "&gt;64",</span></span>
+<span id="cb44-167"><a href="#cb44-167"></a><span class="in">    TRUE ~ "Missing"</span></span>
+<span id="cb44-168"><a href="#cb44-168"></a><span class="in">  )</span></span>
+<span id="cb44-169"><a href="#cb44-169"></a><span class="in">}</span></span>
+<span id="cb44-170"><a href="#cb44-170"></a></span>
+<span id="cb44-171"><a href="#cb44-171"></a><span class="in">format_agegr1n &lt;- function(age) {</span></span>
+<span id="cb44-172"><a href="#cb44-172"></a><span class="in">  case_when(</span></span>
+<span id="cb44-173"><a href="#cb44-173"></a><span class="in">    age &lt; 18 ~ 1,</span></span>
+<span id="cb44-174"><a href="#cb44-174"></a><span class="in">    between(age, 18, 64) ~ 2,</span></span>
+<span id="cb44-175"><a href="#cb44-175"></a><span class="in">    age &gt; 64 ~ 3,</span></span>
+<span id="cb44-176"><a href="#cb44-176"></a><span class="in">    TRUE ~ 4</span></span>
+<span id="cb44-177"><a href="#cb44-177"></a><span class="in">  )</span></span>
+<span id="cb44-178"><a href="#cb44-178"></a><span class="in">}</span></span>
+<span id="cb44-179"><a href="#cb44-179"></a></span>
+<span id="cb44-180"><a href="#cb44-180"></a><span class="in">adsl_cust &lt;- adsl_preds %&gt;%</span></span>
+<span id="cb44-181"><a href="#cb44-181"></a><span class="in">  mutate(</span></span>
+<span id="cb44-182"><a href="#cb44-182"></a><span class="in">    AGEGR1 = format_agegr1(AGE),</span></span>
+<span id="cb44-183"><a href="#cb44-183"></a><span class="in">    AGEGR1N = format_agegr1n(AGE)</span></span>
+<span id="cb44-184"><a href="#cb44-184"></a><span class="in">    )</span></span>
+<span id="cb44-185"><a href="#cb44-185"></a></span>
+<span id="cb44-186"><a href="#cb44-186"></a><span class="in">head(adsl_cust %&gt;% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)</span></span>
+<span id="cb44-187"><a href="#cb44-187"></a><span class="in">```</span></span>
+<span id="cb44-188"><a href="#cb44-188"></a></span>
+<span id="cb44-189"><a href="#cb44-189"></a>Using a similar philosophy we can create the numeric version of <span class="in">`RACE`</span> using the controlled terminology stored in the <span class="in">`{metacore}`</span> object with the <span class="in">`metatools::create_var_from_codelist()`</span> function.</span>
+<span id="cb44-190"><a href="#cb44-190"></a></span>
+<span id="cb44-191"><a href="#cb44-191"></a><span class="in">```{r codelist}</span></span>
+<span id="cb44-192"><a href="#cb44-192"></a><span class="in">adsl_ct &lt;- adsl_ct %&gt;%</span></span>
+<span id="cb44-193"><a href="#cb44-193"></a><span class="in">   create_var_from_codelist(metacore = metacore,</span></span>
+<span id="cb44-194"><a href="#cb44-194"></a><span class="in">                            input_var = RACE,</span></span>
+<span id="cb44-195"><a href="#cb44-195"></a><span class="in">                            out_var = RACEN)</span></span>
+<span id="cb44-196"><a href="#cb44-196"></a></span>
+<span id="cb44-197"><a href="#cb44-197"></a><span class="in">head(adsl_ct %&gt;% select(STUDYID, USUBJID, RACE, RACEN), n=10)</span></span>
+<span id="cb44-198"><a href="#cb44-198"></a><span class="in">```</span></span>
+<span id="cb44-199"><a href="#cb44-199"></a></span>
+<span id="cb44-200"><a href="#cb44-200"></a><span class="fu">### Exposure Derivations {#expovars}</span></span>
+<span id="cb44-201"><a href="#cb44-201"></a></span>
+<span id="cb44-202"><a href="#cb44-202"></a>Now we have sorted out what we can easily do with controlled terminology it is time to start deriving some variables.</span>
+<span id="cb44-203"><a href="#cb44-203"></a>Here you could refer directly to using the <span class="in">`{admiral}`</span> template and <span class="co">[</span><span class="ot">vignette</span><span class="co">](https://pharmaverse.github.io/admiral/articles/adsl.html)</span> in practice,</span>
+<span id="cb44-204"><a href="#cb44-204"></a>but for the purpose of this end-to-end ADaM vignette we will share a few exposure derivations from there.</span>
+<span id="cb44-205"><a href="#cb44-205"></a>We derive the start and end of treatment (which requires dates to first be converted from DTC to DTM), the treatment start time, the treatment duration, and the safety population flag.</span>
+<span id="cb44-206"><a href="#cb44-206"></a>Note that the populations flags are mainly company- or study-specific, therefore, no dedicated functions are provided, but in most cases they can easily be derived using <span class="in">`admiral::derive_var_merged_exist_flag()`</span>.</span>
+<span id="cb44-207"><a href="#cb44-207"></a></span>
+<span id="cb44-208"><a href="#cb44-208"></a><span class="in">```{r exposure}</span></span>
+<span id="cb44-209"><a href="#cb44-209"></a><span class="in">ex_ext &lt;- ex %&gt;%</span></span>
+<span id="cb44-210"><a href="#cb44-210"></a><span class="in">  derive_vars_dtm(</span></span>
+<span id="cb44-211"><a href="#cb44-211"></a><span class="in">    dtc = EXSTDTC,</span></span>
+<span id="cb44-212"><a href="#cb44-212"></a><span class="in">    new_vars_prefix = "EXST"</span></span>
+<span id="cb44-213"><a href="#cb44-213"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb44-214"><a href="#cb44-214"></a><span class="in">  derive_vars_dtm(</span></span>
+<span id="cb44-215"><a href="#cb44-215"></a><span class="in">    dtc = EXENDTC,</span></span>
+<span id="cb44-216"><a href="#cb44-216"></a><span class="in">    new_vars_prefix = "EXEN",</span></span>
+<span id="cb44-217"><a href="#cb44-217"></a><span class="in">    time_imputation = "last"</span></span>
+<span id="cb44-218"><a href="#cb44-218"></a><span class="in">  )</span></span>
+<span id="cb44-219"><a href="#cb44-219"></a></span>
+<span id="cb44-220"><a href="#cb44-220"></a><span class="in">adsl_raw &lt;- adsl_ct %&gt;%</span></span>
+<span id="cb44-221"><a href="#cb44-221"></a><span class="in">  # Treatment Start Datetime</span></span>
+<span id="cb44-222"><a href="#cb44-222"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-223"><a href="#cb44-223"></a><span class="in">    dataset_add = ex_ext,</span></span>
+<span id="cb44-224"><a href="#cb44-224"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
+<span id="cb44-225"><a href="#cb44-225"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
+<span id="cb44-226"><a href="#cb44-226"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; !is.na(EXSTDTM),</span></span>
+<span id="cb44-227"><a href="#cb44-227"></a><span class="in">    new_vars = exprs(TRTSDTM = EXSTDTM, TRTSTMF = EXSTTMF),</span></span>
+<span id="cb44-228"><a href="#cb44-228"></a><span class="in">    order = exprs(EXSTDTM, EXSEQ),</span></span>
+<span id="cb44-229"><a href="#cb44-229"></a><span class="in">    mode = "first",</span></span>
+<span id="cb44-230"><a href="#cb44-230"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb44-231"><a href="#cb44-231"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb44-232"><a href="#cb44-232"></a><span class="in">  # Treatment End Datetime</span></span>
+<span id="cb44-233"><a href="#cb44-233"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-234"><a href="#cb44-234"></a><span class="in">    dataset_add = ex_ext,</span></span>
+<span id="cb44-235"><a href="#cb44-235"></a><span class="in">    filter_add = (EXDOSE &gt; 0 |</span></span>
+<span id="cb44-236"><a href="#cb44-236"></a><span class="in">      (EXDOSE == 0 &amp;</span></span>
+<span id="cb44-237"><a href="#cb44-237"></a><span class="in">        str_detect(EXTRT, "PLACEBO"))) &amp; !is.na(EXENDTM),</span></span>
+<span id="cb44-238"><a href="#cb44-238"></a><span class="in">    new_vars = exprs(TRTEDTM = EXENDTM, TRTETMF = EXENTMF),</span></span>
+<span id="cb44-239"><a href="#cb44-239"></a><span class="in">    order = exprs(EXENDTM, EXSEQ),</span></span>
+<span id="cb44-240"><a href="#cb44-240"></a><span class="in">    mode = "last",</span></span>
+<span id="cb44-241"><a href="#cb44-241"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb44-242"><a href="#cb44-242"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb44-243"><a href="#cb44-243"></a><span class="in">  # Treatment Start and End Date</span></span>
+<span id="cb44-244"><a href="#cb44-244"></a><span class="in">  derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %&gt;%  # Convert Datetime variables to date</span></span>
+<span id="cb44-245"><a href="#cb44-245"></a><span class="in">  # Treatment Start Time</span></span>
+<span id="cb44-246"><a href="#cb44-246"></a><span class="in">  derive_vars_dtm_to_tm(source_vars = exprs(TRTSDTM)) %&gt;% </span></span>
+<span id="cb44-247"><a href="#cb44-247"></a><span class="in">  # Treatment Duration</span></span>
+<span id="cb44-248"><a href="#cb44-248"></a><span class="in">  derive_var_trtdurd() %&gt;%</span></span>
+<span id="cb44-249"><a href="#cb44-249"></a><span class="in">  # Safety Population Flag</span></span>
+<span id="cb44-250"><a href="#cb44-250"></a><span class="in">  derive_var_merged_exist_flag(</span></span>
+<span id="cb44-251"><a href="#cb44-251"></a><span class="in">     dataset_add = ex,</span></span>
+<span id="cb44-252"><a href="#cb44-252"></a><span class="in">     by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-253"><a href="#cb44-253"></a><span class="in">     new_var = SAFFL,</span></span>
+<span id="cb44-254"><a href="#cb44-254"></a><span class="in">     condition = (EXDOSE &gt; 0 | (EXDOSE == 0 &amp; str_detect(EXTRT, "PLACEBO")))</span></span>
+<span id="cb44-255"><a href="#cb44-255"></a><span class="in">   )</span></span>
+<span id="cb44-256"><a href="#cb44-256"></a></span>
+<span id="cb44-257"><a href="#cb44-257"></a><span class="in">head(adsl_raw %&gt;% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)</span></span>
+<span id="cb44-258"><a href="#cb44-258"></a><span class="in">```</span></span>
+<span id="cb44-259"><a href="#cb44-259"></a></span>
+<span id="cb44-260"><a href="#cb44-260"></a>This call returns the original data frame with the corresponding treatment variables added, such as <span class="in">`TRTSDTM`</span>, <span class="in">`TRTSTMF`</span>, <span class="in">`TRTEDTM`</span>, <span class="in">`TRTETMF`</span>, <span class="in">`TRTDURD`</span>, etc.,</span>
+<span id="cb44-261"><a href="#cb44-261"></a>as well as the Safety Population Flag <span class="in">`SAFFL`</span>.</span>
+<span id="cb44-262"><a href="#cb44-262"></a>Exposure observations with incomplete date and zero doses of non placebo treatments are ignored.</span>
+<span id="cb44-263"><a href="#cb44-263"></a>Missing time parts are imputed as first or last for start and end date respectively.</span>
+<span id="cb44-264"><a href="#cb44-264"></a></span>
+<span id="cb44-265"><a href="#cb44-265"></a><span class="fu">### Derive Treatment Variables {#treatmentvars}</span></span>
+<span id="cb44-266"><a href="#cb44-266"></a></span>
+<span id="cb44-267"><a href="#cb44-267"></a>The mapping of the treatment variables is left to the ADaM programmer. An example mapping for a study without periods may be:</span>
+<span id="cb44-268"><a href="#cb44-268"></a></span>
+<span id="cb44-269"><a href="#cb44-269"></a><span class="in">```{r treatment_char, eval=TRUE}</span></span>
+<span id="cb44-270"><a href="#cb44-270"></a><span class="in">adsl &lt;- adsl_raw %&gt;%</span></span>
+<span id="cb44-271"><a href="#cb44-271"></a><span class="in">  mutate(TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),</span></span>
+<span id="cb44-272"><a href="#cb44-272"></a><span class="in">         TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)</span></span>
+<span id="cb44-273"><a href="#cb44-273"></a><span class="in">  )</span></span>
+<span id="cb44-274"><a href="#cb44-274"></a></span>
+<span id="cb44-275"><a href="#cb44-275"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, TRT01P, TRT01A), n=10)</span></span>
+<span id="cb44-276"><a href="#cb44-276"></a><span class="in">```</span></span>
+<span id="cb44-277"><a href="#cb44-277"></a></span>
+<span id="cb44-278"><a href="#cb44-278"></a>For studies with periods see the <span class="co">[</span><span class="ot">"Visit and Period Variables" vignette</span><span class="co">](https://pharmaverse.github.io/admiral/articles/visits_periods.html#periods_adsl)</span>.</span>
+<span id="cb44-279"><a href="#cb44-279"></a></span>
+<span id="cb44-280"><a href="#cb44-280"></a>The corresponding numeric variables can be derived using the <span class="in">`metatools`</span> package with the <span class="in">`{metacore}`</span> objects</span>
+<span id="cb44-281"><a href="#cb44-281"></a>that we created at the very beginning. The function <span class="in">`metatools::create_var_from_codelist()`</span> is used in below example.</span>
+<span id="cb44-282"><a href="#cb44-282"></a></span>
+<span id="cb44-283"><a href="#cb44-283"></a><span class="in">```{r treatment_num, eval=TRUE}</span></span>
+<span id="cb44-284"><a href="#cb44-284"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-285"><a href="#cb44-285"></a><span class="in">  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %&gt;%</span></span>
+<span id="cb44-286"><a href="#cb44-286"></a><span class="in">  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)</span></span>
+<span id="cb44-287"><a href="#cb44-287"></a></span>
+<span id="cb44-288"><a href="#cb44-288"></a><span class="in">head(adsl %&gt;%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)</span></span>
+<span id="cb44-289"><a href="#cb44-289"></a><span class="in">```</span></span>
+<span id="cb44-290"><a href="#cb44-290"></a></span>
+<span id="cb44-291"><a href="#cb44-291"></a><span class="fu">### Derive Disposition Variables {#dispovars}</span></span>
+<span id="cb44-292"><a href="#cb44-292"></a></span>
+<span id="cb44-293"><a href="#cb44-293"></a>The functions <span class="in">`admiral::derive_vars_dt()`</span> and <span class="in">`admiral::derive_vars_merged()`</span> can be used to derive disposition dates.</span>
+<span id="cb44-294"><a href="#cb44-294"></a>First the character disposition date (<span class="in">`DS.DSSTDTC`</span>) is converted to a numeric date (<span class="in">`DSSTDT`</span>) calling <span class="in">`admiral::derive_vars_dt()`</span>.</span>
+<span id="cb44-295"><a href="#cb44-295"></a>The <span class="in">`DS`</span> dataset is extended by the <span class="in">`DSSTDT`</span> variable because the date is required by other derivations, e.g., <span class="in">`RANDDT`</span> as well.</span>
+<span id="cb44-296"><a href="#cb44-296"></a>Then the relevant disposition date is selected by adjusting the <span class="in">`filter_add`</span> argument.</span>
+<span id="cb44-297"><a href="#cb44-297"></a></span>
+<span id="cb44-298"><a href="#cb44-298"></a>To add the End of Study date (<span class="in">`EOSDT`</span>) to the input dataset, a call could be:</span>
+<span id="cb44-299"><a href="#cb44-299"></a></span>
+<span id="cb44-300"><a href="#cb44-300"></a><span class="in">```{r disposition, eval=TRUE}</span></span>
+<span id="cb44-301"><a href="#cb44-301"></a><span class="in"># Convert character date to numeric date without imputation</span></span>
+<span id="cb44-302"><a href="#cb44-302"></a><span class="in">ds_ext &lt;- derive_vars_dt(</span></span>
+<span id="cb44-303"><a href="#cb44-303"></a><span class="in">  ds,</span></span>
+<span id="cb44-304"><a href="#cb44-304"></a><span class="in">  dtc = DSSTDTC,</span></span>
+<span id="cb44-305"><a href="#cb44-305"></a><span class="in">  new_vars_prefix = "DSST"</span></span>
+<span id="cb44-306"><a href="#cb44-306"></a><span class="in">)</span></span>
+<span id="cb44-307"><a href="#cb44-307"></a></span>
+<span id="cb44-308"><a href="#cb44-308"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-309"><a href="#cb44-309"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-310"><a href="#cb44-310"></a><span class="in">    dataset_add = ds_ext,</span></span>
+<span id="cb44-311"><a href="#cb44-311"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-312"><a href="#cb44-312"></a><span class="in">    new_vars = exprs(EOSDT = DSSTDT),</span></span>
+<span id="cb44-313"><a href="#cb44-313"></a><span class="in">    filter_add = DSCAT == "DISPOSITION EVENT" &amp; DSDECOD != "SCREEN FAILURE"</span></span>
+<span id="cb44-314"><a href="#cb44-314"></a><span class="in">  )</span></span>
+<span id="cb44-315"><a href="#cb44-315"></a><span class="in">```</span></span>
+<span id="cb44-316"><a href="#cb44-316"></a></span>
+<span id="cb44-317"><a href="#cb44-317"></a>The <span class="in">`admiral::derive_vars_dt()`</span> function allows to impute partial dates as well.</span>
+<span id="cb44-318"><a href="#cb44-318"></a>If imputation is needed and missing days are to be imputed to the first of the month and</span>
+<span id="cb44-319"><a href="#cb44-319"></a>missing months to the first month of the year, set <span class="in">`highest_imputation = "M"`</span>.</span>
+<span id="cb44-320"><a href="#cb44-320"></a></span>
+<span id="cb44-321"><a href="#cb44-321"></a></span>
+<span id="cb44-322"><a href="#cb44-322"></a>The End of Study status (<span class="in">`EOSSTT`</span>) based on <span class="in">`DSCAT`</span> and <span class="in">`DSDECOD`</span> from <span class="in">`DS`</span> can be derived</span>
+<span id="cb44-323"><a href="#cb44-323"></a>using the function <span class="in">`admiral::derive_vars_merged()`</span>.</span>
+<span id="cb44-324"><a href="#cb44-324"></a>The relevant observations are selected by adjusting the <span class="in">`filter_add`</span> argument.</span>
+<span id="cb44-325"><a href="#cb44-325"></a>A function mapping <span class="in">`DSDECOD`</span> values to <span class="in">`EOSSTT`</span> values can be defined and used in the</span>
+<span id="cb44-326"><a href="#cb44-326"></a><span class="in">`new_vars`</span> argument. The mapping for the call below is</span>
+<span id="cb44-327"><a href="#cb44-327"></a></span>
+<span id="cb44-328"><a href="#cb44-328"></a><span class="ss">- </span><span class="in">`"COMPLETED"`</span> if <span class="in">`DSDECOD == "COMPLETED"`</span></span>
+<span id="cb44-329"><a href="#cb44-329"></a><span class="ss">- </span><span class="in">`NA_character_`</span> if <span class="in">`DSDECOD`</span> is <span class="in">`"SCREEN FAILURE"`</span></span>
+<span id="cb44-330"><a href="#cb44-330"></a><span class="ss">- </span><span class="in">`"DISCONTINUED"`</span> otherwise</span>
+<span id="cb44-331"><a href="#cb44-331"></a></span>
+<span id="cb44-332"><a href="#cb44-332"></a>Example function <span class="in">`format_eosstt()`</span>:</span>
+<span id="cb44-333"><a href="#cb44-333"></a></span>
+<span id="cb44-334"><a href="#cb44-334"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-335"><a href="#cb44-335"></a><span class="in">format_eosstt &lt;- function(x) {</span></span>
+<span id="cb44-336"><a href="#cb44-336"></a><span class="in">  case_when(</span></span>
+<span id="cb44-337"><a href="#cb44-337"></a><span class="in">    x %in% c("COMPLETED") ~ "COMPLETED",</span></span>
+<span id="cb44-338"><a href="#cb44-338"></a><span class="in">    x %in% c("SCREEN FAILURE") ~ NA_character_,</span></span>
+<span id="cb44-339"><a href="#cb44-339"></a><span class="in">    TRUE ~ "DISCONTINUED"</span></span>
+<span id="cb44-340"><a href="#cb44-340"></a><span class="in">  )</span></span>
+<span id="cb44-341"><a href="#cb44-341"></a><span class="in">}</span></span>
+<span id="cb44-342"><a href="#cb44-342"></a><span class="in">```</span></span>
+<span id="cb44-343"><a href="#cb44-343"></a></span>
+<span id="cb44-344"><a href="#cb44-344"></a>The customized mapping function <span class="in">`format_eosstt()`</span> can now be passed to the main</span>
+<span id="cb44-345"><a href="#cb44-345"></a>function. For subjects without a disposition event the end of study status is</span>
+<span id="cb44-346"><a href="#cb44-346"></a>set to <span class="in">`"ONGOING"`</span> by specifying the <span class="in">`missing_values`</span> argument.</span>
+<span id="cb44-347"><a href="#cb44-347"></a></span>
+<span id="cb44-348"><a href="#cb44-348"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-349"><a href="#cb44-349"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-350"><a href="#cb44-350"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-351"><a href="#cb44-351"></a><span class="in">    dataset_add = ds,</span></span>
+<span id="cb44-352"><a href="#cb44-352"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-353"><a href="#cb44-353"></a><span class="in">    filter_add = DSCAT == "DISPOSITION EVENT",</span></span>
+<span id="cb44-354"><a href="#cb44-354"></a><span class="in">    new_vars = exprs(EOSSTT = format_eosstt(DSDECOD)),</span></span>
+<span id="cb44-355"><a href="#cb44-355"></a><span class="in">    missing_values = exprs(EOSSTT = "ONGOING")</span></span>
+<span id="cb44-356"><a href="#cb44-356"></a><span class="in">  )</span></span>
+<span id="cb44-357"><a href="#cb44-357"></a></span>
+<span id="cb44-358"><a href="#cb44-358"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, EOSDT, EOSSTT), n=10)</span></span>
+<span id="cb44-359"><a href="#cb44-359"></a><span class="in">```</span></span>
+<span id="cb44-360"><a href="#cb44-360"></a></span>
+<span id="cb44-361"><a href="#cb44-361"></a>If the derivation must be changed, the user can create his/her own function to map <span class="in">`DSDECOD`</span> to a suitable <span class="in">`EOSSTT`</span> value.</span>
+<span id="cb44-362"><a href="#cb44-362"></a></span>
+<span id="cb44-363"><a href="#cb44-363"></a>The Imputed Death Date (<span class="in">`DTHDT`</span>) can be derived using the <span class="in">`admiral::derive_vars_dt()`</span> function.</span>
+<span id="cb44-364"><a href="#cb44-364"></a></span>
+<span id="cb44-365"><a href="#cb44-365"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-366"><a href="#cb44-366"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-367"><a href="#cb44-367"></a><span class="in">  derive_vars_dt(</span></span>
+<span id="cb44-368"><a href="#cb44-368"></a><span class="in">    new_vars_prefix = "DTH",</span></span>
+<span id="cb44-369"><a href="#cb44-369"></a><span class="in">    dtc = DTHDTC,</span></span>
+<span id="cb44-370"><a href="#cb44-370"></a><span class="in">    highest_imputation = "M",</span></span>
+<span id="cb44-371"><a href="#cb44-371"></a><span class="in">    date_imputation = "first"</span></span>
+<span id="cb44-372"><a href="#cb44-372"></a><span class="in">  ) </span></span>
+<span id="cb44-373"><a href="#cb44-373"></a></span>
+<span id="cb44-374"><a href="#cb44-374"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, DTHDT, DTHDTF), n=10)</span></span>
+<span id="cb44-375"><a href="#cb44-375"></a><span class="in">```</span></span>
+<span id="cb44-376"><a href="#cb44-376"></a></span>
+<span id="cb44-377"><a href="#cb44-377"></a>Further dates such as Randomization Date (<span class="in">`RANDDT`</span>), Screen fail date (<span class="in">`SCRFDT`</span>), and Last Retrieval Date (<span class="in">`FRVDT`</span>),</span>
+<span id="cb44-378"><a href="#cb44-378"></a>can also be derived using <span class="in">`admiral::derive_vars_merged()`</span> since these are selected dates based on filters and merged back to the original dataset.</span>
+<span id="cb44-379"><a href="#cb44-379"></a></span>
+<span id="cb44-380"><a href="#cb44-380"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-381"><a href="#cb44-381"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-382"><a href="#cb44-382"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-383"><a href="#cb44-383"></a><span class="in">    dataset_add = ds_ext,</span></span>
+<span id="cb44-384"><a href="#cb44-384"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-385"><a href="#cb44-385"></a><span class="in">    new_vars = exprs(RANDDT = DSSTDT),</span></span>
+<span id="cb44-386"><a href="#cb44-386"></a><span class="in">    filter_add = DSDECOD == "RANDOMIZED",</span></span>
+<span id="cb44-387"><a href="#cb44-387"></a><span class="in">  ) %&gt;% </span></span>
+<span id="cb44-388"><a href="#cb44-388"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-389"><a href="#cb44-389"></a><span class="in">    dataset_add = ds_ext,</span></span>
+<span id="cb44-390"><a href="#cb44-390"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-391"><a href="#cb44-391"></a><span class="in">    new_vars = exprs(SCRFDT = DSSTDT),</span></span>
+<span id="cb44-392"><a href="#cb44-392"></a><span class="in">    filter_add = DSCAT == "DISPOSITION EVENT" &amp; DSDECOD == "SCREEN FAILURE"</span></span>
+<span id="cb44-393"><a href="#cb44-393"></a><span class="in">  ) %&gt;% </span></span>
+<span id="cb44-394"><a href="#cb44-394"></a><span class="in">  derive_vars_merged(</span></span>
+<span id="cb44-395"><a href="#cb44-395"></a><span class="in">    dataset_add = ds_ext,</span></span>
+<span id="cb44-396"><a href="#cb44-396"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-397"><a href="#cb44-397"></a><span class="in">    new_vars = exprs(FRVDT = DSSTDT),</span></span>
+<span id="cb44-398"><a href="#cb44-398"></a><span class="in">    filter_add = DSCAT == "OTHER EVENT" &amp; DSDECOD == "FINAL RETRIEVAL VISIT"</span></span>
+<span id="cb44-399"><a href="#cb44-399"></a><span class="in">  )</span></span>
+<span id="cb44-400"><a href="#cb44-400"></a></span>
+<span id="cb44-401"><a href="#cb44-401"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), n=10)</span></span>
+<span id="cb44-402"><a href="#cb44-402"></a><span class="in">```</span></span>
+<span id="cb44-403"><a href="#cb44-403"></a></span>
+<span id="cb44-404"><a href="#cb44-404"></a>The function <span class="in">`admiral::derive_vars_duration()`</span> can now be used to derive duration relative to death like the Relative </span>
+<span id="cb44-405"><a href="#cb44-405"></a>Day of Death (<span class="in">`DTHADY`</span>) or the numbers of days from last dose to death (<span class="in">`LDDTHELD`</span>).</span>
+<span id="cb44-406"><a href="#cb44-406"></a></span>
+<span id="cb44-407"><a href="#cb44-407"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-408"><a href="#cb44-408"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-409"><a href="#cb44-409"></a><span class="in">  derive_vars_duration(</span></span>
+<span id="cb44-410"><a href="#cb44-410"></a><span class="in">    new_var = DTHADY,</span></span>
+<span id="cb44-411"><a href="#cb44-411"></a><span class="in">    start_date = TRTSDT,</span></span>
+<span id="cb44-412"><a href="#cb44-412"></a><span class="in">    end_date = DTHDT</span></span>
+<span id="cb44-413"><a href="#cb44-413"></a><span class="in">  ) %&gt;% </span></span>
+<span id="cb44-414"><a href="#cb44-414"></a><span class="in">  derive_vars_duration(</span></span>
+<span id="cb44-415"><a href="#cb44-415"></a><span class="in">    new_var = LDDTHELD,</span></span>
+<span id="cb44-416"><a href="#cb44-416"></a><span class="in">    start_date = TRTEDT,</span></span>
+<span id="cb44-417"><a href="#cb44-417"></a><span class="in">    end_date = DTHDT,</span></span>
+<span id="cb44-418"><a href="#cb44-418"></a><span class="in">    add_one = FALSE</span></span>
+<span id="cb44-419"><a href="#cb44-419"></a><span class="in">  )</span></span>
+<span id="cb44-420"><a href="#cb44-420"></a></span>
+<span id="cb44-421"><a href="#cb44-421"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), n=10)</span></span>
+<span id="cb44-422"><a href="#cb44-422"></a><span class="in">```</span></span>
+<span id="cb44-423"><a href="#cb44-423"></a></span>
+<span id="cb44-424"><a href="#cb44-424"></a>Having the Randomization Date added to the dataset also allows to derive a Population Flag.</span>
+<span id="cb44-425"><a href="#cb44-425"></a>Randomized Population Flag (<span class="in">`RANDFL`</span>) can be computed using a customized function.</span>
+<span id="cb44-426"><a href="#cb44-426"></a></span>
+<span id="cb44-427"><a href="#cb44-427"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-428"><a href="#cb44-428"></a><span class="in">assign_randfl &lt;- function(x) {</span></span>
+<span id="cb44-429"><a href="#cb44-429"></a><span class="in">  if_else(!is.na(x), "Y", NA_character_)</span></span>
+<span id="cb44-430"><a href="#cb44-430"></a><span class="in">}</span></span>
+<span id="cb44-431"><a href="#cb44-431"></a></span>
+<span id="cb44-432"><a href="#cb44-432"></a><span class="in">adsl &lt;- adsl %&gt;% </span></span>
+<span id="cb44-433"><a href="#cb44-433"></a><span class="in">  mutate(</span></span>
+<span id="cb44-434"><a href="#cb44-434"></a><span class="in">    RANDFL = assign_randfl(RANDDT)</span></span>
+<span id="cb44-435"><a href="#cb44-435"></a><span class="in">  )</span></span>
+<span id="cb44-436"><a href="#cb44-436"></a></span>
+<span id="cb44-437"><a href="#cb44-437"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, RANDDT, RANDFL), n=10)</span></span>
+<span id="cb44-438"><a href="#cb44-438"></a><span class="in">```</span></span>
+<span id="cb44-439"><a href="#cb44-439"></a></span>
+<span id="cb44-440"><a href="#cb44-440"></a><span class="fu">### Derive Cause of Death {#deathvars}</span></span>
+<span id="cb44-441"><a href="#cb44-441"></a></span>
+<span id="cb44-442"><a href="#cb44-442"></a>The cause of death (<span class="in">`DTHCAUS`</span>) can be derived using the function <span class="in">`admiral::derive_vars_extreme_event()`</span>.</span>
+<span id="cb44-443"><a href="#cb44-443"></a></span>
+<span id="cb44-444"><a href="#cb44-444"></a>Since the cause of death could be collected/mapped in different domains (e.g. <span class="in">`DS`</span>, <span class="in">`AE`</span>, <span class="in">`DD`</span>), it </span>
+<span id="cb44-445"><a href="#cb44-445"></a>is important the user specifies the right source(s) to derive the cause of death from.</span>
+<span id="cb44-446"><a href="#cb44-446"></a></span>
+<span id="cb44-447"><a href="#cb44-447"></a>For example, if the date of death is collected in the <span class="in">`AE`</span> form when the AE is Fatal, the cause of </span>
+<span id="cb44-448"><a href="#cb44-448"></a>death would be set to the preferred term (<span class="in">`AEDECOD`</span>) of that Fatal AE, while if the date of death is </span>
+<span id="cb44-449"><a href="#cb44-449"></a>collected in  the <span class="in">`DS`</span> form, the cause of death would be set to the disposition term (<span class="in">`DSTERM`</span>).</span>
+<span id="cb44-450"><a href="#cb44-450"></a>To achieve this, the <span class="in">`event()`</span> objects within <span class="in">`derive_vars_extreme_event()`</span> must be specified and defined such that they fit the </span>
+<span id="cb44-451"><a href="#cb44-451"></a>study requirement. </span>
+<span id="cb44-452"><a href="#cb44-452"></a>The function also offers the option to add some traceability variables (e.g. <span class="in">`DTHDOM`</span> would </span>
+<span id="cb44-453"><a href="#cb44-453"></a>store the domain where the date of death is collected, and <span class="in">`DTHSEQ`</span>could also be added to store the <span class="in">`xxSEQ`</span> value of </span>
+<span id="cb44-454"><a href="#cb44-454"></a>that domain - but let's keep it simple with <span class="in">`DTHDOM`</span> only).</span>
+<span id="cb44-455"><a href="#cb44-455"></a>The traceability variables should be added to the <span class="in">`event()`</span> calls and included in the <span class="in">`new_vars`</span> parameter of <span class="in">`derive_vars_extreme_event()`</span>.</span>
+<span id="cb44-456"><a href="#cb44-456"></a></span>
+<span id="cb44-457"><a href="#cb44-457"></a><span class="in">```{r death, eval=TRUE}</span></span>
+<span id="cb44-458"><a href="#cb44-458"></a><span class="in">adsl &lt;- adsl %&gt;%</span></span>
+<span id="cb44-459"><a href="#cb44-459"></a><span class="in">  derive_vars_extreme_event(</span></span>
+<span id="cb44-460"><a href="#cb44-460"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb44-461"><a href="#cb44-461"></a><span class="in">    events = list(</span></span>
+<span id="cb44-462"><a href="#cb44-462"></a><span class="in">      event(</span></span>
+<span id="cb44-463"><a href="#cb44-463"></a><span class="in">        dataset_name = "ae",</span></span>
+<span id="cb44-464"><a href="#cb44-464"></a><span class="in">        condition = AEOUT == "FATAL",</span></span>
+<span id="cb44-465"><a href="#cb44-465"></a><span class="in">        set_values_to = exprs(DTHCAUS = AEDECOD, DTHDOM = "AE"),</span></span>
+<span id="cb44-466"><a href="#cb44-466"></a><span class="in">      ),</span></span>
+<span id="cb44-467"><a href="#cb44-467"></a><span class="in">      event(</span></span>
+<span id="cb44-468"><a href="#cb44-468"></a><span class="in">        dataset_name = "ds",</span></span>
+<span id="cb44-469"><a href="#cb44-469"></a><span class="in">        condition = DSDECOD == "DEATH" &amp; grepl("DEATH DUE TO", DSTERM),</span></span>
+<span id="cb44-470"><a href="#cb44-470"></a><span class="in">        set_values_to = exprs(DTHCAUS = DSTERM, DTHDOM = "DS"),</span></span>
+<span id="cb44-471"><a href="#cb44-471"></a><span class="in">      )</span></span>
+<span id="cb44-472"><a href="#cb44-472"></a><span class="in">    ),</span></span>
+<span id="cb44-473"><a href="#cb44-473"></a><span class="in">    source_datasets = list(ae = ae, ds = ds),</span></span>
+<span id="cb44-474"><a href="#cb44-474"></a><span class="in">    tmp_event_nr_var = event_nr,</span></span>
+<span id="cb44-475"><a href="#cb44-475"></a><span class="in">    order = exprs(event_nr),</span></span>
+<span id="cb44-476"><a href="#cb44-476"></a><span class="in">    mode = "first",</span></span>
+<span id="cb44-477"><a href="#cb44-477"></a><span class="in">    new_vars = exprs(DTHCAUS, DTHDOM)</span></span>
+<span id="cb44-478"><a href="#cb44-478"></a><span class="in">  )</span></span>
+<span id="cb44-479"><a href="#cb44-479"></a></span>
+<span id="cb44-480"><a href="#cb44-480"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %&gt;%  filter(!is.na(DTHDT)), n=10)</span></span>
+<span id="cb44-481"><a href="#cb44-481"></a><span class="in">```</span></span>
+<span id="cb44-482"><a href="#cb44-482"></a></span>
+<span id="cb44-483"><a href="#cb44-483"></a><span class="fu">### Derive Other Grouping Variables {#othgrpvars}</span></span>
+<span id="cb44-484"><a href="#cb44-484"></a></span>
+<span id="cb44-485"><a href="#cb44-485"></a>Following the derivation of <span class="in">`DTHCAUS`</span> and related traceability variables, it is then possible to derive grouping variables such as death categories (<span class="in">`DTHCGRx`</span>),</span>
+<span id="cb44-486"><a href="#cb44-486"></a>region categories (<span class="in">`REGIONx`</span>), and race categories (<span class="in">`RACEx`</span>).</span>
+<span id="cb44-487"><a href="#cb44-487"></a>As previously seen with <span class="in">`AGEGR1`</span>, the <span class="in">`admiral::derive_vars_cat()`</span> function available from version 1.2.0 can create such groups.</span>
+<span id="cb44-488"><a href="#cb44-488"></a></span>
+<span id="cb44-489"><a href="#cb44-489"></a><span class="in">```{r grouping, eval=TRUE}</span></span>
+<span id="cb44-490"><a href="#cb44-490"></a><span class="in">region1_lookup &lt;- exprs(</span></span>
+<span id="cb44-491"><a href="#cb44-491"></a><span class="in">  ~condition,                              ~REGION1, ~REGION1N,</span></span>
+<span id="cb44-492"><a href="#cb44-492"></a><span class="in">  COUNTRY %in% c("CAN", "USA"),     "North America",         1,</span></span>
+<span id="cb44-493"><a href="#cb44-493"></a><span class="in">  !is.na(COUNTRY),              "Rest of the World",         2,</span></span>
+<span id="cb44-494"><a href="#cb44-494"></a><span class="in">  is.na(COUNTRY),                         "Missing",         3</span></span>
+<span id="cb44-495"><a href="#cb44-495"></a><span class="in">)</span></span>
+<span id="cb44-496"><a href="#cb44-496"></a></span>
+<span id="cb44-497"><a href="#cb44-497"></a><span class="in">racegr1_lookup &lt;- exprs(</span></span>
+<span id="cb44-498"><a href="#cb44-498"></a><span class="in">  ~condition,              ~RACEGR1, ~RACEGR1N,</span></span>
+<span id="cb44-499"><a href="#cb44-499"></a><span class="in">  RACE %in% c("WHITE"),     "White",        1,</span></span>
+<span id="cb44-500"><a href="#cb44-500"></a><span class="in">  RACE != "WHITE",      "Non-white",        2,</span></span>
+<span id="cb44-501"><a href="#cb44-501"></a><span class="in">  is.na(RACE),            "Missing",        3</span></span>
+<span id="cb44-502"><a href="#cb44-502"></a><span class="in">  )</span></span>
+<span id="cb44-503"><a href="#cb44-503"></a></span>
+<span id="cb44-504"><a href="#cb44-504"></a><span class="in">dthcgr1_lookup &lt;- exprs(</span></span>
+<span id="cb44-505"><a href="#cb44-505"></a><span class="in">  ~condition,                                                                                 ~DTHCGR1, ~DTHCGR1N,</span></span>
+<span id="cb44-506"><a href="#cb44-506"></a><span class="in">  DTHDOM == "AE",                                                                      "ADVERSE EVENT",         1,</span></span>
+<span id="cb44-507"><a href="#cb44-507"></a><span class="in">  !is.na(DTHDOM) &amp; str_detect(DTHCAUS, "(PROGRESSIVE DISEASE|DISEASE RELAPSE)"), "PROGRESSIVE DISEASE",         2,</span></span>
+<span id="cb44-508"><a href="#cb44-508"></a><span class="in">  !is.na(DTHDOM) &amp; !is.na(DTHCAUS),                                                            "OTHER",         3,</span></span>
+<span id="cb44-509"><a href="#cb44-509"></a><span class="in">  is.na(DTHDOM),                                                                         NA_character_,        NA</span></span>
+<span id="cb44-510"><a href="#cb44-510"></a><span class="in">)</span></span>
+<span id="cb44-511"><a href="#cb44-511"></a></span>
+<span id="cb44-512"><a href="#cb44-512"></a></span>
+<span id="cb44-513"><a href="#cb44-513"></a><span class="in">adsl &lt;- adsl %&gt;% </span></span>
+<span id="cb44-514"><a href="#cb44-514"></a><span class="in">  derive_vars_cat(</span></span>
+<span id="cb44-515"><a href="#cb44-515"></a><span class="in">    definition = region1_lookup</span></span>
+<span id="cb44-516"><a href="#cb44-516"></a><span class="in">  ) %&gt;% </span></span>
+<span id="cb44-517"><a href="#cb44-517"></a><span class="in">  derive_vars_cat(</span></span>
+<span id="cb44-518"><a href="#cb44-518"></a><span class="in">    definition = racegr1_lookup</span></span>
+<span id="cb44-519"><a href="#cb44-519"></a><span class="in">  ) %&gt;% </span></span>
+<span id="cb44-520"><a href="#cb44-520"></a><span class="in">  derive_vars_cat(</span></span>
+<span id="cb44-521"><a href="#cb44-521"></a><span class="in">    definition = dthcgr1_lookup</span></span>
+<span id="cb44-522"><a href="#cb44-522"></a><span class="in">  ) </span></span>
+<span id="cb44-523"><a href="#cb44-523"></a><span class="in">  </span></span>
+<span id="cb44-524"><a href="#cb44-524"></a><span class="in">head(adsl %&gt;% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n=10) </span></span>
+<span id="cb44-525"><a href="#cb44-525"></a><span class="in">```</span></span>
+<span id="cb44-526"><a href="#cb44-526"></a></span>
+<span id="cb44-527"><a href="#cb44-527"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb44-528"><a href="#cb44-528"></a><span class="in">head(adsl %&gt;% filter(!is.na(DTHDT)) %&gt;% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) </span></span>
+<span id="cb44-529"><a href="#cb44-529"></a><span class="in">```</span> </span>
+<span id="cb44-530"><a href="#cb44-530"></a></span>
+<span id="cb44-531"><a href="#cb44-531"></a><span class="fu">### Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}</span></span>
+<span id="cb44-532"><a href="#cb44-532"></a></span>
+<span id="cb44-533"><a href="#cb44-533"></a>Now we have all the variables defined we can run some checks before applying the necessary formatting.</span>
+<span id="cb44-534"><a href="#cb44-534"></a>The top four functions performing checks and sorting/ordering come from <span class="in">`{metatools}`</span>, whereas</span>
+<span id="cb44-535"><a href="#cb44-535"></a>the others focused around applying attributes to prepare for XPT come from <span class="in">`{xportr}`</span>.</span>
+<span id="cb44-536"><a href="#cb44-536"></a>At the end you can produce the XPT file calling <span class="in">`xportr::xportr_write()`</span>.</span>
+<span id="cb44-537"><a href="#cb44-537"></a></span>
+<span id="cb44-538"><a href="#cb44-538"></a><span class="in">```{r checks, warning=FALSE, message=FALSE}</span></span>
+<span id="cb44-539"><a href="#cb44-539"></a><span class="in">dir &lt;- tempdir() # Specify the directory for saving the XPT file</span></span>
+<span id="cb44-540"><a href="#cb44-540"></a></span>
+<span id="cb44-541"><a href="#cb44-541"></a><span class="in">adsl %&gt;%</span></span>
+<span id="cb44-542"><a href="#cb44-542"></a><span class="in">  check_variables(metacore) %&gt;% # Check all variables specified are present and no more</span></span>
+<span id="cb44-543"><a href="#cb44-543"></a><span class="in">  check_ct_data(metacore, na_acceptable = TRUE) %&gt;% # Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb44-544"><a href="#cb44-544"></a><span class="in">  order_cols(metacore) %&gt;% # Orders the columns according to the spec</span></span>
+<span id="cb44-545"><a href="#cb44-545"></a><span class="in">  sort_by_key(metacore) %&gt;% # Sorts the rows by the sort keys</span></span>
+<span id="cb44-546"><a href="#cb44-546"></a><span class="in">  xportr_type(metacore, domain = "ADSL") %&gt;% # Coerce variable type to match spec</span></span>
+<span id="cb44-547"><a href="#cb44-547"></a><span class="in">  xportr_length(metacore) %&gt;% # Assigns SAS length from a variable level metadata</span></span>
+<span id="cb44-548"><a href="#cb44-548"></a><span class="in">  xportr_label(metacore) %&gt;% # Assigns variable label from metacore specifications</span></span>
+<span id="cb44-549"><a href="#cb44-549"></a><span class="in">  xportr_df_label(metacore) %&gt;%  # Assigns dataset label from metacore specifications</span></span>
+<span id="cb44-550"><a href="#cb44-550"></a><span class="in">  xportr_write(file.path(dir, "adsl.xpt"), metadata = metacore, domain = "ADSL")</span></span>
+<span id="cb44-551"><a href="#cb44-551"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
