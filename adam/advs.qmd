@@ -1,0 +1,655 @@
+---
+title: "ADVS"
+order: 6
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
+
+# Introduction
+
+This article provides a step-by-step explanation for creating an ADaM `ADVS` (Vital Signs) dataset using key pharmaverse packages along with tidyverse components.
+
+For the purpose of this example, we will use the `ADSL` dataset from `{pharmaverseadam}` and `vs` domain from `{pharmaversesdtm}`.
+
+## Programming Flow
+
+* [Load Data and Required pharmaverse Packages](#loaddata)
+* [Load Specifications for Metacore](#loadspecs)
+* [Select ADSL Variables](#adslvars)
+* [Start Building Derivations](#startbuild)
+* [Assign `PARAMCD`, `PARAM`, `PARAMN`](#paramvars)
+* [Derive Results and Units (`AVAL`, `AVALU`)](#avalvars)
+* [Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`)](#addparams)
+* [Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`)](#timingvars)
+* [Derive summary records (e.g. mean of the triplicates at each time point)](#summaryrec)
+* [Timing Flag Variables (e.g. `ONTRTFL`)](#ontrtfl)
+* [Assign Reference Range Indicator (`ANRIND`)](#rangeind)
+* [Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`)](#baselinevars)
+* [Derive Change from Baseline (`CHG`, `PCHG`)](#chgpchg)
+* [Derive Analysis Flags (e.g. `ANL01FL`)](#anl01fl)
+* [Assign Treatment (`TRTA`, `TRTP`)](#treatmentvars)
+* [Assign `ASEQ`](#aseq)
+* [Derive Categorization Variables (`AVALCATy`)](#categorizationvars)
+* [Assign Parameter Level Values (`PARAM`, `PARAMN`)](#paramval)
+* [Add ADSL variables](#adslvars)
+* [Apply Metadata and eSub Checks](#metacore_xportr)
+
+# Load Data and Required pharmaverse Packages {#loaddata}
+
+First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+
+Then we will load our input data.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
+library(metacore)
+library(metatools)
+library(pharmaversesdtm)
+library(admiral)
+library(xportr)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(stringr)
+
+# Read in input data
+adsl <- pharmaverseadam::adsl
+vs <- pharmaversesdtm::vs
+
+vs <- convert_blanks_to_na(vs)
+```
+
+# Load Specifications for Metacore {#loadspecs}
+
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
+
+```{r echo=TRUE}
+#| label: Load Specs
+#| warning: false
+# ---- Load Specs for Metacore ----
+metacore <- spec_to_metacore(
+  path = "./metadata/safety_specs.xlsx",
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
+) %>%
+  select_dataset("ADVS")
+```
+
+# Select ADSL Variables {#adslvars}
+
+Some variables from the `ADSL` dataset required for the derivations are merged into the `VS` domain using the `admiral::derive_vars_merged()` function.
+The rest of the relevant `ADSL` variables would be added later.
+
+```{r}
+# Select required ADSL variables
+adsl_vars <- exprs(TRTSDT, TRTEDT, TRT01A, TRT01P)
+
+# Join ADSL variables with VS
+advs <- vs %>%
+  derive_vars_merged(
+    dataset_add = adsl,
+    new_vars = adsl_vars,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+
+head(advs, n=10)
+```
+
+# Start Building Derivations {#startbuild}
+
+The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
+The resulting dataset has the 2 columns created.
+
+```{r}
+# Calculate ADT, ADY
+advs <- advs %>%
+  derive_vars_dt(
+    new_vars_prefix = "A",
+    dtc = VSDTC,
+    # Below arguments are default values and not necessary to add in our case
+    highest_imputation = "n", # means no imputation is performed on partial/missing dates
+    flag_imputation = "auto" # To automatically create ADTF variable when highest_imputation is "Y", "M" or "D"
+  ) %>%
+  derive_vars_dy(
+    reference_date = TRTSDT,
+    source_vars = exprs(ADT)
+  )
+
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n=10)
+```
+
+## Assign `PARAMCD`, `PARAM`, `PARAMN` {#paramvars}
+
+To assign parameter level values such as `PARAMCD`, `PARAM`, `PARAMN`,
+etc., a lookup can be created to join to the source data.
+
+For example, when creating `ADVS`, a lookup based on the SDTM `--TESTCD` value 
+may be created:
+
+`VSTESTCD` | `PARAMCD` | `PARAM` | `PARAMN` 
+--------- | --------- | -------- | ------- 
+SYSBP | SYSBP | Systolic Blood Pressure (mmHg) | 1
+DIABP | DIABP | Diastolic Blood Pressure (mmHg) | 2
+PULSE | PULSE | Pulse Rate (beats/min) | 3
+WEIGHT | WEIGHT | Weight (kg) | 4
+HEIGHT | HEIGHT | Height (cm) | 5
+TEMP | TEMP | Temperature (C) | 6
+MAP | MAP | Mean Arterial Pressure | 7
+BMI | BMI | Body Mass Index(kg/m^2) | 8
+BSA | BSA | Body Surface Area(m^2) | 9
+
+This lookup may now be joined to the source data:
+
+```{r eval=TRUE, include=FALSE}
+param_lookup <- tibble::tribble(
+  ~VSTESTCD, ~PARAMCD,                            ~PARAM, ~PARAMN,
+  "SYSBP",    "SYSBP", " Systolic Blood Pressure (mmHg)",        1,
+  "DIABP",    "DIABP", "Diastolic Blood Pressure (mmHg)",        2,
+  "PULSE",    "PULSE",          "Pulse Rate (beats/min)",        3,
+  "WEIGHT",  "WEIGHT",                     "Weight (kg)",        4,
+  "HEIGHT", "HEIGHT",                      "Height (cm)",        5,
+  "TEMP",     "TEMP",                  "Temperature (C)",        6,
+  "MAP",       "MAP",    "Mean Arterial Pressure (mmHg)",        7,
+  "BMI",       "BMI",          "Body Mass Index(kg/m^2)",        8,
+  "BSA",       "BSA",           "Body Surface Area(m^2)",        9
+)
+attr(param_lookup$VSTESTCD, "label") <- "Vital Signs Test Short Name"
+```
+
+At this stage, only `PARAMCD` is required to perform the derivations. Additional
+derived parameters may be added, so only `PARAMCD` is joined to the datasets at
+this point. All other variables related to `PARAMCD` (e.g. `PARAM`, `PARAMN`, ...)
+will be added when all `PARAMCD` are derived.
+
+```{r}
+advs <- advs %>%
+  # Add PARAMCD only - add PARAM etc later
+  derive_vars_merged_lookup(
+    dataset_add = param_lookup,
+    new_vars = exprs(PARAMCD),
+    by_vars = exprs(VSTESTCD),
+    # Below arguments are default values and not necessary to add in our case
+    print_not_mapped = TRUE # Printing whether some parameters are not mapped
+  )
+
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n=10)
+```
+
+## Derive Results and Units (`AVAL`, `AVALU`) {#avalvars}
+
+The mapping of `AVAL` and `AVALU` is left to the ADaM programmer. An 
+example mapping may be:
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  mutate(
+    AVAL = VSSTRESN,
+    AVALU = VSSTRESU
+  ) 
+
+head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n=10)
+```
+
+In this example, as is often the case for ADVS, all `AVAL` values are numeric without any corresponding non-redundant text value for `AVALC`.
+Per recommendation in ADaMIG v1.3 we do not map `AVALC`.
+
+## Derive Additional Parameters (e.g. `MAP`, `BMI` or `BSA` for `ADVS`) {#addparams}
+
+Optionally derive new parameters creating `PARAMCD` and `AVAL`. Note that only
+variables specified in the `by_vars` argument will be populated in the newly 
+created records. This is relevant to the functions `admiral::derive_param_map`, 
+`admiral::derive_param_bsa`, `admiral::derive_param_bmi`, and `admiral::derive_param_qtc`. 
+
+Below is an example of creating `Mean Arterial Pressure` for `ADVS` using the wrapper function `admiral::derive_param_map()` 
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  derive_param_map(
+    by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), # Other variables than the defined ones here won't be populated
+    set_values_to = exprs(PARAMCD = "MAP"),
+    get_unit_expr = VSSTRESU,
+    filter = VSSTAT != "NOT DONE" | is.na(VSSTAT),
+    # Below arguments are default values and not necessary to add in our case
+    sysbp_code = "SYSBP",
+    diabp_code = "DIABP",
+    hr_code = NULL
+  )
+```
+
+Similarly we could create `Body Mass Index` (BMI) for `ADVS` using the wrapper function `admiral::derive_param_bmi()`, instead we will see in below example
+how to use the more generic function `admiral::derive_param_computed()`
+Note that if height is collected only once use `constant_parameters` to define the corresponding parameter which will be merged to the other parameters and `constant_by_vars` to specify the subject-level variable to merge on.
+Otherwise BMI is only calculated for visits where both parameters `HEIGHT` and `WEIGHT` are collected.
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  derive_param_computed(
+    by_vars = exprs(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
+    parameters = "WEIGHT",
+    set_values_to = exprs(
+      AVAL = AVAL.WEIGHT / (AVAL.HEIGHT / 100)^2,
+      PARAMCD = "BMI",
+      AVALU = "kg/m^2"
+    ),
+    constant_parameters = c("HEIGHT"),
+    constant_by_vars = exprs(USUBJID)
+  )
+```
+
+Likewise, wrapper function `admiral::derive_param_bsa()` call below, to create parameter `Body Surface Area` (BSA) for `ADVS` domain.
+Note that if height is collected only once use `constant_by_vars` to specify the subject-level variable to merge on.
+Otherwise BSA is only calculated for visits where both parameters `HEIGHT` and `WEIGHT` are collected.
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  derive_param_bsa(
+    by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
+    method = "Mosteller",
+    set_values_to = exprs(
+      PARAMCD = "BSA",
+      AVALU = "m^2"
+    ),
+    get_unit_expr = VSSTRESU,
+    filter = VSSTAT != "NOT DONE" | is.na(VSSTAT),
+    constant_by_vars = exprs(USUBJID),
+    # Below arguments are default values and not necessary to add in our case
+    height_code = "HEIGHT",
+    weight_code = "WEIGHT"
+  )
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "MAP") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```
+
+## Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`) {#timingvars}
+
+Categorical timing variables are protocol and analysis dependent. Below is a simple example. 
+
+```{r eval=TRUE}
+advs <- advs %>%
+  mutate(
+    ATPTN = VSTPTNUM,
+    ATPT = VSTPT,
+    AVISIT = case_when(
+      str_detect(VISIT, "SCREEN|UNSCHED|RETRIEVAL|AMBUL") ~ NA_character_,
+      !is.na(VISIT) ~ str_to_title(VISIT),
+      TRUE ~ NA_character_
+    ),
+    AVISITN = as.numeric(case_when(
+      VISIT == "BASELINE" ~ "0",
+      str_detect(VISIT, "WEEK") ~ str_trim(str_replace(VISIT, "WEEK", "")),
+      TRUE ~ NA_character_
+    ))
+  )
+```
+
+For assigning visits based on time windows and deriving periods, subperiods, and phase variables see
+the ["Visit and Period Variables" vignette](visits_periods.html).
+
+## Derive summary records (e.g. mean of the triplicates at each time point) {#summaryrec}
+
+For adding new records based on aggregating records `admiral::derive_summary_records()`
+can be used. For the new records only the variables specified by `by_vars` and
+`set_values_to` are populated.
+
+For each subject, Vital Signs parameter, visit, and date add a record holding
+the average value for observations on that date.
+Set `DTYPE` to `AVERAGE`.
+
+```{r eval=TRUE}
+advs <- derive_summary_records(
+  dataset = advs,
+  dataset_add = advs, # Observations from the specified dataset are going to be used to calculate and added as new records to the input dataset.
+  by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, PARAMCD, AVISITN, AVISIT, ADT, ADY, AVALU),
+  filter_add = !is.na(AVAL),
+  set_values_to = exprs(
+    AVAL = mean(AVAL),
+    DTYPE = "AVERAGE"
+  )
+)
+```
+
+## Timing Flag Variables (e.g. `ONTRTFL`) {#ontrtfl}
+
+In some analyses, it may be necessary to flag an observation as on-treatment.
+The admiral function `admiral::derive_var_ontrtfl()` can be used.
+
+For example, if on-treatment is defined as any observation between treatment
+start and treatment end, the flag may be derived as:
+
+```{r eval=TRUE}
+advs <- derive_var_ontrtfl(
+  advs,
+  start_date = ADT,
+  ref_start_date = TRTSDT,
+  ref_end_date = TRTEDT,
+  filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment
+  )
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)
+```
+
+## Assign Reference Range Indicator (`ANRIND`) {#rangeind}
+
+The admiral function `derive_var_anrind()` may be used to derive the reference
+range indicator `ANRIND`.
+
+This function requires the reference range boundaries to exist on the data frame 
+(`ANRLO`, `ANRHI`) and also accommodates the additional boundaries `A1LO` and `A1HI`.
+
+```{r include=FALSE}
+range_lookup <- tibble::tribble(
+  ~PARAMCD, ~ANRLO, ~ANRHI, ~A1LO, ~A1HI,
+  "SYSBP",      90,    130,    70,   140,
+  "DIABP",      60,     80,    40,    90,
+  "PULSE",      60,    100,    40,   110,
+  "TEMP",     36.5,   37.5,    35,    38
+)
+
+advs <- derive_vars_merged(
+  advs,
+  dataset_add = range_lookup,
+  by_vars = exprs(PARAMCD)
+)
+```
+
+The function is called as:
+
+```{r eval=TRUE}
+advs <- derive_var_anrind(
+  advs,
+  # Below arguments are default values and not necessary to add in our case
+  signif_dig = get_admiral_option("signif_digits"),
+  use_a1hia1lo = FALSE
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)
+```
+
+## Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`) {#baselinevars}
+
+The `BASETYPE` should be derived using the function `admiral::derive_basetype_records()`.
+The parameter `basetypes` of this function requires a named list of expression 
+detailing how the `BASETYPE` should be assigned.  Note, if a record falls into
+multiple expressions within the basetypes expression, a row will be produced for 
+each `BASETYPE`.
+
+```{r eval=TRUE}
+advs <- derive_basetype_records(
+  dataset = advs,
+  basetypes = exprs(
+    "LAST: AFTER LYING DOWN FOR 5 MINUTES" = ATPTN == 815,
+    "LAST: AFTER STANDING FOR 1 MINUTE" = ATPTN == 816,
+    "LAST: AFTER STANDING FOR 3 MINUTES" = ATPTN == 817,
+    "LAST" = is.na(ATPTN)
+  )
+)
+
+count(advs, ATPT, ATPTN, BASETYPE)
+```
+
+It is important to derive `BASETYPE` first so that it can be utilized in 
+subsequent derivations. This will be important if the data frame contains
+multiple values for `BASETYPE`.
+
+Next, the analysis baseline flag `ABLFL` can be derived using the `{admiral}`
+function `admiral::derive_var_extreme_flag()`.  For example, if baseline is defined as the last 
+non-missing `AVAL` prior or on `TRTSDT`, the function call for `ABLFL` would be:
+
+```{r eval=TRUE}
+advs <- restrict_derivation(
+  advs,
+  derivation = derive_var_extreme_flag,
+  args = params(
+    by_vars = exprs(STUDYID, USUBJID, BASETYPE, PARAMCD),
+    order = exprs(ADT, VISITNUM, VSSEQ),
+    new_var = ABLFL,
+    mode = "last", # Determines of the first or last observation is flagged
+    # Below arguments are default values and not necessary to add in our case
+    true_value = "Y"
+  ),
+  filter = (!is.na(AVAL) &
+    ADT <= TRTSDT & !is.na(BASETYPE) & is.na(DTYPE)
+  )
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n=30)
+```
+
+Lastly, the `BASE`, and  `BNRIND` columns can be derived using the `{admiral}` function
+`admiral::derive_var_base()`. Example calls are:
+
+```{r eval=TRUE}
+advs <- derive_var_base(
+  advs,
+  by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),
+  source_var = AVAL,
+  new_var = BASE,
+  # Below arguments are default values and not necessary to add in our case
+  filter = ABLFL == "Y"
+) 
+
+advs <- derive_var_base(
+  advs,
+  by_vars = exprs(STUDYID, USUBJID, PARAMCD, BASETYPE),
+  source_var = ANRIND,
+  new_var = BNRIND
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)
+```
+
+## Derive Change from Baseline (`CHG`, `PCHG`) {#chgpchg}
+
+Change and percent change from baseline can be derived using the `{admiral}` 
+functions `admiral::derive_var_chg()` and `admiral::derive_var_pchg()`.  These functions expect `AVAL` 
+and `BASE` to exist in the data frame.  The `CHG` is simply `AVAL - BASE` and the
+`PCHG` is `(AVAL - BASE) / absolute value (BASE) * 100`.
+If the variables should not be derived for all records, e.g., for post-baseline
+records only, `admiral::restrict_derivation()` can be used.
+Examples calls are:
+
+```{r eval=TRUE}
+advs <- restrict_derivation(
+  advs,
+  derivation = derive_var_chg,
+  filter = AVISITN > 0
+)
+
+advs <- restrict_derivation(
+  advs,
+  derivation = derive_var_pchg,
+  filter = AVISITN > 0
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)
+```
+
+## Derive Analysis Flags (e.g. `ANL01FL`) {#anl01fl}
+
+In most finding ADaMs, an analysis flag is derived to identify the appropriate 
+observation(s) to use for a particular analysis when a subject has multiple
+observations within a particular timing period.
+
+In this situation, an analysis flag (e.g. `ANLzzFL`) may be used to choose the
+appropriate record for analysis.
+
+This flag may be derived using the `{admiral}` function `admiral::derive_var_extreme_flag()`. 
+For this example, we will assume we would like to choose within the Post-Baseline records the latest and 
+highest value by `USUBJID`, `PARAMCD`, `AVISIT`, and `ATPT`.
+
+```{r eval=TRUE}
+advs <-   restrict_derivation(
+  advs,
+  derivation = derive_var_extreme_flag,
+  args = params(
+    new_var = ANL01FL,
+    by_vars = exprs(STUDYID, USUBJID, PARAMCD, AVISIT, ATPT, DTYPE),
+    order = exprs(ADT, AVAL),
+    mode = "last", # Determines of the first or last observation is flagged - As seen while deriving ABLFL
+    # Below arguments are default values and not necessary to add in our case
+    true_value = "Y"
+    ),
+  filter = !is.na(AVISITN) & ONTRTFL == "Y"
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)
+```
+
+## Assign Treatment (`TRTA`, `TRTP`) {#treatmentvars}
+
+`TRTA` and `TRTP` must match at least one value of the character treatment
+variables in ADSL (e.g., `TRTxxA`/`TRTxxP`, `TRTSEQA`/`TRTSEQP`,
+`TRxxAGy`/`TRxxPGy`).
+
+An example of a simple implementation for a study without periods could be:
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  mutate(
+    TRTP = TRT01P,
+    TRTA = TRT01A
+    )
+
+count(advs, TRTP, TRTA, TRT01P, TRT01A)
+```
+
+For studies with periods see the ["Visit and Period Variables" vignette](visits_periods.html#treatment_bds).
+
+## Assign `ASEQ` {#aseq}
+
+The `{admiral}` function `admiral::derive_var_obs_number()` can be used to derive `ASEQ`. An 
+example call is:
+
+```{r eval=TRUE}
+advs <- derive_var_obs_number(
+  advs,
+  new_var = ASEQ,
+  by_vars = exprs(STUDYID, USUBJID),
+  order = exprs(PARAMCD, ADT, AVISITN, VISITNUM, ATPTN, DTYPE),
+  check_type = "error"
+)
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)
+```
+
+## Derive Categorization Variables (`AVALCATy`) {#categorizationvars}
+
+We can use the `admiral::derive_vars_cat()` function to derive the categorization variables.
+
+```{r eval=TRUE}
+avalcat_lookup <- exprs(
+  ~PARAMCD,  ~condition,   ~AVALCAT1, ~AVALCA1N,
+  "HEIGHT",  AVAL > 140,   ">140 cm",         1,
+  "HEIGHT", AVAL <= 140, "<= 140 cm",         2
+)
+
+advs <- advs %>%
+  derive_vars_cat(
+    definition = avalcat_lookup,
+    by_vars = exprs(PARAMCD)
+  )
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)
+```
+
+## Assign Parameter Level Values (`PARAM`, `PARAMN`) {#paramval}
+
+When all `PARAMCD` have been derived and added to the dataset, the other information 
+from the look-up table (`PARAM`, `PARAMN`,...) should be added using `admiral::derive_vars_merged()` function.
+
+Another way to assign parameter-level values is by using the `metatools` package with the `{metacore}` objects 
+we created at the beginning. To use the `metatools::create_var_from_codelist()` function, as shown in the example below, certain prerequisites must be met.
+Specifically, this function relies on code/decode pairs from a `{metacore}` object. Therefore, these pairs must be defined in the corresponding ADaMs specifications
+before creating the `{metacore}` object. 
+
+We can look into the `{metacore}` object and see these pairs for the `PARAM` variable.
+
+```{r}
+get_control_term(metacore, variable = PARAM)
+```
+
+```{r eval=TRUE}
+advs <- advs %>% 
+  create_var_from_codelist(
+    metacore,
+    input_var = PARAMCD,
+    out_var = PARAM,
+    decode_to_code = FALSE # input_var is the code column of the codelist
+    ) %>%
+  create_var_from_codelist(
+    metacore,
+    input_var = PARAMCD,
+    out_var = PARAMN
+    )
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)
+```
+
+## Add ADSL variables {#adslvars}
+
+If needed, the other `ADSL` variables can now be added.
+List of ADSL variables already merged held in vector `adsl_vars`
+
+```{r eval=TRUE}
+advs <- advs %>%
+  derive_vars_merged(
+    dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+```{r, eval=TRUE, echo=FALSE}
+head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)
+```
+
+# Apply Metadata and eSub Checks {#metacore_xportr}
+
+We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
+
+```{r, message=FALSE, warning=FALSE}
+dir <- tempdir() # Specify the directory for saving the XPT file
+
+# Apply metadata and perform checks
+advs_prefinal <- advs %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore, dataset_name = "ADVS") %>% # Check all variables specified are present and no more
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+
+# Apply apply labels, formats, and export the dataset to an XPT file.
+advs_final <- advs_prefinal %>% 
+  xportr_type(metacore) %>%
+  xportr_length(metacore) %>%
+  xportr_label(metacore) %>%
+  xportr_format(metacore, domain = "ADVS") %>%
+  xportr_df_label(metacore, domain = "ADVS") %>% 
+  xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
+```
