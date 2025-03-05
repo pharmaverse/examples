@@ -36,8 +36,6 @@ advs <- vs %>%
     by_vars = exprs(STUDYID, USUBJID)
   )
 
-head(advs, n=10)
-
 ## ----r------------------------------------------------------------------------
 # Calculate ADT, ADY
 advs <- advs %>%
@@ -53,20 +51,18 @@ advs <- advs %>%
     source_vars = exprs(ADT)
   )
 
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n=10)
-
 ## ----r eval=TRUE, include=FALSE-----------------------------------------------
 param_lookup <- tibble::tribble(
-  ~VSTESTCD, ~PARAMCD,                            ~PARAM, ~PARAMN,
-  "SYSBP",    "SYSBP", " Systolic Blood Pressure (mmHg)",        1,
-  "DIABP",    "DIABP", "Diastolic Blood Pressure (mmHg)",        2,
-  "PULSE",    "PULSE",          "Pulse Rate (beats/min)",        3,
-  "WEIGHT",  "WEIGHT",                     "Weight (kg)",        4,
-  "HEIGHT", "HEIGHT",                      "Height (cm)",        5,
-  "TEMP",     "TEMP",                  "Temperature (C)",        6,
-  "MAP",       "MAP",    "Mean Arterial Pressure (mmHg)",        7,
-  "BMI",       "BMI",          "Body Mass Index(kg/m^2)",        8,
-  "BSA",       "BSA",           "Body Surface Area(m^2)",        9
+  ~VSTESTCD, ~PARAMCD, ~PARAM, ~PARAMN,
+  "SYSBP", "SYSBP", " Systolic Blood Pressure (mmHg)", 1,
+  "DIABP", "DIABP", "Diastolic Blood Pressure (mmHg)", 2,
+  "PULSE", "PULSE", "Pulse Rate (beats/min)", 3,
+  "WEIGHT", "WEIGHT", "Weight (kg)", 4,
+  "HEIGHT", "HEIGHT", "Height (cm)", 5,
+  "TEMP", "TEMP", "Temperature (C)", 6,
+  "MAP", "MAP", "Mean Arterial Pressure (mmHg)", 7,
+  "BMI", "BMI", "Body Mass Index(kg/m^2)", 8,
+  "BSA", "BSA", "Body Surface Area(m^2)", 9
 )
 attr(param_lookup$VSTESTCD, "label") <- "Vital Signs Test Short Name"
 
@@ -81,19 +77,15 @@ advs <- advs %>%
     print_not_mapped = TRUE # Printing whether some parameters are not mapped
   )
 
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n=10)
-
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   mutate(
     AVAL = VSSTRESN,
     AVALU = VSSTRESU
-  ) 
-
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n=10)
+  )
 
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_map(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), # Other variables than the defined ones here won't be populated
     set_values_to = exprs(PARAMCD = "MAP"),
@@ -106,7 +98,7 @@ advs <- advs %>%
   )
 
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_computed(
     by_vars = exprs(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     parameters = "WEIGHT",
@@ -120,7 +112,7 @@ advs <- advs %>%
   )
 
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_bsa(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     method = "Mosteller",
@@ -135,15 +127,6 @@ advs <- advs %>%
     height_code = "HEIGHT",
     weight_code = "WEIGHT"
   )
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "MAP") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
@@ -183,9 +166,6 @@ advs <- derive_var_ontrtfl(
   filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment
 )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)
-
 ## ----r include=FALSE----------------------------------------------------------
 range_lookup <- tibble::tribble(
   ~PARAMCD, ~ANRLO, ~ANRHI, ~A1LO, ~A1HI,
@@ -208,9 +188,6 @@ advs <- derive_var_anrind(
   signif_dig = get_admiral_option("signif_digits"),
   use_a1hia1lo = FALSE
 )
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_basetype_records(
@@ -238,12 +215,9 @@ advs <- restrict_derivation(
     true_value = "Y"
   ),
   filter = (!is.na(AVAL) &
-              ADT <= TRTSDT & !is.na(BASETYPE) & is.na(DTYPE)
+    ADT <= TRTSDT & !is.na(BASETYPE) & is.na(DTYPE)
   )
 )
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n=30)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- derive_var_base(
@@ -253,7 +227,7 @@ advs <- derive_var_base(
   new_var = BASE,
   # Below arguments are default values and not necessary to add in our case
   filter = ABLFL == "Y"
-) 
+)
 
 advs <- derive_var_base(
   advs,
@@ -261,9 +235,6 @@ advs <- derive_var_base(
   source_var = ANRIND,
   new_var = BNRIND
 )
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)
 
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- restrict_derivation(
@@ -278,11 +249,8 @@ advs <- restrict_derivation(
   filter = AVISITN > 0
 )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)
-
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <-   restrict_derivation(
+advs <- restrict_derivation(
   advs,
   derivation = derive_var_extreme_flag,
   args = params(
@@ -296,11 +264,8 @@ advs <-   restrict_derivation(
   filter = !is.na(AVISITN) & ONTRTFL == "Y"
 )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)
-
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   mutate(
     TRTP = TRT01P,
     TRTA = TRT01A
@@ -317,9 +282,6 @@ advs <- derive_var_obs_number(
   check_type = "error"
 )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)
-
 ## ----r eval=TRUE--------------------------------------------------------------
 avalcat_lookup <- exprs(
   ~PARAMCD,  ~condition,   ~AVALCAT1, ~AVALCA1N,
@@ -333,14 +295,11 @@ advs <- advs %>%
     by_vars = exprs(PARAMCD)
   )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)
-
 ## ----r------------------------------------------------------------------------
 get_control_term(metacore, variable = PARAM)
 
 ## ----r eval=TRUE--------------------------------------------------------------
-advs <- advs %>% 
+advs <- advs %>%
   create_var_from_codelist(
     metacore,
     input_var = PARAMCD,
@@ -353,18 +312,12 @@ advs <- advs %>%
     out_var = PARAMN
   )
 
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)
-
 ## ----r eval=TRUE--------------------------------------------------------------
 advs <- advs %>%
   derive_vars_merged(
     dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
     by_vars = exprs(STUDYID, USUBJID)
   )
-
-## ----r, eval=TRUE, echo=FALSE-------------------------------------------------
-head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)
 
 ## ----r, message=FALSE, warning=FALSE------------------------------------------
 dir <- tempdir() # Specify the directory for saving the XPT file
@@ -377,11 +330,11 @@ advs_prefinal <- advs %>%
   sort_by_key(metacore) # Sorts the rows by the sort keys
 
 # Apply apply labels, formats, and export the dataset to an XPT file.
-advs_final <- advs_prefinal %>% 
+advs_final <- advs_prefinal %>%
   xportr_type(metacore) %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%
   xportr_format(metacore, domain = "ADVS") %>%
-  xportr_df_label(metacore, domain = "ADVS") %>% 
+  xportr_df_label(metacore, domain = "ADVS") %>%
   xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
 
