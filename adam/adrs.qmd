@@ -4,8 +4,12 @@ order: 4
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 # Introduction

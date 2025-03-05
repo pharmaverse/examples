@@ -20,11 +20,11 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 ## ----r------------------------------------------------------------------------
 # ---- Load source datasets ----
 # Load PC, EX, VS, LB and ADSL
-data("pc")
-data("ex")
-data("vs")
+ex <- pharmaversesdtm::ex
+pc <- pharmaversesdtm::pc
+vs <- pharmaversesdtm::vs
 
-data("adsl")
+adsl <- pharmaverseadam::adsl
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
@@ -58,8 +58,6 @@ pc_dates <- pc %>%
     DRUG = PCTEST,
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
-
-reactable(pc_dates)
 
 ## ----r------------------------------------------------------------------------
 ex_dates <- ex %>%
@@ -101,8 +99,6 @@ ex_dates <- ex %>%
   derive_vars_dtm_to_dt(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_dt(exprs(AENDTM))
 
-reactable(ex_dates)
-
 ## ----r------------------------------------------------------------------------
 ex_exp <- ex_dates %>%
   create_single_dose_dataset(
@@ -137,8 +133,6 @@ ex_exp <- ex_dates %>%
   derive_vars_dtm_to_tm(exprs(AENDTM)) %>%
   derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
 
-reactable(ex_exp)
-
 ## ----r------------------------------------------------------------------------
 adpc_first_dose <- pc_dates %>%
   derive_vars_merged(
@@ -157,8 +151,6 @@ adpc_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
-
-reactable(adpc_first_dose)
 
 ## ----r------------------------------------------------------------------------
 adpc_prev <- adpc_first_dose %>%
@@ -195,8 +187,6 @@ adpc_next <- adpc_prev %>%
     check_type = "none"
   )
 
-reactable(adpc_prev)
-
 ## ----r------------------------------------------------------------------------
 adpc_nom_prev <- adpc_next %>%
   derive_vars_joined(
@@ -225,8 +215,6 @@ adpc_nom_next <- adpc_nom_prev %>%
     mode = "first",
     check_type = "none"
   )
-
-reactable(adpc_nom_prev)
 
 ## ----r------------------------------------------------------------------------
 adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
@@ -284,8 +272,6 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
   derive_vars_dtm_to_tm(exprs(FANLDTM)) %>%
   derive_vars_dtm_to_dt(exprs(PCRFTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
-
-reactable(adpc_arrlt)
 
 ## ----r------------------------------------------------------------------------
 # Derive Nominal Relative Time from Reference Dose (NRRLT)
@@ -368,8 +354,6 @@ adpc_aval <- adpc_nrrlt %>%
     SRCSEQ = coalesce(PCSEQ, EXSEQ)
   )
 
-reactable(adpc_aval)
-
 ## ----r------------------------------------------------------------------------
 dtype <- adpc_aval %>%
   filter(NFRLT > 0 & NXRLT == 0 & EVID == 0 & !is.na(AVISIT_next)) %>%
@@ -391,8 +375,6 @@ dtype <- adpc_aval %>%
   derive_vars_dtm_to_dt(exprs(PCRFTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
 
-reactable(dtype)
-
 ## ----r------------------------------------------------------------------------
 adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
   arrange(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) %>%
@@ -402,8 +384,6 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
     ANL01FL = "Y",
     ANL02FL = if_else(is.na(DTYPE), "Y", NA_character_),
   )
-
-reactable(adpc_dtype)
 
 ## ----r------------------------------------------------------------------------
 # ---- Derive BASE and Calculate Change from Baseline ----
@@ -454,8 +434,6 @@ adpc_baselines <- adpc_aseq %>%
     BMIBLU = "kg/m^2"
   )
 
-reactable(adpc_baselines)
-
 ## ----r------------------------------------------------------------------------
 # ---- Add all ADSL variables ----
 
@@ -474,8 +452,6 @@ adpc <- adpc_prefinal %>%
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
-
-reactable(adpc)
 
 ## ----r------------------------------------------------------------------------
 dir <- tempdir() # Change to whichever directory you want to save the dataset in

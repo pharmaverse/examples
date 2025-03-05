@@ -4,8 +4,12 @@ order: 3
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 The Population PK Analysis Data (ADPPK) follows the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). Population PK models generally make use of nonlinear mixed effects models that require numeric variables. The data used in the models will include both dosing and concentration records, relative time variables, and numeric covariate variables. A `DV` or dependent variable is often expected. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
@@ -29,7 +33,6 @@ library(xportr)
 library(readr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
-library(reactable)
 ```
 
 ## Next Load Specifications for Metacore
@@ -52,12 +55,13 @@ We will load are SDTM data from `{pharmaversesdtm}`. The main components of this
 #| label: Load Source
 # ---- Load source datasets ----
 # Load PC, EX, VS, LB and ADSL
-data("pc")
-data("ex")
-data("vs")
-data("lb")
 
-data("adsl")
+ex <- pharmaversesdtm::ex
+pc <- pharmaversesdtm::pc
+vs <- pharmaversesdtm::vs
+lb <- pharmaversesdtm::lb
+
+adsl <- pharmaverseadam::adsl
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
@@ -101,8 +105,11 @@ pc_dates <- pc %>%
     DRUG = PCTEST,
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
+```
 
-reactable(pc_dates)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(pc_dates %>% select(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))
 ```
 
 ### Get Dosing Information
@@ -151,9 +158,15 @@ ex_dates <- ex %>%
   # Derive dates from date/times
   derive_vars_dtm_to_dt(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_dt(exprs(AENDTM))
-
-reactable(ex_dates)
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ex_dates %>% select(
+  USUBJID, EXTRT, EXDOSFRQ, EXSTDTC, EXENDTC, VISIT, VISITDY
+))
+```
+
 
 ### Expand Dosing Records
 
@@ -193,8 +206,13 @@ ex_exp <- ex_dates %>%
   derive_vars_dtm_to_tm(exprs(ADTM)) %>%
   derive_vars_dtm_to_tm(exprs(ASTDTM)) %>%
   derive_vars_dtm_to_tm(exprs(AENDTM))
+```
 
-reactable(ex_exp)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(
+  ex_exp %>% select(USUBJID, DRUG, EXDOSFRQ, ASTDT, AVISIT, NFRLT)
+)
 ```
 
 ### Find First Dose
@@ -223,8 +241,11 @@ adppk_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
+```
 
-reactable(adppk_first_dose)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adppk_first_dose %>% select(USUBJID, FANLDTM, NFRLT, ADTM, AVISITN, AVISIT, PCTPT))
 ```
 
 ### Find Previous Dose
@@ -251,8 +272,11 @@ adppk_prev <- adppk_first_dose %>%
     mode = "last",
     check_type = "none"
   )
+```
 
-reactable(adppk_prev)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adppk_prev %>% select(USUBJID, VISIT, ADTM, VISIT, PCTPT, ADTM_prev, AVISIT_prev))
 ```
 
 ### Find Previous Nominal Dose
@@ -273,9 +297,13 @@ adppk_nom_prev <- adppk_prev %>%
     mode = "last",
     check_type = "none"
   )
-
-reactable(adppk_nom_prev)
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adppk_nom_prev %>% select(USUBJID, VISIT, ADTM, NFRLT, NFRLT_prev))
+```
+
 
 ### Combine PC and EX Data
 
@@ -325,9 +353,15 @@ adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
       TRUE ~ NFRLT - NFRLT_prev
     )
   )
-
-reactable(adppk_aprlt)
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adppk_aprlt %>% select(USUBJID, FANLDTM, AVISIT, PCTPT, APRLT, NPRLT))
+```
+
+
+
 
 ### Derive Analysis Variables
 
@@ -404,9 +438,13 @@ adppk_aval <- adppk_aprlt %>%
     ADDL = 0,
     OCC = 1,
   )
-
-reactable(adppk_aval)
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adppk_aval %>% select(USUBJID, AVISIT, EVID, NFRLT, DV))
+```
+
 
 ### Add ASEQ
 
@@ -462,8 +500,11 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN) %>%
   create_var_from_codelist(metacore, input_var = SUBJTYPC, out_var = SUBJTYP)
+```
 
-reactable(covar)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(covar %>% select(USUBJID, SEX, SEXN, RACE, RACEN))
 ```
 
 ### Derive Additional Baselines
@@ -514,9 +555,14 @@ covar_vslb <- covar %>%
     )
   ) %>%
   rename(TBILBL = BILIBL)
-
-reactable(covar_vslb)
 ```
+
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
+```
+
 
 ### Combine with Covariates
 
@@ -556,8 +602,6 @@ adppk <- adppk_prefinal %>%
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
-
-reactable(adppk)
 ```
 
 ## Apply Labels and Formats with xportr
