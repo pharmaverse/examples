@@ -1,0 +1,277 @@
+---
+title: "ADAE"
+order: 7
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
+
+## Introduction
+
+This article provides a step-by-step explanation for creating an ADaM `ADAE` (Adverse Events) dataset using key pharmaverse packages along with tidyverse components.
+
+For the purpose of this example, we will use the `ADSL` dataset from `{pharmaverseadam}` and `ae` and `ex` domains from `{pharmaversesdtm}`.
+
+## Programming Flow
+
+* [Load Data and Required pharmaverse Packages](#loaddata)
+* [Load Specifications for Metacore](#loadspecs)
+* [Select ADSL Variables](#adslvars)
+* [Start Building Derivations](#startbuild)
+* [Derive Analysis Dates](#anldates)
+* [Derive Duration](#anldur)
+* [Derive Date of Last Dose](#exdates)
+* [Derive Analysis Flags](#anlflags)
+* [Derive Occurrence Flags](#occflags)
+* [Derive Query Variables](#query)
+* [Add ADSL Variables](#adslvars)
+* [Apply Metadata to Create an eSub XPT and Perform Associated Checks](#metacore_xportr)
+
+## Load Data and Required pharmaverse Packages {#loaddata}
+
+The first step is to load the required packages and input data.
+
+```{r setup, message=FALSE, warning=FALSE, results='hold'}
+library(metacore)
+library(metatools)
+library(pharmaversesdtm)
+library(pharmaverseadam)
+library(admiral)
+library(xportr)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(reactable)
+
+# Read in input data
+adsl <- pharmaverseadam::adsl
+ae <- pharmaversesdtm::ae
+ex <- pharmaversesdtm::ex
+
+# When SAS datasets are imported into R using haven::read_sas(), missing
+# character values from SAS appear as "" characters in R, instead of appearing
+# as NA values. Further details can be obtained via the following link:
+# https://pharmaverse.github.io/admiral/articles/admiral.html#handling-of-missing-values
+ae <- convert_blanks_to_na(ae)
+ex <- convert_blanks_to_na(ex)
+```
+
+# Load Specifications for Metacore {#loadspecs}
+
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
+
+```{r echo=TRUE}
+#| label: Load Specs
+#| warning: false
+# ---- Load Specs for Metacore ----
+metacore <- spec_to_metacore(
+  path = "./metadata/safety_specs.xlsx",
+  # All datasets are described in the same sheet
+  where_sep_sheet = FALSE
+) %>%
+  select_dataset("ADAE")
+```
+
+
+# Select ADSL Variables {#adslvars}
+
+Some variables from the `ADSL` dataset required for the derivations are merged into the `AE` domain using the `admiral::derive_vars_merged()` function.
+The rest of the relevant `ADSL` variables would be added later.
+
+```{r}
+# Select required ADSL variables
+adsl_vars <- exprs(TRTSDT, TRTEDT, DTHDT)
+
+# Join ADSL variables with VS
+adae <- ae %>%
+  derive_vars_merged(
+    dataset_add = adsl,
+    new_vars = adsl_vars,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+# Start Building Derivations {#startbuild}
+
+## Derive Analysis Dates {#anldates}
+
+The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
+
+```{r}
+# Calculate ASTDT/ASTDTF/ASTDY and AENDT/AENDTF/AENDY
+adae <- adae %>%
+  derive_vars_dt(
+    new_vars_prefix = "AEN",
+    dtc = AEENDTC,
+    date_imputation = "last",
+    highest_imputation = "M", # imputation is performed on missing days or months
+    flag_imputation = "auto" # To automatically create AENDTF variable
+  ) %>%
+  derive_vars_dt(
+    new_vars_prefix = "AST",
+    dtc = AESTDTC,
+    highest_imputation = "M", # imputation is performed on missing days or months
+    flag_imputation = "auto", # To automatically create ASTDTF variable
+    min_dates = exprs(TRTSDT),
+    max_dates = exprs(AENDT)
+  ) %>%
+  derive_vars_dy(
+    reference_date = TRTSDT,
+    source_vars = exprs(ASTDT, AENDT)
+  )
+
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, AESTDTC, ASTDT, ASTDTF, ASTDY, AEENDTC, AENDT, AENDTF, AENDY), n = 10)
+```
+
+## Derive Duration {#anldur}
+
+Now we have these date variables we can derive AE duration.
+
+```{r}
+# Calculate ADURN/ADURU
+adae <- adae %>%
+  derive_vars_duration(
+    new_var = ADURN,
+    new_var_unit = ADURU,
+    start_date = ASTDT,
+    end_date = AENDT
+  )
+
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU), n = 10)
+```
+
+## Derive Date of Last Dose {#exdates}
+
+You might need to add some exposure information from `ex` such as deriving the date of last dose before each AE.
+
+```{r}
+# Calculate LDOSEDT
+# In our ex data the EXDOSFRQ (frequency) is "QD" which stands for once daily
+# If this was not the case then we would need to use the admiral::create_single_dose_dataset() function
+# to generate single doses from aggregate dose information
+# Refer to https://pharmaverse.github.io/admiral/reference/create_single_dose_dataset.html
+ex <- ex %>%
+  derive_vars_dt(
+    dtc = EXENDTC,
+    new_vars_prefix = "EXEN"
+  )
+
+adae <- adae %>%
+  derive_vars_joined(
+    dataset_add = ex,
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(EXENDT),
+    new_vars = exprs(LDOSEDT = EXENDT),
+    join_vars = exprs(EXENDT),
+    join_type = "all",
+    filter_add = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO"))) & !is.na(EXENDT),
+    filter_join = EXENDT <= ASTDT,
+    mode = "last"
+  )
+
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ex %>% select(USUBJID, EXTRT, EXDOSE, EXENDT), n = 20)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT), n = 10)
+```
+
+## Derive Analysis Flags {anlflags}
+
+Next we looks at common analysis flags such as treatment emergent and on treatment flags.
+Both of the below `{admiral}` functions offer more flexibility if you needed to use more complex
+analysis rules. For example, for treatment emergent you could use the intensity arguments if you
+also wanted to flag those AEs starting before treatment start and ending after treatment start
+with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).
+
+```{r}
+# Calculate TRTEMFL and ONTRTFL
+adae <- adae %>%
+  derive_var_trtemfl(
+    trt_start_date = TRTSDT,
+    trt_end_date = TRTEDT,
+    end_window = 30
+  ) %>%
+  derive_var_ontrtfl(
+    start_date = ASTDT,
+    ref_start_date = TRTSDT,
+    ref_end_date = TRTEDT
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL), n = 10)
+```
+
+## Derive Occurrence Flags {occflags}
+
+There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient.
+
+```{r}
+# Calculate AOCCIFL
+adae <- adae %>%
+  # create temporary numeric ASEVN for sorting purpose
+  mutate(TEMP_AESEVN = as.integer(factor(AESEV, levels = c("SEVERE", "MODERATE", "MILD")))) %>%
+  derive_var_extreme_flag(
+    new_var = AOCCIFL,
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(TEMP_AESEVN, ASTDT, AESEQ),
+    mode = "first"
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, ASTDT, AESEQ, AESEV, AOCCIFL), n = 10)
+```
+
+
+## Derive Query Variables {query}
+
+
+
+
+## Add ADSL Variables {#adslvars}
+
+If needed, the other `ADSL` variables can now be added.
+List of ADSL variables already merged held in vector `adsl_vars`.
+
+```{r eval=TRUE}
+adae <- adae %>%
+  derive_vars_merged(
+    dataset_add = select(adsl, !!!negate_vars(adsl_vars)),
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+# Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}
+
+Now we have all the variables defined we can run some checks before applying the necessary formatting.
+The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas
+the others focused around applying attributes to prepare for XPT come from `{xportr}`.
+At the end you can produce the XPT file calling `xportr::xportr_write()`.
+
+```{r checks, warning=FALSE, message=FALSE}
+dir <- tempdir() # Specify the directory for saving the XPT file
+
+adsl %>%
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) %>% # Sorts the rows by the sort keys
+  xportr_type(metacore, domain = "ADAE") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_df_label(metacore) %>%  # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adae.xpt"), metadata = metacore, domain = "ADAE")
+```
