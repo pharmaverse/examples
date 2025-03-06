@@ -8,9 +8,11 @@ invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, 
 knitr::knit_hooks$set(purl = invisible_hook_purl)
 ```
 
-## Introduction
+# Introduction
 
 This article provides a step-by-step explanation for creating an ADaM `ADAE` (Adverse Events) dataset using key pharmaverse packages along with tidyverse components.
+
+Here we try to cover the most common AE analysis dataset derivations and some of the most useful functions for these. 
 
 For the purpose of this example, we will use the `ADSL` dataset from `{pharmaverseadam}` and `ae` and `ex` domains from `{pharmaversesdtm}`.
 
@@ -29,7 +31,7 @@ For the purpose of this example, we will use the `ADSL` dataset from `{pharmaver
 * [Add ADSL Variables](#adslvars)
 * [Apply Metadata to Create an eSub XPT and Perform Associated Checks](#metacore_xportr)
 
-## Load Data and Required pharmaverse Packages {#loaddata}
+# Load Data and Required pharmaverse Packages {#loaddata}
 
 The first step is to load the required packages and input data.
 
@@ -100,7 +102,7 @@ adae <- ae %>%
 The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
 
 ```{r}
-# Calculate ASTDT/ASTDTF/ASTDY and AENDT/AENDTF/AENDY
+# Derive ASTDT/ASTDTF/ASTDY and AENDT/AENDTF/AENDY
 adae <- adae %>%
   derive_vars_dt(
     new_vars_prefix = "AEN",
@@ -121,7 +123,6 @@ adae <- adae %>%
     reference_date = TRTSDT,
     source_vars = exprs(ASTDT, AENDT)
   )
-
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
@@ -133,7 +134,7 @@ print_df(adae %>% select(USUBJID, AESTDTC, ASTDT, ASTDTF, ASTDY, AEENDTC, AENDT,
 Now we have these date variables we can derive AE duration.
 
 ```{r}
-# Calculate ADURN/ADURU
+# Derive ADURN/ADURU
 adae <- adae %>%
   derive_vars_duration(
     new_var = ADURN,
@@ -141,7 +142,6 @@ adae <- adae %>%
     start_date = ASTDT,
     end_date = AENDT
   )
-
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
@@ -153,7 +153,7 @@ print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU), n = 10)
 You might need to add some exposure information from `ex` such as deriving the date of last dose before each AE.
 
 ```{r}
-# Calculate LDOSEDT
+# Derive LDOSEDT
 # In our ex data the EXDOSFRQ (frequency) is "QD" which stands for once daily
 # If this was not the case then we would need to use the admiral::create_single_dose_dataset() function
 # to generate single doses from aggregate dose information
@@ -176,7 +176,6 @@ adae <- adae %>%
     filter_join = EXENDT <= ASTDT,
     mode = "last"
   )
-
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
@@ -196,9 +195,11 @@ also wanted to flag those AEs starting before treatment start and ending after t
 with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).
 
 ```{r}
-# Calculate TRTEMFL and ONTRTFL
+# Derive TRTEMFL and ONTRTFL
 adae <- adae %>%
   derive_var_trtemfl(
+    start_date = ASTDT,
+    end_date = AENDT,
     trt_start_date = TRTSDT,
     trt_end_date = TRTEDT,
     end_window = 30
@@ -219,7 +220,7 @@ print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL), n = 
 There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient.
 
 ```{r}
-# Calculate AOCCIFL
+# Derive AOCCIFL
 adae <- adae %>%
   # create temporary numeric ASEVN for sorting purpose
   mutate(TEMP_AESEVN = as.integer(factor(AESEV, levels = c("SEVERE", "MODERATE", "MILD")))) %>%
@@ -235,11 +236,32 @@ adae <- adae %>%
 print_df(adae %>% select(USUBJID, ASTDT, AESEQ, AESEV, AOCCIFL), n = 10)
 ```
 
-
 ## Derive Query Variables {query}
 
+The final set of derived flags would be around those checking for queries/baskets of AE terms, e.g. using Standardized MedDRA Queries (SMQs) or Custom Queries (CQs). 
 
+Before reading this section, you should read the [Queries Dataset Vignette](https://pharmaverse.github.io/admiral/articles/queries_dataset.html) from `{admiral}`.
 
+On a study you would need to create your own version of this queries dataset with the AE queries you need, but for the purpose of this article we use the example provided as part of `{admiral}` and we filter it to just one CQ and one SMQ.
+
+```{r}
+queries <- admiral::queries %>%
+  filter(PREFIX %in% c("CQ01", "SMQ02"))
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(queries, n = 10)
+```
+
+```{r}
+# Derive SMQ and CQ flags
+adae <- adae %>%
+  derive_vars_query(dataset_queries = queries)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adae %>% select(USUBJID, AEDECOD, CQ01NAM, SMQ02NAM), n = 10)
+```
 
 ## Add ADSL Variables {#adslvars}
 
