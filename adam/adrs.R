@@ -15,12 +15,9 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADRS")
 
 ## ----r load-data--------------------------------------------------------------
-data("adsl")
-data("rs_onco_recist")
-data("tu_onco_recist")
-
-rs <- rs_onco_recist
-tu <- tu_onco_recist
+adsl <- pharmaverseadam::adsl
+rs <- pharmaversesdtm::rs_onco_recist
+tu <- pharmaversesdtm::tu_onco_recist
 
 # Convert blanks to NA
 rs <- convert_blanks_to_na(rs)

@@ -19,12 +19,13 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 ## ----r------------------------------------------------------------------------
 # ---- Load source datasets ----
 # Load PC, EX, VS, LB and ADSL
-data("pc")
-data("ex")
-data("vs")
-data("lb")
 
-data("adsl")
+ex <- pharmaversesdtm::ex
+pc <- pharmaversesdtm::pc
+vs <- pharmaversesdtm::vs
+lb <- pharmaversesdtm::lb
+
+adsl <- pharmaverseadam::adsl
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
