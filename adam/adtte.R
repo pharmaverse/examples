@@ -14,8 +14,8 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets
-data("adsl")
-data("adrs_onco")
+adsl <- pharmaverseadam::adsl
+adrs <- pharmaverseadam::adrs_onco
 
 adrs <- adrs_onco
 

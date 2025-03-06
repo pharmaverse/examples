@@ -45,8 +45,8 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets
-data("adsl")
-data("adrs_onco")
+adsl <- pharmaverseadam::adsl
+adrs <- pharmaverseadam::adrs_onco
 
 adrs <- adrs_onco
 ```
@@ -141,6 +141,11 @@ adtte_pfs <- adtte %>%
   )
 ```
 
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adtte_pfs, n = 10)
+```
+
 # Derive Analysis Value (`AVAL`)
 
 The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration()` function.
@@ -153,6 +158,11 @@ adtte_aval <- adtte_pfs %>%
     start_date = STARTDT,
     end_date = ADT
   )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adtte_aval, n = 10)
 ```
 
 # Derive Analysis Sequence Number (`ASEQ`)
