@@ -101,6 +101,9 @@ adae <- ae %>%
 
 The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
 
+When deriving AE end date first as `AENDT`, we're going to impute partial dates with missing day or month.
+For AE start date `ASTDT` then we're going to use the same imputation, but additionally we ensure that the imputed date doesn't go before treatment start date or after the AE end date.
+
 ```{r}
 # Derive ASTDT/ASTDTF/ASTDY and AENDT/AENDTF/AENDY
 adae <- adae %>%
@@ -109,15 +112,15 @@ adae <- adae %>%
     dtc = AEENDTC,
     date_imputation = "last",
     highest_imputation = "M", # imputation is performed on missing days or months
-    flag_imputation = "auto" # To automatically create AENDTF variable
+    flag_imputation = "auto" # to automatically create AENDTF variable
   ) %>%
   derive_vars_dt(
     new_vars_prefix = "AST",
     dtc = AESTDTC,
     highest_imputation = "M", # imputation is performed on missing days or months
-    flag_imputation = "auto", # To automatically create ASTDTF variable
-    min_dates = exprs(TRTSDT),
-    max_dates = exprs(AENDT)
+    flag_imputation = "auto", # to automatically create ASTDTF variable
+    min_dates = exprs(TRTSDT), # apply a minimum date for the imputation
+    max_dates = exprs(AENDT) # apply a maximum date for the imputation
   ) %>%
   derive_vars_dy(
     reference_date = TRTSDT,
@@ -151,6 +154,8 @@ print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU), n = 10)
 ## Derive Date of Last Dose {#exdates}
 
 You might need to add some exposure information from `ex` such as deriving the date of last dose before each AE.
+
+In the below case we call this `LDOSEDT` and we want to look only at exposure records with a valid dose or placebo.
 
 ```{r}
 # Derive LDOSEDT
@@ -189,10 +194,7 @@ print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT), n = 10)
 ## Derive Analysis Flags {anlflags}
 
 Next we looks at common analysis flags such as treatment emergent and on treatment flags.
-Both of the below `{admiral}` functions offer more flexibility if you needed to use more complex
-analysis rules. For example, for treatment emergent you could use the intensity arguments if you
-also wanted to flag those AEs starting before treatment start and ending after treatment start
-with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).
+For the on-treatment flag we only want to include AEs occurring until 30 days after treatment end.
 
 ```{r}
 # Derive TRTEMFL and ONTRTFL
@@ -201,13 +203,13 @@ adae <- adae %>%
     start_date = ASTDT,
     end_date = AENDT,
     trt_start_date = TRTSDT,
-    trt_end_date = TRTEDT,
-    end_window = 30
+    trt_end_date = TRTEDT
   ) %>%
   derive_var_ontrtfl(
     start_date = ASTDT,
     ref_start_date = TRTSDT,
-    ref_end_date = TRTEDT
+    ref_end_date = TRTEDT,
+    ref_end_window = 30
   )
 ```
 
@@ -215,9 +217,14 @@ adae <- adae %>%
 print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL), n = 10)
 ```
 
+Both of the above `{admiral}` functions offer more flexibility if you needed to use more complex
+analysis rules. For example, for treatment emergent you could use the intensity arguments if you
+also wanted to flag those AEs starting before treatment start and ending after treatment start
+with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).
+
 ## Derive Occurrence Flags {occflags}
 
-There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient.
+There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient which in the below example we call `AOCCIFL`.
 
 ```{r}
 # Derive AOCCIFL
@@ -254,7 +261,7 @@ print_df(queries, n = 10)
 ```
 
 ```{r}
-# Derive SMQ and CQ flags
+# Derive CQ01NAM and SMQ01NAM
 adae <- adae %>%
   derive_vars_query(dataset_queries = queries)
 ```
