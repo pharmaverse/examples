@@ -84,7 +84,7 @@ metacore <- spec_to_metacore(
 # Select ADSL Variables {#adslvars}
 
 Some variables from the `ADSL` dataset required for the derivations are merged into the `AE` domain using the `admiral::derive_vars_merged()` function.
-The rest of the relevant `ADSL` variables would be added later.
+The rest of the relevant `ADSL` variables will be added later.
 
 ```{r}
 # Select required ADSL variables
@@ -103,10 +103,12 @@ adae <- ae %>%
 
 ## Derive Analysis Dates {#anldates}
 
-The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset.
+The first derivation step we are going to do is to compute the Analysis Date and Relative Analysis Day with the variables merged from `ADSL` dataset using the `admiral::derive_vars_dt()` and `admiral::derive_vars_dy()` functions.
 
 When deriving AE end date first as `AENDT`, we're going to impute partial dates with missing day or month.
 For AE start date `ASTDT` then we're going to use the same imputation, but additionally we ensure that the imputed date doesn't go before treatment start date or after the AE end date.
+
+For all of these example calls we don't generally include the default arguments, so you should be sure to check out the full functional reference pages as then you'll also learn what other arguments exist to allow further user control over the derivations.
 
 ```{r}
 # Derive ASTDT/ASTDTF/ASTDY and AENDT/AENDTF/AENDY
@@ -138,7 +140,8 @@ print_df(adae %>% select(USUBJID, AESTDTC, ASTDT, ASTDTF, ASTDY, AEENDTC, AENDT,
 
 ## Derive Duration {#anldur}
 
-Now we have these date variables we can derive AE duration, where the default is to + 1 day, but this can be controlled with the `add_one` argument.
+Now we have these date variables we can derive AE duration using the `admiral::derive_vars_duration()` function.
+For this function the default is to + 1 day for the calculation, but this can be controlled with the `add_one` argument.
 
 ```{r}
 # Derive ADURN/ADURU
@@ -160,6 +163,7 @@ print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU))
 You might need to add some exposure information from `ex` such as deriving the date of last dose before each AE.
 
 In the below case we call this `LDOSEDT` and we want to look only at exposure records with a valid dose or placebo.
+Here we use the `admiral::derive_vars_joined()` function which enables more complex joins.
 
 ```{r}
 # Derive LDOSEDT
@@ -197,7 +201,7 @@ print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT))
 
 ## Derive Analysis Flags {anlflags}
 
-Next we looks at common analysis flags such as treatment emergent and on treatment flags.
+Next we looks at common analysis flags such as treatment emergent and on treatment flags using the `admiral::derive_var_trtemfl()` and `admiral::derive_var_ontrtfl()` functions.
 For the on-treatment flag we only want to include AEs occurring until 30 days after treatment end.
 
 ```{r}
@@ -221,14 +225,16 @@ adae <- adae %>%
 print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL))
 ```
 
-Both of the above `{admiral}` functions offer more flexibility if you needed to use more complex
-analysis rules. For example, for treatment emergent you could use the intensity arguments if you
-also wanted to flag those AEs starting before treatment start and ending after treatment start
-with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).
+At first these 2 functions may appear similar but both offer extra specific arguments for
+flexibility if you needed to apply more complex analysis rules to these derivations. For example, for
+treatment emergent you could use the intensity arguments if you also wanted to flag those AEs
+starting before treatment start and ending after treatment start with worsened intensity
+(i.e. the most extreme intensity is greater than the initial intensity).
 
 ## Derive Occurrence Flags {occflags}
 
 There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient which in the below example we call `AOCCIFL`.
+Here we use the `admiral::derive_var_extreme_flag()` function.
 
 ```{r}
 # Derive AOCCIFL
@@ -254,6 +260,7 @@ The final set of derived flags would be around those checking for queries/basket
 Before reading this section, you should read the [Queries Dataset Vignette](https://pharmaverse.github.io/admiral/articles/queries_dataset.html) from `{admiral}`.
 
 On a study you would need to create your own version of this queries dataset with the AE queries you need, but for the purpose of this article we use the example provided as part of `{admiral}` and we filter it to just one CQ and one SMQ.
+Then you can derive the required variables using the `admiral::derive_vars_query()` function.
 
 ```{r}
 queries <- admiral::queries %>%
