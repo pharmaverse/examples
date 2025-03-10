@@ -4,8 +4,12 @@ order: 7
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 # Introduction
@@ -28,7 +32,7 @@ For the purpose of this example, we will use the `ADSL` dataset from `{pharmaver
 * [Derive Analysis Flags](#anlflags)
 * [Derive Occurrence Flags](#occflags)
 * [Derive Query Variables](#query)
-* [Add ADSL Variables](#adslvars)
+* [Add ADSL Variables](#adsladd)
 * [Apply Metadata to Create an eSub XPT and Perform Associated Checks](#metacore_xportr)
 
 # Load Data and Required pharmaverse Packages {#loaddata}
@@ -129,12 +133,12 @@ adae <- adae %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, AESTDTC, ASTDT, ASTDTF, ASTDY, AEENDTC, AENDT, AENDTF, AENDY), n = 10)
+print_df(adae %>% select(USUBJID, AESTDTC, ASTDT, ASTDTF, ASTDY, AEENDTC, AENDT, AENDTF, AENDY))
 ```
 
 ## Derive Duration {#anldur}
 
-Now we have these date variables we can derive AE duration.
+Now we have these date variables we can derive AE duration, where the default is to + 1 day, but this can be controlled with the `add_one` argument.
 
 ```{r}
 # Derive ADURN/ADURU
@@ -148,7 +152,7 @@ adae <- adae %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU), n = 10)
+print_df(adae %>% select(USUBJID, ASTDT, AENDT, ADURN, ADURU))
 ```
 
 ## Derive Date of Last Dose {#exdates}
@@ -184,11 +188,11 @@ adae <- adae %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(ex %>% select(USUBJID, EXTRT, EXDOSE, EXENDT), n = 20)
+print_df(ex %>% select(USUBJID, EXTRT, EXDOSE, EXENDT))
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT), n = 10)
+print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT))
 ```
 
 ## Derive Analysis Flags {anlflags}
@@ -214,7 +218,7 @@ adae <- adae %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL), n = 10)
+print_df(adae %>% select(USUBJID, ASTDT, TRTSDT, TRTEDT, TRTEMFL, ONTRTFL))
 ```
 
 Both of the above `{admiral}` functions offer more flexibility if you needed to use more complex
@@ -240,7 +244,7 @@ adae <- adae %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, ASTDT, AESEQ, AESEV, AOCCIFL), n = 10)
+print_df(adae %>% select(USUBJID, ASTDT, AESEQ, AESEV, AOCCIFL))
 ```
 
 ## Derive Query Variables {query}
@@ -257,20 +261,20 @@ queries <- admiral::queries %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(queries, n = 10)
+print_df(queries)
 ```
 
 ```{r}
-# Derive CQ01NAM and SMQ01NAM
+# Derive CQ01NAM and SMQ02NAM
 adae <- adae %>%
   derive_vars_query(dataset_queries = queries)
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adae %>% select(USUBJID, AEDECOD, CQ01NAM, SMQ02NAM), n = 10)
+print_df(adae %>% select(USUBJID, AEDECOD, CQ01NAM, SMQ02NAM))
 ```
 
-## Add ADSL Variables {#adslvars}
+## Add ADSL Variables {#adsladd}
 
 If needed, the other `ADSL` variables can now be added.
 List of ADSL variables already merged held in vector `adsl_vars`.
@@ -285,15 +289,13 @@ adae <- adae %>%
 
 # Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}
 
-Now we have all the variables defined we can run some checks before applying the necessary formatting.
-The top four functions performing checks and sorting/ordering come from `{metatools}`, whereas
-the others focused around applying attributes to prepare for XPT come from `{xportr}`.
-At the end you can produce the XPT file calling `xportr::xportr_write()`.
+We use `{metatools}` and `{xportr}` to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.
 
 ```{r checks, warning=FALSE, message=FALSE}
 dir <- tempdir() # Specify the directory for saving the XPT file
 
-adsl %>%
+adae %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
   check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore, na_acceptable = TRUE) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
