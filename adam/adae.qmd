@@ -68,6 +68,9 @@ ex <- convert_blanks_to_na(ex)
 
 We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
 
+When you run this in your R script you might find warnings that come from `{metacore}` which help you to improve your specifications.
+Examples could be specification columns with only missing values or unused codelists, but once checked these warnings could be suppressed using something like `suppressWarnings()`.
+
 ```{r echo=TRUE}
 #| label: Load Specs
 #| warning: false
