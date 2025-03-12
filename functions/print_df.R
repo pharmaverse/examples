@@ -4,8 +4,6 @@ library(reactablefmtr)
 print_df <- function(dataset, n = 10) {
   out <- dataset
 
-  text <-  paste0("Sample Print of ", deparse(substitute(dataset)), " Data")
-
   reactable(
     head(out, n),
     compact = TRUE,
@@ -23,5 +21,5 @@ print_df <- function(dataset, n = 10) {
       cellPadding = "8px"
     )
   ) %>% 
-    add_title(text)
+    add_title("Sample of Data")
 }
