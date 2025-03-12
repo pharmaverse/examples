@@ -1,8 +1,10 @@
 library(reactable)
+library(reactablefmtr)
 
 print_df <- function(dataset, n = 10) {
   out <- dataset
 
+  text <-  paste0("Sample Print of ", deparse(substitute(dataset)), " Data")
 
   reactable(
     head(out, n),
@@ -20,5 +22,6 @@ print_df <- function(dataset, n = 10) {
       highlightColor = "#dfe6f2",
       cellPadding = "8px"
     )
-  )
+  ) %>% 
+    add_title(text)
 }
