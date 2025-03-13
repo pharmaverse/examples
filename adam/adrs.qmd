@@ -14,7 +14,7 @@ source("functions/print_df.R")
 
 # Introduction
 
-The Response Analysis Dataset (`ADRS`) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an `ADRS` ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include `CR` (Complete Response), `PR` (Partial Response), `SD` (Stable Disease), `NON-CR/NON-PD` (Non-CR/Non-PD), `PD` (Progressive Disease), and `NE` (Not Evaluable). See `{admiral}` and `{admiralonco}` for mor information. Find other `{admiral}` variables and functions by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>)
+The Response Analysis Dataset (`ADRS`) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an `ADRS` ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include `CR` (Complete Response), `PR` (Partial Response), `SD` (Stable Disease), `NON-CR/NON-PD` (Non-CR/Non-PD), `PD` (Progressive Disease), and `NE` (Not Evaluable). See `{admiral}` and `{admiralonco}` for mor information. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>)
 
 This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).
 

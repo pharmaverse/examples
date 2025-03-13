@@ -43,7 +43,7 @@ For the purpose of this example, we will use the `ADSL` dataset from `{pharmaver
 
 # Load Data and Required pharmaverse Packages {#loaddata}
 
-First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find `{admiral}` variables and functions by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
 
 Then we will load our input data.
 

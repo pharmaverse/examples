@@ -20,7 +20,7 @@ The four packages used with a brief description of their purpose are as follows:
 
 -   [`{metacore}`](https://atorus-research.github.io/metacore/): provides harmonized metadata/specifications object.
 -   [`{metatools}`](https://pharmaverse.github.io/metatools/): uses the provided metadata to build/enhance and check the dataset.
--   [`{admiral}`](https://pharmaverse.github.io/admiral/index.html): provides the ADaM derivations. (Find variables and functions by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>))
+-   [`{admiral}`](https://pharmaverse.github.io/admiral/index.html): provides the ADaM derivations. (Find functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>))
 -   [`{xportr}`](https://atorus-research.github.io/xportr/): delivers the SAS transport file (XPT) and eSub checks.
 
 It is important to understand `{metacore}` objects by reading through the above linked package site, as these are fundamental to being able to use `{metatools}` and `{xportr}`.
