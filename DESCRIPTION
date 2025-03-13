@@ -28,6 +28,8 @@ Imports:
     metatools,
     pharmaversesdtm,
     pharmaverseadam,
+    reactable,
+    reactablefmtr,
     sparkline,
     stringr,
     shinylive,

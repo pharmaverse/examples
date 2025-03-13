@@ -4,8 +4,12 @@ order: 4
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 # Introduction
@@ -46,17 +50,19 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
 We load the required SDTM datasets (`RS`, `TU`) and ADaM dataset (`ADSL`) necessary for creating the `ADRS` dataset.
 
 ```{r load-data}
-data("adsl")
-data("rs_onco_recist")
-data("tu_onco_recist")
-
-rs <- rs_onco_recist
-tu <- tu_onco_recist
+adsl <- pharmaverseadam::adsl
+rs <- pharmaversesdtm::rs_onco_recist
+tu <- pharmaversesdtm::tu_onco_recist
 
 # Convert blanks to NA
 rs <- convert_blanks_to_na(rs)
 tu <- convert_blanks_to_na(tu)
 ```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(rs, n = 10)
+```
+
 
 # Merging ADSL with RS
 
@@ -147,6 +153,11 @@ adrs_anl01fl <- adrs_aval %>%
   )
 ```
 
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adrs_anl01fl %>% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), n = 10)
+```
+
 # Deriving Parameters
 
 ## Derive Progressive Disease Parameter
@@ -174,6 +185,11 @@ adrs_pd <- adrs_anl01fl %>%
       ANL01FL = "Y"
     )
   )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adrs_pd %>% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %>% filter(PARAMCD == "PD"), n = 10)
 ```
 
 ## Derive Death Parameter
@@ -226,6 +242,11 @@ adrs_lsta <- adrs_death %>%
       ANL01FL = "Y"
     )
   )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adrs_lsta %>% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %>% filter(PARAMCD == "LSTA"), n = 10)
 ```
 
 # Apply Metadata and Perform Associated Checks

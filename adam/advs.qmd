@@ -4,8 +4,12 @@ order: 6
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 # Introduction
@@ -34,7 +38,7 @@ For the purpose of this example, we will use the `ADSL` dataset from `{pharmaver
 * [Assign `ASEQ`](#aseq)
 * [Derive Categorization Variables (`AVALCATy`)](#categorizationvars)
 * [Assign Parameter Level Values (`PARAM`, `PARAMN`)](#paramval)
-* [Add ADSL variables](#adslvars)
+* [Add ADSL variables](#addadsl)
 * [Apply Metadata and eSub Checks](#metacore_xportr)
 
 # Load Data and Required pharmaverse Packages {#loaddata}
@@ -93,8 +97,10 @@ advs <- vs %>%
     new_vars = adsl_vars,
     by_vars = exprs(STUDYID, USUBJID)
   )
+```
 
-head(advs, n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs, n = 10)
 ```
 
 # Start Building Derivations {#startbuild}
@@ -116,8 +122,10 @@ advs <- advs %>%
     reference_date = TRTSDT,
     source_vars = exprs(ADT)
   )
+```
 
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY), n = 10)
 ```
 
 ## Assign `PARAMCD`, `PARAM`, `PARAMN` {#paramvars}
@@ -144,16 +152,16 @@ This lookup may now be joined to the source data:
 
 ```{r eval=TRUE, include=FALSE}
 param_lookup <- tibble::tribble(
-  ~VSTESTCD, ~PARAMCD,                            ~PARAM, ~PARAMN,
-  "SYSBP",    "SYSBP", " Systolic Blood Pressure (mmHg)",        1,
-  "DIABP",    "DIABP", "Diastolic Blood Pressure (mmHg)",        2,
-  "PULSE",    "PULSE",          "Pulse Rate (beats/min)",        3,
-  "WEIGHT",  "WEIGHT",                     "Weight (kg)",        4,
-  "HEIGHT", "HEIGHT",                      "Height (cm)",        5,
-  "TEMP",     "TEMP",                  "Temperature (C)",        6,
-  "MAP",       "MAP",    "Mean Arterial Pressure (mmHg)",        7,
-  "BMI",       "BMI",          "Body Mass Index(kg/m^2)",        8,
-  "BSA",       "BSA",           "Body Surface Area(m^2)",        9
+  ~VSTESTCD, ~PARAMCD, ~PARAM, ~PARAMN,
+  "SYSBP", "SYSBP", " Systolic Blood Pressure (mmHg)", 1,
+  "DIABP", "DIABP", "Diastolic Blood Pressure (mmHg)", 2,
+  "PULSE", "PULSE", "Pulse Rate (beats/min)", 3,
+  "WEIGHT", "WEIGHT", "Weight (kg)", 4,
+  "HEIGHT", "HEIGHT", "Height (cm)", 5,
+  "TEMP", "TEMP", "Temperature (C)", 6,
+  "MAP", "MAP", "Mean Arterial Pressure (mmHg)", 7,
+  "BMI", "BMI", "Body Mass Index(kg/m^2)", 8,
+  "BSA", "BSA", "Body Surface Area(m^2)", 9
 )
 attr(param_lookup$VSTESTCD, "label") <- "Vital Signs Test Short Name"
 ```
@@ -173,8 +181,10 @@ advs <- advs %>%
     # Below arguments are default values and not necessary to add in our case
     print_not_mapped = TRUE # Printing whether some parameters are not mapped
   )
+```
 
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD), n = 10)
 ```
 
 ## Derive Results and Units (`AVAL`, `AVALU`) {#avalvars}
@@ -183,13 +193,15 @@ The mapping of `AVAL` and `AVALU` is left to the ADaM programmer. An
 example mapping may be:
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   mutate(
     AVAL = VSSTRESN,
     AVALU = VSSTRESU
-  ) 
+  )
+```
 
-head(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% select(STUDYID, USUBJID, VISIT, VISITNUM, VSTESTCD, VSTEST, VSDTC, !!!adsl_vars, ADT, ADY, PARAMCD, AVAL, AVALU), n = 10)
 ```
 
 In this example, as is often the case for ADVS, all `AVAL` values are numeric without any corresponding non-redundant text value for `AVALC`.
@@ -205,7 +217,7 @@ created records. This is relevant to the functions `admiral::derive_param_map`,
 Below is an example of creating `Mean Arterial Pressure` for `ADVS` using the wrapper function `admiral::derive_param_map()` 
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_map(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM, AVALU), # Other variables than the defined ones here won't be populated
     set_values_to = exprs(PARAMCD = "MAP"),
@@ -224,7 +236,7 @@ Note that if height is collected only once use `constant_parameters` to define t
 Otherwise BMI is only calculated for visits where both parameters `HEIGHT` and `WEIGHT` are collected.
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_computed(
     by_vars = exprs(STUDYID, USUBJID, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     parameters = "WEIGHT",
@@ -243,7 +255,7 @@ Note that if height is collected only once use `constant_by_vars` to specify the
 Otherwise BSA is only calculated for visits where both parameters `HEIGHT` and `WEIGHT` are collected.
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   derive_param_bsa(
     by_vars = exprs(STUDYID, USUBJID, !!!adsl_vars, VISIT, VISITNUM, ADT, ADY, VSTPT, VSTPTNUM),
     method = "Mosteller",
@@ -260,14 +272,14 @@ advs <- advs %>%
   )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "MAP") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "MAP") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n = 10)
 ```
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "BMI") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n = 10)
 ```
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "BSA") %>% select(STUDYID, USUBJID, VSTESTCD, PARAMCD, VISIT, VSTPT, AVAL, AVALU), n = 10)
 ```
 
 ## Derive Timing Variables (e.g. `AVISIT`, `ATPT`, `ATPTN`) {#timingvars}
@@ -333,11 +345,11 @@ advs <- derive_var_ontrtfl(
   ref_start_date = TRTSDT,
   ref_end_date = TRTEDT,
   filter_pre_timepoint = toupper(AVISIT) == "BASELINE" # Observations as not on-treatment
-  )
+)
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, ADT, TRTSDT, TRTEDT, ONTRTFL), n = 10)
 ```
 
 ## Assign Reference Range Indicator (`ANRIND`) {#rangeind}
@@ -375,8 +387,8 @@ advs <- derive_var_anrind(
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) == "WEEK 2") %>% select(USUBJID, PARAMCD, AVAL, ANRLO, ANRHI, A1LO, A1HI, ANRIND), n = 10)
 ```
 
 ## Derive Baseline (`BASETYPE`, `ABLFL`, `BASE`, `BNRIND`) {#baselinevars}
@@ -427,8 +439,8 @@ advs <- restrict_derivation(
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ADT, TRTSDT, ATPTN, TRTSDT, ABLFL), n = 30)
 ```
 
 Lastly, the `BASE`, and  `BNRIND` columns can be derived using the `{admiral}` function
@@ -442,7 +454,7 @@ advs <- derive_var_base(
   new_var = BASE,
   # Below arguments are default values and not necessary to add in our case
   filter = ABLFL == "Y"
-) 
+)
 
 advs <- derive_var_base(
   advs,
@@ -452,8 +464,8 @@ advs <- derive_var_base(
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "BASELINE")) %>% select(USUBJID, BASETYPE, PARAMCD, ABLFL, BASE, ANRIND, BNRIND), n = 10)
 ```
 
 ## Derive Change from Baseline (`CHG`, `PCHG`) {#chgpchg}
@@ -480,8 +492,8 @@ advs <- restrict_derivation(
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, VISIT, BASE, AVAL, CHG, PCHG), n = 30)
 ```
 
 ## Derive Analysis Flags (e.g. `ANL01FL`) {#anl01fl}
@@ -498,7 +510,7 @@ For this example, we will assume we would like to choose within the Post-Baselin
 highest value by `USUBJID`, `PARAMCD`, `AVISIT`, and `ATPT`.
 
 ```{r eval=TRUE}
-advs <-   restrict_derivation(
+advs <- restrict_derivation(
   advs,
   derivation = derive_var_extreme_flag,
   args = params(
@@ -508,13 +520,13 @@ advs <-   restrict_derivation(
     mode = "last", # Determines of the first or last observation is flagged - As seen while deriving ABLFL
     # Below arguments are default values and not necessary to add in our case
     true_value = "Y"
-    ),
+  ),
   filter = !is.na(AVISITN) & ONTRTFL == "Y"
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "DIABP" & toupper(VISIT) %in% c("WEEK 2", "WEEK 8")) %>% select(USUBJID, PARAMCD, AVISIT, ATPTN, ADT, AVAL, ANL01FL), n = 30)
 ```
 
 ## Assign Treatment (`TRTA`, `TRTP`) {#treatmentvars}
@@ -526,11 +538,11 @@ variables in ADSL (e.g., `TRTxxA`/`TRTxxP`, `TRTSEQA`/`TRTSEQP`,
 An example of a simple implementation for a study without periods could be:
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   mutate(
     TRTP = TRT01P,
     TRTA = TRT01A
-    )
+  )
 
 count(advs, TRTP, TRTA, TRT01P, TRT01A)
 ```
@@ -552,8 +564,8 @@ advs <- derive_var_obs_number(
 )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, PARAMCD, ADT, AVISITN, ATPTN, VISIT, ADT, ASEQ), n = 30)
 ```
 
 ## Derive Categorization Variables (`AVALCATy`) {#categorizationvars}
@@ -574,8 +586,8 @@ advs <- advs %>%
   )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(PARAMCD == "HEIGHT") %>% select(USUBJID, PARAMCD, AVAL, AVALCA1N, AVALCAT1), n = 30)
 ```
 
 ## Assign Parameter Level Values (`PARAM`, `PARAMN`) {#paramval}
@@ -595,25 +607,25 @@ get_control_term(metacore, variable = PARAM)
 ```
 
 ```{r eval=TRUE}
-advs <- advs %>% 
+advs <- advs %>%
   create_var_from_codelist(
     metacore,
     input_var = PARAMCD,
     out_var = PARAM,
     decode_to_code = FALSE # input_var is the code column of the codelist
-    ) %>%
+  ) %>%
   create_var_from_codelist(
     metacore,
     input_var = PARAMCD,
     out_var = PARAMN
-    )
+  )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(USUBJID == "01-716-1024") %>% select(USUBJID, VSTESTCD, PARAMCD, PARAM, PARAMN), n = 30)
 ```
 
-## Add ADSL variables {#adslvars}
+## Add ADSL variables {#addadsl}
 
 If needed, the other `ADSL` variables can now be added.
 List of ADSL variables already merged held in vector `adsl_vars`
@@ -626,8 +638,8 @@ advs <- advs %>%
   )
 ```
 
-```{r, eval=TRUE, echo=FALSE}
-head(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n=30)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(advs %>% filter(USUBJID == "01-701-1015") %>% select(USUBJID, RFSTDTC, RFENDTC, DTHDTC, DTHFL, AGE, AGEU), n = 30)
 ```
 
 # Apply Metadata and eSub Checks {#metacore_xportr}
@@ -645,11 +657,11 @@ advs_prefinal <- advs %>%
   sort_by_key(metacore) # Sorts the rows by the sort keys
 
 # Apply apply labels, formats, and export the dataset to an XPT file.
-advs_final <- advs_prefinal %>% 
+advs_final <- advs_prefinal %>%
   xportr_type(metacore) %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%
   xportr_format(metacore, domain = "ADVS") %>%
-  xportr_df_label(metacore, domain = "ADVS") %>% 
+  xportr_df_label(metacore, domain = "ADVS") %>%
   xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
 ```
