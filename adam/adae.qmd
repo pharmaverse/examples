@@ -85,8 +85,7 @@ metacore <- spec_to_metacore(
 
 # Select ADSL Variables {#adslvars}
 
-Some variables from the `ADSL` dataset required for the derivations are merged into the `AE` domain using the `admiral::derive_vars_merged()` function.
-The rest of the relevant `ADSL` variables will be added later.
+Some variables from the `ADSL` dataset required for the derivations are merged into the `AE` domain using the `admiral::derive_vars_merged()` function. Find other `{admiral}` variables and functions by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). The rest of the relevant `ADSL` variables will be added later.
 
 ```{r}
 # Select required ADSL variables

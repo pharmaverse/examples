@@ -53,7 +53,7 @@ adrs <- adrs_onco
 
 # Define Event and Censoring Sources
 
-We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints.
+We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints. Find other `{admiral}` variables and functions by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>).
 
 ```{r}
 # Define event and censoring sources
