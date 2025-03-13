@@ -143,33 +143,33 @@
     ]
   },
   {
-    "objectID": "adam/adae.html#derive-analysis-flags-anlflags",
-    "href": "adam/adae.html#derive-analysis-flags-anlflags",
+    "objectID": "adam/adae.html#anlflags",
+    "href": "adam/adae.html#anlflags",
     "title": "ADAE",
-    "section": "Derive Analysis Flags {anlflags}",
-    "text": "Derive Analysis Flags {anlflags}\nNext we looks at common analysis flags such as treatment emergent and on treatment flags using the admiral::derive_var_trtemfl() and admiral::derive_var_ontrtfl() functions. For the on-treatment flag we only want to include AEs occurring until 30 days after treatment end.\n\n# Derive TRTEMFL and ONTRTFL\nadae &lt;- adae %&gt;%\n  derive_var_trtemfl(\n    start_date = ASTDT,\n    end_date = AENDT,\n    trt_start_date = TRTSDT,\n    trt_end_date = TRTEDT\n  ) %&gt;%\n  derive_var_ontrtfl(\n    start_date = ASTDT,\n    ref_start_date = TRTSDT,\n    ref_end_date = TRTEDT,\n    ref_end_window = 30\n  )\n\n\n\nSample of Data\n\n\n\n\nAt first these 2 functions may appear similar but both offer extra specific arguments for flexibility if you needed to apply more complex analysis rules to these derivations. For example, for treatment emergent you could use the intensity arguments if you also wanted to flag those AEs starting before treatment start and ending after treatment start with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).",
+    "section": "Derive Analysis Flags",
+    "text": "Derive Analysis Flags\nNext we looks at common analysis flags such as treatment emergent and on treatment flags using the admiral::derive_var_trtemfl() and admiral::derive_var_ontrtfl() functions. For the on-treatment flag we only want to include AEs occurring until 30 days after treatment end.\n\n# Derive TRTEMFL and ONTRTFL\nadae &lt;- adae %&gt;%\n  derive_var_trtemfl(\n    start_date = ASTDT,\n    end_date = AENDT,\n    trt_start_date = TRTSDT,\n    trt_end_date = TRTEDT\n  ) %&gt;%\n  derive_var_ontrtfl(\n    start_date = ASTDT,\n    ref_start_date = TRTSDT,\n    ref_end_date = TRTEDT,\n    ref_end_window = 30\n  )\n\n\n\nSample of Data\n\n\n\n\nAt first these 2 functions may appear similar but both offer extra specific arguments for flexibility if you needed to apply more complex analysis rules to these derivations. For example, for treatment emergent you could use the intensity arguments if you also wanted to flag those AEs starting before treatment start and ending after treatment start with worsened intensity (i.e. the most extreme intensity is greater than the initial intensity).",
     "crumbs": [
       "ADaM",
       "ADAE"
     ]
   },
   {
-    "objectID": "adam/adae.html#derive-occurrence-flags-occflags",
-    "href": "adam/adae.html#derive-occurrence-flags-occflags",
+    "objectID": "adam/adae.html#occflags",
+    "href": "adam/adae.html#occflags",
     "title": "ADAE",
-    "section": "Derive Occurrence Flags {occflags}",
-    "text": "Derive Occurrence Flags {occflags}\nThere can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient which in the below example we call AOCCIFL. Here we use the admiral::derive_var_extreme_flag() function.\n\n# Derive AOCCIFL\nadae &lt;- adae %&gt;%\n  # create temporary numeric ASEVN for sorting purpose\n  mutate(TEMP_AESEVN = as.integer(factor(AESEV, levels = c(\"SEVERE\", \"MODERATE\", \"MILD\")))) %&gt;%\n  derive_var_extreme_flag(\n    new_var = AOCCIFL,\n    by_vars = exprs(STUDYID, USUBJID),\n    order = exprs(TEMP_AESEVN, ASTDT, AESEQ),\n    mode = \"first\"\n  )\n\n\n\nSample of Data",
+    "section": "Derive Occurrence Flags",
+    "text": "Derive Occurrence Flags\nThere can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient which in the below example we call AOCCIFL. Here we use the admiral::derive_var_extreme_flag() function.\n\n# Derive AOCCIFL\nadae &lt;- adae %&gt;%\n  # create temporary numeric ASEVN for sorting purpose\n  mutate(TEMP_AESEVN = as.integer(factor(AESEV, levels = c(\"SEVERE\", \"MODERATE\", \"MILD\")))) %&gt;%\n  derive_var_extreme_flag(\n    new_var = AOCCIFL,\n    by_vars = exprs(STUDYID, USUBJID),\n    order = exprs(TEMP_AESEVN, ASTDT, AESEQ),\n    mode = \"first\"\n  )\n\n\n\nSample of Data",
     "crumbs": [
       "ADaM",
       "ADAE"
     ]
   },
   {
-    "objectID": "adam/adae.html#derive-query-variables-query",
-    "href": "adam/adae.html#derive-query-variables-query",
+    "objectID": "adam/adae.html#query",
+    "href": "adam/adae.html#query",
     "title": "ADAE",
-    "section": "Derive Query Variables {query}",
-    "text": "Derive Query Variables {query}\nThe final set of derived flags would be around those checking for queries/baskets of AE terms, e.g. using Standardized MedDRA Queries (SMQs) or Custom Queries (CQs).\nBefore reading this section, you should read the Queries Dataset Vignette from {admiral}.\nOn a study you would need to create your own version of this queries dataset with the AE queries you need, but for the purpose of this article we use the example provided as part of {admiral} and we filter it to just one CQ and one SMQ. Then you can derive the required variables using the admiral::derive_vars_query() function.\n\nqueries &lt;- admiral::queries %&gt;%\n  filter(PREFIX %in% c(\"CQ01\", \"SMQ02\"))\n\n\n\nSample of Data\n\n\n\n\n\n# Derive CQ01NAM and SMQ02NAM\nadae &lt;- adae %&gt;%\n  derive_vars_query(dataset_queries = queries)\n\n\n\nSample of Data",
+    "section": "Derive Query Variables",
+    "text": "Derive Query Variables\nThe final set of derived flags would be around those checking for queries/baskets of AE terms, e.g. using Standardized MedDRA Queries (SMQs) or Custom Queries (CQs).\nBefore reading this section, you should read the Queries Dataset Vignette from {admiral}.\nOn a study you would need to create your own version of this queries dataset with the AE queries you need, but for the purpose of this article we use the example provided as part of {admiral} and we filter it to just one CQ and one SMQ. Then you can derive the required variables using the admiral::derive_vars_query() function.\n\nqueries &lt;- admiral::queries %&gt;%\n  filter(PREFIX %in% c(\"CQ01\", \"SMQ02\"))\n\n\n\nSample of Data\n\n\n\n\n\n# Derive CQ01NAM and SMQ02NAM\nadae &lt;- adae %&gt;%\n  derive_vars_query(dataset_queries = queries)\n\n\n\nSample of Data",
     "crumbs": [
       "ADaM",
       "ADAE"
