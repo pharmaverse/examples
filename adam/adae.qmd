@@ -83,7 +83,6 @@ metacore <- spec_to_metacore(
   select_dataset("ADAE")
 ```
 
-
 # Select ADSL Variables {#adslvars}
 
 Some variables from the `ADSL` dataset required for the derivations are merged into the `AE` domain using the `admiral::derive_vars_merged()` function.
@@ -202,7 +201,7 @@ print_df(ex %>% select(USUBJID, EXTRT, EXDOSE, EXENDT))
 print_df(adae %>% select(USUBJID, ASTDT, LDOSEDT))
 ```
 
-## Derive Analysis Flags {anlflags}
+## Derive Analysis Flags {#anlflags}
 
 Next we looks at common analysis flags such as treatment emergent and on treatment flags using the `admiral::derive_var_trtemfl()` and `admiral::derive_var_ontrtfl()` functions.
 For the on-treatment flag we only want to include AEs occurring until 30 days after treatment end.
@@ -234,7 +233,7 @@ treatment emergent you could use the intensity arguments if you also wanted to f
 starting before treatment start and ending after treatment start with worsened intensity
 (i.e. the most extreme intensity is greater than the initial intensity).
 
-## Derive Occurrence Flags {occflags}
+## Derive Occurrence Flags {#occflags}
 
 There can be flags that need to be derived based on AE occurrences, such as flagging the first occurrence of maximum severity per patient which in the below example we call `AOCCIFL`.
 Here we use the `admiral::derive_var_extreme_flag()` function.
@@ -256,7 +255,7 @@ adae <- adae %>%
 print_df(adae %>% select(USUBJID, ASTDT, AESEQ, AESEV, AOCCIFL))
 ```
 
-## Derive Query Variables {query}
+## Derive Query Variables {#query}
 
 The final set of derived flags would be around those checking for queries/baskets of AE terms, e.g. using Standardized MedDRA Queries (SMQs) or Custom Queries (CQs). 
 
