@@ -4,8 +4,12 @@ order: 1
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 ## Introduction
@@ -100,10 +104,13 @@ The resulting dataset has all the columns combined and any columns that needed r
 
 ```{r demographics}
 adsl_preds <- build_from_derived(metacore,
-                                 ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
-                                 predecessor_only = FALSE, keep = FALSE)
+  ds_list = list("dm" = dm_suppdm, "suppdm" = dm_suppdm),
+  predecessor_only = FALSE, keep = FALSE
+)
+```
 
-head(adsl_preds, n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_preds, n = 10)
 ```
 
 ### Grouping Variables {#groupingvars}
@@ -126,11 +133,13 @@ agegr1_lookup <- exprs(
 )
 
 adsl_cat <- derive_vars_cat(
-   dataset = adsl_preds,
-   definition = agegr1_lookup
- )
+  dataset = adsl_preds,
+  definition = agegr1_lookup
+)
+```
 
-head(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_cat %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n = 10)
 ```
 
 **Option 2:** We can also create the subgroups using the controlled terminology, in this case `AGEGR1`.
@@ -148,10 +157,14 @@ It will take the controlled terminology from the sub-grouped variable and group 
 
 ```{r grouping_option_2}
 adsl_ct <- adsl_preds %>%
-   create_cat_var(metacore, ref_var = AGE,
-                  grp_var = AGEGR1, num_grp_var = AGEGR1N)
+  create_cat_var(metacore,
+    ref_var = AGE,
+    grp_var = AGEGR1, num_grp_var = AGEGR1N
+  )
+```
 
-head(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_ct %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n = 10)
 ```
 
 **Option 3:** Another option to solve this subgroups task is to use custom functions. 
@@ -179,20 +192,26 @@ adsl_cust <- adsl_preds %>%
   mutate(
     AGEGR1 = format_agegr1(AGE),
     AGEGR1N = format_agegr1n(AGE)
-    )
+  )
+```
 
-head(adsl_cust %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_cust %>% select(STUDYID, USUBJID, AGE, AGEU, AGEGR1, AGEGR1N), n = 10)
 ```
 
 Using a similar philosophy we can create the numeric version of `RACE` using the controlled terminology stored in the `{metacore}` object with the `metatools::create_var_from_codelist()` function.
 
 ```{r codelist}
 adsl_ct <- adsl_ct %>%
-   create_var_from_codelist(metacore = metacore,
-                            input_var = RACE,
-                            out_var = RACEN)
+  create_var_from_codelist(
+    metacore = metacore,
+    input_var = RACE,
+    out_var = RACEN
+  )
+```
 
-head(adsl_ct %>% select(STUDYID, USUBJID, RACE, RACEN), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_ct %>% select(STUDYID, USUBJID, RACE, RACEN), n = 10)
 ```
 
 ### Exposure Derivations {#expovars}
@@ -239,20 +258,22 @@ adsl_raw <- adsl_ct %>%
     by_vars = exprs(STUDYID, USUBJID)
   ) %>%
   # Treatment Start and End Date
-  derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>%  # Convert Datetime variables to date
+  derive_vars_dtm_to_dt(source_vars = exprs(TRTSDTM, TRTEDTM)) %>% # Convert Datetime variables to date
   # Treatment Start Time
-  derive_vars_dtm_to_tm(source_vars = exprs(TRTSDTM)) %>% 
+  derive_vars_dtm_to_tm(source_vars = exprs(TRTSDTM)) %>%
   # Treatment Duration
   derive_var_trtdurd() %>%
   # Safety Population Flag
   derive_var_merged_exist_flag(
-     dataset_add = ex,
-     by_vars = exprs(STUDYID, USUBJID),
-     new_var = SAFFL,
-     condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
-   )
+    dataset_add = ex,
+    by_vars = exprs(STUDYID, USUBJID),
+    new_var = SAFFL,
+    condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
+  )
+```
 
-head(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl_raw %>% select(STUDYID, USUBJID, TRTSDTM, TRTSTM, TRTSTMF, TRTSDT, TRTEDTM, TRTETMF, TRTEDT, TRTDURD, SAFFL), n = 10)
 ```
 
 This call returns the original data frame with the corresponding treatment variables added, such as `TRTSDTM`, `TRTSTMF`, `TRTEDTM`, `TRTETMF`, `TRTDURD`, etc.,
@@ -266,11 +287,14 @@ The mapping of the treatment variables is left to the ADaM programmer. An exampl
 
 ```{r treatment_char, eval=TRUE}
 adsl <- adsl_raw %>%
-  mutate(TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),
-         TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
+  mutate(
+    TRT01P = if_else(ARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ARM),
+    TRT01A = if_else(ACTARM %in% c("Screen Failure", "Not Assigned", "Not Treated"), "No Treatment", ACTARM)
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01A), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01A), n = 10)
 ```
 
 For studies with periods see the ["Visit and Period Variables" vignette](https://pharmaverse.github.io/admiral/articles/visits_periods.html#periods_adsl).
@@ -282,8 +306,10 @@ that we created at the very beginning. The function `metatools::create_var_from_
 adsl <- adsl %>%
   create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
   create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN)
+```
 
-head(adsl %>%  select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, TRT01P, TRT01PN, TRT01A, TRT01AN), n = 10)
 ```
 
 ### Derive Disposition Variables {#dispovars}
@@ -352,8 +378,10 @@ adsl <- adsl %>%
     new_vars = exprs(EOSSTT = format_eosstt(DSDECOD)),
     missing_values = exprs(EOSSTT = "ONGOING")
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, EOSDT, EOSSTT), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, EOSDT, EOSSTT), n = 10)
 ```
 
 If the derivation must be changed, the user can create his/her own function to map `DSDECOD` to a suitable `EOSSTT` value.
@@ -367,9 +395,11 @@ adsl <- adsl %>%
     dtc = DTHDTC,
     highest_imputation = "M",
     date_imputation = "first"
-  ) 
+  )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHDTF), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHDTF), n = 10)
 ```
 
 Further dates such as Randomization Date (`RANDDT`), Screen fail date (`SCRFDT`), and Last Retrieval Date (`FRVDT`),
@@ -382,21 +412,24 @@ adsl <- adsl %>%
     by_vars = exprs(STUDYID, USUBJID),
     new_vars = exprs(RANDDT = DSSTDT),
     filter_add = DSDECOD == "RANDOMIZED",
-  ) %>% 
+  ) %>%
   derive_vars_merged(
     dataset_add = ds_ext,
     by_vars = exprs(STUDYID, USUBJID),
     new_vars = exprs(SCRFDT = DSSTDT),
     filter_add = DSCAT == "DISPOSITION EVENT" & DSDECOD == "SCREEN FAILURE"
-  ) %>% 
+  ) %>%
   derive_vars_merged(
     dataset_add = ds_ext,
     by_vars = exprs(STUDYID, USUBJID),
     new_vars = exprs(FRVDT = DSSTDT),
     filter_add = DSCAT == "OTHER EVENT" & DSDECOD == "FINAL RETRIEVAL VISIT"
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), n=10)
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, RANDDT, SCRFDT, FRVDT), n = 10)
 ```
 
 The function `admiral::derive_vars_duration()` can now be used to derive duration relative to death like the Relative 
@@ -408,15 +441,17 @@ adsl <- adsl %>%
     new_var = DTHADY,
     start_date = TRTSDT,
     end_date = DTHDT
-  ) %>% 
+  ) %>%
   derive_vars_duration(
     new_var = LDDTHELD,
     start_date = TRTEDT,
     end_date = DTHDT,
     add_one = FALSE
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, DTHDT, TRTSDT, TRTEDT, DTHADY, LDDTHELD), n = 10)
 ```
 
 Having the Randomization Date added to the dataset also allows to derive a Population Flag.
@@ -427,12 +462,14 @@ assign_randfl <- function(x) {
   if_else(!is.na(x), "Y", NA_character_)
 }
 
-adsl <- adsl %>% 
+adsl <- adsl %>%
   mutate(
     RANDFL = assign_randfl(RANDDT)
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, RANDDT, RANDFL), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, RANDDT, RANDFL), n = 10)
 ```
 
 ### Derive Cause of Death {#deathvars}
@@ -474,8 +511,10 @@ adsl <- adsl %>%
     mode = "first",
     new_vars = exprs(DTHCAUS, DTHDOM)
   )
+```
 
-head(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %>%  filter(!is.na(DTHDT)), n=10)
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, DTHDT, DTHCAUS, DTHDOM) %>% filter(!is.na(DTHDT)), n = 10)
 ```
 
 ### Derive Other Grouping Variables {#othgrpvars}
@@ -493,11 +532,11 @@ region1_lookup <- exprs(
 )
 
 racegr1_lookup <- exprs(
-  ~condition,              ~RACEGR1, ~RACEGR1N,
-  RACE %in% c("WHITE"),     "White",        1,
-  RACE != "WHITE",      "Non-white",        2,
-  is.na(RACE),            "Missing",        3
-  )
+  ~condition, ~RACEGR1, ~RACEGR1N,
+  RACE %in% c("WHITE"), "White", 1,
+  RACE != "WHITE", "Non-white", 2,
+  is.na(RACE), "Missing", 3
+)
 
 dthcgr1_lookup <- exprs(
   ~condition,                                                                                 ~DTHCGR1, ~DTHCGR1N,
@@ -508,22 +547,24 @@ dthcgr1_lookup <- exprs(
 )
 
 
-adsl <- adsl %>% 
+adsl <- adsl %>%
   derive_vars_cat(
     definition = region1_lookup
-  ) %>% 
+  ) %>%
   derive_vars_cat(
     definition = racegr1_lookup
-  ) %>% 
+  ) %>%
   derive_vars_cat(
     definition = dthcgr1_lookup
-  ) 
-  
-head(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n=10) 
+  )
+```  
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% select(STUDYID, USUBJID, COUNTRY, REGION1, REGION1N, RACE, RACEGR1, RACEGR1N), n = 10)
 ```
 
-```{r eval=TRUE}
-head(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n=10) 
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adsl %>% filter(!is.na(DTHDT)) %>% select(STUDYID, USUBJID, DTHDOM, DTHCAUS, DTHCGR1, DTHCGR1N), n = 10)
 ``` 
 
 ### Apply Metadata to Create an eSub XPT and Perform Associated Checks {#metacore_xportr}
@@ -544,6 +585,6 @@ adsl %>%
   xportr_type(metacore, domain = "ADSL") %>% # Coerce variable type to match spec
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
-  xportr_df_label(metacore) %>%  # Assigns dataset label from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adsl.xpt"), metadata = metacore, domain = "ADSL")
 ```

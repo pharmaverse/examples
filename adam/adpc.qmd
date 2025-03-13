@@ -4,8 +4,12 @@ order: 2
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/adamig-non-compartmental-analysis-input-data-v1-0>). This example presented uses underlying `EX` and `PC` domains where the `EX` and `PC` domains represent data as collected and the `ADPC` ADaM is output. For more details see the `{admiral}` [vignette](https://pharmaverse.github.io/admiral/articles/pk_adnca.html){target="_blank"}.
@@ -28,6 +32,7 @@ library(metatools)
 library(xportr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
+library(reactable)
 ```
 
 ## Next Load Specifications for Metacore
@@ -51,11 +56,11 @@ We will load are SDTM data from `{pharmaversesdtm}`. The main components of this
 #| label: Load Source
 # ---- Load source datasets ----
 # Load PC, EX, VS, LB and ADSL
-data("pc")
-data("ex")
-data("vs")
+ex <- pharmaversesdtm::ex
+pc <- pharmaversesdtm::pc
+vs <- pharmaversesdtm::vs
 
-data("adsl")
+adsl <- pharmaverseadam::adsl
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
@@ -98,6 +103,10 @@ pc_dates <- pc %>%
     DRUG = PCTEST,
     NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
   )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(pc_dates %>% select(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))
 ```
 
 ### Get Dosing Information
@@ -188,6 +197,12 @@ ex_exp <- ex_dates %>%
   derive_vars_dy(reference_date = TRTSDT, source_vars = exprs(ADT))
 ```
 
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(
+  ex_exp %>% select(USUBJID, DRUG, EXDOSFRQ, ASTDT, AVISIT, NFRLT)
+)
+```
+
 ### Find First Dose
 
 In this section we will find the first dose for each subject and drug.
@@ -212,6 +227,12 @@ adpc_first_dose <- pc_dates %>%
     AVISITN = NFRLT %/% 24 + 1,
     AVISIT = paste("Day", AVISITN),
   )
+```
+
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adpc_first_dose %>% select(USUBJID, FANLDTM, NFRLT, ADTM, AVISITN, AVISIT, PCTPT))
 ```
 
 ### Find Previous Dose and Next Dose
@@ -291,6 +312,11 @@ adpc_nom_next <- adpc_nom_prev %>%
     check_type = "none"
   )
 ```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adpc_nom_prev %>% select(USUBJID, NFRLT, AVISIT, PCTPT, NFRLT_prev))
+```
+
 
 ### Combine PC and EX Data
 
@@ -378,6 +404,12 @@ adpc_nrrlt <- adpc_arrlt %>%
     )
   )
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adpc_nrrlt %>% select(USUBJID, NFRLT, NRRLT, AVISIT, PCTPT))
+```
+
 
 ### Derive Analysis Variables
 
@@ -479,6 +511,12 @@ dtype <- adpc_aval %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
 ```
 
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(dtype %>% select(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))
+```
+
+
 ### Combine Original and DTYPE Copy
 
 Now the duplicated records are combined with the original records.
@@ -494,6 +532,10 @@ adpc_dtype <- bind_rows(adpc_aval, dtype) %>%
     ANL01FL = "Y",
     ANL02FL = if_else(is.na(DTYPE), "Y", NA_character_),
   )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adpc_dtype %>% select(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))
 ```
 
 ### Derive BASE and CHG
@@ -561,6 +603,10 @@ adpc_baselines <- adpc_aseq %>%
     BMIBL = compute_bmi(height = HTBL, weight = WTBL),
     BMIBLU = "kg/m^2"
   )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adpc_baselines %>% select(USUBJID, HTBL, HTBLU, WTBL, WTBLU, BMIBL, BMIBLU, BASETYPE, ATPT, AVAL))
 ```
 
 ### Combine with ADSL
