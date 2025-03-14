@@ -1,7 +1,7 @@
 # Pharmaverse Examples
 
 The true beauty of pharmaverse (and open source in general) is when
-efforts from various different developers come together to compliment
+efforts from various different developers come together to complement
 each other as a whole greater than the sum of the individual parts. By
 design in R, no single package will ever completely cover all your
 needs, but by piecing them together we can make complex tasks
