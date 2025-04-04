@@ -6,24 +6,27 @@ library(ggplot2)
 library(nestcolor)
 library(rlistings)
 
+# Read data from pharmaverseadam
+adpc <- pharmaverseadam::adpc
+adsl <- pharmaverseadam::adsl
 
-adsl <- pharmaverseadam::adsl %>%
+# Use tern::df_explicit_na() to end encode missing values as categorical
+adsl <- adsl %>%
   df_explicit_na()
 
-# Keep only treated subjects for graph
-adsl_f <- adsl %>%
-  filter(SAFFL == "Y" & TRT01A != "Placebo")
-
-adpc <- pharmaverseadam::adpc %>%
+adpc <- adpc %>%
   df_explicit_na()
 
 # For ADPC keep only concentration records and treated subjects
 # Keep only plasma records for this example
+# Remove DTYPE = COPY records with ANL02FL == "Y"
 adpc <- adpc %>%
-  filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PCSPEC == "PLASMA" & ANL02FL == "Y")
+  filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PARCAT1 == "PLASMA" & ANL02FL == "Y")
 
-# Setting up the data
-adpc_1 <- adpc %>%
+
+## ----r table------------------------------------------------------------------
+# Setting up the data for table
+adpc_t <- adpc %>%
   mutate(
     NFRLT = as.factor(NFRLT),
     AVALCAT1 = as.factor(AVALCAT1),
@@ -31,9 +34,9 @@ adpc_1 <- adpc %>%
   ) %>%
   select(NOMTPT, ACTARM, VISIT, AVAL, PARAM, AVALCAT1)
 
-adpc_1$NOMTPT <- factor(
-  adpc_1$NOMTPT,
-  levels = levels(adpc_1$NOMTPT)[order(as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", levels(adpc_1$NOMTPT))))]
+adpc_t$NOMTPT <- factor(
+  adpc_t$NOMTPT,
+  levels = levels(adpc_t$NOMTPT)[order(as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", levels(adpc_t$NOMTPT))))]
 )
 
 # Row structure
@@ -59,7 +62,6 @@ lyt_rows <- basic_table() %>%
     child_labels = "hidden"
   )
 
-## ----r table------------------------------------------------------------------
 lyt <- lyt_rows %>%
   analyze_vars_in_cols(
     vars = c("AVAL", "AVALCAT1", rep("AVAL", 8)),
@@ -76,20 +78,26 @@ lyt <- lyt_rows %>%
     .aligns = "decimal"
   )
 
-result <- build_table(lyt, df = adpc_1, alt_counts_df = adsl) %>% prune_table()
+result <- build_table(lyt, df = adpc_t, alt_counts_df = adsl) %>% prune_table()
 
 # Decorating
 main_title(result) <- "Summary of PK Concentrations by Nominal Time and Treatment: PK Evaluable"
 subtitles(result) <- c(
   "Protocol: xxxxx",
-  paste("Analyte: ", unique(adpc_1$PARAM)),
-  paste("Treatment:", unique(adpc_1$ACTARM))
+  paste("Analyte: ", unique(adpc_t$PARAM)),
+  paste("Treatment:", unique(adpc_t$ACTARM))
 )
 main_footer(result) <- "NE: Not Estimable"
 
 result
 
 ## ----r graph------------------------------------------------------------------
+
+# Keep only treated subjects for graph
+adsl_f <- adsl %>%
+  filter(SAFFL == "Y" & TRT01A != "Placebo")
+
+# Set titles and footnotes
 use_title <- "Plot of Mean (+/- SD) Plasma Concentrations Over Time by Treatment, \nPK Evaluable Patients"
 use_subtitle <- "Analyte:"
 use_footnote <- "Program: \nOutput:"
@@ -121,12 +129,14 @@ plot <- result + theme(plot.caption = element_text(hjust = 0))
 plot
 
 ## ----r listing----------------------------------------------------------------
+# Get value of Analyte
 analyte <- unique(adpc$PARAM)
 
+# Select columns for listing
 out <- adpc %>%
   select(ARM, USUBJID, VISIT, NFRLT, AFRLT, AVALCAT1)
 
-
+# Add descriptive labels
 var_labels(out) <- c(
   ARM = "Treatment Group",
   USUBJID = "Subject ID",
@@ -136,6 +146,7 @@ var_labels(out) <- c(
   AVALCAT1 = paste0("Concentration\n(", adpc$AVALU[1], ")")
 )
 
+# Create listing
 lsting <- as_listing(
   out,
   key_cols = c("ARM", "USUBJID", "VISIT"),

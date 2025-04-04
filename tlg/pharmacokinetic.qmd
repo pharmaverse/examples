@@ -24,11 +24,11 @@ The packages used with a brief description of their purpose are as follows:
 
 See catalog for PK TLGs here [PK TLG catalog](https://insightsengineering.github.io/tlg-catalog/stable/)
 
-## Load Data and Required pharmaverse Package
+See the [`{admiral}` Guide for createing a PK NCA](https://pharmaverse.github.io/admiral/articles/pk_adnca.html) for more information about the structure of `ADPC`. See also `ADPC` under the ADaM section on the left panel.
 
-After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame `adsl` and `adpc`.
+## Data preprocessing
 
-Note that `{tern}` depends on `{rtables}` so the latter is automatically attached.
+Here we set up the data for the table, graph and listing.  We will read `ADPC` and `ADSL` from `{pharmaverseadam}`. We use `tern::df_explicit_na()` to set missing values as categorical. In `ADPC` we will keep only concentration records (dropping dosing records), and for this example we will only keep plasma concentrations (dropping urine). The `ADPC` data also includes duplicated records for analysis with `DYTPE == "COPY"` we will drop these as well (These are removed by selecting `ANL02FL == "Y"`).
 
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(pharmaverseadam)
@@ -38,24 +38,32 @@ library(ggplot2)
 library(nestcolor)
 library(rlistings)
 
+# Read data from pharmaverseadam
+adpc <- pharmaverseadam::adpc
+adsl <- pharmaverseadam::adsl
 
-adsl <- pharmaverseadam::adsl %>%
+# Use tern::df_explicit_na() to end encode missing values as categorical
+adsl <- adsl %>%
   df_explicit_na()
 
-# Keep only treated subjects for graph
-adsl_f <- adsl %>%
-  filter(SAFFL == "Y" & TRT01A != "Placebo")
-
-adpc <- pharmaverseadam::adpc %>%
+adpc <- adpc %>%
   df_explicit_na()
 
 # For ADPC keep only concentration records and treated subjects
 # Keep only plasma records for this example
+# Remove DTYPE = COPY records with ANL02FL == "Y"
 adpc <- adpc %>%
-  filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PCSPEC == "PLASMA" & ANL02FL == "Y")
+  filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PARCAT1 == "PLASMA" & ANL02FL == "Y")
 
-# Setting up the data
-adpc_1 <- adpc %>%
+```
+
+## PK Table
+
+Now we create the PK table.
+
+```{r table}
+# Setting up the data for table
+adpc_t <- adpc %>%
   mutate(
     NFRLT = as.factor(NFRLT),
     AVALCAT1 = as.factor(AVALCAT1),
@@ -63,9 +71,9 @@ adpc_1 <- adpc %>%
   ) %>%
   select(NOMTPT, ACTARM, VISIT, AVAL, PARAM, AVALCAT1)
 
-adpc_1$NOMTPT <- factor(
-  adpc_1$NOMTPT,
-  levels = levels(adpc_1$NOMTPT)[order(as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", levels(adpc_1$NOMTPT))))]
+adpc_t$NOMTPT <- factor(
+  adpc_t$NOMTPT,
+  levels = levels(adpc_t$NOMTPT)[order(as.numeric(gsub(".*?([0-9\\.]+).*", "\\1", levels(adpc_t$NOMTPT))))]
 )
 
 # Row structure
@@ -90,13 +98,7 @@ lyt_rows <- basic_table() %>%
     label_pos = "topleft",
     child_labels = "hidden"
   )
-```
 
-## PK Table
-
-Now we create the PK table.
-
-```{r table}
 lyt <- lyt_rows %>%
   analyze_vars_in_cols(
     vars = c("AVAL", "AVALCAT1", rep("AVAL", 8)),
@@ -113,14 +115,14 @@ lyt <- lyt_rows %>%
     .aligns = "decimal"
   )
 
-result <- build_table(lyt, df = adpc_1, alt_counts_df = adsl) %>% prune_table()
+result <- build_table(lyt, df = adpc_t, alt_counts_df = adsl) %>% prune_table()
 
 # Decorating
 main_title(result) <- "Summary of PK Concentrations by Nominal Time and Treatment: PK Evaluable"
 subtitles(result) <- c(
   "Protocol: xxxxx",
-  paste("Analyte: ", unique(adpc_1$PARAM)),
-  paste("Treatment:", unique(adpc_1$ACTARM))
+  paste("Analyte: ", unique(adpc_t$PARAM)),
+  paste("Treatment:", unique(adpc_t$ACTARM))
 )
 main_footer(result) <- "NE: Not Estimable"
 
@@ -133,6 +135,12 @@ result
 Now we create the PK graph.
 
 ```{r graph}
+
+# Keep only treated subjects for graph
+adsl_f <- adsl %>%
+  filter(SAFFL == "Y" & TRT01A != "Placebo")
+
+# Set titles and footnotes
 use_title <- "Plot of Mean (+/- SD) Plasma Concentrations Over Time by Treatment, \nPK Evaluable Patients"
 use_subtitle <- "Analyte:"
 use_footnote <- "Program: \nOutput:"
@@ -169,12 +177,14 @@ plot
 Now we create an example PK listing.
 
 ```{r listing}
+# Get value of Analyte
 analyte <- unique(adpc$PARAM)
 
+# Select columns for listing
 out <- adpc %>%
   select(ARM, USUBJID, VISIT, NFRLT, AFRLT, AVALCAT1)
 
-
+# Add descriptive labels
 var_labels(out) <- c(
   ARM = "Treatment Group",
   USUBJID = "Subject ID",
@@ -184,6 +194,7 @@ var_labels(out) <- c(
   AVALCAT1 = paste0("Concentration\n(", adpc$AVALU[1], ")")
 )
 
+# Create listing
 lsting <- as_listing(
   out,
   key_cols = c("ARM", "USUBJID", "VISIT"),
@@ -206,6 +217,7 @@ lsting <- as_listing(
 
 head(lsting, 28)
 ```
+
 
 
 
