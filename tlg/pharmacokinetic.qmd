@@ -24,7 +24,7 @@ The packages used with a brief description of their purpose are as follows:
 
 See catalog for PK TLGs here [PK TLG catalog](https://insightsengineering.github.io/tlg-catalog/stable/)
 
-See the [`{admiral}` Guide for createing a PK NCA](https://pharmaverse.github.io/admiral/articles/pk_adnca.html) for more information about the structure of `ADPC`. See also `ADPC` under the ADaM section on the left panel.
+See the [`{admiral}` Guide for creating a PK NCA ADaM](https://pharmaverse.github.io/admiral/articles/pk_adnca.html) for more information about the structure of `ADPC`. See also `ADPC` under the ADaM section on the left panel.
 
 ## Data preprocessing
 
