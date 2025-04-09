@@ -28,6 +28,7 @@ Imports:
     metatools,
     pharmaversesdtm,
     pharmaverseadam,
+    pkglite,
     reactable,
     reactablefmtr,
     sparkline,
