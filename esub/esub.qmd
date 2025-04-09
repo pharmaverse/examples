@@ -7,6 +7,9 @@ title: "eSubmission"
 This article shares learnings from R and open source based submission experiences,
 and how these can be achieved using pharmaverse packages in conjunction.
 
+When considering such a submission, it is important to discuss this early on
+with the regulatory agency during any pre-submission correspondence.
+
 The main pharmaverse packages specifically supporting eSubmission are as follows: 
 
 -   [`{xportr}`](https://atorus-research.github.io/xportr/): delivers the SAS transport file (XPT) and eSub checks.
@@ -43,7 +46,7 @@ The main 2 forms of dataset for CDISC clinical trial submission are SDTM and
 ADaM. Refer to the separate example articles on this site for how best to go
 about producing these.
 
-For eSubmission the most common approach to deliver these to health authorities
+For eSubmission the most common export format used to deliver these to health authorities
 is as xpt files, and for this we use `{xportr}`. This package works well with
 `{metacore}` harmonized specification objects as shown in the ADaM articles
 on this site.
@@ -116,7 +119,7 @@ use to help shape to your specific submission needs.
 
 The below shows how some specific FDA requirements can be achieved using
 the `length_source` argument from `xportr::xportr_length()` and the
-`max_size_gb` argument from `xportr::xportr_write()`, as detailed in the comments.
+`max_size_gb` argument from `xportr::xportr_write()`, as detailed in the code comments.
 In this case, the dataset splits would be very unlikely to occur in practice for
 `ADSL` but would be much more likely on a BDS dataset such as `ADLB` for a
 large study.
@@ -146,14 +149,75 @@ and as momentum grows we can add extra examples to this article.
 
 ### Readable Code
 
-Explain the benefits of using open codebases and more modular structure like admiral.
+When using internal company-specific closed source tools and codebases, we
+often face challenges around providing readable code to health authorities as
+internal 1-company solutions are by nature not easily accessible and understandable.
+This is one of the benefits of using open source codebases in the submission
+setting as it enables review teams to look deeper into the functions used, plus
+they have the same open solutions available to use themselves as part of their
+review. As more of the industry embraces open source, we may even see more
+harmonization of submission packages across the industry as the same packages
+are re-used, and this should lead to greater familiarity from review teams
+easing their critical submission dossier review.
 
+The nature of R packages and functions, as well as influence from `{tidyverse}`,
+has encouraged most pharmaverse package development teams to embrace modular
+strategy to their code. So when you use packages like `{admiral}`, you'll see
+that the ADaM templates have been built with readability in mind specifically to
+aid with eSubmission.
 
 ### Documentation
 
-Closed source - mention pkglite but also R Submission WG pilot used zip files.
+When using R for submission there are some important recommendations around
+documentation you should include as part of the eSubmission package. Most
+companies include these in the Reviewer's Guide documents (_the PHUSE Advance Hub
+offers example templates for these_), but you might also choose to use a
+programTOC document.
 
+Here's the information we recommend including:
+
+- R version used
+- Descriptions of the main open source R package used, the version of each that
+you used, and where these are available from (especially if anywhere other than CRAN)
+- Descriptions of any closed source packages used (see details below)
+- Basic installation instructions of the R version used and how to install the
+package versions that you used (e.g. from CRAN)
+
+Here is an example extract of what the documentation of the open source packages
+used might look like:
+
+![Example Reviewer's Guide Table](ADRG.png){fig-align="center"}
+
+For closed source packages, if you plan to submit the code then there are 2 main
+options - `{pkglite}` to create txt files, or zip files (as were successfully
+used in later R Submission WG pilots).
+
+Here is an example taken from the R Submission WG pilot 1 around how they used
+`pkglite::pack()` to provide packages as txt files. On the other side
+`pkglite::unpack()` could then be used to unpack.
+
+```{r pack, eval=FALSE}
+library(pkglite)
+
+# Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt
+path$home %>%
+  collate(file_ectd(), file_auto("inst")) %>%
+  prune("R/zzz.R") %>%
+  pack(output = "ectd/r0pkg.txt")
+```
 
 ### Validation
 
-https://pharmaverse.org/e2eclinical/developers/ validation section
+Last but not least, through the submission process you might be asked to
+provide evidence of why you consider the open source code used to be accurate
+and reliable.
+
+This of course is a huge topic and one where you should first refer to
+guidance from the [R Validation Hub](https://www.pharmar.org/).
+
+Pharmaverse also offers a selection of recommended packages that can help with
+this via our [Developers page](https://pharmaverse.org/e2eclinical/developers/)
+under Package Validation. Under CI/CD it also offers `thevalidatoR` which is a GitHub
+action that can be used to produce standardised validation reports, such as this
+[example](https://github.com/insightsengineering/thevalidatoR/blob/main/readme_files/report-0.1-admiral.pdf)
+from an earlier version of `{admiral}`.
