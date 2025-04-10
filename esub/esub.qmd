@@ -46,10 +46,10 @@ The main 2 forms of dataset for CDISC clinical trial submission are SDTM and
 ADaM. Refer to the separate example articles on this site for how best to go
 about producing these.
 
-For eSubmission the most common export format used to deliver these to health authorities
-is as xpt files, and for this we use `{xportr}`. This package works well with
-`{metacore}` harmonized specification objects as shown in the ADaM articles
-on this site.
+For eSubmission the most common transport file format used to deliver these to
+health authorities is as xpt files, and for this we use `{xportr}`. This package
+works well with `{metacore}` harmonized specification objects as shown in the
+ADaM articles on this site.
 
 Here is an example call using a synthetic `ADSL` ADaM from `{pharmaverseadam}`
 that shows how to produce xpt files, as well as how certain `{xportr}`
@@ -146,12 +146,14 @@ emerging new submission data exchange standard Dataset-JSON detailed
 [here](https://www.cdisc.org/standards/data-exchange/dataset-json). As this
 package is still experimental, we don't include code examples here but over time
 and as momentum grows we can add extra examples to this article.
+See R Submissions WG [pilot 5](https://rconsortium.github.io/submissions-pilot5-website/)
+for a pilot submission using Dataset-JSON.
 
 ### Readable Code
 
 When using internal company-specific closed source tools and codebases, we
 often face challenges around providing readable code to health authorities as
-internal 1-company solutions are by nature not easily accessible and understandable.
+internal single company solutions are by nature not easily accessible and understandable.
 This is one of the benefits of using open source codebases in the submission
 setting as it enables review teams to look deeper into the functions used, plus
 they have the same open solutions available to use themselves as part of their
@@ -205,6 +207,10 @@ path$home %>%
   prune("R/zzz.R") %>%
   pack(output = "ectd/r0pkg.txt")
 ```
+
+It is worth monitoring this
+[PHUSE Open-Source Metadata Documentation WG](https://phuse-org.github.io/OSDocuMeta/)
+to see how guidance evolves in this documentation space.
 
 ### Validation
 
