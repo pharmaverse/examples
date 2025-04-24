@@ -4,8 +4,12 @@ order: 5
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {knitr::hook_purl(before, options, ...); NULL}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
 knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
 ```
 
 # Introduction
@@ -41,15 +45,15 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets
-data("adsl")
-data("adrs_onco")
+adsl <- pharmaverseadam::adsl
+adrs <- pharmaverseadam::adrs_onco
 
 adrs <- adrs_onco
 ```
 
 # Define Event and Censoring Sources
 
-We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints.
+We define event and censoring sources using the `admiral::event_source()` and `admiral::censor_source()` functions. This forms the basis for calculating time-to-event endpoints. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>).
 
 ```{r}
 # Define event and censoring sources
@@ -137,6 +141,11 @@ adtte_pfs <- adtte %>%
   )
 ```
 
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adtte_pfs, n = 10)
+```
+
 # Derive Analysis Value (`AVAL`)
 
 The analysis value (`AVAL`) can be derived by calling the `admiral::derive_vars_duration()` function.
@@ -149,6 +158,11 @@ adtte_aval <- adtte_pfs %>%
     start_date = STARTDT,
     end_date = ADT
   )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adtte_aval, n = 10)
 ```
 
 # Derive Analysis Sequence Number (`ASEQ`)
@@ -198,7 +212,7 @@ adtte_final <- adtte_adsl_checked %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%
   xportr_df_label(metacore)
-  
+
 # Write dataset to XPT file (optional)
 dir <- tempdir()
 xportr_write(adtte_final, file.path(dir, "adtte.xpt"))

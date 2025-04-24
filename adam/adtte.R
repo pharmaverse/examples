@@ -14,8 +14,8 @@ metacore <- spec_to_metacore("./metadata/onco_spec.xlsx") %>%
   select_dataset("ADTTE")
 
 # Load source datasets
-data("adsl")
-data("adrs_onco")
+adsl <- pharmaverseadam::adsl
+adrs <- pharmaverseadam::adrs_onco
 
 adrs <- adrs_onco
 
@@ -141,7 +141,7 @@ adtte_final <- adtte_adsl_checked %>%
   xportr_length(metacore) %>%
   xportr_label(metacore) %>%
   xportr_df_label(metacore)
-  
+
 # Write dataset to XPT file (optional)
 dir <- tempdir()
 xportr_write(adtte_final, file.path(dir, "adtte.xpt"))

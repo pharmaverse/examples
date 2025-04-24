@@ -11,6 +11,7 @@ Authors@R:
     person("Vedha", "Viyash", role = "aut"),
     person("David", "Blair", role = "aut"),
     person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018")),
+    person("Fanny", "Gautier", role = "aut", comment = c(ORCID = "0009-0004-3581-0131")),
     person("Aksel", "Thomsen", , "oath@novonordisk.com", role = "aut")
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
@@ -28,6 +29,8 @@ Imports:
     metatools,
     pharmaversesdtm,
     pharmaverseadam,
+    reactable,
+    reactablefmtr,
     sparkline,
     stringr,
     shinylive,
@@ -39,10 +42,8 @@ Imports:
     xportr,
     logr,
     logrx,
-    whirl (>= 0.1.6)
+    whirl
 Suggests:
     knitr,
     rmarkdown
 Encoding: UTF-8
-Remotes:  
-    NovoNordisk-OpenSource/whirl

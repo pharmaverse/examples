@@ -9,6 +9,7 @@ library(metatools)
 library(xportr)
 library(pharmaversesdtm)
 library(pharmaverseadam)
+library(reactable)
 
 ## ----r echo=TRUE--------------------------------------------------------------
 # ---- Load Specs for Metacore ----
@@ -19,11 +20,11 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 ## ----r------------------------------------------------------------------------
 # ---- Load source datasets ----
 # Load PC, EX, VS, LB and ADSL
-data("pc")
-data("ex")
-data("vs")
+ex <- pharmaversesdtm::ex
+pc <- pharmaversesdtm::pc
+vs <- pharmaversesdtm::vs
 
-data("adsl")
+adsl <- pharmaverseadam::adsl
 
 ex <- convert_blanks_to_na(ex)
 pc <- convert_blanks_to_na(pc)
