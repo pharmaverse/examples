@@ -13,15 +13,13 @@ format:
 ```
 
 The [`logr`](https://github.com/dbosak01/logr/) package for R aims to provide a straightforward logging system tailored for everyday users, such as statisticians and educators, emphasizing simplicity in recording program execution. In contrast, [`logrx`](https://github.com/pharmaverse/logrx/) offers an advanced logging mechanism designed specifically for clinical reporting, featuring easy traceability and reproducibility of R script executions with capabilities suited for more technical users.
-[`whirl`](https://github.com/NovoNordisk-OpenSource/whirl)[^1] differs in that the package provides functionalities for executing scripts in batch and simultaneously getting a log from the individual executions. In contrast the other two logging packages, the default logs are HTML reports making it easier to read, and they include the results printed in the programs being logged.
+[`whirl`](https://github.com/NovoNordisk-OpenSource/whirl) differs in that the package provides functionalities for executing scripts in batch and simultaneously getting a log from the individual executions. In contrast the other two logging packages, the default logs are HTML reports making it easier to read, and they include the results printed in the programs being logged.
 
 All three packages are used for keeping a record of what happens when R scripts are run, but they differ in what they offer and who they're for. When choosing between them, you should consider what you need for your particular situation.
 
-[^1]: Note: `whirl` is currently only available on GitHub, and not on CRAN, but the development team is working on getting it published shortly.
-
 ### Execution
 
-Each package differs notably in the approach to generating a log file. The `logr` package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the `logrx` package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission. `whirl` also provides a single function to create log files, and it should be noted that the execution is done through [Quarto](https://quarto.org), which makes enables the HTML reports, but also make it more heavy on external dependencies.
+Each package differs notably in the approach to generating a log file. The `logr` package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the `logrx` package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission. `whirl` also provides a single function to create log files, and it should be noted that the execution is done through [Quarto](https://quarto.org), which enables the HTML reports, but also make it more heavier on external dependencies.
 
 ::: {.panel-tabset}
 
@@ -619,13 +617,13 @@ The most important options to configure `whirl` is listed below:
 1. `whirl.verbosity_level`: Controls the level of information displayed in the console.
 1. `whirl.n_workers`: How many parallel sessions can `whirl` use when running multiple 
 scripts simultanously.
-1. `whirl.track_files`: Should reading, writing, and deleting files be tracked?
-1. `whirl.check_renv`: Should the R environments compliance with your `renv` lockfile be
+1. `whirl.track_files`: Should reading, writing, and deleting files be tracked? (Only possible on Linux)
+1. `whirl.check_renv`: Should the R environment compliance with your `renv` lockfile be
 be checked?
 
 Most are also available as direct arguments in `whirl::run()`. For the full list 
 and more details see the
-[options](https://novonordisk-opensource.github.io/whirl/reference/options.html) reference.
+[whirl-options](https://novonordisk-opensource.github.io/whirl/reference/whirl-options.html) reference.
 
 :::
 
@@ -881,13 +879,13 @@ Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
 
 ### Run multiple scripts
 
-A key functionality `whirl` is to support the execution of analysis projects. 
+A key functionality `whirl` is to support the execution of entire analysis projects. 
 It is possible to define batches of scripts to run simultanously, and the order 
 in which the different steps should be executed.
 
-It is all controlled by a yaml configuration file (use `whirl::use_whirl()` to get started) such as the one below:
+It is all controlled by a yaml configuration file (use [`whirl::use_whirl()`](https://novonordisk-opensource.github.io/whirl/reference/use_whirl.html) to get started) such as the one below:
 
-`_whirl.yaml`:
+`_whirl.yml`:
 ```yaml
 steps:
   - name: "Initial step"
@@ -908,11 +906,17 @@ To run all steps you just call `run()` with the configuration file as input:
 
 ```{r}
 #| eval: false
-whirl::run("_whirl.yaml")
+whirl::run("_whirl.yml")
 ```
 
 In this scenario it becomes relevant to check the summary log as well (defaults to `summary.html`), which have the execution status of each script, and a link to the individual logs.
 
 ### Summary
 
-The decision between using `logr` and `logrx` hinges on specific needs. `logr` offers greater control over the output, at the expense of detailed environmental context. Conversely, `logrx` provides more comprehensive details and quicker log generation, along with better support for command line execution, but offers less control over the output.
+The decision between using `logr`, `logrx`, or `whirl` hinges on specific needs. 
+`logr` offers greater control over the output, at the expense of detailed environmental context. 
+Conversely, `logrx` provides more comprehensive details and quicker log generation, along with better support for command line execution, 
+but offers less control over the output. 
+`whirl` creates detailed logs with similar information as `logrx`, but by also including the script and it's printed outputs it allows the user to
+include any additional information in the log, or to use `run()` to create analysis reports directly that also includes relevant information on the execution environment.
+`whirl` also offers a framework for execution of a project consisting of multiple scripts. 
