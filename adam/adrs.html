@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.43">
+<meta name="generator" content="quarto-1.7.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -21,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -68,17 +69,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b4c07d2390efc50bfbdc32342cd14cf2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-1b5cb9c540cecc9bc4c838aa6f15e2ef.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-01aaa65abc2be12fb1e6ec0acd95931a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-974917195b3754385d623b0dbdbea424.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-01aaa65abc2be12fb1e6ec0acd95931a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -141,7 +145,168 @@ cookieconsent.run({
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -358,6 +523,7 @@ cookieconsent.run({
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADaM</a></li><li class="breadcrumb-item"><a href="../adam/adrs.html">ADRS</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">ADRS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
@@ -421,8 +587,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-304578a1d3ac71f3b439" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-304578a1d3ac71f3b439">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-32e4527e97f1425cb392" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-32e4527e97f1425cb392">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -512,8 +678,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e586f5e24327d74ee20d" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e586f5e24327d74ee20d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-c7ad78b782fc5e8bd9e1" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c7ad78b782fc5e8bd9e1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -548,8 +714,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-ff86d5db747929872341" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-ff86d5db747929872341">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-da9d5112134cbbf43967" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-da9d5112134cbbf43967">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -605,8 +771,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-fb086728dbc8f16eefd0" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-fb086728dbc8f16eefd0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-a2726413931977e139bc" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a2726413931977e139bc">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -662,431 +828,306 @@ Width set to 12 to accommodate.</code></pre>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
     }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
     }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
       }
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
     }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1094,185 +1135,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../adam/adppk.html" class="pagination-link" aria-label="ADPPK">
@@ -1291,12 +1308,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-4"><a href="#cb19-4"></a><span class="co">---</span></span>
 <span id="cb19-5"><a href="#cb19-5"></a></span>
 <span id="cb19-6"><a href="#cb19-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a><span class="in">  knitr::hook_purl(before, options, ...)</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="in">  NULL</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="in">}</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="in">source("functions/print_df.R")</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb19-8"><a href="#cb19-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb19-12"><a href="#cb19-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
 <span id="cb19-13"><a href="#cb19-13"></a><span class="in">```</span></span>
 <span id="cb19-14"><a href="#cb19-14"></a></span>
 <span id="cb19-15"><a href="#cb19-15"></a><span class="fu"># Introduction</span></span>
@@ -1310,16 +1327,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-23"><a href="#cb19-23"></a>First, we load the necessary packages required for creating the <span class="in">`ADRS`</span> dataset.</span>
 <span id="cb19-24"><a href="#cb19-24"></a></span>
 <span id="cb19-25"><a href="#cb19-25"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="in">library(admiral)</span></span>
-<span id="cb19-27"><a href="#cb19-27"></a><span class="in">library(admiralonco)</span></span>
-<span id="cb19-28"><a href="#cb19-28"></a><span class="in">library(metacore)</span></span>
-<span id="cb19-29"><a href="#cb19-29"></a><span class="in">library(metatools)</span></span>
-<span id="cb19-30"><a href="#cb19-30"></a><span class="in">library(xportr)</span></span>
-<span id="cb19-31"><a href="#cb19-31"></a><span class="in">library(pharmaversesdtm)</span></span>
-<span id="cb19-32"><a href="#cb19-32"></a><span class="in">library(pharmaverseadam)</span></span>
-<span id="cb19-33"><a href="#cb19-33"></a><span class="in">library(dplyr)</span></span>
-<span id="cb19-34"><a href="#cb19-34"></a><span class="in">library(lubridate)</span></span>
-<span id="cb19-35"><a href="#cb19-35"></a><span class="in">library(stringr)</span></span>
+<span id="cb19-26"><a href="#cb19-26"></a><span class="fu">library</span>(admiral)</span>
+<span id="cb19-27"><a href="#cb19-27"></a><span class="fu">library</span>(admiralonco)</span>
+<span id="cb19-28"><a href="#cb19-28"></a><span class="fu">library</span>(metacore)</span>
+<span id="cb19-29"><a href="#cb19-29"></a><span class="fu">library</span>(metatools)</span>
+<span id="cb19-30"><a href="#cb19-30"></a><span class="fu">library</span>(xportr)</span>
+<span id="cb19-31"><a href="#cb19-31"></a><span class="fu">library</span>(pharmaversesdtm)</span>
+<span id="cb19-32"><a href="#cb19-32"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb19-33"><a href="#cb19-33"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-34"><a href="#cb19-34"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb19-35"><a href="#cb19-35"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb19-36"><a href="#cb19-36"></a><span class="in">```</span></span>
 <span id="cb19-37"><a href="#cb19-37"></a></span>
 <span id="cb19-38"><a href="#cb19-38"></a><span class="fu"># Load Specifications for Metacore</span></span>
@@ -1327,9 +1344,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-40"><a href="#cb19-40"></a>Load the specifications stored in an Excel file into a <span class="in">`{metacore}`</span> object.</span>
 <span id="cb19-41"><a href="#cb19-41"></a></span>
 <span id="cb19-42"><a href="#cb19-42"></a><span class="in">```{r read-specs}</span></span>
-<span id="cb19-43"><a href="#cb19-43"></a><span class="in">#| warning: false</span></span>
-<span id="cb19-44"><a href="#cb19-44"></a><span class="in">metacore &lt;- spec_to_metacore("./metadata/onco_spec.xlsx") %&gt;%</span></span>
-<span id="cb19-45"><a href="#cb19-45"></a><span class="in">  select_dataset("ADRS")</span></span>
+<span id="cb19-43"><a href="#cb19-43"></a><span class="co">#| warning: false</span></span>
+<span id="cb19-44"><a href="#cb19-44"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-45"><a href="#cb19-45"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span>
 <span id="cb19-46"><a href="#cb19-46"></a><span class="in">```</span></span>
 <span id="cb19-47"><a href="#cb19-47"></a></span>
 <span id="cb19-48"><a href="#cb19-48"></a><span class="fu"># Load Source Datasets</span></span>
@@ -1337,17 +1354,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-50"><a href="#cb19-50"></a>We load the required SDTM datasets (<span class="in">`RS`</span>, <span class="in">`TU`</span>) and ADaM dataset (<span class="in">`ADSL`</span>) necessary for creating the <span class="in">`ADRS`</span> dataset.</span>
 <span id="cb19-51"><a href="#cb19-51"></a></span>
 <span id="cb19-52"><a href="#cb19-52"></a><span class="in">```{r load-data}</span></span>
-<span id="cb19-53"><a href="#cb19-53"></a><span class="in">adsl &lt;- pharmaverseadam::adsl</span></span>
-<span id="cb19-54"><a href="#cb19-54"></a><span class="in">rs &lt;- pharmaversesdtm::rs_onco_recist</span></span>
-<span id="cb19-55"><a href="#cb19-55"></a><span class="in">tu &lt;- pharmaversesdtm::tu_onco_recist</span></span>
+<span id="cb19-53"><a href="#cb19-53"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<span id="cb19-54"><a href="#cb19-54"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
+<span id="cb19-55"><a href="#cb19-55"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
 <span id="cb19-56"><a href="#cb19-56"></a></span>
-<span id="cb19-57"><a href="#cb19-57"></a><span class="in"># Convert blanks to NA</span></span>
-<span id="cb19-58"><a href="#cb19-58"></a><span class="in">rs &lt;- convert_blanks_to_na(rs)</span></span>
-<span id="cb19-59"><a href="#cb19-59"></a><span class="in">tu &lt;- convert_blanks_to_na(tu)</span></span>
+<span id="cb19-57"><a href="#cb19-57"></a><span class="co"># Convert blanks to NA</span></span>
+<span id="cb19-58"><a href="#cb19-58"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
+<span id="cb19-59"><a href="#cb19-59"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span>
 <span id="cb19-60"><a href="#cb19-60"></a><span class="in">```</span></span>
 <span id="cb19-61"><a href="#cb19-61"></a></span>
 <span id="cb19-62"><a href="#cb19-62"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-63"><a href="#cb19-63"></a><span class="in">print_df(rs, n = 10)</span></span>
+<span id="cb19-63"><a href="#cb19-63"></a><span class="fu">print_df</span>(rs, <span class="at">n =</span> <span class="dv">10</span>)</span>
 <span id="cb19-64"><a href="#cb19-64"></a><span class="in">```</span></span>
 <span id="cb19-65"><a href="#cb19-65"></a></span>
 <span id="cb19-66"><a href="#cb19-66"></a></span>
@@ -1356,13 +1373,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-69"><a href="#cb19-69"></a>Merge <span class="in">`ADSL`</span> to the <span class="in">`RS`</span> domain by selecting only the necessary variables for derivations.</span>
 <span id="cb19-70"><a href="#cb19-70"></a></span>
 <span id="cb19-71"><a href="#cb19-71"></a><span class="in">```{r merge-adsl-rs}</span></span>
-<span id="cb19-72"><a href="#cb19-72"></a><span class="in">adsl_vars &lt;- exprs(RANDDT)</span></span>
-<span id="cb19-73"><a href="#cb19-73"></a><span class="in">adrs_merged &lt;- derive_vars_merged(</span></span>
-<span id="cb19-74"><a href="#cb19-74"></a><span class="in">  rs,</span></span>
-<span id="cb19-75"><a href="#cb19-75"></a><span class="in">  dataset_add = adsl,</span></span>
-<span id="cb19-76"><a href="#cb19-76"></a><span class="in">  new_vars = adsl_vars,</span></span>
-<span id="cb19-77"><a href="#cb19-77"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID)</span></span>
-<span id="cb19-78"><a href="#cb19-78"></a><span class="in">)</span></span>
+<span id="cb19-72"><a href="#cb19-72"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
+<span id="cb19-73"><a href="#cb19-73"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb19-74"><a href="#cb19-74"></a>  rs,</span>
+<span id="cb19-75"><a href="#cb19-75"></a>  <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb19-76"><a href="#cb19-76"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb19-77"><a href="#cb19-77"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb19-78"><a href="#cb19-78"></a>)</span>
 <span id="cb19-79"><a href="#cb19-79"></a><span class="in">```</span></span>
 <span id="cb19-80"><a href="#cb19-80"></a></span>
 <span id="cb19-81"><a href="#cb19-81"></a><span class="fu"># Pre-processing of Input Records</span></span>
@@ -1372,15 +1389,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-85"><a href="#cb19-85"></a>Filter the <span class="in">`RS`</span> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</span>
 <span id="cb19-86"><a href="#cb19-86"></a></span>
 <span id="cb19-87"><a href="#cb19-87"></a><span class="in">```{r set-param-details}</span></span>
-<span id="cb19-88"><a href="#cb19-88"></a><span class="in">adrs_ovr &lt;- adrs_merged %&gt;%</span></span>
-<span id="cb19-89"><a href="#cb19-89"></a><span class="in">  filter(RSEVAL == "INVESTIGATOR" &amp; RSTESTCD == "OVRLRESP") %&gt;%</span></span>
-<span id="cb19-90"><a href="#cb19-90"></a><span class="in">  mutate(</span></span>
-<span id="cb19-91"><a href="#cb19-91"></a><span class="in">    PARAMCD = "OVR",</span></span>
-<span id="cb19-92"><a href="#cb19-92"></a><span class="in">    PARAM = "Overall Response by Investigator",</span></span>
-<span id="cb19-93"><a href="#cb19-93"></a><span class="in">    PARCAT1 = "Tumor Response",</span></span>
-<span id="cb19-94"><a href="#cb19-94"></a><span class="in">    PARCAT2 = "Investigator",</span></span>
-<span id="cb19-95"><a href="#cb19-95"></a><span class="in">    PARCAT3 = "RECIST 1.1"</span></span>
-<span id="cb19-96"><a href="#cb19-96"></a><span class="in">  )</span></span>
+<span id="cb19-88"><a href="#cb19-88"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
+<span id="cb19-89"><a href="#cb19-89"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-90"><a href="#cb19-90"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-91"><a href="#cb19-91"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
+<span id="cb19-92"><a href="#cb19-92"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
+<span id="cb19-93"><a href="#cb19-93"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-94"><a href="#cb19-94"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-95"><a href="#cb19-95"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
+<span id="cb19-96"><a href="#cb19-96"></a>  )</span>
 <span id="cb19-97"><a href="#cb19-97"></a><span class="in">```</span></span>
 <span id="cb19-98"><a href="#cb19-98"></a></span>
 <span id="cb19-99"><a href="#cb19-99"></a><span class="fu">## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`</span></span>
@@ -1388,14 +1405,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-101"><a href="#cb19-101"></a>Impute missing dates and derive analysis dates and visits.</span>
 <span id="cb19-102"><a href="#cb19-102"></a></span>
 <span id="cb19-103"><a href="#cb19-103"></a><span class="in">```{r impute-dates}</span></span>
-<span id="cb19-104"><a href="#cb19-104"></a><span class="in">adrs_imputed &lt;- adrs_ovr %&gt;%</span></span>
-<span id="cb19-105"><a href="#cb19-105"></a><span class="in">  derive_vars_dt(</span></span>
-<span id="cb19-106"><a href="#cb19-106"></a><span class="in">    dtc = RSDTC,</span></span>
-<span id="cb19-107"><a href="#cb19-107"></a><span class="in">    new_vars_prefix = "A",</span></span>
-<span id="cb19-108"><a href="#cb19-108"></a><span class="in">    highest_imputation = "D",</span></span>
-<span id="cb19-109"><a href="#cb19-109"></a><span class="in">    date_imputation = "last"</span></span>
-<span id="cb19-110"><a href="#cb19-110"></a><span class="in">  ) %&gt;%</span></span>
-<span id="cb19-111"><a href="#cb19-111"></a><span class="in">  mutate(AVISIT = VISIT)</span></span>
+<span id="cb19-104"><a href="#cb19-104"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
+<span id="cb19-105"><a href="#cb19-105"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb19-106"><a href="#cb19-106"></a>    <span class="at">dtc =</span> RSDTC,</span>
+<span id="cb19-107"><a href="#cb19-107"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
+<span id="cb19-108"><a href="#cb19-108"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
+<span id="cb19-109"><a href="#cb19-109"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
+<span id="cb19-110"><a href="#cb19-110"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-111"><a href="#cb19-111"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span>
 <span id="cb19-112"><a href="#cb19-112"></a><span class="in">```</span></span>
 <span id="cb19-113"><a href="#cb19-113"></a></span>
 <span id="cb19-114"><a href="#cb19-114"></a><span class="fu">## Derive `AVALC` and `AVAL`</span></span>
@@ -1403,11 +1420,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-116"><a href="#cb19-116"></a>Populate <span class="in">`AVALC`</span> with assessed values and create the numeric version <span class="in">`AVAL`</span>.</span>
 <span id="cb19-117"><a href="#cb19-117"></a></span>
 <span id="cb19-118"><a href="#cb19-118"></a><span class="in">```{r derive-aval}</span></span>
-<span id="cb19-119"><a href="#cb19-119"></a><span class="in">adrs_aval &lt;- adrs_imputed %&gt;%</span></span>
-<span id="cb19-120"><a href="#cb19-120"></a><span class="in">  mutate(</span></span>
-<span id="cb19-121"><a href="#cb19-121"></a><span class="in">    AVALC = RSSTRESC,</span></span>
-<span id="cb19-122"><a href="#cb19-122"></a><span class="in">    AVAL = aval_resp(AVALC)</span></span>
-<span id="cb19-123"><a href="#cb19-123"></a><span class="in">  )</span></span>
+<span id="cb19-119"><a href="#cb19-119"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
+<span id="cb19-120"><a href="#cb19-120"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-121"><a href="#cb19-121"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
+<span id="cb19-122"><a href="#cb19-122"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
+<span id="cb19-123"><a href="#cb19-123"></a>  )</span>
 <span id="cb19-124"><a href="#cb19-124"></a><span class="in">```</span></span>
 <span id="cb19-125"><a href="#cb19-125"></a></span>
 <span id="cb19-126"><a href="#cb19-126"></a><span class="fu">## Flag Worst Assessment at Each Date (`ANL01FL`)</span></span>
@@ -1415,34 +1432,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-128"><a href="#cb19-128"></a>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</span>
 <span id="cb19-129"><a href="#cb19-129"></a></span>
 <span id="cb19-130"><a href="#cb19-130"></a><span class="in">```{r flag-worst-assessment}</span></span>
-<span id="cb19-131"><a href="#cb19-131"></a><span class="in">worst_resp &lt;- function(arg) {</span></span>
-<span id="cb19-132"><a href="#cb19-132"></a><span class="in">  case_when(</span></span>
-<span id="cb19-133"><a href="#cb19-133"></a><span class="in">    arg == "NE" ~ 1,</span></span>
-<span id="cb19-134"><a href="#cb19-134"></a><span class="in">    arg == "CR" ~ 2,</span></span>
-<span id="cb19-135"><a href="#cb19-135"></a><span class="in">    arg == "PR" ~ 3,</span></span>
-<span id="cb19-136"><a href="#cb19-136"></a><span class="in">    arg == "SD" ~ 4,</span></span>
-<span id="cb19-137"><a href="#cb19-137"></a><span class="in">    arg == "NON-CR/NON-PD" ~ 5,</span></span>
-<span id="cb19-138"><a href="#cb19-138"></a><span class="in">    arg == "PD" ~ 6,</span></span>
-<span id="cb19-139"><a href="#cb19-139"></a><span class="in">    TRUE ~ 0</span></span>
-<span id="cb19-140"><a href="#cb19-140"></a><span class="in">  )</span></span>
-<span id="cb19-141"><a href="#cb19-141"></a><span class="in">}</span></span>
+<span id="cb19-131"><a href="#cb19-131"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
+<span id="cb19-132"><a href="#cb19-132"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb19-133"><a href="#cb19-133"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb19-134"><a href="#cb19-134"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb19-135"><a href="#cb19-135"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb19-136"><a href="#cb19-136"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb19-137"><a href="#cb19-137"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb19-138"><a href="#cb19-138"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb19-139"><a href="#cb19-139"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb19-140"><a href="#cb19-140"></a>  )</span>
+<span id="cb19-141"><a href="#cb19-141"></a>}</span>
 <span id="cb19-142"><a href="#cb19-142"></a></span>
-<span id="cb19-143"><a href="#cb19-143"></a><span class="in">adrs_anl01fl &lt;- adrs_aval %&gt;%</span></span>
-<span id="cb19-144"><a href="#cb19-144"></a><span class="in">  restrict_derivation(</span></span>
-<span id="cb19-145"><a href="#cb19-145"></a><span class="in">    derivation = derive_var_extreme_flag,</span></span>
-<span id="cb19-146"><a href="#cb19-146"></a><span class="in">    args = params(</span></span>
-<span id="cb19-147"><a href="#cb19-147"></a><span class="in">      by_vars = exprs(STUDYID, USUBJID, ADT),</span></span>
-<span id="cb19-148"><a href="#cb19-148"></a><span class="in">      order = exprs(worst_resp(AVALC), RSSEQ),</span></span>
-<span id="cb19-149"><a href="#cb19-149"></a><span class="in">      new_var = ANL01FL,</span></span>
-<span id="cb19-150"><a href="#cb19-150"></a><span class="in">      mode = "last"</span></span>
-<span id="cb19-151"><a href="#cb19-151"></a><span class="in">    ),</span></span>
-<span id="cb19-152"><a href="#cb19-152"></a><span class="in">    filter = !is.na(AVAL) &amp; ADT &gt;= RANDDT</span></span>
-<span id="cb19-153"><a href="#cb19-153"></a><span class="in">  )</span></span>
+<span id="cb19-143"><a href="#cb19-143"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
+<span id="cb19-144"><a href="#cb19-144"></a>  <span class="fu">restrict_derivation</span>(</span>
+<span id="cb19-145"><a href="#cb19-145"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
+<span id="cb19-146"><a href="#cb19-146"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
+<span id="cb19-147"><a href="#cb19-147"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
+<span id="cb19-148"><a href="#cb19-148"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
+<span id="cb19-149"><a href="#cb19-149"></a>      <span class="at">new_var =</span> ANL01FL,</span>
+<span id="cb19-150"><a href="#cb19-150"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
+<span id="cb19-151"><a href="#cb19-151"></a>    ),</span>
+<span id="cb19-152"><a href="#cb19-152"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
+<span id="cb19-153"><a href="#cb19-153"></a>  )</span>
 <span id="cb19-154"><a href="#cb19-154"></a><span class="in">```</span></span>
 <span id="cb19-155"><a href="#cb19-155"></a></span>
 <span id="cb19-156"><a href="#cb19-156"></a></span>
 <span id="cb19-157"><a href="#cb19-157"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-158"><a href="#cb19-158"></a><span class="in">print_df(adrs_anl01fl %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), n = 10)</span></span>
+<span id="cb19-158"><a href="#cb19-158"></a><span class="fu">print_df</span>(adrs_anl01fl <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), <span class="at">n =</span> <span class="dv">10</span>)</span>
 <span id="cb19-159"><a href="#cb19-159"></a><span class="in">```</span></span>
 <span id="cb19-160"><a href="#cb19-160"></a></span>
 <span id="cb19-161"><a href="#cb19-161"></a><span class="fu"># Deriving Parameters</span></span>
@@ -1452,31 +1469,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-165"><a href="#cb19-165"></a>Use the <span class="in">`admiral::derive_extreme_records()`</span> function to find the date of first <span class="in">`PD`</span>.</span>
 <span id="cb19-166"><a href="#cb19-166"></a></span>
 <span id="cb19-167"><a href="#cb19-167"></a><span class="in">```{r derive-pd}</span></span>
-<span id="cb19-168"><a href="#cb19-168"></a><span class="in">adrs_pd &lt;- adrs_anl01fl %&gt;%</span></span>
-<span id="cb19-169"><a href="#cb19-169"></a><span class="in">  derive_extreme_records(</span></span>
-<span id="cb19-170"><a href="#cb19-170"></a><span class="in">    dataset_ref = adsl,</span></span>
-<span id="cb19-171"><a href="#cb19-171"></a><span class="in">    dataset_add = adrs_anl01fl,</span></span>
-<span id="cb19-172"><a href="#cb19-172"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
-<span id="cb19-173"><a href="#cb19-173"></a><span class="in">    filter_add = PARAMCD == "OVR" &amp; AVALC == "PD" &amp; ANL01FL == "Y",</span></span>
-<span id="cb19-174"><a href="#cb19-174"></a><span class="in">    order = exprs(ADT, RSSEQ),</span></span>
-<span id="cb19-175"><a href="#cb19-175"></a><span class="in">    mode = "first",</span></span>
-<span id="cb19-176"><a href="#cb19-176"></a><span class="in">    exist_flag = AVALC,</span></span>
-<span id="cb19-177"><a href="#cb19-177"></a><span class="in">    false_value = "N",</span></span>
-<span id="cb19-178"><a href="#cb19-178"></a><span class="in">    set_values_to = exprs(</span></span>
-<span id="cb19-179"><a href="#cb19-179"></a><span class="in">      PARAMCD = "PD",</span></span>
-<span id="cb19-180"><a href="#cb19-180"></a><span class="in">      PARAM = "Disease Progression by Investigator",</span></span>
-<span id="cb19-181"><a href="#cb19-181"></a><span class="in">      PARCAT1 = "Tumor Response",</span></span>
-<span id="cb19-182"><a href="#cb19-182"></a><span class="in">      PARCAT2 = "Investigator",</span></span>
-<span id="cb19-183"><a href="#cb19-183"></a><span class="in">      PARCAT3 = "RECIST 1.1",</span></span>
-<span id="cb19-184"><a href="#cb19-184"></a><span class="in">      AVAL = yn_to_numeric(AVALC),</span></span>
-<span id="cb19-185"><a href="#cb19-185"></a><span class="in">      ANL01FL = "Y"</span></span>
-<span id="cb19-186"><a href="#cb19-186"></a><span class="in">    )</span></span>
-<span id="cb19-187"><a href="#cb19-187"></a><span class="in">  )</span></span>
+<span id="cb19-168"><a href="#cb19-168"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
+<span id="cb19-169"><a href="#cb19-169"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-170"><a href="#cb19-170"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb19-171"><a href="#cb19-171"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
+<span id="cb19-172"><a href="#cb19-172"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-173"><a href="#cb19-173"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-174"><a href="#cb19-174"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb19-175"><a href="#cb19-175"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb19-176"><a href="#cb19-176"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb19-177"><a href="#cb19-177"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb19-178"><a href="#cb19-178"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-179"><a href="#cb19-179"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
+<span id="cb19-180"><a href="#cb19-180"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
+<span id="cb19-181"><a href="#cb19-181"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-182"><a href="#cb19-182"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-183"><a href="#cb19-183"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb19-184"><a href="#cb19-184"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb19-185"><a href="#cb19-185"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb19-186"><a href="#cb19-186"></a>    )</span>
+<span id="cb19-187"><a href="#cb19-187"></a>  )</span>
 <span id="cb19-188"><a href="#cb19-188"></a><span class="in">```</span></span>
 <span id="cb19-189"><a href="#cb19-189"></a></span>
 <span id="cb19-190"><a href="#cb19-190"></a></span>
 <span id="cb19-191"><a href="#cb19-191"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-192"><a href="#cb19-192"></a><span class="in">print_df(adrs_pd %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %&gt;% filter(PARAMCD == "PD"), n = 10)</span></span>
+<span id="cb19-192"><a href="#cb19-192"></a><span class="fu">print_df</span>(adrs_pd <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"PD"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
 <span id="cb19-193"><a href="#cb19-193"></a><span class="in">```</span></span>
 <span id="cb19-194"><a href="#cb19-194"></a></span>
 <span id="cb19-195"><a href="#cb19-195"></a><span class="fu">## Derive Death Parameter</span></span>
@@ -1484,27 +1501,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-197"><a href="#cb19-197"></a>Create a new death parameter using the death date from <span class="in">`ADSL`</span>.</span>
 <span id="cb19-198"><a href="#cb19-198"></a></span>
 <span id="cb19-199"><a href="#cb19-199"></a><span class="in">```{r derive-death}</span></span>
-<span id="cb19-200"><a href="#cb19-200"></a><span class="in">adsldth &lt;- adsl %&gt;%</span></span>
-<span id="cb19-201"><a href="#cb19-201"></a><span class="in">  select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)</span></span>
+<span id="cb19-200"><a href="#cb19-200"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb19-201"><a href="#cb19-201"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
 <span id="cb19-202"><a href="#cb19-202"></a></span>
-<span id="cb19-203"><a href="#cb19-203"></a><span class="in">adrs_death &lt;- adrs_pd %&gt;%</span></span>
-<span id="cb19-204"><a href="#cb19-204"></a><span class="in">  derive_extreme_records(</span></span>
-<span id="cb19-205"><a href="#cb19-205"></a><span class="in">    dataset_ref = adsldth,</span></span>
-<span id="cb19-206"><a href="#cb19-206"></a><span class="in">    dataset_add = adsldth,</span></span>
-<span id="cb19-207"><a href="#cb19-207"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
-<span id="cb19-208"><a href="#cb19-208"></a><span class="in">    filter_add = !is.na(DTHDT),</span></span>
-<span id="cb19-209"><a href="#cb19-209"></a><span class="in">    exist_flag = AVALC,</span></span>
-<span id="cb19-210"><a href="#cb19-210"></a><span class="in">    false_value = "N",</span></span>
-<span id="cb19-211"><a href="#cb19-211"></a><span class="in">    set_values_to = exprs(</span></span>
-<span id="cb19-212"><a href="#cb19-212"></a><span class="in">      PARAMCD = "DEATH",</span></span>
-<span id="cb19-213"><a href="#cb19-213"></a><span class="in">      PARAM = "Death",</span></span>
-<span id="cb19-214"><a href="#cb19-214"></a><span class="in">      PARCAT1 = "Reference Event",</span></span>
-<span id="cb19-215"><a href="#cb19-215"></a><span class="in">      AVAL = yn_to_numeric(AVALC),</span></span>
-<span id="cb19-216"><a href="#cb19-216"></a><span class="in">      ANL01FL = "Y",</span></span>
-<span id="cb19-217"><a href="#cb19-217"></a><span class="in">      ADT = DTHDT</span></span>
-<span id="cb19-218"><a href="#cb19-218"></a><span class="in">    )</span></span>
-<span id="cb19-219"><a href="#cb19-219"></a><span class="in">  ) %&gt;%</span></span>
-<span id="cb19-220"><a href="#cb19-220"></a><span class="in">  select(-DTHDT)</span></span>
+<span id="cb19-203"><a href="#cb19-203"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
+<span id="cb19-204"><a href="#cb19-204"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-205"><a href="#cb19-205"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
+<span id="cb19-206"><a href="#cb19-206"></a>    <span class="at">dataset_add =</span> adsldth,</span>
+<span id="cb19-207"><a href="#cb19-207"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-208"><a href="#cb19-208"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
+<span id="cb19-209"><a href="#cb19-209"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb19-210"><a href="#cb19-210"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb19-211"><a href="#cb19-211"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-212"><a href="#cb19-212"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
+<span id="cb19-213"><a href="#cb19-213"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
+<span id="cb19-214"><a href="#cb19-214"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
+<span id="cb19-215"><a href="#cb19-215"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb19-216"><a href="#cb19-216"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-217"><a href="#cb19-217"></a>      <span class="at">ADT =</span> DTHDT</span>
+<span id="cb19-218"><a href="#cb19-218"></a>    )</span>
+<span id="cb19-219"><a href="#cb19-219"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-220"><a href="#cb19-220"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span>
 <span id="cb19-221"><a href="#cb19-221"></a><span class="in">```</span></span>
 <span id="cb19-222"><a href="#cb19-222"></a></span>
 <span id="cb19-223"><a href="#cb19-223"></a><span class="fu">## Derive Last Disease Assessment Parameter</span></span>
@@ -1512,28 +1529,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-225"><a href="#cb19-225"></a>Create a parameter for the last disease assessment.</span>
 <span id="cb19-226"><a href="#cb19-226"></a></span>
 <span id="cb19-227"><a href="#cb19-227"></a><span class="in">```{r derive-lsta}</span></span>
-<span id="cb19-228"><a href="#cb19-228"></a><span class="in">adrs_lsta &lt;- adrs_death %&gt;%</span></span>
-<span id="cb19-229"><a href="#cb19-229"></a><span class="in">  derive_extreme_records(</span></span>
-<span id="cb19-230"><a href="#cb19-230"></a><span class="in">    dataset_ref = adsl,</span></span>
-<span id="cb19-231"><a href="#cb19-231"></a><span class="in">    dataset_add = adrs_death,</span></span>
-<span id="cb19-232"><a href="#cb19-232"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
-<span id="cb19-233"><a href="#cb19-233"></a><span class="in">    filter_add = PARAMCD == "OVR" &amp; ANL01FL == "Y",</span></span>
-<span id="cb19-234"><a href="#cb19-234"></a><span class="in">    order = exprs(ADT, RSSEQ),</span></span>
-<span id="cb19-235"><a href="#cb19-235"></a><span class="in">    mode = "last",</span></span>
-<span id="cb19-236"><a href="#cb19-236"></a><span class="in">    set_values_to = exprs(</span></span>
-<span id="cb19-237"><a href="#cb19-237"></a><span class="in">      PARAMCD = "LSTA",</span></span>
-<span id="cb19-238"><a href="#cb19-238"></a><span class="in">      PARAM = "Last Disease Assessment by Investigator",</span></span>
-<span id="cb19-239"><a href="#cb19-239"></a><span class="in">      PARCAT1 = "Tumor Response",</span></span>
-<span id="cb19-240"><a href="#cb19-240"></a><span class="in">      PARCAT2 = "Investigator",</span></span>
-<span id="cb19-241"><a href="#cb19-241"></a><span class="in">      PARCAT3 = "RECIST 1.1",</span></span>
-<span id="cb19-242"><a href="#cb19-242"></a><span class="in">      ANL01FL = "Y"</span></span>
-<span id="cb19-243"><a href="#cb19-243"></a><span class="in">    )</span></span>
-<span id="cb19-244"><a href="#cb19-244"></a><span class="in">  )</span></span>
+<span id="cb19-228"><a href="#cb19-228"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
+<span id="cb19-229"><a href="#cb19-229"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-230"><a href="#cb19-230"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb19-231"><a href="#cb19-231"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
+<span id="cb19-232"><a href="#cb19-232"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-233"><a href="#cb19-233"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-234"><a href="#cb19-234"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb19-235"><a href="#cb19-235"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb19-236"><a href="#cb19-236"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-237"><a href="#cb19-237"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
+<span id="cb19-238"><a href="#cb19-238"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
+<span id="cb19-239"><a href="#cb19-239"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-240"><a href="#cb19-240"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-241"><a href="#cb19-241"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb19-242"><a href="#cb19-242"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb19-243"><a href="#cb19-243"></a>    )</span>
+<span id="cb19-244"><a href="#cb19-244"></a>  )</span>
 <span id="cb19-245"><a href="#cb19-245"></a><span class="in">```</span></span>
 <span id="cb19-246"><a href="#cb19-246"></a></span>
 <span id="cb19-247"><a href="#cb19-247"></a></span>
 <span id="cb19-248"><a href="#cb19-248"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-249"><a href="#cb19-249"></a><span class="in">print_df(adrs_lsta %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %&gt;% filter(PARAMCD == "LSTA"), n = 10)</span></span>
+<span id="cb19-249"><a href="#cb19-249"></a><span class="fu">print_df</span>(adrs_lsta <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
 <span id="cb19-250"><a href="#cb19-250"></a><span class="in">```</span></span>
 <span id="cb19-251"><a href="#cb19-251"></a></span>
 <span id="cb19-252"><a href="#cb19-252"></a><span class="fu"># Apply Metadata and Perform Associated Checks</span></span>
@@ -1541,13 +1558,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-254"><a href="#cb19-254"></a>Apply metadata and conduct checks to ensure data quality and compliance.</span>
 <span id="cb19-255"><a href="#cb19-255"></a></span>
 <span id="cb19-256"><a href="#cb19-256"></a><span class="in">```{r apply-metadata-check, message=FALSE, warning=FALSE}</span></span>
-<span id="cb19-257"><a href="#cb19-257"></a><span class="in">adrs_checked &lt;- adrs_lsta %&gt;%</span></span>
-<span id="cb19-258"><a href="#cb19-258"></a><span class="in">  add_variables(metacore) %&gt;% # Add variables specified in the metadata</span></span>
-<span id="cb19-259"><a href="#cb19-259"></a><span class="in">  drop_unspec_vars(metacore) %&gt;% # Drop variables not specified in metadata</span></span>
-<span id="cb19-260"><a href="#cb19-260"></a><span class="in">  check_variables(metacore) %&gt;% # Check all variables specified are present and no more</span></span>
-<span id="cb19-261"><a href="#cb19-261"></a><span class="in">  check_ct_data(metacore) %&gt;% # Check controlled terminology</span></span>
-<span id="cb19-262"><a href="#cb19-262"></a><span class="in">  order_cols(metacore) %&gt;% # Order columns according to metadata</span></span>
-<span id="cb19-263"><a href="#cb19-263"></a><span class="in">  sort_by_key(metacore) # Sort rows by sort keys</span></span>
+<span id="cb19-257"><a href="#cb19-257"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
+<span id="cb19-258"><a href="#cb19-258"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
+<span id="cb19-259"><a href="#cb19-259"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
+<span id="cb19-260"><a href="#cb19-260"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb19-261"><a href="#cb19-261"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
+<span id="cb19-262"><a href="#cb19-262"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
+<span id="cb19-263"><a href="#cb19-263"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span>
 <span id="cb19-264"><a href="#cb19-264"></a><span class="in">```</span></span>
 <span id="cb19-265"><a href="#cb19-265"></a></span>
 <span id="cb19-266"><a href="#cb19-266"></a><span class="fu"># Apply Labels and Formats with xportr</span></span>
@@ -1555,15 +1572,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb19-268"><a href="#cb19-268"></a>Finally, apply labels, formats, and export the dataset to an XPT file.</span>
 <span id="cb19-269"><a href="#cb19-269"></a></span>
 <span id="cb19-270"><a href="#cb19-270"></a><span class="in">```{r xportr}</span></span>
-<span id="cb19-271"><a href="#cb19-271"></a><span class="in">dir &lt;- tempdir() # Specify the directory for saving the XPT file</span></span>
+<span id="cb19-271"><a href="#cb19-271"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
 <span id="cb19-272"><a href="#cb19-272"></a></span>
-<span id="cb19-273"><a href="#cb19-273"></a><span class="in">adrs_xpt &lt;- adrs_checked %&gt;%</span></span>
-<span id="cb19-274"><a href="#cb19-274"></a><span class="in">  xportr_type(metacore, domain = "ADRS") %&gt;% # Coerce variable types to match metadata</span></span>
-<span id="cb19-275"><a href="#cb19-275"></a><span class="in">  xportr_length(metacore) %&gt;% # Assign variable lengths from metadata</span></span>
-<span id="cb19-276"><a href="#cb19-276"></a><span class="in">  xportr_label(metacore) %&gt;% # Assign variable labels from metadata</span></span>
-<span id="cb19-277"><a href="#cb19-277"></a><span class="in">  xportr_format(metacore) %&gt;% # Assign variable formats from metadata</span></span>
-<span id="cb19-278"><a href="#cb19-278"></a><span class="in">  xportr_df_label(metacore) %&gt;% # Assign dataset labels from metadata</span></span>
-<span id="cb19-279"><a href="#cb19-279"></a><span class="in">  xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file</span></span>
+<span id="cb19-273"><a href="#cb19-273"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
+<span id="cb19-274"><a href="#cb19-274"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
+<span id="cb19-275"><a href="#cb19-275"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
+<span id="cb19-276"><a href="#cb19-276"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
+<span id="cb19-277"><a href="#cb19-277"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
+<span id="cb19-278"><a href="#cb19-278"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
+<span id="cb19-279"><a href="#cb19-279"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span>
 <span id="cb19-280"><a href="#cb19-280"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
