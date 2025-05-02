@@ -18,6 +18,14 @@ The main pharmaverse packages specifically supporting eSubmission are as follows
 
 Note that a python equivalent of `{pkglite}` also exists, read more at [pharmaverse python](https://pharmaverse.org/e2eclinical/python/).
 
+Of course, most of the pharmaverse packages contribute to eSubmission in some way,
+through their focus on enabling clinical reporting and analyses deliverables that
+form the backbone of any submission. There are many other examples on this site
+dedicated to these, so we won't repeat here. One package we did want to call out
+here is [`{aNCA}`](https://pharmaverse.github.io/aNCA/) which performs
+Non-Compartmental Analysis, as clinical pharmacology analyses are another
+important part of submissions.
+
 ## R Submissions Working Group
 
 Within the R Consortium, the R Submissions WG have conducted several pilots to
@@ -183,7 +191,8 @@ Here's the information we recommend including:
 you used, and where these are available from (especially if anywhere other than CRAN)
 - Descriptions of any closed source packages used (see details below)
 - Basic installation instructions of the R version used and how to install the
-package versions that you used (e.g. from CRAN)
+package versions that you used (e.g. from CRAN). The R installation instructions
+should cover installation from Windows.
 
 Here is an example extract of what the documentation of the open source packages
 used might look like:
@@ -208,9 +217,19 @@ path$home %>%
   pack(output = "ectd/r0pkg.txt")
 ```
 
-It is worth monitoring this
+You can also check the following example Reviewer's Guides as used for these pilots:
+
+- [Pilot 1](https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf),
+using `{pkglite}`
+- [Pilot 3](https://github.com/RConsortium/submissions-pilot3-adam-to-fda/blob/main/m5/datasets/rconsortiumpilot3/analysis/adam/datasets/adrg.pdf),
+using compressed .zip approach
+
+For further Reviewer's Guide guidance, regardless of the programming language used for
+regulatory submissions, refer to the completion guidelines found at this
+[PHUSE ADRG Package WG](https://advance.hub.phuse.global/wiki/spaces/WEL/pages/26804660/Analysis+Data+Reviewer+s+Guide+ADRG+Package).
+As we progress on this open source submission journey, it is worth monitoring this
 [PHUSE Open-Source Metadata Documentation WG](https://phuse-org.github.io/OSDocuMeta/)
-to see how guidance evolves in this documentation space.
+to see how the guidance continues to evolve in this space.
 
 ### Validation
 
