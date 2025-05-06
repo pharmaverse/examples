@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.29">
+<meta name="generator" content="quarto-1.7.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,9 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-748b535e376f14d4692bf2b2e5fd6380.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2b3e328b71be8d25427581baeb23079b.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-01aaa65abc2be12fb1e6ec0acd95931a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -291,6 +291,7 @@ cookieconsent.run({
       toggleColorMode(toAlternate);
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
     };
     // Switch to dark mode if need be
     if (hasAlternateSentinel()) {
@@ -493,6 +494,23 @@ cookieconsent.run({
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">eSubmission</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">eSubmission</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -602,23 +620,23 @@ cookieconsent.run({
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="erpaxeypue" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#erpaxeypue table {
+<div id="ceggadrogf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ceggadrogf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#erpaxeypue thead, #erpaxeypue tbody, #erpaxeypue tfoot, #erpaxeypue tr, #erpaxeypue td, #erpaxeypue th {
+#ceggadrogf thead, #ceggadrogf tbody, #ceggadrogf tfoot, #ceggadrogf tr, #ceggadrogf td, #ceggadrogf th {
   border-style: none;
 }
 
-#erpaxeypue p {
+#ceggadrogf p {
   margin: 0;
   padding: 0;
 }
 
-#erpaxeypue .gt_table {
+#ceggadrogf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -644,12 +662,12 @@ cookieconsent.run({
   border-left-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_caption {
+#ceggadrogf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#erpaxeypue .gt_title {
+#ceggadrogf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -661,7 +679,7 @@ cookieconsent.run({
   border-bottom-width: 0;
 }
 
-#erpaxeypue .gt_subtitle {
+#ceggadrogf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -673,7 +691,7 @@ cookieconsent.run({
   border-top-width: 0;
 }
 
-#erpaxeypue .gt_heading {
+#ceggadrogf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -685,13 +703,13 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_bottom_border {
+#ceggadrogf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_col_headings {
+#ceggadrogf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -706,7 +724,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_col_heading {
+#ceggadrogf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -726,7 +744,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#erpaxeypue .gt_column_spanner_outer {
+#ceggadrogf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -738,15 +756,15 @@ cookieconsent.run({
   padding-right: 4px;
 }
 
-#erpaxeypue .gt_column_spanner_outer:first-child {
+#ceggadrogf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#erpaxeypue .gt_column_spanner_outer:last-child {
+#ceggadrogf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#erpaxeypue .gt_column_spanner {
+#ceggadrogf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -758,11 +776,11 @@ cookieconsent.run({
   width: 100%;
 }
 
-#erpaxeypue .gt_spanner_row {
+#ceggadrogf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#erpaxeypue .gt_group_heading {
+#ceggadrogf .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -788,7 +806,7 @@ cookieconsent.run({
   text-align: left;
 }
 
-#erpaxeypue .gt_empty_group_heading {
+#ceggadrogf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -803,15 +821,15 @@ cookieconsent.run({
   vertical-align: middle;
 }
 
-#erpaxeypue .gt_from_md > :first-child {
+#ceggadrogf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#erpaxeypue .gt_from_md > :last-child {
+#ceggadrogf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#erpaxeypue .gt_row {
+#ceggadrogf .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -830,7 +848,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#erpaxeypue .gt_stub {
+#ceggadrogf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -843,7 +861,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#erpaxeypue .gt_stub_row_group {
+#ceggadrogf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -857,15 +875,15 @@ cookieconsent.run({
   vertical-align: top;
 }
 
-#erpaxeypue .gt_row_group_first td {
+#ceggadrogf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#erpaxeypue .gt_row_group_first th {
+#ceggadrogf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#erpaxeypue .gt_summary_row {
+#ceggadrogf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -875,16 +893,16 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#erpaxeypue .gt_first_summary_row {
+#ceggadrogf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_first_summary_row.thick {
+#ceggadrogf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#erpaxeypue .gt_last_summary_row {
+#ceggadrogf .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -894,7 +912,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_grand_summary_row {
+#ceggadrogf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -904,7 +922,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#erpaxeypue .gt_first_grand_summary_row {
+#ceggadrogf .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -914,7 +932,7 @@ cookieconsent.run({
   border-top-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_last_grand_summary_row_top {
+#ceggadrogf .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -924,11 +942,11 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_striped {
+#ceggadrogf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#erpaxeypue .gt_table_body {
+#ceggadrogf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -937,7 +955,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_footnotes {
+#ceggadrogf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -951,7 +969,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_footnote {
+#ceggadrogf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -960,7 +978,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#erpaxeypue .gt_sourcenotes {
+#ceggadrogf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -974,7 +992,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#erpaxeypue .gt_sourcenote {
+#ceggadrogf .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -982,72 +1000,72 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#erpaxeypue .gt_left {
+#ceggadrogf .gt_left {
   text-align: left;
 }
 
-#erpaxeypue .gt_center {
+#ceggadrogf .gt_center {
   text-align: center;
 }
 
-#erpaxeypue .gt_right {
+#ceggadrogf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#erpaxeypue .gt_font_normal {
+#ceggadrogf .gt_font_normal {
   font-weight: normal;
 }
 
-#erpaxeypue .gt_font_bold {
+#ceggadrogf .gt_font_bold {
   font-weight: bold;
 }
 
-#erpaxeypue .gt_font_italic {
+#ceggadrogf .gt_font_italic {
   font-style: italic;
 }
 
-#erpaxeypue .gt_super {
+#ceggadrogf .gt_super {
   font-size: 65%;
 }
 
-#erpaxeypue .gt_footnote_marks {
+#ceggadrogf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#erpaxeypue .gt_asterisk {
+#ceggadrogf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#erpaxeypue .gt_indent_1 {
+#ceggadrogf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#erpaxeypue .gt_indent_2 {
+#ceggadrogf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#erpaxeypue .gt_indent_3 {
+#ceggadrogf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#erpaxeypue .gt_indent_4 {
+#ceggadrogf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#erpaxeypue .gt_indent_5 {
+#ceggadrogf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#erpaxeypue .katex-display {
+#ceggadrogf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#erpaxeypue div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ceggadrogf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
