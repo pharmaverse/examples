@@ -53,6 +53,7 @@ website:
         - auto: tlg
         - auto: interactive
         - auto: logging
+        - auto: esub
         - text: "---"
         - file: session.qmd
         - text: Pharmaverse Home
