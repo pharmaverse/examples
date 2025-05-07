@@ -1,5 +1,5 @@
 ---
-title: "The Difference Between `logr` And `logrx`"
+title: "The Difference Between `logr`, `logrx`, and `whirl`"
 format:
   html:
     code-overflow: wrap
@@ -13,12 +13,13 @@ format:
 ```
 
 The [`logr`](https://github.com/dbosak01/logr/) package for R aims to provide a straightforward logging system tailored for everyday users, such as statisticians and educators, emphasizing simplicity in recording program execution. In contrast, [`logrx`](https://github.com/pharmaverse/logrx/) offers an advanced logging mechanism designed specifically for clinical reporting, featuring easy traceability and reproducibility of R script executions with capabilities suited for more technical users.
+[`whirl`](https://github.com/NovoNordisk-OpenSource/whirl) differs in that the package provides functionalities for executing scripts in batch and simultaneously getting a log from the individual executions. In contrast the other two logging packages, the default logs are HTML reports making it easier to read, and they include the results printed in the programs being logged.
 
-Both packages are used for keeping a record of what happens when R scripts are run, but they differ in what they offer and who they're for. When choosing between them, you should consider what you need for your particular situation.
+All three packages are used for keeping a record of what happens when R scripts are run, but they differ in what they offer and who they're for. When choosing between them, you should consider what you need for your particular situation.
 
 ### Execution
 
-Each package differs notably in the approach to generating a log file. The `logr` package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the `logrx` package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission.
+Each package differs notably in the approach to generating a log file. The `logr` package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the `logrx` package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission. `whirl` also provides a single function to create log files, and it should be noted that the execution is done through [Quarto](https://quarto.org), which enables the HTML reports, but also make it more heavier on external dependencies.
 
 ::: {.panel-tabset}
 
@@ -302,107 +303,59 @@ Log name: script.log
 Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
 
 ```
+
+## `whirl`
+
+Use `whirl::run()` to execute scripts and create logs:
+
+```{r}
+#| label: whirl setup
+#| include: false
+options(whirl.verbosity_level = "minimal")
+```
+
+```{r}
+#| label: whirl run
+whirl::run("logging/script.R", summary_file = NULL)
+```
+
+When running scripts the overall status is reported in the console. In this example we are choosing not to create a summary log, since we are only running a single script.
+
+The HTML log is created with the name `script_log.html` and can be viewed below:
+
+```{=html}
+<iframe src="script_log.html" width=100% height=600></iframe>
+```
+
 :::
 
 ### Information in the Log
 
 The `logrx` package offers more detailed output compared to `logr`, as outlined in the following table. A key distinction is that `logrx` automatically logs code output. In `logr`, the user has control over what does or does not get logged. The user can specify which variables, objects, or datasets to send to the log. If the 'autolog' feature is activated, output from dplyr and sassy functions are logged automatically.
 
-```{=html}
-<style>
-  .scrollable-tbody {
-    max-height: 400px;
-    overflow-y: auto;
-  }
-</style>
+|                      | logr | logrx | whirl |
+|----------------------|------|-------|-------|
+| Log Path             | ✔    | ✔     | ✔     |
+| Working Directory    | ✔    | ✔     |       |
+| User Name            | ✔    | ✔     |       |
+| R Version            | ✔    | ✔     | ✔     |
+| Machine              | ✔    | ✔     | ✔     |
+| Operating System     | ✔    | ✔     | ✔     |
+| Base Packages        | ✔    | ✔     |       |
+| Other Packages       | ✔    | ✔     | ✔     |
+| Log Start Time       | ✔    | ✔     |       |
+| Log End Time.        | ✔    | ✔     | ✔     |
+| Elapsed Time         | ✔    | ✔     |       |
+| Warnings and Errors  | ✔    | ✔     | ✔     |
+| File Hash            |      | ✔     |       |
+| Package Dependencies |      | ✔     | ✔     |
+| External Software    |      | ✔     | (✔)*  |
+| Masked Functions     |      | ✔     |       |
+| Renv status          |      |       | ✔     |
+| Summary status       |      |       | ✔     |
+| Input/output files   |      |       | ✔     |
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>logr</th>
-      <th>logrx</th>
-    </tr>
-  </thead>
-  <tbody class="scrollable-tbody">
-    <tr>
-      <td>Log Path</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Working Directory</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>User Name</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>R Version</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Machine</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Operating System</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Base Packages</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Other Packages</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Log Start Time</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Warnings and Errors</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Elapsed Time</td>
-      <td>✔</td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>File Hash</td>
-      <td></td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Package Dependencies</td>
-      <td></td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>External Software</td>
-      <td></td>
-      <td>✔</td>
-    </tr>
-    <tr>
-      <td>Masked Functions</td>
-      <td></td>
-      <td>✔</td>
-    </tr>
-  </tbody>
-</table>
-```
+* Only selected external software, such as Pandoc, Quarto, and Python versions.
 
 ### Linting
 
@@ -637,7 +590,7 @@ Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
 
 ### Global Options
 
-We've previously discussed the global options in the `logrx` package that enable the inclusion of `lintr` output in the log. There are several key differences between the global options in `logrx` and those in `logr`. The options in `logr` primarily focus on managing script output, whereas those in `logrx` influence the scope of information included, regardless of the script output.
+We've previously discussed the global options in the `logrx` package that enable the inclusion of `lintr` output in the log. There are several key differences between the global options in `logrx` and `whirl`, and those in `logr`. The options in `logr` primarily focus on managing script output, whereas those in `logrx` and `whirl` influence the scope of information included, regardless of the script output.
 
 ::: {.panel-tabset}
 
@@ -656,6 +609,21 @@ We've previously discussed the global options in the `logrx` package that enable
 2. `log.rx.exec.env`: The execution environment for program code.
 3. `log.rx.lint`: Contains `lintr` functions/rules for script analysis.
 4. `log.rx.approved`: Specifies the location of approved functions.
+
+## `whirl`
+
+The most important options to configure `whirl` is listed below:
+
+1. `whirl.verbosity_level`: Controls the level of information displayed in the console.
+1. `whirl.n_workers`: How many parallel sessions can `whirl` use when running multiple 
+scripts simultanously.
+1. `whirl.track_files`: Should reading, writing, and deleting files be tracked? (Only possible on Linux)
+1. `whirl.check_renv`: Should the R environment compliance with your `renv` lockfile be
+be checked?
+
+Most are also available as direct arguments in `whirl::run()`. For the full list 
+and more details see the
+[whirl-options](https://novonordisk-opensource.github.io/whirl/reference/whirl-options.html) reference.
 
 :::
 
@@ -909,7 +877,46 @@ Log name: script.log
 Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging
 ```
 
+### Run multiple scripts
+
+A key functionality `whirl` is to support the execution of entire analysis projects. 
+It is possible to define batches of scripts to run simultanously, and the order 
+in which the different steps should be executed.
+
+It is all controlled by a yaml configuration file (use [`whirl::use_whirl()`](https://novonordisk-opensource.github.io/whirl/reference/use_whirl.html) to get started) such as the one below:
+
+`_whirl.yml`:
+```yaml
+steps:
+  - name: "Initial step"
+    paths:
+      - "setup.R"
+  - name: "First batch of programs"
+    paths:
+      - "prgA.R"
+      - "prgB.R"
+  - name: "Run all programs with 2 prefix"
+    paths:
+      - "2_*.R"
+```
+
+Here three steps are defined, where the first step is to run `setup.R`. After this we want to run `prgA.R` and `prgB.R` simultanously, and after these two have finished we run all R scripts starting with `2_` (imagine they depend on previous output from e.g. `prgA.R`).
+
+To run all steps you just call `run()` with the configuration file as input:
+
+```{r}
+#| eval: false
+whirl::run("_whirl.yml")
+```
+
+In this scenario it becomes relevant to check the summary log as well (defaults to `summary.html`), which have the execution status of each script, and a link to the individual logs.
 
 ### Summary
 
-The decision between using `logr` and `logrx` hinges on specific needs. `logr` offers greater control over the output, at the expense of detailed environmental context. Conversely, `logrx` provides more comprehensive details and quicker log generation, along with better support for command line execution, but offers less control over the output.
+The decision between using `logr`, `logrx`, or `whirl` hinges on specific needs. 
+`logr` offers greater control over the output, at the expense of detailed environmental context. 
+Conversely, `logrx` provides more comprehensive details and quicker log generation, along with better support for command line execution, 
+but offers less control over the output. 
+`whirl` creates detailed logs with similar information as `logrx`, but by also including the script and it's printed outputs it allows the user to
+include any additional information in the log, or to use `run()` to create analysis reports directly that also includes relevant information on the execution environment.
+`whirl` also offers a framework for execution of a project consisting of multiple scripts. 
