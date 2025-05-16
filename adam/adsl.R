@@ -150,6 +150,7 @@ adsl_raw <- adsl_ct %>%
     dataset_add = ex,
     by_vars = exprs(STUDYID, USUBJID),
     new_var = SAFFL,
+    false_value = "N",
     condition = (EXDOSE > 0 | (EXDOSE == 0 & str_detect(EXTRT, "PLACEBO")))
   )
 
