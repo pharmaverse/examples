@@ -1,0 +1,39 @@
+---
+title: "Pharmaverse Example"
+date: "`r Sys.Date()`"
+output:
+    rmarkdown::html_document:
+        theme: "spacelab"
+        highlight: "kate"
+        toc: true
+        toc_float: true
+author:
+  - Joe Zhu [`shajoezhu`]
+  - Yolanda Zhou ([`yolandazzz13`])
+
+vignette: >
+  %\VignetteIndexEntry{Pharmaverse Example: Introduction to `autoslider.core`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+    markdown:
+        wrap: 72
+---
+
+```{r, include = FALSE}
+suggested_dependent_pkgs <- c("filters")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = all(vapply(
+    suggested_dependent_pkgs,
+    requireNamespace,
+    logical(1),
+    quietly = TRUE
+  ))
+)
+```
+```{r, echo=FALSE}
+knitr::opts_chunk$set(comment = "#")
+```
+
