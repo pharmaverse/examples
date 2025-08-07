@@ -38,7 +38,7 @@ jobs:
 
           words <- spelling::spell_check_files(
             qmd_files,
-            ignore = read_lines("inst/WORDLIST.txt")
+            ignore = read_lines("inst/WORDLIST")
           )
 
           print(words)
@@ -47,8 +47,8 @@ jobs:
             testthat::expect_equal(
               object = words,
               expected = spelling::spell_check_files(
-                path = "inst/WORDLIST.txt",
-                ignore = read_lines("inst/WORDLIST.txt")
+                path = "inst/WORDLIST",
+                ignore = read_lines("inst/WORDLIST")
               )
             )
           })
