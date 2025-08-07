@@ -3,7 +3,7 @@ library(reactablefmtr)
 
 print_df <- function(dataset, n = 10) {
   out <- dataset
-  
+
   reactable(
     head(out, n),
     compact = TRUE,
@@ -20,7 +20,8 @@ print_df <- function(dataset, n = 10) {
       highlightColor = "#dfe6f2",
       cellPadding = "8px"
     )
-  ) %>% 
+  ) %>%
     add_title("Sample of Data",
-              font_size = 16)
+      font_size = 16
+    )
 }

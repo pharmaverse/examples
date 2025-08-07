@@ -633,8 +633,10 @@ and more details see the
 
 To utilize this feature, begin by creating a list of approved functions:
 ```{r}
-approved_pkgs <- list(base = "mean",
-                      dplyr = "All")
+approved_pkgs <- list(
+  base = "mean",
+  dplyr = "All"
+)
 ```
 
 Next, build the `approved_pkgs` list and save its contents to a file:

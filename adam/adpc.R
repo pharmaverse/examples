@@ -463,4 +463,3 @@ adpc_xpt <- adpc %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adpc.xpt")) # Write xpt v5 transport file
-
