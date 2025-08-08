@@ -166,4 +166,3 @@ lsting <- as_listing(
 )
 
 head(lsting, 28)
-

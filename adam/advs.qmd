@@ -547,7 +547,7 @@ advs <- advs %>%
 count(advs, TRTP, TRTA, TRT01P, TRT01A)
 ```
 
-For studies with periods see the ["Visit and Period Variables" vignette](visits_periods.html#treatment_bds).
+For studies with periods see the ["Visit and Period Variables" vignette](https://pharmaverse.github.io/admiral/cran-release/articles/visits_periods.html#treatment_bds).
 
 ## Assign `ASEQ` {#aseq}
 
