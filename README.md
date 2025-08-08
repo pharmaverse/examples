@@ -80,3 +80,5 @@ the packages being used.
 We recommend you notify the maintainers of all the packages used in your
 example, as then they are more likely to help inform us if ever anything
 changes in their packages that breaks any of our examples.
+
+To check spelling and style in a postopen the CICD.R file in the R/ folder. Run the script line by line to first check the spelling in your post and then to make sure your code is compatible with our code-style.
