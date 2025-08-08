@@ -57,3 +57,4 @@ lyt <- basic_table(show_colcounts = TRUE) %>%
 result <- build_table(lyt, df = adae, alt_counts_df = adsl)
 
 result
+

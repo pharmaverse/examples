@@ -81,3 +81,4 @@ lyt <- basic_table(show_colcounts = TRUE) |>
 result <- build_table(lyt, adsl2)
 
 result
+

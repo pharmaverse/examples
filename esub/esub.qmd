@@ -238,7 +238,7 @@ provide evidence of why you consider the open source code used to be accurate
 and reliable.
 
 This of course is a huge topic and one where you should first refer to
-guidance from the [R Validation Hub](https://www.pharmar.org/).
+guidance from the [R Validation Hub](https://pharmar.org/).
 
 Pharmaverse also offers a selection of recommended packages that can help with
 this via our [Developers page](https://pharmaverse.org/e2eclinical/developers/)

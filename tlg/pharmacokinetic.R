@@ -23,7 +23,6 @@ adpc <- adpc %>%
 adpc <- adpc %>%
   filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PARCAT1 == "PLASMA" & ANL02FL == "Y")
 
-
 ## ----r table------------------------------------------------------------------
 # Setting up the data for table
 adpc_t <- adpc %>%
@@ -92,7 +91,6 @@ main_footer(result) <- "NE: Not Estimable"
 result
 
 ## ----r graph------------------------------------------------------------------
-
 # Keep only treated subjects for graph
 adsl_f <- adsl %>%
   filter(SAFFL == "Y" & TRT01A != "Placebo")
@@ -168,3 +166,4 @@ lsting <- as_listing(
 )
 
 head(lsting, 28)
+

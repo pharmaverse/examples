@@ -159,3 +159,4 @@ adae %>%
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adae.xpt"), metadata = metacore, domain = "ADAE")
+

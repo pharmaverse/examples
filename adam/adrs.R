@@ -168,3 +168,4 @@ adrs_xpt <- adrs_checked %>%
   xportr_format(metacore) %>% # Assign variable formats from metadata
   xportr_df_label(metacore) %>% # Assign dataset labels from metadata
   xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file
+
