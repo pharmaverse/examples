@@ -902,7 +902,7 @@ steps:
       - "2_*.R"
 ```
 
-Here three steps are defined, where the first step is to run `setup.R`. After this we want to run `prgA.R` and `prgB.R` simultanously, and after these two have finished we run all R scripts starting with `2_` (imagine they depend on previous output from e.g. `prgA.R`).
+Here three steps are defined, where the first step is to run `setup.R`. After this we want to run `prgA.R` and `prgB.R` simultaneously, and after these two have finished we run all R scripts starting with `2_` (imagine they depend on previous output from e.g. `prgA.R`).
 
 To run all steps you just call `run()` with the configuration file as input:
 
