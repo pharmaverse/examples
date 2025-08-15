@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.7.33">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>Demographic Table – pharmaverse examples</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -30,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -53,6 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -64,17 +69,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5b7ccd8ccb072dd816e2b5ae8cfc7151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-1a1a05289f7c70694cc1839af3fc047d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-c3ad7b7c660ea9194172360a214f88a3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d986666dcae71c20e4dd59d93fa9b0e2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c3ad7b7c660ea9194172360a214f88a3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -99,7 +108,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -114,24 +125,193 @@ cookieconsent.run({
 "language":"en-US"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="Demographic Table – pharmaverse examples">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://pharmaverse.github.io/examples/tlg/assets/img/Pharmaverse_examples.png">
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
-<body class="nav-sidebar docked nav-fixed">
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
 <span class="menu-text"></span></a>
@@ -147,7 +327,7 @@ cookieconsent.run({
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -157,7 +337,9 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -165,15 +347,20 @@ cookieconsent.run({
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -188,15 +375,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/examples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SDTM Examples</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -205,8 +392,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -249,7 +436,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
@@ -258,8 +445,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Demographic Table</span></a>
@@ -278,7 +465,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -287,15 +474,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>teal</code> applications</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
@@ -304,15 +491,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
@@ -321,15 +508,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">eSubmission</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -344,12 +531,17 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/demographic.html">Demographic Table</a></li></ol></nav><div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tlg/demographic.html">TLG</a></li><li class="breadcrumb-item"><a href="../tlg/demographic.html">Demographic Table</a></li></ol></nav>
+<div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Demographic Table</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
@@ -364,10 +556,16 @@ cookieconsent.run({
   
 
 
-</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <a href="https://pharmaverse.github.io/pharmaverseadam/">pharmaverseadam</a> <code>ADSL</code> data as an input.</p>
-<p>In the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set.</p>
-</section><section id="data-preprocessing" class="level2"><h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> data as an input.</p>
+<p>In the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analyis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set.</p>
+</section>
+<section id="data-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
 <p>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -383,22 +581,23 @@ cookieconsent.run({
 <span id="cb1-11"><a href="#cb1-11"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
 <span id="cb1-12"><a href="#cb1-12"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>        <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
-<span id="cb1-17"><a href="#cb1-17"></a>    <span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14"></a>      <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb1-16"><a href="#cb1-16"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(<span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>                                <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18"></a>                                <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19"></a>                                <span class="at">RACE =</span> <span class="st">"Race"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="gtsummary-cards" class="level2"><h2 class="anchored" data-anchor-id="gtsummary-cards">{gtsummary} &amp; {cards}</h2>
+</section>
+<section id="gtsummary-cards" class="level2">
+<h2 class="anchored" data-anchor-id="gtsummary-cards">{gtsummary} &amp; {cards}</h2>
 <p>In the example below, we will use the <a href="https://www.danieldsjoberg.com/gtsummary/">{gtsummary}</a> and <a href="https://insightsengineering.github.io/cards/">{cards}</a> packages to create a demographics tables.</p>
 <ul>
 <li>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>).</li>
 <li>The {gtsummary} utilizes ARDs to create tables.</li>
 </ul>
-<section id="ard-table" class="level4"><h4 class="anchored" data-anchor-id="ard-table">ARD ➡ Table</h4>
+<section id="ard-table" class="level4">
+<h4 class="anchored" data-anchor-id="ard-table">ARD ➡ Table</h4>
 <p>In the example below, we first build an ARD with the needed summary statistics using {cards}. Then, we use the ARD to build the demographics table with {gtsummary}.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(cards)</span>
@@ -408,42 +607,42 @@ cookieconsent.run({
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a>ard <span class="ot">&lt;-</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">ard_stack</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    adsl,</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    adsl, </span>
 <span id="cb2-9"><a href="#cb2-9"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
 <span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">.by =</span> ACTARM,      <span class="co"># split results by treatment arm</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
 <span id="cb2-13"><a href="#cb2-13"></a>  )</span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
 <span id="cb2-15"><a href="#cb2-15"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="fu">tbl_ard_summary</span>(</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="at">cards =</span> ard,</span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="at">by =</span> ACTARM,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="at">cards =</span> ard, </span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="at">by =</span> ACTARM, </span>
 <span id="cb2-19"><a href="#cb2-19"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
 <span id="cb2-20"><a href="#cb2-20"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
 <span id="cb2-21"><a href="#cb2-21"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="qbiozbhqgv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qbiozbhqgv table {
+<div id="ttmgqhhoew" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ttmgqhhoew table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qbiozbhqgv thead, #qbiozbhqgv tbody, #qbiozbhqgv tfoot, #qbiozbhqgv tr, #qbiozbhqgv td, #qbiozbhqgv th {
+#ttmgqhhoew thead, #ttmgqhhoew tbody, #ttmgqhhoew tfoot, #ttmgqhhoew tr, #ttmgqhhoew td, #ttmgqhhoew th {
   border-style: none;
 }
 
-#qbiozbhqgv p {
+#ttmgqhhoew p {
   margin: 0;
   padding: 0;
 }
 
-#qbiozbhqgv .gt_table {
+#ttmgqhhoew .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -469,12 +668,12 @@ cookieconsent.run({
   border-left-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_caption {
+#ttmgqhhoew .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qbiozbhqgv .gt_title {
+#ttmgqhhoew .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -486,7 +685,7 @@ cookieconsent.run({
   border-bottom-width: 0;
 }
 
-#qbiozbhqgv .gt_subtitle {
+#ttmgqhhoew .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -498,7 +697,7 @@ cookieconsent.run({
   border-top-width: 0;
 }
 
-#qbiozbhqgv .gt_heading {
+#ttmgqhhoew .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -510,13 +709,13 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_bottom_border {
+#ttmgqhhoew .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_col_headings {
+#ttmgqhhoew .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -531,7 +730,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_col_heading {
+#ttmgqhhoew .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -551,7 +750,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#qbiozbhqgv .gt_column_spanner_outer {
+#ttmgqhhoew .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -563,15 +762,15 @@ cookieconsent.run({
   padding-right: 4px;
 }
 
-#qbiozbhqgv .gt_column_spanner_outer:first-child {
+#ttmgqhhoew .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qbiozbhqgv .gt_column_spanner_outer:last-child {
+#ttmgqhhoew .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qbiozbhqgv .gt_column_spanner {
+#ttmgqhhoew .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -583,11 +782,11 @@ cookieconsent.run({
   width: 100%;
 }
 
-#qbiozbhqgv .gt_spanner_row {
+#ttmgqhhoew .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qbiozbhqgv .gt_group_heading {
+#ttmgqhhoew .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -613,7 +812,7 @@ cookieconsent.run({
   text-align: left;
 }
 
-#qbiozbhqgv .gt_empty_group_heading {
+#ttmgqhhoew .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -628,15 +827,15 @@ cookieconsent.run({
   vertical-align: middle;
 }
 
-#qbiozbhqgv .gt_from_md > :first-child {
+#ttmgqhhoew .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qbiozbhqgv .gt_from_md > :last-child {
+#ttmgqhhoew .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qbiozbhqgv .gt_row {
+#ttmgqhhoew .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -655,7 +854,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#qbiozbhqgv .gt_stub {
+#ttmgqhhoew .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -668,7 +867,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#qbiozbhqgv .gt_stub_row_group {
+#ttmgqhhoew .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -682,15 +881,15 @@ cookieconsent.run({
   vertical-align: top;
 }
 
-#qbiozbhqgv .gt_row_group_first td {
+#ttmgqhhoew .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qbiozbhqgv .gt_row_group_first th {
+#ttmgqhhoew .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qbiozbhqgv .gt_summary_row {
+#ttmgqhhoew .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -700,16 +899,16 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#qbiozbhqgv .gt_first_summary_row {
+#ttmgqhhoew .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_first_summary_row.thick {
+#ttmgqhhoew .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qbiozbhqgv .gt_last_summary_row {
+#ttmgqhhoew .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -719,7 +918,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_grand_summary_row {
+#ttmgqhhoew .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -729,7 +928,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#qbiozbhqgv .gt_first_grand_summary_row {
+#ttmgqhhoew .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -739,7 +938,7 @@ cookieconsent.run({
   border-top-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_last_grand_summary_row_top {
+#ttmgqhhoew .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -749,11 +948,11 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_striped {
+#ttmgqhhoew .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qbiozbhqgv .gt_table_body {
+#ttmgqhhoew .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -762,7 +961,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_footnotes {
+#ttmgqhhoew .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -776,7 +975,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_footnote {
+#ttmgqhhoew .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -785,7 +984,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#qbiozbhqgv .gt_sourcenotes {
+#ttmgqhhoew .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -799,7 +998,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#qbiozbhqgv .gt_sourcenote {
+#ttmgqhhoew .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -807,75 +1006,76 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#qbiozbhqgv .gt_left {
+#ttmgqhhoew .gt_left {
   text-align: left;
 }
 
-#qbiozbhqgv .gt_center {
+#ttmgqhhoew .gt_center {
   text-align: center;
 }
 
-#qbiozbhqgv .gt_right {
+#ttmgqhhoew .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qbiozbhqgv .gt_font_normal {
+#ttmgqhhoew .gt_font_normal {
   font-weight: normal;
 }
 
-#qbiozbhqgv .gt_font_bold {
+#ttmgqhhoew .gt_font_bold {
   font-weight: bold;
 }
 
-#qbiozbhqgv .gt_font_italic {
+#ttmgqhhoew .gt_font_italic {
   font-style: italic;
 }
 
-#qbiozbhqgv .gt_super {
+#ttmgqhhoew .gt_super {
   font-size: 65%;
 }
 
-#qbiozbhqgv .gt_footnote_marks {
+#ttmgqhhoew .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qbiozbhqgv .gt_asterisk {
+#ttmgqhhoew .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qbiozbhqgv .gt_indent_1 {
+#ttmgqhhoew .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qbiozbhqgv .gt_indent_2 {
+#ttmgqhhoew .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qbiozbhqgv .gt_indent_3 {
+#ttmgqhhoew .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qbiozbhqgv .gt_indent_4 {
+#ttmgqhhoew .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qbiozbhqgv .gt_indent_5 {
+#ttmgqhhoew .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qbiozbhqgv .katex-display {
+#ttmgqhhoew .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qbiozbhqgv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ttmgqhhoew div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
+
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 25%">
@@ -883,24 +1083,26 @@ cookieconsent.run({
 <col style="width: 25%">
 <col style="width: 25%">
 </colgroup>
-<thead><tr class="gt_col_headings header">
+<thead>
+<tr class="gt_col_headings header">
 <th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
-<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
-<strong>Placebo</strong><br>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Placebo</strong><br>
 N = 86</th>
-<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
-<strong>Xanomeline High Dose</strong><br>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Xanomeline High Dose</strong><br>
 N = 72</th>
-<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">
-<strong>Xanomeline Low Dose</strong><br>
+<th id="stat_3" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Xanomeline Low Dose</strong><br>
 N = 96</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label" style="font-weight: bold">Age (yr)</td>
-<td class="gt_row gt_center" headers="stat_1"><br></td>
-<td class="gt_row gt_center" headers="stat_2"><br></td>
-<td class="gt_row gt_center" headers="stat_3"><br></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;N</td>
@@ -928,9 +1130,12 @@ N = 96</th>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label" style="font-weight: bold">Age group</td>
-<td class="gt_row gt_center" headers="stat_1"><br></td>
-<td class="gt_row gt_center" headers="stat_2"><br></td>
-<td class="gt_row gt_center" headers="stat_3"><br></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;18-40</td>
@@ -952,9 +1157,12 @@ N = 96</th>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label" style="font-weight: bold">Sex</td>
-<td class="gt_row gt_center" headers="stat_1"><br></td>
-<td class="gt_row gt_center" headers="stat_2"><br></td>
-<td class="gt_row gt_center" headers="stat_3"><br></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;FEMALE</td>
@@ -970,9 +1178,12 @@ N = 96</th>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label" style="font-weight: bold">Race</td>
-<td class="gt_row gt_center" headers="stat_1"><br></td>
-<td class="gt_row gt_center" headers="stat_2"><br></td>
-<td class="gt_row gt_center" headers="stat_3"><br></td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;AMERICAN INDIAN OR ALASKA NATIVE</td>
@@ -994,11 +1205,14 @@ N = 96</th>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
-</section><section id="table-ard" class="level4"><h4 class="anchored" data-anchor-id="table-ard">Table ➡ ARD</h4>
-<p>One may also build the demographics in the classic way using <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html">gtsummary::tbl_summary()</a></code> from a data frame, then extract the ARD from the table object.</p>
+</section>
+<section id="table-ard" class="level4">
+<h4 class="anchored" data-anchor-id="table-ard">Table ➡ ARD</h4>
+<p>One may also build the demographics in the classic way using <code>gtsummary::tbl_summary()</code> from a data frame, then extract the ARD from the table object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># build demographics table directly from a data frame</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
@@ -1031,20 +1245,21 @@ N = 96</th>
 <pre><code>ℹ 4 more variables: context, fmt_fun, warning, error</code></pre>
 </div>
 </div>
-</section></section><section id="rtables-tern" class="level2"><h2 class="anchored" data-anchor-id="rtables-tern">{rtables} &amp; {tern}</h2>
+</section>
+</section>
+<section id="rtables-tern" class="level2">
+<h2 class="anchored" data-anchor-id="rtables-tern">{rtables} &amp; {tern}</h2>
 <p>The packages used with a brief description of their purpose are as follows:</p>
 <ul>
-<li>
-<a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
-<li>
-<a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
+<li><a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a>: designed to create and display complex tables with R.</li>
+<li><a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a>: contains analysis functions to create tables and graphs used for clinical trial reporting.</li>
 </ul>
 <p>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <code>adsl</code>.</p>
-<p>Note that <a href="https://insightsengineering.github.io/tern/">tern</a> depends on <a href="https://github.com/insightsengineering/rtables">rtables</a> so the latter is automatically attached.</p>
+<p>Note that <code>{tern}</code> depends on <code>{rtables}</code> so the latter is automatically attached.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tern)</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> </span>
 <span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we create the demographic table.</p>
@@ -1057,9 +1272,9 @@ N = 96</th>
 <span id="cb10-6"><a href="#cb10-6"></a>  <span class="st">"Race"</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a>)</span>
 <span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">analyze_vars</span>(</span>
 <span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">vars =</span> vars,</span>
 <span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">var_labels =</span> var_labels</span>
@@ -1097,432 +1312,310 @@ Race
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
     }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
     }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
       }
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
     }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
-    }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1530,185 +1623,163 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
       <a href="../adam/adae.html" class="pagination-link" aria-label="ADAE">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADAE</span>
       </a>          
@@ -1725,148 +1796,144 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a></span>
 <span id="cb12-6"><a href="#cb12-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="in">  knitr::hook_purl(before, options, ...)</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="in">  NULL</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="in">}</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="in">knitr::opts_chunk$set(echo = TRUE)</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="in">```</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="fu">## Introduction</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a></span>
-<span id="cb12-17"><a href="#cb12-17"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
-<span id="cb12-18"><a href="#cb12-18"></a></span>
-<span id="cb12-19"><a href="#cb12-19"></a>In the examples below, we illustrate two general approaches for creating a demographics table.</span>
-<span id="cb12-20"><a href="#cb12-20"></a>The first utilizes Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
-<span id="cb12-21"><a href="#cb12-21"></a>The second is the classic method of creating summary tables directly from a data set.</span>
-<span id="cb12-22"><a href="#cb12-22"></a></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="fu">## Data preprocessing</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a></span>
-<span id="cb12-25"><a href="#cb12-25"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
-<span id="cb12-26"><a href="#cb12-26"></a></span>
-<span id="cb12-27"><a href="#cb12-27"></a><span class="in">```{r preproc}</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a><span class="in">#| message: false</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a><span class="in">library(dplyr)</span></span>
-<span id="cb12-30"><a href="#cb12-30"></a></span>
-<span id="cb12-31"><a href="#cb12-31"></a><span class="in"># Create categorical variables, remove screen failures, and assign column labels</span></span>
-<span id="cb12-32"><a href="#cb12-32"></a><span class="in">adsl &lt;- pharmaverseadam::adsl |&gt;</span></span>
-<span id="cb12-33"><a href="#cb12-33"></a><span class="in">  filter(!ACTARM %in% "Screen Failure") |&gt;</span></span>
-<span id="cb12-34"><a href="#cb12-34"></a><span class="in">  mutate(</span></span>
-<span id="cb12-35"><a href="#cb12-35"></a><span class="in">    SEX = case_match(SEX, "M" ~ "MALE", "F" ~ "FEMALE"),</span></span>
-<span id="cb12-36"><a href="#cb12-36"></a><span class="in">    AGEGR1 =</span></span>
-<span id="cb12-37"><a href="#cb12-37"></a><span class="in">      case_when(</span></span>
-<span id="cb12-38"><a href="#cb12-38"></a><span class="in">        between(AGE, 18, 40) ~ "18-40",</span></span>
-<span id="cb12-39"><a href="#cb12-39"></a><span class="in">        between(AGE, 41, 64) ~ "41-64",</span></span>
-<span id="cb12-40"><a href="#cb12-40"></a><span class="in">        AGE &gt; 64 ~ "&gt;=65"</span></span>
-<span id="cb12-41"><a href="#cb12-41"></a><span class="in">      ) |&gt;</span></span>
-<span id="cb12-42"><a href="#cb12-42"></a><span class="in">        factor(levels = c("18-40", "41-64", "&gt;=65"))</span></span>
-<span id="cb12-43"><a href="#cb12-43"></a><span class="in">  ) |&gt;</span></span>
-<span id="cb12-44"><a href="#cb12-44"></a><span class="in">  labelled::set_variable_labels(</span></span>
-<span id="cb12-45"><a href="#cb12-45"></a><span class="in">    AGE = "Age (yr)",</span></span>
-<span id="cb12-46"><a href="#cb12-46"></a><span class="in">    AGEGR1 = "Age group",</span></span>
-<span id="cb12-47"><a href="#cb12-47"></a><span class="in">    SEX = "Sex",</span></span>
-<span id="cb12-48"><a href="#cb12-48"></a><span class="in">    RACE = "Race"</span></span>
-<span id="cb12-49"><a href="#cb12-49"></a><span class="in">  )</span></span>
-<span id="cb12-50"><a href="#cb12-50"></a><span class="in">```</span></span>
-<span id="cb12-51"><a href="#cb12-51"></a></span>
-<span id="cb12-52"><a href="#cb12-52"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...); <span class="cn">NULL</span>}</span>
+<span id="cb12-8"><a href="#cb12-8"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="in">```</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="fu">## Introduction</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
+<span id="cb12-15"><a href="#cb12-15"></a></span>
+<span id="cb12-16"><a href="#cb12-16"></a>In the examples below, we illustrate two general approaches for creating a demographics table.</span>
+<span id="cb12-17"><a href="#cb12-17"></a>The first utilizes Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analyis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
+<span id="cb12-18"><a href="#cb12-18"></a>The second is the classic method of creating summary tables directly from a data set.</span>
+<span id="cb12-19"><a href="#cb12-19"></a></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="fu">## Data preprocessing</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a></span>
+<span id="cb12-22"><a href="#cb12-22"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
+<span id="cb12-23"><a href="#cb12-23"></a></span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="in">```{r preproc}</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a><span class="co">#| message: false</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-27"><a href="#cb12-27"></a></span>
+<span id="cb12-28"><a href="#cb12-28"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a>  <span class="fu">filter</span>(<span class="sc">!</span>ACTARM <span class="sc">%in%</span> <span class="st">"Screen Failure"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-32"><a href="#cb12-32"></a>    <span class="at">SEX =</span> <span class="fu">case_match</span>(SEX, <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"MALE"</span>, <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"FEMALE"</span>),</span>
+<span id="cb12-33"><a href="#cb12-33"></a>    <span class="at">AGEGR1 =</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb12-35"><a href="#cb12-35"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb12-36"><a href="#cb12-36"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb12-37"><a href="#cb12-37"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb12-38"><a href="#cb12-38"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a>      <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
+<span id="cb12-40"><a href="#cb12-40"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb12-41"><a href="#cb12-41"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(<span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
+<span id="cb12-42"><a href="#cb12-42"></a>                                <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
+<span id="cb12-43"><a href="#cb12-43"></a>                                <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb12-44"><a href="#cb12-44"></a>                                <span class="at">RACE =</span> <span class="st">"Race"</span>)</span>
+<span id="cb12-45"><a href="#cb12-45"></a><span class="in">```</span></span>
+<span id="cb12-46"><a href="#cb12-46"></a></span>
+<span id="cb12-47"><a href="#cb12-47"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a></span>
+<span id="cb12-49"><a href="#cb12-49"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
+<span id="cb12-50"><a href="#cb12-50"></a></span>
+<span id="cb12-51"><a href="#cb12-51"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
 <span id="cb12-53"><a href="#cb12-53"></a></span>
-<span id="cb12-54"><a href="#cb12-54"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
+<span id="cb12-54"><a href="#cb12-54"></a><span class="fu">#### ARD ➡ Table</span></span>
 <span id="cb12-55"><a href="#cb12-55"></a></span>
-<span id="cb12-56"><a href="#cb12-56"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
-<span id="cb12-57"><a href="#cb12-57"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
+<span id="cb12-56"><a href="#cb12-56"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
+<span id="cb12-57"><a href="#cb12-57"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
 <span id="cb12-58"><a href="#cb12-58"></a></span>
-<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">#### ARD ➡ Table</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a></span>
-<span id="cb12-61"><a href="#cb12-61"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
-<span id="cb12-62"><a href="#cb12-62"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
-<span id="cb12-63"><a href="#cb12-63"></a></span>
-<span id="cb12-64"><a href="#cb12-64"></a><span class="in">```{r gtsummary-table}</span></span>
-<span id="cb12-65"><a href="#cb12-65"></a><span class="in">#| message: false</span></span>
-<span id="cb12-66"><a href="#cb12-66"></a><span class="in">library(cards)</span></span>
-<span id="cb12-67"><a href="#cb12-67"></a><span class="in">library(gtsummary)</span></span>
-<span id="cb12-68"><a href="#cb12-68"></a><span class="in">theme_gtsummary_compact() # reduce default padding and font size for a gt table</span></span>
-<span id="cb12-69"><a href="#cb12-69"></a></span>
-<span id="cb12-70"><a href="#cb12-70"></a><span class="in"># build the ARD with the needed summary statistics using {cards}</span></span>
-<span id="cb12-71"><a href="#cb12-71"></a><span class="in">ard &lt;-</span></span>
-<span id="cb12-72"><a href="#cb12-72"></a><span class="in">  ard_stack(</span></span>
-<span id="cb12-73"><a href="#cb12-73"></a><span class="in">    adsl,</span></span>
-<span id="cb12-74"><a href="#cb12-74"></a><span class="in">    ard_continuous(variables = AGE),</span></span>
-<span id="cb12-75"><a href="#cb12-75"></a><span class="in">    ard_categorical(variables = c(AGEGR1, SEX, RACE)),</span></span>
-<span id="cb12-76"><a href="#cb12-76"></a><span class="in">    .by = ACTARM, # split results by treatment arm</span></span>
-<span id="cb12-77"><a href="#cb12-77"></a><span class="in">    .attributes = TRUE # optionally include column labels in the ARD</span></span>
-<span id="cb12-78"><a href="#cb12-78"></a><span class="in">  )</span></span>
-<span id="cb12-79"><a href="#cb12-79"></a></span>
-<span id="cb12-80"><a href="#cb12-80"></a><span class="in"># use the ARD to create a demographics table using {gtsummary}</span></span>
-<span id="cb12-81"><a href="#cb12-81"></a><span class="in">tbl_ard_summary(</span></span>
-<span id="cb12-82"><a href="#cb12-82"></a><span class="in">  cards = ard,</span></span>
-<span id="cb12-83"><a href="#cb12-83"></a><span class="in">  by = ACTARM,</span></span>
-<span id="cb12-84"><a href="#cb12-84"></a><span class="in">  include = c(AGE, AGEGR1, SEX, RACE),</span></span>
-<span id="cb12-85"><a href="#cb12-85"></a><span class="in">  type = AGE ~ "continuous2",</span></span>
-<span id="cb12-86"><a href="#cb12-86"></a><span class="in">  statistic = AGE ~ c("{N}", "{mean} ({sd})", "{median} ({p25}, {p75})", "{min}, {max}")</span></span>
-<span id="cb12-87"><a href="#cb12-87"></a><span class="in">) |&gt;</span></span>
-<span id="cb12-88"><a href="#cb12-88"></a><span class="in">  bold_labels() |&gt;</span></span>
-<span id="cb12-89"><a href="#cb12-89"></a><span class="in">  modify_header(all_stat_cols() ~ "**{level}**  \nN = {n}") |&gt; # add Ns to header</span></span>
-<span id="cb12-90"><a href="#cb12-90"></a><span class="in">  modify_footnote(everything() ~ NA) # remove default footnote</span></span>
-<span id="cb12-91"><a href="#cb12-91"></a><span class="in">```</span></span>
-<span id="cb12-92"><a href="#cb12-92"></a></span>
-<span id="cb12-93"><a href="#cb12-93"></a><span class="fu">#### Table ➡ ARD</span></span>
-<span id="cb12-94"><a href="#cb12-94"></a></span>
-<span id="cb12-95"><a href="#cb12-95"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
-<span id="cb12-96"><a href="#cb12-96"></a></span>
-<span id="cb12-97"><a href="#cb12-97"></a><span class="in">```{r gtsummary-ard}</span></span>
-<span id="cb12-98"><a href="#cb12-98"></a><span class="in"># build demographics table directly from a data frame</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a><span class="in">tbl &lt;- adsl |&gt; tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))</span></span>
-<span id="cb12-100"><a href="#cb12-100"></a></span>
-<span id="cb12-101"><a href="#cb12-101"></a><span class="in"># extract ARD from table object</span></span>
-<span id="cb12-102"><a href="#cb12-102"></a><span class="in">gather_ard(tbl)[[1]] |&gt; select(-gts_column) # removing column so ARD fits on page</span></span>
-<span id="cb12-103"><a href="#cb12-103"></a><span class="in">```</span></span>
-<span id="cb12-104"><a href="#cb12-104"></a></span>
-<span id="cb12-105"><a href="#cb12-105"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="in">```{r gtsummary-table}</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a><span class="co">#| message: false</span></span>
+<span id="cb12-61"><a href="#cb12-61"></a><span class="fu">library</span>(cards)</span>
+<span id="cb12-62"><a href="#cb12-62"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb12-63"><a href="#cb12-63"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
+<span id="cb12-64"><a href="#cb12-64"></a></span>
+<span id="cb12-65"><a href="#cb12-65"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
+<span id="cb12-66"><a href="#cb12-66"></a>ard <span class="ot">&lt;-</span></span>
+<span id="cb12-67"><a href="#cb12-67"></a>  <span class="fu">ard_stack</span>(</span>
+<span id="cb12-68"><a href="#cb12-68"></a>    adsl, </span>
+<span id="cb12-69"><a href="#cb12-69"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
+<span id="cb12-70"><a href="#cb12-70"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
+<span id="cb12-71"><a href="#cb12-71"></a>    <span class="at">.by =</span> ACTARM,      <span class="co"># split results by treatment arm</span></span>
+<span id="cb12-72"><a href="#cb12-72"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
+<span id="cb12-73"><a href="#cb12-73"></a>  )</span>
+<span id="cb12-74"><a href="#cb12-74"></a></span>
+<span id="cb12-75"><a href="#cb12-75"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
+<span id="cb12-76"><a href="#cb12-76"></a><span class="fu">tbl_ard_summary</span>(</span>
+<span id="cb12-77"><a href="#cb12-77"></a>  <span class="at">cards =</span> ard, </span>
+<span id="cb12-78"><a href="#cb12-78"></a>  <span class="at">by =</span> ACTARM, </span>
+<span id="cb12-79"><a href="#cb12-79"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
+<span id="cb12-80"><a href="#cb12-80"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb12-81"><a href="#cb12-81"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
+<span id="cb12-82"><a href="#cb12-82"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-83"><a href="#cb12-83"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb12-84"><a href="#cb12-84"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
+<span id="cb12-85"><a href="#cb12-85"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span>
+<span id="cb12-86"><a href="#cb12-86"></a><span class="in">```</span></span>
+<span id="cb12-87"><a href="#cb12-87"></a></span>
+<span id="cb12-88"><a href="#cb12-88"></a><span class="fu">#### Table ➡ ARD</span></span>
+<span id="cb12-89"><a href="#cb12-89"></a></span>
+<span id="cb12-90"><a href="#cb12-90"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
+<span id="cb12-91"><a href="#cb12-91"></a></span>
+<span id="cb12-92"><a href="#cb12-92"></a><span class="in">```{r gtsummary-ard}</span></span>
+<span id="cb12-93"><a href="#cb12-93"></a><span class="co"># build demographics table directly from a data frame</span></span>
+<span id="cb12-94"><a href="#cb12-94"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
+<span id="cb12-95"><a href="#cb12-95"></a></span>
+<span id="cb12-96"><a href="#cb12-96"></a><span class="co"># extract ARD from table object</span></span>
+<span id="cb12-97"><a href="#cb12-97"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span>
+<span id="cb12-98"><a href="#cb12-98"></a><span class="in">```</span></span>
+<span id="cb12-99"><a href="#cb12-99"></a></span>
+<span id="cb12-100"><a href="#cb12-100"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
+<span id="cb12-101"><a href="#cb12-101"></a></span>
+<span id="cb12-102"><a href="#cb12-102"></a>The packages used with a brief description of their purpose are as follows:</span>
+<span id="cb12-103"><a href="#cb12-103"></a></span>
+<span id="cb12-104"><a href="#cb12-104"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
+<span id="cb12-105"><a href="#cb12-105"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
 <span id="cb12-106"><a href="#cb12-106"></a></span>
-<span id="cb12-107"><a href="#cb12-107"></a>The packages used with a brief description of their purpose are as follows:</span>
+<span id="cb12-107"><a href="#cb12-107"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
 <span id="cb12-108"><a href="#cb12-108"></a></span>
-<span id="cb12-109"><a href="#cb12-109"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
-<span id="cb12-110"><a href="#cb12-110"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
-<span id="cb12-111"><a href="#cb12-111"></a></span>
-<span id="cb12-112"><a href="#cb12-112"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
+<span id="cb12-109"><a href="#cb12-109"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
+<span id="cb12-110"><a href="#cb12-110"></a></span>
+<span id="cb12-111"><a href="#cb12-111"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb12-112"><a href="#cb12-112"></a><span class="fu">library</span>(tern)</span>
 <span id="cb12-113"><a href="#cb12-113"></a></span>
-<span id="cb12-114"><a href="#cb12-114"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
-<span id="cb12-115"><a href="#cb12-115"></a></span>
-<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb12-117"><a href="#cb12-117"></a><span class="in">library(tern)</span></span>
-<span id="cb12-118"><a href="#cb12-118"></a></span>
-<span id="cb12-119"><a href="#cb12-119"></a><span class="in">adsl2 &lt;- adsl |&gt;</span></span>
-<span id="cb12-120"><a href="#cb12-120"></a><span class="in">  df_explicit_na()</span></span>
-<span id="cb12-121"><a href="#cb12-121"></a><span class="in">```</span></span>
-<span id="cb12-122"><a href="#cb12-122"></a></span>
-<span id="cb12-123"><a href="#cb12-123"></a>Now we create the demographic table.</span>
-<span id="cb12-124"><a href="#cb12-124"></a></span>
-<span id="cb12-125"><a href="#cb12-125"></a><span class="in">```{r rtables-table}</span></span>
-<span id="cb12-126"><a href="#cb12-126"></a><span class="in">vars &lt;- c("AGE", "AGEGR1", "SEX", "RACE")</span></span>
-<span id="cb12-127"><a href="#cb12-127"></a><span class="in">var_labels &lt;- c(</span></span>
-<span id="cb12-128"><a href="#cb12-128"></a><span class="in">  "Age (yr)",</span></span>
-<span id="cb12-129"><a href="#cb12-129"></a><span class="in">  "Age group",</span></span>
-<span id="cb12-130"><a href="#cb12-130"></a><span class="in">  "Sex",</span></span>
-<span id="cb12-131"><a href="#cb12-131"></a><span class="in">  "Race"</span></span>
-<span id="cb12-132"><a href="#cb12-132"></a><span class="in">)</span></span>
-<span id="cb12-133"><a href="#cb12-133"></a></span>
-<span id="cb12-134"><a href="#cb12-134"></a><span class="in">lyt &lt;- basic_table(show_colcounts = TRUE) |&gt;</span></span>
-<span id="cb12-135"><a href="#cb12-135"></a><span class="in">  split_cols_by(var = "ACTARM") |&gt;</span></span>
-<span id="cb12-136"><a href="#cb12-136"></a><span class="in">  add_overall_col("All Patients") |&gt;</span></span>
-<span id="cb12-137"><a href="#cb12-137"></a><span class="in">  analyze_vars(</span></span>
-<span id="cb12-138"><a href="#cb12-138"></a><span class="in">    vars = vars,</span></span>
-<span id="cb12-139"><a href="#cb12-139"></a><span class="in">    var_labels = var_labels</span></span>
-<span id="cb12-140"><a href="#cb12-140"></a><span class="in">  )</span></span>
-<span id="cb12-141"><a href="#cb12-141"></a></span>
-<span id="cb12-142"><a href="#cb12-142"></a><span class="in">result &lt;- build_table(lyt, adsl2)</span></span>
-<span id="cb12-143"><a href="#cb12-143"></a></span>
-<span id="cb12-144"><a href="#cb12-144"></a><span class="in">result</span></span>
-<span id="cb12-145"><a href="#cb12-145"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb12-114"><a href="#cb12-114"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> </span>
+<span id="cb12-115"><a href="#cb12-115"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```</span></span>
+<span id="cb12-117"><a href="#cb12-117"></a></span>
+<span id="cb12-118"><a href="#cb12-118"></a>Now we create the demographic table.</span>
+<span id="cb12-119"><a href="#cb12-119"></a></span>
+<span id="cb12-120"><a href="#cb12-120"></a><span class="in">```{r rtables-table}</span></span>
+<span id="cb12-121"><a href="#cb12-121"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb12-122"><a href="#cb12-122"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-123"><a href="#cb12-123"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb12-124"><a href="#cb12-124"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb12-125"><a href="#cb12-125"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb12-126"><a href="#cb12-126"></a>  <span class="st">"Race"</span></span>
+<span id="cb12-127"><a href="#cb12-127"></a>)</span>
+<span id="cb12-128"><a href="#cb12-128"></a></span>
+<span id="cb12-129"><a href="#cb12-129"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-130"><a href="#cb12-130"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-131"><a href="#cb12-131"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb12-132"><a href="#cb12-132"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb12-133"><a href="#cb12-133"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb12-134"><a href="#cb12-134"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb12-135"><a href="#cb12-135"></a>  )</span>
+<span id="cb12-136"><a href="#cb12-136"></a></span>
+<span id="cb12-137"><a href="#cb12-137"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
+<span id="cb12-138"><a href="#cb12-138"></a></span>
+<span id="cb12-139"><a href="#cb12-139"></a>result</span>
+<span id="cb12-140"><a href="#cb12-140"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1878,6 +1945,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
