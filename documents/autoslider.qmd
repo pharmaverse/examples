@@ -52,7 +52,6 @@ library(dplyr)
 # Install and load the necessary packages
 library(yaml)
 library(assertthat)
-library(tern)
 
 # Create the YAML content
 yaml_content <- '
@@ -121,18 +120,6 @@ write(specs_entry, file = spec_file)
 
 # This chunk runs first and prepares the environment for the whole document
 
-# 1. Load ALL necessary packages
-library(rtables)      # For append_topleft()
-library(dplyr)       # For %>% and other functions
-library(assertthat)   # For assert_that() you had issues with before
-# ... add any other packages your report uses
-
-# 3. Load any data files needed
-# data <- read.csv(here("data", "my_data.csv"))
-
-# Clean up the temporary files
-# file.remove(filters)
-# file.remove(spec_file)
 ```
 
 # Background
@@ -209,7 +196,6 @@ Each filter has a name (e.g. `FAS`), a title (`Full Analysis Set`), and then the
 The filter title may be appended to the output title. For the `t_ds_slides` slide above all filter titles that target the adsl dataset would be included in the brackets. 
 We would thus expect the title to read: "Patient Disposition (Full Analysis Set)"
 
-[what is the type?]
 
 As you can see, we don't just have population filters, but also filters on serious adverse events. 
 We can thus produce SAE tables by just supplying the serious adverse events to the AE table function. 
@@ -254,9 +240,24 @@ filters_file <- file.path(current_wd, "filters.yml")
 filters::load_filters(filters_file, overwrite = TRUE)
 ```
 
-```{r, eval = TRUE}
-
+```{r, eval = TRUE, include=FALSE}
+# 1. Load ALL necessary packages
+library(rtables)      # For append_topleft()
+library(assertthat)   # For assert_that() you had issues with before
+library(tern)
 library("dplyr")
+```
+
+```{r, eval = FALSE}
+# 1. Load ALL necessary packages
+library(rtables)      # For append_topleft()
+library(assertthat)   # For assert_that() you had issues with before
+library(tern)
+library("dplyr")
+```
+
+
+```{r, eval = TRUE}
 # read data
 data <- list(
   "adsl" = eg_adsl %>%
