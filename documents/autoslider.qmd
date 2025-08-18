@@ -205,22 +205,22 @@ This concept generalizes also to `PARAMCD` values.
 ```
 ITT:
   title: Intent to Treat Population
-  condition: ITTFL =='Y'
+  condition: ITTFL == "Y"
   target: adsl
   type: slref
 SAS:
   title: Secondary Analysis Set
-  condition: SASFL == 'Y'
+  condition: SASFL == "Y"
   target: adsl
   type: slref
 SE:
   title: Safety Evaluable Population
-  condition: SAFFL=='Y'
+  condition: SAFFL == "Y"
   target: adsl
   type: slref
 SER:
   title: Serious Adverse Events
-  condition: AESER == 'Y'
+  condition: AESER == "Y"
   target: adae
   type: anl
 
