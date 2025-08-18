@@ -8,11 +8,12 @@ output:
         toc: true
         toc_float: true
 author:
+  - Davide Garolini [`Melkiades`]
+  - Emily de la Rua [`edelarua`]
   - Joe Zhu [`shajoezhu`]
-  - Yolanda Zhou ([`yolandazzz13`])
 
 vignette: >
-  %\VignetteIndexEntry{Pharmaverse Example: Introduction to `autoslider.core`}
+  %\VignetteIndexEntry{Pharmaverse Example: Introduction to `rtables.officer`}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 editor_options:
@@ -20,20 +21,140 @@ editor_options:
         wrap: 72
 ---
 
-```{r, include = FALSE}
-suggested_dependent_pkgs <- c("filters")
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  eval = all(vapply(
-    suggested_dependent_pkgs,
-    requireNamespace,
-    logical(1),
-    quietly = TRUE
-  ))
-)
-```
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(comment = "#")
 ```
 
+Below is a step-by-step guide demonstrating how to use {rtables.officer} for creating and exporting a clinical trial results table.
+
+1. Setup and Data Preparation
+Load the necessary libraries and prepare the dataset:
+
+```{r, eval = FALSE}
+library(tern)
+library(dplyr)
+library(rtables.officer)
+```
+
+```{r, eval = TRUE, include = FALSE}
+library(tern)
+library(dplyr)
+library(rtables.officer)
+```
+
+```{r}
+# Load example datasets
+adsl <- formatters::ex_adae
+adlb <- formatters::ex_adlb
+
+# Convert character variables to factors and handle missing levels
+adsl <- df_explicit_na(adsl)
+adlb <- df_explicit_na(adlb)
+
+# Create a temporary file for the output
+tf <- tempfile(fileext = ".docx")
+```
+2. Data Filtering
+Filter the dataset for specific parameters and visits:
+
+```{r}
+adlb_f <- adlb %>%
+  dplyr::filter(
+    PARAM %in% c("Alanine Aminotransferase Measurement", "C-Reactive Protein Measurement") &
+      !(ACTARM == "B: Placebo" & AVISIT == "WEEK 1 DAY 8") &
+      AVISIT != "SCREENING"
+  )
+```
+3. Define Custom Analysis Function
+Create a custom function to perform the analysis:
+
+```{r}
+afun <- function(x, .var, .spl_context, ...) {
+  n_fun <- sum(!is.na(x), na.rm = TRUE)
+  mean_sd_fun <- if (n_fun == 0) c(NA, NA) else c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+  median_fun <- if (n_fun == 0) NA else median(x, na.rm = TRUE)
+  min_max_fun <- if (n_fun == 0) c(NA, NA) else c(min(x), max(x))
+
+  is_chg <- .var == "CHG"
+  is_baseline <- .spl_context$value[which(.spl_context$split == "AVISIT")] == "BASELINE"
+  if (is_baseline && is_chg) n_fun <- mean_sd_fun <- median_fun <- min_max_fun <- NULL
+
+  in_rows(
+    "n" = n_fun,
+    "Mean (SD)" = mean_sd_fun,
+    "Median" = median_fun,
+    "Min - Max" = min_max_fun,
+    .formats = list("n" = "xx", "Mean (SD)" = "xx.xx (xx.xx)", "Median" = "xx.xx", "Min - Max" = "xx.xx - xx.xx"),
+    .format_na_strs = list("n" = "NE", "Mean (SD)" = "NE (NE)", "Median" = "NE", "Min - Max" = "NE - NE")
+  )
+}
+```
+
+4. Define Table Layout
+Create the layout for the table:
+
+```{r}
+lyt <- basic_table() %>%
+  split_cols_by("ACTARM", show_colcounts = TRUE, split_fun = keep_split_levels(levels(adlb_f$ACTARM)[c(1, 2)])) %>%
+  split_rows_by("PARAM",
+    split_fun = drop_split_levels, label_pos = "topleft",
+    split_label = obj_label(adlb_f$PARAM), page_by = TRUE
+  ) %>%
+  split_rows_by("AVISIT",
+    split_fun = drop_split_levels, label_pos = "topleft",
+    split_label = obj_label(adlb_f$AVISIT)
+  ) %>%
+  split_cols_by_multivar(
+    vars = c("AVAL", "CHG"),
+    varlabels = c("Value at Visit", "Change from Baseline")
+  ) %>%
+  analyze_colvars(afun = afun)
+```
+5. Build and Display the Table
+Build the table using the defined layout:
+
+```{r}
+result <- build_table(lyt, adlb_f)
+result
+```
+Assign titles and footers:
+
+```{r}
+main_title(result) <- "Alanine Aminotransferase Measurement"
+subtitles(result) <- c("This is a subtitle.", "This is another subtitle.")
+main_footer(result) <- "This is a demo table for illustration purpose."
+prov_footer(result) <- "Program: demo_poc_docx.R\nDate: 2024-11-06\nVersion: 0.0.1\n"
+```
+6. Convert to `flextable` and Export to Word
+Convert the table to a `flextable` object and export it to a Word document:
+
+```{r}
+flx_res <- tt_to_flextable(result)
+export_as_docx(flx_res,
+  file = tf,
+  section_properties = section_properties_default(orientation = "landscape")
+)
+flx_res
+```
+## Advanced Customizations
+You can further customize your tables, such as setting column widths, handling pagination, and more.
+
+### Column Widths
+```{r}
+cw <- propose_column_widths(result)
+cw <- cw / sum(cw)
+cw <- c(0.6, 0.1, 0.1, 0.1, 0.1)
+spd <- section_properties_default(orientation = "landscape")
+fin_cw <- cw * spd$page_size$width / 2 / sum(cw)
+
+flex_tbl <- tt_to_flextable(result,
+  total_page_width = spd$page_size$width / 2,
+  counts_in_newline = TRUE,
+  autofit_to_page = FALSE,
+  bold_titles = TRUE,
+  colwidths = cw
+)
+
+export_as_docx(flex_tbl, file = tf)
+flex_tbl
+```
