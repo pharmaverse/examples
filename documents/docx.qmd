@@ -44,7 +44,7 @@ library(rtables.officer)
 
 ```{r}
 # Load example datasets
-adsl <- formatters::ex_adae
+adsl <- formatters::ex_adsl
 adlb <- formatters::ex_adlb
 
 # Convert character variables to factors and handle missing levels
