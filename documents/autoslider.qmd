@@ -2,7 +2,7 @@
 title: "Pharmaverse Example"
 date: "`r Sys.Date()`"
 output:
-    rmarkdown::html_document:
+    revealjs::revealjs_presentation:
         theme: "spacelab"
         highlight: "kate"
         toc: true
@@ -301,10 +301,9 @@ outputs %>%
     outfile = "presentation.pptx",
     template = file.path(system.file(package = "autoslider.core"), "/theme/basic.pptx"),
     table_format = autoslider_format
-  )
+  ) 
 ```
 
 For the final product, when it includes more output, it may look like the following
 
-
-<!-- Image 'srep_screenshot.png' is missing from the repository. Please add the image or update this reference. -->
+![Example Reviewer's Guide Table](srep_screenshot.png){fig-align="center"}
