@@ -6,7 +6,8 @@ output:
         theme: "spacelab"
         highlight: "kate"
         toc: true
-        toc_float: true
+    rmarkdown::word_document:
+        toc: true
 author:
   - Davide Garolini [`Melkiades`]
   - Emily de la Rua [`edelarua`]

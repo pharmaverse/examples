@@ -307,4 +307,4 @@ outputs %>%
 For the final product, when it includes more output, it may look like the following
 
 
-![Example Reviewer's Guide Table](srep_screenshot.png){fig-align="center"}
+<!-- Image 'srep_screenshot.png' is missing from the repository. Please add the image or update this reference. -->
