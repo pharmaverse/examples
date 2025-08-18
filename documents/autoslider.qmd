@@ -38,7 +38,8 @@ knitr::opts_chunk$set(comment = "#")
 ```
 
 
-In this vignette, we show the general `autoslider.core` workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the `autoslider.core` framework to automate slide generation.
+`AutoslideR` functions that are used for slide rendering and workflow are already open-sourced with the `autoslider.core` package. In this example, we show the general `autoslideR` workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the `autoslideR` framework to automate slide generation.
+
 
 ```{r, echo = FALSE, include = FALSE}
 library(autoslider.core)
@@ -87,11 +88,13 @@ LBNOBAS:
   type: slref
 '
 
+current_wd <- getwd()
+
 # Create a temporary YAML file
-filters <- tempfile(fileext = ".yaml")
+filters_file <- file.path(current_wd, "filters.yml")
 
 # Write the YAML content to the temporary file
-write(yaml_content, file = filters)
+write(yaml_content, file = filters_file)
 
 # Create the specs entry
 specs_entry <- '
@@ -111,7 +114,7 @@ specs_entry <- '
 '
 
 # Create a temporary specs entry file
-spec_file <- tempfile(fileext = ".yaml")
+spec_file <- file.path(current_wd, "spec.yml")
 
 # Write the specs entry to the temporary file
 write(specs_entry, file = spec_file)
@@ -133,19 +136,15 @@ library(assertthat)   # For assert_that() you had issues with before
 ```
 
 # Background
-In dose escalation trials, the frequent and rapid reporting of safety data for the Safety Review and Evaluation Plan (SREP) is critical for timely decision-making. The traditional workflow involves statisticians manually transcribing these numbers into presentation slides, which makes the process inefficient and error-prone.
 
-autoslideR solves this problem by automating the creation of slides. As an extension of the EnableRF framework, autoslideR uses tern/rtables to create robust table objects from analysis data. It then utilizes the flextable package to format these tables and renders them directly into a standardized PowerPoint (.pptx) file ready for presentation.
+At its heart, `autoslideR` was created to tackle the inefficiencies and error-proneness of manual slide generation in clinical trials. It automates the creation of slides, significantly reducing the amount of work and time required, minimizing the risk of errors from manual data entry, and alleviating stress during demanding reporting periods.
 
-To contribute to a collaborative environment, we have open-sourced the backbones of autoslideR on GitHub at https://github.com/insightsengineering/autoslider.core. This package offers a practical solution to streamlining safety reporting and enhancing the efficiency of clinical trials.
+`autoslideR` works by transforming your analysis data (SDTM, ADaM, raw, etc.) into standardized Table/Listing/Graph (TLG) objects. These objects are then decorated with titles, subtitles, and footnotes, positioning them at desired locations. With the addition of placeholder slides, the resulting PPTX file is ready for use in meetings.
 
 
 # Prerequisites
 
-
-
-First and foremost, you need to have the `autoslider.core` package installed, and you need to have data available.
-In this example I am using example data stored in the `autoslider.core` package. The data needs to be stored in a named list where the names should correspond to ADaM data sets.
+First and foremost, you need to have the `autoslider.core` package installed, and you need to have data available. In this example, it uses example data stored in the `autoslider.core` package. The data needs to be stored in a named list (in this particular example, dataset names correspond to ADaM data sets).
 
 ## File structure
 
@@ -195,7 +194,7 @@ It could look something like that:
 ```
 
 The program name refers to a function that produces an output. 
-This could be one of the template functions provided in `autoslider.core` or a custom function. See vignette `adding_templates` for a detailed guide on using templates in the `autoslider.core` framework.
+This could be one of the template functions provided in `autoslider.core` or a custom function. See vignette [`adding_templates`](https://insightsengineering.github.io/autoslider.core/latest-tag/articles/adding_templates.html) for a detailed guide on using templates.
 
 Titles and footnotes are added once the outputs are created.
 We refer to that as decorating the outputs.
@@ -245,22 +244,19 @@ SER:
 
 A typical workflow could look something like this: 
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
+current_wd <- getwd()
 # define path to the yml files
-#setwd("path/to/autoslider.core")
-spec_file <- "spec.yml"
-filters <- "filters.yml"
-```
+spec_file <- file.path(current_wd, "spec.yml")
 
-```{r, include = FALSE}
-#setwd("~/autoslider.core")
-
-```
-
-```{r}
-library("dplyr")
+filters_file <- file.path(current_wd, "filters.yml")
 # load all filters
-filters::load_filters(filters, overwrite = TRUE)
+filters::load_filters(filters_file, overwrite = TRUE)
+```
+
+```{r, eval = TRUE}
+
+library("dplyr")
 # read data
 data <- list(
   "adsl" = eg_adsl %>%
@@ -307,127 +303,7 @@ outputs %>%
   )
 ```
 
+For the final product, when it includes more output, it may look like the following
 
-# Extension: customize your autoslideR experience
-
-### Create custom function from templates
-
-Unless your requirements are really specific, the most efficient way to write a study function is to base it off of a template function from the [TLG catalogue](https://insightsengineering.github.io/tlg-catalog/stable/). 
-
-The function you would want to create should take as input a list of datasets and potentially additional arguments. 
-Within the function, you should not worry about filtering the data, as this should be taken care of with the `filters.yml` file and the general workflow. 
-
-To see a complete list of template functions that the `autoslider.core` provides, we can call the function below to retrieve their names.
-```{r, include = TRUE, eval = FALSE}
-list_all_templates()
-```
-This will return a character vector of supported templates, you can extract their basenames (e.g., `t_dm_slide`, `g_ae_slide`, etc.), each corresponding to a table type stored in the `R/` folder of the package.
-
-Then, use the `use_template()` function to generate a template script that you can customize. For example:
-
-```{r_function_call, include = TRUE, eval = TRUE}
-use_template(template = "t_dd_slide", function_name = "tryout")
-
-```
-This will create a function called `tryout` that resides in the file with the `t_dd_slide` (Death table) template at `tryout.R`. Please feel free to make your own modification and customization based on the goal of your study. 
-
-For detailed template usage instructions, please refer to vignette `tlg_templates`.
-
-This function, like other template functions in `autoslider.core`, will convert data into TLG formats, given the help of configurations in `spec.yml` and `filters.yml`. Now let's verify this.
-
-
-### Integrate it into the general workflow
-
-You have to keep in mind that the function you created must be in the global environment when calling the `create_outputs` function. 
-This is the case for all `autoslider.core` functions, as you attach the `autoslider.core` package (with your `library(autoslider.core)` call), so all (exported) function of the `autoslider.core` package are available.
-
-If you store your custom function in a separate script, you would need to source that script at some point before calling the function.
-
-Now you just have to make sure the two `.yml` files are correctly specified. Specifically, you have to append a new entry into `spec.yml` to incorporate the new program you just created. For example:
-
-```{r, eval = FALSE}
-- program: tryout
-  titles: Deaths and Causes of Death
-  footnotes: ''
-  paper: L6
-  suffix: SE
-  args:
-    arm: "TRT01A"
-```
-
-You also have to make sure that filters.yml contains the filter that matches your purposes specified in `suffix`. In this case:
-```{r, eval = FALSE}
-SE:
-  title: Safety Evaluable Population
-  condition: SAFFL=='Y'
-  target: adsl
-  type: slref
-```
-
-Then you can load the filters and generate the outputs.
-
-```{r, include = FALSE}
-library(yaml)
-
-# Create the YAML content
-yaml_content <- '
-SE:
-  title: Safety Evaluable Population
-  condition: SAFFL=="Y"
-  target: adsl
-  type: slref
-'
-
-# Create a temporary YAML file
-filters <- tempfile(fileext = ".yaml")
-
-# Write the YAML content to the temporary file
-write(yaml_content, file = filters)
-
-# Create the specs entry
-specs_entry <- '
-- program: tryout
-  titles: Deaths and Causes of Death
-  footnotes: ""
-  paper: L6
-  suffix: SE
-  args:
-    arm: "TRT01A"
-'
-
-# Create a temporary specs entry file
-spec_file <- tempfile(fileext = ".yaml")
-
-# Write the specs entry to the temporary file
-write(specs_entry, file = spec_file)
-
-```
-
-```{r, eval = TRUE}
-filters::load_filters(filters, overwrite = TRUE)
-
-outputs <- spec_file %>%
-  read_spec() %>%
-  filter_spec(., program == "tryout") %>%
-  generate_outputs(datasets = data) %>%
-  decorate_outputs()
-
-# Naming convention is program name + suffix
-outputs$tryout_SE
-
-```
-
-Once this works, we can generate the slides, feel free to pass in your desired pptx template. 
-
-```{r, eval = FALSE}
-filepath <- "outputs/tryout.pptx"
-generate_slides(outputs, outfile = filepath, template = "path/to/your/custom_template.pptx")
-```
-
-Below is an example presentation output with placeholder slides (explained in the `generate_placeholder_slides` vignette ) and SREP standard presentation slides:
-
-
-![With placeholder example 1](pharmaverse_output_1.png){fig-align="center"}
-![With placeholder example 2](pharmaverse_output_2.png){fig-align="center"}
 
 ![Example Reviewer's Guide Table](srep_screenshot.png){fig-align="center"}
