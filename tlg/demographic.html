@@ -562,7 +562,7 @@ cookieconsent.run({
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> data as an input.</p>
-<p>In the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analyis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set.</p>
+<p>In the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set.</p>
 </section>
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
@@ -581,12 +581,14 @@ cookieconsent.run({
 <span id="cb1-11"><a href="#cb1-11"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
 <span id="cb1-12"><a href="#cb1-12"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>      <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
-<span id="cb1-15"><a href="#cb1-15"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb1-16"><a href="#cb1-16"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(<span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17"></a>                                <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18"></a>                                <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19"></a>                                <span class="at">RACE =</span> <span class="st">"Race"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14"></a>        <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
+<span id="cb1-15"><a href="#cb1-15"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    <span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="gtsummary-cards" class="level2">
@@ -607,42 +609,42 @@ cookieconsent.run({
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a>ard <span class="ot">&lt;-</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">ard_stack</span>(</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    adsl, </span>
+<span id="cb2-8"><a href="#cb2-8"></a>    adsl,</span>
 <span id="cb2-9"><a href="#cb2-9"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
 <span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">.by =</span> ACTARM,      <span class="co"># split results by treatment arm</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
 <span id="cb2-13"><a href="#cb2-13"></a>  )</span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
 <span id="cb2-15"><a href="#cb2-15"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="fu">tbl_ard_summary</span>(</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  <span class="at">cards =</span> ard, </span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="at">by =</span> ACTARM, </span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="at">cards =</span> ard,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="at">by =</span> ACTARM,</span>
 <span id="cb2-19"><a href="#cb2-19"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
 <span id="cb2-20"><a href="#cb2-20"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
 <span id="cb2-21"><a href="#cb2-21"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
-<span id="cb2-22"><a href="#cb2-22"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-22"><a href="#cb2-22"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ysbaxauygl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ysbaxauygl table {
+<div id="mvpvpfkpxx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mvpvpfkpxx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ysbaxauygl thead, #ysbaxauygl tbody, #ysbaxauygl tfoot, #ysbaxauygl tr, #ysbaxauygl td, #ysbaxauygl th {
+#mvpvpfkpxx thead, #mvpvpfkpxx tbody, #mvpvpfkpxx tfoot, #mvpvpfkpxx tr, #mvpvpfkpxx td, #mvpvpfkpxx th {
   border-style: none;
 }
 
-#ysbaxauygl p {
+#mvpvpfkpxx p {
   margin: 0;
   padding: 0;
 }
 
-#ysbaxauygl .gt_table {
+#mvpvpfkpxx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -668,12 +670,12 @@ cookieconsent.run({
   border-left-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_caption {
+#mvpvpfkpxx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ysbaxauygl .gt_title {
+#mvpvpfkpxx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -685,7 +687,7 @@ cookieconsent.run({
   border-bottom-width: 0;
 }
 
-#ysbaxauygl .gt_subtitle {
+#mvpvpfkpxx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -697,7 +699,7 @@ cookieconsent.run({
   border-top-width: 0;
 }
 
-#ysbaxauygl .gt_heading {
+#mvpvpfkpxx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -709,13 +711,13 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_bottom_border {
+#mvpvpfkpxx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_col_headings {
+#mvpvpfkpxx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -730,7 +732,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_col_heading {
+#mvpvpfkpxx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -750,7 +752,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#ysbaxauygl .gt_column_spanner_outer {
+#mvpvpfkpxx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -762,15 +764,15 @@ cookieconsent.run({
   padding-right: 4px;
 }
 
-#ysbaxauygl .gt_column_spanner_outer:first-child {
+#mvpvpfkpxx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ysbaxauygl .gt_column_spanner_outer:last-child {
+#mvpvpfkpxx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ysbaxauygl .gt_column_spanner {
+#mvpvpfkpxx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -782,11 +784,11 @@ cookieconsent.run({
   width: 100%;
 }
 
-#ysbaxauygl .gt_spanner_row {
+#mvpvpfkpxx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ysbaxauygl .gt_group_heading {
+#mvpvpfkpxx .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -812,7 +814,7 @@ cookieconsent.run({
   text-align: left;
 }
 
-#ysbaxauygl .gt_empty_group_heading {
+#mvpvpfkpxx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -827,15 +829,15 @@ cookieconsent.run({
   vertical-align: middle;
 }
 
-#ysbaxauygl .gt_from_md > :first-child {
+#mvpvpfkpxx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ysbaxauygl .gt_from_md > :last-child {
+#mvpvpfkpxx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ysbaxauygl .gt_row {
+#mvpvpfkpxx .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -854,7 +856,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#ysbaxauygl .gt_stub {
+#mvpvpfkpxx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -867,7 +869,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#ysbaxauygl .gt_stub_row_group {
+#mvpvpfkpxx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -881,15 +883,15 @@ cookieconsent.run({
   vertical-align: top;
 }
 
-#ysbaxauygl .gt_row_group_first td {
+#mvpvpfkpxx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ysbaxauygl .gt_row_group_first th {
+#mvpvpfkpxx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ysbaxauygl .gt_summary_row {
+#mvpvpfkpxx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -899,16 +901,16 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#ysbaxauygl .gt_first_summary_row {
+#mvpvpfkpxx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_first_summary_row.thick {
+#mvpvpfkpxx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ysbaxauygl .gt_last_summary_row {
+#mvpvpfkpxx .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -918,7 +920,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_grand_summary_row {
+#mvpvpfkpxx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -928,7 +930,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#ysbaxauygl .gt_first_grand_summary_row {
+#mvpvpfkpxx .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -938,7 +940,7 @@ cookieconsent.run({
   border-top-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_last_grand_summary_row_top {
+#mvpvpfkpxx .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -948,11 +950,11 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_striped {
+#mvpvpfkpxx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ysbaxauygl .gt_table_body {
+#mvpvpfkpxx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -961,7 +963,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_footnotes {
+#mvpvpfkpxx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -975,7 +977,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_footnote {
+#mvpvpfkpxx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -984,7 +986,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#ysbaxauygl .gt_sourcenotes {
+#mvpvpfkpxx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -998,7 +1000,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#ysbaxauygl .gt_sourcenote {
+#mvpvpfkpxx .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1006,72 +1008,72 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#ysbaxauygl .gt_left {
+#mvpvpfkpxx .gt_left {
   text-align: left;
 }
 
-#ysbaxauygl .gt_center {
+#mvpvpfkpxx .gt_center {
   text-align: center;
 }
 
-#ysbaxauygl .gt_right {
+#mvpvpfkpxx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ysbaxauygl .gt_font_normal {
+#mvpvpfkpxx .gt_font_normal {
   font-weight: normal;
 }
 
-#ysbaxauygl .gt_font_bold {
+#mvpvpfkpxx .gt_font_bold {
   font-weight: bold;
 }
 
-#ysbaxauygl .gt_font_italic {
+#mvpvpfkpxx .gt_font_italic {
   font-style: italic;
 }
 
-#ysbaxauygl .gt_super {
+#mvpvpfkpxx .gt_super {
   font-size: 65%;
 }
 
-#ysbaxauygl .gt_footnote_marks {
+#mvpvpfkpxx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ysbaxauygl .gt_asterisk {
+#mvpvpfkpxx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ysbaxauygl .gt_indent_1 {
+#mvpvpfkpxx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ysbaxauygl .gt_indent_2 {
+#mvpvpfkpxx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ysbaxauygl .gt_indent_3 {
+#mvpvpfkpxx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ysbaxauygl .gt_indent_4 {
+#mvpvpfkpxx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ysbaxauygl .gt_indent_5 {
+#mvpvpfkpxx .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ysbaxauygl .katex-display {
+#mvpvpfkpxx .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ysbaxauygl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mvpvpfkpxx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1259,7 +1261,7 @@ N = 96</th>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tern)</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
-<span id="cb9-3"><a href="#cb9-3"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we create the demographic table.</p>
@@ -1272,9 +1274,9 @@ N = 96</th>
 <span id="cb10-6"><a href="#cb10-6"></a>  <span class="st">"Race"</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a>)</span>
 <span id="cb10-8"><a href="#cb10-8"></a></span>
-<span id="cb10-9"><a href="#cb10-9"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-9"><a href="#cb10-9"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">analyze_vars</span>(</span>
 <span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">vars =</span> vars,</span>
 <span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">var_labels =</span> var_labels</span>
@@ -1796,140 +1798,145 @@ Race
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a></span>
 <span id="cb12-6"><a href="#cb12-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...); <span class="cn">NULL</span>}</span>
-<span id="cb12-8"><a href="#cb12-8"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="in">```</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="fu">## Introduction</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a></span>
-<span id="cb12-14"><a href="#cb12-14"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
-<span id="cb12-15"><a href="#cb12-15"></a></span>
-<span id="cb12-16"><a href="#cb12-16"></a>In the examples below, we illustrate two general approaches for creating a demographics table.</span>
-<span id="cb12-17"><a href="#cb12-17"></a>The first utilizes Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analyis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
-<span id="cb12-18"><a href="#cb12-18"></a>The second is the classic method of creating summary tables directly from a data set.</span>
-<span id="cb12-19"><a href="#cb12-19"></a></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="fu">## Data preprocessing</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a></span>
-<span id="cb12-22"><a href="#cb12-22"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
-<span id="cb12-23"><a href="#cb12-23"></a></span>
-<span id="cb12-24"><a href="#cb12-24"></a><span class="in">```{r preproc}</span></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="co">#| message: false</span></span>
-<span id="cb12-26"><a href="#cb12-26"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb12-27"><a href="#cb12-27"></a></span>
-<span id="cb12-28"><a href="#cb12-28"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
-<span id="cb12-30"><a href="#cb12-30"></a>  <span class="fu">filter</span>(<span class="sc">!</span>ACTARM <span class="sc">%in%</span> <span class="st">"Screen Failure"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-32"><a href="#cb12-32"></a>    <span class="at">SEX =</span> <span class="fu">case_match</span>(SEX, <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"MALE"</span>, <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"FEMALE"</span>),</span>
-<span id="cb12-33"><a href="#cb12-33"></a>    <span class="at">AGEGR1 =</span></span>
-<span id="cb12-34"><a href="#cb12-34"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb12-35"><a href="#cb12-35"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
-<span id="cb12-36"><a href="#cb12-36"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
-<span id="cb12-37"><a href="#cb12-37"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
-<span id="cb12-38"><a href="#cb12-38"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb12-39"><a href="#cb12-39"></a>      <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
-<span id="cb12-40"><a href="#cb12-40"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-41"><a href="#cb12-41"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(<span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
-<span id="cb12-42"><a href="#cb12-42"></a>                                <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
-<span id="cb12-43"><a href="#cb12-43"></a>                                <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb12-44"><a href="#cb12-44"></a>                                <span class="at">RACE =</span> <span class="st">"Race"</span>)</span>
-<span id="cb12-45"><a href="#cb12-45"></a><span class="in">```</span></span>
-<span id="cb12-46"><a href="#cb12-46"></a></span>
-<span id="cb12-47"><a href="#cb12-47"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
-<span id="cb12-48"><a href="#cb12-48"></a></span>
-<span id="cb12-49"><a href="#cb12-49"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
-<span id="cb12-50"><a href="#cb12-50"></a></span>
-<span id="cb12-51"><a href="#cb12-51"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
-<span id="cb12-52"><a href="#cb12-52"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
+<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>}</span>
+<span id="cb12-11"><a href="#cb12-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb12-12"><a href="#cb12-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="in">```</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="fu">## Introduction</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
+<span id="cb12-18"><a href="#cb12-18"></a></span>
+<span id="cb12-19"><a href="#cb12-19"></a>In the examples below, we illustrate two general approaches for creating a demographics table.</span>
+<span id="cb12-20"><a href="#cb12-20"></a>The first utilizes Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
+<span id="cb12-21"><a href="#cb12-21"></a>The second is the classic method of creating summary tables directly from a data set.</span>
+<span id="cb12-22"><a href="#cb12-22"></a></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="fu">## Data preprocessing</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a></span>
+<span id="cb12-25"><a href="#cb12-25"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
+<span id="cb12-26"><a href="#cb12-26"></a></span>
+<span id="cb12-27"><a href="#cb12-27"></a><span class="in">```{r preproc}</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a><span class="co">#| message: false</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-30"><a href="#cb12-30"></a></span>
+<span id="cb12-31"><a href="#cb12-31"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a>  <span class="fu">filter</span>(<span class="sc">!</span>ACTARM <span class="sc">%in%</span> <span class="st">"Screen Failure"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-35"><a href="#cb12-35"></a>    <span class="at">SEX =</span> <span class="fu">case_match</span>(SEX, <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"MALE"</span>, <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"FEMALE"</span>),</span>
+<span id="cb12-36"><a href="#cb12-36"></a>    <span class="at">AGEGR1 =</span></span>
+<span id="cb12-37"><a href="#cb12-37"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb12-38"><a href="#cb12-38"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb12-39"><a href="#cb12-39"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb12-40"><a href="#cb12-40"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a>        <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
+<span id="cb12-43"><a href="#cb12-43"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb12-45"><a href="#cb12-45"></a>    <span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
+<span id="cb12-46"><a href="#cb12-46"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
+<span id="cb12-47"><a href="#cb12-47"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb12-48"><a href="#cb12-48"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
+<span id="cb12-49"><a href="#cb12-49"></a>  )</span>
+<span id="cb12-50"><a href="#cb12-50"></a><span class="in">```</span></span>
+<span id="cb12-51"><a href="#cb12-51"></a></span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
 <span id="cb12-53"><a href="#cb12-53"></a></span>
-<span id="cb12-54"><a href="#cb12-54"></a><span class="fu">#### ARD ➡ Table</span></span>
+<span id="cb12-54"><a href="#cb12-54"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
 <span id="cb12-55"><a href="#cb12-55"></a></span>
-<span id="cb12-56"><a href="#cb12-56"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
-<span id="cb12-57"><a href="#cb12-57"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
+<span id="cb12-56"><a href="#cb12-56"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
+<span id="cb12-57"><a href="#cb12-57"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
 <span id="cb12-58"><a href="#cb12-58"></a></span>
-<span id="cb12-59"><a href="#cb12-59"></a><span class="in">```{r gtsummary-table}</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a><span class="co">#| message: false</span></span>
-<span id="cb12-61"><a href="#cb12-61"></a><span class="fu">library</span>(cards)</span>
-<span id="cb12-62"><a href="#cb12-62"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb12-63"><a href="#cb12-63"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
-<span id="cb12-64"><a href="#cb12-64"></a></span>
-<span id="cb12-65"><a href="#cb12-65"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
-<span id="cb12-66"><a href="#cb12-66"></a>ard <span class="ot">&lt;-</span></span>
-<span id="cb12-67"><a href="#cb12-67"></a>  <span class="fu">ard_stack</span>(</span>
-<span id="cb12-68"><a href="#cb12-68"></a>    adsl, </span>
-<span id="cb12-69"><a href="#cb12-69"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
-<span id="cb12-70"><a href="#cb12-70"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
-<span id="cb12-71"><a href="#cb12-71"></a>    <span class="at">.by =</span> ACTARM,      <span class="co"># split results by treatment arm</span></span>
-<span id="cb12-72"><a href="#cb12-72"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
-<span id="cb12-73"><a href="#cb12-73"></a>  )</span>
-<span id="cb12-74"><a href="#cb12-74"></a></span>
-<span id="cb12-75"><a href="#cb12-75"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
-<span id="cb12-76"><a href="#cb12-76"></a><span class="fu">tbl_ard_summary</span>(</span>
-<span id="cb12-77"><a href="#cb12-77"></a>  <span class="at">cards =</span> ard, </span>
-<span id="cb12-78"><a href="#cb12-78"></a>  <span class="at">by =</span> ACTARM, </span>
-<span id="cb12-79"><a href="#cb12-79"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
-<span id="cb12-80"><a href="#cb12-80"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
-<span id="cb12-81"><a href="#cb12-81"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
-<span id="cb12-82"><a href="#cb12-82"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-83"><a href="#cb12-83"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb12-84"><a href="#cb12-84"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
-<span id="cb12-85"><a href="#cb12-85"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span>
-<span id="cb12-86"><a href="#cb12-86"></a><span class="in">```</span></span>
-<span id="cb12-87"><a href="#cb12-87"></a></span>
-<span id="cb12-88"><a href="#cb12-88"></a><span class="fu">#### Table ➡ ARD</span></span>
-<span id="cb12-89"><a href="#cb12-89"></a></span>
-<span id="cb12-90"><a href="#cb12-90"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
-<span id="cb12-91"><a href="#cb12-91"></a></span>
-<span id="cb12-92"><a href="#cb12-92"></a><span class="in">```{r gtsummary-ard}</span></span>
-<span id="cb12-93"><a href="#cb12-93"></a><span class="co"># build demographics table directly from a data frame</span></span>
-<span id="cb12-94"><a href="#cb12-94"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
-<span id="cb12-95"><a href="#cb12-95"></a></span>
-<span id="cb12-96"><a href="#cb12-96"></a><span class="co"># extract ARD from table object</span></span>
-<span id="cb12-97"><a href="#cb12-97"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span>
-<span id="cb12-98"><a href="#cb12-98"></a><span class="in">```</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a></span>
-<span id="cb12-100"><a href="#cb12-100"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
-<span id="cb12-101"><a href="#cb12-101"></a></span>
-<span id="cb12-102"><a href="#cb12-102"></a>The packages used with a brief description of their purpose are as follows:</span>
-<span id="cb12-103"><a href="#cb12-103"></a></span>
-<span id="cb12-104"><a href="#cb12-104"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
-<span id="cb12-105"><a href="#cb12-105"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">#### ARD ➡ Table</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a></span>
+<span id="cb12-61"><a href="#cb12-61"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
+<span id="cb12-62"><a href="#cb12-62"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
+<span id="cb12-63"><a href="#cb12-63"></a></span>
+<span id="cb12-64"><a href="#cb12-64"></a><span class="in">```{r gtsummary-table}</span></span>
+<span id="cb12-65"><a href="#cb12-65"></a><span class="co">#| message: false</span></span>
+<span id="cb12-66"><a href="#cb12-66"></a><span class="fu">library</span>(cards)</span>
+<span id="cb12-67"><a href="#cb12-67"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb12-68"><a href="#cb12-68"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
+<span id="cb12-69"><a href="#cb12-69"></a></span>
+<span id="cb12-70"><a href="#cb12-70"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
+<span id="cb12-71"><a href="#cb12-71"></a>ard <span class="ot">&lt;-</span></span>
+<span id="cb12-72"><a href="#cb12-72"></a>  <span class="fu">ard_stack</span>(</span>
+<span id="cb12-73"><a href="#cb12-73"></a>    adsl,</span>
+<span id="cb12-74"><a href="#cb12-74"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
+<span id="cb12-75"><a href="#cb12-75"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
+<span id="cb12-76"><a href="#cb12-76"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
+<span id="cb12-77"><a href="#cb12-77"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
+<span id="cb12-78"><a href="#cb12-78"></a>  )</span>
+<span id="cb12-79"><a href="#cb12-79"></a></span>
+<span id="cb12-80"><a href="#cb12-80"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
+<span id="cb12-81"><a href="#cb12-81"></a><span class="fu">tbl_ard_summary</span>(</span>
+<span id="cb12-82"><a href="#cb12-82"></a>  <span class="at">cards =</span> ard,</span>
+<span id="cb12-83"><a href="#cb12-83"></a>  <span class="at">by =</span> ACTARM,</span>
+<span id="cb12-84"><a href="#cb12-84"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
+<span id="cb12-85"><a href="#cb12-85"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb12-86"><a href="#cb12-86"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
+<span id="cb12-87"><a href="#cb12-87"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb12-88"><a href="#cb12-88"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-89"><a href="#cb12-89"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
+<span id="cb12-90"><a href="#cb12-90"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span>
+<span id="cb12-91"><a href="#cb12-91"></a><span class="in">```</span></span>
+<span id="cb12-92"><a href="#cb12-92"></a></span>
+<span id="cb12-93"><a href="#cb12-93"></a><span class="fu">#### Table ➡ ARD</span></span>
+<span id="cb12-94"><a href="#cb12-94"></a></span>
+<span id="cb12-95"><a href="#cb12-95"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
+<span id="cb12-96"><a href="#cb12-96"></a></span>
+<span id="cb12-97"><a href="#cb12-97"></a><span class="in">```{r gtsummary-ard}</span></span>
+<span id="cb12-98"><a href="#cb12-98"></a><span class="co"># build demographics table directly from a data frame</span></span>
+<span id="cb12-99"><a href="#cb12-99"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
+<span id="cb12-100"><a href="#cb12-100"></a></span>
+<span id="cb12-101"><a href="#cb12-101"></a><span class="co"># extract ARD from table object</span></span>
+<span id="cb12-102"><a href="#cb12-102"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span>
+<span id="cb12-103"><a href="#cb12-103"></a><span class="in">```</span></span>
+<span id="cb12-104"><a href="#cb12-104"></a></span>
+<span id="cb12-105"><a href="#cb12-105"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
 <span id="cb12-106"><a href="#cb12-106"></a></span>
-<span id="cb12-107"><a href="#cb12-107"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
+<span id="cb12-107"><a href="#cb12-107"></a>The packages used with a brief description of their purpose are as follows:</span>
 <span id="cb12-108"><a href="#cb12-108"></a></span>
-<span id="cb12-109"><a href="#cb12-109"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
-<span id="cb12-110"><a href="#cb12-110"></a></span>
-<span id="cb12-111"><a href="#cb12-111"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb12-112"><a href="#cb12-112"></a><span class="fu">library</span>(tern)</span>
+<span id="cb12-109"><a href="#cb12-109"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
+<span id="cb12-110"><a href="#cb12-110"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb12-111"><a href="#cb12-111"></a></span>
+<span id="cb12-112"><a href="#cb12-112"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
 <span id="cb12-113"><a href="#cb12-113"></a></span>
-<span id="cb12-114"><a href="#cb12-114"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> </span>
-<span id="cb12-115"><a href="#cb12-115"></a>  <span class="fu">df_explicit_na</span>()</span>
-<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```</span></span>
-<span id="cb12-117"><a href="#cb12-117"></a></span>
-<span id="cb12-118"><a href="#cb12-118"></a>Now we create the demographic table.</span>
-<span id="cb12-119"><a href="#cb12-119"></a></span>
-<span id="cb12-120"><a href="#cb12-120"></a><span class="in">```{r rtables-table}</span></span>
-<span id="cb12-121"><a href="#cb12-121"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb12-122"><a href="#cb12-122"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb12-123"><a href="#cb12-123"></a>  <span class="st">"Age (yr)"</span>,</span>
-<span id="cb12-124"><a href="#cb12-124"></a>  <span class="st">"Age group"</span>,</span>
-<span id="cb12-125"><a href="#cb12-125"></a>  <span class="st">"Sex"</span>,</span>
-<span id="cb12-126"><a href="#cb12-126"></a>  <span class="st">"Race"</span></span>
-<span id="cb12-127"><a href="#cb12-127"></a>)</span>
-<span id="cb12-128"><a href="#cb12-128"></a></span>
-<span id="cb12-129"><a href="#cb12-129"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-130"><a href="#cb12-130"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-131"><a href="#cb12-131"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb12-132"><a href="#cb12-132"></a>  <span class="fu">analyze_vars</span>(</span>
-<span id="cb12-133"><a href="#cb12-133"></a>    <span class="at">vars =</span> vars,</span>
-<span id="cb12-134"><a href="#cb12-134"></a>    <span class="at">var_labels =</span> var_labels</span>
-<span id="cb12-135"><a href="#cb12-135"></a>  )</span>
-<span id="cb12-136"><a href="#cb12-136"></a></span>
-<span id="cb12-137"><a href="#cb12-137"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
-<span id="cb12-138"><a href="#cb12-138"></a></span>
-<span id="cb12-139"><a href="#cb12-139"></a>result</span>
-<span id="cb12-140"><a href="#cb12-140"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb12-114"><a href="#cb12-114"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
+<span id="cb12-115"><a href="#cb12-115"></a></span>
+<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb12-117"><a href="#cb12-117"></a><span class="fu">library</span>(tern)</span>
+<span id="cb12-118"><a href="#cb12-118"></a></span>
+<span id="cb12-119"><a href="#cb12-119"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
+<span id="cb12-120"><a href="#cb12-120"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb12-121"><a href="#cb12-121"></a><span class="in">```</span></span>
+<span id="cb12-122"><a href="#cb12-122"></a></span>
+<span id="cb12-123"><a href="#cb12-123"></a>Now we create the demographic table.</span>
+<span id="cb12-124"><a href="#cb12-124"></a></span>
+<span id="cb12-125"><a href="#cb12-125"></a><span class="in">```{r rtables-table}</span></span>
+<span id="cb12-126"><a href="#cb12-126"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb12-127"><a href="#cb12-127"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb12-128"><a href="#cb12-128"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb12-129"><a href="#cb12-129"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb12-130"><a href="#cb12-130"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb12-131"><a href="#cb12-131"></a>  <span class="st">"Race"</span></span>
+<span id="cb12-132"><a href="#cb12-132"></a>)</span>
+<span id="cb12-133"><a href="#cb12-133"></a></span>
+<span id="cb12-134"><a href="#cb12-134"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-135"><a href="#cb12-135"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-136"><a href="#cb12-136"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-137"><a href="#cb12-137"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb12-138"><a href="#cb12-138"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb12-139"><a href="#cb12-139"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb12-140"><a href="#cb12-140"></a>  )</span>
+<span id="cb12-141"><a href="#cb12-141"></a></span>
+<span id="cb12-142"><a href="#cb12-142"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
+<span id="cb12-143"><a href="#cb12-143"></a></span>
+<span id="cb12-144"><a href="#cb12-144"></a>result</span>
+<span id="cb12-145"><a href="#cb12-145"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

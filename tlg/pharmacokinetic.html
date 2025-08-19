@@ -1389,172 +1389,170 @@ Xanomeline High Dose   01-701-1028   BASELINE       0.00         -0.50   &lt;BLQ
 <span id="cb7-54"><a href="#cb7-54"></a><span class="co"># Remove DTYPE = COPY records with ANL02FL == "Y"</span></span>
 <span id="cb7-55"><a href="#cb7-55"></a>adpc <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
 <span id="cb7-56"><a href="#cb7-56"></a>  <span class="fu">filter</span>(PARAMCD <span class="sc">!=</span> <span class="st">"DOSE"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span> <span class="sc">&amp;</span> PARCAT1 <span class="sc">==</span> <span class="st">"PLASMA"</span> <span class="sc">&amp;</span> ANL02FL <span class="sc">==</span> <span class="st">"Y"</span>)</span>
-<span id="cb7-57"><a href="#cb7-57"></a></span>
-<span id="cb7-58"><a href="#cb7-58"></a><span class="in">```</span></span>
-<span id="cb7-59"><a href="#cb7-59"></a></span>
-<span id="cb7-60"><a href="#cb7-60"></a><span class="fu">## PK Table</span></span>
-<span id="cb7-61"><a href="#cb7-61"></a></span>
-<span id="cb7-62"><a href="#cb7-62"></a>Now we create the PK table.</span>
-<span id="cb7-63"><a href="#cb7-63"></a></span>
-<span id="cb7-64"><a href="#cb7-64"></a><span class="in">```{r table}</span></span>
-<span id="cb7-65"><a href="#cb7-65"></a><span class="co"># Setting up the data for table</span></span>
-<span id="cb7-66"><a href="#cb7-66"></a>adpc_t <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb7-67"><a href="#cb7-67"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-68"><a href="#cb7-68"></a>    <span class="at">NFRLT =</span> <span class="fu">as.factor</span>(NFRLT),</span>
-<span id="cb7-69"><a href="#cb7-69"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">as.factor</span>(AVALCAT1),</span>
-<span id="cb7-70"><a href="#cb7-70"></a>    <span class="at">NOMTPT =</span> <span class="fu">as.factor</span>(<span class="fu">paste</span>(NFRLT, <span class="st">"/"</span>, PCTPT))</span>
-<span id="cb7-71"><a href="#cb7-71"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-72"><a href="#cb7-72"></a>  <span class="fu">select</span>(NOMTPT, ACTARM, VISIT, AVAL, PARAM, AVALCAT1)</span>
-<span id="cb7-73"><a href="#cb7-73"></a></span>
-<span id="cb7-74"><a href="#cb7-74"></a>adpc_t<span class="sc">$</span>NOMTPT <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
-<span id="cb7-75"><a href="#cb7-75"></a>  adpc_t<span class="sc">$</span>NOMTPT,</span>
-<span id="cb7-76"><a href="#cb7-76"></a>  <span class="at">levels =</span> <span class="fu">levels</span>(adpc_t<span class="sc">$</span>NOMTPT)[<span class="fu">order</span>(<span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">".*?([0-9</span><span class="sc">\\</span><span class="st">.]+).*"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, <span class="fu">levels</span>(adpc_t<span class="sc">$</span>NOMTPT))))]</span>
-<span id="cb7-77"><a href="#cb7-77"></a>)</span>
-<span id="cb7-78"><a href="#cb7-78"></a></span>
-<span id="cb7-79"><a href="#cb7-79"></a><span class="co"># Row structure</span></span>
-<span id="cb7-80"><a href="#cb7-80"></a>lyt_rows <span class="ot">&lt;-</span> <span class="fu">basic_table</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-81"><a href="#cb7-81"></a>  <span class="fu">split_rows_by</span>(</span>
-<span id="cb7-82"><a href="#cb7-82"></a>    <span class="at">var =</span> <span class="st">"ACTARM"</span>,</span>
-<span id="cb7-83"><a href="#cb7-83"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
-<span id="cb7-84"><a href="#cb7-84"></a>    <span class="at">split_label =</span> <span class="st">"Treatment Group"</span>,</span>
-<span id="cb7-85"><a href="#cb7-85"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span></span>
-<span id="cb7-86"><a href="#cb7-86"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-87"><a href="#cb7-87"></a>  <span class="fu">add_rowcounts</span>(<span class="at">alt_counts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-88"><a href="#cb7-88"></a>  <span class="fu">split_rows_by</span>(</span>
-<span id="cb7-89"><a href="#cb7-89"></a>    <span class="at">var =</span> <span class="st">"VISIT"</span>,</span>
-<span id="cb7-90"><a href="#cb7-90"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
-<span id="cb7-91"><a href="#cb7-91"></a>    <span class="at">split_label =</span> <span class="st">"Visit"</span>,</span>
-<span id="cb7-92"><a href="#cb7-92"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span></span>
-<span id="cb7-93"><a href="#cb7-93"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-94"><a href="#cb7-94"></a>  <span class="fu">split_rows_by</span>(</span>
-<span id="cb7-95"><a href="#cb7-95"></a>    <span class="at">var =</span> <span class="st">"NOMTPT"</span>,</span>
-<span id="cb7-96"><a href="#cb7-96"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
-<span id="cb7-97"><a href="#cb7-97"></a>    <span class="at">split_label =</span> <span class="st">"Nominal Time (hr) / Timepoint"</span>,</span>
-<span id="cb7-98"><a href="#cb7-98"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span>,</span>
-<span id="cb7-99"><a href="#cb7-99"></a>    <span class="at">child_labels =</span> <span class="st">"hidden"</span></span>
-<span id="cb7-100"><a href="#cb7-100"></a>  )</span>
-<span id="cb7-101"><a href="#cb7-101"></a></span>
-<span id="cb7-102"><a href="#cb7-102"></a>lyt <span class="ot">&lt;-</span> lyt_rows <span class="sc">%&gt;%</span></span>
-<span id="cb7-103"><a href="#cb7-103"></a>  <span class="fu">analyze_vars_in_cols</span>(</span>
-<span id="cb7-104"><a href="#cb7-104"></a>    <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span>, <span class="fu">rep</span>(<span class="st">"AVAL"</span>, <span class="dv">8</span>)),</span>
-<span id="cb7-105"><a href="#cb7-105"></a>    <span class="at">.stats =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"n_blq"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"cv"</span>, <span class="st">"geom_mean"</span>, <span class="st">"geom_cv"</span>, <span class="st">"median"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</span>
-<span id="cb7-106"><a href="#cb7-106"></a>    <span class="at">.formats =</span> <span class="fu">c</span>(</span>
-<span id="cb7-107"><a href="#cb7-107"></a>      <span class="at">n =</span> <span class="st">"xx."</span>, <span class="at">n_blq =</span> <span class="st">"xx."</span>, <span class="at">mean =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">sd =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">cv =</span> <span class="st">"xx.x"</span>, <span class="at">median =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>),</span>
-<span id="cb7-108"><a href="#cb7-108"></a>      <span class="at">geom_mean =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">geom_cv =</span> <span class="st">"xx.x"</span>, <span class="at">min =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">max =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>)</span>
-<span id="cb7-109"><a href="#cb7-109"></a>    ),</span>
-<span id="cb7-110"><a href="#cb7-110"></a>    <span class="at">.labels =</span> <span class="fu">c</span>(</span>
-<span id="cb7-111"><a href="#cb7-111"></a>      <span class="at">n =</span> <span class="st">"n"</span>, <span class="at">n_blq =</span> <span class="st">"Number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">LTRs/BLQs"</span>, <span class="at">mean =</span> <span class="st">"Mean"</span>, <span class="at">sd =</span> <span class="st">"SD"</span>, <span class="at">cv =</span> <span class="st">"CV (%) Mean"</span>,</span>
-<span id="cb7-112"><a href="#cb7-112"></a>      <span class="at">geom_mean =</span> <span class="st">"Geometric Mean"</span>, <span class="at">geom_cv =</span> <span class="st">"CV % Geometric Mean"</span>, <span class="at">median =</span> <span class="st">"Median"</span>, <span class="at">min =</span> <span class="st">"Minimum"</span>, <span class="at">max =</span> <span class="st">"Maximum"</span></span>
-<span id="cb7-113"><a href="#cb7-113"></a>    ),</span>
-<span id="cb7-114"><a href="#cb7-114"></a>    <span class="at">na_str =</span> <span class="st">"NE"</span>,</span>
-<span id="cb7-115"><a href="#cb7-115"></a>    <span class="at">.aligns =</span> <span class="st">"decimal"</span></span>
-<span id="cb7-116"><a href="#cb7-116"></a>  )</span>
-<span id="cb7-117"><a href="#cb7-117"></a></span>
-<span id="cb7-118"><a href="#cb7-118"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, <span class="at">df =</span> adpc_t, <span class="at">alt_counts_df =</span> adsl) <span class="sc">%&gt;%</span> <span class="fu">prune_table</span>()</span>
-<span id="cb7-119"><a href="#cb7-119"></a></span>
-<span id="cb7-120"><a href="#cb7-120"></a><span class="co"># Decorating</span></span>
-<span id="cb7-121"><a href="#cb7-121"></a><span class="fu">main_title</span>(result) <span class="ot">&lt;-</span> <span class="st">"Summary of PK Concentrations by Nominal Time and Treatment: PK Evaluable"</span></span>
-<span id="cb7-122"><a href="#cb7-122"></a><span class="fu">subtitles</span>(result) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb7-123"><a href="#cb7-123"></a>  <span class="st">"Protocol: xxxxx"</span>,</span>
-<span id="cb7-124"><a href="#cb7-124"></a>  <span class="fu">paste</span>(<span class="st">"Analyte: "</span>, <span class="fu">unique</span>(adpc_t<span class="sc">$</span>PARAM)),</span>
-<span id="cb7-125"><a href="#cb7-125"></a>  <span class="fu">paste</span>(<span class="st">"Treatment:"</span>, <span class="fu">unique</span>(adpc_t<span class="sc">$</span>ACTARM))</span>
-<span id="cb7-126"><a href="#cb7-126"></a>)</span>
-<span id="cb7-127"><a href="#cb7-127"></a><span class="fu">main_footer</span>(result) <span class="ot">&lt;-</span> <span class="st">"NE: Not Estimable"</span></span>
-<span id="cb7-128"><a href="#cb7-128"></a></span>
-<span id="cb7-129"><a href="#cb7-129"></a>result</span>
-<span id="cb7-130"><a href="#cb7-130"></a><span class="in">```</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a><span class="in">```</span></span>
+<span id="cb7-58"><a href="#cb7-58"></a></span>
+<span id="cb7-59"><a href="#cb7-59"></a><span class="fu">## PK Table</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a></span>
+<span id="cb7-61"><a href="#cb7-61"></a>Now we create the PK table.</span>
+<span id="cb7-62"><a href="#cb7-62"></a></span>
+<span id="cb7-63"><a href="#cb7-63"></a><span class="in">```{r table}</span></span>
+<span id="cb7-64"><a href="#cb7-64"></a><span class="co"># Setting up the data for table</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a>adpc_t <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb7-66"><a href="#cb7-66"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-67"><a href="#cb7-67"></a>    <span class="at">NFRLT =</span> <span class="fu">as.factor</span>(NFRLT),</span>
+<span id="cb7-68"><a href="#cb7-68"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">as.factor</span>(AVALCAT1),</span>
+<span id="cb7-69"><a href="#cb7-69"></a>    <span class="at">NOMTPT =</span> <span class="fu">as.factor</span>(<span class="fu">paste</span>(NFRLT, <span class="st">"/"</span>, PCTPT))</span>
+<span id="cb7-70"><a href="#cb7-70"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-71"><a href="#cb7-71"></a>  <span class="fu">select</span>(NOMTPT, ACTARM, VISIT, AVAL, PARAM, AVALCAT1)</span>
+<span id="cb7-72"><a href="#cb7-72"></a></span>
+<span id="cb7-73"><a href="#cb7-73"></a>adpc_t<span class="sc">$</span>NOMTPT <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb7-74"><a href="#cb7-74"></a>  adpc_t<span class="sc">$</span>NOMTPT,</span>
+<span id="cb7-75"><a href="#cb7-75"></a>  <span class="at">levels =</span> <span class="fu">levels</span>(adpc_t<span class="sc">$</span>NOMTPT)[<span class="fu">order</span>(<span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">".*?([0-9</span><span class="sc">\\</span><span class="st">.]+).*"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, <span class="fu">levels</span>(adpc_t<span class="sc">$</span>NOMTPT))))]</span>
+<span id="cb7-76"><a href="#cb7-76"></a>)</span>
+<span id="cb7-77"><a href="#cb7-77"></a></span>
+<span id="cb7-78"><a href="#cb7-78"></a><span class="co"># Row structure</span></span>
+<span id="cb7-79"><a href="#cb7-79"></a>lyt_rows <span class="ot">&lt;-</span> <span class="fu">basic_table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-80"><a href="#cb7-80"></a>  <span class="fu">split_rows_by</span>(</span>
+<span id="cb7-81"><a href="#cb7-81"></a>    <span class="at">var =</span> <span class="st">"ACTARM"</span>,</span>
+<span id="cb7-82"><a href="#cb7-82"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
+<span id="cb7-83"><a href="#cb7-83"></a>    <span class="at">split_label =</span> <span class="st">"Treatment Group"</span>,</span>
+<span id="cb7-84"><a href="#cb7-84"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span></span>
+<span id="cb7-85"><a href="#cb7-85"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-86"><a href="#cb7-86"></a>  <span class="fu">add_rowcounts</span>(<span class="at">alt_counts =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-87"><a href="#cb7-87"></a>  <span class="fu">split_rows_by</span>(</span>
+<span id="cb7-88"><a href="#cb7-88"></a>    <span class="at">var =</span> <span class="st">"VISIT"</span>,</span>
+<span id="cb7-89"><a href="#cb7-89"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
+<span id="cb7-90"><a href="#cb7-90"></a>    <span class="at">split_label =</span> <span class="st">"Visit"</span>,</span>
+<span id="cb7-91"><a href="#cb7-91"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span></span>
+<span id="cb7-92"><a href="#cb7-92"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-93"><a href="#cb7-93"></a>  <span class="fu">split_rows_by</span>(</span>
+<span id="cb7-94"><a href="#cb7-94"></a>    <span class="at">var =</span> <span class="st">"NOMTPT"</span>,</span>
+<span id="cb7-95"><a href="#cb7-95"></a>    <span class="at">split_fun =</span> drop_split_levels,</span>
+<span id="cb7-96"><a href="#cb7-96"></a>    <span class="at">split_label =</span> <span class="st">"Nominal Time (hr) / Timepoint"</span>,</span>
+<span id="cb7-97"><a href="#cb7-97"></a>    <span class="at">label_pos =</span> <span class="st">"topleft"</span>,</span>
+<span id="cb7-98"><a href="#cb7-98"></a>    <span class="at">child_labels =</span> <span class="st">"hidden"</span></span>
+<span id="cb7-99"><a href="#cb7-99"></a>  )</span>
+<span id="cb7-100"><a href="#cb7-100"></a></span>
+<span id="cb7-101"><a href="#cb7-101"></a>lyt <span class="ot">&lt;-</span> lyt_rows <span class="sc">%&gt;%</span></span>
+<span id="cb7-102"><a href="#cb7-102"></a>  <span class="fu">analyze_vars_in_cols</span>(</span>
+<span id="cb7-103"><a href="#cb7-103"></a>    <span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span>, <span class="fu">rep</span>(<span class="st">"AVAL"</span>, <span class="dv">8</span>)),</span>
+<span id="cb7-104"><a href="#cb7-104"></a>    <span class="at">.stats =</span> <span class="fu">c</span>(<span class="st">"n"</span>, <span class="st">"n_blq"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"cv"</span>, <span class="st">"geom_mean"</span>, <span class="st">"geom_cv"</span>, <span class="st">"median"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>),</span>
+<span id="cb7-105"><a href="#cb7-105"></a>    <span class="at">.formats =</span> <span class="fu">c</span>(</span>
+<span id="cb7-106"><a href="#cb7-106"></a>      <span class="at">n =</span> <span class="st">"xx."</span>, <span class="at">n_blq =</span> <span class="st">"xx."</span>, <span class="at">mean =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">sd =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">cv =</span> <span class="st">"xx.x"</span>, <span class="at">median =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>),</span>
+<span id="cb7-107"><a href="#cb7-107"></a>      <span class="at">geom_mean =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">geom_cv =</span> <span class="st">"xx.x"</span>, <span class="at">min =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>), <span class="at">max =</span> <span class="fu">format_sigfig</span>(<span class="dv">3</span>)</span>
+<span id="cb7-108"><a href="#cb7-108"></a>    ),</span>
+<span id="cb7-109"><a href="#cb7-109"></a>    <span class="at">.labels =</span> <span class="fu">c</span>(</span>
+<span id="cb7-110"><a href="#cb7-110"></a>      <span class="at">n =</span> <span class="st">"n"</span>, <span class="at">n_blq =</span> <span class="st">"Number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">LTRs/BLQs"</span>, <span class="at">mean =</span> <span class="st">"Mean"</span>, <span class="at">sd =</span> <span class="st">"SD"</span>, <span class="at">cv =</span> <span class="st">"CV (%) Mean"</span>,</span>
+<span id="cb7-111"><a href="#cb7-111"></a>      <span class="at">geom_mean =</span> <span class="st">"Geometric Mean"</span>, <span class="at">geom_cv =</span> <span class="st">"CV % Geometric Mean"</span>, <span class="at">median =</span> <span class="st">"Median"</span>, <span class="at">min =</span> <span class="st">"Minimum"</span>, <span class="at">max =</span> <span class="st">"Maximum"</span></span>
+<span id="cb7-112"><a href="#cb7-112"></a>    ),</span>
+<span id="cb7-113"><a href="#cb7-113"></a>    <span class="at">na_str =</span> <span class="st">"NE"</span>,</span>
+<span id="cb7-114"><a href="#cb7-114"></a>    <span class="at">.aligns =</span> <span class="st">"decimal"</span></span>
+<span id="cb7-115"><a href="#cb7-115"></a>  )</span>
+<span id="cb7-116"><a href="#cb7-116"></a></span>
+<span id="cb7-117"><a href="#cb7-117"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, <span class="at">df =</span> adpc_t, <span class="at">alt_counts_df =</span> adsl) <span class="sc">%&gt;%</span> <span class="fu">prune_table</span>()</span>
+<span id="cb7-118"><a href="#cb7-118"></a></span>
+<span id="cb7-119"><a href="#cb7-119"></a><span class="co"># Decorating</span></span>
+<span id="cb7-120"><a href="#cb7-120"></a><span class="fu">main_title</span>(result) <span class="ot">&lt;-</span> <span class="st">"Summary of PK Concentrations by Nominal Time and Treatment: PK Evaluable"</span></span>
+<span id="cb7-121"><a href="#cb7-121"></a><span class="fu">subtitles</span>(result) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-122"><a href="#cb7-122"></a>  <span class="st">"Protocol: xxxxx"</span>,</span>
+<span id="cb7-123"><a href="#cb7-123"></a>  <span class="fu">paste</span>(<span class="st">"Analyte: "</span>, <span class="fu">unique</span>(adpc_t<span class="sc">$</span>PARAM)),</span>
+<span id="cb7-124"><a href="#cb7-124"></a>  <span class="fu">paste</span>(<span class="st">"Treatment:"</span>, <span class="fu">unique</span>(adpc_t<span class="sc">$</span>ACTARM))</span>
+<span id="cb7-125"><a href="#cb7-125"></a>)</span>
+<span id="cb7-126"><a href="#cb7-126"></a><span class="fu">main_footer</span>(result) <span class="ot">&lt;-</span> <span class="st">"NE: Not Estimable"</span></span>
+<span id="cb7-127"><a href="#cb7-127"></a></span>
+<span id="cb7-128"><a href="#cb7-128"></a>result</span>
+<span id="cb7-129"><a href="#cb7-129"></a><span class="in">```</span></span>
+<span id="cb7-130"><a href="#cb7-130"></a></span>
 <span id="cb7-131"><a href="#cb7-131"></a></span>
-<span id="cb7-132"><a href="#cb7-132"></a></span>
-<span id="cb7-133"><a href="#cb7-133"></a><span class="fu">## PK Graph</span></span>
-<span id="cb7-134"><a href="#cb7-134"></a></span>
-<span id="cb7-135"><a href="#cb7-135"></a>Now we create the PK graph.</span>
-<span id="cb7-136"><a href="#cb7-136"></a></span>
-<span id="cb7-137"><a href="#cb7-137"></a><span class="in">```{r graph}</span></span>
-<span id="cb7-138"><a href="#cb7-138"></a></span>
-<span id="cb7-139"><a href="#cb7-139"></a><span class="co"># Keep only treated subjects for graph</span></span>
-<span id="cb7-140"><a href="#cb7-140"></a>adsl_f <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb7-141"><a href="#cb7-141"></a>  <span class="fu">filter</span>(SAFFL <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span>)</span>
-<span id="cb7-142"><a href="#cb7-142"></a></span>
-<span id="cb7-143"><a href="#cb7-143"></a><span class="co"># Set titles and footnotes</span></span>
-<span id="cb7-144"><a href="#cb7-144"></a>use_title <span class="ot">&lt;-</span> <span class="st">"Plot of Mean (+/- SD) Plasma Concentrations Over Time by Treatment, </span><span class="sc">\n</span><span class="st">PK Evaluable Patients"</span></span>
-<span id="cb7-145"><a href="#cb7-145"></a>use_subtitle <span class="ot">&lt;-</span> <span class="st">"Analyte:"</span></span>
-<span id="cb7-146"><a href="#cb7-146"></a>use_footnote <span class="ot">&lt;-</span> <span class="st">"Program: </span><span class="sc">\n</span><span class="st">Output:"</span></span>
-<span id="cb7-147"><a href="#cb7-147"></a></span>
-<span id="cb7-148"><a href="#cb7-148"></a>result <span class="ot">&lt;-</span> <span class="fu">g_lineplot</span>(</span>
-<span id="cb7-149"><a href="#cb7-149"></a>  <span class="at">df =</span> adpc,</span>
-<span id="cb7-150"><a href="#cb7-150"></a>  <span class="at">variables =</span> <span class="fu">control_lineplot_vars</span>(</span>
-<span id="cb7-151"><a href="#cb7-151"></a>    <span class="at">x =</span> <span class="st">"NFRLT"</span>,</span>
-<span id="cb7-152"><a href="#cb7-152"></a>    <span class="at">y =</span> <span class="st">"AVAL"</span>,</span>
-<span id="cb7-153"><a href="#cb7-153"></a>    <span class="at">group_var =</span> <span class="st">"ARM"</span>,</span>
-<span id="cb7-154"><a href="#cb7-154"></a>    <span class="at">paramcd =</span> <span class="st">"PARAM"</span>,</span>
-<span id="cb7-155"><a href="#cb7-155"></a>    <span class="at">y_unit =</span> <span class="st">"AVALU"</span>,</span>
-<span id="cb7-156"><a href="#cb7-156"></a>    <span class="at">subject_var =</span> <span class="st">"USUBJID"</span></span>
-<span id="cb7-157"><a href="#cb7-157"></a>  ),</span>
-<span id="cb7-158"><a href="#cb7-158"></a>  <span class="at">alt_counts_df =</span> adsl_f,</span>
-<span id="cb7-159"><a href="#cb7-159"></a>  <span class="at">position =</span> ggplot2<span class="sc">::</span><span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.5</span>),</span>
-<span id="cb7-160"><a href="#cb7-160"></a>  <span class="at">y_lab =</span> <span class="st">"Concentration"</span>,</span>
-<span id="cb7-161"><a href="#cb7-161"></a>  <span class="at">y_lab_add_paramcd =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-162"><a href="#cb7-162"></a>  <span class="at">y_lab_add_unit =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb7-163"><a href="#cb7-163"></a>  <span class="at">interval =</span> <span class="st">"mean_sdi"</span>,</span>
-<span id="cb7-164"><a href="#cb7-164"></a>  <span class="at">whiskers =</span> <span class="fu">c</span>(<span class="st">"mean_sdi_lwr"</span>, <span class="st">"mean_sdi_upr"</span>),</span>
-<span id="cb7-165"><a href="#cb7-165"></a>  <span class="at">title =</span> use_title,</span>
-<span id="cb7-166"><a href="#cb7-166"></a>  <span class="at">subtitle =</span> use_subtitle,</span>
-<span id="cb7-167"><a href="#cb7-167"></a>  <span class="at">caption =</span> use_footnote,</span>
-<span id="cb7-168"><a href="#cb7-168"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_nest</span>()</span>
-<span id="cb7-169"><a href="#cb7-169"></a>)</span>
-<span id="cb7-170"><a href="#cb7-170"></a></span>
-<span id="cb7-171"><a href="#cb7-171"></a>plot <span class="ot">&lt;-</span> result <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span>
-<span id="cb7-172"><a href="#cb7-172"></a>plot</span>
-<span id="cb7-173"><a href="#cb7-173"></a><span class="in">```</span></span>
+<span id="cb7-132"><a href="#cb7-132"></a><span class="fu">## PK Graph</span></span>
+<span id="cb7-133"><a href="#cb7-133"></a></span>
+<span id="cb7-134"><a href="#cb7-134"></a>Now we create the PK graph.</span>
+<span id="cb7-135"><a href="#cb7-135"></a></span>
+<span id="cb7-136"><a href="#cb7-136"></a><span class="in">```{r graph}</span></span>
+<span id="cb7-137"><a href="#cb7-137"></a><span class="co"># Keep only treated subjects for graph</span></span>
+<span id="cb7-138"><a href="#cb7-138"></a>adsl_f <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb7-139"><a href="#cb7-139"></a>  <span class="fu">filter</span>(SAFFL <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span>)</span>
+<span id="cb7-140"><a href="#cb7-140"></a></span>
+<span id="cb7-141"><a href="#cb7-141"></a><span class="co"># Set titles and footnotes</span></span>
+<span id="cb7-142"><a href="#cb7-142"></a>use_title <span class="ot">&lt;-</span> <span class="st">"Plot of Mean (+/- SD) Plasma Concentrations Over Time by Treatment, </span><span class="sc">\n</span><span class="st">PK Evaluable Patients"</span></span>
+<span id="cb7-143"><a href="#cb7-143"></a>use_subtitle <span class="ot">&lt;-</span> <span class="st">"Analyte:"</span></span>
+<span id="cb7-144"><a href="#cb7-144"></a>use_footnote <span class="ot">&lt;-</span> <span class="st">"Program: </span><span class="sc">\n</span><span class="st">Output:"</span></span>
+<span id="cb7-145"><a href="#cb7-145"></a></span>
+<span id="cb7-146"><a href="#cb7-146"></a>result <span class="ot">&lt;-</span> <span class="fu">g_lineplot</span>(</span>
+<span id="cb7-147"><a href="#cb7-147"></a>  <span class="at">df =</span> adpc,</span>
+<span id="cb7-148"><a href="#cb7-148"></a>  <span class="at">variables =</span> <span class="fu">control_lineplot_vars</span>(</span>
+<span id="cb7-149"><a href="#cb7-149"></a>    <span class="at">x =</span> <span class="st">"NFRLT"</span>,</span>
+<span id="cb7-150"><a href="#cb7-150"></a>    <span class="at">y =</span> <span class="st">"AVAL"</span>,</span>
+<span id="cb7-151"><a href="#cb7-151"></a>    <span class="at">group_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb7-152"><a href="#cb7-152"></a>    <span class="at">paramcd =</span> <span class="st">"PARAM"</span>,</span>
+<span id="cb7-153"><a href="#cb7-153"></a>    <span class="at">y_unit =</span> <span class="st">"AVALU"</span>,</span>
+<span id="cb7-154"><a href="#cb7-154"></a>    <span class="at">subject_var =</span> <span class="st">"USUBJID"</span></span>
+<span id="cb7-155"><a href="#cb7-155"></a>  ),</span>
+<span id="cb7-156"><a href="#cb7-156"></a>  <span class="at">alt_counts_df =</span> adsl_f,</span>
+<span id="cb7-157"><a href="#cb7-157"></a>  <span class="at">position =</span> ggplot2<span class="sc">::</span><span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.5</span>),</span>
+<span id="cb7-158"><a href="#cb7-158"></a>  <span class="at">y_lab =</span> <span class="st">"Concentration"</span>,</span>
+<span id="cb7-159"><a href="#cb7-159"></a>  <span class="at">y_lab_add_paramcd =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-160"><a href="#cb7-160"></a>  <span class="at">y_lab_add_unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-161"><a href="#cb7-161"></a>  <span class="at">interval =</span> <span class="st">"mean_sdi"</span>,</span>
+<span id="cb7-162"><a href="#cb7-162"></a>  <span class="at">whiskers =</span> <span class="fu">c</span>(<span class="st">"mean_sdi_lwr"</span>, <span class="st">"mean_sdi_upr"</span>),</span>
+<span id="cb7-163"><a href="#cb7-163"></a>  <span class="at">title =</span> use_title,</span>
+<span id="cb7-164"><a href="#cb7-164"></a>  <span class="at">subtitle =</span> use_subtitle,</span>
+<span id="cb7-165"><a href="#cb7-165"></a>  <span class="at">caption =</span> use_footnote,</span>
+<span id="cb7-166"><a href="#cb7-166"></a>  <span class="at">ggtheme =</span> <span class="fu">theme_nest</span>()</span>
+<span id="cb7-167"><a href="#cb7-167"></a>)</span>
+<span id="cb7-168"><a href="#cb7-168"></a></span>
+<span id="cb7-169"><a href="#cb7-169"></a>plot <span class="ot">&lt;-</span> result <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span>
+<span id="cb7-170"><a href="#cb7-170"></a>plot</span>
+<span id="cb7-171"><a href="#cb7-171"></a><span class="in">```</span></span>
+<span id="cb7-172"><a href="#cb7-172"></a></span>
+<span id="cb7-173"><a href="#cb7-173"></a><span class="fu">## PK Listing</span></span>
 <span id="cb7-174"><a href="#cb7-174"></a></span>
-<span id="cb7-175"><a href="#cb7-175"></a><span class="fu">## PK Listing</span></span>
+<span id="cb7-175"><a href="#cb7-175"></a>Now we create an example PK listing.</span>
 <span id="cb7-176"><a href="#cb7-176"></a></span>
-<span id="cb7-177"><a href="#cb7-177"></a>Now we create an example PK listing.</span>
-<span id="cb7-178"><a href="#cb7-178"></a></span>
-<span id="cb7-179"><a href="#cb7-179"></a><span class="in">```{r listing}</span></span>
-<span id="cb7-180"><a href="#cb7-180"></a><span class="co"># Get value of Analyte</span></span>
-<span id="cb7-181"><a href="#cb7-181"></a>analyte <span class="ot">&lt;-</span> <span class="fu">unique</span>(adpc<span class="sc">$</span>PARAM)</span>
-<span id="cb7-182"><a href="#cb7-182"></a></span>
-<span id="cb7-183"><a href="#cb7-183"></a><span class="co"># Select columns for listing</span></span>
-<span id="cb7-184"><a href="#cb7-184"></a>out <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb7-185"><a href="#cb7-185"></a>  <span class="fu">select</span>(ARM, USUBJID, VISIT, NFRLT, AFRLT, AVALCAT1)</span>
-<span id="cb7-186"><a href="#cb7-186"></a></span>
-<span id="cb7-187"><a href="#cb7-187"></a><span class="co"># Add descriptive labels</span></span>
-<span id="cb7-188"><a href="#cb7-188"></a><span class="fu">var_labels</span>(out) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb7-189"><a href="#cb7-189"></a>  <span class="at">ARM =</span> <span class="st">"Treatment Group"</span>,</span>
-<span id="cb7-190"><a href="#cb7-190"></a>  <span class="at">USUBJID =</span> <span class="st">"Subject ID"</span>,</span>
-<span id="cb7-191"><a href="#cb7-191"></a>  <span class="at">VISIT =</span> <span class="st">"Visit"</span>,</span>
-<span id="cb7-192"><a href="#cb7-192"></a>  <span class="at">NFRLT =</span> <span class="fu">paste0</span>(<span class="st">"Nominal</span><span class="sc">\n</span><span class="st">Sampling</span><span class="sc">\n</span><span class="st">Time ("</span>, adpc<span class="sc">$</span>RRLTU[<span class="dv">1</span>], <span class="st">")"</span>),</span>
-<span id="cb7-193"><a href="#cb7-193"></a>  <span class="at">AFRLT =</span> <span class="fu">paste0</span>(<span class="st">"Actual Time</span><span class="sc">\n</span><span class="st">From First</span><span class="sc">\n</span><span class="st">Dose ("</span>, adpc<span class="sc">$</span>RRLTU[<span class="dv">1</span>], <span class="st">")"</span>),</span>
-<span id="cb7-194"><a href="#cb7-194"></a>  <span class="at">AVALCAT1 =</span> <span class="fu">paste0</span>(<span class="st">"Concentration</span><span class="sc">\n</span><span class="st">("</span>, adpc<span class="sc">$</span>AVALU[<span class="dv">1</span>], <span class="st">")"</span>)</span>
-<span id="cb7-195"><a href="#cb7-195"></a>)</span>
-<span id="cb7-196"><a href="#cb7-196"></a></span>
-<span id="cb7-197"><a href="#cb7-197"></a><span class="co"># Create listing</span></span>
-<span id="cb7-198"><a href="#cb7-198"></a>lsting <span class="ot">&lt;-</span> <span class="fu">as_listing</span>(</span>
-<span id="cb7-199"><a href="#cb7-199"></a>  out,</span>
-<span id="cb7-200"><a href="#cb7-200"></a>  <span class="at">key_cols =</span> <span class="fu">c</span>(<span class="st">"ARM"</span>, <span class="st">"USUBJID"</span>, <span class="st">"VISIT"</span>),</span>
-<span id="cb7-201"><a href="#cb7-201"></a>  <span class="at">disp_cols =</span> <span class="fu">names</span>(out),</span>
-<span id="cb7-202"><a href="#cb7-202"></a>  <span class="at">default_formatting =</span> <span class="fu">list</span>(</span>
-<span id="cb7-203"><a href="#cb7-203"></a>    <span class="at">all =</span> <span class="fu">fmt_config</span>(<span class="at">align =</span> <span class="st">"left"</span>),</span>
-<span id="cb7-204"><a href="#cb7-204"></a>    <span class="at">numeric =</span> <span class="fu">fmt_config</span>(</span>
-<span id="cb7-205"><a href="#cb7-205"></a>      <span class="at">format =</span> <span class="st">"xx.xx"</span>,</span>
-<span id="cb7-206"><a href="#cb7-206"></a>      <span class="at">na_str =</span> <span class="st">" "</span>,</span>
-<span id="cb7-207"><a href="#cb7-207"></a>      <span class="at">align =</span> <span class="st">"right"</span></span>
-<span id="cb7-208"><a href="#cb7-208"></a>    )</span>
-<span id="cb7-209"><a href="#cb7-209"></a>  ),</span>
-<span id="cb7-210"><a href="#cb7-210"></a>  <span class="at">main_title =</span> <span class="fu">paste</span>(</span>
-<span id="cb7-211"><a href="#cb7-211"></a>    <span class="st">"Listing of"</span>,</span>
-<span id="cb7-212"><a href="#cb7-212"></a>    analyte,</span>
-<span id="cb7-213"><a href="#cb7-213"></a>    <span class="st">"Concentration by Treatment Group, Subject and Nominal Time, PK Population</span><span class="sc">\n</span><span class="st">Protocol: xxnnnnn"</span></span>
-<span id="cb7-214"><a href="#cb7-214"></a>  ),</span>
-<span id="cb7-215"><a href="#cb7-215"></a>  <span class="at">subtitles =</span> <span class="fu">paste</span>(<span class="st">"Analyte:"</span>, analyte)</span>
-<span id="cb7-216"><a href="#cb7-216"></a>)</span>
-<span id="cb7-217"><a href="#cb7-217"></a></span>
-<span id="cb7-218"><a href="#cb7-218"></a><span class="fu">head</span>(lsting, <span class="dv">28</span>)</span>
-<span id="cb7-219"><a href="#cb7-219"></a><span class="in">```</span></span>
-<span id="cb7-220"><a href="#cb7-220"></a></span>
-<span id="cb7-221"><a href="#cb7-221"></a></span>
-<span id="cb7-222"><a href="#cb7-222"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb7-177"><a href="#cb7-177"></a><span class="in">```{r listing}</span></span>
+<span id="cb7-178"><a href="#cb7-178"></a><span class="co"># Get value of Analyte</span></span>
+<span id="cb7-179"><a href="#cb7-179"></a>analyte <span class="ot">&lt;-</span> <span class="fu">unique</span>(adpc<span class="sc">$</span>PARAM)</span>
+<span id="cb7-180"><a href="#cb7-180"></a></span>
+<span id="cb7-181"><a href="#cb7-181"></a><span class="co"># Select columns for listing</span></span>
+<span id="cb7-182"><a href="#cb7-182"></a>out <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb7-183"><a href="#cb7-183"></a>  <span class="fu">select</span>(ARM, USUBJID, VISIT, NFRLT, AFRLT, AVALCAT1)</span>
+<span id="cb7-184"><a href="#cb7-184"></a></span>
+<span id="cb7-185"><a href="#cb7-185"></a><span class="co"># Add descriptive labels</span></span>
+<span id="cb7-186"><a href="#cb7-186"></a><span class="fu">var_labels</span>(out) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-187"><a href="#cb7-187"></a>  <span class="at">ARM =</span> <span class="st">"Treatment Group"</span>,</span>
+<span id="cb7-188"><a href="#cb7-188"></a>  <span class="at">USUBJID =</span> <span class="st">"Subject ID"</span>,</span>
+<span id="cb7-189"><a href="#cb7-189"></a>  <span class="at">VISIT =</span> <span class="st">"Visit"</span>,</span>
+<span id="cb7-190"><a href="#cb7-190"></a>  <span class="at">NFRLT =</span> <span class="fu">paste0</span>(<span class="st">"Nominal</span><span class="sc">\n</span><span class="st">Sampling</span><span class="sc">\n</span><span class="st">Time ("</span>, adpc<span class="sc">$</span>RRLTU[<span class="dv">1</span>], <span class="st">")"</span>),</span>
+<span id="cb7-191"><a href="#cb7-191"></a>  <span class="at">AFRLT =</span> <span class="fu">paste0</span>(<span class="st">"Actual Time</span><span class="sc">\n</span><span class="st">From First</span><span class="sc">\n</span><span class="st">Dose ("</span>, adpc<span class="sc">$</span>RRLTU[<span class="dv">1</span>], <span class="st">")"</span>),</span>
+<span id="cb7-192"><a href="#cb7-192"></a>  <span class="at">AVALCAT1 =</span> <span class="fu">paste0</span>(<span class="st">"Concentration</span><span class="sc">\n</span><span class="st">("</span>, adpc<span class="sc">$</span>AVALU[<span class="dv">1</span>], <span class="st">")"</span>)</span>
+<span id="cb7-193"><a href="#cb7-193"></a>)</span>
+<span id="cb7-194"><a href="#cb7-194"></a></span>
+<span id="cb7-195"><a href="#cb7-195"></a><span class="co"># Create listing</span></span>
+<span id="cb7-196"><a href="#cb7-196"></a>lsting <span class="ot">&lt;-</span> <span class="fu">as_listing</span>(</span>
+<span id="cb7-197"><a href="#cb7-197"></a>  out,</span>
+<span id="cb7-198"><a href="#cb7-198"></a>  <span class="at">key_cols =</span> <span class="fu">c</span>(<span class="st">"ARM"</span>, <span class="st">"USUBJID"</span>, <span class="st">"VISIT"</span>),</span>
+<span id="cb7-199"><a href="#cb7-199"></a>  <span class="at">disp_cols =</span> <span class="fu">names</span>(out),</span>
+<span id="cb7-200"><a href="#cb7-200"></a>  <span class="at">default_formatting =</span> <span class="fu">list</span>(</span>
+<span id="cb7-201"><a href="#cb7-201"></a>    <span class="at">all =</span> <span class="fu">fmt_config</span>(<span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb7-202"><a href="#cb7-202"></a>    <span class="at">numeric =</span> <span class="fu">fmt_config</span>(</span>
+<span id="cb7-203"><a href="#cb7-203"></a>      <span class="at">format =</span> <span class="st">"xx.xx"</span>,</span>
+<span id="cb7-204"><a href="#cb7-204"></a>      <span class="at">na_str =</span> <span class="st">" "</span>,</span>
+<span id="cb7-205"><a href="#cb7-205"></a>      <span class="at">align =</span> <span class="st">"right"</span></span>
+<span id="cb7-206"><a href="#cb7-206"></a>    )</span>
+<span id="cb7-207"><a href="#cb7-207"></a>  ),</span>
+<span id="cb7-208"><a href="#cb7-208"></a>  <span class="at">main_title =</span> <span class="fu">paste</span>(</span>
+<span id="cb7-209"><a href="#cb7-209"></a>    <span class="st">"Listing of"</span>,</span>
+<span id="cb7-210"><a href="#cb7-210"></a>    analyte,</span>
+<span id="cb7-211"><a href="#cb7-211"></a>    <span class="st">"Concentration by Treatment Group, Subject and Nominal Time, PK Population</span><span class="sc">\n</span><span class="st">Protocol: xxnnnnn"</span></span>
+<span id="cb7-212"><a href="#cb7-212"></a>  ),</span>
+<span id="cb7-213"><a href="#cb7-213"></a>  <span class="at">subtitles =</span> <span class="fu">paste</span>(<span class="st">"Analyte:"</span>, analyte)</span>
+<span id="cb7-214"><a href="#cb7-214"></a>)</span>
+<span id="cb7-215"><a href="#cb7-215"></a></span>
+<span id="cb7-216"><a href="#cb7-216"></a><span class="fu">head</span>(lsting, <span class="dv">28</span>)</span>
+<span id="cb7-217"><a href="#cb7-217"></a><span class="in">```</span></span>
+<span id="cb7-218"><a href="#cb7-218"></a></span>
+<span id="cb7-219"><a href="#cb7-219"></a></span>
+<span id="cb7-220"><a href="#cb7-220"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
