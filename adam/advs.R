@@ -337,4 +337,3 @@ advs_final <- advs_prefinal %>%
   xportr_format(metacore, domain = "ADVS") %>%
   xportr_df_label(metacore, domain = "ADVS") %>%
   xportr_write(file.path(dir, "advs.xpt"), metadata = metacore, domain = "ADVS")
-

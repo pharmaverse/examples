@@ -1,0 +1,55 @@
+name: Spellcheck
+on:
+  pull_request:
+    branches: ['main']
+jobs:
+  Spelling:
+    runs-on: ubuntu-latest
+    container:
+      image: "rocker/tidyverse:4.3.1"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install packages
+        run: |
+          if (!require("roxygen2")) install.packages("roxygen2")
+          if (!require("spelling")) install.packages("spelling")
+          if (!require("testthat")) install.packages("testthat")
+        shell: Rscript {0}
+
+      - name: Remove links from .qmd files (Bash)
+        run: |
+          find . -type f -name "*.qmd" -print0 | while IFS= read -r -d '' file; do
+              sed -i -E '
+                  s/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/\1/g;  # Remove Markdown links, keep text
+                  s#https?://[a-zA-Z0-9./?=_-]+(\#[a-zA-Z0-9_-]*)?##g  # Remove standalone URLs, including fragments
+              ' "$file"
+              echo "Processed: $file"
+          done
+        shell: bash
+
+      - name: Check spelling
+        run: |
+          library(spelling)
+          library(readr)
+
+          qmd_files <- list.files(pattern = ".*\\.qmd$", recursive = TRUE)
+
+          words <- spelling::spell_check_files(
+            qmd_files,
+            ignore = read_lines("inst/WORDLIST")
+          )
+
+          print(words)
+
+          testthat::test_that(desc = "Check spelling", code = {
+            testthat::expect_equal(
+              object = words,
+              expected = spelling::spell_check_files(
+                path = "inst/WORDLIST",
+                ignore = read_lines("inst/WORDLIST")
+              )
+            )
+          })
+        shell: Rscript {0}

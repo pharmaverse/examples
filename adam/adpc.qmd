@@ -111,7 +111,7 @@ print_df(pc_dates %>% select(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))
 
 ### Get Dosing Information
 
-Here we also create nomimal time from first dose `NFRLT` for `EX` data based on `VISITDY`.
+Here we also create nominal time from first dose `NFRLT` for `EX` data based on `VISITDY`.
 
 ```{r}
 #| label: Dosing
@@ -643,7 +643,7 @@ adpc <- adpc_prefinal %>%
 
 ## Apply Labels and Formats with xportr
 
-Using `{xportr}` we check variable type, assign variable lenght, add variable labels, add variable formats, and save a transport file. At the end you could add a call to `xportr::xportr_write()` to produce the XPT file.
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file. At the end you could add a call to `xportr::xportr_write()` to produce the XPT file.
 
 ```{r}
 #| label: xportr

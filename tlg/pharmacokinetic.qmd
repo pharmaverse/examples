@@ -54,7 +54,6 @@ adpc <- adpc %>%
 # Remove DTYPE = COPY records with ANL02FL == "Y"
 adpc <- adpc %>%
   filter(PARAMCD != "DOSE" & TRT01A != "Placebo" & PARCAT1 == "PLASMA" & ANL02FL == "Y")
-
 ```
 
 ## PK Table
@@ -135,7 +134,6 @@ result
 Now we create the PK graph.
 
 ```{r graph}
-
 # Keep only treated subjects for graph
 adsl_f <- adsl %>%
   filter(SAFFL == "Y" & TRT01A != "Placebo")
