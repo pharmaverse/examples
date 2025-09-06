@@ -146,9 +146,11 @@ callr
 categorizationvars
 cdisc
 CDISC
+CDISCPILOT
 chgpchg
 CKD
 cli
+clst
 CMT
 CNSDTDSC
 codebases
@@ -169,12 +171,14 @@ CREAT
 CREATBL
 creatu
 css
+csv
 ctype
 cust
 cv
 cyclocomp
 cyl
 darwin
+dat
 datacutr
 dataname
 datanames
@@ -191,6 +195,7 @@ desc
 devtools
 df
 DF
+DIA
 diabp
 DIABP
 dir
@@ -294,6 +299,7 @@ grp
 gsub
 gts
 gtsummary
+hardcode
 HashSum
 hia
 hjust
@@ -303,6 +309,7 @@ htmltools
 htmlwidgets
 httpuv
 iconv
+ifelse
 iframe
 init
 inputId
@@ -338,6 +345,7 @@ lintR
 lm
 loaddata
 loadspecs
+LOC
 localdomain
 lockfile
 logr
@@ -360,6 +368,7 @@ Metacore
 metatools
 miniUI
 mmHg
+mmm
 Mosteller
 MRRLT
 mtcars
@@ -390,6 +399,7 @@ num
 NXRLT
 OCC
 occflags
+OID
 onco
 ONCO
 ontrtfl
@@ -413,6 +423,7 @@ params
 paramval
 paramvars
 PARCAT
+PATNUM
 pc
 PCDTC
 pchg
@@ -438,6 +449,7 @@ Pharmacokinetic
 pharmaverse
 Pharmaverse
 pharmaverseadam
+pharmaverseraw
 pharmaversesdtm
 PHUSE
 pkgbuild
@@ -490,6 +502,7 @@ readr
 recist
 RECIST
 RECSEQ
+refdt
 REGIONCAT
 REGIONx
 renderPlot
@@ -502,6 +515,7 @@ req
 rex
 RFENDTC
 RFSTDTC
+RFXSTDTC
 rlang
 rlistings
 RLTU
@@ -524,6 +538,7 @@ sas
 SCRFDT
 sd
 sdi
+sdtm
 SDTM
 sdtmchecks
 SDTMs
@@ -562,11 +577,13 @@ SUBJIDN
 SUBJTYP
 SUBJTYPC
 subperiods
+SUBPOS
 summarise
 summaryrec
 suppdm
 SUPPDM
 suppressWarnings
+SYS
 sysbp
 SYSBP
 tabset
@@ -574,7 +591,10 @@ TBILBL
 tbl
 tcl
 tempdir
+TEMPLOC
 TESTCD
+tgdt
+tgt
 thevalidatoR
 tibble
 tidyr
@@ -588,8 +608,11 @@ TLGs
 tm
 tmc
 tmp
+TMPTC
 topleft
 toupper
+TPT
+TPTNUM
 traceback
 TRE
 treatmentvars
@@ -639,16 +662,28 @@ viewerHeight
 VISITDY
 VISITNUM
 VSBLFL
+VSCAT
 VSDTC
+VSDY
+VSELTM
 vslb
+VSLOC
+VSORRES
+VSORRESU
+VSORRRES
+VSPOS
 VSSEQ
+VSSRESC
 VSSTAT
+VSSTRESC
 VSSTRESN
 VSSTRESU
 VSTEST
 VSTESTCD
 VSTPT
 VSTPTNUM
+VSTPTREF
+VTLD
 WebR
 WG
 withr
@@ -670,5 +705,6 @@ xz
 yaml
 yml
 yn
+yyyy
 zlib
 zzz
