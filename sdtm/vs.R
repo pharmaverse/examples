@@ -218,7 +218,7 @@ vs_temp <-
     id_vars = oak_id_vars()
   ) %>%
   # Create VSSTRESC by converting VSORRES from F to C
-  mutate(VSSTRESC = as.character(sprintf("%.2f", (as.numeric(VSORRES) - 32) * 5/9))) %>%
+  mutate(VSSTRESC = as.character(sprintf("%.2f", (as.numeric(VSORRES) - 32) * 5 / 9))) %>%
   # Map VSSTRESU using hardcode_ct algorithm
   hardcode_ct(
     raw_dat = vs_raw,
@@ -400,8 +400,10 @@ vs <- vs %>%
     VSTPTREF = ifelse(is.na(VSPOS), NA, paste("PATIENT", VSPOS))
   ) %>%
   arrange(USUBJID, VSTESTCD, as.numeric(VISITNUM), as.numeric(VSTPTNUM)) %>%
-  derive_seq(tgt_var = "VSSEQ",
-             rec_vars = c("USUBJID", "VSTESTCD")) %>%
+  derive_seq(
+    tgt_var = "VSSEQ",
+    rec_vars = c("USUBJID", "VSTESTCD")
+  ) %>%
   derive_study_day(
     sdtm_in = .,
     dm_domain = dm,
@@ -410,4 +412,3 @@ vs <- vs %>%
     study_day_var = "VSDY"
   ) %>%
   dplyr::select("STUDYID", "DOMAIN", "USUBJID", "VSSEQ", "VSTESTCD", "VSTEST", "VSPOS", "VSORRES", "VSORRESU", "VSSTRESC", "VSSTRESN", "VSSTRESU", "VSLOC", "VISITNUM", "VISIT", "VSDTC", "VSDY", "VSTPT", "VSTPTNUM", "VSELTM", "VSTPTREF")
-
