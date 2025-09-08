@@ -191,6 +191,7 @@ de
 deathvars
 deliverables
 demog
+derivedvars
 desc
 devtools
 df
@@ -359,6 +360,8 @@ lwr
 lyt
 macOS
 magrittr
+maprest
+maptopic
 maxdate
 MDV
 MedDRA
@@ -397,6 +400,7 @@ nSampling
 nTime
 num
 NXRLT
+oakidvars
 OCC
 occflags
 OID
@@ -496,6 +500,8 @@ rangeind
 Rcpp
 rds
 reactable
+readct
+readdata
 readline
 README
 readr
@@ -509,6 +515,7 @@ renderPlot
 renderUI
 renv
 Renv
+repeatsteps
 repo
 reproducibility
 req
