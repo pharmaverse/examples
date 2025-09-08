@@ -34,6 +34,10 @@ Repeat the above steps for different raw datasets before proceeding with the bel
 * [Create SDTM derived variables](#derivedvars)
 * [Add Labels and Attributes](#attributes)
 
+## Read in data {#readdata}
+
+Read all the raw datasets into the environment. In this example, the raw dataset name is `ae_raw`. Users can read them from the `{pharmaverseraw}` package using the below code:
+
 ```{r setup, message=FALSE, warning=FALSE, results='hold'}
 library(sdtm.oak)
 library(pharmaverseraw)
@@ -47,9 +51,10 @@ Adverse Events Raw dataset. The mock up of the CRF can be viewed [here](https://
 print_df(ae_raw, n = 5)
 ```
 
+
 Read in the DM domain
 
-```{r eval=TRUE, echo=FALSE}
+```{r}
 dm <- pharmaversesdtm::dm
 ```
 
