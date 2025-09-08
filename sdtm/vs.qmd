@@ -16,7 +16,7 @@ source("functions/print_df.R")
 
 This article describes how to create a Findings SDTM domain using the {sdtm.oak} package. Examples are currently presented and tested in the context of the VS domain.
 
-Before reading this article, it is recommended that users review the "Creating an Interventions Domain" article, which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
+Before reading this article, it is recommended that users review the "Creating an Interventions Domain" article[here](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html), which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
 
 In this article, we will dive directly into programming and provide further explanation only where it is required.
 
@@ -50,6 +50,7 @@ vs_raw <- pharmaverseraw::vs_raw
 dm <- pharmaversesdtm::dm
 ```
 
+Vital Signs Raw dataset. The mock up of the CRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/VitalSigns_eCRF.pdf):
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(vs_raw, n = 5)
 ```
