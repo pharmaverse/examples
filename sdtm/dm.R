@@ -246,4 +246,3 @@ dm <- dm %>%
     refdt = "RFXSTDTC",
     study_day_var = "DMDY"
   )
-
