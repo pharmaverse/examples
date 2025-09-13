@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -308,6 +309,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -357,7 +360,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -577,7 +581,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
 <p>Here we set up the data for the table, graph and listing. We will read <code>ADPC</code> and <code>ADSL</code> from <code>{pharmaverseadam}</code>. We use <code>tern::df_explicit_na()</code> to set missing values as categorical. In <code>ADPC</code> we will keep only concentration records (dropping dosing records), and for this example we will only keep plasma concentrations (dropping urine). The <code>ADPC</code> data also includes duplicated records for analysis with <code>DYTPE == "COPY"</code> we will drop these as well (These are removed by selecting <code>ANL02FL == "Y"</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tern)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span>
@@ -599,14 +603,14 @@ cookieconsent.run({
 <span id="cb1-20"><a href="#cb1-20"></a><span class="co"># Keep only plasma records for this example</span></span>
 <span id="cb1-21"><a href="#cb1-21"></a><span class="co"># Remove DTYPE = COPY records with ANL02FL == "Y"</span></span>
 <span id="cb1-22"><a href="#cb1-22"></a>adpc <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>  <span class="fu">filter</span>(PARAMCD <span class="sc">!=</span> <span class="st">"DOSE"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span> <span class="sc">&amp;</span> PARCAT1 <span class="sc">==</span> <span class="st">"PLASMA"</span> <span class="sc">&amp;</span> ANL02FL <span class="sc">==</span> <span class="st">"Y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="fu">filter</span>(PARAMCD <span class="sc">!=</span> <span class="st">"DOSE"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span> <span class="sc">&amp;</span> PARCAT1 <span class="sc">==</span> <span class="st">"PLASMA"</span> <span class="sc">&amp;</span> ANL02FL <span class="sc">==</span> <span class="st">"Y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pk-table" class="level2">
 <h2 class="anchored" data-anchor-id="pk-table">PK Table</h2>
 <p>Now we create the PK table.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Setting up the data for table</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Setting up the data for table</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>adpc_t <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">NFRLT =</span> <span class="fu">as.factor</span>(NFRLT),</span>
@@ -670,7 +674,7 @@ cookieconsent.run({
 <span id="cb2-62"><a href="#cb2-62"></a>)</span>
 <span id="cb2-63"><a href="#cb2-63"></a><span class="fu">main_footer</span>(result) <span class="ot">&lt;-</span> <span class="st">"NE: Not Estimable"</span></span>
 <span id="cb2-64"><a href="#cb2-64"></a></span>
-<span id="cb2-65"><a href="#cb2-65"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-65"><a href="#cb2-65"></a>result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Summary of PK Concentrations by Nominal Time and Treatment: PK Evaluable
 Protocol: xxxxx
@@ -725,7 +729,7 @@ NE: Not Estimable</code></pre>
 <h2 class="anchored" data-anchor-id="pk-graph">PK Graph</h2>
 <p>Now we create the PK graph.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Keep only treated subjects for graph</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Keep only treated subjects for graph</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>adsl_f <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">filter</span>(SAFFL <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> TRT01A <span class="sc">!=</span> <span class="st">"Placebo"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4"></a></span>
@@ -758,7 +762,7 @@ NE: Not Estimable</code></pre>
 <span id="cb4-31"><a href="#cb4-31"></a>)</span>
 <span id="cb4-32"><a href="#cb4-32"></a></span>
 <span id="cb4-33"><a href="#cb4-33"></a>plot <span class="ot">&lt;-</span> result <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span>
-<span id="cb4-34"><a href="#cb4-34"></a>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-34"><a href="#cb4-34"></a>plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -772,7 +776,7 @@ NE: Not Estimable</code></pre>
 <h2 class="anchored" data-anchor-id="pk-listing">PK Listing</h2>
 <p>Now we create an example PK listing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Get value of Analyte</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Get value of Analyte</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>analyte <span class="ot">&lt;-</span> <span class="fu">unique</span>(adpc<span class="sc">$</span>PARAM)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="co"># Select columns for listing</span></span>
@@ -810,7 +814,7 @@ NE: Not Estimable</code></pre>
 <span id="cb5-36"><a href="#cb5-36"></a>  <span class="at">subtitles =</span> <span class="fu">paste</span>(<span class="st">"Analyte:"</span>, analyte)</span>
 <span id="cb5-37"><a href="#cb5-37"></a>)</span>
 <span id="cb5-38"><a href="#cb5-38"></a></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="fu">head</span>(lsting, <span class="dv">28</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="fu">head</span>(lsting, <span class="dv">28</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Listing of Pharmacokinetic concentration of Xanomeline Concentration by Treatment Group, Subject and Nominal Time, PK Population
 Protocol: xxnnnnn
@@ -922,13 +926,14 @@ Xanomeline High Dose   01-701-1028   BASELINE       0.00         -0.50   &lt;BLQ
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1333,7 +1338,7 @@ Xanomeline High Dose   01-701-1028   BASELINE       0.00         -0.50   &lt;BLQ
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> "Pharmacokinetic"</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="an">order:</span><span class="co"> 3</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co">---</span></span>
@@ -1552,7 +1557,7 @@ Xanomeline High Dose   01-701-1028   BASELINE       0.00         -0.50   &lt;BLQ
 <span id="cb7-217"><a href="#cb7-217"></a><span class="in">```</span></span>
 <span id="cb7-218"><a href="#cb7-218"></a></span>
 <span id="cb7-219"><a href="#cb7-219"></a></span>
-<span id="cb7-220"><a href="#cb7-220"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb7-220"><a href="#cb7-220"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

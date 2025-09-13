@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,18 +70,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -307,6 +308,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -356,7 +359,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -589,7 +593,7 @@ cookieconsent.run({
 <p>For eSubmission the most common transport file format used to deliver these to health authorities is as xpt files, and for this we use <code>{xportr}</code>. This package works well with <code>{metacore}</code> harmonized specification objects as shown in the ADaM articles on this site.</p>
 <p>Here is an example call using a synthetic <code>ADSL</code> ADaM from <code>{pharmaverseadam}</code> that shows how to produce xpt files, as well as how certain <code>{xportr}</code> functions can be used to take attributes directly from specifications so as to ensure specification to dataset consistency. This helps to ensure eSubmission-readiness. Additionally the package includes a number of built-in CDISC conformance checks as detailed on the <a href="https://atorus-research.github.io/xportr/">site</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(xportr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(dplyr)</span>
@@ -616,19 +620,19 @@ cookieconsent.run({
 <span id="cb1-25"><a href="#cb1-25"></a>  <span class="co"># Assigns variable format from metacore specifications</span></span>
 <span id="cb1-26"><a href="#cb1-26"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
 <span id="cb1-27"><a href="#cb1-27"></a>  <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-28"><a href="#cb1-28"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># We can examine that the attributes have been correctly applied, for example</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># We can examine that the attributes have been correctly applied, for example</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="co"># as follows for the dataset label</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">attr</span>(adsl, <span class="st">"label"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">attr</span>(adsl, <span class="st">"label"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Subject-Level Analysis Dataset"</code></pre>
 </div>
 </div>
 <p>Now here’s an example where the checks would help to identify future possible eSubmission challenges. Note the console messages explaining the issues.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_challenges <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_challenges <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="co"># Make a numeric variable as character, which conflicts with specifications</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">mutate</span>(<span class="at">AGE =</span> <span class="fu">as.character</span>(AGE)) <span class="sc">%&gt;%</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="co"># Add a variable that is name &gt;8 characters which is not allowed for xpt v5</span></span>
@@ -639,7 +643,7 @@ cookieconsent.run({
 <span id="cb4-9"><a href="#cb4-9"></a>  <span class="co"># This time we use the verbose argument to add a warning to the console</span></span>
 <span id="cb4-10"><a href="#cb4-10"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">verbose =</span> <span class="st">"warn"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a>  <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -668,7 +672,7 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <p>Furthermore, the package functions also include certain arguments that you can use to help shape to your specific submission needs.</p>
 <p>The below shows how some specific FDA requirements can be achieved using the <code>length_source</code> argument from <code>xportr::xportr_length()</code> and the <code>max_size_gb</code> argument from <code>xportr::xportr_write()</code>, as detailed in the code comments. In this case, the dataset splits would be very unlikely to occur in practice for <code>ADSL</code> but would be much more likely on a BDS dataset such as <code>ADLB</code> for a large study.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adsl_example <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adsl_example <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="co"># Coerce variable type to match specification</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a>  <span class="co"># Assigns variable label from metacore specifications</span></span>
@@ -681,7 +685,7 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <span id="cb11-11"><a href="#cb11-11"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
 <span id="cb11-12"><a href="#cb11-12"></a>  <span class="co"># Write xpt v5 transport file but split into smaller subsets if greater than 5GB</span></span>
 <span id="cb11-13"><a href="#cb11-13"></a>  <span class="co"># according to the FDA cutoff size</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>, <span class="at">max_size_gb =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-14"><a href="#cb11-14"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>, <span class="at">max_size_gb =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -743,13 +747,13 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <p>For closed source packages, if you plan to submit the code then there are 2 main options - <code>{pkglite}</code> to create txt files, or zip files (as were successfully used in later R Submission WG pilots).</p>
 <p>Here is an example taken from the R Submission WG pilot 1 around how they used <code>pkglite::pack()</code> to provide packages as txt files. On the other side <code>pkglite::unpack()</code> could then be used to unpack.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(pkglite)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(pkglite)</span>
 <span id="cb23-2"><a href="#cb23-2"></a></span>
 <span id="cb23-3"><a href="#cb23-3"></a><span class="co"># Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt</span></span>
 <span id="cb23-4"><a href="#cb23-4"></a>path<span class="sc">$</span>home <span class="sc">%&gt;%</span></span>
 <span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">collate</span>(<span class="fu">file_ectd</span>(), <span class="fu">file_auto</span>(<span class="st">"inst"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">prune</span>(<span class="st">"R/zzz.R"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can also check the following example Reviewer’s Guides as used for these pilots:</p>
 <ul>
@@ -835,13 +839,14 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1243,7 +1248,7 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
   <div class="nav-page nav-page-next">
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">---</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="an">title:</span><span class="co"> "eSubmission"</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a><span class="co">---</span></span>
 <span id="cb24-4"><a href="#cb24-4"></a></span>
@@ -1490,7 +1495,7 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <span id="cb24-245"><a href="#cb24-245"></a>under Package Validation. Under CI/CD it also offers <span class="in">`thevalidatoR`</span> which is a GitHub</span>
 <span id="cb24-246"><a href="#cb24-246"></a>action that can be used to produce standardized validation reports, such as this</span>
 <span id="cb24-247"><a href="#cb24-247"></a><span class="co">[</span><span class="ot">example</span><span class="co">](https://github.com/insightsengineering/thevalidatoR/blob/main/readme_files/report-0.1-admiral.pdf)</span></span>
-<span id="cb24-248"><a href="#cb24-248"></a>from an earlier version of <span class="in">`{admiral}`</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb24-248"><a href="#cb24-248"></a>from an earlier version of <span class="in">`{admiral}`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

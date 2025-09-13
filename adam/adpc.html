@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -314,6 +315,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -363,7 +366,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -573,7 +577,7 @@ cookieconsent.run({
 <p>First we will load the packages required for our project. We will use <code>{admiral}</code> for the creation of analysis data. <code>{admiral}</code> requires <code>{dplyr}</code>, <code>{lubridate}</code> and <code>{stringr}</code>. Find other <code>{admiral}</code> functions and related variables by searching <a href="https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html">admiraldiscovery</a>. We will use <code>{metacore}</code> and <code>{metatools}</code> to store and manipulate metadata from our specifications. We will use <code>{xportr}</code> to perform checks on the final data and export to a transport file.</p>
 <p>The source SDTM data will come from the CDISC pilot study data stored in <code>{pharmaversesdtm}</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load Packages</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load Packages</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(admiral)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(lubridate)</span>
@@ -583,24 +587,24 @@ cookieconsent.run({
 <span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(xportr)</span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(pharmaversesdtm)</span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(reactable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">library</span>(reactable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="next-load-specifications-for-metacore" class="level2">
 <h2 class="anchored" data-anchor-id="next-load-specifications-for-metacore">Next Load Specifications for Metacore</h2>
 <p>We have saved our specifications in an Excel file and will load them into <code>{metacore}</code> with the <code>metacore::spec_to_metacore()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># ---- Load Specs for Metacore ----</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/pk_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADPC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-source-datasets" class="level2">
 <h2 class="anchored" data-anchor-id="load-source-datasets">Load Source Datasets</h2>
 <p>We will load are SDTM data from <code>{pharmaversesdtm}</code>. The main components of this will be exposure data from <code>EX</code> and pharmacokinetic concentration data from <code>PC</code>. We will use <code>ADSL</code> for baseline characteristics and we will derive additional baselines from vital signs <code>VS</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># ---- Load source datasets ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># ---- Load source datasets ----</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co"># Load PC, EX, VS, LB and ADSL</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>ex <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>ex</span>
 <span id="cb3-4"><a href="#cb3-4"></a>pc <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>pc</span>
@@ -610,7 +614,7 @@ cookieconsent.run({
 <span id="cb3-8"><a href="#cb3-8"></a></span>
 <span id="cb3-9"><a href="#cb3-9"></a>ex <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(ex)</span>
 <span id="cb3-10"><a href="#cb3-10"></a>pc <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(pc)</span>
-<span id="cb3-11"><a href="#cb3-11"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11"></a>vs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(vs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derivations" class="level2">
@@ -619,7 +623,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="derive-pc-dates">Derive PC Dates</h3>
 <p>Here we use <code>{admiral}</code> functions for working with dates and we will also create a nominal time from first dose <code>NFRLT</code> for <code>PC</code> data based on <code>PCTPTNUM</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Get list of ADSL vars required for derivations</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Get list of ADSL vars required for derivations</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(TRTSDT, TRTSDTM, TRT01P, TRT01A)</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a>pc_dates <span class="ot">&lt;-</span> pc <span class="sc">%&gt;%</span></span>
@@ -645,7 +649,7 @@ cookieconsent.run({
 <span id="cb4-24"><a href="#cb4-24"></a>    <span class="at">EVID =</span> <span class="dv">0</span>,</span>
 <span id="cb4-25"><a href="#cb4-25"></a>    <span class="at">DRUG =</span> PCTEST,</span>
 <span id="cb4-26"><a href="#cb4-26"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
-<span id="cb4-27"><a href="#cb4-27"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-27"><a href="#cb4-27"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The default value of `ignore_seconds_flag` will change to "TRUE" in admiral
 1.4.0.</code></pre>
@@ -654,8 +658,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d105bc4235ec30ca3832" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d105bc4235ec30ca3832">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015"],"PCTEST":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"ADTM":["2014-01-01T23:30:00Z","2014-01-02T00:05:00Z","2014-01-02T00:30:00Z","2014-01-02T01:00:00Z","2014-01-02T01:30:00Z","2014-01-02T02:00:00Z","2014-01-02T04:00:00Z","2014-01-02T06:00:00Z","2014-01-02T08:00:00Z","2014-01-02T12:00:00Z"],"VISIT":["BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PCTEST","name":"PCTEST","type":"character"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7d80eac0eee0443f42eb93c6d0e92bc7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0fbca8c5fc6130adb141" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0fbca8c5fc6130adb141">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015"],"PCTEST":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"ADTM":["2014-01-01T23:30:00Z","2014-01-02T00:05:00Z","2014-01-02T00:30:00Z","2014-01-02T01:00:00Z","2014-01-02T01:30:00Z","2014-01-02T02:00:00Z","2014-01-02T04:00:00Z","2014-01-02T06:00:00Z","2014-01-02T08:00:00Z","2014-01-02T12:00:00Z"],"VISIT":["BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PCTEST","name":"PCTEST","type":"character"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7d80eac0eee0443f42eb93c6d0e92bc7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -663,7 +667,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="get-dosing-information">Get Dosing Information</h3>
 <p>Here we also create nominal time from first dose <code>NFRLT</code> for <code>EX</code> data based on <code>VISITDY</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ex_dates <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ex_dates <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">dataset_add =</span> adsl,</span>
 <span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">new_vars =</span> adsl_vars,</span>
@@ -700,14 +704,14 @@ cookieconsent.run({
 <span id="cb6-35"><a href="#cb6-35"></a>  )) <span class="sc">%&gt;%</span></span>
 <span id="cb6-36"><a href="#cb6-36"></a>  <span class="co"># Derive dates from date/times</span></span>
 <span id="cb6-37"><a href="#cb6-37"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-38"><a href="#cb6-38"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="expand-dosing-records" class="level3">
 <h3 class="anchored" data-anchor-id="expand-dosing-records">Expand Dosing Records</h3>
 <p>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <code>admiral::create_single_dose_dataset()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">create_single_dose_dataset</span>(</span>
 <span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">dose_freq =</span> EXDOSFRQ,</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">start_date =</span> ASTDT,</span>
@@ -738,13 +742,13 @@ cookieconsent.run({
 <span id="cb7-29"><a href="#cb7-29"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb7-30"><a href="#cb7-30"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb7-31"><a href="#cb7-31"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(AENDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-503910387b5f71f8b2a0" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-503910387b5f71f8b2a0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DRUG":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"EXDOSFRQ":["ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE"],"ASTDT":["2013-07-19","2013-07-20","2013-07-21","2013-07-22","2013-07-23","2013-07-24","2013-07-25","2013-07-26","2013-07-27","2013-07-28"],"AVISIT":["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7","Day 8","Day 9","Day 10"],"NFRLT":[0,24,48,72,96,120,144,168,192,216]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DRUG","name":"DRUG","type":"character"},{"id":"EXDOSFRQ","name":"EXDOSFRQ","type":"character"},{"id":"ASTDT","name":"ASTDT","type":"Date"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"1a8c9d47b88f25e191d11abaa1e9d428"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-449e3ade6e6711ca0208" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-449e3ade6e6711ca0208">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DRUG":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"EXDOSFRQ":["ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE"],"ASTDT":["2013-07-19","2013-07-20","2013-07-21","2013-07-22","2013-07-23","2013-07-24","2013-07-25","2013-07-26","2013-07-27","2013-07-28"],"AVISIT":["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7","Day 8","Day 9","Day 10"],"NFRLT":[0,24,48,72,96,120,144,168,192,216]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DRUG","name":"DRUG","type":"character"},{"id":"EXDOSFRQ","name":"EXDOSFRQ","type":"character"},{"id":"ASTDT","name":"ASTDT","type":"Date"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"1a8c9d47b88f25e191d11abaa1e9d428"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -752,7 +756,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="find-first-dose">Find First Dose</h3>
 <p>In this section we will find the first dose for each subject and drug.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>adpc_first_dose <span class="ot">&lt;-</span> pc_dates <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>adpc_first_dose <span class="ot">&lt;-</span> pc_dates <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb8-3"><a href="#cb8-3"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ADTM)),</span>
@@ -768,13 +772,13 @@ cookieconsent.run({
 <span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
 <span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
-<span id="cb8-17"><a href="#cb8-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-17"><a href="#cb8-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d5d7ea4b26bcd6a1b1b1" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d5d7ea4b26bcd6a1b1b1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"FANLDTM":["2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"ADTM":["2013-07-18T23:30:00Z","2013-07-19T00:05:00Z","2013-07-19T00:30:00Z","2013-07-19T01:00:00Z","2013-07-19T01:30:00Z","2013-07-19T02:00:00Z","2013-07-19T04:00:00Z","2013-07-19T06:00:00Z","2013-07-19T08:00:00Z","2013-07-19T12:00:00Z"],"AVISITN":[1,1,1,1,1,1,1,1,1,1],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"FANLDTM","name":"FANLDTM","type":"Date"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"AVISITN","name":"AVISITN","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"0d12799799be1fb93fdea63f112e449d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-c4d225fbb9ae13df5ef4" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c4d225fbb9ae13df5ef4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"FANLDTM":["2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"ADTM":["2013-07-18T23:30:00Z","2013-07-19T00:05:00Z","2013-07-19T00:30:00Z","2013-07-19T01:00:00Z","2013-07-19T01:30:00Z","2013-07-19T02:00:00Z","2013-07-19T04:00:00Z","2013-07-19T06:00:00Z","2013-07-19T08:00:00Z","2013-07-19T12:00:00Z"],"AVISITN":[1,1,1,1,1,1,1,1,1,1],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"FANLDTM","name":"FANLDTM","type":"Date"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"AVISITN","name":"AVISITN","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"0d12799799be1fb93fdea63f112e449d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -782,7 +786,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="find-previous-dose-and-next-dose">Find Previous Dose and Next Dose</h3>
 <p>Use <code>derive_vars_joined()</code> to find the previous dose and the next dose.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adpc_prev <span class="ot">&lt;-</span> adpc_first_dose <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adpc_prev <span class="ot">&lt;-</span> adpc_first_dose <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">derive_vars_joined</span>(</span>
 <span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
@@ -814,14 +818,14 @@ cookieconsent.run({
 <span id="cb9-30"><a href="#cb9-30"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
 <span id="cb9-31"><a href="#cb9-31"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
 <span id="cb9-32"><a href="#cb9-32"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb9-33"><a href="#cb9-33"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-33"><a href="#cb9-33"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="find-previous-and-next-nominal-dose" class="level3">
 <h3 class="anchored" data-anchor-id="find-previous-and-next-nominal-dose">Find Previous and Next Nominal Dose</h3>
 <p>Use the same method to find the previous and next nominal times.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">derive_vars_joined</span>(</span>
 <span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
 <span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
@@ -847,13 +851,13 @@ cookieconsent.run({
 <span id="cb10-24"><a href="#cb10-24"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
 <span id="cb10-25"><a href="#cb10-25"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
 <span id="cb10-26"><a href="#cb10-26"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb10-27"><a href="#cb10-27"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-27"><a href="#cb10-27"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-87be8b948671ba809378" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-87be8b948671ba809378">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT_prev":["NA",0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT_prev","name":"NFRLT_prev","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"829bc39c3fdd7089ca3d5cd9bdbcf076"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-66f0cfc4f8bc5e430fec" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-66f0cfc4f8bc5e430fec">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT_prev":["NA",0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT_prev","name":"NFRLT_prev","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"829bc39c3fdd7089ca3d5cd9bdbcf076"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -861,7 +865,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="combine-pc-and-ex-data">Combine PC and EX Data</h3>
 <p>Combine <code>PC</code> and <code>EX</code> records and derive the additional relative time variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
@@ -915,14 +919,14 @@ cookieconsent.run({
 <span id="cb11-52"><a href="#cb11-52"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-53"><a href="#cb11-53"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
 <span id="cb11-54"><a href="#cb11-54"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-55"><a href="#cb11-55"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-55"><a href="#cb11-55"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-nominal-reference" class="level3">
 <h3 class="anchored" data-anchor-id="derive-nominal-reference">Derive Nominal Reference</h3>
 <p>For nominal relative times we calculate the nominal relative time to reference dose <code>NRRLT</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a></span>
 <span id="cb12-3"><a href="#cb12-3"></a>adpc_nrrlt <span class="ot">&lt;-</span> adpc_arrlt <span class="sc">%&gt;%</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">mutate</span>(</span>
@@ -935,13 +939,13 @@ cookieconsent.run({
 <span id="cb12-11"><a href="#cb12-11"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
 <span id="cb12-12"><a href="#cb12-12"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_next</span>
 <span id="cb12-13"><a href="#cb12-13"></a>    )</span>
-<span id="cb12-14"><a href="#cb12-14"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-14"><a href="#cb12-14"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-610f4c6e1c6af652f1c2" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-610f4c6e1c6af652f1c2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose",null,"5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","0-6h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3501e1fb70303fad35e7c76488077a28"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-143a913283cd735704e6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-143a913283cd735704e6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose",null,"5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","0-6h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3501e1fb70303fad35e7c76488077a28"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -949,7 +953,7 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="derive-analysis-variables">Derive Analysis Variables</h3>
 <p>Here we derive the analysis variables such as <code>AVAL</code> and <code>ATPTREF</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb13-3"><a href="#cb13-3"></a>    <span class="at">PARCAT1 =</span> PCSPEC,</span>
 <span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">ATPTN =</span> <span class="fu">case_when</span>(</span>
@@ -1011,14 +1015,14 @@ cookieconsent.run({
 <span id="cb13-60"><a href="#cb13-60"></a>    <span class="at">SRCDOM =</span> DOMAIN,</span>
 <span id="cb13-61"><a href="#cb13-61"></a>    <span class="at">SRCVAR =</span> <span class="st">"SEQ"</span>,</span>
 <span id="cb13-62"><a href="#cb13-62"></a>    <span class="at">SRCSEQ =</span> <span class="fu">coalesce</span>(PCSEQ, EXSEQ)</span>
-<span id="cb13-63"><a href="#cb13-63"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-63"><a href="#cb13-63"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-dtype-copy-records" class="level3">
 <h3 class="anchored" data-anchor-id="derive-dtype-copy-records">Derive DTYPE Copy Records</h3>
 <p>The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the “Day 2” dose.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> NXRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> EVID <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISIT_next)) <span class="sc">%&gt;%</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">select</span>(<span class="sc">-</span>PCRFTDT, <span class="sc">-</span>PCRFTTM) <span class="sc">%&gt;%</span></span>
 <span id="cb14-4"><a href="#cb14-4"></a>  <span class="co"># Re-derive variables in for DTYPE copy records</span></span>
@@ -1036,13 +1040,13 @@ cookieconsent.run({
 <span id="cb14-16"><a href="#cb14-16"></a>    <span class="at">DTYPE =</span> <span class="st">"COPY"</span></span>
 <span id="cb14-17"><a href="#cb14-17"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb14-18"><a href="#cb14-18"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-19"><a href="#cb14-19"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-19"><a href="#cb14-19"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-eb3d7811ff7ea92f172f" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-eb3d7811ff7ea92f172f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1033","01-701-1033","01-701-1034","01-701-1034","01-701-1097","01-701-1097","01-701-1111","01-701-1111"],"DTYPE":["COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY"],"BASETYPE":["Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline"],"ATPT":["Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose"],"NFRLT":[24,48,24,48,24,48,24,48,24,48],"NRRLT":[0,0,0,0,0,0,0,0,0,0],"AFRLT":[24,48,24,48,24,48,24,48,24,48],"ARRLT":[0,0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"431852373cb20ca810176b4add98f60b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-52c355ed917ee8c09744" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-52c355ed917ee8c09744">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1033","01-701-1033","01-701-1034","01-701-1034","01-701-1097","01-701-1097","01-701-1111","01-701-1111"],"DTYPE":["COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY"],"BASETYPE":["Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline"],"ATPT":["Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose"],"NFRLT":[24,48,24,48,24,48,24,48,24,48],"NRRLT":[0,0,0,0,0,0,0,0,0,0],"AFRLT":[24,48,24,48,24,48,24,48,24,48],"ARRLT":[0,0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"431852373cb20ca810176b4add98f60b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1050,27 +1054,27 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="combine-original-and-dtype-copy">Combine Original and DTYPE Copy</h3>
 <p>Now the duplicated records are combined with the original records.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">arrange</span>(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) <span class="sc">%&gt;%</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb15-4"><a href="#cb15-4"></a>    <span class="co"># Derive MRRLT, ANL01FL and ANL02FL</span></span>
 <span id="cb15-5"><a href="#cb15-5"></a>    <span class="at">MRRLT =</span> <span class="fu">if_else</span>(ARRLT <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, ARRLT),</span>
 <span id="cb15-6"><a href="#cb15-6"></a>    <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
 <span id="cb15-7"><a href="#cb15-7"></a>    <span class="at">ANL02FL =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(DTYPE), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>),</span>
-<span id="cb15-8"><a href="#cb15-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-8"><a href="#cb15-8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-1058dc84f3543564ecc1" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-1058dc84f3543564ecc1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DTYPE":[null,null,null,null,null,null,null,null,null,null],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"AFRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6],"ARRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"e0346e8c37687b52a531e1c551b74c31"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ecc3351ddf5dfa1526e0" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ecc3351ddf5dfa1526e0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DTYPE":[null,null,null,null,null,null,null,null,null,null],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"AFRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6],"ARRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"e0346e8c37687b52a531e1c551b74c31"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
 <section id="derive-base-and-chg" class="level3">
 <h3 class="anchored" data-anchor-id="derive-base-and-chg">Derive BASE and CHG</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
 <span id="cb16-2"><a href="#cb16-2"></a></span>
 <span id="cb16-3"><a href="#cb16-3"></a>adpc_base <span class="ot">&lt;-</span> adpc_dtype <span class="sc">%&gt;%</span></span>
 <span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">derive_var_base</span>(</span>
@@ -1080,14 +1084,14 @@ cookieconsent.run({
 <span id="cb16-8"><a href="#cb16-8"></a>    <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
 <span id="cb16-9"><a href="#cb16-9"></a>  )</span>
 <span id="cb16-10"><a href="#cb16-10"></a></span>
-<span id="cb16-11"><a href="#cb16-11"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-11"><a href="#cb16-11"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-param-with-metatools" class="level3">
 <h3 class="anchored" data-anchor-id="derive-param-with-metatools">Derive <code>PARAM</code> with <code>{metatools}</code></h3>
 <p>Here we derive <code>PARAM</code> and <code>PARAMN</code> using <code>create_var_from_codelist()</code> from <code>{metatools}</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># ---- Add ASEQ ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># ---- Add ASEQ ----</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a></span>
 <span id="cb17-3"><a href="#cb17-3"></a>adpc_aseq <span class="ot">&lt;-</span> adpc_chg <span class="sc">%&gt;%</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="co"># Calculate ASEQ</span></span>
@@ -1099,14 +1103,14 @@ cookieconsent.run({
 <span id="cb17-10"><a href="#cb17-10"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb17-11"><a href="#cb17-11"></a>  <span class="co"># Derive PARAM and PARAMN using metatools</span></span>
 <span id="cb17-12"><a href="#cb17-12"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAM) <span class="sc">%&gt;%</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-additional-baselines" class="level3">
 <h3 class="anchored" data-anchor-id="derive-additional-baselines">Derive Additional Baselines</h3>
 <p>Here we derive additional baseline values from <code>VS</code> for baseline height <code>HTBL</code> and weight <code>WTBL</code> and compute the body mass index (BMI) with <code>compute_bmi()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a>adpc_baselines <span class="ot">&lt;-</span> adpc_aseq <span class="sc">%&gt;%</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">derive_vars_merged</span>(</span>
@@ -1124,13 +1128,13 @@ cookieconsent.run({
 <span id="cb18-16"><a href="#cb18-16"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb18-17"><a href="#cb18-17"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
 <span id="cb18-18"><a href="#cb18-18"></a>    <span class="at">BMIBLU =</span> <span class="st">"kg/m^2"</span></span>
-<span id="cb18-19"><a href="#cb18-19"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-19"><a href="#cb18-19"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-5735c2c5212052e89237" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-5735c2c5212052e89237">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"HTBL":[177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8],"HTBLU":["cm","cm","cm","cm","cm","cm","cm","cm","cm","cm"],"WTBL":[99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34],"WTBLU":["kg","kg","kg","kg","kg","kg","kg","kg","kg","kg"],"BMIBL":[31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012],"BMIBLU":["kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2"],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"AVAL":[0,54,0.101566224882241,0.546901773708848,0.925465387145289,1.18750587834024,1.36888944661923,1.68314757616444,24.9423721084785,1.75529231526602]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"HTBL","name":"HTBL","type":"numeric"},{"id":"HTBLU","name":"HTBLU","type":"character"},{"id":"WTBL","name":"WTBL","type":"numeric"},{"id":"WTBLU","name":"WTBLU","type":"character"},{"id":"BMIBL","name":"BMIBL","type":"numeric"},{"id":"BMIBLU","name":"BMIBLU","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"252b014b619b307bb602891bfafff61d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f31b741abd77c8dd1165" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f31b741abd77c8dd1165">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"HTBL":[177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8],"HTBLU":["cm","cm","cm","cm","cm","cm","cm","cm","cm","cm"],"WTBL":[99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34],"WTBLU":["kg","kg","kg","kg","kg","kg","kg","kg","kg","kg"],"BMIBL":[31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012],"BMIBLU":["kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2"],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"AVAL":[0,54,0.101566224882241,0.546901773708848,0.925465387145289,1.18750587834024,1.36888944661923,1.68314757616444,24.9423721084785,1.75529231526602]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"HTBL","name":"HTBL","type":"numeric"},{"id":"HTBLU","name":"HTBLU","type":"character"},{"id":"WTBL","name":"WTBL","type":"numeric"},{"id":"WTBLU","name":"WTBLU","type":"character"},{"id":"BMIBL","name":"BMIBL","type":"numeric"},{"id":"BMIBLU","name":"BMIBLU","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"252b014b619b307bb602891bfafff61d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1138,14 +1142,14 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="combine-with-adsl">Combine with ADSL</h3>
 <p>If needed, the other <code>ADSL</code> variables can now be added:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="co"># Add all ADSL variables</span></span>
 <span id="cb19-4"><a href="#cb19-4"></a>adpc_prefinal <span class="ot">&lt;-</span> adpc_baselines <span class="sc">%&gt;%</span></span>
 <span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb19-6"><a href="#cb19-6"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
 <span id="cb19-7"><a href="#cb19-7"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb19-8"><a href="#cb19-8"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-8"><a href="#cb19-8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -1153,20 +1157,20 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="check-data-with-metacore-and-metatools">Check Data With metacore and metatools</h2>
 <p>We use <code>{metacore}</code> objects with <code>{metatools}</code> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>adpc <span class="ot">&lt;-</span> adpc_prefinal <span class="sc">%&gt;%</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
 <span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
 <span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
 <span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="apply-labels-and-formats-with-xportr" class="level2">
 <h2 class="anchored" data-anchor-id="apply-labels-and-formats-with-xportr">Apply Labels and Formats with xportr</h2>
 <p>Using <code>{xportr}</code> we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <code>xportr::xportr_write()</code> to produce the XPT file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a></span>
 <span id="cb21-3"><a href="#cb21-3"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
 <span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADPC"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
@@ -1174,7 +1178,7 @@ cookieconsent.run({
 <span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
 <span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
 <span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -1247,13 +1251,14 @@ cookieconsent.run({
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1658,7 +1663,7 @@ cookieconsent.run({
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">---</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="an">title:</span><span class="co"> "ADPC"</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a><span class="an">order:</span><span class="co"> 2</span></span>
 <span id="cb22-4"><a href="#cb22-4"></a><span class="co">---</span></span>
@@ -2318,7 +2323,7 @@ cookieconsent.run({
 <span id="cb22-694"><a href="#cb22-694"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
 <span id="cb22-695"><a href="#cb22-695"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span>
 <span id="cb22-696"><a href="#cb22-696"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

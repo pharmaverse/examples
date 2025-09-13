@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0fc7f89cd81c0f6e166e2bc634ac0977.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-4cfb3c00dfef90e5e7d2ce1bd2ba59a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-0fc7f89cd81c0f6e166e2bc634ac0977.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-40d89bb591a00718f56eed152327b24b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-16c38ef323c91df2fcb9210df4c3f7ae.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-40d89bb591a00718f56eed152327b24b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -306,6 +307,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -355,7 +358,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -573,11 +577,11 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="execution">Execution</h3>
 <p>Each package differs notably in the approach to generating a log file. The <code>logr</code> package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the <code>logrx</code> package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission. <code>whirl</code> also provides a single function to create log files, and it should be noted that the execution is done through <a href="https://quarto.org">Quarto</a>, which enables the HTML reports, but also make it more heavier on external dependencies.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><code>whirl</code></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href=""><code>whirl</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># file: script.R</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># file: script.R</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(logr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
@@ -597,11 +601,11 @@ cookieconsent.run({
 <span id="cb1-18"><a href="#cb1-18"></a></span>
 <span id="cb1-19"><a href="#cb1-19"></a><span class="fu">log_print</span>(model)</span>
 <span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="fu">log_close</span>() <span class="co"># log file path: log/script.log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="fu">log_close</span>() <span class="co"># log file path: log/script.log</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>=========================================================================</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>=========================================================================</span>
 <span id="cb2-2"><a href="#cb2-2"></a>Log Path: ./log/script.log</span>
 <span id="cb2-3"><a href="#cb2-3"></a>Working Directory: /Users/davidblair/My Drive/Appsilon/Work Projects/examples</span>
 <span id="cb2-4"><a href="#cb2-4"></a>User Name: davidblair</span>
@@ -645,20 +649,20 @@ cookieconsent.run({
 <span id="cb2-42"><a href="#cb2-42"></a>=========================================================================</span>
 <span id="cb2-43"><a href="#cb2-43"></a>Log End Time: 2024-04-08 13:25:53.286294</span>
 <span id="cb2-44"><a href="#cb2-44"></a>Log Elapsed Time: 0 00:00:00</span>
-<span id="cb2-45"><a href="#cb2-45"></a>=========================================================================</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-45"><a href="#cb2-45"></a>=========================================================================</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>From the R terminal:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>logrx<span class="sc">::</span><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>logrx<span class="sc">::</span><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From the Command Line:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('script.R')"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('script.R')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-2"><a href="#cb5-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb5-3"><a href="#cb5-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-4"><a href="#cb5-4"></a>This log was generated using logrx 0.3.0</span>
@@ -841,13 +845,13 @@ cookieconsent.run({
 <span id="cb5-181"><a href="#cb5-181"></a>-                               Log Output File                                -</span>
 <span id="cb5-182"><a href="#cb5-182"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-183"><a href="#cb5-183"></a>Log name: script.log</span>
-<span id="cb5-184"><a href="#cb5-184"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-184"><a href="#cb5-184"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>Use <code>whirl::run()</code> to execute scripts and create logs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"logging/script.R"</span>, <span class="at">summary_file =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"logging/script.R"</span>, <span class="at">summary_file =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ script.R: Completed succesfully. See log html.</code></pre>
 </div>
@@ -996,15 +1000,15 @@ cookieconsent.run({
 <h3 class="anchored" data-anchor-id="linting">Linting</h3>
 <p>The <code>logrx</code> tool enables the inclusion of <code>lintR</code> output within log messages (line 146 - 165 below). To utilize this feature, configure the <code>log.rx.lint</code> global option with a selection of lint rules. A comprehensive list of available rules can be accessed <a href="https://lintr.r-lib.org/reference/linters.html">here</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">options</span>(<span class="at">log.rx.lint =</span> <span class="fu">list</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">options</span>(<span class="at">log.rx.lint =</span> <span class="fu">list</span>(</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  lintr<span class="sc">::</span><span class="fu">line_length_linter</span>(<span class="dv">20</span>)</span>
 <span id="cb8-3"><a href="#cb8-3"></a>))</span>
 <span id="cb8-4"><a href="#cb8-4"></a></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="fu">library</span>(logrx)</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-2"><a href="#cb9-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb9-3"><a href="#cb9-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-4"><a href="#cb9-4"></a>This log was generated using logrx 0.3.0</span>
@@ -1215,14 +1219,14 @@ cookieconsent.run({
 <span id="cb9-209"><a href="#cb9-209"></a>-                               Log Output File                                -</span>
 <span id="cb9-210"><a href="#cb9-210"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-211"><a href="#cb9-211"></a>Log name: script.log</span>
-<span id="cb9-212"><a href="#cb9-212"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-212"><a href="#cb9-212"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="global-options" class="level3">
 <h3 class="anchored" data-anchor-id="global-options">Global Options</h3>
 <p>We’ve previously discussed the global options in the <code>logrx</code> package that enable the inclusion of <code>lintr</code> output in the log. There are several key differences between the global options in <code>logrx</code> and <code>whirl</code>, and those in <code>logr</code>. The options in <code>logr</code> primarily focus on managing script output, whereas those in <code>logrx</code> and <code>whirl</code> influence the scope of information included, regardless of the script output.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false"><code>whirl</code></a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href=""><code>whirl</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <ol type="1">
@@ -1260,25 +1264,25 @@ cookieconsent.run({
 <p><code>logrx</code> features the ability to designate approved functions, highlighting any functions in the script not on this list within the log file. This enhances traceability of package and function use within a validated environment.</p>
 <p>To utilize this feature, begin by creating a list of approved functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>approved_pkgs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>approved_pkgs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="at">base =</span> <span class="st">"mean"</span>,</span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="at">dplyr =</span> <span class="st">"All"</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, build the <code>approved_pkgs</code> list and save its contents to a file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(logrx)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">build_approved</span>(approved_pkgs, <span class="at">file =</span> <span class="st">"approved.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(logrx)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">build_approved</span>(approved_pkgs, <span class="at">file =</span> <span class="st">"approved.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Finally, assign the file to the global option <code>log.rx.approved</code>. This ensures the analysis is incorporated into the log (refer to lines 140 - 145 below):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">options</span>(<span class="at">log.rv.approved =</span> <span class="st">"approved.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">options</span>(<span class="at">log.rv.approved =</span> <span class="st">"approved.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-2"><a href="#cb14-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb14-3"><a href="#cb14-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-4"><a href="#cb14-4"></a>This log was generated using logrx 0.3.0</span>
@@ -1494,7 +1498,7 @@ cookieconsent.run({
 <span id="cb14-214"><a href="#cb14-214"></a>-                               Log Output File                                -</span>
 <span id="cb14-215"><a href="#cb14-215"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-216"><a href="#cb14-216"></a>Log name: script.log</span>
-<span id="cb14-217"><a href="#cb14-217"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-217"><a href="#cb14-217"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="run-multiple-scripts" class="level3">
@@ -1502,7 +1506,7 @@ cookieconsent.run({
 <p>A key functionality <code>whirl</code> is to support the execution of entire analysis projects. It is possible to define batches of scripts to run simultaneously, and the order in which the different steps should be executed.</p>
 <p>It is all controlled by a yaml configuration file (use <a href="https://novonordisk-opensource.github.io/whirl/reference/use_whirl.html"><code>whirl::use_whirl()</code></a> to get started) such as the one below:</p>
 <p><code>_whirl.yml</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Initial step"</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"setup.R"</span></span>
@@ -1512,11 +1516,11 @@ cookieconsent.run({
 <span id="cb15-8"><a href="#cb15-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"prgB.R"</span></span>
 <span id="cb15-9"><a href="#cb15-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Run all programs with 2 prefix"</span></span>
 <span id="cb15-10"><a href="#cb15-10"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2_*.R"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2_*.R"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here three steps are defined, where the first step is to run <code>setup.R</code>. After this we want to run <code>prgA.R</code> and <code>prgB.R</code> simultaneously, and after these two have finished we run all R scripts starting with <code>2_</code> (imagine they depend on previous output from e.g.&nbsp;<code>prgA.R</code>).</p>
 <p>To run all steps you just call <code>run()</code> with the configuration file as input:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"_whirl.yml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"_whirl.yml"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this scenario it becomes relevant to check the summary log as well (defaults to <code>summary.html</code>), which have the execution status of each script, and a link to the individual logs.</p>
 </section>
@@ -1594,13 +1598,14 @@ cookieconsent.run({
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -2005,7 +2010,7 @@ cookieconsent.run({
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="an">title:</span><span class="co"> "The Difference Between `logr`, `logrx`, and `whirl`"</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="an">format:</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="co">  html:</span></span>
@@ -2929,7 +2934,7 @@ cookieconsent.run({
 <span id="cb17-942"><a href="#cb17-942"></a><span class="in">`whirl`</span> creates detailed logs with similar information as <span class="in">`logrx`</span>, but by also including the script and it's printed outputs it allows the user to</span>
 <span id="cb17-943"><a href="#cb17-943"></a>include any additional information in the log, or to use <span class="in">`run()`</span> to create analysis reports directly that also includes relevant information on the execution environment.</span>
 <span id="cb17-944"><a href="#cb17-944"></a><span class="in">`whirl`</span> also offers a framework for execution of a project consisting of multiple scripts. </span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

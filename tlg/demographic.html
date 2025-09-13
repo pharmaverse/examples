@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -306,6 +307,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -355,7 +358,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -568,7 +572,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
 <p>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
@@ -588,7 +592,7 @@ cookieconsent.run({
 <span id="cb1-18"><a href="#cb1-18"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
 <span id="cb1-19"><a href="#cb1-19"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
 <span id="cb1-20"><a href="#cb1-20"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-21"><a href="#cb1-21"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="gtsummary-cards" class="level2">
@@ -602,7 +606,7 @@ cookieconsent.run({
 <h4 class="anchored" data-anchor-id="ard-table">ARD ➡ Table</h4>
 <p>In the example below, we first build an ARD with the needed summary statistics using {cards}. Then, we use the ARD to build the demographics table with {gtsummary}.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(cards)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(cards)</span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(gtsummary)</span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a></span>
@@ -626,25 +630,25 @@ cookieconsent.run({
 <span id="cb2-22"><a href="#cb2-22"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="sidfelzdee" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sidfelzdee table {
+<div id="fvnevvszez" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fvnevvszez table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sidfelzdee thead, #sidfelzdee tbody, #sidfelzdee tfoot, #sidfelzdee tr, #sidfelzdee td, #sidfelzdee th {
+#fvnevvszez thead, #fvnevvszez tbody, #fvnevvszez tfoot, #fvnevvszez tr, #fvnevvszez td, #fvnevvszez th {
   border-style: none;
 }
 
-#sidfelzdee p {
+#fvnevvszez p {
   margin: 0;
   padding: 0;
 }
 
-#sidfelzdee .gt_table {
+#fvnevvszez .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -670,12 +674,12 @@ cookieconsent.run({
   border-left-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_caption {
+#fvnevvszez .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sidfelzdee .gt_title {
+#fvnevvszez .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -687,7 +691,7 @@ cookieconsent.run({
   border-bottom-width: 0;
 }
 
-#sidfelzdee .gt_subtitle {
+#fvnevvszez .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -699,7 +703,7 @@ cookieconsent.run({
   border-top-width: 0;
 }
 
-#sidfelzdee .gt_heading {
+#fvnevvszez .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -711,13 +715,13 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_bottom_border {
+#fvnevvszez .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_col_headings {
+#fvnevvszez .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -732,7 +736,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_col_heading {
+#fvnevvszez .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -752,7 +756,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#sidfelzdee .gt_column_spanner_outer {
+#fvnevvszez .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -764,15 +768,15 @@ cookieconsent.run({
   padding-right: 4px;
 }
 
-#sidfelzdee .gt_column_spanner_outer:first-child {
+#fvnevvszez .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sidfelzdee .gt_column_spanner_outer:last-child {
+#fvnevvszez .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sidfelzdee .gt_column_spanner {
+#fvnevvszez .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -784,11 +788,11 @@ cookieconsent.run({
   width: 100%;
 }
 
-#sidfelzdee .gt_spanner_row {
+#fvnevvszez .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sidfelzdee .gt_group_heading {
+#fvnevvszez .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -814,7 +818,7 @@ cookieconsent.run({
   text-align: left;
 }
 
-#sidfelzdee .gt_empty_group_heading {
+#fvnevvszez .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -829,15 +833,15 @@ cookieconsent.run({
   vertical-align: middle;
 }
 
-#sidfelzdee .gt_from_md > :first-child {
+#fvnevvszez .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sidfelzdee .gt_from_md > :last-child {
+#fvnevvszez .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sidfelzdee .gt_row {
+#fvnevvszez .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -856,7 +860,7 @@ cookieconsent.run({
   overflow-x: hidden;
 }
 
-#sidfelzdee .gt_stub {
+#fvnevvszez .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -869,7 +873,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#sidfelzdee .gt_stub_row_group {
+#fvnevvszez .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -883,15 +887,15 @@ cookieconsent.run({
   vertical-align: top;
 }
 
-#sidfelzdee .gt_row_group_first td {
+#fvnevvszez .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sidfelzdee .gt_row_group_first th {
+#fvnevvszez .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sidfelzdee .gt_summary_row {
+#fvnevvszez .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -901,16 +905,16 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#sidfelzdee .gt_first_summary_row {
+#fvnevvszez .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_first_summary_row.thick {
+#fvnevvszez .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sidfelzdee .gt_last_summary_row {
+#fvnevvszez .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -920,7 +924,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_grand_summary_row {
+#fvnevvszez .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -930,7 +934,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#sidfelzdee .gt_first_grand_summary_row {
+#fvnevvszez .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -940,7 +944,7 @@ cookieconsent.run({
   border-top-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_last_grand_summary_row_top {
+#fvnevvszez .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -950,11 +954,11 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_striped {
+#fvnevvszez .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sidfelzdee .gt_table_body {
+#fvnevvszez .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -963,7 +967,7 @@ cookieconsent.run({
   border-bottom-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_footnotes {
+#fvnevvszez .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -977,7 +981,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_footnote {
+#fvnevvszez .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -986,7 +990,7 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#sidfelzdee .gt_sourcenotes {
+#fvnevvszez .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1000,7 +1004,7 @@ cookieconsent.run({
   border-right-color: #D3D3D3;
 }
 
-#sidfelzdee .gt_sourcenote {
+#fvnevvszez .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1008,77 +1012,77 @@ cookieconsent.run({
   padding-right: 5px;
 }
 
-#sidfelzdee .gt_left {
+#fvnevvszez .gt_left {
   text-align: left;
 }
 
-#sidfelzdee .gt_center {
+#fvnevvszez .gt_center {
   text-align: center;
 }
 
-#sidfelzdee .gt_right {
+#fvnevvszez .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sidfelzdee .gt_font_normal {
+#fvnevvszez .gt_font_normal {
   font-weight: normal;
 }
 
-#sidfelzdee .gt_font_bold {
+#fvnevvszez .gt_font_bold {
   font-weight: bold;
 }
 
-#sidfelzdee .gt_font_italic {
+#fvnevvszez .gt_font_italic {
   font-style: italic;
 }
 
-#sidfelzdee .gt_super {
+#fvnevvszez .gt_super {
   font-size: 65%;
 }
 
-#sidfelzdee .gt_footnote_marks {
+#fvnevvszez .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sidfelzdee .gt_asterisk {
+#fvnevvszez .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sidfelzdee .gt_indent_1 {
+#fvnevvszez .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sidfelzdee .gt_indent_2 {
+#fvnevvszez .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sidfelzdee .gt_indent_3 {
+#fvnevvszez .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sidfelzdee .gt_indent_4 {
+#fvnevvszez .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sidfelzdee .gt_indent_5 {
+#fvnevvszez .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sidfelzdee .katex-display {
+#fvnevvszez .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sidfelzdee div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#fvnevvszez div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -1216,11 +1220,11 @@ N = 96</th>
 <h4 class="anchored" data-anchor-id="table-ard">Table ➡ ARD</h4>
 <p>One may also build the demographics in the classic way using <code>gtsummary::tbl_summary()</code> from a data frame, then extract the ARD from the table object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># build demographics table directly from a data frame</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># build demographics table directly from a data frame</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># extract ARD from table object</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>{cards} data frame: 162 x 11</code></pre>
 </div>
@@ -1259,14 +1263,14 @@ N = 96</th>
 <p>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <code>adsl</code>.</p>
 <p>Note that <code>{tern}</code> depends on <code>{rtables}</code> so the latter is automatically attached.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tern)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(tern)</span>
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">df_explicit_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">df_explicit_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we create the demographic table.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="st">"Age (yr)"</span>,</span>
 <span id="cb10-4"><a href="#cb10-4"></a>  <span class="st">"Age group"</span>,</span>
@@ -1284,7 +1288,7 @@ N = 96</th>
 <span id="cb10-16"><a href="#cb10-16"></a></span>
 <span id="cb10-17"><a href="#cb10-17"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
 <span id="cb10-18"><a href="#cb10-18"></a></span>
-<span id="cb10-19"><a href="#cb10-19"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-19"><a href="#cb10-19"></a>result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                       Placebo     Xanomeline High Dose   Xanomeline Low Dose   All Patients
                                        (N=86)             (N=72)                (N=96)            (N=254)   
@@ -1381,13 +1385,14 @@ Race
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1792,7 +1797,7 @@ Race
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> "Demographic Table"</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
@@ -1936,7 +1941,7 @@ Race
 <span id="cb12-142"><a href="#cb12-142"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
 <span id="cb12-143"><a href="#cb12-143"></a></span>
 <span id="cb12-144"><a href="#cb12-144"></a>result</span>
-<span id="cb12-145"><a href="#cb12-145"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb12-145"><a href="#cb12-145"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

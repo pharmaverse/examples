@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -314,6 +315,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -363,7 +366,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -576,7 +580,7 @@ cookieconsent.run({
 <h1>Load Packages</h1>
 <p>First, we load the necessary packages required for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(admiralonco)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(metatools)</span>
@@ -585,34 +589,34 @@ cookieconsent.run({
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(stringr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-specifications-for-metacore" class="level1">
 <h1>Load Specifications for Metacore</h1>
 <p>Load the specifications stored in an Excel file into a <code>{metacore}</code> object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-source-datasets" class="level1">
 <h1>Load Source Datasets</h1>
 <p>We load the required SDTM datasets (<code>RS</code>, <code>TU</code>) and ADaM dataset (<code>ADSL</code>) necessary for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
 <span id="cb3-2"><a href="#cb3-2"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
 <span id="cb3-3"><a href="#cb3-3"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
 <span id="cb3-4"><a href="#cb3-4"></a></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Convert blanks to NA</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
-<span id="cb3-7"><a href="#cb3-7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a href="#cb3-7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-8a013dfd7ff0493ee3b9" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8a013dfd7ff0493ee3b9">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-fbdbef894cec79609b53" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fbdbef894cec79609b53">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -620,13 +624,13 @@ cookieconsent.run({
 <h1>Merging ADSL with RS</h1>
 <p>Merge <code>ADSL</code> to the <code>RS</code> domain by selecting only the necessary variables for derivations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  rs,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">dataset_add =</span> adsl,</span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
 <span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pre-processing-of-input-records" class="level1">
@@ -635,7 +639,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="select-overall-response-records-and-set-parameter-details">Select Overall Response Records and Set Parameter Details</h2>
 <p>Filter the <code>RS</code> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
@@ -643,39 +647,39 @@ cookieconsent.run({
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
 <span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="date-imputation-and-deriving-adt-adtf-avisit" class="level2">
 <h2 class="anchored" data-anchor-id="date-imputation-and-deriving-adt-adtf-avisit">Date Imputation and Deriving <code>ADT</code>, <code>ADTF</code>, <code>AVISIT</code></h2>
 <p>Impute missing dates and derive analysis dates and visits.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">derive_vars_dt</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">dtc =</span> RSDTC,</span>
 <span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
 <span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
 <span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
 <span id="cb6-7"><a href="#cb6-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-avalc-and-aval" class="level2">
 <h2 class="anchored" data-anchor-id="derive-avalc-and-aval">Derive <code>AVALC</code> and <code>AVAL</code></h2>
 <p>Populate <code>AVALC</code> with assessed values and create the numeric version <code>AVAL</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
-<span id="cb7-5"><a href="#cb7-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="flag-worst-assessment-at-each-date-anl01fl" class="level2">
 <h2 class="anchored" data-anchor-id="flag-worst-assessment-at-each-date-anl01fl">Flag Worst Assessment at Each Date (<code>ANL01FL</code>)</h2>
 <p>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">case_when</span>(</span>
 <span id="cb8-3"><a href="#cb8-3"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
@@ -697,13 +701,13 @@ cookieconsent.run({
 <span id="cb8-20"><a href="#cb8-20"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
 <span id="cb8-21"><a href="#cb8-21"></a>    ),</span>
 <span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
-<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-38c41a5e972cc3c2e662" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-38c41a5e972cc3c2e662">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-18a21c3692c880fc1740" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-18a21c3692c880fc1740">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -714,7 +718,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="derive-progressive-disease-parameter">Derive Progressive Disease Parameter</h2>
 <p>Use the <code>admiral::derive_extreme_records()</code> function to find the date of first <code>PD</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
 <span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
@@ -733,13 +737,13 @@ cookieconsent.run({
 <span id="cb9-17"><a href="#cb9-17"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
 <span id="cb9-18"><a href="#cb9-18"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
 <span id="cb9-19"><a href="#cb9-19"></a>    )</span>
-<span id="cb9-20"><a href="#cb9-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-20"><a href="#cb9-20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-c9cff967c94b3faf3fd5" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-c9cff967c94b3faf3fd5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b314b9f2d1d01dd5d11e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b314b9f2d1d01dd5d11e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -747,7 +751,7 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="derive-death-parameter">Derive Death Parameter</h2>
 <p>Create a new death parameter using the death date from <code>ADSL</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
 <span id="cb10-4"><a href="#cb10-4"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
@@ -767,14 +771,14 @@ cookieconsent.run({
 <span id="cb10-18"><a href="#cb10-18"></a>      <span class="at">ADT =</span> DTHDT</span>
 <span id="cb10-19"><a href="#cb10-19"></a>    )</span>
 <span id="cb10-20"><a href="#cb10-20"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-last-disease-assessment-parameter" class="level2">
 <h2 class="anchored" data-anchor-id="derive-last-disease-assessment-parameter">Derive Last Disease Assessment Parameter</h2>
 <p>Create a parameter for the last disease assessment.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
@@ -790,13 +794,13 @@ cookieconsent.run({
 <span id="cb11-14"><a href="#cb11-14"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
 <span id="cb11-15"><a href="#cb11-15"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
 <span id="cb11-16"><a href="#cb11-16"></a>    )</span>
-<span id="cb11-17"><a href="#cb11-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-17"><a href="#cb11-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-3660943d079c61459431" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-3660943d079c61459431">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-afba98c1246d7faabf45" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-afba98c1246d7faabf45">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -805,20 +809,20 @@ cookieconsent.run({
 <h1>Apply Metadata and Perform Associated Checks</h1>
 <p>Apply metadata and conduct checks to ensure data quality and compliance.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
 <span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="apply-labels-and-formats-with-xportr" class="level1">
 <h1>Apply Labels and Formats with xportr</h1>
 <p>Finally, apply labels, formats, and export the dataset to an XPT file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
@@ -826,7 +830,7 @@ cookieconsent.run({
 <span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
 <span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
 <span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Variable type mismatches found. ──</code></pre>
 </div>
@@ -912,13 +916,14 @@ Width set to 12 to accommodate.</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1323,7 +1328,7 @@ Width set to 12 to accommodate.</code></pre>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">---</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="an">title:</span><span class="co"> "ADRS"</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="an">order:</span><span class="co"> 4</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a><span class="co">---</span></span>
@@ -1602,7 +1607,7 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-277"><a href="#cb18-277"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
 <span id="cb18-278"><a href="#cb18-278"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
 <span id="cb18-279"><a href="#cb18-279"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span>
-<span id="cb18-280"><a href="#cb18-280"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb18-280"><a href="#cb18-280"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

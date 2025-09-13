@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,18 +71,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-befe23ebd2f54d8af2c8a89d1a1611f1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e926454d62f292b1cd078774094b0840.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-b6a5ab5176c5d844cd5823c27e7fd46d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -314,6 +315,8 @@ cookieconsent.run({
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
@@ -363,7 +366,8 @@ cookieconsent.run({
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -576,21 +580,21 @@ cookieconsent.run({
 <h1>Load Required Packages</h1>
 <p>First, we will load the necessary packages:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(admiralonco)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(metatools)</span>
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(pharmaverseadam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(pharmaverseadam)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-specifications-and-source-data" class="level1">
 <h1>Load Specifications and Source Data</h1>
 <p>We will load our specification file into a <code>{metacore}</code> object to trace the dataset variables and attributes. Then, we will read the source data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load metacore specifications</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load metacore specifications</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADTTE"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4"></a></span>
@@ -598,14 +602,14 @@ cookieconsent.run({
 <span id="cb2-6"><a href="#cb2-6"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
 <span id="cb2-7"><a href="#cb2-7"></a>adrs <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adrs_onco</span>
 <span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a>adrs <span class="ot">&lt;-</span> adrs_onco</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9"></a>adrs <span class="ot">&lt;-</span> adrs_onco</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="define-event-and-censoring-sources" class="level1">
 <h1>Define Event and Censoring Sources</h1>
 <p>We define event and censoring sources using the <code>admiral::event_source()</code> and <code>admiral::censor_source()</code> functions. This forms the basis for calculating time-to-event endpoints. Find other <code>{admiral}</code> functions and related variables by searching <a href="https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html">admiraldiscovery</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Define event and censoring sources</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Define event and censoring sources</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>death_event <span class="ot">&lt;-</span> <span class="fu">event_source</span>(</span>
 <span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">dataset_name =</span> <span class="st">"adrs"</span>,</span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">filter =</span> PARAMCD <span class="sc">==</span> <span class="st">"DEATH"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"Y"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
@@ -660,14 +664,14 @@ cookieconsent.run({
 <span id="cb3-53"><a href="#cb3-53"></a>    <span class="at">SRCDOM =</span> <span class="st">"ADSL"</span>,</span>
 <span id="cb3-54"><a href="#cb3-54"></a>    <span class="at">SRCVAR =</span> <span class="st">"RANDDT"</span></span>
 <span id="cb3-55"><a href="#cb3-55"></a>  )</span>
-<span id="cb3-56"><a href="#cb3-56"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-56"><a href="#cb3-56"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-time-to-event-parameters" class="level1">
 <h1>Derive Time-to-Event Parameters</h1>
 <p>The <code>admiral::derive_param_tte()</code> function is used to derive parameters such as OS (Overall Survival) and PFS (Progression-Free Survival).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Derive Overall Survival (OS)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Derive Overall Survival (OS)</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>adtte <span class="ot">&lt;-</span> <span class="fu">derive_param_tte</span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">dataset_adsl =</span> adsl,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">start_date =</span> RANDDT,</span>
@@ -686,13 +690,13 @@ cookieconsent.run({
 <span id="cb4-17"><a href="#cb4-17"></a>    <span class="at">censor_conditions =</span> <span class="fu">list</span>(lasta_censor, rand_censor),</span>
 <span id="cb4-18"><a href="#cb4-18"></a>    <span class="at">source_datasets =</span> <span class="fu">list</span>(<span class="at">adsl =</span> adsl, <span class="at">adrs =</span> adrs),</span>
 <span id="cb4-19"><a href="#cb4-19"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(<span class="at">PARAMCD =</span> <span class="st">"PFS"</span>, <span class="at">PARAM =</span> <span class="st">"Progression-Free Survival"</span>)</span>
-<span id="cb4-20"><a href="#cb4-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-20"><a href="#cb4-20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-25814628b7de9020da19" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-25814628b7de9020da19">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1097","01-701-1111","01-701-1115","01-701-1118"],"ADT":["2014-07-02","2012-09-02","2014-01-14","2014-04-14","2014-12-30","2013-04-07","2014-07-09","2012-09-17","2013-01-23","2014-09-09"],"EVNTDESC":["Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive"],"SRCDOM":["ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL"],"SRCVAR":["LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT"],"CNSR":[1,1,1,1,1,1,1,1,1,1],"CNSDTDSC":["Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date"],"STARTDT":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12","2014-01-01","2012-09-07","2012-11-30","2014-03-12"],"PARAMCD":["OS","OS","OS","OS","OS","OS","OS","OS","OS","OS"],"PARAM":["Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival"]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"EVNTDESC","name":"EVNTDESC","type":"character"},{"id":"SRCDOM","name":"SRCDOM","type":"character"},{"id":"SRCVAR","name":"SRCVAR","type":"character"},{"id":"CNSR","name":"CNSR","type":"numeric"},{"id":"CNSDTDSC","name":"CNSDTDSC","type":"character"},{"id":"STARTDT","name":"STARTDT","type":"Date"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"PARAM","name":"PARAM","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"fd66ab09566102b1726bc89975e3fe2e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-939350c2abbb8b8be3de" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-939350c2abbb8b8be3de">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1097","01-701-1111","01-701-1115","01-701-1118"],"ADT":["2014-07-02","2012-09-02","2014-01-14","2014-04-14","2014-12-30","2013-04-07","2014-07-09","2012-09-17","2013-01-23","2014-09-09"],"EVNTDESC":["Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive"],"SRCDOM":["ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL"],"SRCVAR":["LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT"],"CNSR":[1,1,1,1,1,1,1,1,1,1],"CNSDTDSC":["Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date"],"STARTDT":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12","2014-01-01","2012-09-07","2012-11-30","2014-03-12"],"PARAMCD":["OS","OS","OS","OS","OS","OS","OS","OS","OS","OS"],"PARAM":["Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival"]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"EVNTDESC","name":"EVNTDESC","type":"character"},{"id":"SRCDOM","name":"SRCDOM","type":"character"},{"id":"SRCVAR","name":"SRCVAR","type":"character"},{"id":"CNSR","name":"CNSR","type":"numeric"},{"id":"CNSDTDSC","name":"CNSDTDSC","type":"character"},{"id":"STARTDT","name":"STARTDT","type":"Date"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"PARAM","name":"PARAM","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"fd66ab09566102b1726bc89975e3fe2e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -700,19 +704,19 @@ cookieconsent.run({
 <h1>Derive Analysis Value (<code>AVAL</code>)</h1>
 <p>The analysis value (<code>AVAL</code>) can be derived by calling the <code>admiral::derive_vars_duration()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Derive analysis value</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Derive analysis value</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>adtte_aval <span class="ot">&lt;-</span> adtte_pfs <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">derive_vars_duration</span>(</span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">new_var =</span> AVAL,</span>
 <span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">start_date =</span> STARTDT,</span>
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">end_date =</span> ADT</span>
-<span id="cb5-7"><a href="#cb5-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e95947c261b5379059cc" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e95947c261b5379059cc">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1097","01-701-1111","01-701-1115","01-701-1118"],"ADT":["2014-07-02","2012-09-02","2014-01-14","2014-04-14","2014-12-30","2013-04-07","2014-07-09","2012-09-17","2013-01-23","2014-09-09"],"EVNTDESC":["Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive"],"SRCDOM":["ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL"],"SRCVAR":["LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT"],"CNSR":[1,1,1,1,1,1,1,1,1,1],"CNSDTDSC":["Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date"],"STARTDT":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12","2014-01-01","2012-09-07","2012-11-30","2014-03-12"],"PARAMCD":["OS","OS","OS","OS","OS","OS","OS","OS","OS","OS"],"PARAM":["Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival"],"AVAL":[182,29,180,28,183,55,190,11,55,182]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"EVNTDESC","name":"EVNTDESC","type":"character"},{"id":"SRCDOM","name":"SRCDOM","type":"character"},{"id":"SRCVAR","name":"SRCVAR","type":"character"},{"id":"CNSR","name":"CNSR","type":"numeric"},{"id":"CNSDTDSC","name":"CNSDTDSC","type":"character"},{"id":"STARTDT","name":"STARTDT","type":"Date"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"PARAM","name":"PARAM","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"cc4bc071988d4f43a9468e3cbd79386f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-17c6f22f18be503246c6" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-17c6f22f18be503246c6">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1097","01-701-1111","01-701-1115","01-701-1118"],"ADT":["2014-07-02","2012-09-02","2014-01-14","2014-04-14","2014-12-30","2013-04-07","2014-07-09","2012-09-17","2013-01-23","2014-09-09"],"EVNTDESC":["Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive","Last Known Alive"],"SRCDOM":["ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL","ADSL"],"SRCVAR":["LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT","LSTALVDT"],"CNSR":[1,1,1,1,1,1,1,1,1,1],"CNSDTDSC":["Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date","Last Known Alive Date"],"STARTDT":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12","2014-01-01","2012-09-07","2012-11-30","2014-03-12"],"PARAMCD":["OS","OS","OS","OS","OS","OS","OS","OS","OS","OS"],"PARAM":["Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival","Overall Survival"],"AVAL":[182,29,180,28,183,55,190,11,55,182]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"EVNTDESC","name":"EVNTDESC","type":"character"},{"id":"SRCDOM","name":"SRCDOM","type":"character"},{"id":"SRCVAR","name":"SRCVAR","type":"character"},{"id":"CNSR","name":"CNSR","type":"numeric"},{"id":"CNSDTDSC","name":"CNSDTDSC","type":"character"},{"id":"STARTDT","name":"STARTDT","type":"Date"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"PARAM","name":"PARAM","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"cc4bc071988d4f43a9468e3cbd79386f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -720,32 +724,32 @@ cookieconsent.run({
 <h1>Derive Analysis Sequence Number (<code>ASEQ</code>)</h1>
 <p>We derive the sequence number for each record to uniquely identify them using the <code>admiral::derive_var_obs_number()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Derive analysis sequence number</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Derive analysis sequence number</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>adtte_aseq <span class="ot">&lt;-</span> adtte_aval <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">derive_var_obs_number</span>(</span>
 <span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
 <span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(PARAMCD),</span>
 <span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="add-adsl-variables" class="level1">
 <h1>Add ADSL Variables</h1>
 <p>Additional variables from the <code>ADSL</code> dataset are merged into the <code>ADTTE</code> dataset using the <code>admiral::derive_vars_merged()</code> function to enrich it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Add ADSL variables</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Add ADSL variables</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>adtte_adsl <span class="ot">&lt;-</span> adtte_aseq <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">dataset_add =</span> adsl,</span>
 <span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb7-6"><a href="#cb7-6"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="apply-metadata-and-esub-checks" class="level1">
 <h1>Apply Metadata and eSub Checks</h1>
 <p>We use <code>{metatools}</code> and <code>{xportr}</code> to perform checks, apply metadata such as types, lengths, labels, and write the dataset to an XPT file.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Apply metadata and perform checks</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Apply metadata and perform checks</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>adtte_adsl_checked <span class="ot">&lt;-</span> adtte_adsl <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span></span>
@@ -763,7 +767,7 @@ cookieconsent.run({
 <span id="cb8-16"><a href="#cb8-16"></a></span>
 <span id="cb8-17"><a href="#cb8-17"></a><span class="co"># Write dataset to XPT file (optional)</span></span>
 <span id="cb8-18"><a href="#cb8-18"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="fu">xportr_write</span>(adtte_final, <span class="fu">file.path</span>(dir, <span class="st">"adtte.xpt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-19"><a href="#cb8-19"></a><span class="fu">xportr_write</span>(adtte_final, <span class="fu">file.path</span>(dir, <span class="st">"adtte.xpt"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -836,13 +840,14 @@ cookieconsent.run({
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1247,7 +1252,7 @@ cookieconsent.run({
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">---</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="an">title:</span><span class="co"> "ADTTE"</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="an">order:</span><span class="co"> 5</span></span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="co">---</span></span>
@@ -1466,7 +1471,7 @@ cookieconsent.run({
 <span id="cb9-227"><a href="#cb9-227"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
 <span id="cb9-228"><a href="#cb9-228"></a><span class="fu">xportr_write</span>(adtte_final, <span class="fu">file.path</span>(dir, <span class="st">"adtte.xpt"</span>))</span>
 <span id="cb9-229"><a href="#cb9-229"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
