@@ -76,7 +76,6 @@ print_df(ae_raw, n = 5)
 
 Controlled Terminology is part of the SDTM specification and it is prepared by the user.  In this example, the study controlled terminology name is `sdtm_ct.csv`. Users can read it from the package using the below code:
 ```{r, echo = TRUE}
-# TODO: update file path when the file is moved to the correct folder
 study_ct <- read.csv("metadata/sdtm_ct.csv")
 ```
 

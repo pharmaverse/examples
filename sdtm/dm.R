@@ -27,7 +27,6 @@ ec_raw <- ec_raw %>%
   )
 
 ## ----r, echo = TRUE-----------------------------------------------------------
-# TODO: update file path when the file is moved to the correct folder
 study_ct <- read.csv("metadata/sdtm_ct.csv")
 
 ## ----r------------------------------------------------------------------------
