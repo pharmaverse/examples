@@ -16,7 +16,9 @@ source("functions/print_df.R")
 
 This article describes how to create a demographics(DM) domain using the {sdtm.oak} package.
 
-Before reading this article, it is recommended that users review the "Creating an Interventions Domain" article[here]https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html, which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
+Before reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts:
+[Algorithms & Sub-Algorithms](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html),
+[Creating an Interventions Domain](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html), which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
 
 In this article, we will dive directly into programming and provide further explanation only where it is required.
 
@@ -46,22 +48,34 @@ ds_raw <- pharmaverseraw::ds_raw
 ec_raw <- pharmaverseraw::ec_raw
 ```
 
-Demographics Raw dataset. The mock up of the CRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Demographics_aCRF.pdf):
+
+#### Demographics Raw dataset. 
+
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(dm_raw, n = 5)
 ```
 
 
-Disposition Raw dataset. The mock up of the CRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Exposure_as_collected_aCRF.pdf)
+#### Disposition Raw dataset. 
+
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(ds_raw, n = 5)
 ```
 
 
-Study Drug Administration Raw dataset. The mock up of the CRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Subject_Disposition_aCRF.pdf)
+#### Study Drug Administration Raw dataset. 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(ec_raw, n = 5)
 ```
+
+#### SDTM aCRF
+SDTM annotated aCRF for the raw datasets are below: 
+
+[Demographics aCRF](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Demographics_aCRF.pdf)
+
+ [Exposure_as_collected aCRF](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Exposure_as_collected_aCRF.pdf)
+ 
+[Subject_Disposition_aCRF](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Subject_Disposition_aCRF.pdf)
 
 ## Create oak_id_vars {#oakidvars}
 

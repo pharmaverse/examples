@@ -58,7 +58,7 @@ print_df(vs_raw, n = 5)
 ```
 
 ### SDTM aCRF
-SDTM annotated CRF for the vs_raw can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/VitalSigns_eCRF.pdf):
+SDTM annotated CRF for the vs_raw can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/VitalSigns_aCRF.pdf):
 
 ## Create oak_id_vars {#oakidvars}
 

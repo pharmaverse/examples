@@ -16,7 +16,9 @@ source("functions/print_df.R")
 
 This article describes how to create an events SDTM domain using the {sdtm.oak} package. Examples are currently presented and tested in the context of the AE domain.
 
-Before reading this article, it is recommended that users review the "Creating an Interventions Domain" article[here]https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html, which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
+Before reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts:
+[Algorithms & Sub-Algorithms](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html),
+[Creating an Interventions Domain](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html), which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
 
 In this article, we will dive directly into programming and provide further explanation only where it is required.
 
@@ -46,7 +48,7 @@ library(dplyr)
 ae_raw <- pharmaverseraw::ae_raw
 ```
 
-Adverse Events Raw dataset. The mock up of the CRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/AdverseEvent_aCRF.pdf):
+Adverse Events Raw dataset. 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(ae_raw, n = 5)
 ```
@@ -57,6 +59,10 @@ Read in the DM domain
 ```{r}
 dm <- pharmaversesdtm::dm
 ```
+
+### SDTM aCRF
+
+The mock up of the Adverse Events aCRF can be viewed [here](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/AdverseEvent_aCRF.pdf):
 
 ## Create oak_id_vars {#oakidvars}
 
