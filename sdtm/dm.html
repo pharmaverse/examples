@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DM – pharmaverse examples</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../sdtm/vs.html" rel="next">
+<link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en-US"
+  });
+});
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
+
+<link rel="stylesheet" href="../assets/css/style.scss">
+<meta property="og:title" content="DM – pharmaverse examples">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/sdtm/assets/img/Pharmaverse_examples.png">
+<meta property="og:site_name" content="pharmaverse examples">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pharmaverse examples</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/dm.html">DM</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">SDTM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">DM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/vs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AE</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">ADaM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adppk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPPK</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adrs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADRS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adtte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADTTE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/advs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADVS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADAE</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">TLG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demographic Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/adverse_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adverse Events</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/pharmacokinetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmacokinetic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interactive</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>teal</code> applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">eSubmission</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">eSubmission</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session Info</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://pharmaverse.org/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmaverse Home</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/dm.html">DM</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">DM</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This article describes how to create a demographics (<code>DM</code>) domain using the <code>{sdtm.oak}</code> package.</p>
+<p>Before reading this article, it is recommended that users review some of the articles in the package documentation of <code>{sdtm.oak}</code> to understand some of the key concepts: <a href="https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html">Algorithms &amp; Sub-Algorithms</a>, <a href="https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html">Creating an Interventions Domain</a>, which provides a detailed explanation of various concepts in {sdtm.oak}, such as <code>oak_id_vars</code>, <code>condition_add</code>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</p>
+<p>In this article, we will dive directly into programming and provide further explanation only where it is required.</p>
+</section>
+<section id="programming-workflow" class="level1">
+<h1>Programming workflow</h1>
+<ul>
+<li><a href="#readdata">Read in data</a></li>
+<li><a href="#oakidvars">Create oak_id_vars</a></li>
+<li><a href="#readct">Read in CT</a></li>
+<li><a href="#refdates">Create reference dates configuration file</a></li>
+<li><a href="#maptopic">Map Topic Variable</a></li>
+<li><a href="#maprest">Map Rest of the Variables</a></li>
+<li><a href="#mapvars">Map Reference Date Variables</a></li>
+<li><a href="#derivedvars">Create SDTM derived variables</a></li>
+<li><a href="#attributes">Add Labels and Attributes</a></li>
+</ul>
+<section id="readdata" class="level2">
+<h2 class="anchored" data-anchor-id="readdata">Read in data</h2>
+<p>Read all the raw datasets into the environment. In this example, the raw datasets needed are <code>ec_raw</code>, <code>ds_raw</code> and <code>dm_raw</code>. Users can read them from the <code>{pharmaverseraw}</code> package using the below code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>dm_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>dm_raw</span>
+<span id="cb1-6"><a href="#cb1-6"></a>ds_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ds_raw</span>
+<span id="cb1-7"><a href="#cb1-7"></a>ec_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ec_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="demographics-raw-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="demographics-raw-dataset.">Demographics Raw dataset.</h4>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-8efc72ea688856343263" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8efc72ea688856343263">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034"],"IT.AGE":[63,64,71,74,77],"IT.SEX":["Female","Male","Male","Male","Female"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"c4fe1b375e6fec837d580905a834f82c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="disposition-raw-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="disposition-raw-dataset.">Disposition Raw dataset.</h4>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-fa58f93415c8871d3107" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fa58f93415c8871d3107">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"SITENM":["CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT"],"INSTANCE":["Baseline","Week 26","Week 26","Baseline","Week 4"],"FORM":["DISC1","DISC1","DISC1","DISC1","DISC1"],"FORML":["Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition"],"IT.DSTERM":["Randomized","Protocol Completed",null,"Randomized","Adverse Event"],"IT.DSDECOD":["Randomized","Completed",null,"Randomized","Adverse Event"],"OTHERSP":[null,null,"Final Lab Visit",null,null],"DSDTCOL":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DSTMCOL":[null,null,"11:45",null,null],"IT.DSSTDAT":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DEATHDT":[null,null,null,null,null]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"SITENM","name":"SITENM","type":"character"},{"id":"INSTANCE","name":"INSTANCE","type":"character"},{"id":"FORM","name":"FORM","type":"character"},{"id":"FORML","name":"FORML","type":"character"},{"id":"IT.DSTERM","name":"IT.DSTERM","type":"character"},{"id":"IT.DSDECOD","name":"IT.DSDECOD","type":"character"},{"id":"OTHERSP","name":"OTHERSP","type":"character"},{"id":"DSDTCOL","name":"DSDTCOL","type":"character"},{"id":"DSTMCOL","name":"DSTMCOL","type":"character"},{"id":"IT.DSSTDAT","name":"IT.DSSTDAT","type":"character"},{"id":"DEATHDT","name":"DEATHDT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"46c2cd4ff04b1bfb287fba288bf3dd25"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="study-drug-administration-raw-dataset." class="level4">
+<h4 class="anchored" data-anchor-id="study-drug-administration-raw-dataset.">Study Drug Administration Raw dataset.</h4>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-5e37b99fb1bd6b1ae02e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-5e37b99fb1bd6b1ae02e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"VISITNAME":["Baseline","Week 2","Week 24","Baseline","Week 2"],"FOLDER":["EC","EC","EC","EC","EC"],"FOLDERL":["Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected"],"IT.ECREFID":["123","123","123","123","123"],"DRUGAD":["PLACEBO","PLACEBO","PLACEBO","PLACEBO","PLACEBO"],"IT.ECSTDAT":["02-Jan-2014","17-Jan-2014","19-Jun-2014","05-Aug-2012","28-Aug-2012"],"IT.ECENDAT":["16-Jan-2014","18-Jun-2014","02-Jul-2014","27-Aug-2012","01-Sep-2012"],"IT.ECDSTXT":[0,0,0,0,0],"IT.ECDOSU":["Milligram","Milligram","Milligram","Milligram","Milligram"],"DOSFM":["patch","patch","patch","patch","patch"],"DOSFRQ":["Daily","Daily","Daily","Daily","Daily"],"IT.ECROUTE":["Transdermal","Transdermal","Transdermal","Transdermal","Transdermal"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"VISITNAME","name":"VISITNAME","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.ECREFID","name":"IT.ECREFID","type":"character"},{"id":"DRUGAD","name":"DRUGAD","type":"character"},{"id":"IT.ECSTDAT","name":"IT.ECSTDAT","type":"character"},{"id":"IT.ECENDAT","name":"IT.ECENDAT","type":"character"},{"id":"IT.ECDSTXT","name":"IT.ECDSTXT","type":"numeric"},{"id":"IT.ECDOSU","name":"IT.ECDOSU","type":"character"},{"id":"DOSFM","name":"DOSFM","type":"character"},{"id":"DOSFRQ","name":"DOSFRQ","type":"character"},{"id":"IT.ECROUTE","name":"IT.ECROUTE","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"947bf2fe6cbd20916ae868dba1d811c0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="sdtm-acrf" class="level4">
+<h4 class="anchored" data-anchor-id="sdtm-acrf">SDTM aCRF</h4>
+<p>SDTM annotated aCRF for the raw datasets are below:</p>
+<p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Demographics_aCRF.pdf">Demographics aCRF</a></p>
+<p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Exposure_as_collected_aCRF.pdf">Exposure_as_collected aCRF</a></p>
+<p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Subject_Disposition_aCRF.pdf">Subject_Disposition_aCRF</a></p>
+</section>
+</section>
+<section id="oakidvars" class="level2">
+<h2 class="anchored" data-anchor-id="oakidvars">Create oak_id_vars</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dm_raw <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">raw_src =</span> <span class="st">"dm_raw"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  )</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>ds_raw <span class="ot">&lt;-</span> ds_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">raw_src =</span> <span class="st">"ds_raw"</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a>ec_raw <span class="ot">&lt;-</span> ec_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>    <span class="at">raw_src =</span> <span class="st">"ec_raw"</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For example, Demographics Raw dataset with <code>oak_id_vars</code></p>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-63a8ca13a60d2d804a06" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-63a8ca13a60d2d804a06">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"IT.AGE":[63,64,71,74,77,85,59,68,81,84],"IT.SEX":["Female","Male","Male","Male","Female","Female","Female","Male","Female","Male"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White","White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014","01/22/2013","12/20/2013","12/23/2013","08/25/2012","11/23/2012"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014","02/05/2013",null,"12/25/2013","08/31/2012","11/23/2012"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7eb3db5a9035010b593829824b5c7862"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="readct" class="level2">
+<h2 class="anchored" data-anchor-id="readct">Read in CT</h2>
+<p>Controlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is <code>sdtm_ct.csv</code>. Users can read it from the package using the below code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-8b13a6d0b79a4928011a" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8b13a6d0b79a4928011a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="refdates" class="level2">
+<h2 class="anchored" data-anchor-id="refdates">Create reference dates configuration file</h2>
+<p>Create reference date configuration file, a data frame which has the details of the variables to be used for the calculation of reference dates. The data frame should have columns listed below:</p>
+<ul>
+<li><strong><code>raw_dataset_name</code></strong>: Name of the raw dataset.<br>
+</li>
+<li><strong><code>date_var</code></strong>: Date variable name from the raw dataset.<br>
+</li>
+<li><strong><code>time_var</code></strong>: Time variable name from the raw dataset.<br>
+</li>
+<li><strong><code>dformat</code></strong>: Format of the date collected in raw data.<br>
+</li>
+<li><strong><code>tformat</code></strong>: Format of the time collected in raw data.<br>
+</li>
+<li><strong><code>sdtm_var_name</code></strong>: Reference date variable name in <code>DM</code> domain where the raw variable is used.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ref_date_conf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="sc">~</span>raw_dataset_name, <span class="sc">~</span>date_var,     <span class="sc">~</span>time_var,      <span class="sc">~</span>dformat,      <span class="sc">~</span>tformat, <span class="sc">~</span>sdtm_var_name,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECSTDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECENDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECSTDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFSTDTC"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECENDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFENDTC"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="st">"dm_raw"</span>,            <span class="st">"IC_DT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFICDTC"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DSDTCOL"</span>,     <span class="st">"DSTMCOL"</span>,  <span class="st">"mm-dd-yyyy"</span>,         <span class="st">"H:M"</span>,     <span class="st">"RFPENDTC"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DEATHDT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,       <span class="st">"DTHDTC"</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-e4e8fa928ef87179787f" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e4e8fa928ef87179787f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"raw_dataset_name":["ec_raw","ec_raw","ec_raw","ec_raw","dm_raw","ds_raw","ds_raw"],"date_var":["IT.ECSTDAT","IT.ECENDAT","IT.ECSTDAT","IT.ECENDAT","IC_DT","DSDTCOL","DEATHDT"],"time_var":[null,null,null,null,null,"DSTMCOL",null],"dformat":["dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","mm/dd/yyyy","mm-dd-yyyy","mm/dd/yyyy"],"tformat":[null,null,null,null,null,"H:M",null],"sdtm_var_name":["RFXSTDTC","RFXENDTC","RFSTDTC","RFENDTC","RFICDTC","RFPENDTC","DTHDTC"]},"columns":[{"id":"raw_dataset_name","name":"raw_dataset_name","type":"character"},{"id":"date_var","name":"date_var","type":"character"},{"id":"time_var","name":"time_var","type":"character"},{"id":"dformat","name":"dformat","type":"character"},{"id":"tformat","name":"tformat","type":"character"},{"id":"sdtm_var_name","name":"sdtm_var_name","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6437e736656a5f4a189d517fc70a3e1e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="maptopic" class="level2">
+<h2 class="anchored" data-anchor-id="maptopic">Map Topic Variable</h2>
+<p>In <code>DM</code> domain, <code>SUBJID</code> is the topic variable and it can be mapped from <code>PATNUM</code> using a simple <code>dplyr::mutate()</code> statement.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dm <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">SUBJID =</span> <span class="fu">substr</span>(PATNUM, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">select</span>(oak_id, raw_source, patient_number, SUBJID)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-bf7ca1b834b913802f07" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bf7ca1b834b913802f07">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"aafd3398d8052903a335ec5aa8c71f3f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="maprest" class="level2">
+<h2 class="anchored" data-anchor-id="maprest">Map Rest of the Variables</h2>
+<p>Map rest of the variables in <code>DM</code> domain using either <code>sdtm.oak::assign_no_ct()</code> or <code>sdtm.oak::assign_ct()</code> depending on if the variable has controlled terminologies associated.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="co"># Map AGE using assign_no_ct</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AGE"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">tgt_var =</span> <span class="st">"AGE"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="co"># Map AGEU using hardcode_ct</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-12"><a href="#cb6-12"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AGE"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    <span class="at">tgt_var =</span> <span class="st">"AGEU"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="at">tgt_val =</span> <span class="st">"Year"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="at">ct_clst =</span> <span class="st">"C66781"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-18"><a href="#cb6-18"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>  <span class="co"># Map SEX using assign_ct</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="at">raw_var =</span> <span class="st">"IT.SEX"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23"></a>    <span class="at">tgt_var =</span> <span class="st">"SEX"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="at">ct_clst =</span> <span class="st">"C66731"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-27"><a href="#cb6-27"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  <span class="co"># Map ETHNIC using assign_ct</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-30"><a href="#cb6-30"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="at">raw_var =</span> <span class="st">"IT.ETHNIC"</span>,</span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="at">tgt_var =</span> <span class="st">"ETHNIC"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>    <span class="at">ct_clst =</span> <span class="st">"C66790"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-36"><a href="#cb6-36"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>  <span class="co"># Map RACE using assign_ct</span></span>
+<span id="cb6-38"><a href="#cb6-38"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-39"><a href="#cb6-39"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-40"><a href="#cb6-40"></a>    <span class="at">raw_var =</span> <span class="st">"IT.RACE"</span>,</span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="at">tgt_var =</span> <span class="st">"RACE"</span>,</span>
+<span id="cb6-42"><a href="#cb6-42"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    <span class="at">ct_clst =</span> <span class="st">"C74457"</span>,</span>
+<span id="cb6-44"><a href="#cb6-44"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-45"><a href="#cb6-45"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-46"><a href="#cb6-46"></a>  <span class="co"># Map ARM using assign_ct</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-48"><a href="#cb6-48"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-49"><a href="#cb6-49"></a>    <span class="at">raw_var =</span> <span class="st">"PLANNED_ARM"</span>,</span>
+<span id="cb6-50"><a href="#cb6-50"></a>    <span class="at">tgt_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb6-51"><a href="#cb6-51"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-52"><a href="#cb6-52"></a>    <span class="at">ct_clst =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb6-53"><a href="#cb6-53"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-54"><a href="#cb6-54"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-55"><a href="#cb6-55"></a>  <span class="co"># Map ARMCD using assign_no_ct</span></span>
+<span id="cb6-56"><a href="#cb6-56"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-57"><a href="#cb6-57"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-58"><a href="#cb6-58"></a>    <span class="at">raw_var =</span> <span class="st">"PLANNED_ARMCD"</span>,</span>
+<span id="cb6-59"><a href="#cb6-59"></a>    <span class="at">tgt_var =</span> <span class="st">"ARMCD"</span>,</span>
+<span id="cb6-60"><a href="#cb6-60"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-61"><a href="#cb6-61"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-62"><a href="#cb6-62"></a>  <span class="co"># Map ACTARM using assign_ct</span></span>
+<span id="cb6-63"><a href="#cb6-63"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-64"><a href="#cb6-64"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-65"><a href="#cb6-65"></a>    <span class="at">raw_var =</span> <span class="st">"ACTUAL_ARM"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66"></a>    <span class="at">tgt_var =</span> <span class="st">"ACTARM"</span>,</span>
+<span id="cb6-67"><a href="#cb6-67"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-68"><a href="#cb6-68"></a>    <span class="at">ct_clst =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb6-69"><a href="#cb6-69"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-70"><a href="#cb6-70"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-71"><a href="#cb6-71"></a>  <span class="co"># Map ACTARMCD using assign_no_ct</span></span>
+<span id="cb6-72"><a href="#cb6-72"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-73"><a href="#cb6-73"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb6-74"><a href="#cb6-74"></a>    <span class="at">raw_var =</span> <span class="st">"ACTUAL_ARMCD"</span>,</span>
+<span id="cb6-75"><a href="#cb6-75"></a>    <span class="at">tgt_var =</span> <span class="st">"ACTARMCD"</span>,</span>
+<span id="cb6-76"><a href="#cb6-76"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-77"><a href="#cb6-77"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>ℹ These terms could not be mapped per the controlled terminology: "Placebo" and "Screen Failure".
+ℹ These terms could not be mapped per the controlled terminology: "Placebo" and "Screen Failure".</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-368b94644570997b9cca" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-368b94644570997b9cca">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6cf8e68bcdd9b55507e6d378b9be6cdb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="mapvars" class="level2">
+<h2 class="anchored" data-anchor-id="mapvars">Map Reference Date Variables</h2>
+<p>Use <code>sdtm.oak::oak_cal_ref_dates()</code> to calculate reference dates variables in ISO 8601 format. The function takes the raw variable names from reference date configuration file, and calculated the minimum or maximum dates based upon the <code>min_max</code> parameter.</p>
+<p>Variable <code>RFSTDTC</code> is the reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. So as specified in the reference date configuration file, we need to calculate the minimum date of the <code>IT.ECSTDAT</code> for each subject from the <code>ec_raw</code> dataset. Therefore, in <code>min_max</code> parameter, “min” is selected for the calculation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="co"># Derive RFSTDTC using oak_cal_ref_dates</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">der_var =</span> <span class="st">"RFSTDTC"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb8-9"><a href="#cb8-9"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb8-10"><a href="#cb8-10"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb8-11"><a href="#cb8-11"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    )</span>
+<span id="cb8-13"><a href="#cb8-13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Variable <code>RFENDTC</code> is the Reference end date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. As specified in the reference date configuration file, we need to calculate the maximum date of the <code>IT.ECENDAT</code> for each subject from the <code>ec_raw</code> dataset. Therefore, in <code>min_max</code> parameter, “max” is selected for the calculation.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># Derive RFENDTC using oak_cal_ref_dates</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">der_var =</span> <span class="st">"RFENDTC"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb9-9"><a href="#cb9-9"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb9-10"><a href="#cb9-10"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb9-11"><a href="#cb9-11"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb9-12"><a href="#cb9-12"></a>    )</span>
+<span id="cb9-13"><a href="#cb9-13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-8fa6312ee08e8b03af06" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8fa6312ee08e8b03af06">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"9485cbfd292adebf6ecadc115e95e045"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>The same derivation logic is applicable to other reference date/time variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="co"># Derive RFXSTDTC using oak_cal_ref_dates</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">der_var =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb10-9"><a href="#cb10-9"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    )</span>
+<span id="cb10-13"><a href="#cb10-13"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="co"># Derive RFXENDTC using oak_cal_ref_dates</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">der_var =</span> <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb10-21"><a href="#cb10-21"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb10-22"><a href="#cb10-22"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb10-23"><a href="#cb10-23"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb10-24"><a href="#cb10-24"></a>    )</span>
+<span id="cb10-25"><a href="#cb10-25"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a>  <span class="co"># Derive RFICDTC using oak_cal_ref_dates</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb10-28"><a href="#cb10-28"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb10-29"><a href="#cb10-29"></a>    <span class="at">der_var =</span> <span class="st">"RFICDTC"</span>,</span>
+<span id="cb10-30"><a href="#cb10-30"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb10-31"><a href="#cb10-31"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb10-32"><a href="#cb10-32"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb10-33"><a href="#cb10-33"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb10-34"><a href="#cb10-34"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb10-35"><a href="#cb10-35"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb10-36"><a href="#cb10-36"></a>    )</span>
+<span id="cb10-37"><a href="#cb10-37"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-38"><a href="#cb10-38"></a>  <span class="co"># Derive RFPENDTC using oak_cal_ref_dates</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb10-40"><a href="#cb10-40"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb10-41"><a href="#cb10-41"></a>    <span class="at">der_var =</span> <span class="st">"RFPENDTC"</span>,</span>
+<span id="cb10-42"><a href="#cb10-42"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb10-43"><a href="#cb10-43"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb10-44"><a href="#cb10-44"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb10-45"><a href="#cb10-45"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb10-46"><a href="#cb10-46"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb10-47"><a href="#cb10-47"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb10-48"><a href="#cb10-48"></a>    )</span>
+<span id="cb10-49"><a href="#cb10-49"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-50"><a href="#cb10-50"></a>  <span class="co"># Map DTHDTC using oak_cal_ref_dates</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb10-52"><a href="#cb10-52"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb10-53"><a href="#cb10-53"></a>    <span class="at">der_var =</span> <span class="st">"DTHDTC"</span>,</span>
+<span id="cb10-54"><a href="#cb10-54"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb10-55"><a href="#cb10-55"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb10-56"><a href="#cb10-56"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb10-57"><a href="#cb10-57"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb10-58"><a href="#cb10-58"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb10-59"><a href="#cb10-59"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb10-60"><a href="#cb10-60"></a>    )</span>
+<span id="cb10-61"><a href="#cb10-61"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="derivedvars" class="level2">
+<h2 class="anchored" data-anchor-id="derivedvars">Create SDTM derived variables</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">STUDYID =</span> dm_raw<span class="sc">$</span>STUDY,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">DOMAIN =</span> <span class="st">"DM"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, dm_raw<span class="sc">$</span>PATNUM),</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">COUNTRY =</span> dm_raw<span class="sc">$</span>COUNTRY,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">DTHFL =</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(<span class="fu">is.na</span>(DTHDTC), <span class="cn">NA_character_</span>, <span class="st">"Y"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a>  <span class="co"># Map DMDTC using assign_datetime</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="at">raw_var =</span> <span class="st">"COL_DT"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13"></a>    <span class="at">tgt_var =</span> <span class="st">"DMDTC"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb11-15"><a href="#cb11-15"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb11-16"><a href="#cb11-16"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>  <span class="co"># Derive study day</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb11-19"><a href="#cb11-19"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb11-20"><a href="#cb11-20"></a>    <span class="at">dm_domain =</span> .,</span>
+<span id="cb11-21"><a href="#cb11-21"></a>    <span class="at">tgdt =</span> <span class="st">"DMDTC"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23"></a>    <span class="at">study_day_var =</span> <span class="st">"DMDY"</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0927788305cb60f8b1ff" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0927788305cb60f8b1ff">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFXSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFXENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFICDTC":["2013-12-26","2012-07-29","2013-07-12","2014-03-11","2014-06-24","2013-02-05",null,"2013-12-25","2012-08-31","2012-11-23"],"RFPENDTC":["2014-07-02T11:45","2012-09-02T10:15","2014-01-14T11:10","2014-04-14T10:38","2014-12-30T09:50","2013-04-07T11:20",null,"2014-07-09T09:39","2012-09-17T11:48","2013-01-23T12:13"],"DTHDTC":[null,null,null,null,null,null,null,null,null,null],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["DM","DM","DM","DM","DM","DM","DM","DM","DM","DM"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097","01-701-1111","01-701-1115"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"DTHFL":[null,null,null,null,null,null,null,null,null,null],"DMDTC":["2013-12-26","2012-07-22","2013-07-11","2014-03-10","2014-06-24","2013-01-22","2013-12-20","2013-12-23","2012-08-25","2012-11-23"],"DMDY":[-7,-14,-8,-8,-7,-21,"NA",-9,-13,-7]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"},{"id":"RFXSTDTC","name":"RFXSTDTC","type":"Date"},{"id":"RFXENDTC","name":"RFXENDTC","type":"iso8601"},{"id":"RFICDTC","name":"RFICDTC","type":"iso8601"},{"id":"RFPENDTC","name":"RFPENDTC","type":"character"},{"id":"DTHDTC","name":"DTHDTC","type":"iso8601"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"DTHFL","name":"DTHFL","type":"character"},{"id":"DMDTC","name":"DMDTC","type":"Date"},{"id":"DMDY","name":"DMDY","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3e30e50f2202fba9639d46004c72a3b7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="attributes" class="level2">
+<h2 class="anchored" data-anchor-id="attributes">Add Labels and Attributes</h2>
+<p>Yet to be developed. Please refer to <code>{metatools}</code> package to investigate options.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../sdtm/vs.html" class="pagination-link" aria-label="VS">
+        <span class="nav-page-text">VS</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> "DM"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb12-8"><a href="#cb12-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>}</span>
+<span id="cb12-11"><a href="#cb12-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="in">```</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="fu"># Introduction</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a>This article describes how to create a demographics (<span class="in">`DM`</span>) domain using the <span class="in">`{sdtm.oak}`</span> package.</span>
+<span id="cb12-18"><a href="#cb12-18"></a></span>
+<span id="cb12-19"><a href="#cb12-19"></a>Before reading this article, it is recommended that users review some of the articles in the package documentation of <span class="in">`{sdtm.oak}`</span> to understand some of the key concepts:</span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="co">[</span><span class="ot">Algorithms &amp; Sub-Algorithms</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html)</span>,</span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="co">[</span><span class="ot">Creating an Interventions Domain</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html)</span>, which provides a detailed explanation of various concepts in {sdtm.oak}, such as <span class="in">`oak_id_vars`</span>, <span class="in">`condition_add`</span>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</span>
+<span id="cb12-22"><a href="#cb12-22"></a></span>
+<span id="cb12-23"><a href="#cb12-23"></a>In this article, we will dive directly into programming and provide further explanation only where it is required.</span>
+<span id="cb12-24"><a href="#cb12-24"></a></span>
+<span id="cb12-25"><a href="#cb12-25"></a><span class="fu"># Programming workflow</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a></span>
+<span id="cb12-27"><a href="#cb12-27"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in data</span><span class="co">](#readdata)</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create oak_id_vars</span><span class="co">](#oakidvars)</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in CT</span><span class="co">](#readct)</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create reference dates configuration file</span><span class="co">](#refdates)</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Topic Variable</span><span class="co">](#maptopic)</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Rest of the Variables</span><span class="co">](#maprest)</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Reference Date Variables</span><span class="co">](#mapvars)</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create SDTM derived variables</span><span class="co">](#derivedvars)</span></span>
+<span id="cb12-35"><a href="#cb12-35"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Add Labels and Attributes</span><span class="co">](#attributes)</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a></span>
+<span id="cb12-37"><a href="#cb12-37"></a><span class="fu">## Read in data {#readdata}</span></span>
+<span id="cb12-38"><a href="#cb12-38"></a></span>
+<span id="cb12-39"><a href="#cb12-39"></a>Read all the raw datasets into the environment. In this example, the raw datasets needed are <span class="in">`ec_raw`</span>, <span class="in">`ds_raw`</span> and <span class="in">`dm_raw`</span>. Users can read them from the <span class="in">`{pharmaverseraw}`</span> package using the below code:</span>
+<span id="cb12-40"><a href="#cb12-40"></a></span>
+<span id="cb12-41"><a href="#cb12-41"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb12-43"><a href="#cb12-43"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb12-44"><a href="#cb12-44"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-45"><a href="#cb12-45"></a></span>
+<span id="cb12-46"><a href="#cb12-46"></a>dm_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>dm_raw</span>
+<span id="cb12-47"><a href="#cb12-47"></a>ds_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ds_raw</span>
+<span id="cb12-48"><a href="#cb12-48"></a>ec_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ec_raw</span>
+<span id="cb12-49"><a href="#cb12-49"></a><span class="in">```</span></span>
+<span id="cb12-50"><a href="#cb12-50"></a></span>
+<span id="cb12-51"><a href="#cb12-51"></a></span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="fu">#### Demographics Raw dataset. </span></span>
+<span id="cb12-53"><a href="#cb12-53"></a></span>
+<span id="cb12-54"><a href="#cb12-54"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-55"><a href="#cb12-55"></a><span class="fu">print_df</span>(dm_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-56"><a href="#cb12-56"></a><span class="in">```</span></span>
+<span id="cb12-57"><a href="#cb12-57"></a></span>
+<span id="cb12-58"><a href="#cb12-58"></a></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">#### Disposition Raw dataset. </span></span>
+<span id="cb12-60"><a href="#cb12-60"></a></span>
+<span id="cb12-61"><a href="#cb12-61"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-62"><a href="#cb12-62"></a><span class="fu">print_df</span>(ds_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-63"><a href="#cb12-63"></a><span class="in">```</span></span>
+<span id="cb12-64"><a href="#cb12-64"></a></span>
+<span id="cb12-65"><a href="#cb12-65"></a></span>
+<span id="cb12-66"><a href="#cb12-66"></a><span class="fu">#### Study Drug Administration Raw dataset. </span></span>
+<span id="cb12-67"><a href="#cb12-67"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-68"><a href="#cb12-68"></a><span class="fu">print_df</span>(ec_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-69"><a href="#cb12-69"></a><span class="in">```</span></span>
+<span id="cb12-70"><a href="#cb12-70"></a></span>
+<span id="cb12-71"><a href="#cb12-71"></a><span class="fu">#### SDTM aCRF</span></span>
+<span id="cb12-72"><a href="#cb12-72"></a>SDTM annotated aCRF for the raw datasets are below: </span>
+<span id="cb12-73"><a href="#cb12-73"></a></span>
+<span id="cb12-74"><a href="#cb12-74"></a><span class="co">[</span><span class="ot">Demographics aCRF</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Demographics_aCRF.pdf)</span></span>
+<span id="cb12-75"><a href="#cb12-75"></a></span>
+<span id="cb12-76"><a href="#cb12-76"></a> <span class="co">[</span><span class="ot">Exposure_as_collected aCRF</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Exposure_as_collected_aCRF.pdf)</span></span>
+<span id="cb12-77"><a href="#cb12-77"></a> </span>
+<span id="cb12-78"><a href="#cb12-78"></a><span class="co">[</span><span class="ot">Subject_Disposition_aCRF</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Subject_Disposition_aCRF.pdf)</span></span>
+<span id="cb12-79"><a href="#cb12-79"></a></span>
+<span id="cb12-80"><a href="#cb12-80"></a><span class="fu">## Create oak_id_vars {#oakidvars}</span></span>
+<span id="cb12-81"><a href="#cb12-81"></a></span>
+<span id="cb12-84"><a href="#cb12-84"></a><span class="in">```{r}</span></span>
+<span id="cb12-85"><a href="#cb12-85"></a>dm_raw <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<span id="cb12-86"><a href="#cb12-86"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb12-87"><a href="#cb12-87"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb12-88"><a href="#cb12-88"></a>    <span class="at">raw_src =</span> <span class="st">"dm_raw"</span></span>
+<span id="cb12-89"><a href="#cb12-89"></a>  )</span>
+<span id="cb12-90"><a href="#cb12-90"></a></span>
+<span id="cb12-91"><a href="#cb12-91"></a>ds_raw <span class="ot">&lt;-</span> ds_raw <span class="sc">%&gt;%</span></span>
+<span id="cb12-92"><a href="#cb12-92"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb12-93"><a href="#cb12-93"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb12-94"><a href="#cb12-94"></a>    <span class="at">raw_src =</span> <span class="st">"ds_raw"</span></span>
+<span id="cb12-95"><a href="#cb12-95"></a>  )</span>
+<span id="cb12-96"><a href="#cb12-96"></a></span>
+<span id="cb12-97"><a href="#cb12-97"></a>ec_raw <span class="ot">&lt;-</span> ec_raw <span class="sc">%&gt;%</span></span>
+<span id="cb12-98"><a href="#cb12-98"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb12-99"><a href="#cb12-99"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb12-100"><a href="#cb12-100"></a>    <span class="at">raw_src =</span> <span class="st">"ec_raw"</span></span>
+<span id="cb12-101"><a href="#cb12-101"></a>  )</span>
+<span id="cb12-102"><a href="#cb12-102"></a><span class="in">```</span></span>
+<span id="cb12-103"><a href="#cb12-103"></a></span>
+<span id="cb12-104"><a href="#cb12-104"></a>For example, Demographics Raw dataset with <span class="in">`oak_id_vars`</span></span>
+<span id="cb12-105"><a href="#cb12-105"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-106"><a href="#cb12-106"></a><span class="fu">print_df</span>(dm_raw, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-107"><a href="#cb12-107"></a><span class="in">```</span></span>
+<span id="cb12-108"><a href="#cb12-108"></a></span>
+<span id="cb12-109"><a href="#cb12-109"></a><span class="fu">## Read in CT {#readct}</span></span>
+<span id="cb12-110"><a href="#cb12-110"></a></span>
+<span id="cb12-111"><a href="#cb12-111"></a>Controlled Terminology is part of the SDTM specification and it is prepared by the user.  In this example, the study controlled terminology name is <span class="in">`sdtm_ct.csv`</span>. Users can read it from the package using the below code:</span>
+<span id="cb12-112"><a href="#cb12-112"></a><span class="in">```{r, echo = TRUE}</span></span>
+<span id="cb12-113"><a href="#cb12-113"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span>
+<span id="cb12-114"><a href="#cb12-114"></a><span class="in">```</span></span>
+<span id="cb12-115"><a href="#cb12-115"></a></span>
+<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-117"><a href="#cb12-117"></a><span class="fu">print_df</span>(study_ct, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-118"><a href="#cb12-118"></a><span class="in">```</span></span>
+<span id="cb12-119"><a href="#cb12-119"></a></span>
+<span id="cb12-120"><a href="#cb12-120"></a><span class="fu">## Create reference dates configuration file {#refdates}</span></span>
+<span id="cb12-121"><a href="#cb12-121"></a></span>
+<span id="cb12-122"><a href="#cb12-122"></a>Create reference date configuration file, a data frame which has the details of the variables to be used for the calculation of reference dates. The data frame should have columns listed below:</span>
+<span id="cb12-123"><a href="#cb12-123"></a></span>
+<span id="cb12-124"><a href="#cb12-124"></a><span class="ss">- </span>**`raw_dataset_name`**: Name of the raw dataset.  </span>
+<span id="cb12-125"><a href="#cb12-125"></a><span class="ss">- </span>**`date_var`**: Date variable name from the raw dataset.  </span>
+<span id="cb12-126"><a href="#cb12-126"></a><span class="ss">- </span>**`time_var`**: Time variable name from the raw dataset.  </span>
+<span id="cb12-127"><a href="#cb12-127"></a><span class="ss">- </span>**`dformat`**: Format of the date collected in raw data.  </span>
+<span id="cb12-128"><a href="#cb12-128"></a><span class="ss">- </span>**`tformat`**: Format of the time collected in raw data.  </span>
+<span id="cb12-129"><a href="#cb12-129"></a><span class="ss">- </span>**`sdtm_var_name`**: Reference date variable name in <span class="in">`DM`</span> domain where the raw variable is used.  </span>
+<span id="cb12-130"><a href="#cb12-130"></a></span>
+<span id="cb12-133"><a href="#cb12-133"></a><span class="in">```{r}</span></span>
+<span id="cb12-134"><a href="#cb12-134"></a>ref_date_conf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb12-135"><a href="#cb12-135"></a>  <span class="sc">~</span>raw_dataset_name, <span class="sc">~</span>date_var,     <span class="sc">~</span>time_var,      <span class="sc">~</span>dformat,      <span class="sc">~</span>tformat, <span class="sc">~</span>sdtm_var_name,</span>
+<span id="cb12-136"><a href="#cb12-136"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECSTDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb12-137"><a href="#cb12-137"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECENDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb12-138"><a href="#cb12-138"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECSTDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFSTDTC"</span>,</span>
+<span id="cb12-139"><a href="#cb12-139"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECENDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFENDTC"</span>,</span>
+<span id="cb12-140"><a href="#cb12-140"></a>  <span class="st">"dm_raw"</span>,            <span class="st">"IC_DT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFICDTC"</span>,</span>
+<span id="cb12-141"><a href="#cb12-141"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DSDTCOL"</span>,     <span class="st">"DSTMCOL"</span>,  <span class="st">"mm-dd-yyyy"</span>,         <span class="st">"H:M"</span>,     <span class="st">"RFPENDTC"</span>,</span>
+<span id="cb12-142"><a href="#cb12-142"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DEATHDT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,       <span class="st">"DTHDTC"</span></span>
+<span id="cb12-143"><a href="#cb12-143"></a>)</span>
+<span id="cb12-144"><a href="#cb12-144"></a><span class="in">```</span></span>
+<span id="cb12-145"><a href="#cb12-145"></a></span>
+<span id="cb12-146"><a href="#cb12-146"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-147"><a href="#cb12-147"></a><span class="fu">print_df</span>(ref_date_conf_df)</span>
+<span id="cb12-148"><a href="#cb12-148"></a><span class="in">```</span></span>
+<span id="cb12-149"><a href="#cb12-149"></a></span>
+<span id="cb12-150"><a href="#cb12-150"></a><span class="fu">## Map Topic Variable {#maptopic}</span></span>
+<span id="cb12-151"><a href="#cb12-151"></a></span>
+<span id="cb12-152"><a href="#cb12-152"></a>In <span class="in">`DM`</span> domain, <span class="in">`SUBJID`</span> is the topic variable and it can be mapped from <span class="in">`PATNUM`</span> using a simple <span class="in">`dplyr::mutate()`</span> statement.</span>
+<span id="cb12-153"><a href="#cb12-153"></a></span>
+<span id="cb12-156"><a href="#cb12-156"></a><span class="in">```{r}</span></span>
+<span id="cb12-157"><a href="#cb12-157"></a>dm <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<span id="cb12-158"><a href="#cb12-158"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-159"><a href="#cb12-159"></a>    <span class="at">SUBJID =</span> <span class="fu">substr</span>(PATNUM, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<span id="cb12-160"><a href="#cb12-160"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-161"><a href="#cb12-161"></a>  <span class="fu">select</span>(oak_id, raw_source, patient_number, SUBJID)</span>
+<span id="cb12-162"><a href="#cb12-162"></a><span class="in">```</span></span>
+<span id="cb12-163"><a href="#cb12-163"></a></span>
+<span id="cb12-164"><a href="#cb12-164"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-165"><a href="#cb12-165"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-166"><a href="#cb12-166"></a><span class="in">```</span></span>
+<span id="cb12-167"><a href="#cb12-167"></a></span>
+<span id="cb12-168"><a href="#cb12-168"></a><span class="fu">## Map Rest of the Variables {#maprest}</span></span>
+<span id="cb12-169"><a href="#cb12-169"></a></span>
+<span id="cb12-170"><a href="#cb12-170"></a>Map rest of the variables in <span class="in">`DM`</span> domain using either <span class="in">`sdtm.oak::assign_no_ct()`</span> or <span class="in">`sdtm.oak::assign_ct()`</span> depending</span>
+<span id="cb12-171"><a href="#cb12-171"></a>on if the variable has controlled terminologies associated.</span>
+<span id="cb12-172"><a href="#cb12-172"></a></span>
+<span id="cb12-175"><a href="#cb12-175"></a><span class="in">```{r}</span></span>
+<span id="cb12-176"><a href="#cb12-176"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb12-177"><a href="#cb12-177"></a>  <span class="co"># Map AGE using assign_no_ct</span></span>
+<span id="cb12-178"><a href="#cb12-178"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb12-179"><a href="#cb12-179"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-180"><a href="#cb12-180"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AGE"</span>,</span>
+<span id="cb12-181"><a href="#cb12-181"></a>    <span class="at">tgt_var =</span> <span class="st">"AGE"</span>,</span>
+<span id="cb12-182"><a href="#cb12-182"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-183"><a href="#cb12-183"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-184"><a href="#cb12-184"></a>  <span class="co"># Map AGEU using hardcode_ct</span></span>
+<span id="cb12-185"><a href="#cb12-185"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb12-186"><a href="#cb12-186"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-187"><a href="#cb12-187"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AGE"</span>,</span>
+<span id="cb12-188"><a href="#cb12-188"></a>    <span class="at">tgt_var =</span> <span class="st">"AGEU"</span>,</span>
+<span id="cb12-189"><a href="#cb12-189"></a>    <span class="at">tgt_val =</span> <span class="st">"Year"</span>,</span>
+<span id="cb12-190"><a href="#cb12-190"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-191"><a href="#cb12-191"></a>    <span class="at">ct_clst =</span> <span class="st">"C66781"</span>,</span>
+<span id="cb12-192"><a href="#cb12-192"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-193"><a href="#cb12-193"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-194"><a href="#cb12-194"></a>  <span class="co"># Map SEX using assign_ct</span></span>
+<span id="cb12-195"><a href="#cb12-195"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb12-196"><a href="#cb12-196"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-197"><a href="#cb12-197"></a>    <span class="at">raw_var =</span> <span class="st">"IT.SEX"</span>,</span>
+<span id="cb12-198"><a href="#cb12-198"></a>    <span class="at">tgt_var =</span> <span class="st">"SEX"</span>,</span>
+<span id="cb12-199"><a href="#cb12-199"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-200"><a href="#cb12-200"></a>    <span class="at">ct_clst =</span> <span class="st">"C66731"</span>,</span>
+<span id="cb12-201"><a href="#cb12-201"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-202"><a href="#cb12-202"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-203"><a href="#cb12-203"></a>  <span class="co"># Map ETHNIC using assign_ct</span></span>
+<span id="cb12-204"><a href="#cb12-204"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb12-205"><a href="#cb12-205"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-206"><a href="#cb12-206"></a>    <span class="at">raw_var =</span> <span class="st">"IT.ETHNIC"</span>,</span>
+<span id="cb12-207"><a href="#cb12-207"></a>    <span class="at">tgt_var =</span> <span class="st">"ETHNIC"</span>,</span>
+<span id="cb12-208"><a href="#cb12-208"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-209"><a href="#cb12-209"></a>    <span class="at">ct_clst =</span> <span class="st">"C66790"</span>,</span>
+<span id="cb12-210"><a href="#cb12-210"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-211"><a href="#cb12-211"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-212"><a href="#cb12-212"></a>  <span class="co"># Map RACE using assign_ct</span></span>
+<span id="cb12-213"><a href="#cb12-213"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb12-214"><a href="#cb12-214"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-215"><a href="#cb12-215"></a>    <span class="at">raw_var =</span> <span class="st">"IT.RACE"</span>,</span>
+<span id="cb12-216"><a href="#cb12-216"></a>    <span class="at">tgt_var =</span> <span class="st">"RACE"</span>,</span>
+<span id="cb12-217"><a href="#cb12-217"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-218"><a href="#cb12-218"></a>    <span class="at">ct_clst =</span> <span class="st">"C74457"</span>,</span>
+<span id="cb12-219"><a href="#cb12-219"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-220"><a href="#cb12-220"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-221"><a href="#cb12-221"></a>  <span class="co"># Map ARM using assign_ct</span></span>
+<span id="cb12-222"><a href="#cb12-222"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb12-223"><a href="#cb12-223"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-224"><a href="#cb12-224"></a>    <span class="at">raw_var =</span> <span class="st">"PLANNED_ARM"</span>,</span>
+<span id="cb12-225"><a href="#cb12-225"></a>    <span class="at">tgt_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb12-226"><a href="#cb12-226"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-227"><a href="#cb12-227"></a>    <span class="at">ct_clst =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb12-228"><a href="#cb12-228"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-229"><a href="#cb12-229"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-230"><a href="#cb12-230"></a>  <span class="co"># Map ARMCD using assign_no_ct</span></span>
+<span id="cb12-231"><a href="#cb12-231"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb12-232"><a href="#cb12-232"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-233"><a href="#cb12-233"></a>    <span class="at">raw_var =</span> <span class="st">"PLANNED_ARMCD"</span>,</span>
+<span id="cb12-234"><a href="#cb12-234"></a>    <span class="at">tgt_var =</span> <span class="st">"ARMCD"</span>,</span>
+<span id="cb12-235"><a href="#cb12-235"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-236"><a href="#cb12-236"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-237"><a href="#cb12-237"></a>  <span class="co"># Map ACTARM using assign_ct</span></span>
+<span id="cb12-238"><a href="#cb12-238"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb12-239"><a href="#cb12-239"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-240"><a href="#cb12-240"></a>    <span class="at">raw_var =</span> <span class="st">"ACTUAL_ARM"</span>,</span>
+<span id="cb12-241"><a href="#cb12-241"></a>    <span class="at">tgt_var =</span> <span class="st">"ACTARM"</span>,</span>
+<span id="cb12-242"><a href="#cb12-242"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb12-243"><a href="#cb12-243"></a>    <span class="at">ct_clst =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb12-244"><a href="#cb12-244"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-245"><a href="#cb12-245"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-246"><a href="#cb12-246"></a>  <span class="co"># Map ACTARMCD using assign_no_ct</span></span>
+<span id="cb12-247"><a href="#cb12-247"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb12-248"><a href="#cb12-248"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-249"><a href="#cb12-249"></a>    <span class="at">raw_var =</span> <span class="st">"ACTUAL_ARMCD"</span>,</span>
+<span id="cb12-250"><a href="#cb12-250"></a>    <span class="at">tgt_var =</span> <span class="st">"ACTARMCD"</span>,</span>
+<span id="cb12-251"><a href="#cb12-251"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-252"><a href="#cb12-252"></a>  )</span>
+<span id="cb12-253"><a href="#cb12-253"></a><span class="in">```</span></span>
+<span id="cb12-254"><a href="#cb12-254"></a></span>
+<span id="cb12-255"><a href="#cb12-255"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-256"><a href="#cb12-256"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-257"><a href="#cb12-257"></a><span class="in">```</span></span>
+<span id="cb12-258"><a href="#cb12-258"></a></span>
+<span id="cb12-259"><a href="#cb12-259"></a><span class="fu">## Map Reference Date Variables {#mapvars}</span></span>
+<span id="cb12-260"><a href="#cb12-260"></a></span>
+<span id="cb12-261"><a href="#cb12-261"></a>Use <span class="in">`sdtm.oak::oak_cal_ref_dates()`</span> to calculate reference dates variables in ISO 8601 format.</span>
+<span id="cb12-262"><a href="#cb12-262"></a>The function takes the raw variable names from reference date configuration file,</span>
+<span id="cb12-263"><a href="#cb12-263"></a>and calculated the minimum or maximum dates based upon the <span class="in">`min_max`</span> parameter.</span>
+<span id="cb12-264"><a href="#cb12-264"></a></span>
+<span id="cb12-265"><a href="#cb12-265"></a>Variable <span class="in">`RFSTDTC`</span> is the reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. So as specified in the reference date configuration file, we need to calculate the minimum date of  the <span class="in">`IT.ECSTDAT`</span> for each subject from the <span class="in">`ec_raw`</span> dataset. Therefore, in <span class="in">`min_max`</span> parameter, "min" is selected for the calculation.</span>
+<span id="cb12-266"><a href="#cb12-266"></a></span>
+<span id="cb12-267"><a href="#cb12-267"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb12-268"><a href="#cb12-268"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb12-269"><a href="#cb12-269"></a>  <span class="co"># Derive RFSTDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-270"><a href="#cb12-270"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-271"><a href="#cb12-271"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-272"><a href="#cb12-272"></a>    <span class="at">der_var =</span> <span class="st">"RFSTDTC"</span>,</span>
+<span id="cb12-273"><a href="#cb12-273"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb12-274"><a href="#cb12-274"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-275"><a href="#cb12-275"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-276"><a href="#cb12-276"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-277"><a href="#cb12-277"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-278"><a href="#cb12-278"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-279"><a href="#cb12-279"></a>    )</span>
+<span id="cb12-280"><a href="#cb12-280"></a>  )</span>
+<span id="cb12-281"><a href="#cb12-281"></a><span class="in">```</span></span>
+<span id="cb12-282"><a href="#cb12-282"></a></span>
+<span id="cb12-283"><a href="#cb12-283"></a>Variable <span class="in">`RFENDTC`</span> is the Reference end date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. As  specified in the reference date configuration file, we need to calculate the  maximum date of the <span class="in">`IT.ECENDAT`</span> for each subject from the <span class="in">`ec_raw`</span> dataset. </span>
+<span id="cb12-284"><a href="#cb12-284"></a>Therefore, in <span class="in">`min_max`</span> parameter, "max" is selected for the calculation. </span>
+<span id="cb12-285"><a href="#cb12-285"></a></span>
+<span id="cb12-288"><a href="#cb12-288"></a><span class="in">```{r}</span></span>
+<span id="cb12-289"><a href="#cb12-289"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb12-290"><a href="#cb12-290"></a>  <span class="co"># Derive RFENDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-291"><a href="#cb12-291"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-292"><a href="#cb12-292"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-293"><a href="#cb12-293"></a>    <span class="at">der_var =</span> <span class="st">"RFENDTC"</span>,</span>
+<span id="cb12-294"><a href="#cb12-294"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb12-295"><a href="#cb12-295"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-296"><a href="#cb12-296"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-297"><a href="#cb12-297"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-298"><a href="#cb12-298"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-299"><a href="#cb12-299"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-300"><a href="#cb12-300"></a>    )</span>
+<span id="cb12-301"><a href="#cb12-301"></a>  )</span>
+<span id="cb12-302"><a href="#cb12-302"></a><span class="in">```</span></span>
+<span id="cb12-303"><a href="#cb12-303"></a></span>
+<span id="cb12-304"><a href="#cb12-304"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-305"><a href="#cb12-305"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-306"><a href="#cb12-306"></a><span class="in">```</span></span>
+<span id="cb12-307"><a href="#cb12-307"></a></span>
+<span id="cb12-308"><a href="#cb12-308"></a>The same derivation logic is applicable to other reference date/time variables.</span>
+<span id="cb12-309"><a href="#cb12-309"></a></span>
+<span id="cb12-312"><a href="#cb12-312"></a><span class="in">```{r}</span></span>
+<span id="cb12-313"><a href="#cb12-313"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb12-314"><a href="#cb12-314"></a>  <span class="co"># Derive RFXSTDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-315"><a href="#cb12-315"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-316"><a href="#cb12-316"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-317"><a href="#cb12-317"></a>    <span class="at">der_var =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb12-318"><a href="#cb12-318"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb12-319"><a href="#cb12-319"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-320"><a href="#cb12-320"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-321"><a href="#cb12-321"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-322"><a href="#cb12-322"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-323"><a href="#cb12-323"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-324"><a href="#cb12-324"></a>    )</span>
+<span id="cb12-325"><a href="#cb12-325"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-326"><a href="#cb12-326"></a>  <span class="co"># Derive RFXENDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-327"><a href="#cb12-327"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-328"><a href="#cb12-328"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-329"><a href="#cb12-329"></a>    <span class="at">der_var =</span> <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb12-330"><a href="#cb12-330"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb12-331"><a href="#cb12-331"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-332"><a href="#cb12-332"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-333"><a href="#cb12-333"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-334"><a href="#cb12-334"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-335"><a href="#cb12-335"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-336"><a href="#cb12-336"></a>    )</span>
+<span id="cb12-337"><a href="#cb12-337"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-338"><a href="#cb12-338"></a>  <span class="co"># Derive RFICDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-339"><a href="#cb12-339"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-340"><a href="#cb12-340"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-341"><a href="#cb12-341"></a>    <span class="at">der_var =</span> <span class="st">"RFICDTC"</span>,</span>
+<span id="cb12-342"><a href="#cb12-342"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb12-343"><a href="#cb12-343"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-344"><a href="#cb12-344"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-345"><a href="#cb12-345"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-346"><a href="#cb12-346"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-347"><a href="#cb12-347"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-348"><a href="#cb12-348"></a>    )</span>
+<span id="cb12-349"><a href="#cb12-349"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-350"><a href="#cb12-350"></a>  <span class="co"># Derive RFPENDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-351"><a href="#cb12-351"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-352"><a href="#cb12-352"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-353"><a href="#cb12-353"></a>    <span class="at">der_var =</span> <span class="st">"RFPENDTC"</span>,</span>
+<span id="cb12-354"><a href="#cb12-354"></a>    <span class="at">min_max =</span> <span class="st">"max"</span>,</span>
+<span id="cb12-355"><a href="#cb12-355"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-356"><a href="#cb12-356"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-357"><a href="#cb12-357"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-358"><a href="#cb12-358"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-359"><a href="#cb12-359"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-360"><a href="#cb12-360"></a>    )</span>
+<span id="cb12-361"><a href="#cb12-361"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-362"><a href="#cb12-362"></a>  <span class="co"># Map DTHDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-363"><a href="#cb12-363"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
+<span id="cb12-364"><a href="#cb12-364"></a>    <span class="at">ds_in =</span> .,</span>
+<span id="cb12-365"><a href="#cb12-365"></a>    <span class="at">der_var =</span> <span class="st">"DTHDTC"</span>,</span>
+<span id="cb12-366"><a href="#cb12-366"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
+<span id="cb12-367"><a href="#cb12-367"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
+<span id="cb12-368"><a href="#cb12-368"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
+<span id="cb12-369"><a href="#cb12-369"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
+<span id="cb12-370"><a href="#cb12-370"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
+<span id="cb12-371"><a href="#cb12-371"></a>      <span class="at">dm_raw =</span> dm_raw</span>
+<span id="cb12-372"><a href="#cb12-372"></a>    )</span>
+<span id="cb12-373"><a href="#cb12-373"></a>  )</span>
+<span id="cb12-374"><a href="#cb12-374"></a><span class="in">```</span></span>
+<span id="cb12-375"><a href="#cb12-375"></a></span>
+<span id="cb12-376"><a href="#cb12-376"></a><span class="fu">## Create SDTM derived variables {#derivedvars}</span></span>
+<span id="cb12-377"><a href="#cb12-377"></a></span>
+<span id="cb12-380"><a href="#cb12-380"></a><span class="in">```{r}</span></span>
+<span id="cb12-381"><a href="#cb12-381"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<span id="cb12-382"><a href="#cb12-382"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-383"><a href="#cb12-383"></a>    <span class="at">STUDYID =</span> dm_raw<span class="sc">$</span>STUDY,</span>
+<span id="cb12-384"><a href="#cb12-384"></a>    <span class="at">DOMAIN =</span> <span class="st">"DM"</span>,</span>
+<span id="cb12-385"><a href="#cb12-385"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, dm_raw<span class="sc">$</span>PATNUM),</span>
+<span id="cb12-386"><a href="#cb12-386"></a>    <span class="at">COUNTRY =</span> dm_raw<span class="sc">$</span>COUNTRY,</span>
+<span id="cb12-387"><a href="#cb12-387"></a>    <span class="at">DTHFL =</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(<span class="fu">is.na</span>(DTHDTC), <span class="cn">NA_character_</span>, <span class="st">"Y"</span>)</span>
+<span id="cb12-388"><a href="#cb12-388"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-389"><a href="#cb12-389"></a>  <span class="co"># Map DMDTC using assign_datetime</span></span>
+<span id="cb12-390"><a href="#cb12-390"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb12-391"><a href="#cb12-391"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
+<span id="cb12-392"><a href="#cb12-392"></a>    <span class="at">raw_var =</span> <span class="st">"COL_DT"</span>,</span>
+<span id="cb12-393"><a href="#cb12-393"></a>    <span class="at">tgt_var =</span> <span class="st">"DMDTC"</span>,</span>
+<span id="cb12-394"><a href="#cb12-394"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb12-395"><a href="#cb12-395"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb12-396"><a href="#cb12-396"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-397"><a href="#cb12-397"></a>  <span class="co"># Derive study day</span></span>
+<span id="cb12-398"><a href="#cb12-398"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb12-399"><a href="#cb12-399"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb12-400"><a href="#cb12-400"></a>    <span class="at">dm_domain =</span> .,</span>
+<span id="cb12-401"><a href="#cb12-401"></a>    <span class="at">tgdt =</span> <span class="st">"DMDTC"</span>,</span>
+<span id="cb12-402"><a href="#cb12-402"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb12-403"><a href="#cb12-403"></a>    <span class="at">study_day_var =</span> <span class="st">"DMDY"</span></span>
+<span id="cb12-404"><a href="#cb12-404"></a>  )</span>
+<span id="cb12-405"><a href="#cb12-405"></a><span class="in">```</span></span>
+<span id="cb12-406"><a href="#cb12-406"></a></span>
+<span id="cb12-407"><a href="#cb12-407"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb12-408"><a href="#cb12-408"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-409"><a href="#cb12-409"></a><span class="in">```</span></span>
+<span id="cb12-410"><a href="#cb12-410"></a></span>
+<span id="cb12-411"><a href="#cb12-411"></a><span class="fu">## Add Labels and Attributes {#attributes}</span></span>
+<span id="cb12-412"><a href="#cb12-412"></a></span>
+<span id="cb12-413"><a href="#cb12-413"></a>Yet to be developed. Please refer to <span class="in">`{metatools}`</span> package to investigate options.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>VS – pharmaverse examples</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../sdtm/ae.html" rel="next">
+<link href="../sdtm/dm.html" rel="prev">
+<link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-da535c1cae27b2abdc4e23473962cae1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0ea25416cc0d26dcf7431c863367d52f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en-US"
+  });
+});
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="../site_libs/react-18.2.0/react.min.js"></script>
+<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
+<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
+
+<link rel="stylesheet" href="../assets/css/style.scss">
+<meta property="og:title" content="VS – pharmaverse examples">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/sdtm/assets/img/Pharmaverse_examples.png">
+<meta property="og:site_name" content="pharmaverse examples">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pharmaverse examples</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/vs.html">VS</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">SDTM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/vs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">VS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AE</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">ADaM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adppk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPPK</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adrs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADRS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adtte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADTTE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/advs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADVS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADAE</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">TLG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demographic Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/adverse_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adverse Events</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/pharmacokinetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmacokinetic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interactive</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>teal</code> applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">eSubmission</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">eSubmission</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session Info</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://pharmaverse.org/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmaverse Home</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/vs.html">VS</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">VS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This article describes how to create a Findings SDTM domain using the <code>{sdtm.oak}</code> package. Examples are currently presented and tested in the context of the <code>VS</code> domain.</p>
+<p>Before reading this article, it is recommended that users review some of the articles in the package documentation of <code>{sdtm.oak}</code> to understand some of the key concepts: <a href="https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html">Algorithms &amp; Sub-Algorithms</a>, <a href="https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html">Creating an Interventions Domain</a>, which provides a detailed explanation of various concepts in <code>{sdtm.oak}</code>, such as <code>oak_id_vars</code>, <code>condition_add</code>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</p>
+<p>In this article, we will dive directly into programming and provide further explanation only where it is required.</p>
+</section>
+<section id="programming-workflow" class="level1">
+<h1>Programming workflow</h1>
+<p>In <code>{sdtm.oak}</code> we process one raw dataset at a time. Similar raw datasets (example Vital Signs - Screening (<code>vs_raw</code>), Vital Signs - Treatment (<code>vs_t_raw</code>)) can be stacked together before processing or can be processed separately.</p>
+<ul>
+<li><a href="#readdata">Read in data</a></li>
+<li><a href="#oakidvars">Create oak_id_vars</a></li>
+<li><a href="#readct">Read in CT</a></li>
+<li><a href="#maptopic">Map Topic Variable</a></li>
+<li><a href="#maprest">Map Rest of the Variables</a></li>
+<li><a href="#repeatsteps">Repeat Map Topic and Map Rest</a></li>
+</ul>
+<p>Repeat the above steps for different raw datasets before proceeding with the below steps.</p>
+<ul>
+<li><a href="#derivedvars">Create SDTM derived variables</a></li>
+<li><a href="#attributes">Add Labels and Attributes</a></li>
+</ul>
+<section id="readdata" class="level2">
+<h2 class="anchored" data-anchor-id="readdata">Read in data</h2>
+<p>Read all the raw datasets into the environment. In this example, the raw dataset name is <code>vs_raw</code>. Users can read it from the package using the below code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># Read in input data</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>vs_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>vs_raw</span>
+<span id="cb1-7"><a href="#cb1-7"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Vital Signs Raw dataset</p>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0432e822108575a4ef15" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0432e822108575a4ef15">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1015","701-1015"],"INSTANCE":["Screening 1","Screening 1","Screening 1","Screening 1","Screening 1"],"FORM":["VS","VS","VS","VS","VS"],"FORML":["Vital Signs","Vital Signs","Vital Signs","Vital Signs","Vital Signs"],"VTLD":["26-Dec-2013","26-Dec-2013","26-Dec-2013","26-Dec-2013","26-Dec-2013"],"IT.HEIGHT_VSORRES":[null,null,null,"58.0",null],"IT.WEIGHT":[null,null,null,"119.0",null],"IT.TEMP":[null,null,null,null,"96.9"],"IT.TEMP_LOC":[null,null,null,null,"ORAL CAVITY"],"TMPTC":["after Lying Down for 5 Minutes","after Standing for 1 Minute","after Standing for 3 Minutes",null,null],"SYS_BP":["131","129","147",null,null],"DIA_BP":["64","83","57",null,null],"PULSE":["57","62","65",null,null],"SUBPOS":["SUPINE","STANDING","STANDING",null,null]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"INSTANCE","name":"INSTANCE","type":"character"},{"id":"FORM","name":"FORM","type":"character"},{"id":"FORML","name":"FORML","type":"character"},{"id":"VTLD","name":"VTLD","type":"character"},{"id":"IT.HEIGHT_VSORRES","name":"IT.HEIGHT_VSORRES","type":"character"},{"id":"IT.WEIGHT","name":"IT.WEIGHT","type":"character"},{"id":"IT.TEMP","name":"IT.TEMP","type":"character"},{"id":"IT.TEMP_LOC","name":"IT.TEMP_LOC","type":"character"},{"id":"TMPTC","name":"TMPTC","type":"character"},{"id":"SYS_BP","name":"SYS_BP","type":"character"},{"id":"DIA_BP","name":"DIA_BP","type":"character"},{"id":"PULSE","name":"PULSE","type":"character"},{"id":"SUBPOS","name":"SUBPOS","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"30b3711eae291e4b259358dac32fb7df"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<section id="sdtm-acrf" class="level3">
+<h3 class="anchored" data-anchor-id="sdtm-acrf">SDTM aCRF</h3>
+<p>SDTM annotated CRF for the <code>vs_raw</code> can be viewed <a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/VitalSigns_aCRF.pdf">here</a>:</p>
+</section>
+</section>
+<section id="oakidvars" class="level2">
+<h2 class="anchored" data-anchor-id="oakidvars">Create oak_id_vars</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>vs_raw <span class="ot">&lt;-</span> vs_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">raw_src =</span> <span class="st">"vitals"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="readct" class="level2">
+<h2 class="anchored" data-anchor-id="readct">Read in CT</h2>
+<p>Controlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is <code>sdtm_ct.csv</code>. Users can read it from the package using the below code:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4072421bdcaba08ed99d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4072421bdcaba08ed99d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="maptopic" class="level2">
+<h2 class="anchored" data-anchor-id="maptopic">Map Topic Variable</h2>
+<p>This raw dataset has multiple topic variables. Lets start with <code>SYSBP</code>. Map topic variable <code>SYSBP</code> from the raw variable <code>SYS_BP</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Map topic variable SYSBP</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>vs_sysbp <span class="ot">&lt;-</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">tgt_val =</span> <span class="st">"SYSBP"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>  <span class="co"># Filter for records where VSTESTCD is not empty.</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="co"># Only these records need qualifier mappings.</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f56c51c6490d1071f301" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f56c51c6490d1071f301">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,6,7,8,10,11,12,15],"raw_source":["vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals"],"patient_number":["701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015"],"VSTESTCD":["SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"VSTESTCD","name":"VSTESTCD","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"9fc6219334302ea08032e0d08112e313"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="maprest" class="level2">
+<h2 class="anchored" data-anchor-id="maprest">Map Rest of the Variables</h2>
+<p>Map rest of the variables applicable to the topic variable <code>SYSBP</code>. This can include qualifiers, identifier and timing variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="do">## Map Rest of the Variables</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>vs_sysbp <span class="ot">&lt;-</span> vs_sysbp <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">tgt_val =</span> <span class="st">"Systolic Blood Pressure"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb5-16"><a href="#cb5-16"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb5-19"><a href="#cb5-19"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb5-22"><a href="#cb5-22"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb5-24"><a href="#cb5-24"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb5-25"><a href="#cb5-25"></a>    <span class="at">tgt_val =</span> <span class="st">"mmHg"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb5-29"><a href="#cb5-29"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb5-33"><a href="#cb5-33"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb5-36"><a href="#cb5-36"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb5-37"><a href="#cb5-37"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb5-38"><a href="#cb5-38"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-cae49ed0ff66afc0870f" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cae49ed0ff66afc0870f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,6,7,8,10,11,12,15],"raw_source":["vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals"],"patient_number":["701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015"],"VSTESTCD":["SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP","SYSBP"],"VSTEST":["Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure","Systolic Blood Pressure"],"VSORRES":["131","129","147","138","137","145","130","121","131","137"],"VSORRESU":["mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg"],"VSPOS":["SUPINE","STANDING","STANDING","SUPINE","STANDING","STANDING","SUPINE","STANDING","STANDING","SUPINE"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"VSTESTCD","name":"VSTESTCD","type":"character"},{"id":"VSTEST","name":"VSTEST","type":"character"},{"id":"VSORRES","name":"VSORRES","type":"character"},{"id":"VSORRESU","name":"VSORRESU","type":"character"},{"id":"VSPOS","name":"VSPOS","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"1d4a12015762ecabad09de6762e9f501"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="repeatsteps" class="level2">
+<h2 class="anchored" data-anchor-id="repeatsteps">Repeat Map Topic and Map Rest</h2>
+<p>This raw data source has other topic variables <code>DIABP</code>, <code>PULSE</code>, <code>HEIGHT</code>, <code>WEIGHT</code>, <code>TEMP</code> and its corresponding qualifiers. Repeat mapping topic and qualifiers for each topic variable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Repeat Map Topic and Map Rest</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>vs_diabp <span class="ot">&lt;-</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">tgt_val =</span> <span class="st">"DIABP"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17"></a>    <span class="at">tgt_val =</span> <span class="st">"Diastolic Blood Pressure"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-21"><a href="#cb6-21"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-24"><a href="#cb6-24"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb6-26"><a href="#cb6-26"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-28"><a href="#cb6-28"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-32"><a href="#cb6-32"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34"></a>    <span class="at">tgt_val =</span> <span class="st">"mmHg"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-36"><a href="#cb6-36"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-37"><a href="#cb6-37"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-38"><a href="#cb6-38"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-41"><a href="#cb6-41"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-42"><a href="#cb6-42"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb6-44"><a href="#cb6-44"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-45"><a href="#cb6-45"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb6-46"><a href="#cb6-46"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-47"><a href="#cb6-47"></a>  )</span>
+<span id="cb6-48"><a href="#cb6-48"></a></span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="co"># Map topic variable PULSE and its qualifiers.</span></span>
+<span id="cb6-50"><a href="#cb6-50"></a>vs_pulse <span class="ot">&lt;-</span></span>
+<span id="cb6-51"><a href="#cb6-51"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-52"><a href="#cb6-52"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-53"><a href="#cb6-53"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb6-54"><a href="#cb6-54"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb6-55"><a href="#cb6-55"></a>    <span class="at">tgt_val =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb6-56"><a href="#cb6-56"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-57"><a href="#cb6-57"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb6-58"><a href="#cb6-58"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-59"><a href="#cb6-59"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-60"><a href="#cb6-60"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb6-61"><a href="#cb6-61"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-62"><a href="#cb6-62"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-63"><a href="#cb6-63"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb6-64"><a href="#cb6-64"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb6-65"><a href="#cb6-65"></a>    <span class="at">tgt_val =</span> <span class="st">"Pulse Rate"</span>,</span>
+<span id="cb6-66"><a href="#cb6-66"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-67"><a href="#cb6-67"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-69"><a href="#cb6-69"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-70"><a href="#cb6-70"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb6-71"><a href="#cb6-71"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-72"><a href="#cb6-72"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-73"><a href="#cb6-73"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb6-74"><a href="#cb6-74"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb6-75"><a href="#cb6-75"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-76"><a href="#cb6-76"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-77"><a href="#cb6-77"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-78"><a href="#cb6-78"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-79"><a href="#cb6-79"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-80"><a href="#cb6-80"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb6-81"><a href="#cb6-81"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb6-82"><a href="#cb6-82"></a>    <span class="at">tgt_val =</span> <span class="st">"beats/min"</span>,</span>
+<span id="cb6-83"><a href="#cb6-83"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-84"><a href="#cb6-84"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-85"><a href="#cb6-85"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-86"><a href="#cb6-86"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-87"><a href="#cb6-87"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb6-88"><a href="#cb6-88"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-89"><a href="#cb6-89"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-90"><a href="#cb6-90"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb6-91"><a href="#cb6-91"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb6-92"><a href="#cb6-92"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-93"><a href="#cb6-93"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb6-94"><a href="#cb6-94"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-95"><a href="#cb6-95"></a>  )</span>
+<span id="cb6-96"><a href="#cb6-96"></a></span>
+<span id="cb6-97"><a href="#cb6-97"></a><span class="co"># Map topic variable TEMP from raw variable TEMP and its qualifiers.</span></span>
+<span id="cb6-98"><a href="#cb6-98"></a>vs_temp <span class="ot">&lt;-</span></span>
+<span id="cb6-99"><a href="#cb6-99"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-100"><a href="#cb6-100"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-101"><a href="#cb6-101"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb6-102"><a href="#cb6-102"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb6-103"><a href="#cb6-103"></a>    <span class="at">tgt_val =</span> <span class="st">"TEMP"</span>,</span>
+<span id="cb6-104"><a href="#cb6-104"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-105"><a href="#cb6-105"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb6-106"><a href="#cb6-106"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-107"><a href="#cb6-107"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-108"><a href="#cb6-108"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb6-109"><a href="#cb6-109"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-110"><a href="#cb6-110"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-111"><a href="#cb6-111"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb6-112"><a href="#cb6-112"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb6-113"><a href="#cb6-113"></a>    <span class="at">tgt_val =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb6-114"><a href="#cb6-114"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-115"><a href="#cb6-115"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb6-116"><a href="#cb6-116"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-117"><a href="#cb6-117"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-118"><a href="#cb6-118"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb6-119"><a href="#cb6-119"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-120"><a href="#cb6-120"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-121"><a href="#cb6-121"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb6-122"><a href="#cb6-122"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb6-123"><a href="#cb6-123"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-124"><a href="#cb6-124"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-125"><a href="#cb6-125"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-126"><a href="#cb6-126"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-127"><a href="#cb6-127"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-128"><a href="#cb6-128"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb6-129"><a href="#cb6-129"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb6-130"><a href="#cb6-130"></a>    <span class="at">tgt_val =</span> <span class="st">"F"</span>,</span>
+<span id="cb6-131"><a href="#cb6-131"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-132"><a href="#cb6-132"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-133"><a href="#cb6-133"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-134"><a href="#cb6-134"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-135"><a href="#cb6-135"></a>  <span class="co"># Map VSLOC from TEMPLOC using assign_ct</span></span>
+<span id="cb6-136"><a href="#cb6-136"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-137"><a href="#cb6-137"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-138"><a href="#cb6-138"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP_LOC"</span>,</span>
+<span id="cb6-139"><a href="#cb6-139"></a>    <span class="at">tgt_var =</span> <span class="st">"VSLOC"</span>,</span>
+<span id="cb6-140"><a href="#cb6-140"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-141"><a href="#cb6-141"></a>    <span class="at">ct_clst =</span> <span class="st">"C74456"</span>,</span>
+<span id="cb6-142"><a href="#cb6-142"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-143"><a href="#cb6-143"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-144"><a href="#cb6-144"></a>  <span class="co"># Create VSSTRESC by converting VSORRES from F to C</span></span>
+<span id="cb6-145"><a href="#cb6-145"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, (<span class="fu">as.numeric</span>(VSORRES) <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-146"><a href="#cb6-146"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-147"><a href="#cb6-147"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-148"><a href="#cb6-148"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-149"><a href="#cb6-149"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb6-150"><a href="#cb6-150"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb6-151"><a href="#cb6-151"></a>    <span class="at">tgt_val =</span> <span class="st">"C"</span>,</span>
+<span id="cb6-152"><a href="#cb6-152"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-153"><a href="#cb6-153"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-154"><a href="#cb6-154"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-155"><a href="#cb6-155"></a>  )</span>
+<span id="cb6-156"><a href="#cb6-156"></a></span>
+<span id="cb6-157"><a href="#cb6-157"></a><span class="co"># Map topic variable HEIGHT from raw variable IT.HEIGHT_VSORRRES and its qualifiers.</span></span>
+<span id="cb6-158"><a href="#cb6-158"></a>vs_height <span class="ot">&lt;-</span></span>
+<span id="cb6-159"><a href="#cb6-159"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-160"><a href="#cb6-160"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-161"><a href="#cb6-161"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb6-162"><a href="#cb6-162"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb6-163"><a href="#cb6-163"></a>    <span class="at">tgt_val =</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb6-164"><a href="#cb6-164"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-165"><a href="#cb6-165"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb6-166"><a href="#cb6-166"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-167"><a href="#cb6-167"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-168"><a href="#cb6-168"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb6-169"><a href="#cb6-169"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-170"><a href="#cb6-170"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-171"><a href="#cb6-171"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb6-172"><a href="#cb6-172"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb6-173"><a href="#cb6-173"></a>    <span class="at">tgt_val =</span> <span class="st">"Height"</span>,</span>
+<span id="cb6-174"><a href="#cb6-174"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-175"><a href="#cb6-175"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb6-176"><a href="#cb6-176"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-177"><a href="#cb6-177"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-178"><a href="#cb6-178"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb6-179"><a href="#cb6-179"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-180"><a href="#cb6-180"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-181"><a href="#cb6-181"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb6-182"><a href="#cb6-182"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb6-183"><a href="#cb6-183"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-184"><a href="#cb6-184"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-185"><a href="#cb6-185"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-186"><a href="#cb6-186"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-187"><a href="#cb6-187"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-188"><a href="#cb6-188"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb6-189"><a href="#cb6-189"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb6-190"><a href="#cb6-190"></a>    <span class="at">tgt_val =</span> <span class="st">"in"</span>,</span>
+<span id="cb6-191"><a href="#cb6-191"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-192"><a href="#cb6-192"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-193"><a href="#cb6-193"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-194"><a href="#cb6-194"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-195"><a href="#cb6-195"></a>  <span class="co"># Create VSSRESC by converting VSORRES from in to cm</span></span>
+<span id="cb6-196"><a href="#cb6-196"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">as.numeric</span>(VSORRES) <span class="sc">*</span> <span class="fl">2.54</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-197"><a href="#cb6-197"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-198"><a href="#cb6-198"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-199"><a href="#cb6-199"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-200"><a href="#cb6-200"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb6-201"><a href="#cb6-201"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb6-202"><a href="#cb6-202"></a>    <span class="at">tgt_val =</span> <span class="st">"cm"</span>,</span>
+<span id="cb6-203"><a href="#cb6-203"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-204"><a href="#cb6-204"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-205"><a href="#cb6-205"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-206"><a href="#cb6-206"></a>  )</span>
+<span id="cb6-207"><a href="#cb6-207"></a></span>
+<span id="cb6-208"><a href="#cb6-208"></a><span class="co"># Map topic variable WEIGHT from raw variable IT.WEIGHT and its qualifiers.</span></span>
+<span id="cb6-209"><a href="#cb6-209"></a>vs_weight <span class="ot">&lt;-</span></span>
+<span id="cb6-210"><a href="#cb6-210"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-211"><a href="#cb6-211"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-212"><a href="#cb6-212"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb6-213"><a href="#cb6-213"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb6-214"><a href="#cb6-214"></a>    <span class="at">tgt_val =</span> <span class="st">"WEIGHT"</span>,</span>
+<span id="cb6-215"><a href="#cb6-215"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-216"><a href="#cb6-216"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb6-217"><a href="#cb6-217"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-218"><a href="#cb6-218"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-219"><a href="#cb6-219"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb6-220"><a href="#cb6-220"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-221"><a href="#cb6-221"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-222"><a href="#cb6-222"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb6-223"><a href="#cb6-223"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb6-224"><a href="#cb6-224"></a>    <span class="at">tgt_val =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb6-225"><a href="#cb6-225"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-226"><a href="#cb6-226"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb6-227"><a href="#cb6-227"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-228"><a href="#cb6-228"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-229"><a href="#cb6-229"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb6-230"><a href="#cb6-230"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-231"><a href="#cb6-231"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-232"><a href="#cb6-232"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb6-233"><a href="#cb6-233"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb6-234"><a href="#cb6-234"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-235"><a href="#cb6-235"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-236"><a href="#cb6-236"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-237"><a href="#cb6-237"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-238"><a href="#cb6-238"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-239"><a href="#cb6-239"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb6-240"><a href="#cb6-240"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb6-241"><a href="#cb6-241"></a>    <span class="at">tgt_val =</span> <span class="st">"LB"</span>,</span>
+<span id="cb6-242"><a href="#cb6-242"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-243"><a href="#cb6-243"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-244"><a href="#cb6-244"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-245"><a href="#cb6-245"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-246"><a href="#cb6-246"></a>  <span class="co"># Create VSSTRESC by converting VSORRES from LB to KG</span></span>
+<span id="cb6-247"><a href="#cb6-247"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">as.numeric</span>(VSORRES) <span class="sc">/</span> <span class="fl">2.20462</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-248"><a href="#cb6-248"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb6-249"><a href="#cb6-249"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb6-250"><a href="#cb6-250"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb6-251"><a href="#cb6-251"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb6-252"><a href="#cb6-252"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb6-253"><a href="#cb6-253"></a>    <span class="at">tgt_val =</span> <span class="st">"kg"</span>,</span>
+<span id="cb6-254"><a href="#cb6-254"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-255"><a href="#cb6-255"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb6-256"><a href="#cb6-256"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-257"><a href="#cb6-257"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now that all the topic variable and its qualifier mappings are complete, combine all the datasets and proceed with mapping qualifiers, identifiers and timing variables applicable to all topic variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Combine all the topic variables into a single data frame.</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>vs_combined <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  vs_diabp, vs_height, vs_pulse,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>  vs_sysbp, vs_temp, vs_weight</span>
+<span id="cb7-5"><a href="#cb7-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Map qualifiers common to all topic variables</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>vs <span class="ot">&lt;-</span> vs_combined <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="co"># Map VSDTC using assign_ct algorithm</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    <span class="at">raw_var =</span> <span class="fu">c</span>(<span class="st">"VTLD"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    <span class="at">tgt_var =</span> <span class="st">"VSDTC"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"d-m-y"</span>, <span class="st">"dd-mmm-yyyy"</span>)))</span>
+<span id="cb8-9"><a href="#cb8-9"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="co"># Map VSTPT from TMPTC using assign_ct</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    <span class="at">raw_var =</span> <span class="st">"TMPTC"</span>,</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTPT"</span>,</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">ct_clst =</span> <span class="st">"TPT"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-18"><a href="#cb8-18"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="co"># Map VSTPTNUM from TMPTC using assign_ct</span></span>
+<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">raw_var =</span> <span class="st">"TMPTC"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTPTNUM"</span>,</span>
+<span id="cb8-24"><a href="#cb8-24"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-25"><a href="#cb8-25"></a>    <span class="at">ct_clst =</span> <span class="st">"TPTNUM"</span>,</span>
+<span id="cb8-26"><a href="#cb8-26"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-27"><a href="#cb8-27"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a>  <span class="co"># Map VISIT from INSTANCE using assign_ct</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-30"><a href="#cb8-30"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb8-31"><a href="#cb8-31"></a>    <span class="at">raw_var =</span> <span class="st">"INSTANCE"</span>,</span>
+<span id="cb8-32"><a href="#cb8-32"></a>    <span class="at">tgt_var =</span> <span class="st">"VISIT"</span>,</span>
+<span id="cb8-33"><a href="#cb8-33"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-34"><a href="#cb8-34"></a>    <span class="at">ct_clst =</span> <span class="st">"VISIT"</span>,</span>
+<span id="cb8-35"><a href="#cb8-35"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-36"><a href="#cb8-36"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a>  <span class="co"># Map VISITNUM from INSTANCE using assign_ct</span></span>
+<span id="cb8-38"><a href="#cb8-38"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-39"><a href="#cb8-39"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb8-40"><a href="#cb8-40"></a>    <span class="at">raw_var =</span> <span class="st">"INSTANCE"</span>,</span>
+<span id="cb8-41"><a href="#cb8-41"></a>    <span class="at">tgt_var =</span> <span class="st">"VISITNUM"</span>,</span>
+<span id="cb8-42"><a href="#cb8-42"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-43"><a href="#cb8-43"></a>    <span class="at">ct_clst =</span> <span class="st">"VISITNUM"</span>,</span>
+<span id="cb8-44"><a href="#cb8-44"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-45"><a href="#cb8-45"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-bd3b8e1ae8110ddbfb9f" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bd3b8e1ae8110ddbfb9f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,1,1,2,2,2,3,3,3,4],"raw_source":["vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals","vitals"],"patient_number":["701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015","701-1015"],"VSTESTCD":["DIABP","PULSE","SYSBP","DIABP","PULSE","SYSBP","DIABP","PULSE","SYSBP","HEIGHT"],"VSTEST":["Diastolic Blood Pressure","Pulse Rate","Systolic Blood Pressure","Diastolic Blood Pressure","Pulse Rate","Systolic Blood Pressure","Diastolic Blood Pressure","Pulse Rate","Systolic Blood Pressure","Height"],"VSORRES":["64","57","131","83","62","129","57","65","147","58.0"],"VSORRESU":["mmHg","beats/min","mmHg","mmHg","beats/min","mmHg","mmHg","beats/min","mmHg","IN"],"VSPOS":["SUPINE","SUPINE","SUPINE","STANDING","STANDING","STANDING","STANDING","STANDING","STANDING",null],"VSSTRESC":[null,null,null,null,null,null,null,null,null,"147.32"],"VSSTRESU":[null,null,null,null,null,null,null,null,null,"cm"],"VSLOC":[null,null,null,null,null,null,null,null,null,null],"VSDTC":["2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26","2013-12-26"],"VSTPT":["AFTER LYING DOWN FOR 5 MINUTES","AFTER LYING DOWN FOR 5 MINUTES","AFTER LYING DOWN FOR 5 MINUTES","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 3 MINUTES","AFTER STANDING FOR 3 MINUTES","AFTER STANDING FOR 3 MINUTES",null],"VSTPTNUM":["815","815","815","816","816","816","817","817","817",null],"VISIT":["SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 1"],"VISITNUM":["1","1","1","1","1","1","1","1","1","1"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"VSTESTCD","name":"VSTESTCD","type":"character"},{"id":"VSTEST","name":"VSTEST","type":"character"},{"id":"VSORRES","name":"VSORRES","type":"character"},{"id":"VSORRESU","name":"VSORRESU","type":"character"},{"id":"VSPOS","name":"VSPOS","type":"character"},{"id":"VSSTRESC","name":"VSSTRESC","type":"character"},{"id":"VSSTRESU","name":"VSSTRESU","type":"character"},{"id":"VSLOC","name":"VSLOC","type":"character"},{"id":"VSDTC","name":"VSDTC","type":"iso8601"},{"id":"VSTPT","name":"VSTPT","type":"character"},{"id":"VSTPTNUM","name":"VSTPTNUM","type":"character"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"c1e0f1234c21053f5340778455798424"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="derivedvars" class="level2">
+<h2 class="anchored" data-anchor-id="derivedvars">Create SDTM derived variables</h2>
+<p>Create derived variables applicable to all topic variables.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>vs <span class="ot">&lt;-</span> vs <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">STUDYID =</span> <span class="st">"CDISCPILOT01"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">DOMAIN =</span> <span class="st">"VS"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">VSCAT =</span> <span class="st">"VITAL SIGNS"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01"</span>, <span class="st">"-"</span>, .data<span class="sc">$</span>patient_number),</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">VSSTRESC =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSSTRESC), VSORRES, VSSTRESC),</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">VSSTRESN =</span> <span class="fu">as.numeric</span>(VSSTRESC),</span>
+<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">VSSTRESU =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSSTRESU), VSORRESU, VSSTRESU),</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">VSELTM =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSTPT), <span class="cn">NA</span>, <span class="fu">paste0</span>(<span class="st">"PT"</span>, readr<span class="sc">::</span><span class="fu">parse_number</span>(VSTPT), <span class="st">"M"</span>)),</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">VSTPTREF =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSPOS), <span class="cn">NA</span>, <span class="fu">paste</span>(<span class="st">"PATIENT"</span>, VSPOS))</span>
+<span id="cb9-12"><a href="#cb9-12"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">arrange</span>(USUBJID, VSTESTCD, <span class="fu">as.numeric</span>(VISITNUM), <span class="fu">as.numeric</span>(VSTPTNUM)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">derive_seq</span>(</span>
+<span id="cb9-15"><a href="#cb9-15"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSEQ"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"VSTESTCD"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb9-19"><a href="#cb9-19"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb9-21"><a href="#cb9-21"></a>    <span class="at">tgdt =</span> <span class="st">"VSDTC"</span>,</span>
+<span id="cb9-22"><a href="#cb9-22"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23"></a>    <span class="at">study_day_var =</span> <span class="st">"VSDY"</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb9-25"><a href="#cb9-25"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"VSSEQ"</span>, <span class="st">"VSTESTCD"</span>, <span class="st">"VSTEST"</span>, <span class="st">"VSPOS"</span>, <span class="st">"VSORRES"</span>, <span class="st">"VSORRESU"</span>, <span class="st">"VSSTRESC"</span>, <span class="st">"VSSTRESN"</span>, <span class="st">"VSSTRESU"</span>, <span class="st">"VSLOC"</span>, <span class="st">"VISITNUM"</span>, <span class="st">"VISIT"</span>, <span class="st">"VSDTC"</span>, <span class="st">"VSDY"</span>, <span class="st">"VSTPT"</span>, <span class="st">"VSTPTNUM"</span>, <span class="st">"VSELTM"</span>, <span class="st">"VSTPTREF"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-992e5c5825deda683aaf" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-992e5c5825deda683aaf">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["VS","VS","VS","VS","VS","VS","VS","VS","VS","VS"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015"],"VSSEQ":[1,2,3,4,5,6,7,8,9,10],"VSTESTCD":["DIABP","DIABP","DIABP","DIABP","DIABP","DIABP","DIABP","DIABP","DIABP","DIABP"],"VSTEST":["Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure","Diastolic Blood Pressure"],"VSPOS":["SUPINE","STANDING","STANDING","SUPINE","STANDING","STANDING","SUPINE","STANDING","STANDING","SUPINE"],"VSORRES":["64","83","57","68","59","71","56","51","61","67"],"VSORRESU":["mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg"],"VSSTRESC":["64","83","57","68","59","71","56","51","61","67"],"VSSTRESN":[64,83,57,68,59,71,56,51,61,67],"VSSTRESU":["mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg","mmHg"],"VSLOC":[null,null,null,null,null,null,null,null,null,null],"VISITNUM":["1","1","1","2","2","2","3","3","3","3.5"],"VISIT":["SCREENING 1","SCREENING 1","SCREENING 1","SCREENING 2","SCREENING 2","SCREENING 2","BASELINE","BASELINE","BASELINE","AMBUL ECG PLACEMENT"],"VSDTC":["2013-12-26","2013-12-26","2013-12-26","2013-12-31","2013-12-31","2013-12-31","2014-01-02","2014-01-02","2014-01-02","2014-01-14"],"VSDY":[-7,-7,-7,-2,-2,-2,1,1,1,13],"VSTPT":["AFTER LYING DOWN FOR 5 MINUTES","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 3 MINUTES","AFTER LYING DOWN FOR 5 MINUTES","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 3 MINUTES","AFTER LYING DOWN FOR 5 MINUTES","AFTER STANDING FOR 1 MINUTE","AFTER STANDING FOR 3 MINUTES","AFTER LYING DOWN FOR 5 MINUTES"],"VSTPTNUM":["815","816","817","815","816","817","815","816","817","815"],"VSELTM":["PT5M","PT1M","PT3M","PT5M","PT1M","PT3M","PT5M","PT1M","PT3M","PT5M"],"VSTPTREF":["PATIENT SUPINE","PATIENT STANDING","PATIENT STANDING","PATIENT SUPINE","PATIENT STANDING","PATIENT STANDING","PATIENT SUPINE","PATIENT STANDING","PATIENT STANDING","PATIENT SUPINE"]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VSSEQ","name":"VSSEQ","type":"numeric"},{"id":"VSTESTCD","name":"VSTESTCD","type":"character"},{"id":"VSTEST","name":"VSTEST","type":"character"},{"id":"VSPOS","name":"VSPOS","type":"character"},{"id":"VSORRES","name":"VSORRES","type":"character"},{"id":"VSORRESU","name":"VSORRESU","type":"character"},{"id":"VSSTRESC","name":"VSSTRESC","type":"character"},{"id":"VSSTRESN","name":"VSSTRESN","type":"numeric"},{"id":"VSSTRESU","name":"VSSTRESU","type":"character"},{"id":"VSLOC","name":"VSLOC","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"character"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"VSDTC","name":"VSDTC","type":"Date"},{"id":"VSDY","name":"VSDY","type":"numeric"},{"id":"VSTPT","name":"VSTPT","type":"character"},{"id":"VSTPTNUM","name":"VSTPTNUM","type":"character"},{"id":"VSELTM","name":"VSELTM","type":"character"},{"id":"VSTPTREF","name":"VSTPTREF","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"b1d315700fb4da910dedd808c06aa693"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="attributes" class="level2">
+<h2 class="anchored" data-anchor-id="attributes">Add Labels and Attributes</h2>
+<p>Yet to be developed. Please refer to <code>{metatools}</code> package to investigate options.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../sdtm/dm.html" class="pagination-link" aria-label="DM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">DM</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../sdtm/ae.html" class="pagination-link" aria-label="AE">
+        <span class="nav-page-text">AE</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="an">title:</span><span class="co"> "VS"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="an">order:</span><span class="co"> 2</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">---</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb10-8"><a href="#cb10-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>}</span>
+<span id="cb10-11"><a href="#cb10-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="in">```</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="fu"># Introduction</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a>This article describes how to create a Findings SDTM domain using the <span class="in">`{sdtm.oak}`</span> package. Examples are currently presented and tested in the context of the <span class="in">`VS`</span> domain.</span>
+<span id="cb10-18"><a href="#cb10-18"></a></span>
+<span id="cb10-19"><a href="#cb10-19"></a>Before reading this article, it is recommended that users review some of the articles in the package documentation of <span class="in">`{sdtm.oak}`</span> to understand some of the key concepts:</span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="co">[</span><span class="ot">Algorithms &amp; Sub-Algorithms</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html)</span>,</span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="co">[</span><span class="ot">Creating an Interventions Domain</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html)</span>, which provides a detailed explanation of various concepts in <span class="in">`{sdtm.oak}`</span>, such as <span class="in">`oak_id_vars`</span>, <span class="in">`condition_add`</span>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</span>
+<span id="cb10-22"><a href="#cb10-22"></a></span>
+<span id="cb10-23"><a href="#cb10-23"></a>In this article, we will dive directly into programming and provide further explanation only where it is required.</span>
+<span id="cb10-24"><a href="#cb10-24"></a></span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="fu"># Programming workflow</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a></span>
+<span id="cb10-27"><a href="#cb10-27"></a>In <span class="in">`{sdtm.oak}`</span> we process one raw dataset at a time. Similar raw datasets (example Vital Signs - Screening (<span class="in">`vs_raw`</span>), Vital Signs - Treatment (<span class="in">`vs_t_raw`</span>)) can be stacked together before processing or can be processed separately.</span>
+<span id="cb10-28"><a href="#cb10-28"></a></span>
+<span id="cb10-29"><a href="#cb10-29"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Read in data</span><span class="co">](#readdata)</span></span>
+<span id="cb10-30"><a href="#cb10-30"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Create oak_id_vars</span><span class="co">](#oakidvars)</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Read in CT</span><span class="co">](#readct)</span></span>
+<span id="cb10-32"><a href="#cb10-32"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Map Topic Variable</span><span class="co">](#maptopic)</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Map Rest of the Variables</span><span class="co">](#maprest)</span></span>
+<span id="cb10-34"><a href="#cb10-34"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Repeat Map Topic and Map Rest</span><span class="co">](#repeatsteps)</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a></span>
+<span id="cb10-36"><a href="#cb10-36"></a>Repeat the above steps for different raw datasets before proceeding with the below steps.</span>
+<span id="cb10-37"><a href="#cb10-37"></a></span>
+<span id="cb10-38"><a href="#cb10-38"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Create SDTM derived variables</span><span class="co">](#derivedvars)</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">Add Labels and Attributes</span><span class="co">](#attributes)</span></span>
+<span id="cb10-40"><a href="#cb10-40"></a></span>
+<span id="cb10-41"><a href="#cb10-41"></a><span class="fu">## Read in data {#readdata}</span></span>
+<span id="cb10-42"><a href="#cb10-42"></a></span>
+<span id="cb10-43"><a href="#cb10-43"></a>Read all the raw datasets into the environment. In this example, the raw dataset name is <span class="in">`vs_raw`</span>. Users can read it from the package using the below code:</span>
+<span id="cb10-44"><a href="#cb10-44"></a></span>
+<span id="cb10-45"><a href="#cb10-45"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb10-46"><a href="#cb10-46"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb10-47"><a href="#cb10-47"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb10-48"><a href="#cb10-48"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-49"><a href="#cb10-49"></a></span>
+<span id="cb10-50"><a href="#cb10-50"></a><span class="co"># Read in input data</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a>vs_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>vs_raw</span>
+<span id="cb10-52"><a href="#cb10-52"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span>
+<span id="cb10-53"><a href="#cb10-53"></a><span class="in">```</span></span>
+<span id="cb10-54"><a href="#cb10-54"></a></span>
+<span id="cb10-55"><a href="#cb10-55"></a>Vital Signs Raw dataset</span>
+<span id="cb10-56"><a href="#cb10-56"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-57"><a href="#cb10-57"></a><span class="fu">print_df</span>(vs_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb10-58"><a href="#cb10-58"></a><span class="in">```</span></span>
+<span id="cb10-59"><a href="#cb10-59"></a></span>
+<span id="cb10-60"><a href="#cb10-60"></a><span class="fu">### SDTM aCRF</span></span>
+<span id="cb10-61"><a href="#cb10-61"></a>SDTM annotated CRF for the <span class="in">`vs_raw`</span> can be viewed <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/VitalSigns_aCRF.pdf)</span>:</span>
+<span id="cb10-62"><a href="#cb10-62"></a></span>
+<span id="cb10-63"><a href="#cb10-63"></a><span class="fu">## Create oak_id_vars {#oakidvars}</span></span>
+<span id="cb10-64"><a href="#cb10-64"></a></span>
+<span id="cb10-67"><a href="#cb10-67"></a><span class="in">```{r}</span></span>
+<span id="cb10-68"><a href="#cb10-68"></a>vs_raw <span class="ot">&lt;-</span> vs_raw <span class="sc">%&gt;%</span></span>
+<span id="cb10-69"><a href="#cb10-69"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb10-70"><a href="#cb10-70"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb10-71"><a href="#cb10-71"></a>    <span class="at">raw_src =</span> <span class="st">"vitals"</span></span>
+<span id="cb10-72"><a href="#cb10-72"></a>  )</span>
+<span id="cb10-73"><a href="#cb10-73"></a><span class="in">```</span></span>
+<span id="cb10-74"><a href="#cb10-74"></a></span>
+<span id="cb10-75"><a href="#cb10-75"></a><span class="fu">## Read in CT {#readct}</span></span>
+<span id="cb10-76"><a href="#cb10-76"></a></span>
+<span id="cb10-77"><a href="#cb10-77"></a>Controlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is <span class="in">`sdtm_ct.csv`</span>. Users can read it from the package using the below code:</span>
+<span id="cb10-78"><a href="#cb10-78"></a></span>
+<span id="cb10-79"><a href="#cb10-79"></a><span class="in">```{r, echo = TRUE}</span></span>
+<span id="cb10-80"><a href="#cb10-80"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span>
+<span id="cb10-81"><a href="#cb10-81"></a><span class="in">```</span></span>
+<span id="cb10-82"><a href="#cb10-82"></a></span>
+<span id="cb10-83"><a href="#cb10-83"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-84"><a href="#cb10-84"></a><span class="fu">print_df</span>(study_ct, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb10-85"><a href="#cb10-85"></a><span class="in">```</span></span>
+<span id="cb10-86"><a href="#cb10-86"></a></span>
+<span id="cb10-87"><a href="#cb10-87"></a><span class="fu">## Map Topic Variable {#maptopic}</span></span>
+<span id="cb10-88"><a href="#cb10-88"></a></span>
+<span id="cb10-89"><a href="#cb10-89"></a>This raw dataset has multiple topic variables. Lets start with <span class="in">`SYSBP`</span>. Map topic variable <span class="in">`SYSBP`</span> from the raw variable <span class="in">`SYS_BP`</span>.</span>
+<span id="cb10-90"><a href="#cb10-90"></a></span>
+<span id="cb10-93"><a href="#cb10-93"></a><span class="in">```{r}</span></span>
+<span id="cb10-94"><a href="#cb10-94"></a><span class="co"># Map topic variable SYSBP</span></span>
+<span id="cb10-95"><a href="#cb10-95"></a>vs_sysbp <span class="ot">&lt;-</span></span>
+<span id="cb10-96"><a href="#cb10-96"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-97"><a href="#cb10-97"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-98"><a href="#cb10-98"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb10-99"><a href="#cb10-99"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-100"><a href="#cb10-100"></a>    <span class="at">tgt_val =</span> <span class="st">"SYSBP"</span>,</span>
+<span id="cb10-101"><a href="#cb10-101"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-102"><a href="#cb10-102"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-103"><a href="#cb10-103"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-104"><a href="#cb10-104"></a>  <span class="co"># Filter for records where VSTESTCD is not empty.</span></span>
+<span id="cb10-105"><a href="#cb10-105"></a>  <span class="co"># Only these records need qualifier mappings.</span></span>
+<span id="cb10-106"><a href="#cb10-106"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD))</span>
+<span id="cb10-107"><a href="#cb10-107"></a><span class="in">```</span></span>
+<span id="cb10-108"><a href="#cb10-108"></a></span>
+<span id="cb10-109"><a href="#cb10-109"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-110"><a href="#cb10-110"></a><span class="fu">print_df</span>(vs_sysbp, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb10-111"><a href="#cb10-111"></a><span class="in">```</span></span>
+<span id="cb10-112"><a href="#cb10-112"></a></span>
+<span id="cb10-113"><a href="#cb10-113"></a><span class="fu">## Map Rest of the Variables {#maprest}</span></span>
+<span id="cb10-114"><a href="#cb10-114"></a></span>
+<span id="cb10-115"><a href="#cb10-115"></a>Map rest of the variables applicable to the topic variable <span class="in">`SYSBP`</span>. This can include qualifiers, identifier and timing variables.</span>
+<span id="cb10-116"><a href="#cb10-116"></a></span>
+<span id="cb10-119"><a href="#cb10-119"></a><span class="in">```{r}</span></span>
+<span id="cb10-120"><a href="#cb10-120"></a><span class="do">## Map Rest of the Variables</span></span>
+<span id="cb10-121"><a href="#cb10-121"></a>vs_sysbp <span class="ot">&lt;-</span> vs_sysbp <span class="sc">%&gt;%</span></span>
+<span id="cb10-122"><a href="#cb10-122"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-123"><a href="#cb10-123"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-124"><a href="#cb10-124"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-125"><a href="#cb10-125"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb10-126"><a href="#cb10-126"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-127"><a href="#cb10-127"></a>    <span class="at">tgt_val =</span> <span class="st">"Systolic Blood Pressure"</span>,</span>
+<span id="cb10-128"><a href="#cb10-128"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-129"><a href="#cb10-129"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-130"><a href="#cb10-130"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-131"><a href="#cb10-131"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-132"><a href="#cb10-132"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-133"><a href="#cb10-133"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-134"><a href="#cb10-134"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-135"><a href="#cb10-135"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb10-136"><a href="#cb10-136"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-137"><a href="#cb10-137"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-138"><a href="#cb10-138"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-139"><a href="#cb10-139"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-140"><a href="#cb10-140"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-141"><a href="#cb10-141"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-142"><a href="#cb10-142"></a>    <span class="at">raw_var =</span> <span class="st">"SYS_BP"</span>,</span>
+<span id="cb10-143"><a href="#cb10-143"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-144"><a href="#cb10-144"></a>    <span class="at">tgt_val =</span> <span class="st">"mmHg"</span>,</span>
+<span id="cb10-145"><a href="#cb10-145"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-146"><a href="#cb10-146"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-147"><a href="#cb10-147"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-148"><a href="#cb10-148"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-149"><a href="#cb10-149"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb10-150"><a href="#cb10-150"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-151"><a href="#cb10-151"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-152"><a href="#cb10-152"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb10-153"><a href="#cb10-153"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb10-154"><a href="#cb10-154"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-155"><a href="#cb10-155"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb10-156"><a href="#cb10-156"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-157"><a href="#cb10-157"></a>  )</span>
+<span id="cb10-158"><a href="#cb10-158"></a><span class="in">```</span></span>
+<span id="cb10-159"><a href="#cb10-159"></a></span>
+<span id="cb10-160"><a href="#cb10-160"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-161"><a href="#cb10-161"></a><span class="fu">print_df</span>(vs_sysbp, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb10-162"><a href="#cb10-162"></a><span class="in">```</span></span>
+<span id="cb10-163"><a href="#cb10-163"></a></span>
+<span id="cb10-164"><a href="#cb10-164"></a><span class="fu">## Repeat Map Topic and Map Rest {#repeatsteps}</span></span>
+<span id="cb10-165"><a href="#cb10-165"></a></span>
+<span id="cb10-166"><a href="#cb10-166"></a>This raw data source has other topic variables <span class="in">`DIABP`</span>, <span class="in">`PULSE`</span>, <span class="in">`HEIGHT`</span>, <span class="in">`WEIGHT`</span>, <span class="in">`TEMP`</span> and its corresponding qualifiers. Repeat mapping topic and qualifiers for each topic variable.</span>
+<span id="cb10-167"><a href="#cb10-167"></a></span>
+<span id="cb10-170"><a href="#cb10-170"></a><span class="in">```{r}</span></span>
+<span id="cb10-171"><a href="#cb10-171"></a><span class="co"># Repeat Map Topic and Map Rest</span></span>
+<span id="cb10-172"><a href="#cb10-172"></a>vs_diabp <span class="ot">&lt;-</span></span>
+<span id="cb10-173"><a href="#cb10-173"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-174"><a href="#cb10-174"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-175"><a href="#cb10-175"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb10-176"><a href="#cb10-176"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-177"><a href="#cb10-177"></a>    <span class="at">tgt_val =</span> <span class="st">"DIABP"</span>,</span>
+<span id="cb10-178"><a href="#cb10-178"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-179"><a href="#cb10-179"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-180"><a href="#cb10-180"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-181"><a href="#cb10-181"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-182"><a href="#cb10-182"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-183"><a href="#cb10-183"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-184"><a href="#cb10-184"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-185"><a href="#cb10-185"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb10-186"><a href="#cb10-186"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-187"><a href="#cb10-187"></a>    <span class="at">tgt_val =</span> <span class="st">"Diastolic Blood Pressure"</span>,</span>
+<span id="cb10-188"><a href="#cb10-188"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-189"><a href="#cb10-189"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-190"><a href="#cb10-190"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-191"><a href="#cb10-191"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-192"><a href="#cb10-192"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-193"><a href="#cb10-193"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-194"><a href="#cb10-194"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-195"><a href="#cb10-195"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb10-196"><a href="#cb10-196"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-197"><a href="#cb10-197"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-198"><a href="#cb10-198"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-199"><a href="#cb10-199"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-200"><a href="#cb10-200"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-201"><a href="#cb10-201"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-202"><a href="#cb10-202"></a>    <span class="at">raw_var =</span> <span class="st">"DIA_BP"</span>,</span>
+<span id="cb10-203"><a href="#cb10-203"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-204"><a href="#cb10-204"></a>    <span class="at">tgt_val =</span> <span class="st">"mmHg"</span>,</span>
+<span id="cb10-205"><a href="#cb10-205"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-206"><a href="#cb10-206"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-207"><a href="#cb10-207"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-208"><a href="#cb10-208"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-209"><a href="#cb10-209"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb10-210"><a href="#cb10-210"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-211"><a href="#cb10-211"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-212"><a href="#cb10-212"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb10-213"><a href="#cb10-213"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb10-214"><a href="#cb10-214"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-215"><a href="#cb10-215"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb10-216"><a href="#cb10-216"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-217"><a href="#cb10-217"></a>  )</span>
+<span id="cb10-218"><a href="#cb10-218"></a></span>
+<span id="cb10-219"><a href="#cb10-219"></a><span class="co"># Map topic variable PULSE and its qualifiers.</span></span>
+<span id="cb10-220"><a href="#cb10-220"></a>vs_pulse <span class="ot">&lt;-</span></span>
+<span id="cb10-221"><a href="#cb10-221"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-222"><a href="#cb10-222"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-223"><a href="#cb10-223"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb10-224"><a href="#cb10-224"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-225"><a href="#cb10-225"></a>    <span class="at">tgt_val =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb10-226"><a href="#cb10-226"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-227"><a href="#cb10-227"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-228"><a href="#cb10-228"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-229"><a href="#cb10-229"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-230"><a href="#cb10-230"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-231"><a href="#cb10-231"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-232"><a href="#cb10-232"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-233"><a href="#cb10-233"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb10-234"><a href="#cb10-234"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-235"><a href="#cb10-235"></a>    <span class="at">tgt_val =</span> <span class="st">"Pulse Rate"</span>,</span>
+<span id="cb10-236"><a href="#cb10-236"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-237"><a href="#cb10-237"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-238"><a href="#cb10-238"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-239"><a href="#cb10-239"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-240"><a href="#cb10-240"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-241"><a href="#cb10-241"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-242"><a href="#cb10-242"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-243"><a href="#cb10-243"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb10-244"><a href="#cb10-244"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-245"><a href="#cb10-245"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-246"><a href="#cb10-246"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-247"><a href="#cb10-247"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-248"><a href="#cb10-248"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-249"><a href="#cb10-249"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-250"><a href="#cb10-250"></a>    <span class="at">raw_var =</span> <span class="st">"PULSE"</span>,</span>
+<span id="cb10-251"><a href="#cb10-251"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-252"><a href="#cb10-252"></a>    <span class="at">tgt_val =</span> <span class="st">"beats/min"</span>,</span>
+<span id="cb10-253"><a href="#cb10-253"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-254"><a href="#cb10-254"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-255"><a href="#cb10-255"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-256"><a href="#cb10-256"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-257"><a href="#cb10-257"></a>  <span class="co"># Map VSPOS using assign_ct algorithm</span></span>
+<span id="cb10-258"><a href="#cb10-258"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-259"><a href="#cb10-259"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-260"><a href="#cb10-260"></a>    <span class="at">raw_var =</span> <span class="st">"SUBPOS"</span>,</span>
+<span id="cb10-261"><a href="#cb10-261"></a>    <span class="at">tgt_var =</span> <span class="st">"VSPOS"</span>,</span>
+<span id="cb10-262"><a href="#cb10-262"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-263"><a href="#cb10-263"></a>    <span class="at">ct_clst =</span> <span class="st">"C71148"</span>,</span>
+<span id="cb10-264"><a href="#cb10-264"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-265"><a href="#cb10-265"></a>  )</span>
+<span id="cb10-266"><a href="#cb10-266"></a></span>
+<span id="cb10-267"><a href="#cb10-267"></a><span class="co"># Map topic variable TEMP from raw variable TEMP and its qualifiers.</span></span>
+<span id="cb10-268"><a href="#cb10-268"></a>vs_temp <span class="ot">&lt;-</span></span>
+<span id="cb10-269"><a href="#cb10-269"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-270"><a href="#cb10-270"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-271"><a href="#cb10-271"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb10-272"><a href="#cb10-272"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-273"><a href="#cb10-273"></a>    <span class="at">tgt_val =</span> <span class="st">"TEMP"</span>,</span>
+<span id="cb10-274"><a href="#cb10-274"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-275"><a href="#cb10-275"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-276"><a href="#cb10-276"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-277"><a href="#cb10-277"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-278"><a href="#cb10-278"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-279"><a href="#cb10-279"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-280"><a href="#cb10-280"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-281"><a href="#cb10-281"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb10-282"><a href="#cb10-282"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-283"><a href="#cb10-283"></a>    <span class="at">tgt_val =</span> <span class="st">"Temperature"</span>,</span>
+<span id="cb10-284"><a href="#cb10-284"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-285"><a href="#cb10-285"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-286"><a href="#cb10-286"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-287"><a href="#cb10-287"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-288"><a href="#cb10-288"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-289"><a href="#cb10-289"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-290"><a href="#cb10-290"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-291"><a href="#cb10-291"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb10-292"><a href="#cb10-292"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-293"><a href="#cb10-293"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-294"><a href="#cb10-294"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-295"><a href="#cb10-295"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-296"><a href="#cb10-296"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-297"><a href="#cb10-297"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-298"><a href="#cb10-298"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb10-299"><a href="#cb10-299"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-300"><a href="#cb10-300"></a>    <span class="at">tgt_val =</span> <span class="st">"F"</span>,</span>
+<span id="cb10-301"><a href="#cb10-301"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-302"><a href="#cb10-302"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-303"><a href="#cb10-303"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-304"><a href="#cb10-304"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-305"><a href="#cb10-305"></a>  <span class="co"># Map VSLOC from TEMPLOC using assign_ct</span></span>
+<span id="cb10-306"><a href="#cb10-306"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-307"><a href="#cb10-307"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-308"><a href="#cb10-308"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP_LOC"</span>,</span>
+<span id="cb10-309"><a href="#cb10-309"></a>    <span class="at">tgt_var =</span> <span class="st">"VSLOC"</span>,</span>
+<span id="cb10-310"><a href="#cb10-310"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-311"><a href="#cb10-311"></a>    <span class="at">ct_clst =</span> <span class="st">"C74456"</span>,</span>
+<span id="cb10-312"><a href="#cb10-312"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-313"><a href="#cb10-313"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-314"><a href="#cb10-314"></a>  <span class="co"># Create VSSTRESC by converting VSORRES from F to C</span></span>
+<span id="cb10-315"><a href="#cb10-315"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, (<span class="fu">as.numeric</span>(VSORRES) <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">9</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb10-316"><a href="#cb10-316"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-317"><a href="#cb10-317"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-318"><a href="#cb10-318"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-319"><a href="#cb10-319"></a>    <span class="at">raw_var =</span> <span class="st">"IT.TEMP"</span>,</span>
+<span id="cb10-320"><a href="#cb10-320"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb10-321"><a href="#cb10-321"></a>    <span class="at">tgt_val =</span> <span class="st">"C"</span>,</span>
+<span id="cb10-322"><a href="#cb10-322"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-323"><a href="#cb10-323"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-324"><a href="#cb10-324"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-325"><a href="#cb10-325"></a>  )</span>
+<span id="cb10-326"><a href="#cb10-326"></a></span>
+<span id="cb10-327"><a href="#cb10-327"></a><span class="co"># Map topic variable HEIGHT from raw variable IT.HEIGHT_VSORRRES and its qualifiers.</span></span>
+<span id="cb10-328"><a href="#cb10-328"></a>vs_height <span class="ot">&lt;-</span></span>
+<span id="cb10-329"><a href="#cb10-329"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-330"><a href="#cb10-330"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-331"><a href="#cb10-331"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb10-332"><a href="#cb10-332"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-333"><a href="#cb10-333"></a>    <span class="at">tgt_val =</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb10-334"><a href="#cb10-334"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-335"><a href="#cb10-335"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-336"><a href="#cb10-336"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-337"><a href="#cb10-337"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-338"><a href="#cb10-338"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-339"><a href="#cb10-339"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-340"><a href="#cb10-340"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-341"><a href="#cb10-341"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb10-342"><a href="#cb10-342"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-343"><a href="#cb10-343"></a>    <span class="at">tgt_val =</span> <span class="st">"Height"</span>,</span>
+<span id="cb10-344"><a href="#cb10-344"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-345"><a href="#cb10-345"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-346"><a href="#cb10-346"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-347"><a href="#cb10-347"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-348"><a href="#cb10-348"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-349"><a href="#cb10-349"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-350"><a href="#cb10-350"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-351"><a href="#cb10-351"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb10-352"><a href="#cb10-352"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-353"><a href="#cb10-353"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-354"><a href="#cb10-354"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-355"><a href="#cb10-355"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-356"><a href="#cb10-356"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-357"><a href="#cb10-357"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-358"><a href="#cb10-358"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb10-359"><a href="#cb10-359"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-360"><a href="#cb10-360"></a>    <span class="at">tgt_val =</span> <span class="st">"in"</span>,</span>
+<span id="cb10-361"><a href="#cb10-361"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-362"><a href="#cb10-362"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-363"><a href="#cb10-363"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-364"><a href="#cb10-364"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-365"><a href="#cb10-365"></a>  <span class="co"># Create VSSRESC by converting VSORRES from in to cm</span></span>
+<span id="cb10-366"><a href="#cb10-366"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">as.numeric</span>(VSORRES) <span class="sc">*</span> <span class="fl">2.54</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb10-367"><a href="#cb10-367"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-368"><a href="#cb10-368"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-369"><a href="#cb10-369"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-370"><a href="#cb10-370"></a>    <span class="at">raw_var =</span> <span class="st">"IT.HEIGHT_VSORRES"</span>,</span>
+<span id="cb10-371"><a href="#cb10-371"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb10-372"><a href="#cb10-372"></a>    <span class="at">tgt_val =</span> <span class="st">"cm"</span>,</span>
+<span id="cb10-373"><a href="#cb10-373"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-374"><a href="#cb10-374"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-375"><a href="#cb10-375"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-376"><a href="#cb10-376"></a>  )</span>
+<span id="cb10-377"><a href="#cb10-377"></a></span>
+<span id="cb10-378"><a href="#cb10-378"></a><span class="co"># Map topic variable WEIGHT from raw variable IT.WEIGHT and its qualifiers.</span></span>
+<span id="cb10-379"><a href="#cb10-379"></a>vs_weight <span class="ot">&lt;-</span></span>
+<span id="cb10-380"><a href="#cb10-380"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-381"><a href="#cb10-381"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-382"><a href="#cb10-382"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb10-383"><a href="#cb10-383"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTESTCD"</span>,</span>
+<span id="cb10-384"><a href="#cb10-384"></a>    <span class="at">tgt_val =</span> <span class="st">"WEIGHT"</span>,</span>
+<span id="cb10-385"><a href="#cb10-385"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-386"><a href="#cb10-386"></a>    <span class="at">ct_clst =</span> <span class="st">"C66741"</span></span>
+<span id="cb10-387"><a href="#cb10-387"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-388"><a href="#cb10-388"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>VSTESTCD)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-389"><a href="#cb10-389"></a>  <span class="co"># Map VSTEST using hardcode_ct algorithm</span></span>
+<span id="cb10-390"><a href="#cb10-390"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-391"><a href="#cb10-391"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-392"><a href="#cb10-392"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb10-393"><a href="#cb10-393"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTEST"</span>,</span>
+<span id="cb10-394"><a href="#cb10-394"></a>    <span class="at">tgt_val =</span> <span class="st">"Weight"</span>,</span>
+<span id="cb10-395"><a href="#cb10-395"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-396"><a href="#cb10-396"></a>    <span class="at">ct_clst =</span> <span class="st">"C67153"</span>,</span>
+<span id="cb10-397"><a href="#cb10-397"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-398"><a href="#cb10-398"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-399"><a href="#cb10-399"></a>  <span class="co"># Map VSORRES using assign_no_ct algorithm</span></span>
+<span id="cb10-400"><a href="#cb10-400"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb10-401"><a href="#cb10-401"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-402"><a href="#cb10-402"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb10-403"><a href="#cb10-403"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRES"</span>,</span>
+<span id="cb10-404"><a href="#cb10-404"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-405"><a href="#cb10-405"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-406"><a href="#cb10-406"></a>  <span class="co"># Map VSORRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-407"><a href="#cb10-407"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-408"><a href="#cb10-408"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-409"><a href="#cb10-409"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb10-410"><a href="#cb10-410"></a>    <span class="at">tgt_var =</span> <span class="st">"VSORRESU"</span>,</span>
+<span id="cb10-411"><a href="#cb10-411"></a>    <span class="at">tgt_val =</span> <span class="st">"LB"</span>,</span>
+<span id="cb10-412"><a href="#cb10-412"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-413"><a href="#cb10-413"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-414"><a href="#cb10-414"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-415"><a href="#cb10-415"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-416"><a href="#cb10-416"></a>  <span class="co"># Create VSSTRESC by converting VSORRES from LB to KG</span></span>
+<span id="cb10-417"><a href="#cb10-417"></a>  <span class="fu">mutate</span>(<span class="at">VSSTRESC =</span> <span class="fu">as.character</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, <span class="fu">as.numeric</span>(VSORRES) <span class="sc">/</span> <span class="fl">2.20462</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb10-418"><a href="#cb10-418"></a>  <span class="co"># Map VSSTRESU using hardcode_ct algorithm</span></span>
+<span id="cb10-419"><a href="#cb10-419"></a>  <span class="fu">hardcode_ct</span>(</span>
+<span id="cb10-420"><a href="#cb10-420"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-421"><a href="#cb10-421"></a>    <span class="at">raw_var =</span> <span class="st">"IT.WEIGHT"</span>,</span>
+<span id="cb10-422"><a href="#cb10-422"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSTRESU"</span>,</span>
+<span id="cb10-423"><a href="#cb10-423"></a>    <span class="at">tgt_val =</span> <span class="st">"kg"</span>,</span>
+<span id="cb10-424"><a href="#cb10-424"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-425"><a href="#cb10-425"></a>    <span class="at">ct_clst =</span> <span class="st">"C66770"</span>,</span>
+<span id="cb10-426"><a href="#cb10-426"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-427"><a href="#cb10-427"></a>  )</span>
+<span id="cb10-428"><a href="#cb10-428"></a><span class="in">```</span></span>
+<span id="cb10-429"><a href="#cb10-429"></a></span>
+<span id="cb10-430"><a href="#cb10-430"></a>Now that all the topic variable and its qualifier mappings are complete, combine all the datasets and proceed with mapping qualifiers, identifiers and timing variables applicable to all topic variables.</span>
+<span id="cb10-431"><a href="#cb10-431"></a></span>
+<span id="cb10-434"><a href="#cb10-434"></a><span class="in">```{r}</span></span>
+<span id="cb10-435"><a href="#cb10-435"></a><span class="co"># Combine all the topic variables into a single data frame.</span></span>
+<span id="cb10-436"><a href="#cb10-436"></a>vs_combined <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(</span>
+<span id="cb10-437"><a href="#cb10-437"></a>  vs_diabp, vs_height, vs_pulse,</span>
+<span id="cb10-438"><a href="#cb10-438"></a>  vs_sysbp, vs_temp, vs_weight</span>
+<span id="cb10-439"><a href="#cb10-439"></a>)</span>
+<span id="cb10-440"><a href="#cb10-440"></a><span class="in">```</span></span>
+<span id="cb10-441"><a href="#cb10-441"></a></span>
+<span id="cb10-444"><a href="#cb10-444"></a><span class="in">```{r}</span></span>
+<span id="cb10-445"><a href="#cb10-445"></a><span class="co"># Map qualifiers common to all topic variables</span></span>
+<span id="cb10-446"><a href="#cb10-446"></a>vs <span class="ot">&lt;-</span> vs_combined <span class="sc">%&gt;%</span></span>
+<span id="cb10-447"><a href="#cb10-447"></a>  <span class="co"># Map VSDTC using assign_ct algorithm</span></span>
+<span id="cb10-448"><a href="#cb10-448"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb10-449"><a href="#cb10-449"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-450"><a href="#cb10-450"></a>    <span class="at">raw_var =</span> <span class="fu">c</span>(<span class="st">"VTLD"</span>),</span>
+<span id="cb10-451"><a href="#cb10-451"></a>    <span class="at">tgt_var =</span> <span class="st">"VSDTC"</span>,</span>
+<span id="cb10-452"><a href="#cb10-452"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"d-m-y"</span>, <span class="st">"dd-mmm-yyyy"</span>)))</span>
+<span id="cb10-453"><a href="#cb10-453"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-454"><a href="#cb10-454"></a>  <span class="co"># Map VSTPT from TMPTC using assign_ct</span></span>
+<span id="cb10-455"><a href="#cb10-455"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-456"><a href="#cb10-456"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-457"><a href="#cb10-457"></a>    <span class="at">raw_var =</span> <span class="st">"TMPTC"</span>,</span>
+<span id="cb10-458"><a href="#cb10-458"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTPT"</span>,</span>
+<span id="cb10-459"><a href="#cb10-459"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-460"><a href="#cb10-460"></a>    <span class="at">ct_clst =</span> <span class="st">"TPT"</span>,</span>
+<span id="cb10-461"><a href="#cb10-461"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-462"><a href="#cb10-462"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-463"><a href="#cb10-463"></a>  <span class="co"># Map VSTPTNUM from TMPTC using assign_ct</span></span>
+<span id="cb10-464"><a href="#cb10-464"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-465"><a href="#cb10-465"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-466"><a href="#cb10-466"></a>    <span class="at">raw_var =</span> <span class="st">"TMPTC"</span>,</span>
+<span id="cb10-467"><a href="#cb10-467"></a>    <span class="at">tgt_var =</span> <span class="st">"VSTPTNUM"</span>,</span>
+<span id="cb10-468"><a href="#cb10-468"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-469"><a href="#cb10-469"></a>    <span class="at">ct_clst =</span> <span class="st">"TPTNUM"</span>,</span>
+<span id="cb10-470"><a href="#cb10-470"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-471"><a href="#cb10-471"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-472"><a href="#cb10-472"></a>  <span class="co"># Map VISIT from INSTANCE using assign_ct</span></span>
+<span id="cb10-473"><a href="#cb10-473"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-474"><a href="#cb10-474"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-475"><a href="#cb10-475"></a>    <span class="at">raw_var =</span> <span class="st">"INSTANCE"</span>,</span>
+<span id="cb10-476"><a href="#cb10-476"></a>    <span class="at">tgt_var =</span> <span class="st">"VISIT"</span>,</span>
+<span id="cb10-477"><a href="#cb10-477"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-478"><a href="#cb10-478"></a>    <span class="at">ct_clst =</span> <span class="st">"VISIT"</span>,</span>
+<span id="cb10-479"><a href="#cb10-479"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-480"><a href="#cb10-480"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-481"><a href="#cb10-481"></a>  <span class="co"># Map VISITNUM from INSTANCE using assign_ct</span></span>
+<span id="cb10-482"><a href="#cb10-482"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb10-483"><a href="#cb10-483"></a>    <span class="at">raw_dat =</span> vs_raw,</span>
+<span id="cb10-484"><a href="#cb10-484"></a>    <span class="at">raw_var =</span> <span class="st">"INSTANCE"</span>,</span>
+<span id="cb10-485"><a href="#cb10-485"></a>    <span class="at">tgt_var =</span> <span class="st">"VISITNUM"</span>,</span>
+<span id="cb10-486"><a href="#cb10-486"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb10-487"><a href="#cb10-487"></a>    <span class="at">ct_clst =</span> <span class="st">"VISITNUM"</span>,</span>
+<span id="cb10-488"><a href="#cb10-488"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb10-489"><a href="#cb10-489"></a>  )</span>
+<span id="cb10-490"><a href="#cb10-490"></a><span class="in">```</span></span>
+<span id="cb10-491"><a href="#cb10-491"></a></span>
+<span id="cb10-492"><a href="#cb10-492"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-493"><a href="#cb10-493"></a><span class="fu">print_df</span>(vs)</span>
+<span id="cb10-494"><a href="#cb10-494"></a><span class="in">```</span></span>
+<span id="cb10-495"><a href="#cb10-495"></a></span>
+<span id="cb10-496"><a href="#cb10-496"></a><span class="fu">## Create SDTM derived variables {#derivedvars}</span></span>
+<span id="cb10-497"><a href="#cb10-497"></a></span>
+<span id="cb10-498"><a href="#cb10-498"></a>Create derived variables applicable to all topic variables.</span>
+<span id="cb10-499"><a href="#cb10-499"></a></span>
+<span id="cb10-502"><a href="#cb10-502"></a><span class="in">```{r}</span></span>
+<span id="cb10-503"><a href="#cb10-503"></a>vs <span class="ot">&lt;-</span> vs <span class="sc">%&gt;%</span></span>
+<span id="cb10-504"><a href="#cb10-504"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb10-505"><a href="#cb10-505"></a>    <span class="at">STUDYID =</span> <span class="st">"CDISCPILOT01"</span>,</span>
+<span id="cb10-506"><a href="#cb10-506"></a>    <span class="at">DOMAIN =</span> <span class="st">"VS"</span>,</span>
+<span id="cb10-507"><a href="#cb10-507"></a>    <span class="at">VSCAT =</span> <span class="st">"VITAL SIGNS"</span>,</span>
+<span id="cb10-508"><a href="#cb10-508"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01"</span>, <span class="st">"-"</span>, .data<span class="sc">$</span>patient_number),</span>
+<span id="cb10-509"><a href="#cb10-509"></a>    <span class="at">VSSTRESC =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSSTRESC), VSORRES, VSSTRESC),</span>
+<span id="cb10-510"><a href="#cb10-510"></a>    <span class="at">VSSTRESN =</span> <span class="fu">as.numeric</span>(VSSTRESC),</span>
+<span id="cb10-511"><a href="#cb10-511"></a>    <span class="at">VSSTRESU =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSSTRESU), VSORRESU, VSSTRESU),</span>
+<span id="cb10-512"><a href="#cb10-512"></a>    <span class="at">VSELTM =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSTPT), <span class="cn">NA</span>, <span class="fu">paste0</span>(<span class="st">"PT"</span>, readr<span class="sc">::</span><span class="fu">parse_number</span>(VSTPT), <span class="st">"M"</span>)),</span>
+<span id="cb10-513"><a href="#cb10-513"></a>    <span class="at">VSTPTREF =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(VSPOS), <span class="cn">NA</span>, <span class="fu">paste</span>(<span class="st">"PATIENT"</span>, VSPOS))</span>
+<span id="cb10-514"><a href="#cb10-514"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-515"><a href="#cb10-515"></a>  <span class="fu">arrange</span>(USUBJID, VSTESTCD, <span class="fu">as.numeric</span>(VISITNUM), <span class="fu">as.numeric</span>(VSTPTNUM)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-516"><a href="#cb10-516"></a>  <span class="fu">derive_seq</span>(</span>
+<span id="cb10-517"><a href="#cb10-517"></a>    <span class="at">tgt_var =</span> <span class="st">"VSSEQ"</span>,</span>
+<span id="cb10-518"><a href="#cb10-518"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"VSTESTCD"</span>)</span>
+<span id="cb10-519"><a href="#cb10-519"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-520"><a href="#cb10-520"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb10-521"><a href="#cb10-521"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb10-522"><a href="#cb10-522"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb10-523"><a href="#cb10-523"></a>    <span class="at">tgdt =</span> <span class="st">"VSDTC"</span>,</span>
+<span id="cb10-524"><a href="#cb10-524"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb10-525"><a href="#cb10-525"></a>    <span class="at">study_day_var =</span> <span class="st">"VSDY"</span></span>
+<span id="cb10-526"><a href="#cb10-526"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-527"><a href="#cb10-527"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"VSSEQ"</span>, <span class="st">"VSTESTCD"</span>, <span class="st">"VSTEST"</span>, <span class="st">"VSPOS"</span>, <span class="st">"VSORRES"</span>, <span class="st">"VSORRESU"</span>, <span class="st">"VSSTRESC"</span>, <span class="st">"VSSTRESN"</span>, <span class="st">"VSSTRESU"</span>, <span class="st">"VSLOC"</span>, <span class="st">"VISITNUM"</span>, <span class="st">"VISIT"</span>, <span class="st">"VSDTC"</span>, <span class="st">"VSDY"</span>, <span class="st">"VSTPT"</span>, <span class="st">"VSTPTNUM"</span>, <span class="st">"VSELTM"</span>, <span class="st">"VSTPTREF"</span>)</span>
+<span id="cb10-528"><a href="#cb10-528"></a><span class="in">```</span></span>
+<span id="cb10-529"><a href="#cb10-529"></a></span>
+<span id="cb10-530"><a href="#cb10-530"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb10-531"><a href="#cb10-531"></a><span class="fu">print_df</span>(vs)</span>
+<span id="cb10-532"><a href="#cb10-532"></a><span class="in">```</span></span>
+<span id="cb10-533"><a href="#cb10-533"></a></span>
+<span id="cb10-534"><a href="#cb10-534"></a><span class="fu">## Add Labels and Attributes {#attributes}</span></span>
+<span id="cb10-535"><a href="#cb10-535"></a></span>
+<span id="cb10-536"><a href="#cb10-536"></a>Yet to be developed. Please refer to <span class="in">`{metatools}`</span> package to investigate options.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

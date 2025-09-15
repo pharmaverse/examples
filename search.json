@@ -433,7 +433,7 @@
     "href": "index.html",
     "title": "pharmaverse examples",
     "section": "",
-    "text": "The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to complement each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.\nThis book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses, such as ADaM and Tables/Listings/Graphs. The examples use consistent source test SDTMs and ADaMs from {pharmaversesdtm} and {pharmaverseadam} respectively.\nWe’ll endeavour to include a selection of examples here over time, e.g. to help users when trying out the packages for PK/PD or Therapeutic Area specific (such as Oncology or Vaccines) analyses.\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.",
+    "text": "The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to complement each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.\nThis book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses, such as SDTM, ADaM and Tables/Listings/Graphs. The examples use consistent source test raw datasets from {pharmaverseraw}, SDTMs and ADaMs from {pharmaversesdtm} and {pharmaverseadam} respectively.\nWe’ll endeavour to include a selection of examples here over time, e.g. to help users when trying out the packages for PK/PD or Therapeutic Area specific (such as Oncology or Vaccines) analyses.\nNote that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.",
     "crumbs": [
       "Introduction"
     ]
@@ -569,14 +569,311 @@
     ]
   },
   {
-    "objectID": "sdtm/examples.html",
-    "href": "sdtm/examples.html",
-    "title": "SDTM Examples",
+    "objectID": "sdtm/dm.html",
+    "href": "sdtm/dm.html",
+    "title": "DM",
     "section": "",
-    "text": "For SDTM mapping, there is currently an industry collaboration supported by CDISC for the {roak} R package. Read more here.\nOnce this completes and the package is made available as open source, we will be able to add examples showcasing how best to use this alongside other pharmaverse packages in this space - such as {datacutr} and {sdtmchecks}.",
+    "text": "This article describes how to create a demographics (DM) domain using the {sdtm.oak} package.\nBefore reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts: Algorithms & Sub-Algorithms, Creating an Interventions Domain, which provides a detailed explanation of various concepts in {sdtm.oak}, such as oak_id_vars, condition_add, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.\nIn this article, we will dive directly into programming and provide further explanation only where it is required.",
     "crumbs": [
       "SDTM",
-      "SDTM Examples"
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#readdata",
+    "href": "sdtm/dm.html#readdata",
+    "title": "DM",
+    "section": "Read in data",
+    "text": "Read in data\nRead all the raw datasets into the environment. In this example, the raw datasets needed are ec_raw, ds_raw and dm_raw. Users can read them from the {pharmaverseraw} package using the below code:\n\nlibrary(sdtm.oak)\nlibrary(pharmaverseraw)\nlibrary(dplyr)\n\ndm_raw &lt;- pharmaverseraw::dm_raw\nds_raw &lt;- pharmaverseraw::ds_raw\nec_raw &lt;- pharmaverseraw::ec_raw\n\n\nDemographics Raw dataset.\n\n\nSample of Data\n\n\n\n\n\n\nDisposition Raw dataset.\n\n\nSample of Data\n\n\n\n\n\n\nStudy Drug Administration Raw dataset.\n\n\nSample of Data\n\n\n\n\n\n\nSDTM aCRF\nSDTM annotated aCRF for the raw datasets are below:\nDemographics aCRF\nExposure_as_collected aCRF\nSubject_Disposition_aCRF",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#oakidvars",
+    "href": "sdtm/dm.html#oakidvars",
+    "title": "DM",
+    "section": "Create oak_id_vars",
+    "text": "Create oak_id_vars\n\ndm_raw &lt;- dm_raw %&gt;%\n  generate_oak_id_vars(\n    pat_var = \"PATNUM\",\n    raw_src = \"dm_raw\"\n  )\n\nds_raw &lt;- ds_raw %&gt;%\n  generate_oak_id_vars(\n    pat_var = \"PATNUM\",\n    raw_src = \"ds_raw\"\n  )\n\nec_raw &lt;- ec_raw %&gt;%\n  generate_oak_id_vars(\n    pat_var = \"PATNUM\",\n    raw_src = \"ec_raw\"\n  )\n\nFor example, Demographics Raw dataset with oak_id_vars\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#readct",
+    "href": "sdtm/dm.html#readct",
+    "title": "DM",
+    "section": "Read in CT",
+    "text": "Read in CT\nControlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is sdtm_ct.csv. Users can read it from the package using the below code:\n\nstudy_ct &lt;- read.csv(\"metadata/sdtm_ct.csv\")\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#refdates",
+    "href": "sdtm/dm.html#refdates",
+    "title": "DM",
+    "section": "Create reference dates configuration file",
+    "text": "Create reference dates configuration file\nCreate reference date configuration file, a data frame which has the details of the variables to be used for the calculation of reference dates. The data frame should have columns listed below:\n\nraw_dataset_name: Name of the raw dataset.\n\ndate_var: Date variable name from the raw dataset.\n\ntime_var: Time variable name from the raw dataset.\n\ndformat: Format of the date collected in raw data.\n\ntformat: Format of the time collected in raw data.\n\nsdtm_var_name: Reference date variable name in DM domain where the raw variable is used.\n\n\nref_date_conf_df &lt;- tibble::tribble(\n  ~raw_dataset_name, ~date_var,     ~time_var,      ~dformat,      ~tformat, ~sdtm_var_name,\n  \"ec_raw\",       \"IT.ECSTDAT\", NA_character_, \"dd-mmm-yyyy\", NA_character_,     \"RFXSTDTC\",\n  \"ec_raw\",       \"IT.ECENDAT\", NA_character_, \"dd-mmm-yyyy\", NA_character_,     \"RFXENDTC\",\n  \"ec_raw\",       \"IT.ECSTDAT\", NA_character_, \"dd-mmm-yyyy\", NA_character_,      \"RFSTDTC\",\n  \"ec_raw\",       \"IT.ECENDAT\", NA_character_, \"dd-mmm-yyyy\", NA_character_,      \"RFENDTC\",\n  \"dm_raw\",            \"IC_DT\", NA_character_,  \"mm/dd/yyyy\", NA_character_,      \"RFICDTC\",\n  \"ds_raw\",          \"DSDTCOL\",     \"DSTMCOL\",  \"mm-dd-yyyy\",         \"H:M\",     \"RFPENDTC\",\n  \"ds_raw\",          \"DEATHDT\", NA_character_,  \"mm/dd/yyyy\", NA_character_,       \"DTHDTC\"\n)\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#maptopic",
+    "href": "sdtm/dm.html#maptopic",
+    "title": "DM",
+    "section": "Map Topic Variable",
+    "text": "Map Topic Variable\nIn DM domain, SUBJID is the topic variable and it can be mapped from PATNUM using a simple dplyr::mutate() statement.\n\ndm &lt;- dm_raw %&gt;%\n  mutate(\n    SUBJID = substr(PATNUM, 5, 8)\n  ) %&gt;%\n  select(oak_id, raw_source, patient_number, SUBJID)\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#maprest",
+    "href": "sdtm/dm.html#maprest",
+    "title": "DM",
+    "section": "Map Rest of the Variables",
+    "text": "Map Rest of the Variables\nMap rest of the variables in DM domain using either sdtm.oak::assign_no_ct() or sdtm.oak::assign_ct() depending on if the variable has controlled terminologies associated.\n\ndm &lt;- dm %&gt;%\n  # Map AGE using assign_no_ct\n  assign_no_ct(\n    raw_dat = dm_raw,\n    raw_var = \"IT.AGE\",\n    tgt_var = \"AGE\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AGEU using hardcode_ct\n  hardcode_ct(\n    raw_dat = dm_raw,\n    raw_var = \"IT.AGE\",\n    tgt_var = \"AGEU\",\n    tgt_val = \"Year\",\n    ct_spec = study_ct,\n    ct_clst = \"C66781\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map SEX using assign_ct\n  assign_ct(\n    raw_dat = dm_raw,\n    raw_var = \"IT.SEX\",\n    tgt_var = \"SEX\",\n    ct_spec = study_ct,\n    ct_clst = \"C66731\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map ETHNIC using assign_ct\n  assign_ct(\n    raw_dat = dm_raw,\n    raw_var = \"IT.ETHNIC\",\n    tgt_var = \"ETHNIC\",\n    ct_spec = study_ct,\n    ct_clst = \"C66790\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map RACE using assign_ct\n  assign_ct(\n    raw_dat = dm_raw,\n    raw_var = \"IT.RACE\",\n    tgt_var = \"RACE\",\n    ct_spec = study_ct,\n    ct_clst = \"C74457\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map ARM using assign_ct\n  assign_ct(\n    raw_dat = dm_raw,\n    raw_var = \"PLANNED_ARM\",\n    tgt_var = \"ARM\",\n    ct_spec = study_ct,\n    ct_clst = \"ARM\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map ARMCD using assign_no_ct\n  assign_no_ct(\n    raw_dat = dm_raw,\n    raw_var = \"PLANNED_ARMCD\",\n    tgt_var = \"ARMCD\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map ACTARM using assign_ct\n  assign_ct(\n    raw_dat = dm_raw,\n    raw_var = \"ACTUAL_ARM\",\n    tgt_var = \"ACTARM\",\n    ct_spec = study_ct,\n    ct_clst = \"ARM\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map ACTARMCD using assign_no_ct\n  assign_no_ct(\n    raw_dat = dm_raw,\n    raw_var = \"ACTUAL_ARMCD\",\n    tgt_var = \"ACTARMCD\",\n    id_vars = oak_id_vars()\n  )\n\nℹ These terms could not be mapped per the controlled terminology: \"Placebo\" and \"Screen Failure\".\nℹ These terms could not be mapped per the controlled terminology: \"Placebo\" and \"Screen Failure\".\n\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#mapvars",
+    "href": "sdtm/dm.html#mapvars",
+    "title": "DM",
+    "section": "Map Reference Date Variables",
+    "text": "Map Reference Date Variables\nUse sdtm.oak::oak_cal_ref_dates() to calculate reference dates variables in ISO 8601 format. The function takes the raw variable names from reference date configuration file, and calculated the minimum or maximum dates based upon the min_max parameter.\nVariable RFSTDTC is the reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. So as specified in the reference date configuration file, we need to calculate the minimum date of the IT.ECSTDAT for each subject from the ec_raw dataset. Therefore, in min_max parameter, “min” is selected for the calculation.\n\ndm &lt;- dm %&gt;%\n  # Derive RFSTDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFSTDTC\",\n    min_max = \"min\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  )\n\nVariable RFENDTC is the Reference end date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. As specified in the reference date configuration file, we need to calculate the maximum date of the IT.ECENDAT for each subject from the ec_raw dataset. Therefore, in min_max parameter, “max” is selected for the calculation.\n\ndm &lt;- dm %&gt;%\n  # Derive RFENDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFENDTC\",\n    min_max = \"max\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  )\n\n\n\nSample of Data\n\n\n\n\nThe same derivation logic is applicable to other reference date/time variables.\n\ndm &lt;- dm %&gt;%\n  # Derive RFXSTDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFXSTDTC\",\n    min_max = \"min\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  ) %&gt;%\n  # Derive RFXENDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFXENDTC\",\n    min_max = \"max\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  ) %&gt;%\n  # Derive RFICDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFICDTC\",\n    min_max = \"min\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  ) %&gt;%\n  # Derive RFPENDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"RFPENDTC\",\n    min_max = \"max\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  ) %&gt;%\n  # Map DTHDTC using oak_cal_ref_dates\n  oak_cal_ref_dates(\n    ds_in = .,\n    der_var = \"DTHDTC\",\n    min_max = \"min\",\n    ref_date_config_df = ref_date_conf_df,\n    raw_source = list(\n      ec_raw = ec_raw,\n      ds_raw = ds_raw,\n      dm_raw = dm_raw\n    )\n  )",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#derivedvars",
+    "href": "sdtm/dm.html#derivedvars",
+    "title": "DM",
+    "section": "Create SDTM derived variables",
+    "text": "Create SDTM derived variables\n\ndm &lt;- dm %&gt;%\n  mutate(\n    STUDYID = dm_raw$STUDY,\n    DOMAIN = \"DM\",\n    USUBJID = paste0(\"01-\", dm_raw$PATNUM),\n    COUNTRY = dm_raw$COUNTRY,\n    DTHFL = dplyr::if_else(is.na(DTHDTC), NA_character_, \"Y\")\n  ) %&gt;%\n  # Map DMDTC using assign_datetime\n  assign_datetime(\n    raw_dat = dm_raw,\n    raw_var = \"COL_DT\",\n    tgt_var = \"DMDTC\",\n    raw_fmt = c(\"m/d/y\"),\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Derive study day\n  derive_study_day(\n    sdtm_in = .,\n    dm_domain = .,\n    tgdt = \"DMDTC\",\n    refdt = \"RFXSTDTC\",\n    study_day_var = \"DMDY\"\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/dm.html#attributes",
+    "href": "sdtm/dm.html#attributes",
+    "title": "DM",
+    "section": "Add Labels and Attributes",
+    "text": "Add Labels and Attributes\nYet to be developed. Please refer to {metatools} package to investigate options.",
+    "crumbs": [
+      "SDTM",
+      "DM"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html",
+    "href": "sdtm/vs.html",
+    "title": "VS",
+    "section": "",
+    "text": "This article describes how to create a Findings SDTM domain using the {sdtm.oak} package. Examples are currently presented and tested in the context of the VS domain.\nBefore reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts: Algorithms & Sub-Algorithms, Creating an Interventions Domain, which provides a detailed explanation of various concepts in {sdtm.oak}, such as oak_id_vars, condition_add, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.\nIn this article, we will dive directly into programming and provide further explanation only where it is required.",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#readdata",
+    "href": "sdtm/vs.html#readdata",
+    "title": "VS",
+    "section": "Read in data",
+    "text": "Read in data\nRead all the raw datasets into the environment. In this example, the raw dataset name is vs_raw. Users can read it from the package using the below code:\n\nlibrary(sdtm.oak)\nlibrary(pharmaverseraw)\nlibrary(dplyr)\n\n# Read in input data\nvs_raw &lt;- pharmaverseraw::vs_raw\ndm &lt;- pharmaversesdtm::dm\n\nVital Signs Raw dataset\n\n\nSample of Data\n\n\n\n\n\nSDTM aCRF\nSDTM annotated CRF for the vs_raw can be viewed here:",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#oakidvars",
+    "href": "sdtm/vs.html#oakidvars",
+    "title": "VS",
+    "section": "Create oak_id_vars",
+    "text": "Create oak_id_vars\n\nvs_raw &lt;- vs_raw %&gt;%\n  generate_oak_id_vars(\n    pat_var = \"PATNUM\",\n    raw_src = \"vitals\"\n  )",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#readct",
+    "href": "sdtm/vs.html#readct",
+    "title": "VS",
+    "section": "Read in CT",
+    "text": "Read in CT\nControlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is sdtm_ct.csv. Users can read it from the package using the below code:\n\nstudy_ct &lt;- read.csv(\"metadata/sdtm_ct.csv\")\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#maptopic",
+    "href": "sdtm/vs.html#maptopic",
+    "title": "VS",
+    "section": "Map Topic Variable",
+    "text": "Map Topic Variable\nThis raw dataset has multiple topic variables. Lets start with SYSBP. Map topic variable SYSBP from the raw variable SYS_BP.\n\n# Map topic variable SYSBP\nvs_sysbp &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SYS_BP\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"SYSBP\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  # Filter for records where VSTESTCD is not empty.\n  # Only these records need qualifier mappings.\n  dplyr::filter(!is.na(.data$VSTESTCD))\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#maprest",
+    "href": "sdtm/vs.html#maprest",
+    "title": "VS",
+    "section": "Map Rest of the Variables",
+    "text": "Map Rest of the Variables\nMap rest of the variables applicable to the topic variable SYSBP. This can include qualifiers, identifier and timing variables.\n\n## Map Rest of the Variables\nvs_sysbp &lt;- vs_sysbp %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SYS_BP\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Systolic Blood Pressure\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SYS_BP\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SYS_BP\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"mmHg\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSPOS using assign_ct algorithm\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SUBPOS\",\n    tgt_var = \"VSPOS\",\n    ct_spec = study_ct,\n    ct_clst = \"C71148\",\n    id_vars = oak_id_vars()\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#repeatsteps",
+    "href": "sdtm/vs.html#repeatsteps",
+    "title": "VS",
+    "section": "Repeat Map Topic and Map Rest",
+    "text": "Repeat Map Topic and Map Rest\nThis raw data source has other topic variables DIABP, PULSE, HEIGHT, WEIGHT, TEMP and its corresponding qualifiers. Repeat mapping topic and qualifiers for each topic variable.\n\n# Repeat Map Topic and Map Rest\nvs_diabp &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"DIA_BP\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"DIABP\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  dplyr::filter(!is.na(.data$VSTESTCD)) %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"DIA_BP\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Diastolic Blood Pressure\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"DIA_BP\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"DIA_BP\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"mmHg\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSPOS using assign_ct algorithm\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SUBPOS\",\n    tgt_var = \"VSPOS\",\n    ct_spec = study_ct,\n    ct_clst = \"C71148\",\n    id_vars = oak_id_vars()\n  )\n\n# Map topic variable PULSE and its qualifiers.\nvs_pulse &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"PULSE\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"PULSE\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  dplyr::filter(!is.na(.data$VSTESTCD)) %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"PULSE\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Pulse Rate\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"PULSE\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"PULSE\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"beats/min\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSPOS using assign_ct algorithm\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"SUBPOS\",\n    tgt_var = \"VSPOS\",\n    ct_spec = study_ct,\n    ct_clst = \"C71148\",\n    id_vars = oak_id_vars()\n  )\n\n# Map topic variable TEMP from raw variable TEMP and its qualifiers.\nvs_temp &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"TEMP\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  dplyr::filter(!is.na(.data$VSTESTCD)) %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Temperature\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"F\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSLOC from TEMPLOC using assign_ct\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP_LOC\",\n    tgt_var = \"VSLOC\",\n    ct_spec = study_ct,\n    ct_clst = \"C74456\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Create VSSTRESC by converting VSORRES from F to C\n  mutate(VSSTRESC = as.character(sprintf(\"%.2f\", (as.numeric(VSORRES) - 32) * 5 / 9))) %&gt;%\n  # Map VSSTRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.TEMP\",\n    tgt_var = \"VSSTRESU\",\n    tgt_val = \"C\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  )\n\n# Map topic variable HEIGHT from raw variable IT.HEIGHT_VSORRRES and its qualifiers.\nvs_height &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.HEIGHT_VSORRES\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"HEIGHT\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  dplyr::filter(!is.na(.data$VSTESTCD)) %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.HEIGHT_VSORRES\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Height\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.HEIGHT_VSORRES\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.HEIGHT_VSORRES\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"in\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Create VSSRESC by converting VSORRES from in to cm\n  mutate(VSSTRESC = as.character(sprintf(\"%.2f\", as.numeric(VSORRES) * 2.54))) %&gt;%\n  # Map VSSTRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.HEIGHT_VSORRES\",\n    tgt_var = \"VSSTRESU\",\n    tgt_val = \"cm\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  )\n\n# Map topic variable WEIGHT from raw variable IT.WEIGHT and its qualifiers.\nvs_weight &lt;-\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.WEIGHT\",\n    tgt_var = \"VSTESTCD\",\n    tgt_val = \"WEIGHT\",\n    ct_spec = study_ct,\n    ct_clst = \"C66741\"\n  ) %&gt;%\n  dplyr::filter(!is.na(.data$VSTESTCD)) %&gt;%\n  # Map VSTEST using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.WEIGHT\",\n    tgt_var = \"VSTEST\",\n    tgt_val = \"Weight\",\n    ct_spec = study_ct,\n    ct_clst = \"C67153\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRES using assign_no_ct algorithm\n  assign_no_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.WEIGHT\",\n    tgt_var = \"VSORRES\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSORRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.WEIGHT\",\n    tgt_var = \"VSORRESU\",\n    tgt_val = \"LB\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Create VSSTRESC by converting VSORRES from LB to KG\n  mutate(VSSTRESC = as.character(sprintf(\"%.2f\", as.numeric(VSORRES) / 2.20462))) %&gt;%\n  # Map VSSTRESU using hardcode_ct algorithm\n  hardcode_ct(\n    raw_dat = vs_raw,\n    raw_var = \"IT.WEIGHT\",\n    tgt_var = \"VSSTRESU\",\n    tgt_val = \"kg\",\n    ct_spec = study_ct,\n    ct_clst = \"C66770\",\n    id_vars = oak_id_vars()\n  )\n\nNow that all the topic variable and its qualifier mappings are complete, combine all the datasets and proceed with mapping qualifiers, identifiers and timing variables applicable to all topic variables.\n\n# Combine all the topic variables into a single data frame.\nvs_combined &lt;- dplyr::bind_rows(\n  vs_diabp, vs_height, vs_pulse,\n  vs_sysbp, vs_temp, vs_weight\n)\n\n\n# Map qualifiers common to all topic variables\nvs &lt;- vs_combined %&gt;%\n  # Map VSDTC using assign_ct algorithm\n  assign_datetime(\n    raw_dat = vs_raw,\n    raw_var = c(\"VTLD\"),\n    tgt_var = \"VSDTC\",\n    raw_fmt = c(list(c(\"d-m-y\", \"dd-mmm-yyyy\")))\n  ) %&gt;%\n  # Map VSTPT from TMPTC using assign_ct\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"TMPTC\",\n    tgt_var = \"VSTPT\",\n    ct_spec = study_ct,\n    ct_clst = \"TPT\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VSTPTNUM from TMPTC using assign_ct\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"TMPTC\",\n    tgt_var = \"VSTPTNUM\",\n    ct_spec = study_ct,\n    ct_clst = \"TPTNUM\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VISIT from INSTANCE using assign_ct\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"INSTANCE\",\n    tgt_var = \"VISIT\",\n    ct_spec = study_ct,\n    ct_clst = \"VISIT\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map VISITNUM from INSTANCE using assign_ct\n  assign_ct(\n    raw_dat = vs_raw,\n    raw_var = \"INSTANCE\",\n    tgt_var = \"VISITNUM\",\n    ct_spec = study_ct,\n    ct_clst = \"VISITNUM\",\n    id_vars = oak_id_vars()\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#derivedvars",
+    "href": "sdtm/vs.html#derivedvars",
+    "title": "VS",
+    "section": "Create SDTM derived variables",
+    "text": "Create SDTM derived variables\nCreate derived variables applicable to all topic variables.\n\nvs &lt;- vs %&gt;%\n  dplyr::mutate(\n    STUDYID = \"CDISCPILOT01\",\n    DOMAIN = \"VS\",\n    VSCAT = \"VITAL SIGNS\",\n    USUBJID = paste0(\"01\", \"-\", .data$patient_number),\n    VSSTRESC = ifelse(is.na(VSSTRESC), VSORRES, VSSTRESC),\n    VSSTRESN = as.numeric(VSSTRESC),\n    VSSTRESU = ifelse(is.na(VSSTRESU), VSORRESU, VSSTRESU),\n    VSELTM = ifelse(is.na(VSTPT), NA, paste0(\"PT\", readr::parse_number(VSTPT), \"M\")),\n    VSTPTREF = ifelse(is.na(VSPOS), NA, paste(\"PATIENT\", VSPOS))\n  ) %&gt;%\n  arrange(USUBJID, VSTESTCD, as.numeric(VISITNUM), as.numeric(VSTPTNUM)) %&gt;%\n  derive_seq(\n    tgt_var = \"VSSEQ\",\n    rec_vars = c(\"USUBJID\", \"VSTESTCD\")\n  ) %&gt;%\n  derive_study_day(\n    sdtm_in = .,\n    dm_domain = dm,\n    tgdt = \"VSDTC\",\n    refdt = \"RFXSTDTC\",\n    study_day_var = \"VSDY\"\n  ) %&gt;%\n  dplyr::select(\"STUDYID\", \"DOMAIN\", \"USUBJID\", \"VSSEQ\", \"VSTESTCD\", \"VSTEST\", \"VSPOS\", \"VSORRES\", \"VSORRESU\", \"VSSTRESC\", \"VSSTRESN\", \"VSSTRESU\", \"VSLOC\", \"VISITNUM\", \"VISIT\", \"VSDTC\", \"VSDY\", \"VSTPT\", \"VSTPTNUM\", \"VSELTM\", \"VSTPTREF\")\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/vs.html#attributes",
+    "href": "sdtm/vs.html#attributes",
+    "title": "VS",
+    "section": "Add Labels and Attributes",
+    "text": "Add Labels and Attributes\nYet to be developed. Please refer to {metatools} package to investigate options.",
+    "crumbs": [
+      "SDTM",
+      "VS"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html",
+    "href": "sdtm/ae.html",
+    "title": "AE",
+    "section": "",
+    "text": "This article describes how to create an events SDTM domain using the {sdtm.oak} package. Examples are currently presented and tested in the context of the AE domain.\nBefore reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts: Algorithms & Sub-Algorithms, Creating an Interventions Domain, which provides a detailed explanation of various concepts in {sdtm.oak}, such as oak_id_vars, condition_add, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.\nIn this article, we will dive directly into programming and provide further explanation only where it is required.",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#readdata",
+    "href": "sdtm/ae.html#readdata",
+    "title": "AE",
+    "section": "Read in data",
+    "text": "Read in data\nRead all the raw datasets into the environment. In this example, the raw dataset name is ae_raw. Users can read them from the {pharmaverseraw} package using the below code:\n\nlibrary(sdtm.oak)\nlibrary(pharmaverseraw)\nlibrary(dplyr)\n\nae_raw &lt;- pharmaverseraw::ae_raw\n\nAdverse Events Raw dataset\n\n\nSample of Data\n\n\n\n\nRead in the DM domain\n\ndm &lt;- pharmaversesdtm::dm\n\n\nSDTM aCRF\nThe mock up of the Adverse Events aCRF can be viewed here:",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#oakidvars",
+    "href": "sdtm/ae.html#oakidvars",
+    "title": "AE",
+    "section": "Create oak_id_vars",
+    "text": "Create oak_id_vars\n\nae_raw &lt;- ae_raw %&gt;%\n  generate_oak_id_vars(\n    pat_var = \"PATNUM\",\n    raw_src = \"ae_raw\"\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#readct",
+    "href": "sdtm/ae.html#readct",
+    "title": "AE",
+    "section": "Read in CT",
+    "text": "Read in CT\nControlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is sdtm_ct.csv. Users can read it from the package using the below code:\n\nstudy_ct &lt;- read.csv(\"metadata/sdtm_ct.csv\")\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#maptopic",
+    "href": "sdtm/ae.html#maptopic",
+    "title": "AE",
+    "section": "Map Topic Variable",
+    "text": "Map Topic Variable\nThe topic variable is mapped as a first step in the mapping process. It is the primary variable in the SDTM domain. The rest of the variables add further definition to the topic variable. In this example, the topic variable is AETERM. It is mapped from the raw dataset column IT.AETERM. The mapping logic is Map the collected value in the ae_raw dataset IT.AETERM variable to AE.AETERM.\nThis mapping does not involve any controlled terminology. The sdtm.oak::assign_no_ct() function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.\n\nae &lt;-\n  # Derive topic variable\n  # Map AETERM using assign_no_ct, raw_var=IT.AETERM, tgt_var=AETERM\n  assign_no_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AETERM\",\n    tgt_var = \"AETERM\",\n    id_vars = oak_id_vars()\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#maprest",
+    "href": "sdtm/ae.html#maprest",
+    "title": "AE",
+    "section": "Map Rest of the Variables",
+    "text": "Map Rest of the Variables\nThe Qualifiers, Identifiers, and Timing Variables can be mapped in any order.\n\nae &lt;- ae %&gt;%\n  # Map AEOUT using assign_ct, raw_var=AEOUTCOME, tgt_var=AEOUT\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"AEOUTCOME\",\n    tgt_var = \"AEOUT\",\n    ct_spec = study_ct,\n    ct_clst = \"C66768\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESEV using assign_no_ct, raw_var=IT.AESEV, tgt_var=AESEV\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESEV\",\n    tgt_var = \"AESEV\",\n    ct_spec = study_ct,\n    ct_clst = \"C66769\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESER using assign_no_ct, raw_var=IT.AESER, tgt_var=AESER\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESER\",\n    tgt_var = \"AESER\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AEACN using assign_no_ct, raw_var=IT.AEACN, tgt_var=AEACN\n  assign_no_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AEACN\",\n    tgt_var = \"AEACN\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AEREL using assign_ct, raw_var=IT.AEREL, tgt_var=AEREL\n  # User-added codelist is in the ct,\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AEREL\",\n    tgt_var = \"AEREL\",\n    ct_spec = study_ct,\n    ct_clst = \"AEREL\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESCAN using assign_ct, raw_var=AESCAN, tgt_var=AESCAN\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"AESCAN\",\n    tgt_var = \"AESCAN\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESCNO using assign_ct, raw_var=AESCNO, tgt_var=AESCNO\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"AESCNO\",\n    tgt_var = \"AESCONG\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AEDIS using assign_ct, raw_var=AEDIS, tgt_var=AEDIS\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"AEDIS\",\n    tgt_var = \"AESDISAB\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESDTH using assign_ct, raw_var=IT.AESDTH, tgt_var=AESDTH\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESDTH\",\n    tgt_var = \"AESDTH\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESHOSP using assign_ct, raw_var=IT.AESHOSP, tgt_var=AESHOSP\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESHOSP\",\n    tgt_var = \"AESHOSP\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESLIFE using assign_ct, raw_var=IT.AESLIFE, tgt_var=AESLIFE\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESLIFE\",\n    tgt_var = \"AESLIFE\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AESOD using assign_ct, raw_var=AESOD, tgt_var=AESOD\n  assign_ct(\n    raw_dat = ae_raw,\n    raw_var = \"AESOD\",\n    tgt_var = \"AESOD\",\n    ct_spec = study_ct,\n    ct_clst = \"C66742\",\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AEDTC using assign_datetime, raw_var=AEDTCOL\n  assign_datetime(\n    raw_dat = ae_raw,\n    raw_var = \"AEDTCOL\",\n    tgt_var = \"AEDTC\",\n    raw_fmt = c(\"m/d/y\")\n  ) %&gt;%\n  # Map AESTDTC using assign_datetime, raw_var=IT.AESTDAT\n  assign_datetime(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AESTDAT\",\n    tgt_var = \"AESTDTC\",\n    raw_fmt = c(\"m/d/y\"),\n    id_vars = oak_id_vars()\n  ) %&gt;%\n  # Map AEENDTC using assign_datetime, raw_var=IT.AEENDAT\n  assign_datetime(\n    raw_dat = ae_raw,\n    raw_var = \"IT.AEENDAT\",\n    tgt_var = \"AEENDTC\",\n    raw_fmt = c(\"m/d/y\"),\n    id_vars = oak_id_vars()\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#repeatsteps",
+    "href": "sdtm/ae.html#repeatsteps",
+    "title": "AE",
+    "section": "Repeat Map Topic and Map Rest",
+    "text": "Repeat Map Topic and Map Rest\nThere is only one topic variable in this raw data source, and there are no additional topic variable mappings. Users can proceed to the next step. This is required only if there is more than one topic variable to map.",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#derivedvars",
+    "href": "sdtm/ae.html#derivedvars",
+    "title": "AE",
+    "section": "Create SDTM derived variables",
+    "text": "Create SDTM derived variables\nThe SDTM derived variables or any SDTM mapping that is applicable to all the records in the ae dataset produced in the previous step cam be created now.\n\nae &lt;- ae %&gt;%\n  dplyr::mutate(\n    STUDYID = ae_raw$STUDY,\n    DOMAIN = \"AE\",\n    USUBJID = paste0(\"01-\", ae_raw$PATNUM),\n    AELLT = ae_raw$AELLT,\n    AELLTCD = ae_raw$AELLTCD,\n    AEDECOD = ae_raw$AEDECOD,\n    AEPTCD = ae_raw$AEPTCD,\n    AEHLT = ae_raw$AEHLT,\n    AEHLTCD = ae_raw$AEHLTCD,\n    AEHLGT = ae_raw$AEHLGT,\n    AEHLGTCD = ae_raw$AEHLGTCD,\n    AEBODSYS = ae_raw$AEBODSYS,\n    AEBDSYCD = ae_raw$AEBDSYCD,\n    AESOC = ae_raw$AESOC,\n    AESOCCD = ae_raw$AESOCCD,\n    AETERM = toupper(AETERM)\n  ) %&gt;%\n  derive_seq(\n    tgt_var = \"AESEQ\",\n    rec_vars = c(\"USUBJID\", \"AETERM\")\n  ) %&gt;%\n  derive_study_day(\n    sdtm_in = .,\n    dm_domain = dm,\n    tgdt = \"AESTDTC\",\n    refdt = \"RFXSTDTC\",\n    study_day_var = \"AESTDY\"\n  ) %&gt;%\n  derive_study_day(\n    sdtm_in = .,\n    dm_domain = dm,\n    tgdt = \"AEENDTC\",\n    refdt = \"RFXENDTC\",\n    study_day_var = \"AEENDY\"\n  ) %&gt;%\n  select(\n    \"STUDYID\", \"DOMAIN\", \"USUBJID\", \"AESEQ\", \"AETERM\", \"AELLT\", \"AELLTCD\", \"AEDECOD\", \"AEPTCD\", \"AEHLT\", \"AEHLTCD\", \"AEHLGT\",\n    \"AEHLGTCD\", \"AEBODSYS\", \"AEBDSYCD\", \"AESOC\", \"AESOCCD\", \"AESEV\", \"AESER\", \"AEACN\", \"AEREL\", \"AEOUT\", \"AESCAN\", \"AESCONG\",\n    \"AESDISAB\", \"AESDTH\", \"AESHOSP\", \"AESLIFE\", \"AESOD\", \"AEDTC\", \"AESTDTC\", \"AEENDTC\", \"AESTDY\", \"AEENDY\"\n  )\n\n\n\nSample of Data",
+    "crumbs": [
+      "SDTM",
+      "AE"
+    ]
+  },
+  {
+    "objectID": "sdtm/ae.html#attributes",
+    "href": "sdtm/ae.html#attributes",
+    "title": "AE",
+    "section": "Add Labels and Attributes",
+    "text": "Add Labels and Attributes\nYet to be developed. Please refer to {metatools} package to investigate options.",
+    "crumbs": [
+      "SDTM",
+      "AE"
     ]
   },
   {
@@ -705,7 +1002,7 @@
     "href": "session.html",
     "title": "Session Info",
     "section": "",
-    "text": "Session Info\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.3 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] htmlwidgets_1.6.4 compiler_4.5.1    fastmap_1.2.0     cli_3.6.5        \n [5] tools_4.5.1       htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.29   \n [9] knitr_1.50        jsonlite_2.0.0    xfun_0.53         digest_0.6.37    \n[13] rlang_1.1.6       evaluate_1.0.5   \n\n\n\n\nInstalled Packages\n\nknitr::kable(installed.packages()[, c(\"Package\", \"Version\")], row.names = FALSE)\n\n\n\n\nPackage\nVersion\n\n\n\n\nabind\n1.4-8\n\n\nadmiral\n1.3.1\n\n\nadmiraldev\n1.3.1\n\n\nadmiralonco\n1.3.0\n\n\narchive\n1.1.12\n\n\naskpass\n1.2.1\n\n\nassertthat\n0.2.1\n\n\nbackports\n1.5.0\n\n\nbase64enc\n0.1-3\n\n\nbigD\n0.3.1\n\n\nbit\n4.6.0\n\n\nbit64\n4.6.0-1\n\n\nbitops\n1.0-9\n\n\nbrew\n1.0-10\n\n\nbrio\n1.1.5\n\n\nbroom\n1.0.10\n\n\nbsicons\n0.1.2\n\n\nbslib\n0.9.0\n\n\ncachem\n1.1.0\n\n\ncallr\n3.7.6\n\n\ncar\n3.1-3\n\n\ncarData\n3.0-5\n\n\ncards\n0.7.0\n\n\ncardx\n0.3.0\n\n\ncaTools\n1.18.3\n\n\ncellranger\n1.1.0\n\n\ncheckmate\n2.3.3\n\n\ncli\n3.6.5\n\n\nclipr\n0.8.0\n\n\ncolourpicker\n1.3.0\n\n\ncommon\n1.1.3\n\n\ncommonmark\n2.0.0\n\n\nconfintr\n1.0.2\n\n\ncowplot\n1.2.0\n\n\ncpp11\n0.5.2\n\n\ncrayon\n1.5.3\n\n\ncrosstalk\n1.2.2\n\n\ncurl\n7.0.0\n\n\ndata.table\n1.17.8\n\n\nDeriv\n4.2.0\n\n\ndesc\n1.4.3\n\n\ndiffobj\n0.3.6\n\n\ndigest\n0.6.37\n\n\ndoBy\n4.7.0\n\n\ndplyr\n1.1.4\n\n\nDT\n0.34.0\n\n\nellipsis\n0.3.2\n\n\nemmeans\n1.11.2-8\n\n\nestimability\n1.5.1\n\n\nevaluate\n1.0.5\n\n\nfarver\n2.1.2\n\n\nfastmap\n1.2.0\n\n\nfilelock\n1.0.3\n\n\nflextable\n0.9.10\n\n\nfontawesome\n0.5.3\n\n\nfontBitstreamVera\n0.1.1\n\n\nfontLiberation\n0.1.0\n\n\nfontquiver\n0.2.1\n\n\nforcats\n1.0.0\n\n\nforeach\n1.5.2\n\n\nformatters\n0.5.11\n\n\nFormula\n1.2-5\n\n\nfs\n1.6.6\n\n\ngdtools\n0.4.3\n\n\ngeeasy\n0.1.3\n\n\ngeeM\n0.10.1\n\n\ngeepack\n1.3.12\n\n\ngenerics\n0.1.4\n\n\nggExtra\n0.11.0\n\n\nggformula\n0.12.2\n\n\nggmosaic\n0.3.3\n\n\nggplot2\n4.0.0\n\n\nggpmisc\n0.6.2\n\n\nggpp\n0.5.9\n\n\nggrepel\n0.9.6\n\n\nggridges\n0.5.7\n\n\ngh\n1.5.0\n\n\ngitcreds\n0.1.2\n\n\nglmnet\n4.1-10\n\n\nglue\n1.8.0\n\n\ngoftest\n1.2-3\n\n\ngridExtra\n2.3\n\n\ngt\n1.0.0\n\n\ngtable\n0.3.6\n\n\ngtsummary\n2.4.0\n\n\nhaven\n2.5.5\n\n\nhere\n1.0.1\n\n\nhighr\n0.11\n\n\nhms\n1.1.3\n\n\nhtmltools\n0.5.8.1\n\n\nhtmlwidgets\n1.6.4\n\n\nhttpuv\n1.6.16\n\n\nhttr\n1.4.7\n\n\nhttr2\n1.2.1\n\n\nini\n0.3.1\n\n\nisoband\n0.2.7\n\n\niterators\n1.0.14\n\n\njquerylib\n0.1.4\n\n\njsonlite\n2.0.0\n\n\njuicyjuice\n0.1.0\n\n\nkableExtra\n1.4.0\n\n\nkinship2\n1.9.6.2\n\n\nknitr\n1.50\n\n\nlabeling\n0.4.3\n\n\nlabelled\n2.14.1\n\n\nlater\n1.4.4\n\n\nlazyeval\n0.2.2\n\n\nlearnr\n0.11.5\n\n\nlifecycle\n1.0.4\n\n\nlitedown\n0.7\n\n\nlme4\n1.1-37\n\n\nlmodel2\n1.7-4\n\n\nlogger\n0.4.1\n\n\nlogr\n1.3.9\n\n\nlogrx\n0.4.0\n\n\nlpSolve\n5.6.23\n\n\nlubridate\n1.9.4\n\n\nmagrittr\n2.0.4\n\n\nmarkdown\n2.0\n\n\nMatrixModels\n0.5-4\n\n\nmemoise\n2.0.1\n\n\nMESS\n0.6.0\n\n\nmetacore\n0.2.1\n\n\nmetatools\n0.2.0\n\n\nmicrobenchmark\n1.5.0\n\n\nmime\n0.13\n\n\nminiUI\n0.1.2\n\n\nminqa\n1.2.8\n\n\nmmrm\n0.3.15\n\n\nmodelr\n0.1.11\n\n\nmosaicCore\n0.9.5\n\n\nmultcomp\n1.4-28\n\n\nmultcompView\n0.1-10\n\n\nmvtnorm\n1.3-3\n\n\nnestcolor\n0.1.3\n\n\nnloptr\n2.2.1\n\n\nnumDeriv\n2016.8-1.1\n\n\nofficer\n0.7.0\n\n\nopenssl\n2.3.3\n\n\nparallelly\n1.45.1\n\n\npbkrtest\n0.5.5\n\n\npharmaverseadam\n1.2.0\n\n\npharmaversesdtm\n1.3.1\n\n\npillar\n1.11.0\n\n\npkgbuild\n1.4.8\n\n\npkgcache\n2.2.4\n\n\npkgconfig\n2.0.3\n\n\npkgdepends\n0.9.0\n\n\npkglite\n0.2.4\n\n\npkgload\n1.4.0\n\n\nplotly\n4.11.0\n\n\nplyr\n1.8.9\n\n\npng\n0.1-8\n\n\npolynom\n1.4-1\n\n\npraise\n1.0.0\n\n\nprettyunits\n1.2.0\n\n\nprocessx\n3.8.6\n\n\nproductplots\n0.1.1\n\n\nprogress\n1.2.3\n\n\npromises\n1.3.3\n\n\nps\n1.9.1\n\n\npurrr\n1.1.0\n\n\nquadprog\n1.5-8\n\n\nquantreg\n6.1\n\n\nquarto\n1.5.1\n\n\nR.cache\n0.17.0\n\n\nR.methodsS3\n1.8.2\n\n\nR.oo\n1.27.1\n\n\nR.utils\n2.13.0\n\n\nR6\n2.6.1\n\n\nragg\n1.5.0\n\n\nrappdirs\n0.3.3\n\n\nrbibutils\n2.3\n\n\nRColorBrewer\n1.1-3\n\n\nRcpp\n1.1.0\n\n\nRcppArmadillo\n15.0.2-1\n\n\nRcppEigen\n0.3.4.0.2\n\n\nRcppParallel\n5.1.11-1\n\n\nRcppTOML\n0.2.3\n\n\nRdpack\n2.6.4\n\n\nreactable\n0.4.4\n\n\nreactablefmtr\n2.0.0\n\n\nreactR\n0.6.1\n\n\nreadr\n2.1.5\n\n\nreadxl\n1.4.5\n\n\nreformulas\n0.4.1\n\n\nrematch\n2.0.0\n\n\nremotes\n2.5.0\n\n\nrenv\n1.1.5\n\n\nreticulate\n1.43.0\n\n\nrlang\n1.1.6\n\n\nrlistings\n0.2.12\n\n\nrmarkdown\n2.29\n\n\nroxygen2\n7.3.3\n\n\nrprojroot\n2.1.1\n\n\nrstudioapi\n0.17.1\n\n\nrtables\n0.6.13\n\n\nrtables.officer\n0.1.0\n\n\nS7\n0.2.0\n\n\nsandwich\n3.1-1\n\n\nsass\n0.4.10\n\n\nscales\n1.4.0\n\n\nsessioninfo\n1.2.3\n\n\nshape\n1.4.6.1\n\n\nshiny\n1.11.1\n\n\nshinybusy\n0.3.3\n\n\nshinycssloaders\n1.1.0\n\n\nshinyjs\n2.1.0\n\n\nshinylive\n0.3.0\n\n\nshinyTree\n0.3.1\n\n\nshinyvalidate\n0.1.3\n\n\nshinyWidgets\n0.9.0\n\n\nsortable\n0.5.0\n\n\nsourcetools\n0.1.7-1\n\n\nsparkline\n2.0\n\n\nSparseM\n1.84-2\n\n\nsplus2R\n1.3-5\n\n\nstringi\n1.8.7\n\n\nstringr\n1.5.2\n\n\nstyler\n1.10.3\n\n\nsvglite\n2.2.1\n\n\nsys\n3.4.3\n\n\nsystemfonts\n1.2.3\n\n\nteal\n1.0.0\n\n\nteal.code\n0.7.0\n\n\nteal.data\n0.8.0\n\n\nteal.logger\n0.4.0\n\n\nteal.modules.clinical\n0.11.1\n\n\nteal.modules.general\n0.5.0\n\n\nteal.reporter\n0.5.0\n\n\nteal.slice\n0.7.0\n\n\nteal.transform\n0.7.0\n\n\nteal.widgets\n0.5.0\n\n\ntern\n0.9.9\n\n\ntern.gee\n0.1.5\n\n\ntern.mmrm\n0.3.3\n\n\ntestthat\n3.2.3\n\n\ntextshaping\n1.0.3\n\n\nTH.data\n1.1-4\n\n\ntibble\n3.3.0\n\n\ntidyr\n1.3.1\n\n\ntidyselect\n1.2.1\n\n\ntimechange\n0.3.0\n\n\ntinytex\n0.57\n\n\ntippy\n0.1.0\n\n\nTMB\n1.9.17\n\n\ntzdb\n0.5.0\n\n\nunglue\n0.1.0\n\n\nutf8\n1.2.6\n\n\nuuid\n1.2-1\n\n\nV8\n7.0.0\n\n\nvctrs\n0.6.5\n\n\nviridisLite\n0.4.2\n\n\nvistime\n1.2.4\n\n\nvroom\n1.6.5\n\n\nwaldo\n0.6.2\n\n\nwebshot\n0.5.5\n\n\nwhirl\n0.3.1\n\n\nwhisker\n0.4.1\n\n\nwithr\n3.0.2\n\n\nxfun\n0.53\n\n\nxml2\n1.4.0\n\n\nxportr\n0.4.3\n\n\nxtable\n1.8-4\n\n\nxts\n0.14.1\n\n\nyaml\n2.3.10\n\n\nzephyr\n0.1.3\n\n\nzip\n2.3.3\n\n\nzoo\n1.8-14\n\n\npak\n0.9.0\n\n\nbase\n4.5.1\n\n\nboot\n1.3-31\n\n\nclass\n7.3-23\n\n\ncluster\n2.1.8.1\n\n\ncodetools\n0.2-20\n\n\ncompiler\n4.5.1\n\n\ndatasets\n4.5.1\n\n\nforeign\n0.8-90\n\n\ngraphics\n4.5.1\n\n\ngrDevices\n4.5.1\n\n\ngrid\n4.5.1\n\n\nKernSmooth\n2.23-26\n\n\nlattice\n0.22-7\n\n\nMASS\n7.3-65\n\n\nMatrix\n1.7-3\n\n\nmethods\n4.5.1\n\n\nmgcv\n1.9-3\n\n\nnlme\n3.1-168\n\n\nnnet\n7.3-20\n\n\nparallel\n4.5.1\n\n\nrpart\n4.1.24\n\n\nspatial\n7.3-18\n\n\nsplines\n4.5.1\n\n\nstats\n4.5.1\n\n\nstats4\n4.5.1\n\n\nsurvival\n3.8-3\n\n\ntcltk\n4.5.1\n\n\ntools\n4.5.1\n\n\nutils\n4.5.1",
+    "text": "Session Info\n\nsessionInfo()\n\nR version 4.5.1 (2025-06-13)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Ubuntu 24.04.3 LTS\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0\n\nlocale:\n [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       \n [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   \n [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          \n[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   \n\ntime zone: UTC\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] htmlwidgets_1.6.4 compiler_4.5.1    fastmap_1.2.0     cli_3.6.5        \n [5] tools_4.5.1       htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.29   \n [9] knitr_1.50        jsonlite_2.0.0    xfun_0.53         digest_0.6.37    \n[13] rlang_1.1.6       evaluate_1.0.5   \n\n\n\n\nInstalled Packages\n\nknitr::kable(installed.packages()[, c(\"Package\", \"Version\")], row.names = FALSE)\n\n\n\n\nPackage\nVersion\n\n\n\n\nabind\n1.4-8\n\n\nadmiral\n1.3.1\n\n\nadmiraldev\n1.3.1\n\n\nadmiralonco\n1.3.0\n\n\narchive\n1.1.12\n\n\naskpass\n1.2.1\n\n\nassertthat\n0.2.1\n\n\nbackports\n1.5.0\n\n\nbase64enc\n0.1-3\n\n\nbigD\n0.3.1\n\n\nbit\n4.6.0\n\n\nbit64\n4.6.0-1\n\n\nbitops\n1.0-9\n\n\nbrew\n1.0-10\n\n\nbrio\n1.1.5\n\n\nbroom\n1.0.10\n\n\nbsicons\n0.1.2\n\n\nbslib\n0.9.0\n\n\ncachem\n1.1.0\n\n\ncallr\n3.7.6\n\n\ncar\n3.1-3\n\n\ncarData\n3.0-5\n\n\ncards\n0.7.0\n\n\ncardx\n0.3.0\n\n\ncaTools\n1.18.3\n\n\ncellranger\n1.1.0\n\n\ncheckmate\n2.3.3\n\n\ncli\n3.6.5\n\n\nclipr\n0.8.0\n\n\ncolourpicker\n1.3.0\n\n\ncommon\n1.1.3\n\n\ncommonmark\n2.0.0\n\n\nconfintr\n1.0.2\n\n\ncowplot\n1.2.0\n\n\ncpp11\n0.5.2\n\n\ncrayon\n1.5.3\n\n\ncrosstalk\n1.2.2\n\n\ncurl\n7.0.0\n\n\ndata.table\n1.17.8\n\n\nDeriv\n4.2.0\n\n\ndesc\n1.4.3\n\n\ndiffobj\n0.3.6\n\n\ndigest\n0.6.37\n\n\ndoBy\n4.7.0\n\n\ndplyr\n1.1.4\n\n\nDT\n0.34.0\n\n\nellipsis\n0.3.2\n\n\nemmeans\n1.11.2-8\n\n\nestimability\n1.5.1\n\n\nevaluate\n1.0.5\n\n\nfarver\n2.1.2\n\n\nfastmap\n1.2.0\n\n\nfilelock\n1.0.3\n\n\nflextable\n0.9.10\n\n\nfontawesome\n0.5.3\n\n\nfontBitstreamVera\n0.1.1\n\n\nfontLiberation\n0.1.0\n\n\nfontquiver\n0.2.1\n\n\nforcats\n1.0.0\n\n\nforeach\n1.5.2\n\n\nformatters\n0.5.11\n\n\nFormula\n1.2-5\n\n\nfs\n1.6.6\n\n\ngdtools\n0.4.3\n\n\ngeeasy\n0.1.3\n\n\ngeeM\n0.10.1\n\n\ngeepack\n1.3.12\n\n\ngenerics\n0.1.4\n\n\nggExtra\n0.11.0\n\n\nggformula\n0.12.2\n\n\nggmosaic\n0.3.3\n\n\nggplot2\n4.0.0\n\n\nggpmisc\n0.6.2\n\n\nggpp\n0.5.9\n\n\nggrepel\n0.9.6\n\n\nggridges\n0.5.7\n\n\ngh\n1.5.0\n\n\ngitcreds\n0.1.2\n\n\nglmnet\n4.1-10\n\n\nglue\n1.8.0\n\n\ngoftest\n1.2-3\n\n\ngridExtra\n2.3\n\n\ngt\n1.0.0\n\n\ngtable\n0.3.6\n\n\ngtsummary\n2.4.0\n\n\nhaven\n2.5.5\n\n\nhere\n1.0.2\n\n\nhighr\n0.11\n\n\nhms\n1.1.3\n\n\nhtmltools\n0.5.8.1\n\n\nhtmlwidgets\n1.6.4\n\n\nhttpuv\n1.6.16\n\n\nhttr\n1.4.7\n\n\nhttr2\n1.2.1\n\n\nini\n0.3.1\n\n\nisoband\n0.2.7\n\n\niterators\n1.0.14\n\n\njquerylib\n0.1.4\n\n\njsonlite\n2.0.0\n\n\njuicyjuice\n0.1.0\n\n\nkableExtra\n1.4.0\n\n\nkinship2\n1.9.6.2\n\n\nknitr\n1.50\n\n\nlabeling\n0.4.3\n\n\nlabelled\n2.14.1\n\n\nlater\n1.4.4\n\n\nlazyeval\n0.2.2\n\n\nlearnr\n0.11.5\n\n\nlifecycle\n1.0.4\n\n\nlitedown\n0.7\n\n\nlme4\n1.1-37\n\n\nlmodel2\n1.7-4\n\n\nlogger\n0.4.1\n\n\nlogr\n1.3.9\n\n\nlogrx\n0.4.0\n\n\nlpSolve\n5.6.23\n\n\nlubridate\n1.9.4\n\n\nmagrittr\n2.0.4\n\n\nmarkdown\n2.0\n\n\nMatrixModels\n0.5-4\n\n\nmemoise\n2.0.1\n\n\nMESS\n0.6.0\n\n\nmetacore\n0.2.1\n\n\nmetatools\n0.2.0\n\n\nmicrobenchmark\n1.5.0\n\n\nmime\n0.13\n\n\nminiUI\n0.1.2\n\n\nminqa\n1.2.8\n\n\nmmrm\n0.3.15\n\n\nmodelr\n0.1.11\n\n\nmosaicCore\n0.9.5\n\n\nmultcomp\n1.4-28\n\n\nmultcompView\n0.1-10\n\n\nmvtnorm\n1.3-3\n\n\nnestcolor\n0.1.3\n\n\nnloptr\n2.2.1\n\n\nnumDeriv\n2016.8-1.1\n\n\nofficer\n0.7.0\n\n\nopenssl\n2.3.3\n\n\nparallelly\n1.45.1\n\n\npbkrtest\n0.5.5\n\n\npharmaverseadam\n1.2.0\n\n\npharmaverseraw\n0.1.1\n\n\npharmaversesdtm\n1.3.1\n\n\npillar\n1.11.0\n\n\npkgbuild\n1.4.8\n\n\npkgcache\n2.2.4\n\n\npkgconfig\n2.0.3\n\n\npkgdepends\n0.9.0\n\n\npkglite\n0.2.4\n\n\npkgload\n1.4.0\n\n\nplotly\n4.11.0\n\n\nplyr\n1.8.9\n\n\npng\n0.1-8\n\n\npolynom\n1.4-1\n\n\npraise\n1.0.0\n\n\nprettyunits\n1.2.0\n\n\nprocessx\n3.8.6\n\n\nproductplots\n0.1.1\n\n\nprogress\n1.2.3\n\n\npromises\n1.3.3\n\n\nps\n1.9.1\n\n\npurrr\n1.1.0\n\n\nquadprog\n1.5-8\n\n\nquantreg\n6.1\n\n\nquarto\n1.5.1\n\n\nR.cache\n0.17.0\n\n\nR.methodsS3\n1.8.2\n\n\nR.oo\n1.27.1\n\n\nR.utils\n2.13.0\n\n\nR6\n2.6.1\n\n\nragg\n1.5.0\n\n\nrappdirs\n0.3.3\n\n\nrbibutils\n2.3\n\n\nRColorBrewer\n1.1-3\n\n\nRcpp\n1.1.0\n\n\nRcppArmadillo\n15.0.2-1\n\n\nRcppEigen\n0.3.4.0.2\n\n\nRcppParallel\n5.1.11-1\n\n\nRcppTOML\n0.2.3\n\n\nRdpack\n2.6.4\n\n\nreactable\n0.4.4\n\n\nreactablefmtr\n2.0.0\n\n\nreactR\n0.6.1\n\n\nreadr\n2.1.5\n\n\nreadxl\n1.4.5\n\n\nreformulas\n0.4.1\n\n\nrematch\n2.0.0\n\n\nremotes\n2.5.0\n\n\nrenv\n1.1.5\n\n\nreticulate\n1.43.0\n\n\nrlang\n1.1.6\n\n\nrlistings\n0.2.12\n\n\nrmarkdown\n2.29\n\n\nroxygen2\n7.3.3\n\n\nrprojroot\n2.1.1\n\n\nrstudioapi\n0.17.1\n\n\nrtables\n0.6.13\n\n\nrtables.officer\n0.1.0\n\n\nS7\n0.2.0\n\n\nsandwich\n3.1-1\n\n\nsass\n0.4.10\n\n\nscales\n1.4.0\n\n\nsdtm.oak\n0.2.0\n\n\nsessioninfo\n1.2.3\n\n\nshape\n1.4.6.1\n\n\nshiny\n1.11.1\n\n\nshinybusy\n0.3.3\n\n\nshinycssloaders\n1.1.0\n\n\nshinyjs\n2.1.0\n\n\nshinylive\n0.3.0\n\n\nshinyTree\n0.3.1\n\n\nshinyvalidate\n0.1.3\n\n\nshinyWidgets\n0.9.0\n\n\nsortable\n0.5.0\n\n\nsourcetools\n0.1.7-1\n\n\nsparkline\n2.0\n\n\nSparseM\n1.84-2\n\n\nsplus2R\n1.3-5\n\n\nstringi\n1.8.7\n\n\nstringr\n1.5.2\n\n\nstyler\n1.10.3\n\n\nsvglite\n2.2.1\n\n\nsys\n3.4.3\n\n\nsystemfonts\n1.2.3\n\n\nteal\n1.0.0\n\n\nteal.code\n0.7.0\n\n\nteal.data\n0.8.0\n\n\nteal.logger\n0.4.0\n\n\nteal.modules.clinical\n0.11.1\n\n\nteal.modules.general\n0.5.0\n\n\nteal.reporter\n0.5.0\n\n\nteal.slice\n0.7.0\n\n\nteal.transform\n0.7.0\n\n\nteal.widgets\n0.5.0\n\n\ntern\n0.9.9\n\n\ntern.gee\n0.1.5\n\n\ntern.mmrm\n0.3.3\n\n\ntestthat\n3.2.3\n\n\ntextshaping\n1.0.3\n\n\nTH.data\n1.1-4\n\n\ntibble\n3.3.0\n\n\ntidyr\n1.3.1\n\n\ntidyselect\n1.2.1\n\n\ntimechange\n0.3.0\n\n\ntinytex\n0.57\n\n\ntippy\n0.1.0\n\n\nTMB\n1.9.17\n\n\ntzdb\n0.5.0\n\n\nunglue\n0.1.0\n\n\nutf8\n1.2.6\n\n\nuuid\n1.2-1\n\n\nV8\n7.0.0\n\n\nvctrs\n0.6.5\n\n\nviridisLite\n0.4.2\n\n\nvistime\n1.2.4\n\n\nvroom\n1.6.5\n\n\nwaldo\n0.6.2\n\n\nwebshot\n0.5.5\n\n\nwhirl\n0.3.1\n\n\nwhisker\n0.4.1\n\n\nwithr\n3.0.2\n\n\nxfun\n0.53\n\n\nxml2\n1.4.0\n\n\nxportr\n0.4.3\n\n\nxtable\n1.8-4\n\n\nxts\n0.14.1\n\n\nyaml\n2.3.10\n\n\nzephyr\n0.1.3\n\n\nzip\n2.3.3\n\n\nzoo\n1.8-14\n\n\npak\n0.9.0\n\n\nbase\n4.5.1\n\n\nboot\n1.3-31\n\n\nclass\n7.3-23\n\n\ncluster\n2.1.8.1\n\n\ncodetools\n0.2-20\n\n\ncompiler\n4.5.1\n\n\ndatasets\n4.5.1\n\n\nforeign\n0.8-90\n\n\ngraphics\n4.5.1\n\n\ngrDevices\n4.5.1\n\n\ngrid\n4.5.1\n\n\nKernSmooth\n2.23-26\n\n\nlattice\n0.22-7\n\n\nMASS\n7.3-65\n\n\nMatrix\n1.7-3\n\n\nmethods\n4.5.1\n\n\nmgcv\n1.9-3\n\n\nnlme\n3.1-168\n\n\nnnet\n7.3-20\n\n\nparallel\n4.5.1\n\n\nrpart\n4.1.24\n\n\nspatial\n7.3-18\n\n\nsplines\n4.5.1\n\n\nstats\n4.5.1\n\n\nstats4\n4.5.1\n\n\nsurvival\n3.8-3\n\n\ntcltk\n4.5.1\n\n\ntools\n4.5.1\n\n\nutils\n4.5.1",
     "crumbs": [
       "Session Info"
     ]
