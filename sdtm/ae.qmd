@@ -14,11 +14,11 @@ source("functions/print_df.R")
 
 # Introduction
 
-This article describes how to create an events SDTM domain using the {sdtm.oak} package. Examples are currently presented and tested in the context of the AE domain.
+This article describes how to create an events SDTM domain using the `{sdtm.oak}` package. Examples are currently presented and tested in the context of the `AE` domain.
 
-Before reading this article, it is recommended that users review some of the articles in the package documentation of {sdtm.oak} to understand some of the key concepts:
+Before reading this article, it is recommended that users review some of the articles in the package documentation of `{sdtm.oak}` to understand some of the key concepts:
 [Algorithms & Sub-Algorithms](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html),
-[Creating an Interventions Domain](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html), which provides a detailed explanation of various concepts in {sdtm.oak}, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
+[Creating an Interventions Domain](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html), which provides a detailed explanation of various concepts in `{sdtm.oak}`, such as `oak_id_vars`, `condition_add`, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.
 
 In this article, we will dive directly into programming and provide further explanation only where it is required.
 
@@ -48,7 +48,7 @@ library(dplyr)
 ae_raw <- pharmaverseraw::ae_raw
 ```
 
-Adverse Events Raw dataset. 
+Adverse Events Raw dataset
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(ae_raw, n = 5)
 ```
@@ -93,7 +93,7 @@ print_df(study_ct, n = 10)
 
 The topic variable is mapped as a first step in the mapping process. It is the primary variable in the SDTM domain. The rest of the variables add further definition to the topic variable. In this example, the topic variable is `AETERM`. It is mapped from the raw dataset column `IT.AETERM`. The mapping logic is `Map the collected value in the ae_raw dataset IT.AETERM variable to AE.AETERM`.
 
-This mapping does not involve any controlled terminology. The `assign_no_ct` function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.
+This mapping does not involve any controlled terminology. The `sdtm.oak::assign_no_ct()` function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.
 
 ```{r}
 ae <-
@@ -313,4 +313,4 @@ print_df(ae, n = 10)
 
 ## Add Labels and Attributes {#attributes}
 
-Yet to be developed.
+Yet to be developed. Please refer to `{metatools}` package to investigate options.
