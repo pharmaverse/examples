@@ -15,8 +15,8 @@ increasingly simple.
 
 This book contains end-to-end examples of using pharmaverse packages
 together to achieve common clinical reporting analyses, such as ADaM and
-Tables/Listings/Graphs. The examples use consistent source test SDTMs
-and ADaMs from {pharmaversesdtm} and {pharmaverseadam} respectively.
+Tables/Listings/Graphs. The examples use consistent source test raw data, SDTMs
+and ADaMs from {pharmaverseraw}, {pharmaversesdtm} and {pharmaverseadam} respectively.
 
 We'll endeavour to include a selection of examples here over time, e.g.
 to help users when trying out the packages for PK/PD or Therapeutic Area
