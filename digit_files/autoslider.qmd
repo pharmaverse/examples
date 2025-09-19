@@ -1,24 +1,8 @@
 ---
-title: "Pharmaverse Example"
-date: "`r Sys.Date()`"
-output:
-    revealjs::revealjs_presentation:
-        theme: "spacelab"
-        highlight: "kate"
-        toc: true
-        toc_float: true
-author: 
-  - Joe Zhu [`shajoezhu`]
-  - Yolanda Zhou ([`yolandazzz13`])
-
-vignette: >
-  %\VignetteIndexEntry{Pharmaverse Example: Introduction to `autoslider.core`}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
-editor_options:
-    markdown:
-        wrap: 72
+title: "Slides"
+order: 1
 ---
+
 
 ```{r, include = FALSE}
 suggested_dependent_pkgs <- c("filters")
@@ -37,6 +21,8 @@ knitr::opts_chunk$set(
 knitr::opts_chunk$set(comment = "#")
 ```
 
+# Introduction
+
 
 `AutoslideR` functions that are used for slide rendering and workflow are already open-sourced with the `autoslider.core` package. In this example, we show the general `autoslideR` workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the `autoslideR` framework to automate slide generation.
 
@@ -47,79 +33,6 @@ library(dplyr)
 ```
 
 
-```{r, eval = TRUE, include = FALSE}
-# hidden setup
-# Install and load the necessary packages
-library(yaml)
-library(assertthat)
-
-# Create the YAML content
-yaml_content <- '
-ITT:
-  title: Intent to Treat Population
-  condition: ITTFL == "Y"
-  target: adsl
-  type: slref
-SAS:
-  title: Secondary Analysis Set
-  condition: SASFL == "Y"
-  target: adsl
-  type: slref
-SE:
-  title: Safety Evaluable Population
-  condition: SAFFL== "Y"
-  target: adsl
-  type: slref
-SER:
-  title: Serious Adverse Events
-  condition: AESER == "Y"
-  target: adae
-  type: anl
-LBCRP:
-  title: CRP Values
-  condition: PARAMCD == "CRP"
-  target: adlb
-  type: slref
-LBNOBAS:
-  title: Only Visits After Baseline
-  condition: ABLFL != "Y" & !(AVISIT %in% c("SCREENING", "BASELINE"))
-  target: adlb
-  type: slref
-'
-
-current_wd <- getwd()
-
-# Create a temporary YAML file
-filters_file <- file.path(current_wd, "filters.yml")
-
-# Write the YAML content to the temporary file
-write(yaml_content, file = filters_file)
-
-# Create the specs entry
-specs_entry <- '
-- program: t_ds_slide
-  titles: Patient Disposition ({filter_titles("adsl")})
-  footnotes: "t_ds footnotes"
-  paper: L6
-  suffix: ITT
-- program: t_dm_slide
-  titles: Patient Demographics and Baseline Characteristics
-  footnotes: "t_dm_slide footnote"
-  paper: L6
-  suffix: ITT
-  args:
-    arm: "TRT01A"
-    vars: ["SEX", "AGE", "RACE"]
-'
-
-# Create a temporary specs entry file
-spec_file <- file.path(current_wd, "spec.yml")
-
-# Write the specs entry to the temporary file
-write(specs_entry, file = spec_file)
-
-# This chunk runs first and prepares the environment for the whole document
-```
 
 # Background
 
@@ -230,11 +143,10 @@ SER:
 A typical workflow could look something like this: 
 
 ```{r, eval = TRUE}
-current_wd <- getwd()
 # define path to the yml files
-spec_file <- file.path(current_wd, "spec.yml")
+spec_file <- file.path("spec.yml")
 
-filters_file <- file.path(current_wd, "filters.yml")
+filters_file <- file.path("filters.yml")
 # load all filters
 filters::load_filters(filters_file, overwrite = TRUE)
 ```
