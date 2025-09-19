@@ -26,7 +26,7 @@ editor_options:
 knitr::opts_chunk$set(comment = "#")
 ```
 
-Below is a step-by-step guide demonstrating how to use {rtables.officer} for creating and exporting a clinical trial results table.
+Below is a step-by-step guide demonstrating how to use `{rtables.officer}` for creating and exporting a clinical trial results table as a docx document.
 
 1. Setup and Data Preparation
 Load the necessary libraries and prepare the dataset:
