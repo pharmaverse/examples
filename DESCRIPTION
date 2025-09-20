@@ -12,6 +12,7 @@ Authors@R:
     person("David", "Blair", role = "aut"),
     person("Daniel D.", "Sjoberg", , "danield.sjoberg@gmail.com", role = "aut", comment = c(ORCID = "0000-0003-0862-2018")),
     person("Fanny", "Gautier", role = "aut", comment = c(ORCID = "0009-0004-3581-0131")),
+    person("Joe", "Zhu", role = "aut", comment = c(ORCID = "0000-0001-7566-2787")),
     person("Aksel", "Thomsen", , "oath@novonordisk.com", role = "aut"),
     person("Shiyu", "Chen", , "shiyu.chen@atorusresearch.com", role = "aut"),
     person("Rammprasad", "Ganapathy", , "rammprasad.ganapathy@gene.com", role = "aut")
@@ -21,8 +22,10 @@ URL: https://github.com/pharmaverse/examples
 Imports:
     admiralonco,
     admiral,
+    autoslider.core,
     cards,
     dplyr,
+    filters,
     gtsummary,
     lubridate,
     labelled,
@@ -36,6 +39,8 @@ Imports:
     pkglite,
     reactable,
     reactablefmtr,
+    rtables,
+    rtables.officer,
     rlistings,
     sdtm.oak,
     sparkline,
