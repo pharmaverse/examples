@@ -1,23 +1,4 @@
----
-title: "Documents"
-order: 2
----
-
-```{r setup script, include=FALSE, purl=FALSE}
-invisible_hook_purl <- function(before, options, ...) {
-  knitr::hook_purl(before, options, ...)
-  NULL
-}
-knitr::knit_hooks$set(purl = invisible_hook_purl)
-```
-
-
-Below is a step-by-step guide demonstrating how to use `{rtables.officer}` for creating and exporting a clinical trial results table as a docx document.
-
-1. Setup and Data Preparation
-Load the necessary libraries and prepare the dataset:
-
-```{r}
+## ----r------------------------------------------------------------------------
 library(tern)
 library(dplyr)
 library(rtables.officer)
@@ -32,21 +13,15 @@ adlb <- df_explicit_na(adlb)
 
 # Create a temporary file for the output
 tf <- tempfile(fileext = ".docx")
-```
-2. Data Filtering
-Filter the dataset for specific parameters and visits:
 
-```{r}
+## ----r------------------------------------------------------------------------
 adlb_f <- adlb %>%
   dplyr::filter(
     PARAM %in% c("Alanine Aminotransferase (U/L)", "Creatinine Kinase (U/L)") &
       !(ACTARM == "B: Placebo" & AVISIT == "Week 2") 
   )
-```
-3. Define Custom Analysis Function
-Create a custom function to perform the analysis:
 
-```{r}
+## ----r------------------------------------------------------------------------
 afun <- function(x, .var, .spl_context, ...) {
   n_fun <- sum(!is.na(x), na.rm = TRUE)
   mean_sd_fun <- if (n_fun == 0) c(NA, NA) else c(mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
@@ -66,12 +41,8 @@ afun <- function(x, .var, .spl_context, ...) {
     .format_na_strs = list("n" = "NE", "Mean (SD)" = "NE (NE)", "Median" = "NE", "Min - Max" = "NE - NE")
   )
 }
-```
 
-4. Define Table Layout
-Create the layout for the table:
-
-```{r}
+## ----r------------------------------------------------------------------------
 lyt <- basic_table() %>%
   split_cols_by("ACTARM", show_colcounts = TRUE, split_fun = keep_split_levels(levels(adlb_f$ACTARM)[c(1, 2)])) %>%
   split_rows_by("PARAM",
@@ -87,40 +58,26 @@ lyt <- basic_table() %>%
     varlabels = c("Value at Visit", "Change from Baseline")
   ) %>%
   analyze_colvars(afun = afun)
-```
 
-5. Build and Display the Table
-Build the table using the defined layout:
-
-```{r}
+## ----r------------------------------------------------------------------------
 result <- build_table(lyt, adlb_f)
 result
-```
-Assign titles and footers:
 
-```{r}
+## ----r------------------------------------------------------------------------
 main_title(result) <- "Alanine Aminotransferase Measurement"
 subtitles(result) <- c("This is a subtitle.", "This is another subtitle.")
 main_footer(result) <- "This is a demo table for illustration purpose."
 prov_footer(result) <- "Program: demo_poc_docx.R\nDate: 2024-11-06\nVersion: 0.0.1\n"
-```
 
-6. Convert to `flextable` and Export to Word
-Convert the table to a `flextable` object and export it to a Word document:
-
-```{r}
+## ----r------------------------------------------------------------------------
 flx_res <- tt_to_flextable(result)
 export_as_docx(flx_res,
   file = tf,
   section_properties = section_properties_default(orientation = "landscape")
 )
 flx_res
-```
-## Advanced Customizations
-You can further customize your tables, such as setting column widths, handling pagination, and more.
 
-### Column Widths
-```{r}
+## ----r------------------------------------------------------------------------
 cw <- propose_column_widths(result)
 cw <- cw / sum(cw)
 cw <- c(0.6, 0.1, 0.1, 0.1, 0.1)
@@ -137,4 +94,4 @@ flex_tbl <- tt_to_flextable(result,
 
 export_as_docx(flex_tbl, file = tf)
 flex_tbl
-```
+

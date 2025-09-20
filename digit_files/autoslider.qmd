@@ -3,35 +3,19 @@ title: "Slides"
 order: 1
 ---
 
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
 
-```{r, include = FALSE}
-suggested_dependent_pkgs <- c("filters")
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  eval = all(vapply(
-    suggested_dependent_pkgs,
-    requireNamespace,
-    logical(1),
-    quietly = TRUE
-  ))
-)
-```
-```{r, echo=FALSE}
-knitr::opts_chunk$set(comment = "#")
-```
 
 # Introduction
 
 
 `AutoslideR` functions that are used for slide rendering and workflow are already open-sourced with the `autoslider.core` package. In this example, we show the general `autoslideR` workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the `autoslideR` framework to automate slide generation.
-
-
-```{r, echo = FALSE, include = FALSE}
-library(autoslider.core)
-library(dplyr)
-```
-
 
 
 # Background
@@ -142,33 +126,26 @@ SER:
 
 A typical workflow could look something like this: 
 
-```{r, eval = TRUE}
-# define path to the yml files
-spec_file <- file.path("spec.yml")
+```{r setup}
+library(autoslider.core)
+library(dplyr)
 
-filters_file <- file.path("filters.yml")
+# 1. Load ALL necessary packages
+library(rtables) # For append_topleft()
+library(assertthat) # For assert_that() you had issues with before
+library(tern)
+
+# define path to the yml files
+spec_file <- file.path("metadata/spec.yml")
+
+filters_file <- file.path("metadata/filters.yml")
 # load all filters
 filters::load_filters(filters_file, overwrite = TRUE)
 ```
 
-```{r, eval = TRUE, include=FALSE}
-# 1. Load ALL necessary packages
-library(rtables) # For append_topleft()
-library(assertthat) # For assert_that() you had issues with before
-library(tern)
-library("dplyr")
-```
-
-```{r, eval = FALSE}
-# 1. Load ALL necessary packages
-library(rtables) # For append_topleft()
-library(assertthat) # For assert_that() you had issues with before
-library(tern)
-library("dplyr")
-```
 
 
-```{r, eval = TRUE}
+```{r, table}
 # read data
 data <- list(
   "adsl" = eg_adsl %>%
