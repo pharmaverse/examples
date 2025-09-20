@@ -11,10 +11,12 @@ invisible_hook_purl <- function(before, options, ...) {
 knitr::knit_hooks$set(purl = invisible_hook_purl)
 ```
 
+# Introduction
 
 Below is a step-by-step guide demonstrating how to use `{rtables.officer}` for creating and exporting a clinical trial results table as a docx document.
 
-1. Setup and Data Preparation
+# Setup and Data Preparation
+
 Load the necessary libraries and prepare the dataset:
 
 ```{r}
@@ -33,7 +35,7 @@ adlb <- df_explicit_na(adlb)
 # Create a temporary file for the output
 tf <- tempfile(fileext = ".docx")
 ```
-2. Data Filtering
+# Data Filtering
 Filter the dataset for specific parameters and visits:
 
 ```{r}
@@ -43,7 +45,7 @@ adlb_f <- adlb %>%
       !(ACTARM == "B: Placebo" & AVISIT == "Week 2") 
   )
 ```
-3. Define Custom Analysis Function
+# Define Custom Analysis Function
 Create a custom function to perform the analysis:
 
 ```{r}
@@ -68,7 +70,7 @@ afun <- function(x, .var, .spl_context, ...) {
 }
 ```
 
-4. Define Table Layout
+# Define Table Layout
 Create the layout for the table:
 
 ```{r}
@@ -89,7 +91,7 @@ lyt <- basic_table() %>%
   analyze_colvars(afun = afun)
 ```
 
-5. Build and Display the Table
+# Build and Display the Table
 Build the table using the defined layout:
 
 ```{r}
@@ -105,7 +107,7 @@ main_footer(result) <- "This is a demo table for illustration purpose."
 prov_footer(result) <- "Program: demo_poc_docx.R\nDate: 2024-11-06\nVersion: 0.0.1\n"
 ```
 
-6. Convert to `flextable` and Export to Word
+# Convert to `flextable` and Export to Word
 Convert the table to a `flextable` object and export it to a Word document:
 
 ```{r}
