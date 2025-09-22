@@ -18,7 +18,7 @@ tf <- tempfile(fileext = ".docx")
 adlb_f <- adlb %>%
   dplyr::filter(
     PARAM %in% c("Alanine Aminotransferase (U/L)", "Creatinine Kinase (U/L)") &
-      !(ACTARM == "B: Placebo" & AVISIT == "Week 2") 
+      !(ACTARM == "B: Placebo" & AVISIT == "Week 2")
   )
 
 ## ----r------------------------------------------------------------------------
@@ -94,4 +94,3 @@ flex_tbl <- tt_to_flextable(result,
 
 export_as_docx(flex_tbl, file = tf)
 flex_tbl
-
