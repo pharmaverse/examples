@@ -42,7 +42,7 @@ Filter the dataset for specific parameters and visits:
 adlb_f <- adlb %>%
   dplyr::filter(
     PARAM %in% c("Alanine Aminotransferase (U/L)", "Creatinine Kinase (U/L)") &
-      !(ACTARM == "B: Placebo" & AVISIT == "Week 2") 
+      !(ACTARM == "B: Placebo" & AVISIT == "Week 2")
   )
 ```
 # Define Custom Analysis Function
