@@ -193,4 +193,4 @@ outputs %>%
 
 For the final product, when it includes more output, it may look like the following
 
-![Example Reviewer's Guide Table](srep_screenshot.png){fig-align="center"}
+![Example Reviewer's Guide Table](eg_slides.png){fig-align="center"}
