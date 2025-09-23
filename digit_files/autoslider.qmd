@@ -89,8 +89,8 @@ The filters themselves are specified in the `filters.yml` file.
 
 In `filters.yml` we specify the names of the filters used across the outputs. 
 Each filter has a name (e.g. `FAS`), a title (`Full Analysis Set`), and then the filtering condition on a target dataset. 
-The filter title may be appended to the output title. For the `t_ds_slides` slide above all filter titles that target the adsl dataset would be included in the brackets. 
-We would thus expect the title to read: "Patient Disposition (Full Analysis Set)"
+The filter title may be appended to the output title. For the `t_ds_slides` slide above all filter titles that target the `adsl` dataset would be included in the brackets. 
+We would thus expect the title to read: "Patient Disposition (Full Analysis Set)".
 
 
 As you can see, we don't just have population filters, but also filters on serious adverse events. 
