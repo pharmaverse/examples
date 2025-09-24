@@ -69,3 +69,29 @@ subtitles(result) <- c("This is a subtitle.", "This is another subtitle.")
 main_footer(result) <- "This is a demo table for illustration purpose."
 prov_footer(result) <- "Program: demo_poc_docx.R\nDate: 2024-11-06\nVersion: 0.0.1\n"
 
+## ----r------------------------------------------------------------------------
+flx_res <- tt_to_flextable(result)
+export_as_docx(flx_res,
+  file = tf,
+  section_properties = section_properties_default(orientation = "landscape")
+)
+flx_res
+
+## ----r------------------------------------------------------------------------
+cw <- propose_column_widths(result)
+cw <- cw / sum(cw)
+cw <- c(0.6, 0.1, 0.1, 0.1, 0.1)
+spd <- section_properties_default(orientation = "landscape")
+fin_cw <- cw * spd$page_size$width / 2 / sum(cw)
+
+flex_tbl <- tt_to_flextable(result,
+  total_page_width = spd$page_size$width / 2,
+  counts_in_newline = TRUE,
+  autofit_to_page = FALSE,
+  bold_titles = TRUE,
+  colwidths = cw
+)
+
+export_as_docx(flex_tbl, file = tf)
+flex_tbl
+

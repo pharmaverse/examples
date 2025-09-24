@@ -1,13 +1,8 @@
-- program: t_ds_slide
-  titles: Patient Disposition ({filter_titles("adsl")})
-  footnotes: "t_ds footnotes"
-  paper: L6
-  suffix: ITT
 - program: t_dm_slide
   titles: Patient Demographics and Baseline Characteristics
   footnotes: "t_dm_slide footnote"
   paper: L6
-  suffix: ITT
+  suffix: SE
   args:
     arm: "TRT01A"
-    vars: ["SEX", "AGE", "RACE"]
+    vars: ["SEX", "AGE"]
