@@ -136,9 +136,9 @@ library(assertthat) # For assert_that() you had issues with before
 library(tern)
 
 # define path to the yml files
-spec_file <- file.path("metadata/spec.yml")
+spec_file <- file.path("metadata/autoslideR_spec.yml")
 
-filters_file <- file.path("metadata/filters.yml")
+filters_file <- file.path("metadata/autoslideR_filters.yml")
 # load all filters
 filters::load_filters(filters_file, overwrite = TRUE)
 ```
