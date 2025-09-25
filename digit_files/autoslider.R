@@ -20,15 +20,11 @@ data <- list(
   "adsl" = pharmaverseadam::adsl %>%
     mutate(
       FASFL = SAFFL, # add FASFL for illustrative purpose for t_pop_slide
-      # DISTRTFL DCSREAS is needed for t_ds_slide but is missing in example data
-      DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9)),
-      DCSREAS = sample(
-        c(
-          "DEATH", "LACK OF EFFICACY", "PROTOCOL VIOLATION",
-          "WITHDRAWAL BY PARENT/GUARDIAN", "ADVERSE EVENT"
-        ),
-        size = length(TRT01A), replace = TRUE, prob = c(.1, .2, .3, .3, .1)
-      )
+      # DISTRTFL is needed for t_ds_slide but is missing in example data
+      DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9))
+    ) %>% mutate(
+      FASFL = as.factor(FASFL),
+      SEX = as.factor(SEX),
     ),
   "adae" = pharmaverseadam::adae,
   "adtte" = pharmaverseadam::adtte_onco,
@@ -59,3 +55,4 @@ outputs %>%
     template = file.path(system.file(package = "autoslider.core"), "/theme/basic.pptx"),
     table_format = autoslider_format
   )
+
