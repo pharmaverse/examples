@@ -55,4 +55,3 @@ outputs %>%
     template = file.path(system.file(package = "autoslider.core"), "/theme/basic.pptx"),
     table_format = autoslider_format
   )
-
