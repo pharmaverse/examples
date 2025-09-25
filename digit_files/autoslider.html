@@ -837,11 +837,6 @@ Slot "width":
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] " Patient Demographics and Baseline Characteristics, Safety Evaluable Population"</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in (function (x, layout = NULL, master = NULL, ..., .dots = NULL) : Calling `add_slide()` without specifying a `layout` is deprecated.
- Please pass a `layout` or use `layout_default()` to set a default.
- =&gt; I will now continue with the former `layout` default "Title and Content" for backwards compatibility...</code></pre>
-</div>
 </div>
 <p>For the final product, when it includes more output, it may look like the following</p>
 <div class="quarto-figure quarto-figure-center">
@@ -1333,196 +1328,196 @@ Slot "width":
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">---</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="an">title:</span><span class="co"> "Slides"</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
-<span id="cb29-4"><a href="#cb29-4"></a><span class="co">---</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a></span>
-<span id="cb29-6"><a href="#cb29-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb29-7"><a href="#cb29-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb29-8"><a href="#cb29-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb29-9"><a href="#cb29-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb29-10"><a href="#cb29-10"></a>}</span>
-<span id="cb29-11"><a href="#cb29-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb29-12"><a href="#cb29-12"></a><span class="in">```</span></span>
-<span id="cb29-13"><a href="#cb29-13"></a></span>
-<span id="cb29-14"><a href="#cb29-14"></a></span>
-<span id="cb29-15"><a href="#cb29-15"></a><span class="fu"># Introduction</span></span>
-<span id="cb29-16"><a href="#cb29-16"></a></span>
-<span id="cb29-17"><a href="#cb29-17"></a></span>
-<span id="cb29-18"><a href="#cb29-18"></a><span class="in">`AutoslideR`</span> functions that are used for slide rendering and workflow are already open-sourced with the <span class="in">`autoslider.core`</span> package. In this example, we show the general <span class="in">`autoslideR`</span> workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the <span class="in">`autoslideR`</span> framework to automate slide generation.</span>
-<span id="cb29-19"><a href="#cb29-19"></a></span>
-<span id="cb29-20"><a href="#cb29-20"></a></span>
-<span id="cb29-21"><a href="#cb29-21"></a><span class="fu"># Background</span></span>
-<span id="cb29-22"><a href="#cb29-22"></a></span>
-<span id="cb29-23"><a href="#cb29-23"></a>At its heart, <span class="in">`autoslideR`</span> was created to tackle the inefficiencies and error-proneness of manual slide generation in clinical trials. It automates the creation of slides, significantly reducing the amount of work and time required, minimizing the risk of errors from manual data entry, and alleviating stress during demanding reporting periods.</span>
-<span id="cb29-24"><a href="#cb29-24"></a></span>
-<span id="cb29-25"><a href="#cb29-25"></a><span class="in">`autoslideR`</span> works by transforming your analysis data (SDTM, ADaM, raw, etc.) into standardized Table/Listing/Graph (TLG) objects. These objects are then decorated with titles, subtitles, and footnotes, positioning them at desired locations. With the addition of placeholder slides, the resulting PPTX file is ready for use in meetings.</span>
-<span id="cb29-26"><a href="#cb29-26"></a></span>
-<span id="cb29-27"><a href="#cb29-27"></a></span>
-<span id="cb29-28"><a href="#cb29-28"></a><span class="fu"># Prerequisites</span></span>
-<span id="cb29-29"><a href="#cb29-29"></a></span>
-<span id="cb29-30"><a href="#cb29-30"></a>First and foremost, you need to have the <span class="in">`autoslider.core`</span> package installed, and you need to have data available. In this example, it uses example data stored in the <span class="in">`autoslider.core`</span> package. The data needs to be stored in a named list (in this particular example, dataset names correspond to ADaM data sets).</span>
-<span id="cb29-31"><a href="#cb29-31"></a></span>
-<span id="cb29-32"><a href="#cb29-32"></a><span class="fu">## File structure</span></span>
-<span id="cb29-33"><a href="#cb29-33"></a></span>
-<span id="cb29-34"><a href="#cb29-34"></a></span>
-<span id="cb29-35"><a href="#cb29-35"></a>The folder structure could look something like: </span>
-<span id="cb29-36"><a href="#cb29-36"></a></span>
-<span id="cb29-37"><a href="#cb29-37"></a><span class="in">```</span></span>
-<span id="cb29-38"><a href="#cb29-38"></a><span class="in">├── programs</span></span>
-<span id="cb29-39"><a href="#cb29-39"></a><span class="in">│   ├── run_script.R</span></span>
-<span id="cb29-40"><a href="#cb29-40"></a><span class="in">│   ├── R   </span></span>
-<span id="cb29-41"><a href="#cb29-41"></a><span class="in">|   |   ├── template_functions.R</span></span>
-<span id="cb29-42"><a href="#cb29-42"></a><span class="in">|   |   ├── output_functions.R</span></span>
-<span id="cb29-43"><a href="#cb29-43"></a><span class="in">├── outputs</span></span>
-<span id="cb29-44"><a href="#cb29-44"></a><span class="in">├── spec.yml</span></span>
-<span id="cb29-45"><a href="#cb29-45"></a><span class="in">├── filters.yml</span></span>
-<span id="cb29-46"><a href="#cb29-46"></a><span class="in">```</span></span>
-<span id="cb29-47"><a href="#cb29-47"></a></span>
-<span id="cb29-48"><a href="#cb29-48"></a>The <span class="in">`autoslideR`</span> workflow would be implemented in the <span class="in">`run_script.R`</span> file.</span>
-<span id="cb29-49"><a href="#cb29-49"></a>This workflow does not require the files in <span class="in">`programs/R/`</span>. </span>
-<span id="cb29-50"><a href="#cb29-50"></a>However, if custom <span class="in">`output_functions.R`</span> are implemented, <span class="in">`programs/R/`</span> would be the place to put them.</span>
-<span id="cb29-51"><a href="#cb29-51"></a></span>
-<span id="cb29-52"><a href="#cb29-52"></a>The <span class="in">`autoslideR`</span> workflow has four main aspects: </span>
-<span id="cb29-53"><a href="#cb29-53"></a></span>
-<span id="cb29-54"><a href="#cb29-54"></a><span class="fu">## The specifications `specs.yml` </span></span>
-<span id="cb29-55"><a href="#cb29-55"></a></span>
-<span id="cb29-56"><a href="#cb29-56"></a>This file contains the specifications of all outputs you would like to create.</span>
-<span id="cb29-57"><a href="#cb29-57"></a></span>
-<span id="cb29-58"><a href="#cb29-58"></a>For each output we define specific information, namely the program name, the footnotes &amp; titles, the paper (this indicates the orientation, P for portrait and L for landscape, the number indicates the font size), the suffix and <span class="in">`args`</span>.</span>
-<span id="cb29-59"><a href="#cb29-59"></a></span>
-<span id="cb29-60"><a href="#cb29-60"></a>It could look something like that:</span>
-<span id="cb29-61"><a href="#cb29-61"></a></span>
-<span id="cb29-62"><a href="#cb29-62"></a><span class="in">```</span></span>
-<span id="cb29-63"><a href="#cb29-63"></a><span class="in">- program: t_dm_slide</span></span>
-<span id="cb29-64"><a href="#cb29-64"></a><span class="in">  titles: Patient Demographics and Baseline Characteristics</span></span>
-<span id="cb29-65"><a href="#cb29-65"></a><span class="in">  footnotes: 't_dm_slide footnote'</span></span>
-<span id="cb29-66"><a href="#cb29-66"></a><span class="in">  paper: L6</span></span>
-<span id="cb29-67"><a href="#cb29-67"></a><span class="in">  suffix: SE</span></span>
-<span id="cb29-68"><a href="#cb29-68"></a><span class="in">  args:</span></span>
-<span id="cb29-69"><a href="#cb29-69"></a><span class="in">    arm: "TRT01A"</span></span>
-<span id="cb29-70"><a href="#cb29-70"></a><span class="in">    vars: ["SEX", "AGE"]</span></span>
-<span id="cb29-71"><a href="#cb29-71"></a></span>
-<span id="cb29-72"><a href="#cb29-72"></a><span class="in">```</span></span>
-<span id="cb29-73"><a href="#cb29-73"></a></span>
-<span id="cb29-74"><a href="#cb29-74"></a>The program name refers to a function that produces an output. </span>
-<span id="cb29-75"><a href="#cb29-75"></a>This could be one of the template functions provided in <span class="in">`autoslider.core`</span> or a custom function. See vignette <span class="co">[</span><span class="ot">`adding_templates`</span><span class="co">](https://insightsengineering.github.io/autoslider.core/latest-tag/articles/adding_templates.html)</span> for a detailed guide on using templates.</span>
-<span id="cb29-76"><a href="#cb29-76"></a></span>
-<span id="cb29-77"><a href="#cb29-77"></a>Titles and footnotes are added once the outputs are created.</span>
-<span id="cb29-78"><a href="#cb29-78"></a>We refer to that as decorating the outputs.</span>
-<span id="cb29-79"><a href="#cb29-79"></a></span>
-<span id="cb29-80"><a href="#cb29-80"></a>The suffix specifies the name of the filters that are applied to the data, before the data is funneled into the function (program).</span>
-<span id="cb29-81"><a href="#cb29-81"></a>The filters themselves are specified in the <span class="in">`filters.yml`</span> file.</span>
-<span id="cb29-82"><a href="#cb29-82"></a></span>
-<span id="cb29-83"><a href="#cb29-83"></a><span class="fu">## The filters `filters.yml`</span></span>
-<span id="cb29-84"><a href="#cb29-84"></a></span>
-<span id="cb29-85"><a href="#cb29-85"></a>In <span class="in">`filters.yml`</span> we specify the names of the filters used across the outputs. </span>
-<span id="cb29-86"><a href="#cb29-86"></a>Each filter has a name (e.g. <span class="in">`FAS`</span>), a title (<span class="in">`Full Analysis Set`</span>), and then the filtering condition on a target dataset. </span>
-<span id="cb29-87"><a href="#cb29-87"></a>The filter title may be appended to the output title. For the <span class="in">`t_dm_slide`</span> slide above all filter titles that target the <span class="in">`adsl`</span> dataset would be included in the brackets. </span>
-<span id="cb29-88"><a href="#cb29-88"></a>We would thus expect the title to read: "Patient Demographics and Baseline Characteristics (Full Analysis Set)".</span>
-<span id="cb29-89"><a href="#cb29-89"></a></span>
-<span id="cb29-90"><a href="#cb29-90"></a></span>
-<span id="cb29-91"><a href="#cb29-91"></a>As you can see, we don't just have population filters, but also filters on serious adverse events. </span>
-<span id="cb29-92"><a href="#cb29-92"></a>We can thus produce SAE tables by just supplying the serious adverse events to the AE table function. </span>
-<span id="cb29-93"><a href="#cb29-93"></a>This concept generalizes also to <span class="in">`PARAMCD`</span> values.</span>
-<span id="cb29-94"><a href="#cb29-94"></a></span>
-<span id="cb29-95"><a href="#cb29-95"></a></span>
-<span id="cb29-96"><a href="#cb29-96"></a><span class="in">```</span></span>
-<span id="cb29-97"><a href="#cb29-97"></a><span class="in">ITT:</span></span>
-<span id="cb29-98"><a href="#cb29-98"></a><span class="in">  title: Intent to Treat Population</span></span>
-<span id="cb29-99"><a href="#cb29-99"></a><span class="in">  condition: ITTFL == "Y"</span></span>
-<span id="cb29-100"><a href="#cb29-100"></a><span class="in">  target: adsl</span></span>
-<span id="cb29-101"><a href="#cb29-101"></a><span class="in">  type: slref</span></span>
-<span id="cb29-102"><a href="#cb29-102"></a><span class="in">SAS:</span></span>
-<span id="cb29-103"><a href="#cb29-103"></a><span class="in">  title: Secondary Analysis Set</span></span>
-<span id="cb29-104"><a href="#cb29-104"></a><span class="in">  condition: SASFL == "Y"</span></span>
-<span id="cb29-105"><a href="#cb29-105"></a><span class="in">  target: adsl</span></span>
-<span id="cb29-106"><a href="#cb29-106"></a><span class="in">  type: slref</span></span>
-<span id="cb29-107"><a href="#cb29-107"></a><span class="in">SE:</span></span>
-<span id="cb29-108"><a href="#cb29-108"></a><span class="in">  title: Safety Evaluable Population</span></span>
-<span id="cb29-109"><a href="#cb29-109"></a><span class="in">  condition: SAFFL == "Y"</span></span>
-<span id="cb29-110"><a href="#cb29-110"></a><span class="in">  target: adsl</span></span>
-<span id="cb29-111"><a href="#cb29-111"></a><span class="in">  type: slref</span></span>
-<span id="cb29-112"><a href="#cb29-112"></a><span class="in">SER:</span></span>
-<span id="cb29-113"><a href="#cb29-113"></a><span class="in">  title: Serious Adverse Events</span></span>
-<span id="cb29-114"><a href="#cb29-114"></a><span class="in">  condition: AESER == "Y"</span></span>
-<span id="cb29-115"><a href="#cb29-115"></a><span class="in">  target: adae</span></span>
-<span id="cb29-116"><a href="#cb29-116"></a><span class="in">  type: anl</span></span>
-<span id="cb29-117"><a href="#cb29-117"></a></span>
-<span id="cb29-118"><a href="#cb29-118"></a><span class="in">```</span></span>
-<span id="cb29-119"><a href="#cb29-119"></a></span>
-<span id="cb29-120"><a href="#cb29-120"></a><span class="fu"># AutoslideR typical workflow example</span></span>
-<span id="cb29-121"><a href="#cb29-121"></a></span>
-<span id="cb29-122"><a href="#cb29-122"></a>A typical workflow could look something like this: </span>
-<span id="cb29-123"><a href="#cb29-123"></a></span>
-<span id="cb29-124"><a href="#cb29-124"></a><span class="in">```{r setup}</span></span>
-<span id="cb29-125"><a href="#cb29-125"></a><span class="fu">library</span>(autoslider.core)</span>
-<span id="cb29-126"><a href="#cb29-126"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb29-127"><a href="#cb29-127"></a></span>
-<span id="cb29-128"><a href="#cb29-128"></a><span class="co"># 1. Load ALL necessary packages</span></span>
-<span id="cb29-129"><a href="#cb29-129"></a><span class="fu">library</span>(rtables) <span class="co"># For append_topleft()</span></span>
-<span id="cb29-130"><a href="#cb29-130"></a><span class="fu">library</span>(assertthat) <span class="co"># For assert_that() you had issues with before</span></span>
-<span id="cb29-131"><a href="#cb29-131"></a><span class="fu">library</span>(tern)</span>
-<span id="cb29-132"><a href="#cb29-132"></a></span>
-<span id="cb29-133"><a href="#cb29-133"></a><span class="co"># define path to the yml files</span></span>
-<span id="cb29-134"><a href="#cb29-134"></a>spec_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"metadata/autoslideR_spec.yml"</span>)</span>
-<span id="cb29-135"><a href="#cb29-135"></a></span>
-<span id="cb29-136"><a href="#cb29-136"></a>filters_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"metadata/autoslideR_filters.yml"</span>)</span>
-<span id="cb29-137"><a href="#cb29-137"></a><span class="co"># load all filters</span></span>
-<span id="cb29-138"><a href="#cb29-138"></a>filters<span class="sc">::</span><span class="fu">load_filters</span>(filters_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb29-139"><a href="#cb29-139"></a><span class="in">```</span></span>
-<span id="cb29-140"><a href="#cb29-140"></a></span>
-<span id="cb29-141"><a href="#cb29-141"></a></span>
-<span id="cb29-142"><a href="#cb29-142"></a></span>
-<span id="cb29-143"><a href="#cb29-143"></a><span class="in">```{r, table}</span></span>
-<span id="cb29-144"><a href="#cb29-144"></a><span class="co"># read data</span></span>
-<span id="cb29-145"><a href="#cb29-145"></a>data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb29-146"><a href="#cb29-146"></a>  <span class="st">"adsl"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
-<span id="cb29-147"><a href="#cb29-147"></a>    <span class="fu">mutate</span>(</span>
-<span id="cb29-148"><a href="#cb29-148"></a>      <span class="at">FASFL =</span> SAFFL, <span class="co"># add FASFL for illustrative purpose for t_pop_slide</span></span>
-<span id="cb29-149"><a href="#cb29-149"></a>      <span class="co"># DISTRTFL is needed for t_ds_slide but is missing in example data</span></span>
-<span id="cb29-150"><a href="#cb29-150"></a>      <span class="at">DISTRTFL =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Y"</span>, <span class="st">"N"</span>), <span class="at">size =</span> <span class="fu">length</span>(TRT01A), <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">9</span>))</span>
-<span id="cb29-151"><a href="#cb29-151"></a>    ),</span>
-<span id="cb29-152"><a href="#cb29-152"></a>  <span class="st">"adae"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adae,</span>
-<span id="cb29-153"><a href="#cb29-153"></a>  <span class="st">"adtte"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adtte_onco,</span>
-<span id="cb29-154"><a href="#cb29-154"></a>  <span class="st">"adrs"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adrs_onco,</span>
-<span id="cb29-155"><a href="#cb29-155"></a>  <span class="st">"adlb"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adlb</span>
-<span id="cb29-156"><a href="#cb29-156"></a>)</span>
-<span id="cb29-157"><a href="#cb29-157"></a></span>
-<span id="cb29-158"><a href="#cb29-158"></a><span class="co"># create outputs based on the specs and the functions</span></span>
-<span id="cb29-159"><a href="#cb29-159"></a>outputs <span class="ot">&lt;-</span> spec_file <span class="sc">%&gt;%</span></span>
-<span id="cb29-160"><a href="#cb29-160"></a>  <span class="fu">read_spec</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb29-161"><a href="#cb29-161"></a>  <span class="co"># we can also filter for specific programs:</span></span>
-<span id="cb29-162"><a href="#cb29-162"></a>  <span class="fu">filter_spec</span>(., program <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"t_dm_slide"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb29-163"><a href="#cb29-163"></a>  <span class="co"># these filtered specs are now piped into the generate_outputs function.</span></span>
-<span id="cb29-164"><a href="#cb29-164"></a>  <span class="co"># this function also requires the data</span></span>
-<span id="cb29-165"><a href="#cb29-165"></a>  <span class="fu">generate_outputs</span>(<span class="at">datasets =</span> data) <span class="sc">%&gt;%</span></span>
-<span id="cb29-166"><a href="#cb29-166"></a>  <span class="co"># now we decorate based on the specs, i.e. add footnotes and titles</span></span>
-<span id="cb29-167"><a href="#cb29-167"></a>  <span class="fu">decorate_outputs</span>(</span>
-<span id="cb29-168"><a href="#cb29-168"></a>    <span class="at">version_label =</span> <span class="cn">NULL</span></span>
-<span id="cb29-169"><a href="#cb29-169"></a>  )</span>
-<span id="cb29-170"><a href="#cb29-170"></a><span class="in">```</span></span>
-<span id="cb29-171"><a href="#cb29-171"></a></span>
-<span id="cb29-172"><a href="#cb29-172"></a></span>
-<span id="cb29-173"><a href="#cb29-173"></a>We can have a look at one of the outputs stored in the outputs file:</span>
-<span id="cb29-176"><a href="#cb29-176"></a><span class="in">```{r}</span></span>
-<span id="cb29-177"><a href="#cb29-177"></a>outputs<span class="sc">$</span>t_dm_slide_SE</span>
-<span id="cb29-178"><a href="#cb29-178"></a><span class="in">```</span></span>
-<span id="cb29-179"><a href="#cb29-179"></a></span>
-<span id="cb29-180"><a href="#cb29-180"></a></span>
-<span id="cb29-183"><a href="#cb29-183"></a><span class="in">```{r}</span></span>
-<span id="cb29-184"><a href="#cb29-184"></a>outputs <span class="sc">%&gt;%</span></span>
-<span id="cb29-185"><a href="#cb29-185"></a>  <span class="fu">generate_slides</span>(</span>
-<span id="cb29-186"><a href="#cb29-186"></a>    <span class="at">outfile =</span> <span class="st">"presentation.pptx"</span>,</span>
-<span id="cb29-187"><a href="#cb29-187"></a>    <span class="at">template =</span> <span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"autoslider.core"</span>), <span class="st">"/theme/basic.pptx"</span>),</span>
-<span id="cb29-188"><a href="#cb29-188"></a>    <span class="at">table_format =</span> autoslider_format</span>
-<span id="cb29-189"><a href="#cb29-189"></a>  )</span>
-<span id="cb29-190"><a href="#cb29-190"></a><span class="in">```</span></span>
-<span id="cb29-191"><a href="#cb29-191"></a></span>
-<span id="cb29-192"><a href="#cb29-192"></a>For the final product, when it includes more output, it may look like the following</span>
-<span id="cb29-193"><a href="#cb29-193"></a></span>
-<span id="cb29-194"><a href="#cb29-194"></a><span class="al">![Example Reviewer's Guide Table](eg_slides.png)</span>{fig-align="center"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1"></a><span class="co">---</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="an">title:</span><span class="co"> "Slides"</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co">---</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb28-8"><a href="#cb28-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>}</span>
+<span id="cb28-11"><a href="#cb28-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb28-12"><a href="#cb28-12"></a><span class="in">```</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a></span>
+<span id="cb28-14"><a href="#cb28-14"></a></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="fu"># Introduction</span></span>
+<span id="cb28-16"><a href="#cb28-16"></a></span>
+<span id="cb28-17"><a href="#cb28-17"></a></span>
+<span id="cb28-18"><a href="#cb28-18"></a><span class="in">`AutoslideR`</span> functions that are used for slide rendering and workflow are already open-sourced with the <span class="in">`autoslider.core`</span> package. In this example, we show the general <span class="in">`autoslideR`</span> workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the <span class="in">`autoslideR`</span> framework to automate slide generation.</span>
+<span id="cb28-19"><a href="#cb28-19"></a></span>
+<span id="cb28-20"><a href="#cb28-20"></a></span>
+<span id="cb28-21"><a href="#cb28-21"></a><span class="fu"># Background</span></span>
+<span id="cb28-22"><a href="#cb28-22"></a></span>
+<span id="cb28-23"><a href="#cb28-23"></a>At its heart, <span class="in">`autoslideR`</span> was created to tackle the inefficiencies and error-proneness of manual slide generation in clinical trials. It automates the creation of slides, significantly reducing the amount of work and time required, minimizing the risk of errors from manual data entry, and alleviating stress during demanding reporting periods.</span>
+<span id="cb28-24"><a href="#cb28-24"></a></span>
+<span id="cb28-25"><a href="#cb28-25"></a><span class="in">`autoslideR`</span> works by transforming your analysis data (SDTM, ADaM, raw, etc.) into standardized Table/Listing/Graph (TLG) objects. These objects are then decorated with titles, subtitles, and footnotes, positioning them at desired locations. With the addition of placeholder slides, the resulting PPTX file is ready for use in meetings.</span>
+<span id="cb28-26"><a href="#cb28-26"></a></span>
+<span id="cb28-27"><a href="#cb28-27"></a></span>
+<span id="cb28-28"><a href="#cb28-28"></a><span class="fu"># Prerequisites</span></span>
+<span id="cb28-29"><a href="#cb28-29"></a></span>
+<span id="cb28-30"><a href="#cb28-30"></a>First and foremost, you need to have the <span class="in">`autoslider.core`</span> package installed, and you need to have data available. In this example, it uses example data stored in the <span class="in">`autoslider.core`</span> package. The data needs to be stored in a named list (in this particular example, dataset names correspond to ADaM data sets).</span>
+<span id="cb28-31"><a href="#cb28-31"></a></span>
+<span id="cb28-32"><a href="#cb28-32"></a><span class="fu">## File structure</span></span>
+<span id="cb28-33"><a href="#cb28-33"></a></span>
+<span id="cb28-34"><a href="#cb28-34"></a></span>
+<span id="cb28-35"><a href="#cb28-35"></a>The folder structure could look something like: </span>
+<span id="cb28-36"><a href="#cb28-36"></a></span>
+<span id="cb28-37"><a href="#cb28-37"></a><span class="in">```</span></span>
+<span id="cb28-38"><a href="#cb28-38"></a><span class="in">├── programs</span></span>
+<span id="cb28-39"><a href="#cb28-39"></a><span class="in">│   ├── run_script.R</span></span>
+<span id="cb28-40"><a href="#cb28-40"></a><span class="in">│   ├── R   </span></span>
+<span id="cb28-41"><a href="#cb28-41"></a><span class="in">|   |   ├── template_functions.R</span></span>
+<span id="cb28-42"><a href="#cb28-42"></a><span class="in">|   |   ├── output_functions.R</span></span>
+<span id="cb28-43"><a href="#cb28-43"></a><span class="in">├── outputs</span></span>
+<span id="cb28-44"><a href="#cb28-44"></a><span class="in">├── spec.yml</span></span>
+<span id="cb28-45"><a href="#cb28-45"></a><span class="in">├── filters.yml</span></span>
+<span id="cb28-46"><a href="#cb28-46"></a><span class="in">```</span></span>
+<span id="cb28-47"><a href="#cb28-47"></a></span>
+<span id="cb28-48"><a href="#cb28-48"></a>The <span class="in">`autoslideR`</span> workflow would be implemented in the <span class="in">`run_script.R`</span> file.</span>
+<span id="cb28-49"><a href="#cb28-49"></a>This workflow does not require the files in <span class="in">`programs/R/`</span>. </span>
+<span id="cb28-50"><a href="#cb28-50"></a>However, if custom <span class="in">`output_functions.R`</span> are implemented, <span class="in">`programs/R/`</span> would be the place to put them.</span>
+<span id="cb28-51"><a href="#cb28-51"></a></span>
+<span id="cb28-52"><a href="#cb28-52"></a>The <span class="in">`autoslideR`</span> workflow has four main aspects: </span>
+<span id="cb28-53"><a href="#cb28-53"></a></span>
+<span id="cb28-54"><a href="#cb28-54"></a><span class="fu">## The specifications `specs.yml` </span></span>
+<span id="cb28-55"><a href="#cb28-55"></a></span>
+<span id="cb28-56"><a href="#cb28-56"></a>This file contains the specifications of all outputs you would like to create.</span>
+<span id="cb28-57"><a href="#cb28-57"></a></span>
+<span id="cb28-58"><a href="#cb28-58"></a>For each output we define specific information, namely the program name, the footnotes &amp; titles, the paper (this indicates the orientation, P for portrait and L for landscape, the number indicates the font size), the suffix and <span class="in">`args`</span>.</span>
+<span id="cb28-59"><a href="#cb28-59"></a></span>
+<span id="cb28-60"><a href="#cb28-60"></a>It could look something like that:</span>
+<span id="cb28-61"><a href="#cb28-61"></a></span>
+<span id="cb28-62"><a href="#cb28-62"></a><span class="in">```</span></span>
+<span id="cb28-63"><a href="#cb28-63"></a><span class="in">- program: t_dm_slide</span></span>
+<span id="cb28-64"><a href="#cb28-64"></a><span class="in">  titles: Patient Demographics and Baseline Characteristics</span></span>
+<span id="cb28-65"><a href="#cb28-65"></a><span class="in">  footnotes: 't_dm_slide footnote'</span></span>
+<span id="cb28-66"><a href="#cb28-66"></a><span class="in">  paper: L6</span></span>
+<span id="cb28-67"><a href="#cb28-67"></a><span class="in">  suffix: SE</span></span>
+<span id="cb28-68"><a href="#cb28-68"></a><span class="in">  args:</span></span>
+<span id="cb28-69"><a href="#cb28-69"></a><span class="in">    arm: "TRT01A"</span></span>
+<span id="cb28-70"><a href="#cb28-70"></a><span class="in">    vars: ["SEX", "AGE"]</span></span>
+<span id="cb28-71"><a href="#cb28-71"></a></span>
+<span id="cb28-72"><a href="#cb28-72"></a><span class="in">```</span></span>
+<span id="cb28-73"><a href="#cb28-73"></a></span>
+<span id="cb28-74"><a href="#cb28-74"></a>The program name refers to a function that produces an output. </span>
+<span id="cb28-75"><a href="#cb28-75"></a>This could be one of the template functions provided in <span class="in">`autoslider.core`</span> or a custom function. See vignette <span class="co">[</span><span class="ot">`adding_templates`</span><span class="co">](https://insightsengineering.github.io/autoslider.core/latest-tag/articles/adding_templates.html)</span> for a detailed guide on using templates.</span>
+<span id="cb28-76"><a href="#cb28-76"></a></span>
+<span id="cb28-77"><a href="#cb28-77"></a>Titles and footnotes are added once the outputs are created.</span>
+<span id="cb28-78"><a href="#cb28-78"></a>We refer to that as decorating the outputs.</span>
+<span id="cb28-79"><a href="#cb28-79"></a></span>
+<span id="cb28-80"><a href="#cb28-80"></a>The suffix specifies the name of the filters that are applied to the data, before the data is funneled into the function (program).</span>
+<span id="cb28-81"><a href="#cb28-81"></a>The filters themselves are specified in the <span class="in">`filters.yml`</span> file.</span>
+<span id="cb28-82"><a href="#cb28-82"></a></span>
+<span id="cb28-83"><a href="#cb28-83"></a><span class="fu">## The filters `filters.yml`</span></span>
+<span id="cb28-84"><a href="#cb28-84"></a></span>
+<span id="cb28-85"><a href="#cb28-85"></a>In <span class="in">`filters.yml`</span> we specify the names of the filters used across the outputs. </span>
+<span id="cb28-86"><a href="#cb28-86"></a>Each filter has a name (e.g. <span class="in">`FAS`</span>), a title (<span class="in">`Full Analysis Set`</span>), and then the filtering condition on a target dataset. </span>
+<span id="cb28-87"><a href="#cb28-87"></a>The filter title may be appended to the output title. For the <span class="in">`t_dm_slide`</span> slide above all filter titles that target the <span class="in">`adsl`</span> dataset would be included in the brackets. </span>
+<span id="cb28-88"><a href="#cb28-88"></a>We would thus expect the title to read: "Patient Demographics and Baseline Characteristics (Full Analysis Set)".</span>
+<span id="cb28-89"><a href="#cb28-89"></a></span>
+<span id="cb28-90"><a href="#cb28-90"></a></span>
+<span id="cb28-91"><a href="#cb28-91"></a>As you can see, we don't just have population filters, but also filters on serious adverse events. </span>
+<span id="cb28-92"><a href="#cb28-92"></a>We can thus produce SAE tables by just supplying the serious adverse events to the AE table function. </span>
+<span id="cb28-93"><a href="#cb28-93"></a>This concept generalizes also to <span class="in">`PARAMCD`</span> values.</span>
+<span id="cb28-94"><a href="#cb28-94"></a></span>
+<span id="cb28-95"><a href="#cb28-95"></a></span>
+<span id="cb28-96"><a href="#cb28-96"></a><span class="in">```</span></span>
+<span id="cb28-97"><a href="#cb28-97"></a><span class="in">ITT:</span></span>
+<span id="cb28-98"><a href="#cb28-98"></a><span class="in">  title: Intent to Treat Population</span></span>
+<span id="cb28-99"><a href="#cb28-99"></a><span class="in">  condition: ITTFL == "Y"</span></span>
+<span id="cb28-100"><a href="#cb28-100"></a><span class="in">  target: adsl</span></span>
+<span id="cb28-101"><a href="#cb28-101"></a><span class="in">  type: slref</span></span>
+<span id="cb28-102"><a href="#cb28-102"></a><span class="in">SAS:</span></span>
+<span id="cb28-103"><a href="#cb28-103"></a><span class="in">  title: Secondary Analysis Set</span></span>
+<span id="cb28-104"><a href="#cb28-104"></a><span class="in">  condition: SASFL == "Y"</span></span>
+<span id="cb28-105"><a href="#cb28-105"></a><span class="in">  target: adsl</span></span>
+<span id="cb28-106"><a href="#cb28-106"></a><span class="in">  type: slref</span></span>
+<span id="cb28-107"><a href="#cb28-107"></a><span class="in">SE:</span></span>
+<span id="cb28-108"><a href="#cb28-108"></a><span class="in">  title: Safety Evaluable Population</span></span>
+<span id="cb28-109"><a href="#cb28-109"></a><span class="in">  condition: SAFFL == "Y"</span></span>
+<span id="cb28-110"><a href="#cb28-110"></a><span class="in">  target: adsl</span></span>
+<span id="cb28-111"><a href="#cb28-111"></a><span class="in">  type: slref</span></span>
+<span id="cb28-112"><a href="#cb28-112"></a><span class="in">SER:</span></span>
+<span id="cb28-113"><a href="#cb28-113"></a><span class="in">  title: Serious Adverse Events</span></span>
+<span id="cb28-114"><a href="#cb28-114"></a><span class="in">  condition: AESER == "Y"</span></span>
+<span id="cb28-115"><a href="#cb28-115"></a><span class="in">  target: adae</span></span>
+<span id="cb28-116"><a href="#cb28-116"></a><span class="in">  type: anl</span></span>
+<span id="cb28-117"><a href="#cb28-117"></a></span>
+<span id="cb28-118"><a href="#cb28-118"></a><span class="in">```</span></span>
+<span id="cb28-119"><a href="#cb28-119"></a></span>
+<span id="cb28-120"><a href="#cb28-120"></a><span class="fu"># AutoslideR typical workflow example</span></span>
+<span id="cb28-121"><a href="#cb28-121"></a></span>
+<span id="cb28-122"><a href="#cb28-122"></a>A typical workflow could look something like this: </span>
+<span id="cb28-123"><a href="#cb28-123"></a></span>
+<span id="cb28-124"><a href="#cb28-124"></a><span class="in">```{r setup}</span></span>
+<span id="cb28-125"><a href="#cb28-125"></a><span class="fu">library</span>(autoslider.core)</span>
+<span id="cb28-126"><a href="#cb28-126"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb28-127"><a href="#cb28-127"></a></span>
+<span id="cb28-128"><a href="#cb28-128"></a><span class="co"># 1. Load ALL necessary packages</span></span>
+<span id="cb28-129"><a href="#cb28-129"></a><span class="fu">library</span>(rtables) <span class="co"># For append_topleft()</span></span>
+<span id="cb28-130"><a href="#cb28-130"></a><span class="fu">library</span>(assertthat) <span class="co"># For assert_that() you had issues with before</span></span>
+<span id="cb28-131"><a href="#cb28-131"></a><span class="fu">library</span>(tern)</span>
+<span id="cb28-132"><a href="#cb28-132"></a></span>
+<span id="cb28-133"><a href="#cb28-133"></a><span class="co"># define path to the yml files</span></span>
+<span id="cb28-134"><a href="#cb28-134"></a>spec_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"metadata/autoslideR_spec.yml"</span>)</span>
+<span id="cb28-135"><a href="#cb28-135"></a></span>
+<span id="cb28-136"><a href="#cb28-136"></a>filters_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"metadata/autoslideR_filters.yml"</span>)</span>
+<span id="cb28-137"><a href="#cb28-137"></a><span class="co"># load all filters</span></span>
+<span id="cb28-138"><a href="#cb28-138"></a>filters<span class="sc">::</span><span class="fu">load_filters</span>(filters_file, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-139"><a href="#cb28-139"></a><span class="in">```</span></span>
+<span id="cb28-140"><a href="#cb28-140"></a></span>
+<span id="cb28-141"><a href="#cb28-141"></a></span>
+<span id="cb28-142"><a href="#cb28-142"></a></span>
+<span id="cb28-143"><a href="#cb28-143"></a><span class="in">```{r, table}</span></span>
+<span id="cb28-144"><a href="#cb28-144"></a><span class="co"># read data</span></span>
+<span id="cb28-145"><a href="#cb28-145"></a>data <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb28-146"><a href="#cb28-146"></a>  <span class="st">"adsl"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<span id="cb28-147"><a href="#cb28-147"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb28-148"><a href="#cb28-148"></a>      <span class="at">FASFL =</span> SAFFL, <span class="co"># add FASFL for illustrative purpose for t_pop_slide</span></span>
+<span id="cb28-149"><a href="#cb28-149"></a>      <span class="co"># DISTRTFL is needed for t_ds_slide but is missing in example data</span></span>
+<span id="cb28-150"><a href="#cb28-150"></a>      <span class="at">DISTRTFL =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Y"</span>, <span class="st">"N"</span>), <span class="at">size =</span> <span class="fu">length</span>(TRT01A), <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">1</span>, .<span class="dv">9</span>))</span>
+<span id="cb28-151"><a href="#cb28-151"></a>    ),</span>
+<span id="cb28-152"><a href="#cb28-152"></a>  <span class="st">"adae"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adae,</span>
+<span id="cb28-153"><a href="#cb28-153"></a>  <span class="st">"adtte"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adtte_onco,</span>
+<span id="cb28-154"><a href="#cb28-154"></a>  <span class="st">"adrs"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adrs_onco,</span>
+<span id="cb28-155"><a href="#cb28-155"></a>  <span class="st">"adlb"</span> <span class="ot">=</span> pharmaverseadam<span class="sc">::</span>adlb</span>
+<span id="cb28-156"><a href="#cb28-156"></a>)</span>
+<span id="cb28-157"><a href="#cb28-157"></a></span>
+<span id="cb28-158"><a href="#cb28-158"></a><span class="co"># create outputs based on the specs and the functions</span></span>
+<span id="cb28-159"><a href="#cb28-159"></a>outputs <span class="ot">&lt;-</span> spec_file <span class="sc">%&gt;%</span></span>
+<span id="cb28-160"><a href="#cb28-160"></a>  <span class="fu">read_spec</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb28-161"><a href="#cb28-161"></a>  <span class="co"># we can also filter for specific programs:</span></span>
+<span id="cb28-162"><a href="#cb28-162"></a>  <span class="fu">filter_spec</span>(., program <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"t_dm_slide"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-163"><a href="#cb28-163"></a>  <span class="co"># these filtered specs are now piped into the generate_outputs function.</span></span>
+<span id="cb28-164"><a href="#cb28-164"></a>  <span class="co"># this function also requires the data</span></span>
+<span id="cb28-165"><a href="#cb28-165"></a>  <span class="fu">generate_outputs</span>(<span class="at">datasets =</span> data) <span class="sc">%&gt;%</span></span>
+<span id="cb28-166"><a href="#cb28-166"></a>  <span class="co"># now we decorate based on the specs, i.e. add footnotes and titles</span></span>
+<span id="cb28-167"><a href="#cb28-167"></a>  <span class="fu">decorate_outputs</span>(</span>
+<span id="cb28-168"><a href="#cb28-168"></a>    <span class="at">version_label =</span> <span class="cn">NULL</span></span>
+<span id="cb28-169"><a href="#cb28-169"></a>  )</span>
+<span id="cb28-170"><a href="#cb28-170"></a><span class="in">```</span></span>
+<span id="cb28-171"><a href="#cb28-171"></a></span>
+<span id="cb28-172"><a href="#cb28-172"></a></span>
+<span id="cb28-173"><a href="#cb28-173"></a>We can have a look at one of the outputs stored in the outputs file:</span>
+<span id="cb28-176"><a href="#cb28-176"></a><span class="in">```{r}</span></span>
+<span id="cb28-177"><a href="#cb28-177"></a>outputs<span class="sc">$</span>t_dm_slide_SE</span>
+<span id="cb28-178"><a href="#cb28-178"></a><span class="in">```</span></span>
+<span id="cb28-179"><a href="#cb28-179"></a></span>
+<span id="cb28-180"><a href="#cb28-180"></a></span>
+<span id="cb28-183"><a href="#cb28-183"></a><span class="in">```{r}</span></span>
+<span id="cb28-184"><a href="#cb28-184"></a>outputs <span class="sc">%&gt;%</span></span>
+<span id="cb28-185"><a href="#cb28-185"></a>  <span class="fu">generate_slides</span>(</span>
+<span id="cb28-186"><a href="#cb28-186"></a>    <span class="at">outfile =</span> <span class="st">"presentation.pptx"</span>,</span>
+<span id="cb28-187"><a href="#cb28-187"></a>    <span class="at">template =</span> <span class="fu">file.path</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"autoslider.core"</span>), <span class="st">"/theme/basic.pptx"</span>),</span>
+<span id="cb28-188"><a href="#cb28-188"></a>    <span class="at">table_format =</span> autoslider_format</span>
+<span id="cb28-189"><a href="#cb28-189"></a>  )</span>
+<span id="cb28-190"><a href="#cb28-190"></a><span class="in">```</span></span>
+<span id="cb28-191"><a href="#cb28-191"></a></span>
+<span id="cb28-192"><a href="#cb28-192"></a>For the final product, when it includes more output, it may look like the following</span>
+<span id="cb28-193"><a href="#cb28-193"></a></span>
+<span id="cb28-194"><a href="#cb28-194"></a><span class="al">![Example Reviewer's Guide Table](eg_slides.png)</span>{fig-align="center"}</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
