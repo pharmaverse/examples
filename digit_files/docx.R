@@ -94,4 +94,3 @@ flex_tbl <- tt_to_flextable(result,
 
 export_as_docx(flex_tbl, file = tf)
 flex_tbl
-
