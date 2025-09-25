@@ -1,0 +1,190 @@
+---
+title: "Slides"
+order: 1
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
+
+
+# Introduction
+
+
+`AutoslideR` functions that are used for slide rendering and workflow are already open-sourced with the `autoslider.core` package. In this example, we show the general `autoslideR` workflow, how you can create functions from our templates and produce study-specific outputs, and how you can integrate them into the `autoslideR` framework to automate slide generation.
+
+
+# Background
+
+At its heart, `autoslideR` was created to tackle the inefficiencies and error-proneness of manual slide generation in clinical trials. It automates the creation of slides, significantly reducing the amount of work and time required, minimizing the risk of errors from manual data entry, and alleviating stress during demanding reporting periods.
+
+`autoslideR` works by transforming your analysis data (SDTM, ADaM, raw, etc.) into standardized Table/Listing/Graph (TLG) objects. These objects are then decorated with titles, subtitles, and footnotes, positioning them at desired locations. With the addition of placeholder slides, the resulting PPTX file is ready for use in meetings.
+
+
+# Prerequisites
+
+First and foremost, you need to have the `autoslider.core` package installed, and you need to have data available. In this example, it uses example data stored in the `autoslider.core` package. The data needs to be stored in a named list (in this particular example, dataset names correspond to ADaM data sets).
+
+## File structure
+
+
+The folder structure could look something like: 
+
+```
+├── programs
+│   ├── run_script.R
+│   ├── R   
+|   |   ├── template_functions.R
+|   |   ├── output_functions.R
+├── outputs
+├── spec.yml
+├── filters.yml
+```
+
+The `autoslideR` workflow would be implemented in the `run_script.R` file.
+This workflow does not require the files in `programs/R/`. 
+However, if custom `output_functions.R` are implemented, `programs/R/` would be the place to put them.
+
+The `autoslideR` workflow has four main aspects: 
+
+## The specifications `specs.yml` 
+
+This file contains the specifications of all outputs you would like to create.
+
+For each output we define specific information, namely the program name, the footnotes & titles, the paper (this indicates the orientation, P for portrait and L for landscape, the number indicates the font size), the suffix and `args`.
+
+It could look something like that:
+
+```
+- program: t_dm_slide
+  titles: Patient Demographics and Baseline Characteristics
+  footnotes: 't_dm_slide footnote'
+  paper: L6
+  suffix: SE
+  args:
+    arm: "TRT01A"
+    vars: ["SEX", "AGE"]
+
+```
+
+The program name refers to a function that produces an output. 
+This could be one of the template functions provided in `autoslider.core` or a custom function. See vignette [`adding_templates`](https://insightsengineering.github.io/autoslider.core/latest-tag/articles/adding_templates.html) for a detailed guide on using templates.
+
+Titles and footnotes are added once the outputs are created.
+We refer to that as decorating the outputs.
+
+The suffix specifies the name of the filters that are applied to the data, before the data is funneled into the function (program).
+The filters themselves are specified in the `filters.yml` file.
+
+## The filters `filters.yml`
+
+In `filters.yml` we specify the names of the filters used across the outputs. 
+Each filter has a name (e.g. `FAS`), a title (`Full Analysis Set`), and then the filtering condition on a target dataset. 
+The filter title may be appended to the output title. For the `t_dm_slide` slide above all filter titles that target the `adsl` dataset would be included in the brackets. 
+We would thus expect the title to read: "Patient Demographics and Baseline Characteristics (Full Analysis Set)".
+
+
+As you can see, we don't just have population filters, but also filters on serious adverse events. 
+We can thus produce SAE tables by just supplying the serious adverse events to the AE table function. 
+This concept generalizes also to `PARAMCD` values.
+
+
+```
+ITT:
+  title: Intent to Treat Population
+  condition: ITTFL == "Y"
+  target: adsl
+  type: slref
+SAS:
+  title: Secondary Analysis Set
+  condition: SASFL == "Y"
+  target: adsl
+  type: slref
+SE:
+  title: Safety Evaluable Population
+  condition: SAFFL == "Y"
+  target: adsl
+  type: slref
+SER:
+  title: Serious Adverse Events
+  condition: AESER == "Y"
+  target: adae
+  type: anl
+
+```
+
+# AutoslideR typical workflow example
+
+A typical workflow could look something like this: 
+
+```{r setup}
+library(autoslider.core)
+library(dplyr)
+
+# 1. Load ALL necessary packages
+library(rtables) # For append_topleft()
+library(assertthat) # For assert_that() you had issues with before
+library(tern)
+
+# define path to the yml files
+spec_file <- file.path("metadata/autoslideR_spec.yml")
+
+filters_file <- file.path("metadata/autoslideR_filters.yml")
+# load all filters
+filters::load_filters(filters_file, overwrite = TRUE)
+```
+
+
+
+```{r, table}
+# read data
+data <- list(
+  "adsl" = pharmaverseadam::adsl %>%
+    mutate(
+      FASFL = SAFFL, # add FASFL for illustrative purpose for t_pop_slide
+      # DISTRTFL is needed for t_ds_slide but is missing in example data
+      DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9))
+    ),
+  "adae" = pharmaverseadam::adae,
+  "adtte" = pharmaverseadam::adtte_onco,
+  "adrs" = pharmaverseadam::adrs_onco,
+  "adlb" = pharmaverseadam::adlb
+)
+
+# create outputs based on the specs and the functions
+outputs <- spec_file %>%
+  read_spec() %>%
+  # we can also filter for specific programs:
+  filter_spec(., program %in% c("t_dm_slide")) %>%
+  # these filtered specs are now piped into the generate_outputs function.
+  # this function also requires the data
+  generate_outputs(datasets = data) %>%
+  # now we decorate based on the specs, i.e. add footnotes and titles
+  decorate_outputs(
+    version_label = NULL
+  )
+```
+
+
+We can have a look at one of the outputs stored in the outputs file:
+```{r}
+outputs$t_dm_slide_SE
+```
+
+
+```{r}
+outputs %>%
+  generate_slides(
+    outfile = "presentation.pptx",
+    template = file.path(system.file(package = "autoslider.core"), "/theme/basic.pptx"),
+    table_format = autoslider_format
+  )
+```
+
+For the final product, when it includes more output, it may look like the following
+
+![Example Reviewer's Guide Table](eg_slides.png){fig-align="center"}

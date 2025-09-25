@@ -1,0 +1,8 @@
+- program: t_dm_slide
+  titles: Patient Demographics and Baseline Characteristics
+  footnotes: "t_dm_slide footnote"
+  paper: L6
+  suffix: SE
+  args:
+    arm: "TRT01A"
+    vars: ["SEX", "AGE"]
