@@ -22,9 +22,6 @@ data <- list(
       FASFL = SAFFL, # add FASFL for illustrative purpose for t_pop_slide
       # DISTRTFL is needed for t_ds_slide but is missing in example data
       DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9))
-    ) %>% mutate(
-      FASFL = as.factor(FASFL),
-      SEX = as.factor(SEX),
     ),
   "adae" = pharmaverseadam::adae,
   "adtte" = pharmaverseadam::adtte_onco,
