@@ -16,9 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
 
-In the examples below, we illustrate two general approaches for creating a demographics table.
-The first utilizes Analysis Results Datasets---part of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
-The second is the classic method of creating summary tables directly from a data set.
+In the example below, we illustrate creating summary tables directly from a data set.
 
 ## Data preprocessing
 
@@ -47,59 +45,6 @@ adsl <- pharmaverseadam::adsl |>
     SEX = "Sex",
     RACE = "Race"
   )
-```
-
-## {gtsummary} & {cards}
-
-In the example below, we will use the [{gtsummary}](https://www.danieldsjoberg.com/gtsummary/) and [{cards}](https://insightsengineering.github.io/cards/) packages to create a demographics tables.
-
-- The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
-- The {gtsummary} utilizes ARDs to create tables.
-
-#### ARD ➡ Table
-
-In the example below, we first build an ARD with the needed summary statistics using {cards}.
-Then, we use the ARD to build the demographics table with {gtsummary}.
-
-```{r gtsummary-table}
-#| message: false
-library(cards)
-library(gtsummary)
-theme_gtsummary_compact() # reduce default padding and font size for a gt table
-
-# build the ARD with the needed summary statistics using {cards}
-ard <-
-  ard_stack(
-    adsl,
-    ard_continuous(variables = AGE),
-    ard_categorical(variables = c(AGEGR1, SEX, RACE)),
-    .by = ACTARM, # split results by treatment arm
-    .attributes = TRUE # optionally include column labels in the ARD
-  )
-
-# use the ARD to create a demographics table using {gtsummary}
-tbl_ard_summary(
-  cards = ard,
-  by = ACTARM,
-  include = c(AGE, AGEGR1, SEX, RACE),
-  type = AGE ~ "continuous2",
-  statistic = AGE ~ c("{N}", "{mean} ({sd})", "{median} ({p25}, {p75})", "{min}, {max}")
-) |>
-  bold_labels() |>
-  modify_header(all_stat_cols() ~ "**{level}**  \nN = {n}") |> # add Ns to header
-  modify_footnote(everything() ~ NA) # remove default footnote
-```
-
-#### Table ➡ ARD
-
-One may also build the demographics in the classic way using `gtsummary::tbl_summary()` from a data frame, then extract the ARD from the table object.
-
-```{r gtsummary-ard}
-# build demographics table directly from a data frame
-tbl <- adsl |> tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))
-
-# extract ARD from table object
-gather_ard(tbl)[[1]] |> select(-gts_column) # removing column so ARD fits on page
 ```
 
 ## {rtables} & {tern}
