@@ -16,7 +16,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
 
-In the examples below, we illustrate how to create demographics tables using Analysis Results Datasets---part of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
+### About CDISC Analysis Results Data (ARD)
+
+Analysis Results Datasets (ARDs) are a core component of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard). ARDs provide a standardized, machine-readable format for representing statistical analysis results, enabling:
+
+- **Reproducibility**: ARDs capture the complete analysis metadata, making results reproducible and traceable
+- **Automation**: Machine-readable formats allow automated generation of tables, listings, and graphs
+- **Interoperability**: Standardized structures facilitate data exchange between systems and organizations
+- **Regulatory Submissions**: ARDs support modern regulatory requirements for transparent and auditable analyses
+
+### About the {cards} Package
+
+The [{cards}](https://insightsengineering.github.io/cards/) package is a powerful R package designed to create Analysis Results Datasets that conform to the CDISC ARD standard. Key features include:
+
+- Creates ARDs with summary statistics for continuous and categorical variables
+- Supports stratified analyses (e.g., by treatment arm)
+- Integrates seamlessly with table-making packages like {gtsummary}
+- Captures metadata such as variable labels and analysis context
+- Provides a consistent data structure for downstream reporting
+
+In the examples below, we illustrate how to create demographics tables using ARDs generated with {cards}, demonstrating the modern workflow for creating analysis results that are both human-readable and machine-actionable.
 
 ## Data preprocessing
 
