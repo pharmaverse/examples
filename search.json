@@ -48,7 +48,7 @@
     "href": "tlg/demographic.html",
     "title": "Demographic Table",
     "section": "",
-    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging CDISC Analysis Results Standard. The second is the classic method of creating summary tables directly from a data set.",
+    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the example below, we illustrate creating summary tables directly from a data set.",
     "crumbs": [
       "TLG",
       "Demographic Table"
@@ -59,7 +59,7 @@
     "href": "tlg/demographic.html#introduction",
     "title": "Demographic Table",
     "section": "",
-    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging CDISC Analysis Results Standard. The second is the classic method of creating summary tables directly from a data set.",
+    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the example below, we illustrate creating summary tables directly from a data set.",
     "crumbs": [
       "TLG",
       "Demographic Table"
@@ -71,17 +71,6 @@
     "title": "Demographic Table",
     "section": "Data preprocessing",
     "text": "Data preprocessing\nNow we will add some pre-processing to create some extra formatted variables ready for display in the table.\n\nlibrary(dplyr)\n\n# Create categorical variables, remove screen failures, and assign column labels\nadsl &lt;- pharmaverseadam::adsl |&gt;\n  filter(!ACTARM %in% \"Screen Failure\") |&gt;\n  mutate(\n    SEX = case_match(SEX, \"M\" ~ \"MALE\", \"F\" ~ \"FEMALE\"),\n    AGEGR1 =\n      case_when(\n        between(AGE, 18, 40) ~ \"18-40\",\n        between(AGE, 41, 64) ~ \"41-64\",\n        AGE &gt; 64 ~ \"&gt;=65\"\n      ) |&gt;\n        factor(levels = c(\"18-40\", \"41-64\", \"&gt;=65\"))\n  ) |&gt;\n  labelled::set_variable_labels(\n    AGE = \"Age (yr)\",\n    AGEGR1 = \"Age group\",\n    SEX = \"Sex\",\n    RACE = \"Race\"\n  )",
-    "crumbs": [
-      "TLG",
-      "Demographic Table"
-    ]
-  },
-  {
-    "objectID": "tlg/demographic.html#gtsummary-cards",
-    "href": "tlg/demographic.html#gtsummary-cards",
-    "title": "Demographic Table",
-    "section": "{gtsummary} & {cards}",
-    "text": "{gtsummary} & {cards}\nIn the example below, we will use the {gtsummary} and {cards} packages to create a demographics tables.\n\nThe {cards} package creates Analysis Results Datasets (ARDs, which are a part of the CDISC Analysis Results Standard).\nThe {gtsummary} utilizes ARDs to create tables.\n\nARD ➡ Table\nIn the example below, we first build an ARD with the needed summary statistics using {cards}. Then, we use the ARD to build the demographics table with {gtsummary}.\n\nlibrary(cards)\nlibrary(gtsummary)\ntheme_gtsummary_compact() # reduce default padding and font size for a gt table\n\n# build the ARD with the needed summary statistics using {cards}\nard &lt;-\n  ard_stack(\n    adsl,\n    ard_continuous(variables = AGE),\n    ard_categorical(variables = c(AGEGR1, SEX, RACE)),\n    .by = ACTARM, # split results by treatment arm\n    .attributes = TRUE # optionally include column labels in the ARD\n  )\n\n# use the ARD to create a demographics table using {gtsummary}\ntbl_ard_summary(\n  cards = ard,\n  by = ACTARM,\n  include = c(AGE, AGEGR1, SEX, RACE),\n  type = AGE ~ \"continuous2\",\n  statistic = AGE ~ c(\"{N}\", \"{mean} ({sd})\", \"{median} ({p25}, {p75})\", \"{min}, {max}\")\n) |&gt;\n  bold_labels() |&gt;\n  modify_header(all_stat_cols() ~ \"**{level}**  \\nN = {n}\") |&gt; # add Ns to header\n  modify_footnote(everything() ~ NA) # remove default footnote\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nPlacebo\nN = 86\n\nXanomeline High Dose\nN = 72\n\nXanomeline Low Dose\nN = 96\n\n\n\nAge (yr)\n\n\n\n\n\n    N\n86\n72\n96\n\n\n    Mean (SD)\n75.2 (8.6)\n73.8 (7.9)\n76.0 (8.1)\n\n\n    Median (Q1, Q3)\n76.0 (69.0, 82.0)\n75.5 (70.0, 79.0)\n78.0 (71.0, 82.0)\n\n\n    Min, Max\n52.0, 89.0\n56.0, 88.0\n51.0, 88.0\n\n\nAge group\n\n\n\n\n\n    18-40\n0 (0.0%)\n0 (0.0%)\n0 (0.0%)\n\n\n    41-64\n14 (16.3%)\n11 (15.3%)\n8 (8.3%)\n\n\n    &gt;=65\n72 (83.7%)\n61 (84.7%)\n88 (91.7%)\n\n\nSex\n\n\n\n\n\n    FEMALE\n53 (61.6%)\n35 (48.6%)\n55 (57.3%)\n\n\n    MALE\n33 (38.4%)\n37 (51.4%)\n41 (42.7%)\n\n\nRace\n\n\n\n\n\n    AMERICAN INDIAN OR ALASKA NATIVE\n0 (0.0%)\n1 (1.4%)\n0 (0.0%)\n\n\n    BLACK OR AFRICAN AMERICAN\n8 (9.3%)\n9 (12.5%)\n6 (6.3%)\n\n\n    WHITE\n78 (90.7%)\n62 (86.1%)\n90 (93.8%)\n\n\n\n\n\n\nTable ➡ ARD\nOne may also build the demographics in the classic way using gtsummary::tbl_summary() from a data frame, then extract the ARD from the table object.\n\n# build demographics table directly from a data frame\ntbl &lt;- adsl |&gt; tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))\n\n# extract ARD from table object\ngather_ard(tbl)[[1]] |&gt; select(-gts_column) # removing column so ARD fits on page\n\n{cards} data frame: 162 x 11\n\n\n   group1 group1_level variable variable_level stat_name stat_label  stat\n1  ACTARM      Placebo      SEX         FEMALE         n          n    53\n2  ACTARM      Placebo      SEX         FEMALE         N          N    86\n3  ACTARM      Placebo      SEX         FEMALE         p          % 0.616\n4  ACTARM      Placebo      SEX           MALE         n          n    33\n5  ACTARM      Placebo      SEX           MALE         N          N    86\n6  ACTARM      Placebo      SEX           MALE         p          % 0.384\n7  ACTARM      Placebo     RACE      AMERICAN…         n          n     0\n8  ACTARM      Placebo     RACE      AMERICAN…         N          N    86\n9  ACTARM      Placebo     RACE      AMERICAN…         p          %     0\n10 ACTARM      Placebo     RACE      BLACK OR…         n          n     8\n\n\nℹ 152 more rows\n\n\nℹ Use `print(n = ...)` to see more rows\n\n\nℹ 4 more variables: context, fmt_fun, warning, error",
     "crumbs": [
       "TLG",
       "Demographic Table"
@@ -558,6 +547,50 @@
     "crumbs": [
       "SDTM",
       "AE"
+    ]
+  },
+  {
+    "objectID": "cards/demographic.html",
+    "href": "cards/demographic.html",
+    "title": "Demographic Table",
+    "section": "",
+    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the examples below, we illustrate how to create demographics tables using Analysis Results Datasets—part of the emerging CDISC Analysis Results Standard.",
+    "crumbs": [
+      "CARDs",
+      "Demographic Table"
+    ]
+  },
+  {
+    "objectID": "cards/demographic.html#introduction",
+    "href": "cards/demographic.html#introduction",
+    "title": "Demographic Table",
+    "section": "",
+    "text": "This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the pharmaverseadam ADSL data as an input.\nIn the examples below, we illustrate how to create demographics tables using Analysis Results Datasets—part of the emerging CDISC Analysis Results Standard.",
+    "crumbs": [
+      "CARDs",
+      "Demographic Table"
+    ]
+  },
+  {
+    "objectID": "cards/demographic.html#data-preprocessing",
+    "href": "cards/demographic.html#data-preprocessing",
+    "title": "Demographic Table",
+    "section": "Data preprocessing",
+    "text": "Data preprocessing\nNow we will add some pre-processing to create some extra formatted variables ready for display in the table.\n\nlibrary(dplyr)\n\n# Create categorical variables, remove screen failures, and assign column labels\nadsl &lt;- pharmaverseadam::adsl |&gt;\n  filter(!ACTARM %in% \"Screen Failure\") |&gt;\n  mutate(\n    SEX = case_match(SEX, \"M\" ~ \"MALE\", \"F\" ~ \"FEMALE\"),\n    AGEGR1 =\n      case_when(\n        between(AGE, 18, 40) ~ \"18-40\",\n        between(AGE, 41, 64) ~ \"41-64\",\n        AGE &gt; 64 ~ \"&gt;=65\"\n      ) |&gt;\n        factor(levels = c(\"18-40\", \"41-64\", \"&gt;=65\"))\n  ) |&gt;\n  labelled::set_variable_labels(\n    AGE = \"Age (yr)\",\n    AGEGR1 = \"Age group\",\n    SEX = \"Sex\",\n    RACE = \"Race\"\n  )",
+    "crumbs": [
+      "CARDs",
+      "Demographic Table"
+    ]
+  },
+  {
+    "objectID": "cards/demographic.html#gtsummary-cards",
+    "href": "cards/demographic.html#gtsummary-cards",
+    "title": "Demographic Table",
+    "section": "{gtsummary} & {cards}",
+    "text": "{gtsummary} & {cards}\nIn the example below, we will use the {gtsummary} and {cards} packages to create a demographics tables.\n\nThe {cards} package creates Analysis Results Datasets (ARDs, which are a part of the CDISC Analysis Results Standard).\nThe {gtsummary} utilizes ARDs to create tables.\n\nARD ➡ Table\nIn the example below, we first build an ARD with the needed summary statistics using {cards}. Then, we use the ARD to build the demographics table with {gtsummary}.\n\nlibrary(cards)\nlibrary(gtsummary)\ntheme_gtsummary_compact() # reduce default padding and font size for a gt table\n\n# build the ARD with the needed summary statistics using {cards}\nard &lt;-\n  ard_stack(\n    adsl,\n    ard_continuous(variables = AGE),\n    ard_categorical(variables = c(AGEGR1, SEX, RACE)),\n    .by = ACTARM, # split results by treatment arm\n    .attributes = TRUE # optionally include column labels in the ARD\n  )\n\n# use the ARD to create a demographics table using {gtsummary}\ntbl_ard_summary(\n  cards = ard,\n  by = ACTARM,\n  include = c(AGE, AGEGR1, SEX, RACE),\n  type = AGE ~ \"continuous2\",\n  statistic = AGE ~ c(\"{N}\", \"{mean} ({sd})\", \"{median} ({p25}, {p75})\", \"{min}, {max}\")\n) |&gt;\n  bold_labels() |&gt;\n  modify_header(all_stat_cols() ~ \"**{level}**  \\nN = {n}\") |&gt; # add Ns to header\n  modify_footnote(everything() ~ NA) # remove default footnote\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\n\nPlacebo\nN = 86\n\nXanomeline High Dose\nN = 72\n\nXanomeline Low Dose\nN = 96\n\n\n\nAge (yr)\n\n\n\n\n\n    N\n86\n72\n96\n\n\n    Mean (SD)\n75.2 (8.6)\n73.8 (7.9)\n76.0 (8.1)\n\n\n    Median (Q1, Q3)\n76.0 (69.0, 82.0)\n75.5 (70.0, 79.0)\n78.0 (71.0, 82.0)\n\n\n    Min, Max\n52.0, 89.0\n56.0, 88.0\n51.0, 88.0\n\n\nAge group\n\n\n\n\n\n    18-40\n0 (0.0%)\n0 (0.0%)\n0 (0.0%)\n\n\n    41-64\n14 (16.3%)\n11 (15.3%)\n8 (8.3%)\n\n\n    &gt;=65\n72 (83.7%)\n61 (84.7%)\n88 (91.7%)\n\n\nSex\n\n\n\n\n\n    FEMALE\n53 (61.6%)\n35 (48.6%)\n55 (57.3%)\n\n\n    MALE\n33 (38.4%)\n37 (51.4%)\n41 (42.7%)\n\n\nRace\n\n\n\n\n\n    AMERICAN INDIAN OR ALASKA NATIVE\n0 (0.0%)\n1 (1.4%)\n0 (0.0%)\n\n\n    BLACK OR AFRICAN AMERICAN\n8 (9.3%)\n9 (12.5%)\n6 (6.3%)\n\n\n    WHITE\n78 (90.7%)\n62 (86.1%)\n90 (93.8%)\n\n\n\n\n\n\nTable ➡ ARD\nOne may also build the demographics in the classic way using gtsummary::tbl_summary() from a data frame, then extract the ARD from the table object.\n\n# build demographics table directly from a data frame\ntbl &lt;- adsl |&gt; tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))\n\n# extract ARD from table object\ngather_ard(tbl)[[1]] |&gt; select(-gts_column) # removing column so ARD fits on page\n\n{cards} data frame: 162 x 11\n\n\n   group1 group1_level variable variable_level stat_name stat_label  stat\n1  ACTARM      Placebo      SEX         FEMALE         n          n    53\n2  ACTARM      Placebo      SEX         FEMALE         N          N    86\n3  ACTARM      Placebo      SEX         FEMALE         p          % 0.616\n4  ACTARM      Placebo      SEX           MALE         n          n    33\n5  ACTARM      Placebo      SEX           MALE         N          N    86\n6  ACTARM      Placebo      SEX           MALE         p          % 0.384\n7  ACTARM      Placebo     RACE      AMERICAN…         n          n     0\n8  ACTARM      Placebo     RACE      AMERICAN…         N          N    86\n9  ACTARM      Placebo     RACE      AMERICAN…         p          %     0\n10 ACTARM      Placebo     RACE      BLACK OR…         n          n     8\n\n\nℹ 152 more rows\n\n\nℹ Use `print(n = ...)` to see more rows\n\n\nℹ 4 more variables: context, fmt_fun, warning, error",
+    "crumbs": [
+      "CARDs",
+      "Demographic Table"
     ]
   },
   {
