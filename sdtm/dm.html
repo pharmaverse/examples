@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
-
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>DM – pharmaverse examples</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,9 +18,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,22 +63,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-da0fcd4bcbe80d3c54b72bc4f328377a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-fcd2c50053c4ccd6c8f7e4c7c917241e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-da0fcd4bcbe80d3c54b72bc4f328377a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-5b7ccd8ccb072dd816e2b5ae8cfc7151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1a1a05289f7c70694cc1839af3fc047d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -108,9 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-<script type="text/javascript" charset="UTF-8">
+}</script><script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -125,201 +113,26 @@ cookieconsent.run({
 "language":"en-US"
   });
 });
-</script> 
-  
-<style>html{ scroll-behavior: smooth; }</style>
-<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
-<script src="../site_libs/react-18.2.0/react.min.js"></script>
-<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
-<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
-<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
-<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
-
-
-<link rel="stylesheet" href="../assets/css/style.scss">
+</script><style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script><script src="../site_libs/react-18.2.0/react.min.js"></script><script src="../site_libs/react-18.2.0/react-dom.min.js"></script><script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script><link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script><link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="DM – pharmaverse examples">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://pharmaverse.github.io/examples/sdtm/assets/img/Pharmaverse_examples.png">
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
-
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
 <span class="menu-text"></span></a>
@@ -335,7 +148,7 @@ cookieconsent.run({
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          <div class="quarto-navbar-tools">
+<div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -345,9 +158,7 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -355,21 +166,15 @@ cookieconsent.run({
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -384,8 +189,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">DM</span></a>
@@ -404,7 +209,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -413,8 +218,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -457,7 +262,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -466,8 +271,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -486,7 +291,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -495,8 +300,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../digit_files/autoslider.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
@@ -509,7 +314,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
@@ -518,15 +323,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>teal</code> applications</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
@@ -535,15 +340,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
@@ -552,15 +357,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">eSubmission</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -575,17 +380,12 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/dm.html">DM</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/dm.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/dm.html">DM</a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">DM</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
@@ -600,17 +400,11 @@ cookieconsent.run({
   
 
 
-</header>
-
-
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>This article describes how to create a demographics (<code>DM</code>) domain using the <code>{sdtm.oak}</code> package.</p>
-<p>Before reading this article, it is recommended that users review some of the articles in the package documentation of <code>{sdtm.oak}</code> to understand some of the key concepts: <a href="https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html">Algorithms &amp; Sub-Algorithms</a>, <a href="https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html">Creating an Interventions Domain</a>, which provides a detailed explanation of various concepts in {sdtm.oak}, such as <code>oak_id_vars</code>, <code>condition_add</code>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</p>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>This article describes how to create a demographics (<code>DM</code>) domain using the <a href="https://pharmaverse.github.io/sdtm.oak/">sdtm.oak</a> package.</p>
+<p>Before reading this article, it is recommended that users review some of the articles in the package documentation of <a href="https://pharmaverse.github.io/sdtm.oak/">sdtm.oak</a> to understand some of the key concepts: <a href="https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html">Algorithms &amp; Sub-Algorithms</a>, <a href="https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html">Creating an Interventions Domain</a>, which provides a detailed explanation of various concepts in {sdtm.oak}, such as <code>oak_id_vars</code>, <code>condition_add</code>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</p>
 <p>In this article, we will dive directly into programming and provide further explanation only where it is required.</p>
-</section>
-<section id="programming-workflow" class="level1">
-<h1>Programming workflow</h1>
+</section><section id="programming-workflow" class="level1"><h1>Programming workflow</h1>
 <ul>
 <li><a href="#readdata">Read in data</a></li>
 <li><a href="#oakidvars">Create oak_id_vars</a></li>
@@ -622,60 +416,49 @@ cookieconsent.run({
 <li><a href="#derivedvars">Create SDTM derived variables</a></li>
 <li><a href="#attributes">Add Labels and Attributes</a></li>
 </ul>
-<section id="readdata" class="level2">
-<h2 class="anchored" data-anchor-id="readdata">Read in data</h2>
-<p>Read all the raw datasets into the environment. In this example, the raw datasets needed are <code>ec_raw</code>, <code>ds_raw</code> and <code>dm_raw</code>. Users can read them from the <code>{pharmaverseraw}</code> package using the below code:</p>
+<section id="readdata" class="level2"><h2 class="anchored" data-anchor-id="readdata">Read in data</h2>
+<p>Read all the raw datasets into the environment. In this example, the raw datasets needed are <code>ec_raw</code>, <code>ds_raw</code> and <code>dm_raw</code>. Users can read them from the <a href="https://pharmaverse.github.io/pharmaverseraw/">pharmaverseraw</a> package using the below code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sdtm.oak)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sdtm.oak)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(pharmaverseraw)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a>dm_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>dm_raw</span>
 <span id="cb1-6"><a href="#cb1-6"></a>ds_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ds_raw</span>
-<span id="cb1-7"><a href="#cb1-7"></a>ec_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ec_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a href="#cb1-7"></a>ec_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ec_raw</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="demographics-raw-dataset." class="level4">
-<h4 class="anchored" data-anchor-id="demographics-raw-dataset.">Demographics Raw dataset.</h4>
+<section id="demographics-raw-dataset." class="level4"><h4 class="anchored" data-anchor-id="demographics-raw-dataset.">Demographics Raw dataset.</h4>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-eb6d07dc43f635e37acb" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-eb6d07dc43f635e37acb">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034"],"IT.AGE":[63,64,71,74,77],"IT.SEX":["Female","Male","Male","Male","Female"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"c4fe1b375e6fec837d580905a834f82c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-c2333ce51076c75de6d8" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c2333ce51076c75de6d8">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034"],"IT.AGE":[63,64,71,74,77],"IT.SEX":["Female","Male","Male","Male","Female"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"c4fe1b375e6fec837d580905a834f82c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="disposition-raw-dataset." class="level4">
-<h4 class="anchored" data-anchor-id="disposition-raw-dataset.">Disposition Raw dataset.</h4>
+</section><section id="disposition-raw-dataset." class="level4"><h4 class="anchored" data-anchor-id="disposition-raw-dataset.">Disposition Raw dataset.</h4>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-f5fd416f1fde38fae8aa" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f5fd416f1fde38fae8aa">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"SITENM":["CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT"],"INSTANCE":["Baseline","Week 26","Week 26","Baseline","Week 4"],"FORM":["DISC1","DISC1","DISC1","DISC1","DISC1"],"FORML":["Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition"],"IT.DSTERM":["Randomized","Protocol Completed",null,"Randomized","Adverse Event"],"IT.DSDECOD":["Randomized","Completed",null,"Randomized","Adverse Event"],"OTHERSP":[null,null,"Final Lab Visit",null,null],"DSDTCOL":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DSTMCOL":[null,null,"11:45",null,null],"IT.DSSTDAT":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DEATHDT":[null,null,null,null,null]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"SITENM","name":"SITENM","type":"character"},{"id":"INSTANCE","name":"INSTANCE","type":"character"},{"id":"FORM","name":"FORM","type":"character"},{"id":"FORML","name":"FORML","type":"character"},{"id":"IT.DSTERM","name":"IT.DSTERM","type":"character"},{"id":"IT.DSDECOD","name":"IT.DSDECOD","type":"character"},{"id":"OTHERSP","name":"OTHERSP","type":"character"},{"id":"DSDTCOL","name":"DSDTCOL","type":"character"},{"id":"DSTMCOL","name":"DSTMCOL","type":"character"},{"id":"IT.DSSTDAT","name":"IT.DSSTDAT","type":"character"},{"id":"DEATHDT","name":"DEATHDT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"46c2cd4ff04b1bfb287fba288bf3dd25"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4fa79e5370cb7fc82c0e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4fa79e5370cb7fc82c0e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"SITENM":["CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT","CDISCPILOT"],"INSTANCE":["Baseline","Week 26","Week 26","Baseline","Week 4"],"FORM":["DISC1","DISC1","DISC1","DISC1","DISC1"],"FORML":["Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition","Subject Disposition"],"IT.DSTERM":["Randomized","Protocol Completed",null,"Randomized","Adverse Event"],"IT.DSDECOD":["Randomized","Completed",null,"Randomized","Adverse Event"],"OTHERSP":[null,null,"Final Lab Visit",null,null],"DSDTCOL":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DSTMCOL":[null,null,"11:45",null,null],"IT.DSSTDAT":["01-02-2014","07-02-2014","07-02-2014","08-05-2012","09-02-2012"],"DEATHDT":[null,null,null,null,null]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"SITENM","name":"SITENM","type":"character"},{"id":"INSTANCE","name":"INSTANCE","type":"character"},{"id":"FORM","name":"FORM","type":"character"},{"id":"FORML","name":"FORML","type":"character"},{"id":"IT.DSTERM","name":"IT.DSTERM","type":"character"},{"id":"IT.DSDECOD","name":"IT.DSDECOD","type":"character"},{"id":"OTHERSP","name":"OTHERSP","type":"character"},{"id":"DSDTCOL","name":"DSDTCOL","type":"character"},{"id":"DSTMCOL","name":"DSTMCOL","type":"character"},{"id":"IT.DSSTDAT","name":"IT.DSSTDAT","type":"character"},{"id":"DEATHDT","name":"DEATHDT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"46c2cd4ff04b1bfb287fba288bf3dd25"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="study-drug-administration-raw-dataset." class="level4">
-<h4 class="anchored" data-anchor-id="study-drug-administration-raw-dataset.">Study Drug Administration Raw dataset.</h4>
+</section><section id="study-drug-administration-raw-dataset." class="level4"><h4 class="anchored" data-anchor-id="study-drug-administration-raw-dataset.">Study Drug Administration Raw dataset.</h4>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-70a49e5e1b6ed4979220" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-70a49e5e1b6ed4979220">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"VISITNAME":["Baseline","Week 2","Week 24","Baseline","Week 2"],"FOLDER":["EC","EC","EC","EC","EC"],"FOLDERL":["Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected"],"IT.ECREFID":["123","123","123","123","123"],"DRUGAD":["PLACEBO","PLACEBO","PLACEBO","PLACEBO","PLACEBO"],"IT.ECSTDAT":["02-Jan-2014","17-Jan-2014","19-Jun-2014","05-Aug-2012","28-Aug-2012"],"IT.ECENDAT":["16-Jan-2014","18-Jun-2014","02-Jul-2014","27-Aug-2012","01-Sep-2012"],"IT.ECDSTXT":[0,0,0,0,0],"IT.ECDOSU":["Milligram","Milligram","Milligram","Milligram","Milligram"],"DOSFM":["patch","patch","patch","patch","patch"],"DOSFRQ":["Daily","Daily","Daily","Daily","Daily"],"IT.ECROUTE":["Transdermal","Transdermal","Transdermal","Transdermal","Transdermal"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"VISITNAME","name":"VISITNAME","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.ECREFID","name":"IT.ECREFID","type":"character"},{"id":"DRUGAD","name":"DRUGAD","type":"character"},{"id":"IT.ECSTDAT","name":"IT.ECSTDAT","type":"character"},{"id":"IT.ECENDAT","name":"IT.ECENDAT","type":"character"},{"id":"IT.ECDSTXT","name":"IT.ECDSTXT","type":"numeric"},{"id":"IT.ECDOSU","name":"IT.ECDOSU","type":"character"},{"id":"DOSFM","name":"DOSFM","type":"character"},{"id":"DOSFRQ","name":"DOSFRQ","type":"character"},{"id":"IT.ECROUTE","name":"IT.ECROUTE","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"947bf2fe6cbd20916ae868dba1d811c0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-eebf0c7a193920073973" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-eebf0c7a193920073973">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"VISITNAME":["Baseline","Week 2","Week 24","Baseline","Week 2"],"FOLDER":["EC","EC","EC","EC","EC"],"FOLDERL":["Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected","Exposure as Collected"],"IT.ECREFID":["123","123","123","123","123"],"DRUGAD":["PLACEBO","PLACEBO","PLACEBO","PLACEBO","PLACEBO"],"IT.ECSTDAT":["02-Jan-2014","17-Jan-2014","19-Jun-2014","05-Aug-2012","28-Aug-2012"],"IT.ECENDAT":["16-Jan-2014","18-Jun-2014","02-Jul-2014","27-Aug-2012","01-Sep-2012"],"IT.ECDSTXT":[0,0,0,0,0],"IT.ECDOSU":["Milligram","Milligram","Milligram","Milligram","Milligram"],"DOSFM":["patch","patch","patch","patch","patch"],"DOSFRQ":["Daily","Daily","Daily","Daily","Daily"],"IT.ECROUTE":["Transdermal","Transdermal","Transdermal","Transdermal","Transdermal"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"VISITNAME","name":"VISITNAME","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.ECREFID","name":"IT.ECREFID","type":"character"},{"id":"DRUGAD","name":"DRUGAD","type":"character"},{"id":"IT.ECSTDAT","name":"IT.ECSTDAT","type":"character"},{"id":"IT.ECENDAT","name":"IT.ECENDAT","type":"character"},{"id":"IT.ECDSTXT","name":"IT.ECDSTXT","type":"numeric"},{"id":"IT.ECDOSU","name":"IT.ECDOSU","type":"character"},{"id":"DOSFM","name":"DOSFM","type":"character"},{"id":"DOSFRQ","name":"DOSFRQ","type":"character"},{"id":"IT.ECROUTE","name":"IT.ECROUTE","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"947bf2fe6cbd20916ae868dba1d811c0"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="sdtm-acrf" class="level4">
-<h4 class="anchored" data-anchor-id="sdtm-acrf">SDTM aCRF</h4>
+</section><section id="sdtm-acrf" class="level4"><h4 class="anchored" data-anchor-id="sdtm-acrf">SDTM aCRF</h4>
 <p>SDTM annotated aCRF for the raw datasets are below:</p>
 <p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Demographics_aCRF.pdf">Demographics aCRF</a></p>
 <p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Exposure_as_collected_aCRF.pdf">Exposure_as_collected aCRF</a></p>
 <p><a href="https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/Subject_Disposition_aCRF.pdf">Subject_Disposition_aCRF</a></p>
-</section>
-</section>
-<section id="oakidvars" class="level2">
-<h2 class="anchored" data-anchor-id="oakidvars">Create oak_id_vars</h2>
+</section></section><section id="oakidvars" class="level2"><h2 class="anchored" data-anchor-id="oakidvars">Create oak_id_vars</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dm_raw <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dm_raw <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
 <span id="cb2-4"><a href="#cb2-4"></a>    <span class="at">raw_src =</span> <span class="st">"dm_raw"</span></span>
@@ -691,49 +474,51 @@ cookieconsent.run({
 <span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
 <span id="cb2-15"><a href="#cb2-15"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
 <span id="cb2-16"><a href="#cb2-16"></a>    <span class="at">raw_src =</span> <span class="st">"ec_raw"</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-17"><a href="#cb2-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For example, Demographics Raw dataset with <code>oak_id_vars</code></p>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d48938fb88038259ac25" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d48938fb88038259ac25">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"IT.AGE":[63,64,71,74,77,85,59,68,81,84],"IT.SEX":["Female","Male","Male","Male","Female","Female","Female","Male","Female","Male"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White","White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014","01/22/2013","12/20/2013","12/23/2013","08/25/2012","11/23/2012"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014","02/05/2013",null,"12/25/2013","08/31/2012","11/23/2012"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7eb3db5a9035010b593829824b5c7862"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-7046d74e208b48e1b97d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-7046d74e208b48e1b97d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"IT.AGE":[63,64,71,74,77,85,59,68,81,84],"IT.SEX":["Female","Male","Male","Male","Female","Female","Female","Male","Female","Male"],"IT.ETHNIC":["Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino","Not Hispanic or Latino"],"IT.RACE":["White","White","White","White","White","White","White","White","White","White"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"PLANNED_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"PLANNED_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTUAL_ARM":["Placebo","Placebo","Xan High","Xan Low","Xan High","Placebo","Screen Failure","Xan Low","Xan Low","Xan Low"],"ACTUAL_ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"COL_DT":["12/26/2013","07/22/2012","07/11/2013","03/10/2014","06/24/2014","01/22/2013","12/20/2013","12/23/2013","08/25/2012","11/23/2012"],"IC_DT":["12/26/2013","07/29/2012","07/12/2013","03/11/2014","06/24/2014","02/05/2013",null,"12/25/2013","08/31/2012","11/23/2012"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"IT.AGE","name":"IT.AGE","type":"numeric"},{"id":"IT.SEX","name":"IT.SEX","type":"character"},{"id":"IT.ETHNIC","name":"IT.ETHNIC","type":"character"},{"id":"IT.RACE","name":"IT.RACE","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"PLANNED_ARM","name":"PLANNED_ARM","type":"character"},{"id":"PLANNED_ARMCD","name":"PLANNED_ARMCD","type":"character"},{"id":"ACTUAL_ARM","name":"ACTUAL_ARM","type":"character"},{"id":"ACTUAL_ARMCD","name":"ACTUAL_ARMCD","type":"character"},{"id":"COL_DT","name":"COL_DT","type":"character"},{"id":"IC_DT","name":"IC_DT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7eb3db5a9035010b593829824b5c7862"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="readct" class="level2">
-<h2 class="anchored" data-anchor-id="readct">Read in CT</h2>
+</section><section id="readct" class="level2"><h2 class="anchored" data-anchor-id="readct">Read in CT</h2>
 <p>Controlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is <code>sdtm_ct.csv</code>. Users can read it from the package using the below code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-36d618e53c349f492931" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-36d618e53c349f492931">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-70ec8f5880b357f745fd" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-70ec8f5880b357f745fd">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="refdates" class="level2">
-<h2 class="anchored" data-anchor-id="refdates">Create reference dates configuration file</h2>
+</section><section id="refdates" class="level2"><h2 class="anchored" data-anchor-id="refdates">Create reference dates configuration file</h2>
 <p>Create reference date configuration file, a data frame which has the details of the variables to be used for the calculation of reference dates. The data frame should have columns listed below:</p>
 <ul>
-<li><strong><code>raw_dataset_name</code></strong>: Name of the raw dataset.<br>
+<li>
+<strong><code>raw_dataset_name</code></strong>: Name of the raw dataset.<br>
 </li>
-<li><strong><code>date_var</code></strong>: Date variable name from the raw dataset.<br>
+<li>
+<strong><code>date_var</code></strong>: Date variable name from the raw dataset.<br>
 </li>
-<li><strong><code>time_var</code></strong>: Time variable name from the raw dataset.<br>
+<li>
+<strong><code>time_var</code></strong>: Time variable name from the raw dataset.<br>
 </li>
-<li><strong><code>dformat</code></strong>: Format of the date collected in raw data.<br>
+<li>
+<strong><code>dformat</code></strong>: Format of the date collected in raw data.<br>
 </li>
-<li><strong><code>tformat</code></strong>: Format of the time collected in raw data.<br>
+<li>
+<strong><code>tformat</code></strong>: Format of the time collected in raw data.<br>
 </li>
-<li><strong><code>sdtm_var_name</code></strong>: Reference date variable name in <code>DM</code> domain where the raw variable is used.</li>
+<li>
+<strong><code>sdtm_var_name</code></strong>: Reference date variable name in <code>DM</code> domain where the raw variable is used.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ref_date_conf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>ref_date_conf_df <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="sc">~</span>raw_dataset_name, <span class="sc">~</span>date_var,     <span class="sc">~</span>time_var,      <span class="sc">~</span>dformat,      <span class="sc">~</span>tformat, <span class="sc">~</span>sdtm_var_name,</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECSTDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXSTDTC"</span>,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="st">"ec_raw"</span>,       <span class="st">"IT.ECENDAT"</span>, <span class="cn">NA_character_</span>, <span class="st">"dd-mmm-yyyy"</span>, <span class="cn">NA_character_</span>,     <span class="st">"RFXENDTC"</span>,</span>
@@ -742,39 +527,35 @@ cookieconsent.run({
 <span id="cb4-7"><a href="#cb4-7"></a>  <span class="st">"dm_raw"</span>,            <span class="st">"IC_DT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,      <span class="st">"RFICDTC"</span>,</span>
 <span id="cb4-8"><a href="#cb4-8"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DSDTCOL"</span>,     <span class="st">"DSTMCOL"</span>,  <span class="st">"mm-dd-yyyy"</span>,         <span class="st">"H:M"</span>,     <span class="st">"RFPENDTC"</span>,</span>
 <span id="cb4-9"><a href="#cb4-9"></a>  <span class="st">"ds_raw"</span>,          <span class="st">"DEATHDT"</span>, <span class="cn">NA_character_</span>,  <span class="st">"mm/dd/yyyy"</span>, <span class="cn">NA_character_</span>,       <span class="st">"DTHDTC"</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-10"><a href="#cb4-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-dc451fec9408b9b0ffdf" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-dc451fec9408b9b0ffdf">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"raw_dataset_name":["ec_raw","ec_raw","ec_raw","ec_raw","dm_raw","ds_raw","ds_raw"],"date_var":["IT.ECSTDAT","IT.ECENDAT","IT.ECSTDAT","IT.ECENDAT","IC_DT","DSDTCOL","DEATHDT"],"time_var":[null,null,null,null,null,"DSTMCOL",null],"dformat":["dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","mm/dd/yyyy","mm-dd-yyyy","mm/dd/yyyy"],"tformat":[null,null,null,null,null,"H:M",null],"sdtm_var_name":["RFXSTDTC","RFXENDTC","RFSTDTC","RFENDTC","RFICDTC","RFPENDTC","DTHDTC"]},"columns":[{"id":"raw_dataset_name","name":"raw_dataset_name","type":"character"},{"id":"date_var","name":"date_var","type":"character"},{"id":"time_var","name":"time_var","type":"character"},{"id":"dformat","name":"dformat","type":"character"},{"id":"tformat","name":"tformat","type":"character"},{"id":"sdtm_var_name","name":"sdtm_var_name","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6437e736656a5f4a189d517fc70a3e1e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-35a3f91ea3f9751aa2e0" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-35a3f91ea3f9751aa2e0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"raw_dataset_name":["ec_raw","ec_raw","ec_raw","ec_raw","dm_raw","ds_raw","ds_raw"],"date_var":["IT.ECSTDAT","IT.ECENDAT","IT.ECSTDAT","IT.ECENDAT","IC_DT","DSDTCOL","DEATHDT"],"time_var":[null,null,null,null,null,"DSTMCOL",null],"dformat":["dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","dd-mmm-yyyy","mm/dd/yyyy","mm-dd-yyyy","mm/dd/yyyy"],"tformat":[null,null,null,null,null,"H:M",null],"sdtm_var_name":["RFXSTDTC","RFXENDTC","RFSTDTC","RFENDTC","RFICDTC","RFPENDTC","DTHDTC"]},"columns":[{"id":"raw_dataset_name","name":"raw_dataset_name","type":"character"},{"id":"date_var","name":"date_var","type":"character"},{"id":"time_var","name":"time_var","type":"character"},{"id":"dformat","name":"dformat","type":"character"},{"id":"tformat","name":"tformat","type":"character"},{"id":"sdtm_var_name","name":"sdtm_var_name","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6437e736656a5f4a189d517fc70a3e1e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="maptopic" class="level2">
-<h2 class="anchored" data-anchor-id="maptopic">Map Topic Variable</h2>
-<p>In <code>DM</code> domain, <code>SUBJID</code> is the topic variable and it can be mapped from <code>PATNUM</code> using a simple <code>dplyr::mutate()</code> statement.</p>
+</section><section id="maptopic" class="level2"><h2 class="anchored" data-anchor-id="maptopic">Map Topic Variable</h2>
+<p>In <code>DM</code> domain, <code>SUBJID</code> is the topic variable and it can be mapped from <code>PATNUM</code> using a simple <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code> statement.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dm <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>dm <span class="ot">&lt;-</span> dm_raw <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">SUBJID =</span> <span class="fu">substr</span>(PATNUM, <span class="dv">5</span>, <span class="dv">8</span>)</span>
 <span id="cb5-4"><a href="#cb5-4"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">select</span>(oak_id, raw_source, patient_number, SUBJID)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">select</span>(oak_id, raw_source, patient_number, SUBJID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-0a8c3a3b9b5f6a73a9cf" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0a8c3a3b9b5f6a73a9cf">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"aafd3398d8052903a335ec5aa8c71f3f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9ac8d154c69bc01b3b8d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9ac8d154c69bc01b3b8d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"aafd3398d8052903a335ec5aa8c71f3f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="maprest" class="level2">
-<h2 class="anchored" data-anchor-id="maprest">Map Rest of the Variables</h2>
-<p>Map rest of the variables in <code>DM</code> domain using either <code>sdtm.oak::assign_no_ct()</code> or <code>sdtm.oak::assign_ct()</code> depending on if the variable has controlled terminologies associated.</p>
+</section><section id="maprest" class="level2"><h2 class="anchored" data-anchor-id="maprest">Map Rest of the Variables</h2>
+<p>Map rest of the variables in <code>DM</code> domain using either <code><a href="https://pharmaverse.github.io/sdtm.oak/reference/assign.html">sdtm.oak::assign_no_ct()</a></code> or <code><a href="https://pharmaverse.github.io/sdtm.oak/reference/assign.html">sdtm.oak::assign_ct()</a></code> depending on if the variable has controlled terminologies associated.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="co"># Map AGE using assign_no_ct</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">assign_no_ct</span>(</span>
 <span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">raw_dat =</span> dm_raw,</span>
@@ -850,7 +631,7 @@ cookieconsent.run({
 <span id="cb6-74"><a href="#cb6-74"></a>    <span class="at">raw_var =</span> <span class="st">"ACTUAL_ARMCD"</span>,</span>
 <span id="cb6-75"><a href="#cb6-75"></a>    <span class="at">tgt_var =</span> <span class="st">"ACTARMCD"</span>,</span>
 <span id="cb6-76"><a href="#cb6-76"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-77"><a href="#cb6-77"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-77"><a href="#cb6-77"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ These terms could not be mapped per the controlled terminology: "Placebo" and "Screen Failure".
 ℹ These terms could not be mapped per the controlled terminology: "Placebo" and "Screen Failure".</code></pre>
@@ -859,17 +640,15 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-d81b84dcdac1316864f7" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d81b84dcdac1316864f7">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6cf8e68bcdd9b55507e6d378b9be6cdb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-859f8ff802ff28cfe40c" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-859f8ff802ff28cfe40c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"6cf8e68bcdd9b55507e6d378b9be6cdb"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="mapvars" class="level2">
-<h2 class="anchored" data-anchor-id="mapvars">Map Reference Date Variables</h2>
-<p>Use <code>sdtm.oak::oak_cal_ref_dates()</code> to calculate reference dates variables in ISO 8601 format. The function takes the raw variable names from reference date configuration file, and calculated the minimum or maximum dates based upon the <code>min_max</code> parameter.</p>
+</section><section id="mapvars" class="level2"><h2 class="anchored" data-anchor-id="mapvars">Map Reference Date Variables</h2>
+<p>Use <code><a href="https://pharmaverse.github.io/sdtm.oak/reference/oak_cal_ref_dates.html">sdtm.oak::oak_cal_ref_dates()</a></code> to calculate reference dates variables in ISO 8601 format. The function takes the raw variable names from reference date configuration file, and calculated the minimum or maximum dates based upon the <code>min_max</code> parameter.</p>
 <p>Variable <code>RFSTDTC</code> is the reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. So as specified in the reference date configuration file, we need to calculate the minimum date of the <code>IT.ECSTDAT</code> for each subject from the <code>ec_raw</code> dataset. Therefore, in <code>min_max</code> parameter, “min” is selected for the calculation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="co"># Derive RFSTDTC using oak_cal_ref_dates</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    <span class="at">ds_in =</span> .,</span>
@@ -881,11 +660,11 @@ cookieconsent.run({
 <span id="cb8-10"><a href="#cb8-10"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
 <span id="cb8-11"><a href="#cb8-11"></a>      <span class="at">dm_raw =</span> dm_raw</span>
 <span id="cb8-12"><a href="#cb8-12"></a>    )</span>
-<span id="cb8-13"><a href="#cb8-13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-13"><a href="#cb8-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Variable <code>RFENDTC</code> is the Reference end date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. As specified in the reference date configuration file, we need to calculate the maximum date of the <code>IT.ECENDAT</code> for each subject from the <code>ec_raw</code> dataset. Therefore, in <code>min_max</code> parameter, “max” is selected for the calculation.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="co"># Derive RFENDTC using oak_cal_ref_dates</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">ds_in =</span> .,</span>
@@ -897,18 +676,18 @@ cookieconsent.run({
 <span id="cb9-10"><a href="#cb9-10"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
 <span id="cb9-11"><a href="#cb9-11"></a>      <span class="at">dm_raw =</span> dm_raw</span>
 <span id="cb9-12"><a href="#cb9-12"></a>    )</span>
-<span id="cb9-13"><a href="#cb9-13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-13"><a href="#cb9-13"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e25351c536345bc7993c" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e25351c536345bc7993c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"9485cbfd292adebf6ecadc115e95e045"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f1f32a98f2a22621c8da" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f1f32a98f2a22621c8da">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"9485cbfd292adebf6ecadc115e95e045"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The same derivation logic is applicable to other reference date/time variables.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="co"># Derive RFXSTDTC using oak_cal_ref_dates</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
 <span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">ds_in =</span> .,</span>
@@ -968,13 +747,11 @@ cookieconsent.run({
 <span id="cb10-58"><a href="#cb10-58"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
 <span id="cb10-59"><a href="#cb10-59"></a>      <span class="at">dm_raw =</span> dm_raw</span>
 <span id="cb10-60"><a href="#cb10-60"></a>    )</span>
-<span id="cb10-61"><a href="#cb10-61"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-61"><a href="#cb10-61"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="derivedvars" class="level2">
-<h2 class="anchored" data-anchor-id="derivedvars">Create SDTM derived variables</h2>
+</section><section id="derivedvars" class="level2"><h2 class="anchored" data-anchor-id="derivedvars">Create SDTM derived variables</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">STUDYID =</span> dm_raw<span class="sc">$</span>STUDY,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">DOMAIN =</span> <span class="st">"DM"</span>,</span>
@@ -997,329 +774,447 @@ cookieconsent.run({
 <span id="cb11-21"><a href="#cb11-21"></a>    <span class="at">tgdt =</span> <span class="st">"DMDTC"</span>,</span>
 <span id="cb11-22"><a href="#cb11-22"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
 <span id="cb11-23"><a href="#cb11-23"></a>    <span class="at">study_day_var =</span> <span class="st">"DMDY"</span></span>
-<span id="cb11-24"><a href="#cb11-24"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-24"><a href="#cb11-24"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-63d6c9ff0c9f0d263fb5" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-63d6c9ff0c9f0d263fb5">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFXSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFXENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFICDTC":["2013-12-26","2012-07-29","2013-07-12","2014-03-11","2014-06-24","2013-02-05",null,"2013-12-25","2012-08-31","2012-11-23"],"RFPENDTC":["2014-07-02T11:45","2012-09-02T10:15","2014-01-14T11:10","2014-04-14T10:38","2014-12-30T09:50","2013-04-07T11:20",null,"2014-07-09T09:39","2012-09-17T11:48","2013-01-23T12:13"],"DTHDTC":[null,null,null,null,null,null,null,null,null,null],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["DM","DM","DM","DM","DM","DM","DM","DM","DM","DM"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097","01-701-1111","01-701-1115"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"DTHFL":[null,null,null,null,null,null,null,null,null,null],"DMDTC":["2013-12-26","2012-07-22","2013-07-11","2014-03-10","2014-06-24","2013-01-22","2013-12-20","2013-12-23","2012-08-25","2012-11-23"],"DMDY":[-7,-14,-8,-8,-7,-21,"NA",-9,-13,-7]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"},{"id":"RFXSTDTC","name":"RFXSTDTC","type":"Date"},{"id":"RFXENDTC","name":"RFXENDTC","type":"iso8601"},{"id":"RFICDTC","name":"RFICDTC","type":"iso8601"},{"id":"RFPENDTC","name":"RFPENDTC","type":"character"},{"id":"DTHDTC","name":"DTHDTC","type":"iso8601"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"DTHFL","name":"DTHFL","type":"character"},{"id":"DMDTC","name":"DMDTC","type":"Date"},{"id":"DMDY","name":"DMDY","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3e30e50f2202fba9639d46004c72a3b7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ebab3d0320019db3b18e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ebab3d0320019db3b18e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw","dm_raw"],"patient_number":["701-1015","701-1023","701-1028","701-1033","701-1034","701-1047","701-1057","701-1097","701-1111","701-1115"],"SUBJID":["1015","1023","1028","1033","1034","1047","1057","1097","1111","1115"],"AGE":[63,64,71,74,77,85,59,68,81,84],"AGEU":["YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS","YEARS"],"SEX":["F","M","M","M","F","F","F","M","F","M"],"ETHNIC":["HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO","NOT HISPANIC OR LATINO"],"RACE":["WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE","WHITE"],"ARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"ACTARM":["PLACEBO","PLACEBO","Xanomeline High Dose","Xanomeline Low Dose","Xanomeline High Dose","PLACEBO","SCREEN FAILURE","Xanomeline Low Dose","Xanomeline Low Dose","Xanomeline Low Dose"],"ACTARMCD":["Pbo","Pbo","Xan_Hi","Xan_Lo","Xan_Hi","Pbo","Scrnfail","Xan_Lo","Xan_Lo","Xan_Lo"],"RFSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFXSTDTC":["2014-01-02","2012-08-05","2013-07-19","2014-03-18","2014-07-01","2013-02-12",null,"2014-01-01","2012-09-07","2012-11-30"],"RFXENDTC":["2014-07-02","2012-09-01","2014-01-14","2014-03-31","2014-12-30","2013-03-09",null,"2014-07-09","2012-09-16","2013-01-23"],"RFICDTC":["2013-12-26","2012-07-29","2013-07-12","2014-03-11","2014-06-24","2013-02-05",null,"2013-12-25","2012-08-31","2012-11-23"],"RFPENDTC":["2014-07-02T11:45","2012-09-02T10:15","2014-01-14T11:10","2014-04-14T10:38","2014-12-30T09:50","2013-04-07T11:20",null,"2014-07-09T09:39","2012-09-17T11:48","2013-01-23T12:13"],"DTHDTC":[null,null,null,null,null,null,null,null,null,null],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["DM","DM","DM","DM","DM","DM","DM","DM","DM","DM"],"USUBJID":["01-701-1015","01-701-1023","01-701-1028","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097","01-701-1111","01-701-1115"],"COUNTRY":["USA","USA","USA","USA","USA","USA","USA","USA","USA","USA"],"DTHFL":[null,null,null,null,null,null,null,null,null,null],"DMDTC":["2013-12-26","2012-07-22","2013-07-11","2014-03-10","2014-06-24","2013-01-22","2013-12-20","2013-12-23","2012-08-25","2012-11-23"],"DMDY":[-7,-14,-8,-8,-7,-21,"NA",-9,-13,-7]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"SUBJID","name":"SUBJID","type":"character"},{"id":"AGE","name":"AGE","type":"numeric"},{"id":"AGEU","name":"AGEU","type":"character"},{"id":"SEX","name":"SEX","type":"character"},{"id":"ETHNIC","name":"ETHNIC","type":"character"},{"id":"RACE","name":"RACE","type":"character"},{"id":"ARM","name":"ARM","type":"character"},{"id":"ARMCD","name":"ARMCD","type":"character"},{"id":"ACTARM","name":"ACTARM","type":"character"},{"id":"ACTARMCD","name":"ACTARMCD","type":"character"},{"id":"RFSTDTC","name":"RFSTDTC","type":"iso8601"},{"id":"RFENDTC","name":"RFENDTC","type":"iso8601"},{"id":"RFXSTDTC","name":"RFXSTDTC","type":"Date"},{"id":"RFXENDTC","name":"RFXENDTC","type":"iso8601"},{"id":"RFICDTC","name":"RFICDTC","type":"iso8601"},{"id":"RFPENDTC","name":"RFPENDTC","type":"character"},{"id":"DTHDTC","name":"DTHDTC","type":"iso8601"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"COUNTRY","name":"COUNTRY","type":"character"},{"id":"DTHFL","name":"DTHFL","type":"character"},{"id":"DMDTC","name":"DMDTC","type":"Date"},{"id":"DMDY","name":"DMDY","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3e30e50f2202fba9639d46004c72a3b7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="attributes" class="level2">
-<h2 class="anchored" data-anchor-id="attributes">Add Labels and Attributes</h2>
-<p>Yet to be developed. Please refer to <code>{metatools}</code> package to investigate options.</p>
+</section><section id="attributes" class="level2"><h2 class="anchored" data-anchor-id="attributes">Add Labels and Attributes</h2>
+<p>Yet to be developed. Please refer to <a href="https://github.com/pharmaverse/metatools">metatools</a> package to investigate options.</p>
 
 
 <!-- -->
 
-</section>
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
       }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
       return false;
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1327,163 +1222,185 @@ cookieconsent.run({
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
       <a href="../sdtm/vs.html" class="pagination-link" aria-label="VS">
@@ -1491,18 +1408,18 @@ cookieconsent.run({
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> "DM"</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a></span>
 <span id="cb12-6"><a href="#cb12-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb12-8"><a href="#cb12-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a>}</span>
-<span id="cb12-11"><a href="#cb12-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="in">  knitr::hook_purl(before, options, ...)</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="in">  NULL</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="in">}</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="in">source("functions/print_df.R")</span></span>
 <span id="cb12-13"><a href="#cb12-13"></a><span class="in">```</span></span>
 <span id="cb12-14"><a href="#cb12-14"></a></span>
 <span id="cb12-15"><a href="#cb12-15"></a><span class="fu"># Introduction</span></span>
@@ -1532,33 +1449,33 @@ cookieconsent.run({
 <span id="cb12-39"><a href="#cb12-39"></a>Read all the raw datasets into the environment. In this example, the raw datasets needed are <span class="in">`ec_raw`</span>, <span class="in">`ds_raw`</span> and <span class="in">`dm_raw`</span>. Users can read them from the <span class="in">`{pharmaverseraw}`</span> package using the below code:</span>
 <span id="cb12-40"><a href="#cb12-40"></a></span>
 <span id="cb12-41"><a href="#cb12-41"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb12-42"><a href="#cb12-42"></a><span class="fu">library</span>(sdtm.oak)</span>
-<span id="cb12-43"><a href="#cb12-43"></a><span class="fu">library</span>(pharmaverseraw)</span>
-<span id="cb12-44"><a href="#cb12-44"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-42"><a href="#cb12-42"></a><span class="in">library(sdtm.oak)</span></span>
+<span id="cb12-43"><a href="#cb12-43"></a><span class="in">library(pharmaverseraw)</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a><span class="in">library(dplyr)</span></span>
 <span id="cb12-45"><a href="#cb12-45"></a></span>
-<span id="cb12-46"><a href="#cb12-46"></a>dm_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>dm_raw</span>
-<span id="cb12-47"><a href="#cb12-47"></a>ds_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ds_raw</span>
-<span id="cb12-48"><a href="#cb12-48"></a>ec_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ec_raw</span>
+<span id="cb12-46"><a href="#cb12-46"></a><span class="in">dm_raw &lt;- pharmaverseraw::dm_raw</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a><span class="in">ds_raw &lt;- pharmaverseraw::ds_raw</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a><span class="in">ec_raw &lt;- pharmaverseraw::ec_raw</span></span>
 <span id="cb12-49"><a href="#cb12-49"></a><span class="in">```</span></span>
 <span id="cb12-50"><a href="#cb12-50"></a></span>
 <span id="cb12-51"><a href="#cb12-51"></a></span>
 <span id="cb12-52"><a href="#cb12-52"></a><span class="fu">#### Demographics Raw dataset. </span></span>
 <span id="cb12-53"><a href="#cb12-53"></a></span>
 <span id="cb12-54"><a href="#cb12-54"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-55"><a href="#cb12-55"></a><span class="fu">print_df</span>(dm_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-55"><a href="#cb12-55"></a><span class="in">print_df(dm_raw, n = 5)</span></span>
 <span id="cb12-56"><a href="#cb12-56"></a><span class="in">```</span></span>
 <span id="cb12-57"><a href="#cb12-57"></a></span>
 <span id="cb12-58"><a href="#cb12-58"></a></span>
 <span id="cb12-59"><a href="#cb12-59"></a><span class="fu">#### Disposition Raw dataset. </span></span>
 <span id="cb12-60"><a href="#cb12-60"></a></span>
 <span id="cb12-61"><a href="#cb12-61"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-62"><a href="#cb12-62"></a><span class="fu">print_df</span>(ds_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-62"><a href="#cb12-62"></a><span class="in">print_df(ds_raw, n = 5)</span></span>
 <span id="cb12-63"><a href="#cb12-63"></a><span class="in">```</span></span>
 <span id="cb12-64"><a href="#cb12-64"></a></span>
 <span id="cb12-65"><a href="#cb12-65"></a></span>
 <span id="cb12-66"><a href="#cb12-66"></a><span class="fu">#### Study Drug Administration Raw dataset. </span></span>
 <span id="cb12-67"><a href="#cb12-67"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-68"><a href="#cb12-68"></a><span class="fu">print_df</span>(ec_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb12-68"><a href="#cb12-68"></a><span class="in">print_df(ec_raw, n = 5)</span></span>
 <span id="cb12-69"><a href="#cb12-69"></a><span class="in">```</span></span>
 <span id="cb12-70"><a href="#cb12-70"></a></span>
 <span id="cb12-71"><a href="#cb12-71"></a><span class="fu">#### SDTM aCRF</span></span>
@@ -1594,18 +1511,18 @@ cookieconsent.run({
 <span id="cb12-103"><a href="#cb12-103"></a></span>
 <span id="cb12-104"><a href="#cb12-104"></a>For example, Demographics Raw dataset with <span class="in">`oak_id_vars`</span></span>
 <span id="cb12-105"><a href="#cb12-105"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-106"><a href="#cb12-106"></a><span class="fu">print_df</span>(dm_raw, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-106"><a href="#cb12-106"></a><span class="in">print_df(dm_raw, n = 10)</span></span>
 <span id="cb12-107"><a href="#cb12-107"></a><span class="in">```</span></span>
 <span id="cb12-108"><a href="#cb12-108"></a></span>
 <span id="cb12-109"><a href="#cb12-109"></a><span class="fu">## Read in CT {#readct}</span></span>
 <span id="cb12-110"><a href="#cb12-110"></a></span>
 <span id="cb12-111"><a href="#cb12-111"></a>Controlled Terminology is part of the SDTM specification and it is prepared by the user.  In this example, the study controlled terminology name is <span class="in">`sdtm_ct.csv`</span>. Users can read it from the package using the below code:</span>
 <span id="cb12-112"><a href="#cb12-112"></a><span class="in">```{r, echo = TRUE}</span></span>
-<span id="cb12-113"><a href="#cb12-113"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span>
+<span id="cb12-113"><a href="#cb12-113"></a><span class="in">study_ct &lt;- read.csv("metadata/sdtm_ct.csv")</span></span>
 <span id="cb12-114"><a href="#cb12-114"></a><span class="in">```</span></span>
 <span id="cb12-115"><a href="#cb12-115"></a></span>
 <span id="cb12-116"><a href="#cb12-116"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-117"><a href="#cb12-117"></a><span class="fu">print_df</span>(study_ct, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-117"><a href="#cb12-117"></a><span class="in">print_df(study_ct, n = 10)</span></span>
 <span id="cb12-118"><a href="#cb12-118"></a><span class="in">```</span></span>
 <span id="cb12-119"><a href="#cb12-119"></a></span>
 <span id="cb12-120"><a href="#cb12-120"></a><span class="fu">## Create reference dates configuration file {#refdates}</span></span>
@@ -1633,7 +1550,7 @@ cookieconsent.run({
 <span id="cb12-144"><a href="#cb12-144"></a><span class="in">```</span></span>
 <span id="cb12-145"><a href="#cb12-145"></a></span>
 <span id="cb12-146"><a href="#cb12-146"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-147"><a href="#cb12-147"></a><span class="fu">print_df</span>(ref_date_conf_df)</span>
+<span id="cb12-147"><a href="#cb12-147"></a><span class="in">print_df(ref_date_conf_df)</span></span>
 <span id="cb12-148"><a href="#cb12-148"></a><span class="in">```</span></span>
 <span id="cb12-149"><a href="#cb12-149"></a></span>
 <span id="cb12-150"><a href="#cb12-150"></a><span class="fu">## Map Topic Variable {#maptopic}</span></span>
@@ -1649,7 +1566,7 @@ cookieconsent.run({
 <span id="cb12-162"><a href="#cb12-162"></a><span class="in">```</span></span>
 <span id="cb12-163"><a href="#cb12-163"></a></span>
 <span id="cb12-164"><a href="#cb12-164"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-165"><a href="#cb12-165"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-165"><a href="#cb12-165"></a><span class="in">print_df(dm, n = 10)</span></span>
 <span id="cb12-166"><a href="#cb12-166"></a><span class="in">```</span></span>
 <span id="cb12-167"><a href="#cb12-167"></a></span>
 <span id="cb12-168"><a href="#cb12-168"></a><span class="fu">## Map Rest of the Variables {#maprest}</span></span>
@@ -1738,7 +1655,7 @@ cookieconsent.run({
 <span id="cb12-253"><a href="#cb12-253"></a><span class="in">```</span></span>
 <span id="cb12-254"><a href="#cb12-254"></a></span>
 <span id="cb12-255"><a href="#cb12-255"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-256"><a href="#cb12-256"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-256"><a href="#cb12-256"></a><span class="in">print_df(dm, n = 10)</span></span>
 <span id="cb12-257"><a href="#cb12-257"></a><span class="in">```</span></span>
 <span id="cb12-258"><a href="#cb12-258"></a></span>
 <span id="cb12-259"><a href="#cb12-259"></a><span class="fu">## Map Reference Date Variables {#mapvars}</span></span>
@@ -1750,19 +1667,19 @@ cookieconsent.run({
 <span id="cb12-265"><a href="#cb12-265"></a>Variable <span class="in">`RFSTDTC`</span> is the reference Start Date/time for the subject in ISO 8601 character format. Usually equivalent to date/time when subject was first exposed to study treatment. So as specified in the reference date configuration file, we need to calculate the minimum date of  the <span class="in">`IT.ECSTDAT`</span> for each subject from the <span class="in">`ec_raw`</span> dataset. Therefore, in <span class="in">`min_max`</span> parameter, "min" is selected for the calculation.</span>
 <span id="cb12-266"><a href="#cb12-266"></a></span>
 <span id="cb12-267"><a href="#cb12-267"></a><span class="in">```{r eval=TRUE}</span></span>
-<span id="cb12-268"><a href="#cb12-268"></a>dm <span class="ot">&lt;-</span> dm <span class="sc">%&gt;%</span></span>
-<span id="cb12-269"><a href="#cb12-269"></a>  <span class="co"># Derive RFSTDTC using oak_cal_ref_dates</span></span>
-<span id="cb12-270"><a href="#cb12-270"></a>  <span class="fu">oak_cal_ref_dates</span>(</span>
-<span id="cb12-271"><a href="#cb12-271"></a>    <span class="at">ds_in =</span> .,</span>
-<span id="cb12-272"><a href="#cb12-272"></a>    <span class="at">der_var =</span> <span class="st">"RFSTDTC"</span>,</span>
-<span id="cb12-273"><a href="#cb12-273"></a>    <span class="at">min_max =</span> <span class="st">"min"</span>,</span>
-<span id="cb12-274"><a href="#cb12-274"></a>    <span class="at">ref_date_config_df =</span> ref_date_conf_df,</span>
-<span id="cb12-275"><a href="#cb12-275"></a>    <span class="at">raw_source =</span> <span class="fu">list</span>(</span>
-<span id="cb12-276"><a href="#cb12-276"></a>      <span class="at">ec_raw =</span> ec_raw,</span>
-<span id="cb12-277"><a href="#cb12-277"></a>      <span class="at">ds_raw =</span> ds_raw,</span>
-<span id="cb12-278"><a href="#cb12-278"></a>      <span class="at">dm_raw =</span> dm_raw</span>
-<span id="cb12-279"><a href="#cb12-279"></a>    )</span>
-<span id="cb12-280"><a href="#cb12-280"></a>  )</span>
+<span id="cb12-268"><a href="#cb12-268"></a><span class="in">dm &lt;- dm %&gt;%</span></span>
+<span id="cb12-269"><a href="#cb12-269"></a><span class="in">  # Derive RFSTDTC using oak_cal_ref_dates</span></span>
+<span id="cb12-270"><a href="#cb12-270"></a><span class="in">  oak_cal_ref_dates(</span></span>
+<span id="cb12-271"><a href="#cb12-271"></a><span class="in">    ds_in = .,</span></span>
+<span id="cb12-272"><a href="#cb12-272"></a><span class="in">    der_var = "RFSTDTC",</span></span>
+<span id="cb12-273"><a href="#cb12-273"></a><span class="in">    min_max = "min",</span></span>
+<span id="cb12-274"><a href="#cb12-274"></a><span class="in">    ref_date_config_df = ref_date_conf_df,</span></span>
+<span id="cb12-275"><a href="#cb12-275"></a><span class="in">    raw_source = list(</span></span>
+<span id="cb12-276"><a href="#cb12-276"></a><span class="in">      ec_raw = ec_raw,</span></span>
+<span id="cb12-277"><a href="#cb12-277"></a><span class="in">      ds_raw = ds_raw,</span></span>
+<span id="cb12-278"><a href="#cb12-278"></a><span class="in">      dm_raw = dm_raw</span></span>
+<span id="cb12-279"><a href="#cb12-279"></a><span class="in">    )</span></span>
+<span id="cb12-280"><a href="#cb12-280"></a><span class="in">  )</span></span>
 <span id="cb12-281"><a href="#cb12-281"></a><span class="in">```</span></span>
 <span id="cb12-282"><a href="#cb12-282"></a></span>
 <span id="cb12-283"><a href="#cb12-283"></a>Variable <span class="in">`RFENDTC`</span> is the Reference end date/time for the subject in ISO 8601 character format. Usually equivalent to the date/time when subject was determined to have ended the trial, and often equivalent to date/time of last exposure to study treatment. As  specified in the reference date configuration file, we need to calculate the  maximum date of the <span class="in">`IT.ECENDAT`</span> for each subject from the <span class="in">`ec_raw`</span> dataset. </span>
@@ -1785,7 +1702,7 @@ cookieconsent.run({
 <span id="cb12-302"><a href="#cb12-302"></a><span class="in">```</span></span>
 <span id="cb12-303"><a href="#cb12-303"></a></span>
 <span id="cb12-304"><a href="#cb12-304"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-305"><a href="#cb12-305"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-305"><a href="#cb12-305"></a><span class="in">print_df(dm, n = 10)</span></span>
 <span id="cb12-306"><a href="#cb12-306"></a><span class="in">```</span></span>
 <span id="cb12-307"><a href="#cb12-307"></a></span>
 <span id="cb12-308"><a href="#cb12-308"></a>The same derivation logic is applicable to other reference date/time variables.</span>
@@ -1884,17 +1801,16 @@ cookieconsent.run({
 <span id="cb12-405"><a href="#cb12-405"></a><span class="in">```</span></span>
 <span id="cb12-406"><a href="#cb12-406"></a></span>
 <span id="cb12-407"><a href="#cb12-407"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb12-408"><a href="#cb12-408"></a><span class="fu">print_df</span>(dm, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb12-408"><a href="#cb12-408"></a><span class="in">print_df(dm, n = 10)</span></span>
 <span id="cb12-409"><a href="#cb12-409"></a><span class="in">```</span></span>
 <span id="cb12-410"><a href="#cb12-410"></a></span>
 <span id="cb12-411"><a href="#cb12-411"></a><span class="fu">## Add Labels and Attributes {#attributes}</span></span>
 <span id="cb12-412"><a href="#cb12-412"></a></span>
 <span id="cb12-413"><a href="#cb12-413"></a>Yet to be developed. Please refer to <span class="in">`{metatools}`</span> package to investigate options.</span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1906,8 +1822,6 @@ cookieconsent.run({
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>

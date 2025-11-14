@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
-
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>ADRS – pharmaverse examples</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,9 +18,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +30,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +53,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -69,22 +64,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-da0fcd4bcbe80d3c54b72bc4f328377a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-fcd2c50053c4ccd6c8f7e4c7c917241e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-da0fcd4bcbe80d3c54b72bc4f328377a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-5b7ccd8ccb072dd816e2b5ae8cfc7151.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-1a1a05289f7c70694cc1839af3fc047d.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -109,9 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-<script type="text/javascript" charset="UTF-8">
+}</script><script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -126,201 +114,26 @@ cookieconsent.run({
 "language":"en-US"
   });
 });
-</script> 
-  
-<style>html{ scroll-behavior: smooth; }</style>
-<script src="../site_libs/core-js-2.5.3/shim.min.js"></script>
-<script src="../site_libs/react-18.2.0/react.min.js"></script>
-<script src="../site_libs/react-18.2.0/react-dom.min.js"></script>
-<script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script>
-<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
-<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script>
-
-
-<link rel="stylesheet" href="../assets/css/style.scss">
+</script><style>html{ scroll-behavior: smooth; }</style>
+<script src="../site_libs/core-js-2.5.3/shim.min.js"></script><script src="../site_libs/react-18.2.0/react.min.js"></script><script src="../site_libs/react-18.2.0/react-dom.min.js"></script><script src="../site_libs/reactwidget-2.0.0/react-tools.js"></script><link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+<script src="../site_libs/reactable-binding-0.4.4/reactable.js"></script><link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="ADRS – pharmaverse examples">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://pharmaverse.github.io/examples/adam/assets/img/Pharmaverse_examples.png">
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
-
-<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
 <span class="menu-text"></span></a>
@@ -336,7 +149,7 @@ cookieconsent.run({
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          <div class="quarto-navbar-tools">
+<div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -346,9 +159,7 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -356,21 +167,15 @@ cookieconsent.run({
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -385,8 +190,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DM</span></a>
@@ -405,7 +210,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
@@ -414,8 +219,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -458,7 +263,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -467,8 +272,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -487,7 +292,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -496,8 +301,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../digit_files/autoslider.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
@@ -510,7 +315,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
@@ -519,15 +324,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>teal</code> applications</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
@@ -536,15 +341,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
@@ -553,15 +358,15 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">eSubmission</span></a>
   </div>
 </li>
       </ul>
-  </li>
+</li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -576,17 +381,12 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADaM</a></li><li class="breadcrumb-item"><a href="../adam/adrs.html">ADRS</a></li></ol></nav>
-<div class="quarto-title">
+<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../adam/adsl.html">ADaM</a></li><li class="breadcrumb-item"><a href="../adam/adrs.html">ADRS</a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">ADRS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
@@ -601,19 +401,13 @@ cookieconsent.run({
   
 
 
-</header>
-
-
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>The Response Analysis Dataset (<code>ADRS</code>) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an <code>ADRS</code> ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include <code>CR</code> (Complete Response), <code>PR</code> (Partial Response), <code>SD</code> (Stable Disease), <code>NON-CR/NON-PD</code> (Non-CR/Non-PD), <code>PD</code> (Progressive Disease), and <code>NE</code> (Not Evaluable). See <code>{admiral}</code> and <code>{admiralonco}</code> for more information. Find other <code>{admiral}</code> functions and related variables by searching <a href="https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html">admiraldiscovery</a></p>
+</header><section id="introduction" class="level1"><h1>Introduction</h1>
+<p>The Response Analysis Dataset (<code>ADRS</code>) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an <code>ADRS</code> ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include <code>CR</code> (Complete Response), <code>PR</code> (Partial Response), <code>SD</code> (Stable Disease), <code>NON-CR/NON-PD</code> (Non-CR/Non-PD), <code>PD</code> (Progressive Disease), and <code>NE</code> (Not Evaluable). See <a href="https://pharmaverse.github.io/admiral/">admiral</a> and <a href="https://pharmaverse.github.io/admiralonco/">admiralonco</a> for more information. Find other <a href="https://pharmaverse.github.io/admiral/">admiral</a> functions and related variables by searching <a href="https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html">admiraldiscovery</a></p>
 <p>This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).</p>
-</section>
-<section id="load-packages" class="level1">
-<h1>Load Packages</h1>
+</section><section id="load-packages" class="level1"><h1>Load Packages</h1>
 <p>First, we load the necessary packages required for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(admiralonco)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(metacore)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(metatools)</span>
@@ -622,57 +416,48 @@ cookieconsent.run({
 <span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(pharmaverseadam)</span>
 <span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(stringr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="load-specifications-for-metacore" class="level1">
-<h1>Load Specifications for Metacore</h1>
-<p>Load the specifications stored in an Excel file into a <code>{metacore}</code> object.</p>
+</section><section id="load-specifications-for-metacore" class="level1"><h1>Load Specifications for Metacore</h1>
+<p>Load the specifications stored in an Excel file into a <a href="https://atorus-research.github.io/metacore/">metacore</a> object.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="load-source-datasets" class="level1">
-<h1>Load Source Datasets</h1>
+</section><section id="load-source-datasets" class="level1"><h1>Load Source Datasets</h1>
 <p>We load the required SDTM datasets (<code>RS</code>, <code>TU</code>) and ADaM dataset (<code>ADSL</code>) necessary for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
 <span id="cb3-2"><a href="#cb3-2"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
 <span id="cb3-3"><a href="#cb3-3"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
 <span id="cb3-4"><a href="#cb3-4"></a></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Convert blanks to NA</span></span>
 <span id="cb3-6"><a href="#cb3-6"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
-<span id="cb3-7"><a href="#cb3-7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-295b2fa1fb4963ceafe0" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-295b2fa1fb4963ceafe0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f2f1679f804b98c7a442" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f2f1679f804b98c7a442">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="merging-adsl-with-rs" class="level1">
-<h1>Merging ADSL with RS</h1>
+</section><section id="merging-adsl-with-rs" class="level1"><h1>Merging ADSL with RS</h1>
 <p>Merge <code>ADSL</code> to the <code>RS</code> domain by selecting only the necessary variables for derivations.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>  rs,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">dataset_add =</span> adsl,</span>
 <span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
 <span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="pre-processing-of-input-records" class="level1">
-<h1>Pre-processing of Input Records</h1>
-<section id="select-overall-response-records-and-set-parameter-details" class="level2">
-<h2 class="anchored" data-anchor-id="select-overall-response-records-and-set-parameter-details">Select Overall Response Records and Set Parameter Details</h2>
+</section><section id="pre-processing-of-input-records" class="level1"><h1>Pre-processing of Input Records</h1>
+<section id="select-overall-response-records-and-set-parameter-details" class="level2"><h2 class="anchored" data-anchor-id="select-overall-response-records-and-set-parameter-details">Select Overall Response Records and Set Parameter Details</h2>
 <p>Filter the <code>RS</code> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
@@ -680,39 +465,35 @@ cookieconsent.run({
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
 <span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
 <span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="date-imputation-and-deriving-adt-adtf-avisit" class="level2">
-<h2 class="anchored" data-anchor-id="date-imputation-and-deriving-adt-adtf-avisit">Date Imputation and Deriving <code>ADT</code>, <code>ADTF</code>, <code>AVISIT</code></h2>
+</section><section id="date-imputation-and-deriving-adt-adtf-avisit" class="level2"><h2 class="anchored" data-anchor-id="date-imputation-and-deriving-adt-adtf-avisit">Date Imputation and Deriving <code>ADT</code>, <code>ADTF</code>, <code>AVISIT</code>
+</h2>
 <p>Impute missing dates and derive analysis dates and visits.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">derive_vars_dt</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">dtc =</span> RSDTC,</span>
 <span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
 <span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
 <span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
 <span id="cb6-7"><a href="#cb6-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="derive-avalc-and-aval" class="level2">
-<h2 class="anchored" data-anchor-id="derive-avalc-and-aval">Derive <code>AVALC</code> and <code>AVAL</code></h2>
+</section><section id="derive-avalc-and-aval" class="level2"><h2 class="anchored" data-anchor-id="derive-avalc-and-aval">Derive <code>AVALC</code> and <code>AVAL</code>
+</h2>
 <p>Populate <code>AVALC</code> with assessed values and create the numeric version <code>AVAL</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
-<span id="cb7-5"><a href="#cb7-5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-5"><a href="#cb7-5"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="flag-worst-assessment-at-each-date-anl01fl" class="level2">
-<h2 class="anchored" data-anchor-id="flag-worst-assessment-at-each-date-anl01fl">Flag Worst Assessment at Each Date (<code>ANL01FL</code>)</h2>
+</section><section id="flag-worst-assessment-at-each-date-anl01fl" class="level2"><h2 class="anchored" data-anchor-id="flag-worst-assessment-at-each-date-anl01fl">Flag Worst Assessment at Each Date (<code>ANL01FL</code>)</h2>
 <p>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">case_when</span>(</span>
 <span id="cb8-3"><a href="#cb8-3"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
@@ -734,24 +515,20 @@ cookieconsent.run({
 <span id="cb8-20"><a href="#cb8-20"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
 <span id="cb8-21"><a href="#cb8-21"></a>    ),</span>
 <span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
-<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-9bb8a6c596807376024c" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9bb8a6c596807376024c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-10207715fa2178da4e08" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-10207715fa2178da4e08">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-</section>
-<section id="deriving-parameters" class="level1">
-<h1>Deriving Parameters</h1>
-<section id="derive-progressive-disease-parameter" class="level2">
-<h2 class="anchored" data-anchor-id="derive-progressive-disease-parameter">Derive Progressive Disease Parameter</h2>
-<p>Use the <code>admiral::derive_extreme_records()</code> function to find the date of first <code>PD</code>.</p>
+</section></section><section id="deriving-parameters" class="level1"><h1>Deriving Parameters</h1>
+<section id="derive-progressive-disease-parameter" class="level2"><h2 class="anchored" data-anchor-id="derive-progressive-disease-parameter">Derive Progressive Disease Parameter</h2>
+<p>Use the <code><a href="https:/pharmaverse.github.io/admiral/v1.3.1/cran-release/reference/derive_extreme_records.html">admiral::derive_extreme_records()</a></code> function to find the date of first <code>PD</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
 <span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
 <span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
@@ -770,21 +547,19 @@ cookieconsent.run({
 <span id="cb9-17"><a href="#cb9-17"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
 <span id="cb9-18"><a href="#cb9-18"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
 <span id="cb9-19"><a href="#cb9-19"></a>    )</span>
-<span id="cb9-20"><a href="#cb9-20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-20"><a href="#cb9-20"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-b088434c41c9a8289f00" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b088434c41c9a8289f00">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-486c126b7504e975036e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-486c126b7504e975036e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-<section id="derive-death-parameter" class="level2">
-<h2 class="anchored" data-anchor-id="derive-death-parameter">Derive Death Parameter</h2>
+</section><section id="derive-death-parameter" class="level2"><h2 class="anchored" data-anchor-id="derive-death-parameter">Derive Death Parameter</h2>
 <p>Create a new death parameter using the death date from <code>ADSL</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
 <span id="cb10-4"><a href="#cb10-4"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
@@ -804,14 +579,12 @@ cookieconsent.run({
 <span id="cb10-18"><a href="#cb10-18"></a>      <span class="at">ADT =</span> DTHDT</span>
 <span id="cb10-19"><a href="#cb10-19"></a>    )</span>
 <span id="cb10-20"><a href="#cb10-20"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="derive-last-disease-assessment-parameter" class="level2">
-<h2 class="anchored" data-anchor-id="derive-last-disease-assessment-parameter">Derive Last Disease Assessment Parameter</h2>
+</section><section id="derive-last-disease-assessment-parameter" class="level2"><h2 class="anchored" data-anchor-id="derive-last-disease-assessment-parameter">Derive Last Disease Assessment Parameter</h2>
 <p>Create a parameter for the last disease assessment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
@@ -827,35 +600,30 @@ cookieconsent.run({
 <span id="cb11-14"><a href="#cb11-14"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
 <span id="cb11-15"><a href="#cb11-15"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
 <span id="cb11-16"><a href="#cb11-16"></a>    )</span>
-<span id="cb11-17"><a href="#cb11-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-17"><a href="#cb11-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-16bfbb902d95e14b39df" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-16bfbb902d95e14b39df">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-de13343845e7b4d00c4a" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-de13343845e7b4d00c4a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-</section>
-</section>
-<section id="apply-metadata-and-perform-associated-checks" class="level1">
-<h1>Apply Metadata and Perform Associated Checks</h1>
+</section></section><section id="apply-metadata-and-perform-associated-checks" class="level1"><h1>Apply Metadata and Perform Associated Checks</h1>
 <p>Apply metadata and conduct checks to ensure data quality and compliance.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
 <span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
 <span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="apply-labels-and-formats-with-xportr" class="level1">
-<h1>Apply Labels and Formats with xportr</h1>
+</section><section id="apply-labels-and-formats-with-xportr" class="level1"><h1>Apply Labels and Formats with xportr</h1>
 <p>Finally, apply labels, formats, and export the dataset to an XPT file.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
@@ -863,7 +631,7 @@ cookieconsent.run({
 <span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
 <span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
 <span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Variable type mismatches found. ──</code></pre>
 </div>
@@ -882,311 +650,432 @@ Width set to 12 to accommodate.</code></pre>
 
 <!-- -->
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
       }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
       return false;
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
         } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
-    }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
-        }
-      }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
-    }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
-    }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
+          window.location.href = sourceUrl;
         }
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
         }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1194,163 +1083,185 @@ Width set to 12 to accommodate.</code></pre>
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
       <a href="../adam/adppk.html" class="pagination-link" aria-label="ADPPK">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">ADPPK</span>
       </a>          
@@ -1361,18 +1272,18 @@ Width set to 12 to accommodate.</code></pre>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">---</span></span>
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">---</span></span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="an">title:</span><span class="co"> "ADRS"</span></span>
 <span id="cb18-3"><a href="#cb18-3"></a><span class="an">order:</span><span class="co"> 4</span></span>
 <span id="cb18-4"><a href="#cb18-4"></a><span class="co">---</span></span>
 <span id="cb18-5"><a href="#cb18-5"></a></span>
 <span id="cb18-6"><a href="#cb18-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb18-8"><a href="#cb18-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb18-9"><a href="#cb18-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb18-10"><a href="#cb18-10"></a>}</span>
-<span id="cb18-11"><a href="#cb18-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="in">invisible_hook_purl &lt;- function(before, options, ...) {</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="in">  knitr::hook_purl(before, options, ...)</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="in">  NULL</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="in">}</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="in">knitr::knit_hooks$set(purl = invisible_hook_purl)</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="in">source("functions/print_df.R")</span></span>
 <span id="cb18-13"><a href="#cb18-13"></a><span class="in">```</span></span>
 <span id="cb18-14"><a href="#cb18-14"></a></span>
 <span id="cb18-15"><a href="#cb18-15"></a><span class="fu"># Introduction</span></span>
@@ -1386,16 +1297,16 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-23"><a href="#cb18-23"></a>First, we load the necessary packages required for creating the <span class="in">`ADRS`</span> dataset.</span>
 <span id="cb18-24"><a href="#cb18-24"></a></span>
 <span id="cb18-25"><a href="#cb18-25"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb18-26"><a href="#cb18-26"></a><span class="fu">library</span>(admiral)</span>
-<span id="cb18-27"><a href="#cb18-27"></a><span class="fu">library</span>(admiralonco)</span>
-<span id="cb18-28"><a href="#cb18-28"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb18-29"><a href="#cb18-29"></a><span class="fu">library</span>(metatools)</span>
-<span id="cb18-30"><a href="#cb18-30"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb18-31"><a href="#cb18-31"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb18-32"><a href="#cb18-32"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb18-33"><a href="#cb18-33"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb18-34"><a href="#cb18-34"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb18-35"><a href="#cb18-35"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb18-26"><a href="#cb18-26"></a><span class="in">library(admiral)</span></span>
+<span id="cb18-27"><a href="#cb18-27"></a><span class="in">library(admiralonco)</span></span>
+<span id="cb18-28"><a href="#cb18-28"></a><span class="in">library(metacore)</span></span>
+<span id="cb18-29"><a href="#cb18-29"></a><span class="in">library(metatools)</span></span>
+<span id="cb18-30"><a href="#cb18-30"></a><span class="in">library(xportr)</span></span>
+<span id="cb18-31"><a href="#cb18-31"></a><span class="in">library(pharmaversesdtm)</span></span>
+<span id="cb18-32"><a href="#cb18-32"></a><span class="in">library(pharmaverseadam)</span></span>
+<span id="cb18-33"><a href="#cb18-33"></a><span class="in">library(dplyr)</span></span>
+<span id="cb18-34"><a href="#cb18-34"></a><span class="in">library(lubridate)</span></span>
+<span id="cb18-35"><a href="#cb18-35"></a><span class="in">library(stringr)</span></span>
 <span id="cb18-36"><a href="#cb18-36"></a><span class="in">```</span></span>
 <span id="cb18-37"><a href="#cb18-37"></a></span>
 <span id="cb18-38"><a href="#cb18-38"></a><span class="fu"># Load Specifications for Metacore</span></span>
@@ -1403,9 +1314,9 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-40"><a href="#cb18-40"></a>Load the specifications stored in an Excel file into a <span class="in">`{metacore}`</span> object.</span>
 <span id="cb18-41"><a href="#cb18-41"></a></span>
 <span id="cb18-42"><a href="#cb18-42"></a><span class="in">```{r read-specs}</span></span>
-<span id="cb18-43"><a href="#cb18-43"></a><span class="co">#| warning: false</span></span>
-<span id="cb18-44"><a href="#cb18-44"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-45"><a href="#cb18-45"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span>
+<span id="cb18-43"><a href="#cb18-43"></a><span class="in">#| warning: false</span></span>
+<span id="cb18-44"><a href="#cb18-44"></a><span class="in">metacore &lt;- spec_to_metacore("./metadata/onco_spec.xlsx") %&gt;%</span></span>
+<span id="cb18-45"><a href="#cb18-45"></a><span class="in">  select_dataset("ADRS")</span></span>
 <span id="cb18-46"><a href="#cb18-46"></a><span class="in">```</span></span>
 <span id="cb18-47"><a href="#cb18-47"></a></span>
 <span id="cb18-48"><a href="#cb18-48"></a><span class="fu"># Load Source Datasets</span></span>
@@ -1413,17 +1324,17 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-50"><a href="#cb18-50"></a>We load the required SDTM datasets (<span class="in">`RS`</span>, <span class="in">`TU`</span>) and ADaM dataset (<span class="in">`ADSL`</span>) necessary for creating the <span class="in">`ADRS`</span> dataset.</span>
 <span id="cb18-51"><a href="#cb18-51"></a></span>
 <span id="cb18-52"><a href="#cb18-52"></a><span class="in">```{r load-data}</span></span>
-<span id="cb18-53"><a href="#cb18-53"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
-<span id="cb18-54"><a href="#cb18-54"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
-<span id="cb18-55"><a href="#cb18-55"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
+<span id="cb18-53"><a href="#cb18-53"></a><span class="in">adsl &lt;- pharmaverseadam::adsl</span></span>
+<span id="cb18-54"><a href="#cb18-54"></a><span class="in">rs &lt;- pharmaversesdtm::rs_onco_recist</span></span>
+<span id="cb18-55"><a href="#cb18-55"></a><span class="in">tu &lt;- pharmaversesdtm::tu_onco_recist</span></span>
 <span id="cb18-56"><a href="#cb18-56"></a></span>
-<span id="cb18-57"><a href="#cb18-57"></a><span class="co"># Convert blanks to NA</span></span>
-<span id="cb18-58"><a href="#cb18-58"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
-<span id="cb18-59"><a href="#cb18-59"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span>
+<span id="cb18-57"><a href="#cb18-57"></a><span class="in"># Convert blanks to NA</span></span>
+<span id="cb18-58"><a href="#cb18-58"></a><span class="in">rs &lt;- convert_blanks_to_na(rs)</span></span>
+<span id="cb18-59"><a href="#cb18-59"></a><span class="in">tu &lt;- convert_blanks_to_na(tu)</span></span>
 <span id="cb18-60"><a href="#cb18-60"></a><span class="in">```</span></span>
 <span id="cb18-61"><a href="#cb18-61"></a></span>
 <span id="cb18-62"><a href="#cb18-62"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb18-63"><a href="#cb18-63"></a><span class="fu">print_df</span>(rs, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb18-63"><a href="#cb18-63"></a><span class="in">print_df(rs, n = 10)</span></span>
 <span id="cb18-64"><a href="#cb18-64"></a><span class="in">```</span></span>
 <span id="cb18-65"><a href="#cb18-65"></a></span>
 <span id="cb18-66"><a href="#cb18-66"></a></span>
@@ -1432,13 +1343,13 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-69"><a href="#cb18-69"></a>Merge <span class="in">`ADSL`</span> to the <span class="in">`RS`</span> domain by selecting only the necessary variables for derivations.</span>
 <span id="cb18-70"><a href="#cb18-70"></a></span>
 <span id="cb18-71"><a href="#cb18-71"></a><span class="in">```{r merge-adsl-rs}</span></span>
-<span id="cb18-72"><a href="#cb18-72"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
-<span id="cb18-73"><a href="#cb18-73"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb18-74"><a href="#cb18-74"></a>  rs,</span>
-<span id="cb18-75"><a href="#cb18-75"></a>  <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb18-76"><a href="#cb18-76"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
-<span id="cb18-77"><a href="#cb18-77"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb18-78"><a href="#cb18-78"></a>)</span>
+<span id="cb18-72"><a href="#cb18-72"></a><span class="in">adsl_vars &lt;- exprs(RANDDT)</span></span>
+<span id="cb18-73"><a href="#cb18-73"></a><span class="in">adrs_merged &lt;- derive_vars_merged(</span></span>
+<span id="cb18-74"><a href="#cb18-74"></a><span class="in">  rs,</span></span>
+<span id="cb18-75"><a href="#cb18-75"></a><span class="in">  dataset_add = adsl,</span></span>
+<span id="cb18-76"><a href="#cb18-76"></a><span class="in">  new_vars = adsl_vars,</span></span>
+<span id="cb18-77"><a href="#cb18-77"></a><span class="in">  by_vars = exprs(STUDYID, USUBJID)</span></span>
+<span id="cb18-78"><a href="#cb18-78"></a><span class="in">)</span></span>
 <span id="cb18-79"><a href="#cb18-79"></a><span class="in">```</span></span>
 <span id="cb18-80"><a href="#cb18-80"></a></span>
 <span id="cb18-81"><a href="#cb18-81"></a><span class="fu"># Pre-processing of Input Records</span></span>
@@ -1448,15 +1359,15 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-85"><a href="#cb18-85"></a>Filter the <span class="in">`RS`</span> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</span>
 <span id="cb18-86"><a href="#cb18-86"></a></span>
 <span id="cb18-87"><a href="#cb18-87"></a><span class="in">```{r set-param-details}</span></span>
-<span id="cb18-88"><a href="#cb18-88"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
-<span id="cb18-89"><a href="#cb18-89"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-90"><a href="#cb18-90"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-91"><a href="#cb18-91"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
-<span id="cb18-92"><a href="#cb18-92"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
-<span id="cb18-93"><a href="#cb18-93"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb18-94"><a href="#cb18-94"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb18-95"><a href="#cb18-95"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
-<span id="cb18-96"><a href="#cb18-96"></a>  )</span>
+<span id="cb18-88"><a href="#cb18-88"></a><span class="in">adrs_ovr &lt;- adrs_merged %&gt;%</span></span>
+<span id="cb18-89"><a href="#cb18-89"></a><span class="in">  filter(RSEVAL == "INVESTIGATOR" &amp; RSTESTCD == "OVRLRESP") %&gt;%</span></span>
+<span id="cb18-90"><a href="#cb18-90"></a><span class="in">  mutate(</span></span>
+<span id="cb18-91"><a href="#cb18-91"></a><span class="in">    PARAMCD = "OVR",</span></span>
+<span id="cb18-92"><a href="#cb18-92"></a><span class="in">    PARAM = "Overall Response by Investigator",</span></span>
+<span id="cb18-93"><a href="#cb18-93"></a><span class="in">    PARCAT1 = "Tumor Response",</span></span>
+<span id="cb18-94"><a href="#cb18-94"></a><span class="in">    PARCAT2 = "Investigator",</span></span>
+<span id="cb18-95"><a href="#cb18-95"></a><span class="in">    PARCAT3 = "RECIST 1.1"</span></span>
+<span id="cb18-96"><a href="#cb18-96"></a><span class="in">  )</span></span>
 <span id="cb18-97"><a href="#cb18-97"></a><span class="in">```</span></span>
 <span id="cb18-98"><a href="#cb18-98"></a></span>
 <span id="cb18-99"><a href="#cb18-99"></a><span class="fu">## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`</span></span>
@@ -1464,14 +1375,14 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-101"><a href="#cb18-101"></a>Impute missing dates and derive analysis dates and visits.</span>
 <span id="cb18-102"><a href="#cb18-102"></a></span>
 <span id="cb18-103"><a href="#cb18-103"></a><span class="in">```{r impute-dates}</span></span>
-<span id="cb18-104"><a href="#cb18-104"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
-<span id="cb18-105"><a href="#cb18-105"></a>  <span class="fu">derive_vars_dt</span>(</span>
-<span id="cb18-106"><a href="#cb18-106"></a>    <span class="at">dtc =</span> RSDTC,</span>
-<span id="cb18-107"><a href="#cb18-107"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
-<span id="cb18-108"><a href="#cb18-108"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
-<span id="cb18-109"><a href="#cb18-109"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
-<span id="cb18-110"><a href="#cb18-110"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-111"><a href="#cb18-111"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span>
+<span id="cb18-104"><a href="#cb18-104"></a><span class="in">adrs_imputed &lt;- adrs_ovr %&gt;%</span></span>
+<span id="cb18-105"><a href="#cb18-105"></a><span class="in">  derive_vars_dt(</span></span>
+<span id="cb18-106"><a href="#cb18-106"></a><span class="in">    dtc = RSDTC,</span></span>
+<span id="cb18-107"><a href="#cb18-107"></a><span class="in">    new_vars_prefix = "A",</span></span>
+<span id="cb18-108"><a href="#cb18-108"></a><span class="in">    highest_imputation = "D",</span></span>
+<span id="cb18-109"><a href="#cb18-109"></a><span class="in">    date_imputation = "last"</span></span>
+<span id="cb18-110"><a href="#cb18-110"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb18-111"><a href="#cb18-111"></a><span class="in">  mutate(AVISIT = VISIT)</span></span>
 <span id="cb18-112"><a href="#cb18-112"></a><span class="in">```</span></span>
 <span id="cb18-113"><a href="#cb18-113"></a></span>
 <span id="cb18-114"><a href="#cb18-114"></a><span class="fu">## Derive `AVALC` and `AVAL`</span></span>
@@ -1479,11 +1390,11 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-116"><a href="#cb18-116"></a>Populate <span class="in">`AVALC`</span> with assessed values and create the numeric version <span class="in">`AVAL`</span>.</span>
 <span id="cb18-117"><a href="#cb18-117"></a></span>
 <span id="cb18-118"><a href="#cb18-118"></a><span class="in">```{r derive-aval}</span></span>
-<span id="cb18-119"><a href="#cb18-119"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
-<span id="cb18-120"><a href="#cb18-120"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-121"><a href="#cb18-121"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
-<span id="cb18-122"><a href="#cb18-122"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
-<span id="cb18-123"><a href="#cb18-123"></a>  )</span>
+<span id="cb18-119"><a href="#cb18-119"></a><span class="in">adrs_aval &lt;- adrs_imputed %&gt;%</span></span>
+<span id="cb18-120"><a href="#cb18-120"></a><span class="in">  mutate(</span></span>
+<span id="cb18-121"><a href="#cb18-121"></a><span class="in">    AVALC = RSSTRESC,</span></span>
+<span id="cb18-122"><a href="#cb18-122"></a><span class="in">    AVAL = aval_resp(AVALC)</span></span>
+<span id="cb18-123"><a href="#cb18-123"></a><span class="in">  )</span></span>
 <span id="cb18-124"><a href="#cb18-124"></a><span class="in">```</span></span>
 <span id="cb18-125"><a href="#cb18-125"></a></span>
 <span id="cb18-126"><a href="#cb18-126"></a><span class="fu">## Flag Worst Assessment at Each Date (`ANL01FL`)</span></span>
@@ -1491,34 +1402,34 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-128"><a href="#cb18-128"></a>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</span>
 <span id="cb18-129"><a href="#cb18-129"></a></span>
 <span id="cb18-130"><a href="#cb18-130"></a><span class="in">```{r flag-worst-assessment}</span></span>
-<span id="cb18-131"><a href="#cb18-131"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
-<span id="cb18-132"><a href="#cb18-132"></a>  <span class="fu">case_when</span>(</span>
-<span id="cb18-133"><a href="#cb18-133"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb18-134"><a href="#cb18-134"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb18-135"><a href="#cb18-135"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb18-136"><a href="#cb18-136"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb18-137"><a href="#cb18-137"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb18-138"><a href="#cb18-138"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb18-139"><a href="#cb18-139"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb18-140"><a href="#cb18-140"></a>  )</span>
-<span id="cb18-141"><a href="#cb18-141"></a>}</span>
+<span id="cb18-131"><a href="#cb18-131"></a><span class="in">worst_resp &lt;- function(arg) {</span></span>
+<span id="cb18-132"><a href="#cb18-132"></a><span class="in">  case_when(</span></span>
+<span id="cb18-133"><a href="#cb18-133"></a><span class="in">    arg == "NE" ~ 1,</span></span>
+<span id="cb18-134"><a href="#cb18-134"></a><span class="in">    arg == "CR" ~ 2,</span></span>
+<span id="cb18-135"><a href="#cb18-135"></a><span class="in">    arg == "PR" ~ 3,</span></span>
+<span id="cb18-136"><a href="#cb18-136"></a><span class="in">    arg == "SD" ~ 4,</span></span>
+<span id="cb18-137"><a href="#cb18-137"></a><span class="in">    arg == "NON-CR/NON-PD" ~ 5,</span></span>
+<span id="cb18-138"><a href="#cb18-138"></a><span class="in">    arg == "PD" ~ 6,</span></span>
+<span id="cb18-139"><a href="#cb18-139"></a><span class="in">    TRUE ~ 0</span></span>
+<span id="cb18-140"><a href="#cb18-140"></a><span class="in">  )</span></span>
+<span id="cb18-141"><a href="#cb18-141"></a><span class="in">}</span></span>
 <span id="cb18-142"><a href="#cb18-142"></a></span>
-<span id="cb18-143"><a href="#cb18-143"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
-<span id="cb18-144"><a href="#cb18-144"></a>  <span class="fu">restrict_derivation</span>(</span>
-<span id="cb18-145"><a href="#cb18-145"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
-<span id="cb18-146"><a href="#cb18-146"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
-<span id="cb18-147"><a href="#cb18-147"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
-<span id="cb18-148"><a href="#cb18-148"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
-<span id="cb18-149"><a href="#cb18-149"></a>      <span class="at">new_var =</span> ANL01FL,</span>
-<span id="cb18-150"><a href="#cb18-150"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
-<span id="cb18-151"><a href="#cb18-151"></a>    ),</span>
-<span id="cb18-152"><a href="#cb18-152"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
-<span id="cb18-153"><a href="#cb18-153"></a>  )</span>
+<span id="cb18-143"><a href="#cb18-143"></a><span class="in">adrs_anl01fl &lt;- adrs_aval %&gt;%</span></span>
+<span id="cb18-144"><a href="#cb18-144"></a><span class="in">  restrict_derivation(</span></span>
+<span id="cb18-145"><a href="#cb18-145"></a><span class="in">    derivation = derive_var_extreme_flag,</span></span>
+<span id="cb18-146"><a href="#cb18-146"></a><span class="in">    args = params(</span></span>
+<span id="cb18-147"><a href="#cb18-147"></a><span class="in">      by_vars = exprs(STUDYID, USUBJID, ADT),</span></span>
+<span id="cb18-148"><a href="#cb18-148"></a><span class="in">      order = exprs(worst_resp(AVALC), RSSEQ),</span></span>
+<span id="cb18-149"><a href="#cb18-149"></a><span class="in">      new_var = ANL01FL,</span></span>
+<span id="cb18-150"><a href="#cb18-150"></a><span class="in">      mode = "last"</span></span>
+<span id="cb18-151"><a href="#cb18-151"></a><span class="in">    ),</span></span>
+<span id="cb18-152"><a href="#cb18-152"></a><span class="in">    filter = !is.na(AVAL) &amp; ADT &gt;= RANDDT</span></span>
+<span id="cb18-153"><a href="#cb18-153"></a><span class="in">  )</span></span>
 <span id="cb18-154"><a href="#cb18-154"></a><span class="in">```</span></span>
 <span id="cb18-155"><a href="#cb18-155"></a></span>
 <span id="cb18-156"><a href="#cb18-156"></a></span>
 <span id="cb18-157"><a href="#cb18-157"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb18-158"><a href="#cb18-158"></a><span class="fu">print_df</span>(adrs_anl01fl <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb18-158"><a href="#cb18-158"></a><span class="in">print_df(adrs_anl01fl %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), n = 10)</span></span>
 <span id="cb18-159"><a href="#cb18-159"></a><span class="in">```</span></span>
 <span id="cb18-160"><a href="#cb18-160"></a></span>
 <span id="cb18-161"><a href="#cb18-161"></a><span class="fu"># Deriving Parameters</span></span>
@@ -1528,31 +1439,31 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-165"><a href="#cb18-165"></a>Use the <span class="in">`admiral::derive_extreme_records()`</span> function to find the date of first <span class="in">`PD`</span>.</span>
 <span id="cb18-166"><a href="#cb18-166"></a></span>
 <span id="cb18-167"><a href="#cb18-167"></a><span class="in">```{r derive-pd}</span></span>
-<span id="cb18-168"><a href="#cb18-168"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
-<span id="cb18-169"><a href="#cb18-169"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb18-170"><a href="#cb18-170"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb18-171"><a href="#cb18-171"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
-<span id="cb18-172"><a href="#cb18-172"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-173"><a href="#cb18-173"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb18-174"><a href="#cb18-174"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb18-175"><a href="#cb18-175"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb18-176"><a href="#cb18-176"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb18-177"><a href="#cb18-177"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb18-178"><a href="#cb18-178"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb18-179"><a href="#cb18-179"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
-<span id="cb18-180"><a href="#cb18-180"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
-<span id="cb18-181"><a href="#cb18-181"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb18-182"><a href="#cb18-182"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb18-183"><a href="#cb18-183"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb18-184"><a href="#cb18-184"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb18-185"><a href="#cb18-185"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb18-186"><a href="#cb18-186"></a>    )</span>
-<span id="cb18-187"><a href="#cb18-187"></a>  )</span>
+<span id="cb18-168"><a href="#cb18-168"></a><span class="in">adrs_pd &lt;- adrs_anl01fl %&gt;%</span></span>
+<span id="cb18-169"><a href="#cb18-169"></a><span class="in">  derive_extreme_records(</span></span>
+<span id="cb18-170"><a href="#cb18-170"></a><span class="in">    dataset_ref = adsl,</span></span>
+<span id="cb18-171"><a href="#cb18-171"></a><span class="in">    dataset_add = adrs_anl01fl,</span></span>
+<span id="cb18-172"><a href="#cb18-172"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb18-173"><a href="#cb18-173"></a><span class="in">    filter_add = PARAMCD == "OVR" &amp; AVALC == "PD" &amp; ANL01FL == "Y",</span></span>
+<span id="cb18-174"><a href="#cb18-174"></a><span class="in">    order = exprs(ADT, RSSEQ),</span></span>
+<span id="cb18-175"><a href="#cb18-175"></a><span class="in">    mode = "first",</span></span>
+<span id="cb18-176"><a href="#cb18-176"></a><span class="in">    exist_flag = AVALC,</span></span>
+<span id="cb18-177"><a href="#cb18-177"></a><span class="in">    false_value = "N",</span></span>
+<span id="cb18-178"><a href="#cb18-178"></a><span class="in">    set_values_to = exprs(</span></span>
+<span id="cb18-179"><a href="#cb18-179"></a><span class="in">      PARAMCD = "PD",</span></span>
+<span id="cb18-180"><a href="#cb18-180"></a><span class="in">      PARAM = "Disease Progression by Investigator",</span></span>
+<span id="cb18-181"><a href="#cb18-181"></a><span class="in">      PARCAT1 = "Tumor Response",</span></span>
+<span id="cb18-182"><a href="#cb18-182"></a><span class="in">      PARCAT2 = "Investigator",</span></span>
+<span id="cb18-183"><a href="#cb18-183"></a><span class="in">      PARCAT3 = "RECIST 1.1",</span></span>
+<span id="cb18-184"><a href="#cb18-184"></a><span class="in">      AVAL = yn_to_numeric(AVALC),</span></span>
+<span id="cb18-185"><a href="#cb18-185"></a><span class="in">      ANL01FL = "Y"</span></span>
+<span id="cb18-186"><a href="#cb18-186"></a><span class="in">    )</span></span>
+<span id="cb18-187"><a href="#cb18-187"></a><span class="in">  )</span></span>
 <span id="cb18-188"><a href="#cb18-188"></a><span class="in">```</span></span>
 <span id="cb18-189"><a href="#cb18-189"></a></span>
 <span id="cb18-190"><a href="#cb18-190"></a></span>
 <span id="cb18-191"><a href="#cb18-191"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb18-192"><a href="#cb18-192"></a><span class="fu">print_df</span>(adrs_pd <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"PD"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb18-192"><a href="#cb18-192"></a><span class="in">print_df(adrs_pd %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %&gt;% filter(PARAMCD == "PD"), n = 10)</span></span>
 <span id="cb18-193"><a href="#cb18-193"></a><span class="in">```</span></span>
 <span id="cb18-194"><a href="#cb18-194"></a></span>
 <span id="cb18-195"><a href="#cb18-195"></a><span class="fu">## Derive Death Parameter</span></span>
@@ -1560,27 +1471,27 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-197"><a href="#cb18-197"></a>Create a new death parameter using the death date from <span class="in">`ADSL`</span>.</span>
 <span id="cb18-198"><a href="#cb18-198"></a></span>
 <span id="cb18-199"><a href="#cb18-199"></a><span class="in">```{r derive-death}</span></span>
-<span id="cb18-200"><a href="#cb18-200"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb18-201"><a href="#cb18-201"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
+<span id="cb18-200"><a href="#cb18-200"></a><span class="in">adsldth &lt;- adsl %&gt;%</span></span>
+<span id="cb18-201"><a href="#cb18-201"></a><span class="in">  select(STUDYID, USUBJID, DTHDT, !!!adsl_vars)</span></span>
 <span id="cb18-202"><a href="#cb18-202"></a></span>
-<span id="cb18-203"><a href="#cb18-203"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
-<span id="cb18-204"><a href="#cb18-204"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb18-205"><a href="#cb18-205"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
-<span id="cb18-206"><a href="#cb18-206"></a>    <span class="at">dataset_add =</span> adsldth,</span>
-<span id="cb18-207"><a href="#cb18-207"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-208"><a href="#cb18-208"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
-<span id="cb18-209"><a href="#cb18-209"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb18-210"><a href="#cb18-210"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb18-211"><a href="#cb18-211"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb18-212"><a href="#cb18-212"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
-<span id="cb18-213"><a href="#cb18-213"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
-<span id="cb18-214"><a href="#cb18-214"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
-<span id="cb18-215"><a href="#cb18-215"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb18-216"><a href="#cb18-216"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb18-217"><a href="#cb18-217"></a>      <span class="at">ADT =</span> DTHDT</span>
-<span id="cb18-218"><a href="#cb18-218"></a>    )</span>
-<span id="cb18-219"><a href="#cb18-219"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-220"><a href="#cb18-220"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span>
+<span id="cb18-203"><a href="#cb18-203"></a><span class="in">adrs_death &lt;- adrs_pd %&gt;%</span></span>
+<span id="cb18-204"><a href="#cb18-204"></a><span class="in">  derive_extreme_records(</span></span>
+<span id="cb18-205"><a href="#cb18-205"></a><span class="in">    dataset_ref = adsldth,</span></span>
+<span id="cb18-206"><a href="#cb18-206"></a><span class="in">    dataset_add = adsldth,</span></span>
+<span id="cb18-207"><a href="#cb18-207"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb18-208"><a href="#cb18-208"></a><span class="in">    filter_add = !is.na(DTHDT),</span></span>
+<span id="cb18-209"><a href="#cb18-209"></a><span class="in">    exist_flag = AVALC,</span></span>
+<span id="cb18-210"><a href="#cb18-210"></a><span class="in">    false_value = "N",</span></span>
+<span id="cb18-211"><a href="#cb18-211"></a><span class="in">    set_values_to = exprs(</span></span>
+<span id="cb18-212"><a href="#cb18-212"></a><span class="in">      PARAMCD = "DEATH",</span></span>
+<span id="cb18-213"><a href="#cb18-213"></a><span class="in">      PARAM = "Death",</span></span>
+<span id="cb18-214"><a href="#cb18-214"></a><span class="in">      PARCAT1 = "Reference Event",</span></span>
+<span id="cb18-215"><a href="#cb18-215"></a><span class="in">      AVAL = yn_to_numeric(AVALC),</span></span>
+<span id="cb18-216"><a href="#cb18-216"></a><span class="in">      ANL01FL = "Y",</span></span>
+<span id="cb18-217"><a href="#cb18-217"></a><span class="in">      ADT = DTHDT</span></span>
+<span id="cb18-218"><a href="#cb18-218"></a><span class="in">    )</span></span>
+<span id="cb18-219"><a href="#cb18-219"></a><span class="in">  ) %&gt;%</span></span>
+<span id="cb18-220"><a href="#cb18-220"></a><span class="in">  select(-DTHDT)</span></span>
 <span id="cb18-221"><a href="#cb18-221"></a><span class="in">```</span></span>
 <span id="cb18-222"><a href="#cb18-222"></a></span>
 <span id="cb18-223"><a href="#cb18-223"></a><span class="fu">## Derive Last Disease Assessment Parameter</span></span>
@@ -1588,28 +1499,28 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-225"><a href="#cb18-225"></a>Create a parameter for the last disease assessment.</span>
 <span id="cb18-226"><a href="#cb18-226"></a></span>
 <span id="cb18-227"><a href="#cb18-227"></a><span class="in">```{r derive-lsta}</span></span>
-<span id="cb18-228"><a href="#cb18-228"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
-<span id="cb18-229"><a href="#cb18-229"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb18-230"><a href="#cb18-230"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb18-231"><a href="#cb18-231"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
-<span id="cb18-232"><a href="#cb18-232"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb18-233"><a href="#cb18-233"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb18-234"><a href="#cb18-234"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb18-235"><a href="#cb18-235"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb18-236"><a href="#cb18-236"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb18-237"><a href="#cb18-237"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
-<span id="cb18-238"><a href="#cb18-238"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
-<span id="cb18-239"><a href="#cb18-239"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb18-240"><a href="#cb18-240"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb18-241"><a href="#cb18-241"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb18-242"><a href="#cb18-242"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb18-243"><a href="#cb18-243"></a>    )</span>
-<span id="cb18-244"><a href="#cb18-244"></a>  )</span>
+<span id="cb18-228"><a href="#cb18-228"></a><span class="in">adrs_lsta &lt;- adrs_death %&gt;%</span></span>
+<span id="cb18-229"><a href="#cb18-229"></a><span class="in">  derive_extreme_records(</span></span>
+<span id="cb18-230"><a href="#cb18-230"></a><span class="in">    dataset_ref = adsl,</span></span>
+<span id="cb18-231"><a href="#cb18-231"></a><span class="in">    dataset_add = adrs_death,</span></span>
+<span id="cb18-232"><a href="#cb18-232"></a><span class="in">    by_vars = exprs(STUDYID, USUBJID),</span></span>
+<span id="cb18-233"><a href="#cb18-233"></a><span class="in">    filter_add = PARAMCD == "OVR" &amp; ANL01FL == "Y",</span></span>
+<span id="cb18-234"><a href="#cb18-234"></a><span class="in">    order = exprs(ADT, RSSEQ),</span></span>
+<span id="cb18-235"><a href="#cb18-235"></a><span class="in">    mode = "last",</span></span>
+<span id="cb18-236"><a href="#cb18-236"></a><span class="in">    set_values_to = exprs(</span></span>
+<span id="cb18-237"><a href="#cb18-237"></a><span class="in">      PARAMCD = "LSTA",</span></span>
+<span id="cb18-238"><a href="#cb18-238"></a><span class="in">      PARAM = "Last Disease Assessment by Investigator",</span></span>
+<span id="cb18-239"><a href="#cb18-239"></a><span class="in">      PARCAT1 = "Tumor Response",</span></span>
+<span id="cb18-240"><a href="#cb18-240"></a><span class="in">      PARCAT2 = "Investigator",</span></span>
+<span id="cb18-241"><a href="#cb18-241"></a><span class="in">      PARCAT3 = "RECIST 1.1",</span></span>
+<span id="cb18-242"><a href="#cb18-242"></a><span class="in">      ANL01FL = "Y"</span></span>
+<span id="cb18-243"><a href="#cb18-243"></a><span class="in">    )</span></span>
+<span id="cb18-244"><a href="#cb18-244"></a><span class="in">  )</span></span>
 <span id="cb18-245"><a href="#cb18-245"></a><span class="in">```</span></span>
 <span id="cb18-246"><a href="#cb18-246"></a></span>
 <span id="cb18-247"><a href="#cb18-247"></a></span>
 <span id="cb18-248"><a href="#cb18-248"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb18-249"><a href="#cb18-249"></a><span class="fu">print_df</span>(adrs_lsta <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb18-249"><a href="#cb18-249"></a><span class="in">print_df(adrs_lsta %&gt;% select(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) %&gt;% filter(PARAMCD == "LSTA"), n = 10)</span></span>
 <span id="cb18-250"><a href="#cb18-250"></a><span class="in">```</span></span>
 <span id="cb18-251"><a href="#cb18-251"></a></span>
 <span id="cb18-252"><a href="#cb18-252"></a><span class="fu"># Apply Metadata and Perform Associated Checks</span></span>
@@ -1617,13 +1528,13 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-254"><a href="#cb18-254"></a>Apply metadata and conduct checks to ensure data quality and compliance.</span>
 <span id="cb18-255"><a href="#cb18-255"></a></span>
 <span id="cb18-256"><a href="#cb18-256"></a><span class="in">```{r apply-metadata-check, message=FALSE, warning=FALSE}</span></span>
-<span id="cb18-257"><a href="#cb18-257"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
-<span id="cb18-258"><a href="#cb18-258"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
-<span id="cb18-259"><a href="#cb18-259"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
-<span id="cb18-260"><a href="#cb18-260"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb18-261"><a href="#cb18-261"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
-<span id="cb18-262"><a href="#cb18-262"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
-<span id="cb18-263"><a href="#cb18-263"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span>
+<span id="cb18-257"><a href="#cb18-257"></a><span class="in">adrs_checked &lt;- adrs_lsta %&gt;%</span></span>
+<span id="cb18-258"><a href="#cb18-258"></a><span class="in">  add_variables(metacore) %&gt;% # Add variables specified in the metadata</span></span>
+<span id="cb18-259"><a href="#cb18-259"></a><span class="in">  drop_unspec_vars(metacore) %&gt;% # Drop variables not specified in metadata</span></span>
+<span id="cb18-260"><a href="#cb18-260"></a><span class="in">  check_variables(metacore) %&gt;% # Check all variables specified are present and no more</span></span>
+<span id="cb18-261"><a href="#cb18-261"></a><span class="in">  check_ct_data(metacore) %&gt;% # Check controlled terminology</span></span>
+<span id="cb18-262"><a href="#cb18-262"></a><span class="in">  order_cols(metacore) %&gt;% # Order columns according to metadata</span></span>
+<span id="cb18-263"><a href="#cb18-263"></a><span class="in">  sort_by_key(metacore) # Sort rows by sort keys</span></span>
 <span id="cb18-264"><a href="#cb18-264"></a><span class="in">```</span></span>
 <span id="cb18-265"><a href="#cb18-265"></a></span>
 <span id="cb18-266"><a href="#cb18-266"></a><span class="fu"># Apply Labels and Formats with xportr</span></span>
@@ -1631,20 +1542,19 @@ Width set to 12 to accommodate.</code></pre>
 <span id="cb18-268"><a href="#cb18-268"></a>Finally, apply labels, formats, and export the dataset to an XPT file.</span>
 <span id="cb18-269"><a href="#cb18-269"></a></span>
 <span id="cb18-270"><a href="#cb18-270"></a><span class="in">```{r xportr}</span></span>
-<span id="cb18-271"><a href="#cb18-271"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb18-271"><a href="#cb18-271"></a><span class="in">dir &lt;- tempdir() # Specify the directory for saving the XPT file</span></span>
 <span id="cb18-272"><a href="#cb18-272"></a></span>
-<span id="cb18-273"><a href="#cb18-273"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
-<span id="cb18-274"><a href="#cb18-274"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
-<span id="cb18-275"><a href="#cb18-275"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
-<span id="cb18-276"><a href="#cb18-276"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
-<span id="cb18-277"><a href="#cb18-277"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
-<span id="cb18-278"><a href="#cb18-278"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
-<span id="cb18-279"><a href="#cb18-279"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span>
-<span id="cb18-280"><a href="#cb18-280"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb18-273"><a href="#cb18-273"></a><span class="in">adrs_xpt &lt;- adrs_checked %&gt;%</span></span>
+<span id="cb18-274"><a href="#cb18-274"></a><span class="in">  xportr_type(metacore, domain = "ADRS") %&gt;% # Coerce variable types to match metadata</span></span>
+<span id="cb18-275"><a href="#cb18-275"></a><span class="in">  xportr_length(metacore) %&gt;% # Assign variable lengths from metadata</span></span>
+<span id="cb18-276"><a href="#cb18-276"></a><span class="in">  xportr_label(metacore) %&gt;% # Assign variable labels from metadata</span></span>
+<span id="cb18-277"><a href="#cb18-277"></a><span class="in">  xportr_format(metacore) %&gt;% # Assign variable formats from metadata</span></span>
+<span id="cb18-278"><a href="#cb18-278"></a><span class="in">  xportr_df_label(metacore) %&gt;% # Assign dataset labels from metadata</span></span>
+<span id="cb18-279"><a href="#cb18-279"></a><span class="in">  xportr_write(file.path(dir, "adrs.xpt")) # Write the XPT file</span></span>
+<span id="cb18-280"><a href="#cb18-280"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1656,8 +1566,6 @@ Width set to 12 to accommodate.</code></pre>
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
