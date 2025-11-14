@@ -136,6 +136,7 @@ ATPT
 ATPTN
 ATPTREF
 attr
+auditable
 autofit
 autolog
 autoslider
@@ -186,6 +187,7 @@ cairo
 cairoFT
 callr
 cards
+CARDs
 categorizationvars
 cdisc
 CDISC

@@ -54,4 +54,3 @@ tbl <- adsl |> tbl_summary(by = ACTARM, include = c(AGE, AGEGR1, SEX, RACE))
 
 # extract ARD from table object
 gather_ard(tbl)[[1]] |> select(-gts_column) # removing column so ARD fits on page
-
