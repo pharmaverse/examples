@@ -51,6 +51,7 @@ website:
         - auto: sdtm
         - auto: adam
         - auto: tlg
+        - auto: cards
         - auto: digit_files
         - auto: interactive
         - auto: logging
