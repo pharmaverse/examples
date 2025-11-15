@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.8.26">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>The Difference Between logr, logrx, and whirl – pharmaverse examples</title>
 <style>
 code{white-space: pre-wrap;}
@@ -18,8 +21,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -30,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -53,6 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -64,17 +69,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1ae074e819cdb75ab68b1b71bae6bd35.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-5600470d80e7b1ec6640318b05c289fa.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-c8d95dfe0ec7be9d4c0f035003f183d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ab5a5a7c30e17ef19dc21189a53a3182.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c8d95dfe0ec7be9d4c0f035003f183d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
   "collapse-after": 3,
@@ -99,7 +109,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script type="text/javascript" charset="UTF-8">
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
 document.addEventListener('DOMContentLoaded', function () {
 cookieconsent.run({
   "notice_banner_type":"simple",
@@ -114,24 +126,193 @@ cookieconsent.run({
 "language":"en-US"
   });
 });
-</script><style>html{ scroll-behavior: smooth; }</style>
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="../assets/css/style.scss">
 <meta property="og:title" content="The Difference Between logr, logrx, and whirl – pharmaverse examples">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://pharmaverse.github.io/examples/logging/assets/img/Pharmaverse_examples.png">
 <meta property="og:site_name" content="pharmaverse examples">
 </head>
-<body class="nav-sidebar docked nav-fixed">
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">pharmaverse examples</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item compact">
+  <li class="nav-item compact">
     <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
 </i> 
 <span class="menu-text"></span></a>
@@ -147,7 +328,7 @@ cookieconsent.run({
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-<div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -157,7 +338,9 @@ cookieconsent.run({
 </div>
             <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
-    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -165,15 +348,21 @@ cookieconsent.run({
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -188,8 +377,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DM</span></a>
@@ -208,7 +397,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
@@ -217,8 +406,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ADSL</span></a>
@@ -261,7 +450,7 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
@@ -270,8 +459,8 @@ cookieconsent.run({
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demographic Table</span></a>
@@ -290,34 +479,17 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">CARDs</span></a>
+ <span class="menu-text">Documents</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cards/cards_demographic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Demographic Table</span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Documents</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../digit_files/autoslider.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Slides</span></a>
@@ -330,58 +502,58 @@ cookieconsent.run({
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Interactive</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><code>teal</code> applications</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Logs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../logging/logging.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">eSubmission</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">
-<li class="sidebar-item">
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">eSubmission</span></a>
   </div>
 </li>
       </ul>
-</li>
+  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
@@ -396,14 +568,18 @@ cookieconsent.run({
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../logging/logging.html">Logs</a></li><li class="breadcrumb-item"><a href="../logging/logging.html">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></a></li></ol></nav><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code>
-</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+<main class="content column-page-right" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../logging/logging.html">Logs</a></li><li class="breadcrumb-item"><a href="../logging/logging.html">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
 </div>
 
 
@@ -417,7 +593,10 @@ cookieconsent.run({
   
 
 
-</header><div class="cell">
+</header>
+
+
+<div class="cell">
 <style type="text/css">
 .output-block {
   max-height: 400px;
@@ -427,18 +606,15 @@ cookieconsent.run({
 </div>
 <p>The <a href="https://github.com/dbosak01/logr/"><code>logr</code></a> package for R aims to provide a straightforward logging system tailored for everyday users, such as statisticians and educators, emphasizing simplicity in recording program execution. In contrast, <a href="https://github.com/pharmaverse/logrx/"><code>logrx</code></a> offers an advanced logging mechanism designed specifically for clinical reporting, featuring easy traceability and reproducibility of R script executions with capabilities suited for more technical users. <a href="https://github.com/NovoNordisk-OpenSource/whirl"><code>whirl</code></a> differs in that the package provides functionalities for executing scripts in batch and simultaneously getting a log from the individual executions. In contrast the other two logging packages, the default logs are HTML reports making it easier to read, and they include the results printed in the programs being logged.</p>
 <p>All three packages are used for keeping a record of what happens when R scripts are run, but they differ in what they offer and who they’re for. When choosing between them, you should consider what you need for your particular situation.</p>
-<section id="execution" class="level3"><h3 class="anchored" data-anchor-id="execution">Execution</h3>
+<section id="execution" class="level3">
+<h3 class="anchored" data-anchor-id="execution">Execution</h3>
 <p>Each package differs notably in the approach to generating a log file. The <code>logr</code> package adopts a method similar to SAS, where the log is manually constructed at intermediary steps within the R script. Conversely, the <code>logrx</code> package allows for the creation of a log file through a single command from the R terminal, offering added compatibility for command line submission. <code>whirl</code> also provides a single function to create log files, and it should be noted that the execution is done through <a href="https://quarto.org">Quarto</a>, which enables the HTML reports, but also make it more heavier on external dependencies.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><code>logr</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>logrx</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><code>whirl</code></a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href=""><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href=""><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href=""><code>whirl</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># file: script.R</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># file: script.R</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(logr)</span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
@@ -458,11 +634,11 @@ cookieconsent.run({
 <span id="cb1-18"><a href="#cb1-18"></a></span>
 <span id="cb1-19"><a href="#cb1-19"></a><span class="fu">log_print</span>(model)</span>
 <span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="fu">log_close</span>() <span class="co"># log file path: log/script.log</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="fu">log_close</span>() <span class="co"># log file path: log/script.log</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>=========================================================================</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>=========================================================================</span>
 <span id="cb2-2"><a href="#cb2-2"></a>Log Path: ./log/script.log</span>
 <span id="cb2-3"><a href="#cb2-3"></a>Working Directory: /Users/davidblair/My Drive/Appsilon/Work Projects/examples</span>
 <span id="cb2-4"><a href="#cb2-4"></a>User Name: davidblair</span>
@@ -506,20 +682,20 @@ cookieconsent.run({
 <span id="cb2-42"><a href="#cb2-42"></a>=========================================================================</span>
 <span id="cb2-43"><a href="#cb2-43"></a>Log End Time: 2024-04-08 13:25:53.286294</span>
 <span id="cb2-44"><a href="#cb2-44"></a>Log Elapsed Time: 0 00:00:00</span>
-<span id="cb2-45"><a href="#cb2-45"></a>=========================================================================</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-45"><a href="#cb2-45"></a>=========================================================================</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>From the R terminal:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>logrx<span class="sc">::</span><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>logrx<span class="sc">::</span><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>From the Command Line:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('script.R')"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('script.R')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-2"><a href="#cb5-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb5-3"><a href="#cb5-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-4"><a href="#cb5-4"></a>This log was generated using logrx 0.3.0</span>
@@ -702,13 +878,13 @@ cookieconsent.run({
 <span id="cb5-181"><a href="#cb5-181"></a>-                               Log Output File                                -</span>
 <span id="cb5-182"><a href="#cb5-182"></a>--------------------------------------------------------------------------------</span>
 <span id="cb5-183"><a href="#cb5-183"></a>Log name: script.log</span>
-<span id="cb5-184"><a href="#cb5-184"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-184"><a href="#cb5-184"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<p>Use <code><a href="https://novonordisk-opensource.github.io/whirl/reference/run.html">whirl::run()</a></code> to execute scripts and create logs:</p>
+<p>Use <code>whirl::run()</code> to execute scripts and create logs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"logging/script.R"</span>, <span class="at">summary_file =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"logging/script.R"</span>, <span class="at">summary_file =</span> <span class="cn">NULL</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ script.R: Completed succesfully. See log html.</code></pre>
 </div>
@@ -719,15 +895,19 @@ cookieconsent.run({
 </div>
 </div>
 </div>
-</section><section id="information-in-the-log" class="level3"><h3 class="anchored" data-anchor-id="information-in-the-log">Information in the Log</h3>
+</section>
+<section id="information-in-the-log" class="level3">
+<h3 class="anchored" data-anchor-id="information-in-the-log">Information in the Log</h3>
 <p>The <code>logrx</code> package offers more detailed output compared to <code>logr</code>, as outlined in the following table. A key distinction is that <code>logrx</code> automatically logs code output. In <code>logr</code>, the user has control over what does or does not get logged. The user can specify which variables, objects, or datasets to send to the log. If the ‘autolog’ feature is activated, output from dplyr and sassy functions are logged automatically.</p>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th></th>
 <th>logr</th>
 <th>logrx</th>
 <th>whirl</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>Log Path</td>
@@ -847,18 +1027,21 @@ cookieconsent.run({
 </table>
 <ul>
 <li>Only selected external software, such as Pandoc, Quarto, and Python versions.</li>
-</ul></section><section id="linting" class="level3"><h3 class="anchored" data-anchor-id="linting">Linting</h3>
+</ul>
+</section>
+<section id="linting" class="level3">
+<h3 class="anchored" data-anchor-id="linting">Linting</h3>
 <p>The <code>logrx</code> tool enables the inclusion of <code>lintR</code> output within log messages (line 146 - 165 below). To utilize this feature, configure the <code>log.rx.lint</code> global option with a selection of lint rules. A comprehensive list of available rules can be accessed <a href="https://lintr.r-lib.org/reference/linters.html">here</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">options</span>(<span class="at">log.rx.lint =</span> <span class="fu">list</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">options</span>(<span class="at">log.rx.lint =</span> <span class="fu">list</span>(</span>
 <span id="cb8-2"><a href="#cb8-2"></a>  lintr<span class="sc">::</span><span class="fu">line_length_linter</span>(<span class="dv">20</span>)</span>
 <span id="cb8-3"><a href="#cb8-3"></a>))</span>
 <span id="cb8-4"><a href="#cb8-4"></a></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="fu">library</span>(logrx)</span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-2"><a href="#cb9-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb9-3"><a href="#cb9-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-4"><a href="#cb9-4"></a>This log was generated using logrx 0.3.0</span>
@@ -1069,84 +1252,70 @@ cookieconsent.run({
 <span id="cb9-209"><a href="#cb9-209"></a>-                               Log Output File                                -</span>
 <span id="cb9-210"><a href="#cb9-210"></a>--------------------------------------------------------------------------------</span>
 <span id="cb9-211"><a href="#cb9-211"></a>Log name: script.log</span>
-<span id="cb9-212"><a href="#cb9-212"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-212"><a href="#cb9-212"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="global-options" class="level3"><h3 class="anchored" data-anchor-id="global-options">Global Options</h3>
+</section>
+<section id="global-options" class="level3">
+<h3 class="anchored" data-anchor-id="global-options">Global Options</h3>
 <p>We’ve previously discussed the global options in the <code>logrx</code> package that enable the inclusion of <code>lintr</code> output in the log. There are several key differences between the global options in <code>logrx</code> and <code>whirl</code>, and those in <code>logr</code>. The options in <code>logr</code> primarily focus on managing script output, whereas those in <code>logrx</code> and <code>whirl</code> influence the scope of information included, regardless of the script output.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist">
-<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>logr</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>logrx</code></a></li>
-<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false"><code>whirl</code></a></li>
-</ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href=""><code>logr</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href=""><code>logrx</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href=""><code>whirl</code></a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <ol type="1">
-<li>
-<code>logr.autolog</code>: Enables automatic logging for various <code>dplyr</code> and <code>tidyr</code> functions.</li>
-<li>
-<code>logr.compact</code>: Removes any blanks spaces between log entries.</li>
-<li>
-<code>logr.traceback</code>: Includes the full traceback for errors.</li>
-<li>
-<code>logr.warnings</code>: Retrieves warnings encountered during log file generation, used with <code>getOption</code>.</li>
-<li>
-<code>logr.on</code>: Controls whether the <code>logr</code> log is active.</li>
-<li>
-<code>logr.notes</code>: Includes notes within the log.</li>
+<li><code>logr.autolog</code>: Enables automatic logging for various <code>dplyr</code> and <code>tidyr</code> functions.</li>
+<li><code>logr.compact</code>: Removes any blanks spaces between log entries.</li>
+<li><code>logr.traceback</code>: Includes the full traceback for errors.</li>
+<li><code>logr.warnings</code>: Retrieves warnings encountered during log file generation, used with <code>getOption</code>.</li>
+<li><code>logr.on</code>: Controls whether the <code>logr</code> log is active.</li>
+<li><code>logr.notes</code>: Includes notes within the log.</li>
 </ol>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <ol type="1">
-<li>
-<code>log.rx</code>: A blank log environment for storing log elements during execution.</li>
-<li>
-<code>log.rx.exec.env</code>: The execution environment for program code.</li>
-<li>
-<code>log.rx.lint</code>: Contains <code>lintr</code> functions/rules for script analysis.</li>
-<li>
-<code>log.rx.approved</code>: Specifies the location of approved functions.</li>
+<li><code>log.rx</code>: A blank log environment for storing log elements during execution.</li>
+<li><code>log.rx.exec.env</code>: The execution environment for program code.</li>
+<li><code>log.rx.lint</code>: Contains <code>lintr</code> functions/rules for script analysis.</li>
+<li><code>log.rx.approved</code>: Specifies the location of approved functions.</li>
 </ol>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>The most important options to configure <code>whirl</code> is listed below:</p>
 <ol type="1">
-<li>
-<code>whirl.verbosity_level</code>: Controls the level of information displayed in the console.</li>
-<li>
-<code>whirl.n_workers</code>: How many parallel sessions can <code>whirl</code> use when running multiple scripts simultaneously.</li>
-<li>
-<code>whirl.track_files</code>: Should reading, writing, and deleting files be tracked? (Only possible on Linux)</li>
-<li>
-<code>whirl.check_renv</code>: Should the R environment compliance with your <code>renv</code> lockfile be be checked?</li>
+<li><code>whirl.verbosity_level</code>: Controls the level of information displayed in the console.</li>
+<li><code>whirl.n_workers</code>: How many parallel sessions can <code>whirl</code> use when running multiple scripts simultaneously.</li>
+<li><code>whirl.track_files</code>: Should reading, writing, and deleting files be tracked? (Only possible on Linux)</li>
+<li><code>whirl.check_renv</code>: Should the R environment compliance with your <code>renv</code> lockfile be be checked?</li>
 </ol>
-<p>Most are also available as direct arguments in <code><a href="https://novonordisk-opensource.github.io/whirl/reference/run.html">whirl::run()</a></code>. For the full list and more details see the <a href="https://novonordisk-opensource.github.io/whirl/reference/whirl-options.html">whirl-options</a> reference.</p>
+<p>Most are also available as direct arguments in <code>whirl::run()</code>. For the full list and more details see the <a href="https://novonordisk-opensource.github.io/whirl/reference/whirl-options.html">whirl-options</a> reference.</p>
 </div>
 </div>
 </div>
-</section><section id="approved-functions" class="level3"><h3 class="anchored" data-anchor-id="approved-functions">Approved Functions</h3>
+</section>
+<section id="approved-functions" class="level3">
+<h3 class="anchored" data-anchor-id="approved-functions">Approved Functions</h3>
 <p><code>logrx</code> features the ability to designate approved functions, highlighting any functions in the script not on this list within the log file. This enhances traceability of package and function use within a validated environment.</p>
 <p>To utilize this feature, begin by creating a list of approved functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>approved_pkgs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>approved_pkgs <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="at">base =</span> <span class="st">"mean"</span>,</span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="at">dplyr =</span> <span class="st">"All"</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, build the <code>approved_pkgs</code> list and save its contents to a file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(logrx)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">build_approved</span>(approved_pkgs, <span class="at">file =</span> <span class="st">"approved.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(logrx)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">build_approved</span>(approved_pkgs, <span class="at">file =</span> <span class="st">"approved.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Finally, assign the file to the global option <code>log.rx.approved</code>. This ensures the analysis is incorporated into the log (refer to lines 140 - 145 below):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">options</span>(<span class="at">log.rv.approved =</span> <span class="st">"approved.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">options</span>(<span class="at">log.rv.approved =</span> <span class="st">"approved.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell output-block">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>--------------------------------------------------------------------------------</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource t number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-2"><a href="#cb14-2"></a>-                                logrx Metadata                                -</span>
 <span id="cb14-3"><a href="#cb14-3"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-4"><a href="#cb14-4"></a>This log was generated using logrx 0.3.0</span>
@@ -1362,13 +1531,15 @@ cookieconsent.run({
 <span id="cb14-214"><a href="#cb14-214"></a>-                               Log Output File                                -</span>
 <span id="cb14-215"><a href="#cb14-215"></a>--------------------------------------------------------------------------------</span>
 <span id="cb14-216"><a href="#cb14-216"></a>Log name: script.log</span>
-<span id="cb14-217"><a href="#cb14-217"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-217"><a href="#cb14-217"></a>Log path: /Users/davidblair/My Drive/Appsilon/Work Projects/examples/logging</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section><section id="run-multiple-scripts" class="level3"><h3 class="anchored" data-anchor-id="run-multiple-scripts">Run multiple scripts</h3>
+</section>
+<section id="run-multiple-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="run-multiple-scripts">Run multiple scripts</h3>
 <p>A key functionality <code>whirl</code> is to support the execution of entire analysis projects. It is possible to define batches of scripts to run simultaneously, and the order in which the different steps should be executed.</p>
 <p>It is all controlled by a yaml configuration file (use <a href="https://novonordisk-opensource.github.io/whirl/reference/use_whirl.html"><code>whirl::use_whirl()</code></a> to get started) such as the one below:</p>
 <p><code>_whirl.yml</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">steps</span><span class="kw">:</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Initial step"</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"setup.R"</span></span>
@@ -1378,445 +1549,326 @@ cookieconsent.run({
 <span id="cb15-8"><a href="#cb15-8"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"prgB.R"</span></span>
 <span id="cb15-9"><a href="#cb15-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Run all programs with 2 prefix"</span></span>
 <span id="cb15-10"><a href="#cb15-10"></a><span class="at">    </span><span class="fu">paths</span><span class="kw">:</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2_*.R"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">"2_*.R"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here three steps are defined, where the first step is to run <code>setup.R</code>. After this we want to run <code>prgA.R</code> and <code>prgB.R</code> simultaneously, and after these two have finished we run all R scripts starting with <code>2_</code> (imagine they depend on previous output from e.g.&nbsp;<code>prgA.R</code>).</p>
 <p>To run all steps you just call <code>run()</code> with the configuration file as input:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"_whirl.yml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>whirl<span class="sc">::</span><span class="fu">run</span>(<span class="st">"_whirl.yml"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In this scenario it becomes relevant to check the summary log as well (defaults to <code>summary.html</code>), which have the execution status of each script, and a link to the individual logs.</p>
-</section><section id="summary" class="level3"><h3 class="anchored" data-anchor-id="summary">Summary</h3>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
 <p>The decision between using <code>logr</code>, <code>logrx</code>, or <code>whirl</code> hinges on specific needs. <code>logr</code> offers greater control over the output, at the expense of detailed environmental context. Conversely, <code>logrx</code> provides more comprehensive details and quicker log generation, along with better support for command line execution, but offers less control over the output. <code>whirl</code> creates detailed logs with similar information as <code>logrx</code>, but by also including the script and it’s printed outputs it allows the user to include any additional information in the log, or to use <code>run()</code> to create analysis reports directly that also includes relevant information on the execution environment. <code>whirl</code> also offers a framework for execution of a project consisting of multiple scripts.</p>
 
 
 <!-- -->
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-  const viewSource = window.document.getElementById('quarto-view-source') ||
-                     window.document.getElementById('quarto-code-tools-source');
-  if (viewSource) {
-    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-    viewSource.addEventListener("click", function(e) {
-      if (sourceUrl) {
-        // rstudio viewer pane
-        if (/\bcapabilities=\b/.test(window.location)) {
-          window.open(sourceUrl);
-        } else {
-          window.location.href = sourceUrl;
-        }
-      } else {
-        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-        modal.show();
-      }
-      return false;
-    });
-  }
-  function toggleCodeHandler(show) {
-    return function(e) {
-      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-      for (let i=0; i<detailsSrc.length; i++) {
-        const details = detailsSrc[i].parentElement;
-        if (show) {
-          details.open = true;
-        } else {
-          details.removeAttribute("open");
-        }
-      }
-      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-      const fromCls = show ? "hidden" : "unhidden";
-      const toCls = show ? "unhidden" : "hidden";
-      for (let i=0; i<cellCodeDivs.length; i++) {
-        const codeDiv = cellCodeDivs[i];
-        if (codeDiv.classList.contains(fromCls)) {
-          codeDiv.classList.remove(fromCls);
-          codeDiv.classList.add(toCls);
-        } 
-      }
-      return false;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  }
-  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-  if (hideAllCode) {
-    hideAllCode.addEventListener("click", toggleCodeHandler(false));
-  }
-  const showAllCode = window.document.getElementById("quarto-show-all-code");
-  if (showAllCode) {
-    showAllCode.addEventListener("click", toggleCodeHandler(true));
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
         }
-        return container.innerHTML
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1824,185 +1876,163 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script><nav class="page-navigation column-page-right"><div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
       <a href="../interactive/teal.html" class="pagination-link" aria-label="`teal` applications">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>teal</code> applications</span>
       </a>          
@@ -2013,7 +2043,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="an">title:</span><span class="co"> "The Difference Between `logr`, `logrx`, and `whirl`"</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a><span class="an">format:</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a><span class="co">  html:</span></span>
@@ -2021,10 +2051,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-6"><a href="#cb17-6"></a><span class="co">---</span></span>
 <span id="cb17-7"><a href="#cb17-7"></a></span>
 <span id="cb17-8"><a href="#cb17-8"></a><span class="in">```{css, echo=FALSE}</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="in">.output-block {</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="in">  max-height: 400px;</span></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="in">  overflow-y: scroll;</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="in">}</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="op">.</span><span class="fu">output</span><span class="op">-</span>block <span class="op">{</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>  max<span class="op">-</span>height<span class="op">:</span> <span class="dv">400</span>px<span class="op">;</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>  overflow<span class="op">-</span>y<span class="op">:</span> scroll<span class="op">;</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="op">}</span></span>
 <span id="cb17-13"><a href="#cb17-13"></a><span class="in">```</span></span>
 <span id="cb17-14"><a href="#cb17-14"></a></span>
 <span id="cb17-15"><a href="#cb17-15"></a>The <span class="co">[</span><span class="ot">`logr`</span><span class="co">](https://github.com/dbosak01/logr/)</span> package for R aims to provide a straightforward logging system tailored for everyday users, such as statisticians and educators, emphasizing simplicity in recording program execution. In contrast, <span class="co">[</span><span class="ot">`logrx`</span><span class="co">](https://github.com/pharmaverse/logrx/)</span> offers an advanced logging mechanism designed specifically for clinical reporting, featuring easy traceability and reproducibility of R script executions with capabilities suited for more technical users.</span>
@@ -2041,31 +2071,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-26"><a href="#cb17-26"></a><span class="fu">## `logr`</span></span>
 <span id="cb17-27"><a href="#cb17-27"></a></span>
 <span id="cb17-28"><a href="#cb17-28"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb17-29"><a href="#cb17-29"></a><span class="in">#| class: output-block</span></span>
-<span id="cb17-30"><a href="#cb17-30"></a><span class="in"># file: script.R</span></span>
-<span id="cb17-31"><a href="#cb17-31"></a><span class="in">library(dplyr)</span></span>
-<span id="cb17-32"><a href="#cb17-32"></a><span class="in">library(logr)</span></span>
+<span id="cb17-29"><a href="#cb17-29"></a><span class="co">#| class: output-block</span></span>
+<span id="cb17-30"><a href="#cb17-30"></a><span class="co"># file: script.R</span></span>
+<span id="cb17-31"><a href="#cb17-31"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-32"><a href="#cb17-32"></a><span class="fu">library</span>(logr)</span>
 <span id="cb17-33"><a href="#cb17-33"></a></span>
-<span id="cb17-34"><a href="#cb17-34"></a><span class="in">file_path &lt;- "script.log"</span></span>
-<span id="cb17-35"><a href="#cb17-35"></a><span class="in">log_file &lt;- log_open(file_path)</span></span>
+<span id="cb17-34"><a href="#cb17-34"></a>file_path <span class="ot">&lt;-</span> <span class="st">"script.log"</span></span>
+<span id="cb17-35"><a href="#cb17-35"></a>log_file <span class="ot">&lt;-</span> <span class="fu">log_open</span>(file_path)</span>
 <span id="cb17-36"><a href="#cb17-36"></a></span>
-<span id="cb17-37"><a href="#cb17-37"></a><span class="in">log_print("Analyzing Fuel Efficiency Trends in Cars")</span></span>
+<span id="cb17-37"><a href="#cb17-37"></a><span class="fu">log_print</span>(<span class="st">"Analyzing Fuel Efficiency Trends in Cars"</span>)</span>
 <span id="cb17-38"><a href="#cb17-38"></a></span>
-<span id="cb17-39"><a href="#cb17-39"></a><span class="in">average_mpg &lt;- mtcars %&gt;%</span></span>
-<span id="cb17-40"><a href="#cb17-40"></a><span class="in">  group_by(cyl) %&gt;%</span></span>
-<span id="cb17-41"><a href="#cb17-41"></a><span class="in">  summarise(average_mpg = mean(mpg, na.rm = TRUE))</span></span>
+<span id="cb17-39"><a href="#cb17-39"></a>average_mpg <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb17-40"><a href="#cb17-40"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb17-41"><a href="#cb17-41"></a>  <span class="fu">summarise</span>(<span class="at">average_mpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb17-42"><a href="#cb17-42"></a></span>
-<span id="cb17-43"><a href="#cb17-43"></a><span class="in">log_print(average_mpg)</span></span>
+<span id="cb17-43"><a href="#cb17-43"></a><span class="fu">log_print</span>(average_mpg)</span>
 <span id="cb17-44"><a href="#cb17-44"></a></span>
-<span id="cb17-45"><a href="#cb17-45"></a><span class="in">model &lt;- lm(mpg ~ wt, data = mtcars)</span></span>
-<span id="cb17-46"><a href="#cb17-46"></a><span class="in">summary(model)</span></span>
+<span id="cb17-45"><a href="#cb17-45"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars)</span>
+<span id="cb17-46"><a href="#cb17-46"></a><span class="fu">summary</span>(model)</span>
 <span id="cb17-47"><a href="#cb17-47"></a></span>
-<span id="cb17-48"><a href="#cb17-48"></a><span class="in">log_print(model)</span></span>
+<span id="cb17-48"><a href="#cb17-48"></a><span class="fu">log_print</span>(model)</span>
 <span id="cb17-49"><a href="#cb17-49"></a></span>
-<span id="cb17-50"><a href="#cb17-50"></a><span class="in">log_close() # log file path: log/script.log</span></span>
+<span id="cb17-50"><a href="#cb17-50"></a><span class="fu">log_close</span>() <span class="co"># log file path: log/script.log</span></span>
 <span id="cb17-51"><a href="#cb17-51"></a><span class="in">```</span></span>
 <span id="cb17-52"><a href="#cb17-52"></a></span>
-<span id="cb17-53"><a href="#cb17-53"></a>&lt;br&gt;</span>
+<span id="cb17-53"><a href="#cb17-53"></a><span class="dt">&lt;</span><span class="kw">br</span><span class="dt">&gt;</span></span>
 <span id="cb17-54"><a href="#cb17-54"></a></span>
 <span id="cb17-57"><a href="#cb17-57"></a><span class="in">```{t}</span></span>
 <span id="cb17-58"><a href="#cb17-58"></a><span class="in">#| class: output-block</span></span>
@@ -2120,12 +2150,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-107"><a href="#cb17-107"></a></span>
 <span id="cb17-108"><a href="#cb17-108"></a>From the R terminal:</span>
 <span id="cb17-109"><a href="#cb17-109"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb17-110"><a href="#cb17-110"></a><span class="in">logrx::axecute("script.R")</span></span>
+<span id="cb17-110"><a href="#cb17-110"></a>logrx<span class="sc">::</span><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span>
 <span id="cb17-111"><a href="#cb17-111"></a><span class="in">```</span></span>
 <span id="cb17-112"><a href="#cb17-112"></a></span>
 <span id="cb17-113"><a href="#cb17-113"></a>From the Command Line:</span>
 <span id="cb17-114"><a href="#cb17-114"></a><span class="in">```{bash, eval=FALSE}</span></span>
-<span id="cb17-115"><a href="#cb17-115"></a><span class="in">Rscript -e "logrx::axecute('script.R')"</span></span>
+<span id="cb17-115"><a href="#cb17-115"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"logrx::axecute('script.R')"</span></span>
 <span id="cb17-116"><a href="#cb17-116"></a><span class="in">```</span></span>
 <span id="cb17-117"><a href="#cb17-117"></a></span>
 <span id="cb17-118"><a href="#cb17-118"></a></span>
@@ -2348,27 +2378,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-341"><a href="#cb17-341"></a></span>
 <span id="cb17-342"><a href="#cb17-342"></a>The <span class="in">`logrx`</span> package offers more detailed output compared to <span class="in">`logr`</span>, as outlined in the following table. A key distinction is that <span class="in">`logrx`</span> automatically logs code output. In <span class="in">`logr`</span>, the user has control over what does or does not get logged. The user can specify which variables, objects, or datasets to send to the log. If the 'autolog' feature is activated, output from dplyr and sassy functions are logged automatically.</span>
 <span id="cb17-343"><a href="#cb17-343"></a></span>
-<span id="cb17-344"><a href="#cb17-344"></a>|                      | logr | logrx | whirl |</span>
-<span id="cb17-345"><a href="#cb17-345"></a>|----------------------|------|-------|-------|</span>
-<span id="cb17-346"><a href="#cb17-346"></a>| Log Path             | ✔    | ✔     | ✔     |</span>
-<span id="cb17-347"><a href="#cb17-347"></a>| Working Directory    | ✔    | ✔     |       |</span>
-<span id="cb17-348"><a href="#cb17-348"></a>| User Name            | ✔    | ✔     |       |</span>
-<span id="cb17-349"><a href="#cb17-349"></a>| R Version            | ✔    | ✔     | ✔     |</span>
-<span id="cb17-350"><a href="#cb17-350"></a>| Machine              | ✔    | ✔     | ✔     |</span>
-<span id="cb17-351"><a href="#cb17-351"></a>| Operating System     | ✔    | ✔     | ✔     |</span>
-<span id="cb17-352"><a href="#cb17-352"></a>| Base Packages        | ✔    | ✔     |       |</span>
-<span id="cb17-353"><a href="#cb17-353"></a>| Other Packages       | ✔    | ✔     | ✔     |</span>
-<span id="cb17-354"><a href="#cb17-354"></a>| Log Start Time       | ✔    | ✔     |       |</span>
-<span id="cb17-355"><a href="#cb17-355"></a>| Log End Time.        | ✔    | ✔     | ✔     |</span>
-<span id="cb17-356"><a href="#cb17-356"></a>| Elapsed Time         | ✔    | ✔     |       |</span>
-<span id="cb17-357"><a href="#cb17-357"></a>| Warnings and Errors  | ✔    | ✔     | ✔     |</span>
-<span id="cb17-358"><a href="#cb17-358"></a>| File Hash            |      | ✔     |       |</span>
-<span id="cb17-359"><a href="#cb17-359"></a>| Package Dependencies |      | ✔     | ✔     |</span>
-<span id="cb17-360"><a href="#cb17-360"></a>| External Software    |      | ✔     | (✔)*  |</span>
-<span id="cb17-361"><a href="#cb17-361"></a>| Masked Functions     |      | ✔     |       |</span>
-<span id="cb17-362"><a href="#cb17-362"></a>| Renv status          |      |       | ✔     |</span>
-<span id="cb17-363"><a href="#cb17-363"></a>| Summary status       |      |       | ✔     |</span>
-<span id="cb17-364"><a href="#cb17-364"></a>| Input/output files   |      |       | ✔     |</span>
+<span id="cb17-344"><a href="#cb17-344"></a><span class="pp">|</span>                      <span class="pp">|</span> logr <span class="pp">|</span> logrx <span class="pp">|</span> whirl <span class="pp">|</span></span>
+<span id="cb17-345"><a href="#cb17-345"></a><span class="pp">|----------------------|------|-------|-------|</span></span>
+<span id="cb17-346"><a href="#cb17-346"></a><span class="pp">|</span> Log Path             <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-347"><a href="#cb17-347"></a><span class="pp">|</span> Working Directory    <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-348"><a href="#cb17-348"></a><span class="pp">|</span> User Name            <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-349"><a href="#cb17-349"></a><span class="pp">|</span> R Version            <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-350"><a href="#cb17-350"></a><span class="pp">|</span> Machine              <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-351"><a href="#cb17-351"></a><span class="pp">|</span> Operating System     <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-352"><a href="#cb17-352"></a><span class="pp">|</span> Base Packages        <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-353"><a href="#cb17-353"></a><span class="pp">|</span> Other Packages       <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-354"><a href="#cb17-354"></a><span class="pp">|</span> Log Start Time       <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-355"><a href="#cb17-355"></a><span class="pp">|</span> Log End Time.        <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-356"><a href="#cb17-356"></a><span class="pp">|</span> Elapsed Time         <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-357"><a href="#cb17-357"></a><span class="pp">|</span> Warnings and Errors  <span class="pp">|</span> ✔    <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-358"><a href="#cb17-358"></a><span class="pp">|</span> File Hash            <span class="pp">|</span>      <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-359"><a href="#cb17-359"></a><span class="pp">|</span> Package Dependencies <span class="pp">|</span>      <span class="pp">|</span> ✔     <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-360"><a href="#cb17-360"></a><span class="pp">|</span> External Software    <span class="pp">|</span>      <span class="pp">|</span> ✔     <span class="pp">|</span> (✔)*  <span class="pp">|</span></span>
+<span id="cb17-361"><a href="#cb17-361"></a><span class="pp">|</span> Masked Functions     <span class="pp">|</span>      <span class="pp">|</span> ✔     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb17-362"><a href="#cb17-362"></a><span class="pp">|</span> Renv status          <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-363"><a href="#cb17-363"></a><span class="pp">|</span> Summary status       <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span> ✔     <span class="pp">|</span></span>
+<span id="cb17-364"><a href="#cb17-364"></a><span class="pp">|</span> Input/output files   <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span> ✔     <span class="pp">|</span></span>
 <span id="cb17-365"><a href="#cb17-365"></a></span>
 <span id="cb17-366"><a href="#cb17-366"></a><span class="ss">* </span>Only selected external software, such as Pandoc, Quarto, and Python versions.</span>
 <span id="cb17-367"><a href="#cb17-367"></a></span>
@@ -2377,12 +2407,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-370"><a href="#cb17-370"></a>The <span class="in">`logrx`</span> tool enables the inclusion of <span class="in">`lintR`</span> output within log messages (line 146 - 165 below). To utilize this feature, configure the <span class="in">`log.rx.lint`</span> global option with a selection of lint rules. A comprehensive list of available rules can be accessed <span class="co">[</span><span class="ot">here</span><span class="co">](https://lintr.r-lib.org/reference/linters.html)</span>.</span>
 <span id="cb17-371"><a href="#cb17-371"></a></span>
 <span id="cb17-372"><a href="#cb17-372"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb17-373"><a href="#cb17-373"></a><span class="in">options(log.rx.lint = list(</span></span>
-<span id="cb17-374"><a href="#cb17-374"></a><span class="in">  lintr::line_length_linter(20)</span></span>
-<span id="cb17-375"><a href="#cb17-375"></a><span class="in">))</span></span>
+<span id="cb17-373"><a href="#cb17-373"></a><span class="fu">options</span>(<span class="at">log.rx.lint =</span> <span class="fu">list</span>(</span>
+<span id="cb17-374"><a href="#cb17-374"></a>  lintr<span class="sc">::</span><span class="fu">line_length_linter</span>(<span class="dv">20</span>)</span>
+<span id="cb17-375"><a href="#cb17-375"></a>))</span>
 <span id="cb17-376"><a href="#cb17-376"></a></span>
-<span id="cb17-377"><a href="#cb17-377"></a><span class="in">library(logrx)</span></span>
-<span id="cb17-378"><a href="#cb17-378"></a><span class="in">axecute("script.R")</span></span>
+<span id="cb17-377"><a href="#cb17-377"></a><span class="fu">library</span>(logrx)</span>
+<span id="cb17-378"><a href="#cb17-378"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span>
 <span id="cb17-379"><a href="#cb17-379"></a><span class="in">```</span></span>
 <span id="cb17-380"><a href="#cb17-380"></a></span>
 <span id="cb17-381"><a href="#cb17-381"></a></span>
@@ -2668,7 +2698,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-669"><a href="#cb17-669"></a></span>
 <span id="cb17-670"><a href="#cb17-670"></a></span>
 <span id="cb17-671"><a href="#cb17-671"></a><span class="in">```{r, eval=FALSE}</span></span>
-<span id="cb17-672"><a href="#cb17-672"></a><span class="in">axecute("script.R")</span></span>
+<span id="cb17-672"><a href="#cb17-672"></a><span class="fu">axecute</span>(<span class="st">"script.R"</span>)</span>
 <span id="cb17-673"><a href="#cb17-673"></a><span class="in">```</span></span>
 <span id="cb17-674"><a href="#cb17-674"></a></span>
 <span id="cb17-675"><a href="#cb17-675"></a></span>
@@ -2937,10 +2967,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb17-942"><a href="#cb17-942"></a><span class="in">`whirl`</span> creates detailed logs with similar information as <span class="in">`logrx`</span>, but by also including the script and it's printed outputs it allows the user to</span>
 <span id="cb17-943"><a href="#cb17-943"></a>include any additional information in the log, or to use <span class="in">`run()`</span> to create analysis reports directly that also includes relevant information on the execution environment.</span>
 <span id="cb17-944"><a href="#cb17-944"></a><span class="in">`whirl`</span> also offers a framework for execution of a project consisting of multiple scripts. </span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -2952,6 +2983,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="../site_libs/quarto-html/zenscroll-min.js"></script>
