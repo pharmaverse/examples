@@ -46,7 +46,8 @@ pc_dates <- pc %>%
   derive_vars_dtm(
     new_vars_prefix = "A",
     dtc = PCDTC,
-    time_imputation = "00:00:00"
+    time_imputation = "00:00:00",
+    ignore_seconds_flag = FALSE
   ) %>%
   # Derive dates and times from date/times
   derive_vars_dtm_to_dt(exprs(ADTM)) %>%
@@ -463,3 +464,4 @@ adpc_xpt <- adpc %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adpc.xpt")) # Write xpt v5 transport file
+
