@@ -671,18 +671,19 @@ cookieconsent.run({
 <span id="cb4-13"><a href="#cb4-13"></a>  <span class="fu">derive_vars_dtm</span>(</span>
 <span id="cb4-14"><a href="#cb4-14"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
 <span id="cb4-15"><a href="#cb4-15"></a>    <span class="at">dtc =</span> PCDTC,</span>
-<span id="cb4-16"><a href="#cb4-16"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>  <span class="co"># Derive dates and times from date/times</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-24"><a href="#cb4-24"></a>    <span class="at">EVID =</span> <span class="dv">0</span>,</span>
-<span id="cb4-25"><a href="#cb4-25"></a>    <span class="at">DRUG =</span> PCTEST,</span>
-<span id="cb4-26"><a href="#cb4-26"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
-<span id="cb4-27"><a href="#cb4-27"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="at">ignore_seconds_flag =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="co"># Derive dates and times from date/times</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="at">EVID =</span> <span class="dv">0</span>,</span>
+<span id="cb4-26"><a href="#cb4-26"></a>    <span class="at">DRUG =</span> PCTEST,</span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
+<span id="cb4-28"><a href="#cb4-28"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>The default value of `ignore_seconds_flag` will change to "TRUE" in admiral
 1.4.0.</code></pre>
@@ -691,8 +692,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-4a682dcdc8184729dbf0" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-4a682dcdc8184729dbf0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015"],"PCTEST":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"ADTM":["2014-01-01T23:30:00Z","2014-01-02T00:05:00Z","2014-01-02T00:30:00Z","2014-01-02T01:00:00Z","2014-01-02T01:30:00Z","2014-01-02T02:00:00Z","2014-01-02T04:00:00Z","2014-01-02T06:00:00Z","2014-01-02T08:00:00Z","2014-01-02T12:00:00Z"],"VISIT":["BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PCTEST","name":"PCTEST","type":"character"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7d80eac0eee0443f42eb93c6d0e92bc7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-9e2d5eba833ff00b3b70" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-9e2d5eba833ff00b3b70">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015"],"PCTEST":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"ADTM":["2014-01-01T23:30:00Z","2014-01-02T00:05:00Z","2014-01-02T00:30:00Z","2014-01-02T01:00:00Z","2014-01-02T01:30:00Z","2014-01-02T02:00:00Z","2014-01-02T04:00:00Z","2014-01-02T06:00:00Z","2014-01-02T08:00:00Z","2014-01-02T12:00:00Z"],"VISIT":["BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE","BASELINE"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PCTEST","name":"PCTEST","type":"character"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"7d80eac0eee0443f42eb93c6d0e92bc7"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -780,8 +781,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-9b4ed98fbe9eba53c022" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9b4ed98fbe9eba53c022">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DRUG":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"EXDOSFRQ":["ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE"],"ASTDT":["2013-07-19","2013-07-20","2013-07-21","2013-07-22","2013-07-23","2013-07-24","2013-07-25","2013-07-26","2013-07-27","2013-07-28"],"AVISIT":["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7","Day 8","Day 9","Day 10"],"NFRLT":[0,24,48,72,96,120,144,168,192,216]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DRUG","name":"DRUG","type":"character"},{"id":"EXDOSFRQ","name":"EXDOSFRQ","type":"character"},{"id":"ASTDT","name":"ASTDT","type":"Date"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"1a8c9d47b88f25e191d11abaa1e9d428"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-4e0f7a9056972e1f0948" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-4e0f7a9056972e1f0948">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DRUG":["XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE","XANOMELINE"],"EXDOSFRQ":["ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE","ONCE"],"ASTDT":["2013-07-19","2013-07-20","2013-07-21","2013-07-22","2013-07-23","2013-07-24","2013-07-25","2013-07-26","2013-07-27","2013-07-28"],"AVISIT":["Day 1","Day 2","Day 3","Day 4","Day 5","Day 6","Day 7","Day 8","Day 9","Day 10"],"NFRLT":[0,24,48,72,96,120,144,168,192,216]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DRUG","name":"DRUG","type":"character"},{"id":"EXDOSFRQ","name":"EXDOSFRQ","type":"character"},{"id":"ASTDT","name":"ASTDT","type":"Date"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"1a8c9d47b88f25e191d11abaa1e9d428"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -810,8 +811,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-97a9db143e1fcdc7626f" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-97a9db143e1fcdc7626f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"FANLDTM":["2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"ADTM":["2013-07-18T23:30:00Z","2013-07-19T00:05:00Z","2013-07-19T00:30:00Z","2013-07-19T01:00:00Z","2013-07-19T01:30:00Z","2013-07-19T02:00:00Z","2013-07-19T04:00:00Z","2013-07-19T06:00:00Z","2013-07-19T08:00:00Z","2013-07-19T12:00:00Z"],"AVISITN":[1,1,1,1,1,1,1,1,1,1],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"FANLDTM","name":"FANLDTM","type":"Date"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"AVISITN","name":"AVISITN","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"0d12799799be1fb93fdea63f112e449d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-37ec6683500c37a15d5d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-37ec6683500c37a15d5d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"FANLDTM":["2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z","2013-07-19T00:00:00Z"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"ADTM":["2013-07-18T23:30:00Z","2013-07-19T00:05:00Z","2013-07-19T00:30:00Z","2013-07-19T01:00:00Z","2013-07-19T01:30:00Z","2013-07-19T02:00:00Z","2013-07-19T04:00:00Z","2013-07-19T06:00:00Z","2013-07-19T08:00:00Z","2013-07-19T12:00:00Z"],"AVISITN":[1,1,1,1,1,1,1,1,1,1],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"FANLDTM","name":"FANLDTM","type":"Date"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"ADTM","name":"ADTM","type":"Date"},{"id":"AVISITN","name":"AVISITN","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"0d12799799be1fb93fdea63f112e449d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -889,8 +890,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-39099ba5d11309233072" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-39099ba5d11309233072">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT_prev":["NA",0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT_prev","name":"NFRLT_prev","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"829bc39c3fdd7089ca3d5cd9bdbcf076"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-b6829eafdbfe6f28eb70" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b6829eafdbfe6f28eb70">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0.08,0.5,1,1.5,2,4,6,8,12],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","8h Post-dose","12h Post-dose"],"NFRLT_prev":["NA",0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"},{"id":"NFRLT_prev","name":"NFRLT_prev","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"829bc39c3fdd7089ca3d5cd9bdbcf076"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -977,8 +978,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-872e5ce07f444fb7f749" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-872e5ce07f444fb7f749">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose",null,"5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","0-6h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3501e1fb70303fad35e7c76488077a28"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-3ae88bb43b06c2a88a7e" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3ae88bb43b06c2a88a7e">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,6,3],"AVISIT":["Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1","Day 1"],"PCTPT":["Pre-dose",null,"5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","6h Post-dose","0-6h Post-dose"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AVISIT","name":"AVISIT","type":"character"},{"id":"PCTPT","name":"PCTPT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"3501e1fb70303fad35e7c76488077a28"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1078,8 +1079,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-f0fd10ba2b5ab9262b13" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f0fd10ba2b5ab9262b13">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1033","01-701-1033","01-701-1034","01-701-1034","01-701-1097","01-701-1097","01-701-1111","01-701-1111"],"DTYPE":["COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY"],"BASETYPE":["Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline"],"ATPT":["Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose"],"NFRLT":[24,48,24,48,24,48,24,48,24,48],"NRRLT":[0,0,0,0,0,0,0,0,0,0],"AFRLT":[24,48,24,48,24,48,24,48,24,48],"ARRLT":[0,0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"431852373cb20ca810176b4add98f60b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-18648949a1c8013fb2af" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-18648949a1c8013fb2af">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1033","01-701-1033","01-701-1034","01-701-1034","01-701-1097","01-701-1097","01-701-1111","01-701-1111"],"DTYPE":["COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY","COPY"],"BASETYPE":["Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline","Day 2 Baseline","Day 3 Baseline"],"ATPT":["Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose","Pre-dose"],"NFRLT":[24,48,24,48,24,48,24,48,24,48],"NRRLT":[0,0,0,0,0,0,0,0,0,0],"AFRLT":[24,48,24,48,24,48,24,48,24,48],"ARRLT":[0,0,0,0,0,0,0,0,0,0]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"431852373cb20ca810176b4add98f60b"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1099,8 +1100,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e995c9a2ad4cab354b2c" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e995c9a2ad4cab354b2c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DTYPE":[null,null,null,null,null,null,null,null,null,null],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"AFRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6],"ARRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"e0346e8c37687b52a531e1c551b74c31"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0544b38a959ecf84eed1" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0544b38a959ecf84eed1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"DTYPE":[null,null,null,null,null,null,null,null,null,null],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"NFRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"NRRLT":[0,0,0.08,0.5,1,1.5,2,4,3,6],"AFRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6],"ARRLT":[-0.5,0,0.0833333333333333,0.5,1,1.5,2,4,6,6]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"DTYPE","name":"DTYPE","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"NFRLT","name":"NFRLT","type":"numeric"},{"id":"NRRLT","name":"NRRLT","type":"numeric"},{"id":"AFRLT","name":"AFRLT","type":"numeric"},{"id":"ARRLT","name":"ARRLT","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"e0346e8c37687b52a531e1c551b74c31"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1166,8 +1167,8 @@ cookieconsent.run({
 <div class="cell">
 <div class="cell-output-display">
 <h1 style="color:#000;background:#FFFFFF;text-align:left;font-size:16px;font-style:normal;font-weight:bold;text-decoration:;letter-spacing:px;word-spacing:px;text-transform:;text-shadow:;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px">Sample of Data</h1>
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e71b8921ab6ab1f3b4f0" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e71b8921ab6ab1f3b4f0">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"HTBL":[177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8],"HTBLU":["cm","cm","cm","cm","cm","cm","cm","cm","cm","cm"],"WTBL":[99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34],"WTBLU":["kg","kg","kg","kg","kg","kg","kg","kg","kg","kg"],"BMIBL":[31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012],"BMIBLU":["kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2"],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"AVAL":[0,54,0.101566224882241,0.546901773708848,0.925465387145289,1.18750587834024,1.36888944661923,1.68314757616444,24.9423721084785,1.75529231526602]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"HTBL","name":"HTBL","type":"numeric"},{"id":"HTBLU","name":"HTBLU","type":"character"},{"id":"WTBL","name":"WTBL","type":"numeric"},{"id":"WTBLU","name":"WTBLU","type":"character"},{"id":"BMIBL","name":"BMIBL","type":"numeric"},{"id":"BMIBLU","name":"BMIBLU","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"252b014b619b307bb602891bfafff61d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-870836ec12f154b258f4" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-870836ec12f154b258f4">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028","01-701-1028"],"HTBL":[177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8,177.8],"HTBLU":["cm","cm","cm","cm","cm","cm","cm","cm","cm","cm"],"WTBL":[99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34,99.34],"WTBLU":["kg","kg","kg","kg","kg","kg","kg","kg","kg","kg"],"BMIBL":[31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012,31.4239403989012],"BMIBLU":["kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2","kg/m^2"],"BASETYPE":["Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline","Day 1 Baseline"],"ATPT":["Pre-dose","Dose","5 Min Post-dose","30 Min Post-dose","1h Post-dose","1.5h Post-dose","2h Post-dose","4h Post-dose","0-6h Post-dose","6h Post-dose"],"AVAL":[0,54,0.101566224882241,0.546901773708848,0.925465387145289,1.18750587834024,1.36888944661923,1.68314757616444,24.9423721084785,1.75529231526602]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"HTBL","name":"HTBL","type":"numeric"},{"id":"HTBLU","name":"HTBLU","type":"character"},{"id":"WTBL","name":"WTBL","type":"numeric"},{"id":"WTBLU","name":"WTBLU","type":"character"},{"id":"BMIBL","name":"BMIBL","type":"numeric"},{"id":"BMIBLU","name":"BMIBLU","type":"character"},{"id":"BASETYPE","name":"BASETYPE","type":"character"},{"id":"ATPT","name":"ATPT","type":"character"},{"id":"AVAL","name":"AVAL","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"252b014b619b307bb602891bfafff61d"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1789,573 +1790,574 @@ cookieconsent.run({
 <span id="cb22-95"><a href="#cb22-95"></a>  <span class="fu">derive_vars_dtm</span>(</span>
 <span id="cb22-96"><a href="#cb22-96"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
 <span id="cb22-97"><a href="#cb22-97"></a>    <span class="at">dtc =</span> PCDTC,</span>
-<span id="cb22-98"><a href="#cb22-98"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
-<span id="cb22-99"><a href="#cb22-99"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-100"><a href="#cb22-100"></a>  <span class="co"># Derive dates and times from date/times</span></span>
-<span id="cb22-101"><a href="#cb22-101"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-102"><a href="#cb22-102"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-103"><a href="#cb22-103"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-104"><a href="#cb22-104"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
-<span id="cb22-105"><a href="#cb22-105"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-106"><a href="#cb22-106"></a>    <span class="at">EVID =</span> <span class="dv">0</span>,</span>
-<span id="cb22-107"><a href="#cb22-107"></a>    <span class="at">DRUG =</span> PCTEST,</span>
-<span id="cb22-108"><a href="#cb22-108"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
-<span id="cb22-109"><a href="#cb22-109"></a>  )</span>
-<span id="cb22-110"><a href="#cb22-110"></a><span class="in">```</span></span>
-<span id="cb22-111"><a href="#cb22-111"></a></span>
-<span id="cb22-112"><a href="#cb22-112"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-113"><a href="#cb22-113"></a><span class="fu">print_df</span>(pc_dates <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))</span>
-<span id="cb22-114"><a href="#cb22-114"></a><span class="in">```</span></span>
-<span id="cb22-115"><a href="#cb22-115"></a></span>
-<span id="cb22-116"><a href="#cb22-116"></a><span class="fu">### Get Dosing Information</span></span>
-<span id="cb22-117"><a href="#cb22-117"></a></span>
-<span id="cb22-118"><a href="#cb22-118"></a>Here we also create nominal time from first dose <span class="in">`NFRLT`</span> for <span class="in">`EX`</span> data based on <span class="in">`VISITDY`</span>.</span>
-<span id="cb22-119"><a href="#cb22-119"></a></span>
-<span id="cb22-122"><a href="#cb22-122"></a><span class="in">```{r}</span></span>
-<span id="cb22-123"><a href="#cb22-123"></a><span class="co">#| label: Dosing</span></span>
-<span id="cb22-124"><a href="#cb22-124"></a></span>
-<span id="cb22-125"><a href="#cb22-125"></a>ex_dates <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
-<span id="cb22-126"><a href="#cb22-126"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb22-127"><a href="#cb22-127"></a>    <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb22-128"><a href="#cb22-128"></a>    <span class="at">new_vars =</span> adsl_vars,</span>
-<span id="cb22-129"><a href="#cb22-129"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb22-130"><a href="#cb22-130"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-131"><a href="#cb22-131"></a>  <span class="co"># Keep records with nonzero dose</span></span>
-<span id="cb22-132"><a href="#cb22-132"></a>  <span class="fu">filter</span>(EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-133"><a href="#cb22-133"></a>  <span class="co"># Add time and set missing end date to start date</span></span>
-<span id="cb22-134"><a href="#cb22-134"></a>  <span class="co"># Impute missing time to 00:00:00</span></span>
-<span id="cb22-135"><a href="#cb22-135"></a>  <span class="co"># Note all times are missing for dosing records in this example data</span></span>
-<span id="cb22-136"><a href="#cb22-136"></a>  <span class="co"># Derive Analysis Start and End Dates</span></span>
-<span id="cb22-137"><a href="#cb22-137"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb22-138"><a href="#cb22-138"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"AST"</span>,</span>
-<span id="cb22-139"><a href="#cb22-139"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
-<span id="cb22-140"><a href="#cb22-140"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
-<span id="cb22-141"><a href="#cb22-141"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-142"><a href="#cb22-142"></a>  <span class="fu">derive_vars_dtm</span>(</span>
-<span id="cb22-143"><a href="#cb22-143"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"AEN"</span>,</span>
-<span id="cb22-144"><a href="#cb22-144"></a>    <span class="at">dtc =</span> EXENDTC,</span>
-<span id="cb22-145"><a href="#cb22-145"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
-<span id="cb22-146"><a href="#cb22-146"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-147"><a href="#cb22-147"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
-<span id="cb22-148"><a href="#cb22-148"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-149"><a href="#cb22-149"></a>    <span class="at">EVID =</span> <span class="dv">1</span>,</span>
-<span id="cb22-150"><a href="#cb22-150"></a>    <span class="at">NFRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-151"><a href="#cb22-151"></a>      VISITDY <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-152"><a href="#cb22-152"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">24</span> <span class="sc">*</span> VISITDY</span>
-<span id="cb22-153"><a href="#cb22-153"></a>    )</span>
-<span id="cb22-154"><a href="#cb22-154"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-155"><a href="#cb22-155"></a>  <span class="co"># Set missing end dates to start date</span></span>
-<span id="cb22-156"><a href="#cb22-156"></a>  <span class="fu">mutate</span>(<span class="at">AENDTM =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-157"><a href="#cb22-157"></a>    <span class="fu">is.na</span>(AENDTM) <span class="sc">~</span> ASTDTM,</span>
-<span id="cb22-158"><a href="#cb22-158"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AENDTM</span>
-<span id="cb22-159"><a href="#cb22-159"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb22-160"><a href="#cb22-160"></a>  <span class="co"># Derive dates from date/times</span></span>
-<span id="cb22-161"><a href="#cb22-161"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-162"><a href="#cb22-162"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span>
-<span id="cb22-163"><a href="#cb22-163"></a><span class="in">```</span></span>
-<span id="cb22-164"><a href="#cb22-164"></a></span>
-<span id="cb22-165"><a href="#cb22-165"></a><span class="fu">### Expand Dosing Records</span></span>
-<span id="cb22-166"><a href="#cb22-166"></a></span>
-<span id="cb22-167"><a href="#cb22-167"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <span class="in">`admiral::create_single_dose_dataset()`</span>.</span>
-<span id="cb22-168"><a href="#cb22-168"></a></span>
-<span id="cb22-171"><a href="#cb22-171"></a><span class="in">```{r}</span></span>
-<span id="cb22-172"><a href="#cb22-172"></a><span class="co">#| label: Expand</span></span>
-<span id="cb22-173"><a href="#cb22-173"></a></span>
-<span id="cb22-174"><a href="#cb22-174"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
-<span id="cb22-175"><a href="#cb22-175"></a>  <span class="fu">create_single_dose_dataset</span>(</span>
-<span id="cb22-176"><a href="#cb22-176"></a>    <span class="at">dose_freq =</span> EXDOSFRQ,</span>
-<span id="cb22-177"><a href="#cb22-177"></a>    <span class="at">start_date =</span> ASTDT,</span>
-<span id="cb22-178"><a href="#cb22-178"></a>    <span class="at">start_datetime =</span> ASTDTM,</span>
-<span id="cb22-179"><a href="#cb22-179"></a>    <span class="at">end_date =</span> AENDT,</span>
-<span id="cb22-180"><a href="#cb22-180"></a>    <span class="at">end_datetime =</span> AENDTM,</span>
-<span id="cb22-181"><a href="#cb22-181"></a>    <span class="at">nominal_time =</span> NFRLT,</span>
-<span id="cb22-182"><a href="#cb22-182"></a>    <span class="at">lookup_table =</span> dose_freq_lookup,</span>
-<span id="cb22-183"><a href="#cb22-183"></a>    <span class="at">lookup_column =</span> CDISC_VALUE,</span>
-<span id="cb22-184"><a href="#cb22-184"></a>    <span class="at">keep_source_vars =</span> <span class="fu">exprs</span>(</span>
-<span id="cb22-185"><a href="#cb22-185"></a>      STUDYID, USUBJID, EVID, EXDOSFRQ, EXDOSFRM,</span>
-<span id="cb22-186"><a href="#cb22-186"></a>      NFRLT, EXDOSE, EXDOSU, EXTRT, ASTDT, ASTDTM, AENDT, AENDTM,</span>
-<span id="cb22-187"><a href="#cb22-187"></a>      VISIT, VISITNUM, VISITDY,</span>
-<span id="cb22-188"><a href="#cb22-188"></a>      TRT01A, TRT01P, DOMAIN, EXSEQ, <span class="sc">!!!</span>adsl_vars</span>
-<span id="cb22-189"><a href="#cb22-189"></a>    )</span>
-<span id="cb22-190"><a href="#cb22-190"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-191"><a href="#cb22-191"></a>  <span class="co"># Derive AVISIT based on nominal relative time</span></span>
-<span id="cb22-192"><a href="#cb22-192"></a>  <span class="co"># Derive AVISITN to nominal time in whole days using integer division</span></span>
-<span id="cb22-193"><a href="#cb22-193"></a>  <span class="co"># Define AVISIT based on nominal day</span></span>
-<span id="cb22-194"><a href="#cb22-194"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-195"><a href="#cb22-195"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb22-196"><a href="#cb22-196"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
-<span id="cb22-197"><a href="#cb22-197"></a>    <span class="at">ADTM =</span> ASTDTM,</span>
-<span id="cb22-198"><a href="#cb22-198"></a>    <span class="at">DRUG =</span> EXTRT</span>
-<span id="cb22-199"><a href="#cb22-199"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-200"><a href="#cb22-200"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
-<span id="cb22-201"><a href="#cb22-201"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-202"><a href="#cb22-202"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-203"><a href="#cb22-203"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-204"><a href="#cb22-204"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(AENDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-205"><a href="#cb22-205"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT))</span>
-<span id="cb22-206"><a href="#cb22-206"></a><span class="in">```</span></span>
-<span id="cb22-207"><a href="#cb22-207"></a></span>
-<span id="cb22-208"><a href="#cb22-208"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-209"><a href="#cb22-209"></a><span class="fu">print_df</span>(</span>
-<span id="cb22-210"><a href="#cb22-210"></a>  ex_exp <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DRUG, EXDOSFRQ, ASTDT, AVISIT, NFRLT)</span>
-<span id="cb22-211"><a href="#cb22-211"></a>)</span>
-<span id="cb22-212"><a href="#cb22-212"></a><span class="in">```</span></span>
-<span id="cb22-213"><a href="#cb22-213"></a></span>
-<span id="cb22-214"><a href="#cb22-214"></a><span class="fu">### Find First Dose</span></span>
-<span id="cb22-215"><a href="#cb22-215"></a></span>
-<span id="cb22-216"><a href="#cb22-216"></a>In this section we will find the first dose for each subject and drug.</span>
-<span id="cb22-217"><a href="#cb22-217"></a></span>
-<span id="cb22-220"><a href="#cb22-220"></a><span class="in">```{r}</span></span>
-<span id="cb22-221"><a href="#cb22-221"></a><span class="co">#| label: First Dose</span></span>
-<span id="cb22-222"><a href="#cb22-222"></a></span>
-<span id="cb22-223"><a href="#cb22-223"></a>adpc_first_dose <span class="ot">&lt;-</span> pc_dates <span class="sc">%&gt;%</span></span>
-<span id="cb22-224"><a href="#cb22-224"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb22-225"><a href="#cb22-225"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb22-226"><a href="#cb22-226"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ADTM)),</span>
-<span id="cb22-227"><a href="#cb22-227"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">FANLDTM =</span> ADTM),</span>
-<span id="cb22-228"><a href="#cb22-228"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, EXSEQ),</span>
-<span id="cb22-229"><a href="#cb22-229"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb22-230"><a href="#cb22-230"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, DRUG)</span>
-<span id="cb22-231"><a href="#cb22-231"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-232"><a href="#cb22-232"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-233"><a href="#cb22-233"></a>  <span class="co"># Derive AVISIT based on nominal relative time</span></span>
-<span id="cb22-234"><a href="#cb22-234"></a>  <span class="co"># Derive AVISITN to nominal time in whole days using integer division</span></span>
-<span id="cb22-235"><a href="#cb22-235"></a>  <span class="co"># Define AVISIT based on nominal day</span></span>
-<span id="cb22-236"><a href="#cb22-236"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-237"><a href="#cb22-237"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb22-238"><a href="#cb22-238"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
-<span id="cb22-239"><a href="#cb22-239"></a>  )</span>
-<span id="cb22-240"><a href="#cb22-240"></a><span class="in">```</span></span>
-<span id="cb22-241"><a href="#cb22-241"></a></span>
+<span id="cb22-98"><a href="#cb22-98"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span>,</span>
+<span id="cb22-99"><a href="#cb22-99"></a>    <span class="at">ignore_seconds_flag =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-100"><a href="#cb22-100"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-101"><a href="#cb22-101"></a>  <span class="co"># Derive dates and times from date/times</span></span>
+<span id="cb22-102"><a href="#cb22-102"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-103"><a href="#cb22-103"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-104"><a href="#cb22-104"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-105"><a href="#cb22-105"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
+<span id="cb22-106"><a href="#cb22-106"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-107"><a href="#cb22-107"></a>    <span class="at">EVID =</span> <span class="dv">0</span>,</span>
+<span id="cb22-108"><a href="#cb22-108"></a>    <span class="at">DRUG =</span> PCTEST,</span>
+<span id="cb22-109"><a href="#cb22-109"></a>    <span class="at">NFRLT =</span> <span class="fu">if_else</span>(PCTPTNUM <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, PCTPTNUM), <span class="at">.after =</span> USUBJID</span>
+<span id="cb22-110"><a href="#cb22-110"></a>  )</span>
+<span id="cb22-111"><a href="#cb22-111"></a><span class="in">```</span></span>
+<span id="cb22-112"><a href="#cb22-112"></a></span>
+<span id="cb22-113"><a href="#cb22-113"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-114"><a href="#cb22-114"></a><span class="fu">print_df</span>(pc_dates <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))</span>
+<span id="cb22-115"><a href="#cb22-115"></a><span class="in">```</span></span>
+<span id="cb22-116"><a href="#cb22-116"></a></span>
+<span id="cb22-117"><a href="#cb22-117"></a><span class="fu">### Get Dosing Information</span></span>
+<span id="cb22-118"><a href="#cb22-118"></a></span>
+<span id="cb22-119"><a href="#cb22-119"></a>Here we also create nominal time from first dose <span class="in">`NFRLT`</span> for <span class="in">`EX`</span> data based on <span class="in">`VISITDY`</span>.</span>
+<span id="cb22-120"><a href="#cb22-120"></a></span>
+<span id="cb22-123"><a href="#cb22-123"></a><span class="in">```{r}</span></span>
+<span id="cb22-124"><a href="#cb22-124"></a><span class="co">#| label: Dosing</span></span>
+<span id="cb22-125"><a href="#cb22-125"></a></span>
+<span id="cb22-126"><a href="#cb22-126"></a>ex_dates <span class="ot">&lt;-</span> ex <span class="sc">%&gt;%</span></span>
+<span id="cb22-127"><a href="#cb22-127"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb22-128"><a href="#cb22-128"></a>    <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb22-129"><a href="#cb22-129"></a>    <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb22-130"><a href="#cb22-130"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb22-131"><a href="#cb22-131"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-132"><a href="#cb22-132"></a>  <span class="co"># Keep records with nonzero dose</span></span>
+<span id="cb22-133"><a href="#cb22-133"></a>  <span class="fu">filter</span>(EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-134"><a href="#cb22-134"></a>  <span class="co"># Add time and set missing end date to start date</span></span>
+<span id="cb22-135"><a href="#cb22-135"></a>  <span class="co"># Impute missing time to 00:00:00</span></span>
+<span id="cb22-136"><a href="#cb22-136"></a>  <span class="co"># Note all times are missing for dosing records in this example data</span></span>
+<span id="cb22-137"><a href="#cb22-137"></a>  <span class="co"># Derive Analysis Start and End Dates</span></span>
+<span id="cb22-138"><a href="#cb22-138"></a>  <span class="fu">derive_vars_dtm</span>(</span>
+<span id="cb22-139"><a href="#cb22-139"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"AST"</span>,</span>
+<span id="cb22-140"><a href="#cb22-140"></a>    <span class="at">dtc =</span> EXSTDTC,</span>
+<span id="cb22-141"><a href="#cb22-141"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
+<span id="cb22-142"><a href="#cb22-142"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-143"><a href="#cb22-143"></a>  <span class="fu">derive_vars_dtm</span>(</span>
+<span id="cb22-144"><a href="#cb22-144"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"AEN"</span>,</span>
+<span id="cb22-145"><a href="#cb22-145"></a>    <span class="at">dtc =</span> EXENDTC,</span>
+<span id="cb22-146"><a href="#cb22-146"></a>    <span class="at">time_imputation =</span> <span class="st">"00:00:00"</span></span>
+<span id="cb22-147"><a href="#cb22-147"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-148"><a href="#cb22-148"></a>  <span class="co"># Derive event ID and nominal relative time from first dose (NFRLT)</span></span>
+<span id="cb22-149"><a href="#cb22-149"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-150"><a href="#cb22-150"></a>    <span class="at">EVID =</span> <span class="dv">1</span>,</span>
+<span id="cb22-151"><a href="#cb22-151"></a>    <span class="at">NFRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-152"><a href="#cb22-152"></a>      VISITDY <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-153"><a href="#cb22-153"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">24</span> <span class="sc">*</span> VISITDY</span>
+<span id="cb22-154"><a href="#cb22-154"></a>    )</span>
+<span id="cb22-155"><a href="#cb22-155"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-156"><a href="#cb22-156"></a>  <span class="co"># Set missing end dates to start date</span></span>
+<span id="cb22-157"><a href="#cb22-157"></a>  <span class="fu">mutate</span>(<span class="at">AENDTM =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-158"><a href="#cb22-158"></a>    <span class="fu">is.na</span>(AENDTM) <span class="sc">~</span> ASTDTM,</span>
+<span id="cb22-159"><a href="#cb22-159"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AENDTM</span>
+<span id="cb22-160"><a href="#cb22-160"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb22-161"><a href="#cb22-161"></a>  <span class="co"># Derive dates from date/times</span></span>
+<span id="cb22-162"><a href="#cb22-162"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-163"><a href="#cb22-163"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(AENDTM))</span>
+<span id="cb22-164"><a href="#cb22-164"></a><span class="in">```</span></span>
+<span id="cb22-165"><a href="#cb22-165"></a></span>
+<span id="cb22-166"><a href="#cb22-166"></a><span class="fu">### Expand Dosing Records</span></span>
+<span id="cb22-167"><a href="#cb22-167"></a></span>
+<span id="cb22-168"><a href="#cb22-168"></a>Since there is a start date and end date for dosing records we need to expand the dosing records between the start date and end date using the function <span class="in">`admiral::create_single_dose_dataset()`</span>.</span>
+<span id="cb22-169"><a href="#cb22-169"></a></span>
+<span id="cb22-172"><a href="#cb22-172"></a><span class="in">```{r}</span></span>
+<span id="cb22-173"><a href="#cb22-173"></a><span class="co">#| label: Expand</span></span>
+<span id="cb22-174"><a href="#cb22-174"></a></span>
+<span id="cb22-175"><a href="#cb22-175"></a>ex_exp <span class="ot">&lt;-</span> ex_dates <span class="sc">%&gt;%</span></span>
+<span id="cb22-176"><a href="#cb22-176"></a>  <span class="fu">create_single_dose_dataset</span>(</span>
+<span id="cb22-177"><a href="#cb22-177"></a>    <span class="at">dose_freq =</span> EXDOSFRQ,</span>
+<span id="cb22-178"><a href="#cb22-178"></a>    <span class="at">start_date =</span> ASTDT,</span>
+<span id="cb22-179"><a href="#cb22-179"></a>    <span class="at">start_datetime =</span> ASTDTM,</span>
+<span id="cb22-180"><a href="#cb22-180"></a>    <span class="at">end_date =</span> AENDT,</span>
+<span id="cb22-181"><a href="#cb22-181"></a>    <span class="at">end_datetime =</span> AENDTM,</span>
+<span id="cb22-182"><a href="#cb22-182"></a>    <span class="at">nominal_time =</span> NFRLT,</span>
+<span id="cb22-183"><a href="#cb22-183"></a>    <span class="at">lookup_table =</span> dose_freq_lookup,</span>
+<span id="cb22-184"><a href="#cb22-184"></a>    <span class="at">lookup_column =</span> CDISC_VALUE,</span>
+<span id="cb22-185"><a href="#cb22-185"></a>    <span class="at">keep_source_vars =</span> <span class="fu">exprs</span>(</span>
+<span id="cb22-186"><a href="#cb22-186"></a>      STUDYID, USUBJID, EVID, EXDOSFRQ, EXDOSFRM,</span>
+<span id="cb22-187"><a href="#cb22-187"></a>      NFRLT, EXDOSE, EXDOSU, EXTRT, ASTDT, ASTDTM, AENDT, AENDTM,</span>
+<span id="cb22-188"><a href="#cb22-188"></a>      VISIT, VISITNUM, VISITDY,</span>
+<span id="cb22-189"><a href="#cb22-189"></a>      TRT01A, TRT01P, DOMAIN, EXSEQ, <span class="sc">!!!</span>adsl_vars</span>
+<span id="cb22-190"><a href="#cb22-190"></a>    )</span>
+<span id="cb22-191"><a href="#cb22-191"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-192"><a href="#cb22-192"></a>  <span class="co"># Derive AVISIT based on nominal relative time</span></span>
+<span id="cb22-193"><a href="#cb22-193"></a>  <span class="co"># Derive AVISITN to nominal time in whole days using integer division</span></span>
+<span id="cb22-194"><a href="#cb22-194"></a>  <span class="co"># Define AVISIT based on nominal day</span></span>
+<span id="cb22-195"><a href="#cb22-195"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-196"><a href="#cb22-196"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb22-197"><a href="#cb22-197"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
+<span id="cb22-198"><a href="#cb22-198"></a>    <span class="at">ADTM =</span> ASTDTM,</span>
+<span id="cb22-199"><a href="#cb22-199"></a>    <span class="at">DRUG =</span> EXTRT</span>
+<span id="cb22-200"><a href="#cb22-200"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-201"><a href="#cb22-201"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
+<span id="cb22-202"><a href="#cb22-202"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-203"><a href="#cb22-203"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ADTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-204"><a href="#cb22-204"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(ASTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-205"><a href="#cb22-205"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(AENDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-206"><a href="#cb22-206"></a>  <span class="fu">derive_vars_dy</span>(<span class="at">reference_date =</span> TRTSDT, <span class="at">source_vars =</span> <span class="fu">exprs</span>(ADT))</span>
+<span id="cb22-207"><a href="#cb22-207"></a><span class="in">```</span></span>
+<span id="cb22-208"><a href="#cb22-208"></a></span>
+<span id="cb22-209"><a href="#cb22-209"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-210"><a href="#cb22-210"></a><span class="fu">print_df</span>(</span>
+<span id="cb22-211"><a href="#cb22-211"></a>  ex_exp <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DRUG, EXDOSFRQ, ASTDT, AVISIT, NFRLT)</span>
+<span id="cb22-212"><a href="#cb22-212"></a>)</span>
+<span id="cb22-213"><a href="#cb22-213"></a><span class="in">```</span></span>
+<span id="cb22-214"><a href="#cb22-214"></a></span>
+<span id="cb22-215"><a href="#cb22-215"></a><span class="fu">### Find First Dose</span></span>
+<span id="cb22-216"><a href="#cb22-216"></a></span>
+<span id="cb22-217"><a href="#cb22-217"></a>In this section we will find the first dose for each subject and drug.</span>
+<span id="cb22-218"><a href="#cb22-218"></a></span>
+<span id="cb22-221"><a href="#cb22-221"></a><span class="in">```{r}</span></span>
+<span id="cb22-222"><a href="#cb22-222"></a><span class="co">#| label: First Dose</span></span>
+<span id="cb22-223"><a href="#cb22-223"></a></span>
+<span id="cb22-224"><a href="#cb22-224"></a>adpc_first_dose <span class="ot">&lt;-</span> pc_dates <span class="sc">%&gt;%</span></span>
+<span id="cb22-225"><a href="#cb22-225"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb22-226"><a href="#cb22-226"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb22-227"><a href="#cb22-227"></a>    <span class="at">filter_add =</span> (EXDOSE <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(ADTM)),</span>
+<span id="cb22-228"><a href="#cb22-228"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">FANLDTM =</span> ADTM),</span>
+<span id="cb22-229"><a href="#cb22-229"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, EXSEQ),</span>
+<span id="cb22-230"><a href="#cb22-230"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb22-231"><a href="#cb22-231"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, DRUG)</span>
+<span id="cb22-232"><a href="#cb22-232"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-233"><a href="#cb22-233"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-234"><a href="#cb22-234"></a>  <span class="co"># Derive AVISIT based on nominal relative time</span></span>
+<span id="cb22-235"><a href="#cb22-235"></a>  <span class="co"># Derive AVISITN to nominal time in whole days using integer division</span></span>
+<span id="cb22-236"><a href="#cb22-236"></a>  <span class="co"># Define AVISIT based on nominal day</span></span>
+<span id="cb22-237"><a href="#cb22-237"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-238"><a href="#cb22-238"></a>    <span class="at">AVISITN =</span> NFRLT <span class="sc">%/%</span> <span class="dv">24</span> <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb22-239"><a href="#cb22-239"></a>    <span class="at">AVISIT =</span> <span class="fu">paste</span>(<span class="st">"Day"</span>, AVISITN),</span>
+<span id="cb22-240"><a href="#cb22-240"></a>  )</span>
+<span id="cb22-241"><a href="#cb22-241"></a><span class="in">```</span></span>
 <span id="cb22-242"><a href="#cb22-242"></a></span>
 <span id="cb22-243"><a href="#cb22-243"></a></span>
-<span id="cb22-244"><a href="#cb22-244"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-245"><a href="#cb22-245"></a><span class="fu">print_df</span>(adpc_first_dose <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, FANLDTM, NFRLT, ADTM, AVISITN, AVISIT, PCTPT))</span>
-<span id="cb22-246"><a href="#cb22-246"></a><span class="in">```</span></span>
-<span id="cb22-247"><a href="#cb22-247"></a></span>
-<span id="cb22-248"><a href="#cb22-248"></a><span class="fu">### Find Previous Dose and Next Dose</span></span>
-<span id="cb22-249"><a href="#cb22-249"></a></span>
-<span id="cb22-250"><a href="#cb22-250"></a>Use <span class="in">`derive_vars_joined()`</span> to find the previous dose and the next dose.</span>
-<span id="cb22-251"><a href="#cb22-251"></a></span>
-<span id="cb22-254"><a href="#cb22-254"></a><span class="in">```{r}</span></span>
-<span id="cb22-255"><a href="#cb22-255"></a><span class="co">#| label: Previous Dose and Next Dose</span></span>
-<span id="cb22-256"><a href="#cb22-256"></a></span>
-<span id="cb22-257"><a href="#cb22-257"></a>adpc_prev <span class="ot">&lt;-</span> adpc_first_dose <span class="sc">%&gt;%</span></span>
-<span id="cb22-258"><a href="#cb22-258"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb22-259"><a href="#cb22-259"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb22-260"><a href="#cb22-260"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb22-261"><a href="#cb22-261"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb22-262"><a href="#cb22-262"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
-<span id="cb22-263"><a href="#cb22-263"></a>      <span class="at">ADTM_prev =</span> ADTM, <span class="at">EXDOSE_prev =</span> EXDOSE, <span class="at">AVISIT_prev =</span> AVISIT,</span>
-<span id="cb22-264"><a href="#cb22-264"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
-<span id="cb22-265"><a href="#cb22-265"></a>    ),</span>
-<span id="cb22-266"><a href="#cb22-266"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb22-267"><a href="#cb22-267"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
-<span id="cb22-268"><a href="#cb22-268"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-269"><a href="#cb22-269"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
-<span id="cb22-270"><a href="#cb22-270"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb22-271"><a href="#cb22-271"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb22-272"><a href="#cb22-272"></a>  )</span>
-<span id="cb22-273"><a href="#cb22-273"></a></span>
-<span id="cb22-274"><a href="#cb22-274"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
-<span id="cb22-275"><a href="#cb22-275"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb22-276"><a href="#cb22-276"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb22-277"><a href="#cb22-277"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb22-278"><a href="#cb22-278"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb22-279"><a href="#cb22-279"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
-<span id="cb22-280"><a href="#cb22-280"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
-<span id="cb22-281"><a href="#cb22-281"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
-<span id="cb22-282"><a href="#cb22-282"></a>    ),</span>
-<span id="cb22-283"><a href="#cb22-283"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
-<span id="cb22-284"><a href="#cb22-284"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
-<span id="cb22-285"><a href="#cb22-285"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-286"><a href="#cb22-286"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
-<span id="cb22-287"><a href="#cb22-287"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb22-288"><a href="#cb22-288"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb22-289"><a href="#cb22-289"></a>  )</span>
-<span id="cb22-290"><a href="#cb22-290"></a><span class="in">```</span></span>
-<span id="cb22-291"><a href="#cb22-291"></a></span>
-<span id="cb22-292"><a href="#cb22-292"></a><span class="fu">### Find Previous and Next Nominal Dose</span></span>
-<span id="cb22-293"><a href="#cb22-293"></a></span>
-<span id="cb22-294"><a href="#cb22-294"></a>Use the same method to find the previous and next nominal times.</span>
-<span id="cb22-295"><a href="#cb22-295"></a></span>
-<span id="cb22-298"><a href="#cb22-298"></a><span class="in">```{r}</span></span>
-<span id="cb22-299"><a href="#cb22-299"></a><span class="co">#| label: Previous Nominal Dose</span></span>
-<span id="cb22-300"><a href="#cb22-300"></a></span>
-<span id="cb22-301"><a href="#cb22-301"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
-<span id="cb22-302"><a href="#cb22-302"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb22-303"><a href="#cb22-303"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb22-304"><a href="#cb22-304"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb22-305"><a href="#cb22-305"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb22-306"><a href="#cb22-306"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
-<span id="cb22-307"><a href="#cb22-307"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb22-308"><a href="#cb22-308"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
-<span id="cb22-309"><a href="#cb22-309"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-310"><a href="#cb22-310"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
-<span id="cb22-311"><a href="#cb22-311"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb22-312"><a href="#cb22-312"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb22-313"><a href="#cb22-313"></a>  )</span>
-<span id="cb22-314"><a href="#cb22-314"></a></span>
-<span id="cb22-315"><a href="#cb22-315"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
-<span id="cb22-316"><a href="#cb22-316"></a>  <span class="fu">derive_vars_joined</span>(</span>
-<span id="cb22-317"><a href="#cb22-317"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
-<span id="cb22-318"><a href="#cb22-318"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
-<span id="cb22-319"><a href="#cb22-319"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb22-320"><a href="#cb22-320"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
-<span id="cb22-321"><a href="#cb22-321"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
-<span id="cb22-322"><a href="#cb22-322"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
-<span id="cb22-323"><a href="#cb22-323"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-324"><a href="#cb22-324"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
-<span id="cb22-325"><a href="#cb22-325"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb22-326"><a href="#cb22-326"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
-<span id="cb22-327"><a href="#cb22-327"></a>  )</span>
-<span id="cb22-328"><a href="#cb22-328"></a><span class="in">```</span></span>
-<span id="cb22-329"><a href="#cb22-329"></a></span>
-<span id="cb22-330"><a href="#cb22-330"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-331"><a href="#cb22-331"></a><span class="fu">print_df</span>(adpc_nom_prev <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, NFRLT, AVISIT, PCTPT, NFRLT_prev))</span>
-<span id="cb22-332"><a href="#cb22-332"></a><span class="in">```</span></span>
-<span id="cb22-333"><a href="#cb22-333"></a></span>
+<span id="cb22-244"><a href="#cb22-244"></a></span>
+<span id="cb22-245"><a href="#cb22-245"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-246"><a href="#cb22-246"></a><span class="fu">print_df</span>(adpc_first_dose <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, FANLDTM, NFRLT, ADTM, AVISITN, AVISIT, PCTPT))</span>
+<span id="cb22-247"><a href="#cb22-247"></a><span class="in">```</span></span>
+<span id="cb22-248"><a href="#cb22-248"></a></span>
+<span id="cb22-249"><a href="#cb22-249"></a><span class="fu">### Find Previous Dose and Next Dose</span></span>
+<span id="cb22-250"><a href="#cb22-250"></a></span>
+<span id="cb22-251"><a href="#cb22-251"></a>Use <span class="in">`derive_vars_joined()`</span> to find the previous dose and the next dose.</span>
+<span id="cb22-252"><a href="#cb22-252"></a></span>
+<span id="cb22-255"><a href="#cb22-255"></a><span class="in">```{r}</span></span>
+<span id="cb22-256"><a href="#cb22-256"></a><span class="co">#| label: Previous Dose and Next Dose</span></span>
+<span id="cb22-257"><a href="#cb22-257"></a></span>
+<span id="cb22-258"><a href="#cb22-258"></a>adpc_prev <span class="ot">&lt;-</span> adpc_first_dose <span class="sc">%&gt;%</span></span>
+<span id="cb22-259"><a href="#cb22-259"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb22-260"><a href="#cb22-260"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb22-261"><a href="#cb22-261"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb22-262"><a href="#cb22-262"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb22-263"><a href="#cb22-263"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
+<span id="cb22-264"><a href="#cb22-264"></a>      <span class="at">ADTM_prev =</span> ADTM, <span class="at">EXDOSE_prev =</span> EXDOSE, <span class="at">AVISIT_prev =</span> AVISIT,</span>
+<span id="cb22-265"><a href="#cb22-265"></a>      <span class="at">AENDTM_prev =</span> AENDTM</span>
+<span id="cb22-266"><a href="#cb22-266"></a>    ),</span>
+<span id="cb22-267"><a href="#cb22-267"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb22-268"><a href="#cb22-268"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb22-269"><a href="#cb22-269"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-270"><a href="#cb22-270"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&gt;</span> ADTM.join,</span>
+<span id="cb22-271"><a href="#cb22-271"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb22-272"><a href="#cb22-272"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb22-273"><a href="#cb22-273"></a>  )</span>
+<span id="cb22-274"><a href="#cb22-274"></a></span>
+<span id="cb22-275"><a href="#cb22-275"></a>adpc_next <span class="ot">&lt;-</span> adpc_prev <span class="sc">%&gt;%</span></span>
+<span id="cb22-276"><a href="#cb22-276"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb22-277"><a href="#cb22-277"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb22-278"><a href="#cb22-278"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb22-279"><a href="#cb22-279"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb22-280"><a href="#cb22-280"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(</span>
+<span id="cb22-281"><a href="#cb22-281"></a>      <span class="at">ADTM_next =</span> ADTM, <span class="at">EXDOSE_next =</span> EXDOSE, <span class="at">AVISIT_next =</span> AVISIT,</span>
+<span id="cb22-282"><a href="#cb22-282"></a>      <span class="at">AENDTM_next =</span> AENDTM</span>
+<span id="cb22-283"><a href="#cb22-283"></a>    ),</span>
+<span id="cb22-284"><a href="#cb22-284"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(ADTM),</span>
+<span id="cb22-285"><a href="#cb22-285"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb22-286"><a href="#cb22-286"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-287"><a href="#cb22-287"></a>    <span class="at">filter_join =</span> ADTM <span class="sc">&lt;=</span> ADTM.join,</span>
+<span id="cb22-288"><a href="#cb22-288"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb22-289"><a href="#cb22-289"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb22-290"><a href="#cb22-290"></a>  )</span>
+<span id="cb22-291"><a href="#cb22-291"></a><span class="in">```</span></span>
+<span id="cb22-292"><a href="#cb22-292"></a></span>
+<span id="cb22-293"><a href="#cb22-293"></a><span class="fu">### Find Previous and Next Nominal Dose</span></span>
+<span id="cb22-294"><a href="#cb22-294"></a></span>
+<span id="cb22-295"><a href="#cb22-295"></a>Use the same method to find the previous and next nominal times.</span>
+<span id="cb22-296"><a href="#cb22-296"></a></span>
+<span id="cb22-299"><a href="#cb22-299"></a><span class="in">```{r}</span></span>
+<span id="cb22-300"><a href="#cb22-300"></a><span class="co">#| label: Previous Nominal Dose</span></span>
+<span id="cb22-301"><a href="#cb22-301"></a></span>
+<span id="cb22-302"><a href="#cb22-302"></a>adpc_nom_prev <span class="ot">&lt;-</span> adpc_next <span class="sc">%&gt;%</span></span>
+<span id="cb22-303"><a href="#cb22-303"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb22-304"><a href="#cb22-304"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb22-305"><a href="#cb22-305"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb22-306"><a href="#cb22-306"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb22-307"><a href="#cb22-307"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_prev =</span> NFRLT),</span>
+<span id="cb22-308"><a href="#cb22-308"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb22-309"><a href="#cb22-309"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb22-310"><a href="#cb22-310"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-311"><a href="#cb22-311"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&gt;</span> NFRLT.join,</span>
+<span id="cb22-312"><a href="#cb22-312"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb22-313"><a href="#cb22-313"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb22-314"><a href="#cb22-314"></a>  )</span>
+<span id="cb22-315"><a href="#cb22-315"></a></span>
+<span id="cb22-316"><a href="#cb22-316"></a>adpc_nom_next <span class="ot">&lt;-</span> adpc_nom_prev <span class="sc">%&gt;%</span></span>
+<span id="cb22-317"><a href="#cb22-317"></a>  <span class="fu">derive_vars_joined</span>(</span>
+<span id="cb22-318"><a href="#cb22-318"></a>    <span class="at">dataset_add =</span> ex_exp,</span>
+<span id="cb22-319"><a href="#cb22-319"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(USUBJID),</span>
+<span id="cb22-320"><a href="#cb22-320"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb22-321"><a href="#cb22-321"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">NFRLT_next =</span> NFRLT),</span>
+<span id="cb22-322"><a href="#cb22-322"></a>    <span class="at">join_vars =</span> <span class="fu">exprs</span>(NFRLT),</span>
+<span id="cb22-323"><a href="#cb22-323"></a>    <span class="at">join_type =</span> <span class="st">"all"</span>,</span>
+<span id="cb22-324"><a href="#cb22-324"></a>    <span class="at">filter_add =</span> <span class="cn">NULL</span>,</span>
+<span id="cb22-325"><a href="#cb22-325"></a>    <span class="at">filter_join =</span> NFRLT <span class="sc">&lt;=</span> NFRLT.join,</span>
+<span id="cb22-326"><a href="#cb22-326"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb22-327"><a href="#cb22-327"></a>    <span class="at">check_type =</span> <span class="st">"none"</span></span>
+<span id="cb22-328"><a href="#cb22-328"></a>  )</span>
+<span id="cb22-329"><a href="#cb22-329"></a><span class="in">```</span></span>
+<span id="cb22-330"><a href="#cb22-330"></a></span>
+<span id="cb22-331"><a href="#cb22-331"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-332"><a href="#cb22-332"></a><span class="fu">print_df</span>(adpc_nom_prev <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, NFRLT, AVISIT, PCTPT, NFRLT_prev))</span>
+<span id="cb22-333"><a href="#cb22-333"></a><span class="in">```</span></span>
 <span id="cb22-334"><a href="#cb22-334"></a></span>
-<span id="cb22-335"><a href="#cb22-335"></a><span class="fu">### Combine PC and EX Data</span></span>
-<span id="cb22-336"><a href="#cb22-336"></a></span>
-<span id="cb22-337"><a href="#cb22-337"></a>Combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records and derive the additional relative time variables.</span>
-<span id="cb22-338"><a href="#cb22-338"></a></span>
-<span id="cb22-341"><a href="#cb22-341"></a><span class="in">```{r}</span></span>
-<span id="cb22-342"><a href="#cb22-342"></a><span class="co">#| label: Combine</span></span>
-<span id="cb22-343"><a href="#cb22-343"></a></span>
-<span id="cb22-344"><a href="#cb22-344"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
-<span id="cb22-345"><a href="#cb22-345"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
-<span id="cb22-346"><a href="#cb22-346"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-347"><a href="#cb22-347"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-348"><a href="#cb22-348"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT_prev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-349"><a href="#cb22-349"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
-<span id="cb22-350"><a href="#cb22-350"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-351"><a href="#cb22-351"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
-<span id="cb22-352"><a href="#cb22-352"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb22-353"><a href="#cb22-353"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
-<span id="cb22-354"><a href="#cb22-354"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
-<span id="cb22-355"><a href="#cb22-355"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb22-356"><a href="#cb22-356"></a>    <span class="at">new_var =</span> AFRLT,</span>
-<span id="cb22-357"><a href="#cb22-357"></a>    <span class="at">start_date =</span> FANLDTM,</span>
-<span id="cb22-358"><a href="#cb22-358"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb22-359"><a href="#cb22-359"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb22-360"><a href="#cb22-360"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-361"><a href="#cb22-361"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb22-362"><a href="#cb22-362"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-363"><a href="#cb22-363"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (ARRLT)</span></span>
-<span id="cb22-364"><a href="#cb22-364"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb22-365"><a href="#cb22-365"></a>    <span class="at">new_var =</span> ARRLT,</span>
-<span id="cb22-366"><a href="#cb22-366"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
-<span id="cb22-367"><a href="#cb22-367"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb22-368"><a href="#cb22-368"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb22-369"><a href="#cb22-369"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-370"><a href="#cb22-370"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb22-371"><a href="#cb22-371"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-372"><a href="#cb22-372"></a>  <span class="co"># Derive Actual Relative Time from Next Dose (AXRLT not kept)</span></span>
-<span id="cb22-373"><a href="#cb22-373"></a>  <span class="fu">derive_vars_duration</span>(</span>
-<span id="cb22-374"><a href="#cb22-374"></a>    <span class="at">new_var =</span> AXRLT,</span>
-<span id="cb22-375"><a href="#cb22-375"></a>    <span class="at">start_date =</span> ADTM_next,</span>
-<span id="cb22-376"><a href="#cb22-376"></a>    <span class="at">end_date =</span> ADTM,</span>
-<span id="cb22-377"><a href="#cb22-377"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
-<span id="cb22-378"><a href="#cb22-378"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb22-379"><a href="#cb22-379"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
-<span id="cb22-380"><a href="#cb22-380"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-381"><a href="#cb22-381"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-382"><a href="#cb22-382"></a>    <span class="at">ARRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-383"><a href="#cb22-383"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-384"><a href="#cb22-384"></a>      <span class="fu">is.na</span>(ARRLT) <span class="sc">~</span> AXRLT,</span>
-<span id="cb22-385"><a href="#cb22-385"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ARRLT</span>
-<span id="cb22-386"><a href="#cb22-386"></a>    ),</span>
-<span id="cb22-387"><a href="#cb22-387"></a>    <span class="co"># Derive Reference Dose Date</span></span>
-<span id="cb22-388"><a href="#cb22-388"></a>    <span class="at">PCRFTDTM =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-389"><a href="#cb22-389"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> ADTM,</span>
-<span id="cb22-390"><a href="#cb22-390"></a>      <span class="fu">is.na</span>(ADTM_prev) <span class="sc">~</span> ADTM_next,</span>
-<span id="cb22-391"><a href="#cb22-391"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ADTM_prev</span>
-<span id="cb22-392"><a href="#cb22-392"></a>    )</span>
-<span id="cb22-393"><a href="#cb22-393"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-394"><a href="#cb22-394"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
-<span id="cb22-395"><a href="#cb22-395"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-396"><a href="#cb22-396"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-397"><a href="#cb22-397"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-398"><a href="#cb22-398"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
-<span id="cb22-399"><a href="#cb22-399"></a><span class="in">```</span></span>
-<span id="cb22-400"><a href="#cb22-400"></a></span>
-<span id="cb22-401"><a href="#cb22-401"></a><span class="fu">### Derive Nominal Reference</span></span>
-<span id="cb22-402"><a href="#cb22-402"></a></span>
-<span id="cb22-403"><a href="#cb22-403"></a>For nominal relative times we calculate the nominal relative time to reference dose <span class="in">`NRRLT`</span>.</span>
-<span id="cb22-404"><a href="#cb22-404"></a></span>
-<span id="cb22-407"><a href="#cb22-407"></a><span class="in">```{r}</span></span>
-<span id="cb22-408"><a href="#cb22-408"></a><span class="co">#| label: Nominal Reference</span></span>
-<span id="cb22-409"><a href="#cb22-409"></a></span>
-<span id="cb22-410"><a href="#cb22-410"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
-<span id="cb22-411"><a href="#cb22-411"></a></span>
-<span id="cb22-412"><a href="#cb22-412"></a>adpc_nrrlt <span class="ot">&lt;-</span> adpc_arrlt <span class="sc">%&gt;%</span></span>
-<span id="cb22-413"><a href="#cb22-413"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-414"><a href="#cb22-414"></a>    <span class="at">NRRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-415"><a href="#cb22-415"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-416"><a href="#cb22-416"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
-<span id="cb22-417"><a href="#cb22-417"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
-<span id="cb22-418"><a href="#cb22-418"></a>    ),</span>
-<span id="cb22-419"><a href="#cb22-419"></a>    <span class="at">NXRLT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-420"><a href="#cb22-420"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-421"><a href="#cb22-421"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_next</span>
-<span id="cb22-422"><a href="#cb22-422"></a>    )</span>
-<span id="cb22-423"><a href="#cb22-423"></a>  )</span>
-<span id="cb22-424"><a href="#cb22-424"></a><span class="in">```</span></span>
-<span id="cb22-425"><a href="#cb22-425"></a></span>
+<span id="cb22-335"><a href="#cb22-335"></a></span>
+<span id="cb22-336"><a href="#cb22-336"></a><span class="fu">### Combine PC and EX Data</span></span>
+<span id="cb22-337"><a href="#cb22-337"></a></span>
+<span id="cb22-338"><a href="#cb22-338"></a>Combine <span class="in">`PC`</span> and <span class="in">`EX`</span> records and derive the additional relative time variables.</span>
+<span id="cb22-339"><a href="#cb22-339"></a></span>
+<span id="cb22-342"><a href="#cb22-342"></a><span class="in">```{r}</span></span>
+<span id="cb22-343"><a href="#cb22-343"></a><span class="co">#| label: Combine</span></span>
+<span id="cb22-344"><a href="#cb22-344"></a></span>
+<span id="cb22-345"><a href="#cb22-345"></a>adpc_arrlt <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_nom_next, ex_exp) <span class="sc">%&gt;%</span></span>
+<span id="cb22-346"><a href="#cb22-346"></a>  <span class="fu">group_by</span>(USUBJID, DRUG) <span class="sc">%&gt;%</span></span>
+<span id="cb22-347"><a href="#cb22-347"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-348"><a href="#cb22-348"></a>    <span class="at">FANLDTM =</span> <span class="fu">min</span>(FANLDTM, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-349"><a href="#cb22-349"></a>    <span class="at">min_NFRLT =</span> <span class="fu">min</span>(NFRLT_prev, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-350"><a href="#cb22-350"></a>    <span class="at">maxdate =</span> <span class="fu">max</span>(ADT[EVID <span class="sc">==</span> <span class="dv">0</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.after =</span> USUBJID</span>
+<span id="cb22-351"><a href="#cb22-351"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-352"><a href="#cb22-352"></a>  <span class="fu">arrange</span>(USUBJID, ADTM) <span class="sc">%&gt;%</span></span>
+<span id="cb22-353"><a href="#cb22-353"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb22-354"><a href="#cb22-354"></a>  <span class="fu">filter</span>(ADT <span class="sc">&lt;=</span> maxdate) <span class="sc">%&gt;%</span></span>
+<span id="cb22-355"><a href="#cb22-355"></a>  <span class="co"># Derive Actual Relative Time from First Dose (AFRLT)</span></span>
+<span id="cb22-356"><a href="#cb22-356"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb22-357"><a href="#cb22-357"></a>    <span class="at">new_var =</span> AFRLT,</span>
+<span id="cb22-358"><a href="#cb22-358"></a>    <span class="at">start_date =</span> FANLDTM,</span>
+<span id="cb22-359"><a href="#cb22-359"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb22-360"><a href="#cb22-360"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb22-361"><a href="#cb22-361"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-362"><a href="#cb22-362"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-363"><a href="#cb22-363"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-364"><a href="#cb22-364"></a>  <span class="co"># Derive Actual Relative Time from Reference Dose (ARRLT)</span></span>
+<span id="cb22-365"><a href="#cb22-365"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb22-366"><a href="#cb22-366"></a>    <span class="at">new_var =</span> ARRLT,</span>
+<span id="cb22-367"><a href="#cb22-367"></a>    <span class="at">start_date =</span> ADTM_prev,</span>
+<span id="cb22-368"><a href="#cb22-368"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb22-369"><a href="#cb22-369"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb22-370"><a href="#cb22-370"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-371"><a href="#cb22-371"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-372"><a href="#cb22-372"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-373"><a href="#cb22-373"></a>  <span class="co"># Derive Actual Relative Time from Next Dose (AXRLT not kept)</span></span>
+<span id="cb22-374"><a href="#cb22-374"></a>  <span class="fu">derive_vars_duration</span>(</span>
+<span id="cb22-375"><a href="#cb22-375"></a>    <span class="at">new_var =</span> AXRLT,</span>
+<span id="cb22-376"><a href="#cb22-376"></a>    <span class="at">start_date =</span> ADTM_next,</span>
+<span id="cb22-377"><a href="#cb22-377"></a>    <span class="at">end_date =</span> ADTM,</span>
+<span id="cb22-378"><a href="#cb22-378"></a>    <span class="at">out_unit =</span> <span class="st">"hours"</span>,</span>
+<span id="cb22-379"><a href="#cb22-379"></a>    <span class="at">floor_in =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-380"><a href="#cb22-380"></a>    <span class="at">add_one =</span> <span class="cn">FALSE</span></span>
+<span id="cb22-381"><a href="#cb22-381"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-382"><a href="#cb22-382"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-383"><a href="#cb22-383"></a>    <span class="at">ARRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-384"><a href="#cb22-384"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-385"><a href="#cb22-385"></a>      <span class="fu">is.na</span>(ARRLT) <span class="sc">~</span> AXRLT,</span>
+<span id="cb22-386"><a href="#cb22-386"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ARRLT</span>
+<span id="cb22-387"><a href="#cb22-387"></a>    ),</span>
+<span id="cb22-388"><a href="#cb22-388"></a>    <span class="co"># Derive Reference Dose Date</span></span>
+<span id="cb22-389"><a href="#cb22-389"></a>    <span class="at">PCRFTDTM =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-390"><a href="#cb22-390"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> ADTM,</span>
+<span id="cb22-391"><a href="#cb22-391"></a>      <span class="fu">is.na</span>(ADTM_prev) <span class="sc">~</span> ADTM_next,</span>
+<span id="cb22-392"><a href="#cb22-392"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> ADTM_prev</span>
+<span id="cb22-393"><a href="#cb22-393"></a>    )</span>
+<span id="cb22-394"><a href="#cb22-394"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-395"><a href="#cb22-395"></a>  <span class="co"># Derive dates and times from datetimes</span></span>
+<span id="cb22-396"><a href="#cb22-396"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-397"><a href="#cb22-397"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(FANLDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-398"><a href="#cb22-398"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-399"><a href="#cb22-399"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
+<span id="cb22-400"><a href="#cb22-400"></a><span class="in">```</span></span>
+<span id="cb22-401"><a href="#cb22-401"></a></span>
+<span id="cb22-402"><a href="#cb22-402"></a><span class="fu">### Derive Nominal Reference</span></span>
+<span id="cb22-403"><a href="#cb22-403"></a></span>
+<span id="cb22-404"><a href="#cb22-404"></a>For nominal relative times we calculate the nominal relative time to reference dose <span class="in">`NRRLT`</span>.</span>
+<span id="cb22-405"><a href="#cb22-405"></a></span>
+<span id="cb22-408"><a href="#cb22-408"></a><span class="in">```{r}</span></span>
+<span id="cb22-409"><a href="#cb22-409"></a><span class="co">#| label: Nominal Reference</span></span>
+<span id="cb22-410"><a href="#cb22-410"></a></span>
+<span id="cb22-411"><a href="#cb22-411"></a><span class="co"># Derive Nominal Relative Time from Reference Dose (NRRLT)</span></span>
+<span id="cb22-412"><a href="#cb22-412"></a></span>
+<span id="cb22-413"><a href="#cb22-413"></a>adpc_nrrlt <span class="ot">&lt;-</span> adpc_arrlt <span class="sc">%&gt;%</span></span>
+<span id="cb22-414"><a href="#cb22-414"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-415"><a href="#cb22-415"></a>    <span class="at">NRRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-416"><a href="#cb22-416"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-417"><a href="#cb22-417"></a>      <span class="fu">is.na</span>(NFRLT_prev) <span class="sc">~</span> NFRLT <span class="sc">-</span> min_NFRLT,</span>
+<span id="cb22-418"><a href="#cb22-418"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_prev</span>
+<span id="cb22-419"><a href="#cb22-419"></a>    ),</span>
+<span id="cb22-420"><a href="#cb22-420"></a>    <span class="at">NXRLT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-421"><a href="#cb22-421"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-422"><a href="#cb22-422"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> NFRLT <span class="sc">-</span> NFRLT_next</span>
+<span id="cb22-423"><a href="#cb22-423"></a>    )</span>
+<span id="cb22-424"><a href="#cb22-424"></a>  )</span>
+<span id="cb22-425"><a href="#cb22-425"></a><span class="in">```</span></span>
 <span id="cb22-426"><a href="#cb22-426"></a></span>
-<span id="cb22-427"><a href="#cb22-427"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-428"><a href="#cb22-428"></a><span class="fu">print_df</span>(adpc_nrrlt <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, NFRLT, NRRLT, AVISIT, PCTPT))</span>
-<span id="cb22-429"><a href="#cb22-429"></a><span class="in">```</span></span>
-<span id="cb22-430"><a href="#cb22-430"></a></span>
+<span id="cb22-427"><a href="#cb22-427"></a></span>
+<span id="cb22-428"><a href="#cb22-428"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-429"><a href="#cb22-429"></a><span class="fu">print_df</span>(adpc_nrrlt <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, NFRLT, NRRLT, AVISIT, PCTPT))</span>
+<span id="cb22-430"><a href="#cb22-430"></a><span class="in">```</span></span>
 <span id="cb22-431"><a href="#cb22-431"></a></span>
-<span id="cb22-432"><a href="#cb22-432"></a><span class="fu">### Derive Analysis Variables</span></span>
-<span id="cb22-433"><a href="#cb22-433"></a></span>
-<span id="cb22-434"><a href="#cb22-434"></a>Here we derive the analysis variables such as <span class="in">`AVAL`</span> and <span class="in">`ATPTREF`</span>.</span>
-<span id="cb22-435"><a href="#cb22-435"></a></span>
-<span id="cb22-438"><a href="#cb22-438"></a><span class="in">```{r}</span></span>
-<span id="cb22-439"><a href="#cb22-439"></a><span class="co">#| label: Analysis Variables</span></span>
-<span id="cb22-440"><a href="#cb22-440"></a></span>
-<span id="cb22-441"><a href="#cb22-441"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
-<span id="cb22-442"><a href="#cb22-442"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-443"><a href="#cb22-443"></a>    <span class="at">PARCAT1 =</span> PCSPEC,</span>
-<span id="cb22-444"><a href="#cb22-444"></a>    <span class="at">ATPTN =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-445"><a href="#cb22-445"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-446"><a href="#cb22-446"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPTNUM</span>
-<span id="cb22-447"><a href="#cb22-447"></a>    ),</span>
-<span id="cb22-448"><a href="#cb22-448"></a>    <span class="at">ATPT =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-449"><a href="#cb22-449"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Dose"</span>,</span>
-<span id="cb22-450"><a href="#cb22-450"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPT</span>
-<span id="cb22-451"><a href="#cb22-451"></a>    ),</span>
-<span id="cb22-452"><a href="#cb22-452"></a>    <span class="at">ATPTREF =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-453"><a href="#cb22-453"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> AVISIT,</span>
-<span id="cb22-454"><a href="#cb22-454"></a>      <span class="fu">is.na</span>(AVISIT_prev) <span class="sc">~</span> AVISIT_next,</span>
-<span id="cb22-455"><a href="#cb22-455"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> AVISIT_prev</span>
-<span id="cb22-456"><a href="#cb22-456"></a>    ),</span>
-<span id="cb22-457"><a href="#cb22-457"></a>    <span class="co"># Derive baseline flag for pre-dose records</span></span>
-<span id="cb22-458"><a href="#cb22-458"></a>    <span class="at">ABLFL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-459"><a href="#cb22-459"></a>      ATPT <span class="sc">==</span> <span class="st">"Pre-dose"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
-<span id="cb22-460"><a href="#cb22-460"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb22-461"><a href="#cb22-461"></a>    ),</span>
-<span id="cb22-462"><a href="#cb22-462"></a>    <span class="co"># Derive BASETYPE</span></span>
-<span id="cb22-463"><a href="#cb22-463"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(ATPTREF, <span class="st">"Baseline"</span>),</span>
-<span id="cb22-464"><a href="#cb22-464"></a></span>
-<span id="cb22-465"><a href="#cb22-465"></a>    <span class="co"># Derive Actual Dose</span></span>
-<span id="cb22-466"><a href="#cb22-466"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-467"><a href="#cb22-467"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb22-468"><a href="#cb22-468"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_next,</span>
-<span id="cb22-469"><a href="#cb22-469"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
-<span id="cb22-470"><a href="#cb22-470"></a>    ),</span>
-<span id="cb22-471"><a href="#cb22-471"></a>    <span class="co"># Derive Planned Dose</span></span>
-<span id="cb22-472"><a href="#cb22-472"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-473"><a href="#cb22-473"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
-<span id="cb22-474"><a href="#cb22-474"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span></span>
-<span id="cb22-475"><a href="#cb22-475"></a>    ),</span>
-<span id="cb22-476"><a href="#cb22-476"></a>    <span class="at">DOSEU =</span> <span class="st">"mg"</span>,</span>
-<span id="cb22-477"><a href="#cb22-477"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-478"><a href="#cb22-478"></a>  <span class="co"># Derive relative time units</span></span>
-<span id="cb22-479"><a href="#cb22-479"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-480"><a href="#cb22-480"></a>    <span class="at">FRLTU =</span> <span class="st">"h"</span>,</span>
-<span id="cb22-481"><a href="#cb22-481"></a>    <span class="at">RRLTU =</span> <span class="st">"h"</span>,</span>
-<span id="cb22-482"><a href="#cb22-482"></a>    <span class="co"># Derive PARAMCD</span></span>
-<span id="cb22-483"><a href="#cb22-483"></a>    <span class="at">PARAMCD =</span> <span class="fu">coalesce</span>(PCTESTCD, <span class="st">"DOSE"</span>),</span>
-<span id="cb22-484"><a href="#cb22-484"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
-<span id="cb22-485"><a href="#cb22-485"></a>    <span class="co"># Derive AVAL</span></span>
-<span id="cb22-486"><a href="#cb22-486"></a>    <span class="at">AVAL =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-487"><a href="#cb22-487"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
-<span id="cb22-488"><a href="#cb22-488"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb22-489"><a href="#cb22-489"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fl">0.5</span> <span class="sc">*</span> ALLOQ,</span>
-<span id="cb22-490"><a href="#cb22-490"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESN</span>
-<span id="cb22-491"><a href="#cb22-491"></a>    ),</span>
-<span id="cb22-492"><a href="#cb22-492"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
-<span id="cb22-493"><a href="#cb22-493"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSU,</span>
-<span id="cb22-494"><a href="#cb22-494"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
-<span id="cb22-495"><a href="#cb22-495"></a>    ),</span>
-<span id="cb22-496"><a href="#cb22-496"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">if_else</span>(PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span>, PCSTRESC, <span class="fu">prettyNum</span>(<span class="fu">signif</span>(AVAL, <span class="at">digits =</span> <span class="dv">3</span>))),</span>
-<span id="cb22-497"><a href="#cb22-497"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-498"><a href="#cb22-498"></a>  <span class="co"># Add SRCSEQ</span></span>
-<span id="cb22-499"><a href="#cb22-499"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-500"><a href="#cb22-500"></a>    <span class="at">SRCDOM =</span> DOMAIN,</span>
-<span id="cb22-501"><a href="#cb22-501"></a>    <span class="at">SRCVAR =</span> <span class="st">"SEQ"</span>,</span>
-<span id="cb22-502"><a href="#cb22-502"></a>    <span class="at">SRCSEQ =</span> <span class="fu">coalesce</span>(PCSEQ, EXSEQ)</span>
-<span id="cb22-503"><a href="#cb22-503"></a>  )</span>
-<span id="cb22-504"><a href="#cb22-504"></a><span class="in">```</span></span>
-<span id="cb22-505"><a href="#cb22-505"></a></span>
-<span id="cb22-506"><a href="#cb22-506"></a><span class="fu">### Derive DTYPE Copy Records</span></span>
-<span id="cb22-507"><a href="#cb22-507"></a></span>
-<span id="cb22-508"><a href="#cb22-508"></a>The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose.</span>
-<span id="cb22-509"><a href="#cb22-509"></a></span>
-<span id="cb22-512"><a href="#cb22-512"></a><span class="in">```{r}</span></span>
-<span id="cb22-513"><a href="#cb22-513"></a><span class="co">#| label: DTYPE</span></span>
-<span id="cb22-514"><a href="#cb22-514"></a></span>
-<span id="cb22-515"><a href="#cb22-515"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
-<span id="cb22-516"><a href="#cb22-516"></a>  <span class="fu">filter</span>(NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> NXRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> EVID <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISIT_next)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-517"><a href="#cb22-517"></a>  <span class="fu">select</span>(<span class="sc">-</span>PCRFTDT, <span class="sc">-</span>PCRFTTM) <span class="sc">%&gt;%</span></span>
-<span id="cb22-518"><a href="#cb22-518"></a>  <span class="co"># Re-derive variables in for DTYPE copy records</span></span>
-<span id="cb22-519"><a href="#cb22-519"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-520"><a href="#cb22-520"></a>    <span class="at">ABLFL =</span> <span class="cn">NA_character_</span>,</span>
-<span id="cb22-521"><a href="#cb22-521"></a>    <span class="at">ATPTREF =</span> AVISIT_next,</span>
-<span id="cb22-522"><a href="#cb22-522"></a>    <span class="at">ARRLT =</span> AXRLT,</span>
-<span id="cb22-523"><a href="#cb22-523"></a>    <span class="at">NRRLT =</span> NXRLT,</span>
-<span id="cb22-524"><a href="#cb22-524"></a>    <span class="at">PCRFTDTM =</span> ADTM_next,</span>
-<span id="cb22-525"><a href="#cb22-525"></a>    <span class="at">DOSEA =</span> EXDOSE_next,</span>
-<span id="cb22-526"><a href="#cb22-526"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(AVISIT_next, <span class="st">"Baseline"</span>),</span>
-<span id="cb22-527"><a href="#cb22-527"></a>    <span class="at">ATPT =</span> <span class="st">"Pre-dose"</span>,</span>
-<span id="cb22-528"><a href="#cb22-528"></a>    <span class="at">ATPTN =</span> NFRLT,</span>
-<span id="cb22-529"><a href="#cb22-529"></a>    <span class="at">ABLFL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb22-530"><a href="#cb22-530"></a>    <span class="at">DTYPE =</span> <span class="st">"COPY"</span></span>
-<span id="cb22-531"><a href="#cb22-531"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-532"><a href="#cb22-532"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-533"><a href="#cb22-533"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
-<span id="cb22-534"><a href="#cb22-534"></a><span class="in">```</span></span>
-<span id="cb22-535"><a href="#cb22-535"></a></span>
+<span id="cb22-432"><a href="#cb22-432"></a></span>
+<span id="cb22-433"><a href="#cb22-433"></a><span class="fu">### Derive Analysis Variables</span></span>
+<span id="cb22-434"><a href="#cb22-434"></a></span>
+<span id="cb22-435"><a href="#cb22-435"></a>Here we derive the analysis variables such as <span class="in">`AVAL`</span> and <span class="in">`ATPTREF`</span>.</span>
+<span id="cb22-436"><a href="#cb22-436"></a></span>
+<span id="cb22-439"><a href="#cb22-439"></a><span class="in">```{r}</span></span>
+<span id="cb22-440"><a href="#cb22-440"></a><span class="co">#| label: Analysis Variables</span></span>
+<span id="cb22-441"><a href="#cb22-441"></a></span>
+<span id="cb22-442"><a href="#cb22-442"></a>adpc_aval <span class="ot">&lt;-</span> adpc_nrrlt <span class="sc">%&gt;%</span></span>
+<span id="cb22-443"><a href="#cb22-443"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-444"><a href="#cb22-444"></a>    <span class="at">PARCAT1 =</span> PCSPEC,</span>
+<span id="cb22-445"><a href="#cb22-445"></a>    <span class="at">ATPTN =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-446"><a href="#cb22-446"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-447"><a href="#cb22-447"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPTNUM</span>
+<span id="cb22-448"><a href="#cb22-448"></a>    ),</span>
+<span id="cb22-449"><a href="#cb22-449"></a>    <span class="at">ATPT =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-450"><a href="#cb22-450"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Dose"</span>,</span>
+<span id="cb22-451"><a href="#cb22-451"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCTPT</span>
+<span id="cb22-452"><a href="#cb22-452"></a>    ),</span>
+<span id="cb22-453"><a href="#cb22-453"></a>    <span class="at">ATPTREF =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-454"><a href="#cb22-454"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> AVISIT,</span>
+<span id="cb22-455"><a href="#cb22-455"></a>      <span class="fu">is.na</span>(AVISIT_prev) <span class="sc">~</span> AVISIT_next,</span>
+<span id="cb22-456"><a href="#cb22-456"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> AVISIT_prev</span>
+<span id="cb22-457"><a href="#cb22-457"></a>    ),</span>
+<span id="cb22-458"><a href="#cb22-458"></a>    <span class="co"># Derive baseline flag for pre-dose records</span></span>
+<span id="cb22-459"><a href="#cb22-459"></a>    <span class="at">ABLFL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-460"><a href="#cb22-460"></a>      ATPT <span class="sc">==</span> <span class="st">"Pre-dose"</span> <span class="sc">~</span> <span class="st">"Y"</span>,</span>
+<span id="cb22-461"><a href="#cb22-461"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb22-462"><a href="#cb22-462"></a>    ),</span>
+<span id="cb22-463"><a href="#cb22-463"></a>    <span class="co"># Derive BASETYPE</span></span>
+<span id="cb22-464"><a href="#cb22-464"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(ATPTREF, <span class="st">"Baseline"</span>),</span>
+<span id="cb22-465"><a href="#cb22-465"></a></span>
+<span id="cb22-466"><a href="#cb22-466"></a>    <span class="co"># Derive Actual Dose</span></span>
+<span id="cb22-467"><a href="#cb22-467"></a>    <span class="at">DOSEA =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-468"><a href="#cb22-468"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb22-469"><a href="#cb22-469"></a>      <span class="fu">is.na</span>(EXDOSE_prev) <span class="sc">~</span> EXDOSE_next,</span>
+<span id="cb22-470"><a href="#cb22-470"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> EXDOSE_prev</span>
+<span id="cb22-471"><a href="#cb22-471"></a>    ),</span>
+<span id="cb22-472"><a href="#cb22-472"></a>    <span class="co"># Derive Planned Dose</span></span>
+<span id="cb22-473"><a href="#cb22-473"></a>    <span class="at">DOSEP =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-474"><a href="#cb22-474"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline High Dose"</span> <span class="sc">~</span> <span class="dv">81</span>,</span>
+<span id="cb22-475"><a href="#cb22-475"></a>      TRT01P <span class="sc">==</span> <span class="st">"Xanomeline Low Dose"</span> <span class="sc">~</span> <span class="dv">54</span></span>
+<span id="cb22-476"><a href="#cb22-476"></a>    ),</span>
+<span id="cb22-477"><a href="#cb22-477"></a>    <span class="at">DOSEU =</span> <span class="st">"mg"</span>,</span>
+<span id="cb22-478"><a href="#cb22-478"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-479"><a href="#cb22-479"></a>  <span class="co"># Derive relative time units</span></span>
+<span id="cb22-480"><a href="#cb22-480"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-481"><a href="#cb22-481"></a>    <span class="at">FRLTU =</span> <span class="st">"h"</span>,</span>
+<span id="cb22-482"><a href="#cb22-482"></a>    <span class="at">RRLTU =</span> <span class="st">"h"</span>,</span>
+<span id="cb22-483"><a href="#cb22-483"></a>    <span class="co"># Derive PARAMCD</span></span>
+<span id="cb22-484"><a href="#cb22-484"></a>    <span class="at">PARAMCD =</span> <span class="fu">coalesce</span>(PCTESTCD, <span class="st">"DOSE"</span>),</span>
+<span id="cb22-485"><a href="#cb22-485"></a>    <span class="at">ALLOQ =</span> PCLLOQ,</span>
+<span id="cb22-486"><a href="#cb22-486"></a>    <span class="co"># Derive AVAL</span></span>
+<span id="cb22-487"><a href="#cb22-487"></a>    <span class="at">AVAL =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-488"><a href="#cb22-488"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSE,</span>
+<span id="cb22-489"><a href="#cb22-489"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb22-490"><a href="#cb22-490"></a>      PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span> <span class="sc">&amp;</span> NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="fl">0.5</span> <span class="sc">*</span> ALLOQ,</span>
+<span id="cb22-491"><a href="#cb22-491"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESN</span>
+<span id="cb22-492"><a href="#cb22-492"></a>    ),</span>
+<span id="cb22-493"><a href="#cb22-493"></a>    <span class="at">AVALU =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-494"><a href="#cb22-494"></a>      EVID <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> EXDOSU,</span>
+<span id="cb22-495"><a href="#cb22-495"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> PCSTRESU</span>
+<span id="cb22-496"><a href="#cb22-496"></a>    ),</span>
+<span id="cb22-497"><a href="#cb22-497"></a>    <span class="at">AVALCAT1 =</span> <span class="fu">if_else</span>(PCSTRESC <span class="sc">==</span> <span class="st">"&lt;BLQ"</span>, PCSTRESC, <span class="fu">prettyNum</span>(<span class="fu">signif</span>(AVAL, <span class="at">digits =</span> <span class="dv">3</span>))),</span>
+<span id="cb22-498"><a href="#cb22-498"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-499"><a href="#cb22-499"></a>  <span class="co"># Add SRCSEQ</span></span>
+<span id="cb22-500"><a href="#cb22-500"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-501"><a href="#cb22-501"></a>    <span class="at">SRCDOM =</span> DOMAIN,</span>
+<span id="cb22-502"><a href="#cb22-502"></a>    <span class="at">SRCVAR =</span> <span class="st">"SEQ"</span>,</span>
+<span id="cb22-503"><a href="#cb22-503"></a>    <span class="at">SRCSEQ =</span> <span class="fu">coalesce</span>(PCSEQ, EXSEQ)</span>
+<span id="cb22-504"><a href="#cb22-504"></a>  )</span>
+<span id="cb22-505"><a href="#cb22-505"></a><span class="in">```</span></span>
+<span id="cb22-506"><a href="#cb22-506"></a></span>
+<span id="cb22-507"><a href="#cb22-507"></a><span class="fu">### Derive DTYPE Copy Records</span></span>
+<span id="cb22-508"><a href="#cb22-508"></a></span>
+<span id="cb22-509"><a href="#cb22-509"></a>The CDISC ADaM Implementation Guide for Non-compartmental Analysis uses duplicated records for analysis when a record needs to be used in more than one way. In this example the 24 hour post-dose record will also be used a the pre-dose record for the "Day 2" dose.</span>
+<span id="cb22-510"><a href="#cb22-510"></a></span>
+<span id="cb22-513"><a href="#cb22-513"></a><span class="in">```{r}</span></span>
+<span id="cb22-514"><a href="#cb22-514"></a><span class="co">#| label: DTYPE</span></span>
+<span id="cb22-515"><a href="#cb22-515"></a></span>
+<span id="cb22-516"><a href="#cb22-516"></a>dtype <span class="ot">&lt;-</span> adpc_aval <span class="sc">%&gt;%</span></span>
+<span id="cb22-517"><a href="#cb22-517"></a>  <span class="fu">filter</span>(NFRLT <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> NXRLT <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> EVID <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(AVISIT_next)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-518"><a href="#cb22-518"></a>  <span class="fu">select</span>(<span class="sc">-</span>PCRFTDT, <span class="sc">-</span>PCRFTTM) <span class="sc">%&gt;%</span></span>
+<span id="cb22-519"><a href="#cb22-519"></a>  <span class="co"># Re-derive variables in for DTYPE copy records</span></span>
+<span id="cb22-520"><a href="#cb22-520"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-521"><a href="#cb22-521"></a>    <span class="at">ABLFL =</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb22-522"><a href="#cb22-522"></a>    <span class="at">ATPTREF =</span> AVISIT_next,</span>
+<span id="cb22-523"><a href="#cb22-523"></a>    <span class="at">ARRLT =</span> AXRLT,</span>
+<span id="cb22-524"><a href="#cb22-524"></a>    <span class="at">NRRLT =</span> NXRLT,</span>
+<span id="cb22-525"><a href="#cb22-525"></a>    <span class="at">PCRFTDTM =</span> ADTM_next,</span>
+<span id="cb22-526"><a href="#cb22-526"></a>    <span class="at">DOSEA =</span> EXDOSE_next,</span>
+<span id="cb22-527"><a href="#cb22-527"></a>    <span class="at">BASETYPE =</span> <span class="fu">paste</span>(AVISIT_next, <span class="st">"Baseline"</span>),</span>
+<span id="cb22-528"><a href="#cb22-528"></a>    <span class="at">ATPT =</span> <span class="st">"Pre-dose"</span>,</span>
+<span id="cb22-529"><a href="#cb22-529"></a>    <span class="at">ATPTN =</span> NFRLT,</span>
+<span id="cb22-530"><a href="#cb22-530"></a>    <span class="at">ABLFL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb22-531"><a href="#cb22-531"></a>    <span class="at">DTYPE =</span> <span class="st">"COPY"</span></span>
+<span id="cb22-532"><a href="#cb22-532"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-533"><a href="#cb22-533"></a>  <span class="fu">derive_vars_dtm_to_dt</span>(<span class="fu">exprs</span>(PCRFTDTM)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-534"><a href="#cb22-534"></a>  <span class="fu">derive_vars_dtm_to_tm</span>(<span class="fu">exprs</span>(PCRFTDTM))</span>
+<span id="cb22-535"><a href="#cb22-535"></a><span class="in">```</span></span>
 <span id="cb22-536"><a href="#cb22-536"></a></span>
-<span id="cb22-537"><a href="#cb22-537"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-538"><a href="#cb22-538"></a><span class="fu">print_df</span>(dtype <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))</span>
-<span id="cb22-539"><a href="#cb22-539"></a><span class="in">```</span></span>
-<span id="cb22-540"><a href="#cb22-540"></a></span>
+<span id="cb22-537"><a href="#cb22-537"></a></span>
+<span id="cb22-538"><a href="#cb22-538"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-539"><a href="#cb22-539"></a><span class="fu">print_df</span>(dtype <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))</span>
+<span id="cb22-540"><a href="#cb22-540"></a><span class="in">```</span></span>
 <span id="cb22-541"><a href="#cb22-541"></a></span>
-<span id="cb22-542"><a href="#cb22-542"></a><span class="fu">### Combine Original and DTYPE Copy</span></span>
-<span id="cb22-543"><a href="#cb22-543"></a></span>
-<span id="cb22-544"><a href="#cb22-544"></a>Now the duplicated records are combined with the original records.</span>
-<span id="cb22-545"><a href="#cb22-545"></a></span>
-<span id="cb22-548"><a href="#cb22-548"></a><span class="in">```{r}</span></span>
-<span id="cb22-549"><a href="#cb22-549"></a><span class="co">#| label: Combine DTYPE</span></span>
-<span id="cb22-550"><a href="#cb22-550"></a></span>
-<span id="cb22-551"><a href="#cb22-551"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
-<span id="cb22-552"><a href="#cb22-552"></a>  <span class="fu">arrange</span>(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) <span class="sc">%&gt;%</span></span>
-<span id="cb22-553"><a href="#cb22-553"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-554"><a href="#cb22-554"></a>    <span class="co"># Derive MRRLT, ANL01FL and ANL02FL</span></span>
-<span id="cb22-555"><a href="#cb22-555"></a>    <span class="at">MRRLT =</span> <span class="fu">if_else</span>(ARRLT <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, ARRLT),</span>
-<span id="cb22-556"><a href="#cb22-556"></a>    <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb22-557"><a href="#cb22-557"></a>    <span class="at">ANL02FL =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(DTYPE), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>),</span>
-<span id="cb22-558"><a href="#cb22-558"></a>  )</span>
-<span id="cb22-559"><a href="#cb22-559"></a><span class="in">```</span></span>
-<span id="cb22-560"><a href="#cb22-560"></a></span>
-<span id="cb22-561"><a href="#cb22-561"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-562"><a href="#cb22-562"></a><span class="fu">print_df</span>(adpc_dtype <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))</span>
-<span id="cb22-563"><a href="#cb22-563"></a><span class="in">```</span></span>
-<span id="cb22-564"><a href="#cb22-564"></a></span>
-<span id="cb22-565"><a href="#cb22-565"></a><span class="fu">### Derive BASE and CHG</span></span>
-<span id="cb22-566"><a href="#cb22-566"></a></span>
-<span id="cb22-569"><a href="#cb22-569"></a><span class="in">```{r}</span></span>
-<span id="cb22-570"><a href="#cb22-570"></a><span class="co">#| label: BASE</span></span>
-<span id="cb22-571"><a href="#cb22-571"></a></span>
-<span id="cb22-572"><a href="#cb22-572"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
-<span id="cb22-573"><a href="#cb22-573"></a></span>
-<span id="cb22-574"><a href="#cb22-574"></a>adpc_base <span class="ot">&lt;-</span> adpc_dtype <span class="sc">%&gt;%</span></span>
-<span id="cb22-575"><a href="#cb22-575"></a>  <span class="fu">derive_var_base</span>(</span>
-<span id="cb22-576"><a href="#cb22-576"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, PARCAT1, BASETYPE),</span>
-<span id="cb22-577"><a href="#cb22-577"></a>    <span class="at">source_var =</span> AVAL,</span>
-<span id="cb22-578"><a href="#cb22-578"></a>    <span class="at">new_var =</span> BASE,</span>
-<span id="cb22-579"><a href="#cb22-579"></a>    <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
-<span id="cb22-580"><a href="#cb22-580"></a>  )</span>
-<span id="cb22-581"><a href="#cb22-581"></a></span>
-<span id="cb22-582"><a href="#cb22-582"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span>
-<span id="cb22-583"><a href="#cb22-583"></a><span class="in">```</span></span>
-<span id="cb22-584"><a href="#cb22-584"></a></span>
-<span id="cb22-585"><a href="#cb22-585"></a><span class="fu">### Derive `PARAM` with `{metatools}`</span></span>
-<span id="cb22-586"><a href="#cb22-586"></a></span>
-<span id="cb22-587"><a href="#cb22-587"></a>Here we derive <span class="in">`PARAM`</span> and <span class="in">`PARAMN`</span> using <span class="in">`create_var_from_codelist()`</span> from <span class="in">`{metatools}`</span>.</span>
-<span id="cb22-588"><a href="#cb22-588"></a></span>
-<span id="cb22-591"><a href="#cb22-591"></a><span class="in">```{r}</span></span>
-<span id="cb22-592"><a href="#cb22-592"></a><span class="co">#| label: ASEQ</span></span>
-<span id="cb22-593"><a href="#cb22-593"></a></span>
-<span id="cb22-594"><a href="#cb22-594"></a><span class="co"># ---- Add ASEQ ----</span></span>
-<span id="cb22-595"><a href="#cb22-595"></a></span>
-<span id="cb22-596"><a href="#cb22-596"></a>adpc_aseq <span class="ot">&lt;-</span> adpc_chg <span class="sc">%&gt;%</span></span>
-<span id="cb22-597"><a href="#cb22-597"></a>  <span class="co"># Calculate ASEQ</span></span>
-<span id="cb22-598"><a href="#cb22-598"></a>  <span class="fu">derive_var_obs_number</span>(</span>
-<span id="cb22-599"><a href="#cb22-599"></a>    <span class="at">new_var =</span> ASEQ,</span>
-<span id="cb22-600"><a href="#cb22-600"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb22-601"><a href="#cb22-601"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, BASETYPE, EVID, AVISITN, ATPTN, PARCAT1, DTYPE),</span>
-<span id="cb22-602"><a href="#cb22-602"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
-<span id="cb22-603"><a href="#cb22-603"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-604"><a href="#cb22-604"></a>  <span class="co"># Derive PARAM and PARAMN using metatools</span></span>
-<span id="cb22-605"><a href="#cb22-605"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAM) <span class="sc">%&gt;%</span></span>
-<span id="cb22-606"><a href="#cb22-606"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span>
-<span id="cb22-607"><a href="#cb22-607"></a><span class="in">```</span></span>
-<span id="cb22-608"><a href="#cb22-608"></a></span>
-<span id="cb22-609"><a href="#cb22-609"></a><span class="fu">### Derive Additional Baselines</span></span>
-<span id="cb22-610"><a href="#cb22-610"></a></span>
-<span id="cb22-611"><a href="#cb22-611"></a>Here we derive additional baseline values from <span class="in">`VS`</span> for baseline height <span class="in">`HTBL`</span> and weight <span class="in">`WTBL`</span> and compute the body mass index (BMI) with <span class="in">`compute_bmi()`</span>.</span>
-<span id="cb22-612"><a href="#cb22-612"></a></span>
-<span id="cb22-615"><a href="#cb22-615"></a><span class="in">```{r}</span></span>
-<span id="cb22-616"><a href="#cb22-616"></a><span class="co">#| label: Baselines</span></span>
-<span id="cb22-617"><a href="#cb22-617"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
-<span id="cb22-618"><a href="#cb22-618"></a></span>
-<span id="cb22-619"><a href="#cb22-619"></a>adpc_baselines <span class="ot">&lt;-</span> adpc_aseq <span class="sc">%&gt;%</span></span>
-<span id="cb22-620"><a href="#cb22-620"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb22-621"><a href="#cb22-621"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb22-622"><a href="#cb22-622"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
-<span id="cb22-623"><a href="#cb22-623"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb22-624"><a href="#cb22-624"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN, <span class="at">HTBLU =</span> VSSTRESU)</span>
-<span id="cb22-625"><a href="#cb22-625"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-626"><a href="#cb22-626"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb22-627"><a href="#cb22-627"></a>    <span class="at">dataset_add =</span> vs,</span>
-<span id="cb22-628"><a href="#cb22-628"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb22-629"><a href="#cb22-629"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb22-630"><a href="#cb22-630"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN, <span class="at">WTBLU =</span> VSSTRESU)</span>
-<span id="cb22-631"><a href="#cb22-631"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-632"><a href="#cb22-632"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-633"><a href="#cb22-633"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
-<span id="cb22-634"><a href="#cb22-634"></a>    <span class="at">BMIBLU =</span> <span class="st">"kg/m^2"</span></span>
-<span id="cb22-635"><a href="#cb22-635"></a>  )</span>
-<span id="cb22-636"><a href="#cb22-636"></a><span class="in">```</span></span>
-<span id="cb22-637"><a href="#cb22-637"></a></span>
-<span id="cb22-638"><a href="#cb22-638"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb22-639"><a href="#cb22-639"></a><span class="fu">print_df</span>(adpc_baselines <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, HTBL, HTBLU, WTBL, WTBLU, BMIBL, BMIBLU, BASETYPE, ATPT, AVAL))</span>
-<span id="cb22-640"><a href="#cb22-640"></a><span class="in">```</span></span>
-<span id="cb22-641"><a href="#cb22-641"></a></span>
-<span id="cb22-642"><a href="#cb22-642"></a><span class="fu">### Combine with ADSL</span></span>
-<span id="cb22-643"><a href="#cb22-643"></a></span>
-<span id="cb22-644"><a href="#cb22-644"></a>If needed, the other <span class="in">`ADSL`</span> variables can now be added:</span>
-<span id="cb22-645"><a href="#cb22-645"></a></span>
-<span id="cb22-648"><a href="#cb22-648"></a><span class="in">```{r}</span></span>
-<span id="cb22-649"><a href="#cb22-649"></a><span class="co">#| label: Combine with ADSL</span></span>
-<span id="cb22-650"><a href="#cb22-650"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
-<span id="cb22-651"><a href="#cb22-651"></a></span>
-<span id="cb22-652"><a href="#cb22-652"></a><span class="co"># Add all ADSL variables</span></span>
-<span id="cb22-653"><a href="#cb22-653"></a>adpc_prefinal <span class="ot">&lt;-</span> adpc_baselines <span class="sc">%&gt;%</span></span>
-<span id="cb22-654"><a href="#cb22-654"></a>  <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb22-655"><a href="#cb22-655"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
-<span id="cb22-656"><a href="#cb22-656"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb22-657"><a href="#cb22-657"></a>  )</span>
-<span id="cb22-658"><a href="#cb22-658"></a><span class="in">```</span></span>
-<span id="cb22-659"><a href="#cb22-659"></a></span>
-<span id="cb22-660"><a href="#cb22-660"></a><span class="fu">## Check Data With metacore and metatools</span></span>
-<span id="cb22-661"><a href="#cb22-661"></a></span>
-<span id="cb22-662"><a href="#cb22-662"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
-<span id="cb22-663"><a href="#cb22-663"></a></span>
-<span id="cb22-666"><a href="#cb22-666"></a><span class="in">```{r}</span></span>
-<span id="cb22-667"><a href="#cb22-667"></a><span class="co">#| label: Metacore</span></span>
-<span id="cb22-668"><a href="#cb22-668"></a><span class="co">#| warning: false</span></span>
-<span id="cb22-669"><a href="#cb22-669"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
-<span id="cb22-670"><a href="#cb22-670"></a>adpc <span class="ot">&lt;-</span> adpc_prefinal <span class="sc">%&gt;%</span></span>
-<span id="cb22-671"><a href="#cb22-671"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
-<span id="cb22-672"><a href="#cb22-672"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb22-673"><a href="#cb22-673"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
-<span id="cb22-674"><a href="#cb22-674"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
-<span id="cb22-675"><a href="#cb22-675"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
-<span id="cb22-676"><a href="#cb22-676"></a><span class="in">```</span></span>
-<span id="cb22-677"><a href="#cb22-677"></a></span>
-<span id="cb22-678"><a href="#cb22-678"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
-<span id="cb22-679"><a href="#cb22-679"></a></span>
-<span id="cb22-680"><a href="#cb22-680"></a>Using <span class="in">`{xportr}`</span> we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <span class="in">`xportr::xportr_write()`</span> to produce the XPT file.</span>
-<span id="cb22-681"><a href="#cb22-681"></a></span>
-<span id="cb22-684"><a href="#cb22-684"></a><span class="in">```{r}</span></span>
-<span id="cb22-685"><a href="#cb22-685"></a><span class="co">#| label: xportr</span></span>
-<span id="cb22-686"><a href="#cb22-686"></a><span class="co">#| warning: false</span></span>
-<span id="cb22-687"><a href="#cb22-687"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
-<span id="cb22-688"><a href="#cb22-688"></a></span>
-<span id="cb22-689"><a href="#cb22-689"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
-<span id="cb22-690"><a href="#cb22-690"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADPC"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
-<span id="cb22-691"><a href="#cb22-691"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb22-692"><a href="#cb22-692"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb22-693"><a href="#cb22-693"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb22-694"><a href="#cb22-694"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb22-695"><a href="#cb22-695"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb22-696"><a href="#cb22-696"></a><span class="in">```</span></span>
+<span id="cb22-542"><a href="#cb22-542"></a></span>
+<span id="cb22-543"><a href="#cb22-543"></a><span class="fu">### Combine Original and DTYPE Copy</span></span>
+<span id="cb22-544"><a href="#cb22-544"></a></span>
+<span id="cb22-545"><a href="#cb22-545"></a>Now the duplicated records are combined with the original records.</span>
+<span id="cb22-546"><a href="#cb22-546"></a></span>
+<span id="cb22-549"><a href="#cb22-549"></a><span class="in">```{r}</span></span>
+<span id="cb22-550"><a href="#cb22-550"></a><span class="co">#| label: Combine DTYPE</span></span>
+<span id="cb22-551"><a href="#cb22-551"></a></span>
+<span id="cb22-552"><a href="#cb22-552"></a>adpc_dtype <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(adpc_aval, dtype) <span class="sc">%&gt;%</span></span>
+<span id="cb22-553"><a href="#cb22-553"></a>  <span class="fu">arrange</span>(STUDYID, USUBJID, BASETYPE, ADTM, NFRLT) <span class="sc">%&gt;%</span></span>
+<span id="cb22-554"><a href="#cb22-554"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-555"><a href="#cb22-555"></a>    <span class="co"># Derive MRRLT, ANL01FL and ANL02FL</span></span>
+<span id="cb22-556"><a href="#cb22-556"></a>    <span class="at">MRRLT =</span> <span class="fu">if_else</span>(ARRLT <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, ARRLT),</span>
+<span id="cb22-557"><a href="#cb22-557"></a>    <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb22-558"><a href="#cb22-558"></a>    <span class="at">ANL02FL =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(DTYPE), <span class="st">"Y"</span>, <span class="cn">NA_character_</span>),</span>
+<span id="cb22-559"><a href="#cb22-559"></a>  )</span>
+<span id="cb22-560"><a href="#cb22-560"></a><span class="in">```</span></span>
+<span id="cb22-561"><a href="#cb22-561"></a></span>
+<span id="cb22-562"><a href="#cb22-562"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-563"><a href="#cb22-563"></a><span class="fu">print_df</span>(adpc_dtype <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))</span>
+<span id="cb22-564"><a href="#cb22-564"></a><span class="in">```</span></span>
+<span id="cb22-565"><a href="#cb22-565"></a></span>
+<span id="cb22-566"><a href="#cb22-566"></a><span class="fu">### Derive BASE and CHG</span></span>
+<span id="cb22-567"><a href="#cb22-567"></a></span>
+<span id="cb22-570"><a href="#cb22-570"></a><span class="in">```{r}</span></span>
+<span id="cb22-571"><a href="#cb22-571"></a><span class="co">#| label: BASE</span></span>
+<span id="cb22-572"><a href="#cb22-572"></a></span>
+<span id="cb22-573"><a href="#cb22-573"></a><span class="co"># ---- Derive BASE and Calculate Change from Baseline ----</span></span>
+<span id="cb22-574"><a href="#cb22-574"></a></span>
+<span id="cb22-575"><a href="#cb22-575"></a>adpc_base <span class="ot">&lt;-</span> adpc_dtype <span class="sc">%&gt;%</span></span>
+<span id="cb22-576"><a href="#cb22-576"></a>  <span class="fu">derive_var_base</span>(</span>
+<span id="cb22-577"><a href="#cb22-577"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, PARAMCD, PARCAT1, BASETYPE),</span>
+<span id="cb22-578"><a href="#cb22-578"></a>    <span class="at">source_var =</span> AVAL,</span>
+<span id="cb22-579"><a href="#cb22-579"></a>    <span class="at">new_var =</span> BASE,</span>
+<span id="cb22-580"><a href="#cb22-580"></a>    <span class="at">filter =</span> ABLFL <span class="sc">==</span> <span class="st">"Y"</span></span>
+<span id="cb22-581"><a href="#cb22-581"></a>  )</span>
+<span id="cb22-582"><a href="#cb22-582"></a></span>
+<span id="cb22-583"><a href="#cb22-583"></a>adpc_chg <span class="ot">&lt;-</span> <span class="fu">derive_var_chg</span>(adpc_base)</span>
+<span id="cb22-584"><a href="#cb22-584"></a><span class="in">```</span></span>
+<span id="cb22-585"><a href="#cb22-585"></a></span>
+<span id="cb22-586"><a href="#cb22-586"></a><span class="fu">### Derive `PARAM` with `{metatools}`</span></span>
+<span id="cb22-587"><a href="#cb22-587"></a></span>
+<span id="cb22-588"><a href="#cb22-588"></a>Here we derive <span class="in">`PARAM`</span> and <span class="in">`PARAMN`</span> using <span class="in">`create_var_from_codelist()`</span> from <span class="in">`{metatools}`</span>.</span>
+<span id="cb22-589"><a href="#cb22-589"></a></span>
+<span id="cb22-592"><a href="#cb22-592"></a><span class="in">```{r}</span></span>
+<span id="cb22-593"><a href="#cb22-593"></a><span class="co">#| label: ASEQ</span></span>
+<span id="cb22-594"><a href="#cb22-594"></a></span>
+<span id="cb22-595"><a href="#cb22-595"></a><span class="co"># ---- Add ASEQ ----</span></span>
+<span id="cb22-596"><a href="#cb22-596"></a></span>
+<span id="cb22-597"><a href="#cb22-597"></a>adpc_aseq <span class="ot">&lt;-</span> adpc_chg <span class="sc">%&gt;%</span></span>
+<span id="cb22-598"><a href="#cb22-598"></a>  <span class="co"># Calculate ASEQ</span></span>
+<span id="cb22-599"><a href="#cb22-599"></a>  <span class="fu">derive_var_obs_number</span>(</span>
+<span id="cb22-600"><a href="#cb22-600"></a>    <span class="at">new_var =</span> ASEQ,</span>
+<span id="cb22-601"><a href="#cb22-601"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb22-602"><a href="#cb22-602"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADTM, BASETYPE, EVID, AVISITN, ATPTN, PARCAT1, DTYPE),</span>
+<span id="cb22-603"><a href="#cb22-603"></a>    <span class="at">check_type =</span> <span class="st">"error"</span></span>
+<span id="cb22-604"><a href="#cb22-604"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-605"><a href="#cb22-605"></a>  <span class="co"># Derive PARAM and PARAMN using metatools</span></span>
+<span id="cb22-606"><a href="#cb22-606"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAM) <span class="sc">%&gt;%</span></span>
+<span id="cb22-607"><a href="#cb22-607"></a>  <span class="fu">create_var_from_codelist</span>(metacore, <span class="at">input_var =</span> PARAMCD, <span class="at">out_var =</span> PARAMN)</span>
+<span id="cb22-608"><a href="#cb22-608"></a><span class="in">```</span></span>
+<span id="cb22-609"><a href="#cb22-609"></a></span>
+<span id="cb22-610"><a href="#cb22-610"></a><span class="fu">### Derive Additional Baselines</span></span>
+<span id="cb22-611"><a href="#cb22-611"></a></span>
+<span id="cb22-612"><a href="#cb22-612"></a>Here we derive additional baseline values from <span class="in">`VS`</span> for baseline height <span class="in">`HTBL`</span> and weight <span class="in">`WTBL`</span> and compute the body mass index (BMI) with <span class="in">`compute_bmi()`</span>.</span>
+<span id="cb22-613"><a href="#cb22-613"></a></span>
+<span id="cb22-616"><a href="#cb22-616"></a><span class="in">```{r}</span></span>
+<span id="cb22-617"><a href="#cb22-617"></a><span class="co">#| label: Baselines</span></span>
+<span id="cb22-618"><a href="#cb22-618"></a><span class="co">#---- Derive additional baselines from VS ----</span></span>
+<span id="cb22-619"><a href="#cb22-619"></a></span>
+<span id="cb22-620"><a href="#cb22-620"></a>adpc_baselines <span class="ot">&lt;-</span> adpc_aseq <span class="sc">%&gt;%</span></span>
+<span id="cb22-621"><a href="#cb22-621"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb22-622"><a href="#cb22-622"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb22-623"><a href="#cb22-623"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"HEIGHT"</span>,</span>
+<span id="cb22-624"><a href="#cb22-624"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb22-625"><a href="#cb22-625"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">HTBL =</span> VSSTRESN, <span class="at">HTBLU =</span> VSSTRESU)</span>
+<span id="cb22-626"><a href="#cb22-626"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-627"><a href="#cb22-627"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb22-628"><a href="#cb22-628"></a>    <span class="at">dataset_add =</span> vs,</span>
+<span id="cb22-629"><a href="#cb22-629"></a>    <span class="at">filter_add =</span> VSTESTCD <span class="sc">==</span> <span class="st">"WEIGHT"</span> <span class="sc">&amp;</span> VSBLFL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb22-630"><a href="#cb22-630"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb22-631"><a href="#cb22-631"></a>    <span class="at">new_vars =</span> <span class="fu">exprs</span>(<span class="at">WTBL =</span> VSSTRESN, <span class="at">WTBLU =</span> VSSTRESU)</span>
+<span id="cb22-632"><a href="#cb22-632"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-633"><a href="#cb22-633"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-634"><a href="#cb22-634"></a>    <span class="at">BMIBL =</span> <span class="fu">compute_bmi</span>(<span class="at">height =</span> HTBL, <span class="at">weight =</span> WTBL),</span>
+<span id="cb22-635"><a href="#cb22-635"></a>    <span class="at">BMIBLU =</span> <span class="st">"kg/m^2"</span></span>
+<span id="cb22-636"><a href="#cb22-636"></a>  )</span>
+<span id="cb22-637"><a href="#cb22-637"></a><span class="in">```</span></span>
+<span id="cb22-638"><a href="#cb22-638"></a></span>
+<span id="cb22-639"><a href="#cb22-639"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb22-640"><a href="#cb22-640"></a><span class="fu">print_df</span>(adpc_baselines <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, HTBL, HTBLU, WTBL, WTBLU, BMIBL, BMIBLU, BASETYPE, ATPT, AVAL))</span>
+<span id="cb22-641"><a href="#cb22-641"></a><span class="in">```</span></span>
+<span id="cb22-642"><a href="#cb22-642"></a></span>
+<span id="cb22-643"><a href="#cb22-643"></a><span class="fu">### Combine with ADSL</span></span>
+<span id="cb22-644"><a href="#cb22-644"></a></span>
+<span id="cb22-645"><a href="#cb22-645"></a>If needed, the other <span class="in">`ADSL`</span> variables can now be added:</span>
+<span id="cb22-646"><a href="#cb22-646"></a></span>
+<span id="cb22-649"><a href="#cb22-649"></a><span class="in">```{r}</span></span>
+<span id="cb22-650"><a href="#cb22-650"></a><span class="co">#| label: Combine with ADSL</span></span>
+<span id="cb22-651"><a href="#cb22-651"></a><span class="co"># ---- Add all ADSL variables ----</span></span>
+<span id="cb22-652"><a href="#cb22-652"></a></span>
+<span id="cb22-653"><a href="#cb22-653"></a><span class="co"># Add all ADSL variables</span></span>
+<span id="cb22-654"><a href="#cb22-654"></a>adpc_prefinal <span class="ot">&lt;-</span> adpc_baselines <span class="sc">%&gt;%</span></span>
+<span id="cb22-655"><a href="#cb22-655"></a>  <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb22-656"><a href="#cb22-656"></a>    <span class="at">dataset_add =</span> <span class="fu">select</span>(adsl, <span class="sc">!!!</span><span class="fu">negate_vars</span>(adsl_vars)),</span>
+<span id="cb22-657"><a href="#cb22-657"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb22-658"><a href="#cb22-658"></a>  )</span>
+<span id="cb22-659"><a href="#cb22-659"></a><span class="in">```</span></span>
+<span id="cb22-660"><a href="#cb22-660"></a></span>
+<span id="cb22-661"><a href="#cb22-661"></a><span class="fu">## Check Data With metacore and metatools</span></span>
+<span id="cb22-662"><a href="#cb22-662"></a></span>
+<span id="cb22-663"><a href="#cb22-663"></a>We use <span class="in">`{metacore}`</span> objects with <span class="in">`{metatools}`</span> functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.</span>
+<span id="cb22-664"><a href="#cb22-664"></a></span>
+<span id="cb22-667"><a href="#cb22-667"></a><span class="in">```{r}</span></span>
+<span id="cb22-668"><a href="#cb22-668"></a><span class="co">#| label: Metacore</span></span>
+<span id="cb22-669"><a href="#cb22-669"></a><span class="co">#| warning: false</span></span>
+<span id="cb22-670"><a href="#cb22-670"></a><span class="co"># Apply metadata and perform associated checks ----</span></span>
+<span id="cb22-671"><a href="#cb22-671"></a>adpc <span class="ot">&lt;-</span> adpc_prefinal <span class="sc">%&gt;%</span></span>
+<span id="cb22-672"><a href="#cb22-672"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop unspecified variables from specs</span></span>
+<span id="cb22-673"><a href="#cb22-673"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb22-674"><a href="#cb22-674"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Checks all variables with CT only contain values within the CT</span></span>
+<span id="cb22-675"><a href="#cb22-675"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Orders the columns according to the spec</span></span>
+<span id="cb22-676"><a href="#cb22-676"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sorts the rows by the sort keys</span></span>
+<span id="cb22-677"><a href="#cb22-677"></a><span class="in">```</span></span>
+<span id="cb22-678"><a href="#cb22-678"></a></span>
+<span id="cb22-679"><a href="#cb22-679"></a><span class="fu">## Apply Labels and Formats with xportr</span></span>
+<span id="cb22-680"><a href="#cb22-680"></a></span>
+<span id="cb22-681"><a href="#cb22-681"></a>Using <span class="in">`{xportr}`</span> we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file. At the end you could add a call to <span class="in">`xportr::xportr_write()`</span> to produce the XPT file.</span>
+<span id="cb22-682"><a href="#cb22-682"></a></span>
+<span id="cb22-685"><a href="#cb22-685"></a><span class="in">```{r}</span></span>
+<span id="cb22-686"><a href="#cb22-686"></a><span class="co">#| label: xportr</span></span>
+<span id="cb22-687"><a href="#cb22-687"></a><span class="co">#| warning: false</span></span>
+<span id="cb22-688"><a href="#cb22-688"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Change to whichever directory you want to save the dataset in</span></span>
+<span id="cb22-689"><a href="#cb22-689"></a></span>
+<span id="cb22-690"><a href="#cb22-690"></a>adpc_xpt <span class="ot">&lt;-</span> adpc <span class="sc">%&gt;%</span></span>
+<span id="cb22-691"><a href="#cb22-691"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADPC"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable type to match spec</span></span>
+<span id="cb22-692"><a href="#cb22-692"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb22-693"><a href="#cb22-693"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb22-694"><a href="#cb22-694"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb22-695"><a href="#cb22-695"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb22-696"><a href="#cb22-696"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adpc.xpt"</span>)) <span class="co"># Write xpt v5 transport file</span></span>
+<span id="cb22-697"><a href="#cb22-697"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
