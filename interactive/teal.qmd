@@ -3,11 +3,6 @@ title: "`teal` applications"
 order: 1
 ---
 
-```{r}
-#| include: false
-shinylive::assets_ensure()
-```
-
 [`teal`](https://insightsengineering.github.io/teal/latest-tag/) is a Shiny-based framework that streamlines the process of creating an application for clinical trials data. App developers are required to specify input data as well as analysis modules choosing from a wide range of available modules or creating their own module.
 
 The main features of a `teal` app include:
