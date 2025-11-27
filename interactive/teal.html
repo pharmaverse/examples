@@ -613,205 +613,214 @@ cookieconsent.run({
 <p>Below you can find a few examples using <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> (via <a href="https://shiny.posit.co/py/get-started/shinylive.html">Shinylive</a>). This will run applications directly in the browser without any server in the background. You are free to change the source code and the application will refresh accordingly.</p>
 <section id="a-simple-example-for-non-clinical-trials-data-with-custom-module" class="level1">
 <h1>A simple example for non-clinical trials data with custom module</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| standalone: true</span>
-<span id="cb1-2"><a href="#cb1-2"></a>#| viewerHeight: 800</span>
-<span id="cb1-3"><a href="#cb1-3"></a>#| components: [viewer, editor]</span>
-<span id="cb1-4"><a href="#cb1-4"></a>#| layout: vertical</span>
-<span id="cb1-5"><a href="#cb1-5"></a>library(teal)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>app &lt;- init(</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  data = teal_data(iris = iris),</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  modules = list(</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    module(</span>
-<span id="cb1-11"><a href="#cb1-11"></a>      label = "iris histogram",</span>
-<span id="cb1-12"><a href="#cb1-12"></a>      server = function(input, output, session, data) {</span>
-<span id="cb1-13"><a href="#cb1-13"></a>        updateSelectInput(session = session,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>                          inputId =  "var",</span>
-<span id="cb1-15"><a href="#cb1-15"></a>                          choices = names(data()[["iris"]])[1:4])</span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a>        output$hist &lt;- renderPlot({</span>
-<span id="cb1-18"><a href="#cb1-18"></a>          req(input$var)</span>
-<span id="cb1-19"><a href="#cb1-19"></a>          hist(</span>
-<span id="cb1-20"><a href="#cb1-20"></a>            x = data()[["iris"]][[input$var]],</span>
-<span id="cb1-21"><a href="#cb1-21"></a>            main = sprintf("Histogram of %s", input$var),</span>
-<span id="cb1-22"><a href="#cb1-22"></a>            xlab = input$var</span>
-<span id="cb1-23"><a href="#cb1-23"></a>          )</span>
-<span id="cb1-24"><a href="#cb1-24"></a>        })</span>
-<span id="cb1-25"><a href="#cb1-25"></a>      },</span>
-<span id="cb1-26"><a href="#cb1-26"></a>      ui = function(id) {</span>
-<span id="cb1-27"><a href="#cb1-27"></a>        ns &lt;- NS(id)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>        list(</span>
-<span id="cb1-29"><a href="#cb1-29"></a>          selectInput(inputId = ns("var"),</span>
-<span id="cb1-30"><a href="#cb1-30"></a>                      label =  "Column name",</span>
-<span id="cb1-31"><a href="#cb1-31"></a>                      choices = NULL),</span>
-<span id="cb1-32"><a href="#cb1-32"></a>          plotOutput(outputId = ns("hist"))</span>
-<span id="cb1-33"><a href="#cb1-33"></a>        )</span>
-<span id="cb1-34"><a href="#cb1-34"></a>      }</span>
-<span id="cb1-35"><a href="#cb1-35"></a>    )</span>
-<span id="cb1-36"><a href="#cb1-36"></a>  )</span>
-<span id="cb1-37"><a href="#cb1-37"></a>)</span>
-<span id="cb1-38"><a href="#cb1-38"></a></span>
-<span id="cb1-39"><a href="#cb1-39"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>#| '!! shinylive warning !!': |</span>
+<span id="cb1-2"><a href="#cb1-2"></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb1-3"><a href="#cb1-3"></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb1-4"><a href="#cb1-4"></a>#| standalone: true</span>
+<span id="cb1-5"><a href="#cb1-5"></a>#| viewerHeight: 800</span>
+<span id="cb1-6"><a href="#cb1-6"></a>#| components: [viewer, editor]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>#| layout: vertical</span>
+<span id="cb1-8"><a href="#cb1-8"></a>library(teal)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a>app &lt;- init(</span>
+<span id="cb1-11"><a href="#cb1-11"></a>  data = teal_data(iris = iris),</span>
+<span id="cb1-12"><a href="#cb1-12"></a>  modules = list(</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    module(</span>
+<span id="cb1-14"><a href="#cb1-14"></a>      label = "iris histogram",</span>
+<span id="cb1-15"><a href="#cb1-15"></a>      server = function(input, output, session, data) {</span>
+<span id="cb1-16"><a href="#cb1-16"></a>        updateSelectInput(session = session,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>                          inputId =  "var",</span>
+<span id="cb1-18"><a href="#cb1-18"></a>                          choices = names(data()[["iris"]])[1:4])</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>        output$hist &lt;- renderPlot({</span>
+<span id="cb1-21"><a href="#cb1-21"></a>          req(input$var)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>          hist(</span>
+<span id="cb1-23"><a href="#cb1-23"></a>            x = data()[["iris"]][[input$var]],</span>
+<span id="cb1-24"><a href="#cb1-24"></a>            main = sprintf("Histogram of %s", input$var),</span>
+<span id="cb1-25"><a href="#cb1-25"></a>            xlab = input$var</span>
+<span id="cb1-26"><a href="#cb1-26"></a>          )</span>
+<span id="cb1-27"><a href="#cb1-27"></a>        })</span>
+<span id="cb1-28"><a href="#cb1-28"></a>      },</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      ui = function(id) {</span>
+<span id="cb1-30"><a href="#cb1-30"></a>        ns &lt;- NS(id)</span>
+<span id="cb1-31"><a href="#cb1-31"></a>        list(</span>
+<span id="cb1-32"><a href="#cb1-32"></a>          selectInput(inputId = ns("var"),</span>
+<span id="cb1-33"><a href="#cb1-33"></a>                      label =  "Column name",</span>
+<span id="cb1-34"><a href="#cb1-34"></a>                      choices = NULL),</span>
+<span id="cb1-35"><a href="#cb1-35"></a>          plotOutput(outputId = ns("hist"))</span>
+<span id="cb1-36"><a href="#cb1-36"></a>        )</span>
+<span id="cb1-37"><a href="#cb1-37"></a>      }</span>
+<span id="cb1-38"><a href="#cb1-38"></a>    )</span>
+<span id="cb1-39"><a href="#cb1-39"></a>  )</span>
+<span id="cb1-40"><a href="#cb1-40"></a>)</span>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="a-simple-example-for-clinical-trials-data-with-custom-module" class="level1">
 <h1>A simple example for clinical trials data with custom module</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>#| standalone: true</span>
-<span id="cb2-2"><a href="#cb2-2"></a>#| viewerHeight: 800</span>
-<span id="cb2-3"><a href="#cb2-3"></a>#| components: [viewer, editor]</span>
-<span id="cb2-4"><a href="#cb2-4"></a>#| layout: vertical</span>
-<span id="cb2-5"><a href="#cb2-5"></a>library(teal)</span>
-<span id="cb2-6"><a href="#cb2-6"></a>library(tern)</span>
-<span id="cb2-7"><a href="#cb2-7"></a>library(dplyr)</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a>adsl &lt;- tern_ex_adsl %&gt;%</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  df_explicit_na()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>#| '!! shinylive warning !!': |</span>
+<span id="cb2-2"><a href="#cb2-2"></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb2-3"><a href="#cb2-3"></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb2-4"><a href="#cb2-4"></a>#| standalone: true</span>
+<span id="cb2-5"><a href="#cb2-5"></a>#| viewerHeight: 800</span>
+<span id="cb2-6"><a href="#cb2-6"></a>#| components: [viewer, editor]</span>
+<span id="cb2-7"><a href="#cb2-7"></a>#| layout: vertical</span>
+<span id="cb2-8"><a href="#cb2-8"></a>library(teal)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>library(tern)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>library(dplyr)</span>
 <span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a>app &lt;- init(</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  data = cdisc_data(</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    adsl = adsl</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  ),</span>
-<span id="cb2-16"><a href="#cb2-16"></a>  modules = list(</span>
-<span id="cb2-17"><a href="#cb2-17"></a>    module(</span>
-<span id="cb2-18"><a href="#cb2-18"></a>      "demographic table",</span>
-<span id="cb2-19"><a href="#cb2-19"></a>      server = function(input, output, session, data) {</span>
-<span id="cb2-20"><a href="#cb2-20"></a>        output$table &lt;- renderUI({</span>
-<span id="cb2-21"><a href="#cb2-21"></a>          validate(need(input$vars, "Please select summary variables"))</span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a>          lyt &lt;- basic_table(show_colcounts = TRUE) %&gt;%</span>
-<span id="cb2-24"><a href="#cb2-24"></a>            split_cols_by(var = "ACTARM") %&gt;%</span>
-<span id="cb2-25"><a href="#cb2-25"></a>            add_overall_col("All Patients") %&gt;%</span>
-<span id="cb2-26"><a href="#cb2-26"></a>            analyze_vars(</span>
-<span id="cb2-27"><a href="#cb2-27"></a>                vars = input$vars,</span>
-<span id="cb2-28"><a href="#cb2-28"></a>                var_labels = var_labels(data()[["adsl"]][, input$vars])</span>
-<span id="cb2-29"><a href="#cb2-29"></a>            )</span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a>            result &lt;- build_table(lyt, adsl)</span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a>            as_html(result)</span>
-<span id="cb2-34"><a href="#cb2-34"></a>        })</span>
-<span id="cb2-35"><a href="#cb2-35"></a>      },</span>
-<span id="cb2-36"><a href="#cb2-36"></a>      ui = function(id) {</span>
-<span id="cb2-37"><a href="#cb2-37"></a>        ns &lt;- NS(id)</span>
-<span id="cb2-38"><a href="#cb2-38"></a>        list(</span>
-<span id="cb2-39"><a href="#cb2-39"></a>          shiny::selectInput(</span>
-<span id="cb2-40"><a href="#cb2-40"></a>            ns("vars"),</span>
-<span id="cb2-41"><a href="#cb2-41"></a>            "Summary variables",</span>
-<span id="cb2-42"><a href="#cb2-42"></a>            choices = c("AGE", "SEX", "RACE", "STRATA1", "STRATA2", "BMRKR1", "BMRKR2"),</span>
-<span id="cb2-43"><a href="#cb2-43"></a>            selected = c("AGE", "SEX", "RACE"),</span>
-<span id="cb2-44"><a href="#cb2-44"></a>            multiple = TRUE</span>
-<span id="cb2-45"><a href="#cb2-45"></a>          ),</span>
-<span id="cb2-46"><a href="#cb2-46"></a>          uiOutput(ns("table"))</span>
-<span id="cb2-47"><a href="#cb2-47"></a>        )</span>
-<span id="cb2-48"><a href="#cb2-48"></a>      }</span>
-<span id="cb2-49"><a href="#cb2-49"></a>    )</span>
-<span id="cb2-50"><a href="#cb2-50"></a>  )</span>
-<span id="cb2-51"><a href="#cb2-51"></a>)</span>
-<span id="cb2-52"><a href="#cb2-52"></a></span>
-<span id="cb2-53"><a href="#cb2-53"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-12"><a href="#cb2-12"></a>adsl &lt;- tern_ex_adsl %&gt;%</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  df_explicit_na()</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a>app &lt;- init(</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  data = cdisc_data(</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    adsl = adsl</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  ),</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  modules = list(</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    module(</span>
+<span id="cb2-21"><a href="#cb2-21"></a>      "demographic table",</span>
+<span id="cb2-22"><a href="#cb2-22"></a>      server = function(input, output, session, data) {</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        output$table &lt;- renderUI({</span>
+<span id="cb2-24"><a href="#cb2-24"></a>          validate(need(input$vars, "Please select summary variables"))</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a>          lyt &lt;- basic_table(show_colcounts = TRUE) %&gt;%</span>
+<span id="cb2-27"><a href="#cb2-27"></a>            split_cols_by(var = "ACTARM") %&gt;%</span>
+<span id="cb2-28"><a href="#cb2-28"></a>            add_overall_col("All Patients") %&gt;%</span>
+<span id="cb2-29"><a href="#cb2-29"></a>            analyze_vars(</span>
+<span id="cb2-30"><a href="#cb2-30"></a>                vars = input$vars,</span>
+<span id="cb2-31"><a href="#cb2-31"></a>                var_labels = var_labels(data()[["adsl"]][, input$vars])</span>
+<span id="cb2-32"><a href="#cb2-32"></a>            )</span>
+<span id="cb2-33"><a href="#cb2-33"></a></span>
+<span id="cb2-34"><a href="#cb2-34"></a>            result &lt;- build_table(lyt, adsl)</span>
+<span id="cb2-35"><a href="#cb2-35"></a></span>
+<span id="cb2-36"><a href="#cb2-36"></a>            as_html(result)</span>
+<span id="cb2-37"><a href="#cb2-37"></a>        })</span>
+<span id="cb2-38"><a href="#cb2-38"></a>      },</span>
+<span id="cb2-39"><a href="#cb2-39"></a>      ui = function(id) {</span>
+<span id="cb2-40"><a href="#cb2-40"></a>        ns &lt;- NS(id)</span>
+<span id="cb2-41"><a href="#cb2-41"></a>        list(</span>
+<span id="cb2-42"><a href="#cb2-42"></a>          shiny::selectInput(</span>
+<span id="cb2-43"><a href="#cb2-43"></a>            ns("vars"),</span>
+<span id="cb2-44"><a href="#cb2-44"></a>            "Summary variables",</span>
+<span id="cb2-45"><a href="#cb2-45"></a>            choices = c("AGE", "SEX", "RACE", "STRATA1", "STRATA2", "BMRKR1", "BMRKR2"),</span>
+<span id="cb2-46"><a href="#cb2-46"></a>            selected = c("AGE", "SEX", "RACE"),</span>
+<span id="cb2-47"><a href="#cb2-47"></a>            multiple = TRUE</span>
+<span id="cb2-48"><a href="#cb2-48"></a>          ),</span>
+<span id="cb2-49"><a href="#cb2-49"></a>          uiOutput(ns("table"))</span>
+<span id="cb2-50"><a href="#cb2-50"></a>        )</span>
+<span id="cb2-51"><a href="#cb2-51"></a>      }</span>
+<span id="cb2-52"><a href="#cb2-52"></a>    )</span>
+<span id="cb2-53"><a href="#cb2-53"></a>  )</span>
+<span id="cb2-54"><a href="#cb2-54"></a>)</span>
+<span id="cb2-55"><a href="#cb2-55"></a></span>
+<span id="cb2-56"><a href="#cb2-56"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="use-pre-created-modules" class="level1">
 <h1>Use pre-created modules</h1>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>#| standalone: true</span>
-<span id="cb3-2"><a href="#cb3-2"></a>#| viewerHeight: 800</span>
-<span id="cb3-3"><a href="#cb3-3"></a>#| components: [viewer, editor]</span>
-<span id="cb3-4"><a href="#cb3-4"></a>#| layout: vertical</span>
-<span id="cb3-5"><a href="#cb3-5"></a>library(teal.modules.clinical)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>library(teal.modules.general)</span>
-<span id="cb3-7"><a href="#cb3-7"></a>library(sparkline)</span>
-<span id="cb3-8"><a href="#cb3-8"></a>library(magrittr)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a>data &lt;- cdisc_data() %&gt;%</span>
-<span id="cb3-11"><a href="#cb3-11"></a>  within({</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    ADSL &lt;- tmc_ex_adsl</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    ADTTE &lt;- tmc_ex_adtte</span>
-<span id="cb3-14"><a href="#cb3-14"></a>  })</span>
-<span id="cb3-15"><a href="#cb3-15"></a>datanames(data) &lt;- c("ADSL", "ADTTE")</span>
-<span id="cb3-16"><a href="#cb3-16"></a>join_keys(data) &lt;- default_cdisc_join_keys[datanames(data)]</span>
-<span id="cb3-17"><a href="#cb3-17"></a></span>
-<span id="cb3-18"><a href="#cb3-18"></a>ADSL &lt;- data[["ADSL"]]</span>
-<span id="cb3-19"><a href="#cb3-19"></a>ADTTE &lt;- data[["ADTTE"]]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>#| '!! shinylive warning !!': |</span>
+<span id="cb3-2"><a href="#cb3-2"></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb3-3"><a href="#cb3-3"></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb3-4"><a href="#cb3-4"></a>#| standalone: true</span>
+<span id="cb3-5"><a href="#cb3-5"></a>#| viewerHeight: 800</span>
+<span id="cb3-6"><a href="#cb3-6"></a>#| components: [viewer, editor]</span>
+<span id="cb3-7"><a href="#cb3-7"></a>#| layout: vertical</span>
+<span id="cb3-8"><a href="#cb3-8"></a>library(teal.modules.clinical)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>library(teal.modules.general)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>library(sparkline)</span>
+<span id="cb3-11"><a href="#cb3-11"></a>library(magrittr)</span>
+<span id="cb3-12"><a href="#cb3-12"></a></span>
+<span id="cb3-13"><a href="#cb3-13"></a>data &lt;- cdisc_data() %&gt;%</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  within({</span>
+<span id="cb3-15"><a href="#cb3-15"></a>    ADSL &lt;- tmc_ex_adsl</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    ADTTE &lt;- tmc_ex_adtte</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  })</span>
+<span id="cb3-18"><a href="#cb3-18"></a>names(data) &lt;- c("ADSL", "ADTTE")</span>
+<span id="cb3-19"><a href="#cb3-19"></a>join_keys(data) &lt;- default_cdisc_join_keys[names(data)]</span>
 <span id="cb3-20"><a href="#cb3-20"></a></span>
-<span id="cb3-21"><a href="#cb3-21"></a>arm_vars &lt;- c("ARM", "ARMCD", "ACTARMCD")</span>
-<span id="cb3-22"><a href="#cb3-22"></a>strata_vars &lt;- c("STRATA1", "STRATA2")</span>
-<span id="cb3-23"><a href="#cb3-23"></a>facet_vars &lt;- c("BMRKR2", "SEX", "COUNTRY")</span>
-<span id="cb3-24"><a href="#cb3-24"></a></span>
-<span id="cb3-25"><a href="#cb3-25"></a>cs_arm_var &lt;- choices_selected(</span>
-<span id="cb3-26"><a href="#cb3-26"></a>  choices = variable_choices(ADSL, subset = arm_vars),</span>
-<span id="cb3-27"><a href="#cb3-27"></a>  selected = "ARM"</span>
-<span id="cb3-28"><a href="#cb3-28"></a>)</span>
-<span id="cb3-29"><a href="#cb3-29"></a></span>
-<span id="cb3-30"><a href="#cb3-30"></a>cs_strata_var &lt;- choices_selected(</span>
-<span id="cb3-31"><a href="#cb3-31"></a>  choices = variable_choices(ADSL, subset = strata_vars),</span>
-<span id="cb3-32"><a href="#cb3-32"></a>  selected = "STRATA1"</span>
-<span id="cb3-33"><a href="#cb3-33"></a>)</span>
-<span id="cb3-34"><a href="#cb3-34"></a></span>
-<span id="cb3-35"><a href="#cb3-35"></a>cs_facet_var &lt;- choices_selected(</span>
-<span id="cb3-36"><a href="#cb3-36"></a>  choices = variable_choices(ADSL, subset = facet_vars),</span>
-<span id="cb3-37"><a href="#cb3-37"></a>  selected = "BMRKR2"</span>
-<span id="cb3-38"><a href="#cb3-38"></a>)</span>
-<span id="cb3-39"><a href="#cb3-39"></a></span>
-<span id="cb3-40"><a href="#cb3-40"></a>cs_paramcd_tte &lt;- choices_selected(</span>
-<span id="cb3-41"><a href="#cb3-41"></a>  choices = value_choices(ADTTE, "PARAMCD", "PARAM"),</span>
-<span id="cb3-42"><a href="#cb3-42"></a>  selected = "OS"</span>
-<span id="cb3-43"><a href="#cb3-43"></a>)</span>
-<span id="cb3-44"><a href="#cb3-44"></a></span>
-<span id="cb3-45"><a href="#cb3-45"></a>date_vars_asl &lt;- names(ADSL)[vapply(ADSL, function(x) inherits(x, c("Date", "POSIXct", "POSIXlt")), logical(1))]</span>
-<span id="cb3-46"><a href="#cb3-46"></a>demog_vars_asl &lt;- names(ADSL)[!(names(ADSL) %in% c("USUBJID", "STUDYID", date_vars_asl))]</span>
+<span id="cb3-21"><a href="#cb3-21"></a>ADSL &lt;- data[["ADSL"]]</span>
+<span id="cb3-22"><a href="#cb3-22"></a>ADTTE &lt;- data[["ADTTE"]]</span>
+<span id="cb3-23"><a href="#cb3-23"></a></span>
+<span id="cb3-24"><a href="#cb3-24"></a>arm_vars &lt;- c("ARM", "ARMCD", "ACTARMCD")</span>
+<span id="cb3-25"><a href="#cb3-25"></a>strata_vars &lt;- c("STRATA1", "STRATA2")</span>
+<span id="cb3-26"><a href="#cb3-26"></a>facet_vars &lt;- c("BMRKR2", "SEX", "COUNTRY")</span>
+<span id="cb3-27"><a href="#cb3-27"></a></span>
+<span id="cb3-28"><a href="#cb3-28"></a>cs_arm_var &lt;- choices_selected(</span>
+<span id="cb3-29"><a href="#cb3-29"></a>  choices = variable_choices(ADSL, subset = arm_vars),</span>
+<span id="cb3-30"><a href="#cb3-30"></a>  selected = "ARM"</span>
+<span id="cb3-31"><a href="#cb3-31"></a>)</span>
+<span id="cb3-32"><a href="#cb3-32"></a></span>
+<span id="cb3-33"><a href="#cb3-33"></a>cs_strata_var &lt;- choices_selected(</span>
+<span id="cb3-34"><a href="#cb3-34"></a>  choices = variable_choices(ADSL, subset = strata_vars),</span>
+<span id="cb3-35"><a href="#cb3-35"></a>  selected = "STRATA1"</span>
+<span id="cb3-36"><a href="#cb3-36"></a>)</span>
+<span id="cb3-37"><a href="#cb3-37"></a></span>
+<span id="cb3-38"><a href="#cb3-38"></a>cs_facet_var &lt;- choices_selected(</span>
+<span id="cb3-39"><a href="#cb3-39"></a>  choices = variable_choices(ADSL, subset = facet_vars),</span>
+<span id="cb3-40"><a href="#cb3-40"></a>  selected = "BMRKR2"</span>
+<span id="cb3-41"><a href="#cb3-41"></a>)</span>
+<span id="cb3-42"><a href="#cb3-42"></a></span>
+<span id="cb3-43"><a href="#cb3-43"></a>cs_paramcd_tte &lt;- choices_selected(</span>
+<span id="cb3-44"><a href="#cb3-44"></a>  choices = value_choices(ADTTE, "PARAMCD", "PARAM"),</span>
+<span id="cb3-45"><a href="#cb3-45"></a>  selected = "OS"</span>
+<span id="cb3-46"><a href="#cb3-46"></a>)</span>
 <span id="cb3-47"><a href="#cb3-47"></a></span>
-<span id="cb3-48"><a href="#cb3-48"></a>arm_ref_comp &lt;- list(</span>
-<span id="cb3-49"><a href="#cb3-49"></a>  ACTARMCD = list(</span>
-<span id="cb3-50"><a href="#cb3-50"></a>    ref = "ARM B",</span>
-<span id="cb3-51"><a href="#cb3-51"></a>    comp = c("ARM A", "ARM C")</span>
-<span id="cb3-52"><a href="#cb3-52"></a>  ),</span>
-<span id="cb3-53"><a href="#cb3-53"></a>  ARM = list(</span>
-<span id="cb3-54"><a href="#cb3-54"></a>    ref = "B: Placebo",</span>
-<span id="cb3-55"><a href="#cb3-55"></a>    comp = c("A: Drug X", "C: Combination")</span>
-<span id="cb3-56"><a href="#cb3-56"></a>  )</span>
-<span id="cb3-57"><a href="#cb3-57"></a>)</span>
-<span id="cb3-58"><a href="#cb3-58"></a></span>
-<span id="cb3-59"><a href="#cb3-59"></a></span>
-<span id="cb3-60"><a href="#cb3-60"></a>app &lt;- init(</span>
-<span id="cb3-61"><a href="#cb3-61"></a>  data = data,</span>
-<span id="cb3-62"><a href="#cb3-62"></a>  modules = list(</span>
-<span id="cb3-63"><a href="#cb3-63"></a>    tm_data_table("Data Table"),</span>
-<span id="cb3-64"><a href="#cb3-64"></a>    tm_variable_browser("Variable Browser"),</span>
-<span id="cb3-65"><a href="#cb3-65"></a>    tm_t_summary(</span>
-<span id="cb3-66"><a href="#cb3-66"></a>      label = "Demographic Table",</span>
-<span id="cb3-67"><a href="#cb3-67"></a>      dataname = "ADSL",</span>
-<span id="cb3-68"><a href="#cb3-68"></a>      arm_var = cs_arm_var,</span>
-<span id="cb3-69"><a href="#cb3-69"></a>      summarize_vars = choices_selected(</span>
-<span id="cb3-70"><a href="#cb3-70"></a>        choices = variable_choices(ADSL, demog_vars_asl),</span>
-<span id="cb3-71"><a href="#cb3-71"></a>        selected = c("SEX", "AGE", "RACE")</span>
-<span id="cb3-72"><a href="#cb3-72"></a>      )</span>
-<span id="cb3-73"><a href="#cb3-73"></a>    ),</span>
-<span id="cb3-74"><a href="#cb3-74"></a>    tm_g_km(</span>
-<span id="cb3-75"><a href="#cb3-75"></a>      label = "Kaplan Meier Plot",</span>
-<span id="cb3-76"><a href="#cb3-76"></a>      dataname = "ADTTE",</span>
-<span id="cb3-77"><a href="#cb3-77"></a>      arm_var = cs_arm_var,</span>
-<span id="cb3-78"><a href="#cb3-78"></a>      arm_ref_comp = arm_ref_comp,</span>
-<span id="cb3-79"><a href="#cb3-79"></a>      paramcd = cs_paramcd_tte,</span>
-<span id="cb3-80"><a href="#cb3-80"></a>      facet_var = cs_facet_var,</span>
-<span id="cb3-81"><a href="#cb3-81"></a>      strata_var = cs_strata_var,</span>
-<span id="cb3-82"><a href="#cb3-82"></a>      plot_height = c(1800L, 200L, 4000L)</span>
-<span id="cb3-83"><a href="#cb3-83"></a>    ),</span>
-<span id="cb3-84"><a href="#cb3-84"></a>    tm_t_tte(</span>
-<span id="cb3-85"><a href="#cb3-85"></a>      label = "Time To Event Table",</span>
-<span id="cb3-86"><a href="#cb3-86"></a>      dataname = "ADTTE",</span>
-<span id="cb3-87"><a href="#cb3-87"></a>      arm_var = cs_arm_var,</span>
-<span id="cb3-88"><a href="#cb3-88"></a>      arm_ref_comp = arm_ref_comp,</span>
-<span id="cb3-89"><a href="#cb3-89"></a>      paramcd = cs_paramcd_tte,</span>
-<span id="cb3-90"><a href="#cb3-90"></a>      strata_var = cs_strata_var,</span>
-<span id="cb3-91"><a href="#cb3-91"></a>      time_points = choices_selected(c(182, 243), 182),</span>
-<span id="cb3-92"><a href="#cb3-92"></a>      event_desc_var = choices_selected(</span>
-<span id="cb3-93"><a href="#cb3-93"></a>        variable_choices(ADTTE, "EVNTDESC"),</span>
-<span id="cb3-94"><a href="#cb3-94"></a>        "EVNTDESC",</span>
-<span id="cb3-95"><a href="#cb3-95"></a>        fixed = TRUE</span>
-<span id="cb3-96"><a href="#cb3-96"></a>      )</span>
-<span id="cb3-97"><a href="#cb3-97"></a>    )</span>
-<span id="cb3-98"><a href="#cb3-98"></a>  )</span>
-<span id="cb3-99"><a href="#cb3-99"></a>)</span>
-<span id="cb3-100"><a href="#cb3-100"></a></span>
-<span id="cb3-101"><a href="#cb3-101"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-48"><a href="#cb3-48"></a>date_vars_asl &lt;- names(ADSL)[vapply(ADSL, function(x) inherits(x, c("Date", "POSIXct", "POSIXlt")), logical(1))]</span>
+<span id="cb3-49"><a href="#cb3-49"></a>demog_vars_asl &lt;- names(ADSL)[!(names(ADSL) %in% c("USUBJID", "STUDYID", date_vars_asl))]</span>
+<span id="cb3-50"><a href="#cb3-50"></a></span>
+<span id="cb3-51"><a href="#cb3-51"></a>arm_ref_comp &lt;- list(</span>
+<span id="cb3-52"><a href="#cb3-52"></a>  ACTARMCD = list(</span>
+<span id="cb3-53"><a href="#cb3-53"></a>    ref = "ARM B",</span>
+<span id="cb3-54"><a href="#cb3-54"></a>    comp = c("ARM A", "ARM C")</span>
+<span id="cb3-55"><a href="#cb3-55"></a>  ),</span>
+<span id="cb3-56"><a href="#cb3-56"></a>  ARM = list(</span>
+<span id="cb3-57"><a href="#cb3-57"></a>    ref = "B: Placebo",</span>
+<span id="cb3-58"><a href="#cb3-58"></a>    comp = c("A: Drug X", "C: Combination")</span>
+<span id="cb3-59"><a href="#cb3-59"></a>  )</span>
+<span id="cb3-60"><a href="#cb3-60"></a>)</span>
+<span id="cb3-61"><a href="#cb3-61"></a></span>
+<span id="cb3-62"><a href="#cb3-62"></a></span>
+<span id="cb3-63"><a href="#cb3-63"></a>app &lt;- init(</span>
+<span id="cb3-64"><a href="#cb3-64"></a>  data = data,</span>
+<span id="cb3-65"><a href="#cb3-65"></a>  modules = list(</span>
+<span id="cb3-66"><a href="#cb3-66"></a>    tm_data_table("Data Table"),</span>
+<span id="cb3-67"><a href="#cb3-67"></a>    tm_variable_browser("Variable Browser"),</span>
+<span id="cb3-68"><a href="#cb3-68"></a>    tm_t_summary(</span>
+<span id="cb3-69"><a href="#cb3-69"></a>      label = "Demographic Table",</span>
+<span id="cb3-70"><a href="#cb3-70"></a>      dataname = "ADSL",</span>
+<span id="cb3-71"><a href="#cb3-71"></a>      arm_var = cs_arm_var,</span>
+<span id="cb3-72"><a href="#cb3-72"></a>      summarize_vars = choices_selected(</span>
+<span id="cb3-73"><a href="#cb3-73"></a>        choices = variable_choices(ADSL, demog_vars_asl),</span>
+<span id="cb3-74"><a href="#cb3-74"></a>        selected = c("SEX", "AGE", "RACE")</span>
+<span id="cb3-75"><a href="#cb3-75"></a>      )</span>
+<span id="cb3-76"><a href="#cb3-76"></a>    ),</span>
+<span id="cb3-77"><a href="#cb3-77"></a>    tm_g_km(</span>
+<span id="cb3-78"><a href="#cb3-78"></a>      label = "Kaplan Meier Plot",</span>
+<span id="cb3-79"><a href="#cb3-79"></a>      dataname = "ADTTE",</span>
+<span id="cb3-80"><a href="#cb3-80"></a>      arm_var = cs_arm_var,</span>
+<span id="cb3-81"><a href="#cb3-81"></a>      arm_ref_comp = arm_ref_comp,</span>
+<span id="cb3-82"><a href="#cb3-82"></a>      paramcd = cs_paramcd_tte,</span>
+<span id="cb3-83"><a href="#cb3-83"></a>      facet_var = cs_facet_var,</span>
+<span id="cb3-84"><a href="#cb3-84"></a>      strata_var = cs_strata_var,</span>
+<span id="cb3-85"><a href="#cb3-85"></a>      plot_height = c(1800L, 200L, 4000L)</span>
+<span id="cb3-86"><a href="#cb3-86"></a>    ),</span>
+<span id="cb3-87"><a href="#cb3-87"></a>    tm_t_tte(</span>
+<span id="cb3-88"><a href="#cb3-88"></a>      label = "Time To Event Table",</span>
+<span id="cb3-89"><a href="#cb3-89"></a>      dataname = "ADTTE",</span>
+<span id="cb3-90"><a href="#cb3-90"></a>      arm_var = cs_arm_var,</span>
+<span id="cb3-91"><a href="#cb3-91"></a>      arm_ref_comp = arm_ref_comp,</span>
+<span id="cb3-92"><a href="#cb3-92"></a>      paramcd = cs_paramcd_tte,</span>
+<span id="cb3-93"><a href="#cb3-93"></a>      strata_var = cs_strata_var,</span>
+<span id="cb3-94"><a href="#cb3-94"></a>      time_points = choices_selected(c(182, 243), 182),</span>
+<span id="cb3-95"><a href="#cb3-95"></a>      event_desc_var = choices_selected(</span>
+<span id="cb3-96"><a href="#cb3-96"></a>        variable_choices(ADTTE, "EVNTDESC"),</span>
+<span id="cb3-97"><a href="#cb3-97"></a>        "EVNTDESC",</span>
+<span id="cb3-98"><a href="#cb3-98"></a>        fixed = TRUE</span>
+<span id="cb3-99"><a href="#cb3-99"></a>      )</span>
+<span id="cb3-100"><a href="#cb3-100"></a>    )</span>
+<span id="cb3-101"><a href="#cb3-101"></a>  )</span>
+<span id="cb3-102"><a href="#cb3-102"></a>)</span>
+<span id="cb3-103"><a href="#cb3-103"></a></span>
+<span id="cb3-104"><a href="#cb3-104"></a>shinyApp(app$ui, app$server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 <!-- -->
@@ -1300,226 +1309,232 @@ cookieconsent.run({
 <span id="cb4-3"><a href="#cb4-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co">---</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">[</span><span class="ot">`teal`</span><span class="co">](https://insightsengineering.github.io/teal/latest-tag/)</span> is a Shiny-based framework that streamlines the process of creating an application for clinical trials data. App developers are required to specify input data as well as analysis modules choosing from a wide range of available modules or creating their own module.</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a>The main features of a <span class="in">`teal`</span> app include:</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="ss">* </span>filter panel allowing to filtering input data for e.g. subgroup analysis</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="ss">* </span>reproducibility code for each output</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="ss">* </span>reporter to export the results</span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="ss">* </span>and more...</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="in">```{r}</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#| include: false</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>shinylive<span class="sc">::</span><span class="fu">assets_ensure</span>()</span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="in">```</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">[</span><span class="ot">`teal`</span><span class="co">](https://insightsengineering.github.io/teal/latest-tag/)</span> is a Shiny-based framework that streamlines the process of creating an application for clinical trials data. App developers are required to specify input data as well as analysis modules choosing from a wide range of available modules or creating their own module.</span>
 <span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a>Please visit <span class="co">[</span><span class="ot">`teal` package webpage</span><span class="co">](https://insightsengineering.github.io/teal/latest-tag/)</span> to see more. Please also see <span class="co">[</span><span class="ot">`teal.gallery`</span><span class="co">](https://insightsengineering.github.io/teal.gallery/)</span> for more examples.</span>
+<span id="cb4-15"><a href="#cb4-15"></a>The main features of a <span class="in">`teal`</span> app include:</span>
 <span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a>Below you can find a few examples using <span class="co">[</span><span class="ot">WebR</span><span class="co">](https://docs.r-wasm.org/webr/latest/)</span> (via <span class="co">[</span><span class="ot">Shinylive</span><span class="co">](https://shiny.posit.co/py/get-started/shinylive.html)</span>). This will run applications directly in the browser without any server in the background. You are free to change the source code and the application will refresh accordingly.</span>
-<span id="cb4-18"><a href="#cb4-18"></a></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="fu"># A simple example for non-clinical trials data with custom module</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="in">```{shinylive-r}</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#| standalone: true</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#| viewerHeight: 800</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#| components: [viewer, editor]</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#| layout: vertical</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal</span><span class="kw">)</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="ss">* </span>filter panel allowing to filtering input data for e.g. subgroup analysis</span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="ss">* </span>reproducibility code for each output</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="ss">* </span>reporter to export the results</span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="ss">* </span>and more...</span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>Please visit <span class="co">[</span><span class="ot">`teal` package webpage</span><span class="co">](https://insightsengineering.github.io/teal/latest-tag/)</span> to see more. Please also see <span class="co">[</span><span class="ot">`teal.gallery`</span><span class="co">](https://insightsengineering.github.io/teal.gallery/)</span> for more examples.</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a>Below you can find a few examples using <span class="co">[</span><span class="ot">WebR</span><span class="co">](https://docs.r-wasm.org/webr/latest/)</span> (via <span class="co">[</span><span class="ot">Shinylive</span><span class="co">](https://shiny.posit.co/py/get-started/shinylive.html)</span>). This will run applications directly in the browser without any server in the background. You are free to change the source code and the application will refresh accordingly.</span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="fu"># A simple example for non-clinical trials data with custom module</span></span>
 <span id="cb4-27"><a href="#cb4-27"></a></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a>  <span class="ex">data</span> = teal_data<span class="er">(</span><span class="ex">iris</span> = iris<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a>    <span class="ex">module</span><span class="er">(</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a>      <span class="ex">label</span> = <span class="st">"iris histogram"</span>,</span>
-<span id="cb4-33"><a href="#cb4-33"></a>      <span class="ex">server</span> = function<span class="er">(</span><span class="ex">input,</span> output, session, data<span class="kw">)</span> <span class="kw">{</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a>        <span class="ex">updateSelectInput</span><span class="er">(</span><span class="ex">session</span> = session,</span>
-<span id="cb4-35"><a href="#cb4-35"></a>                          <span class="ex">inputId</span> =  <span class="st">"var"</span>,</span>
-<span id="cb4-36"><a href="#cb4-36"></a>                          <span class="ex">choices</span> = names<span class="er">(</span><span class="fu">data()</span><span class="ex">[[</span><span class="st">"iris"</span><span class="ex">]]</span><span class="kw">)</span><span class="ex">[1:4]</span><span class="kw">)</span></span>
-<span id="cb4-37"><a href="#cb4-37"></a></span>
-<span id="cb4-38"><a href="#cb4-38"></a>        <span class="ex">output</span><span class="va">$hist</span> <span class="op">&lt;</span>- renderPlot<span class="er">(</span><span class="kw">{</span></span>
-<span id="cb4-39"><a href="#cb4-39"></a>          <span class="ex">req</span><span class="er">(</span><span class="ex">input</span><span class="va">$var</span><span class="kw">)</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a>          <span class="ex">hist</span><span class="er">(</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a>            <span class="ex">x</span> = data<span class="er">(</span><span class="kw">)</span><span class="ex">[[</span><span class="st">"iris"</span><span class="ex">]][[input</span><span class="va">$var</span><span class="ex">]],</span></span>
-<span id="cb4-42"><a href="#cb4-42"></a>            <span class="ex">main</span> = sprintf<span class="er">(</span><span class="st">"Histogram of %s"</span><span class="ex">,</span> input<span class="va">$var</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-43"><a href="#cb4-43"></a>            <span class="ex">xlab</span> = input<span class="va">$var</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a>          <span class="kw">)</span></span>
-<span id="cb4-45"><a href="#cb4-45"></a>        <span class="kw">})</span></span>
-<span id="cb4-46"><a href="#cb4-46"></a>      <span class="ex">},</span></span>
-<span id="cb4-47"><a href="#cb4-47"></a>      <span class="ex">ui</span> = function<span class="er">(</span><span class="fu">id</span><span class="kw">)</span> <span class="kw">{</span></span>
-<span id="cb4-48"><a href="#cb4-48"></a>        <span class="ex">ns</span> <span class="op">&lt;</span>- NS<span class="er">(</span><span class="fu">id</span><span class="kw">)</span></span>
-<span id="cb4-49"><a href="#cb4-49"></a>        <span class="ex">list</span><span class="er">(</span></span>
-<span id="cb4-50"><a href="#cb4-50"></a>          <span class="ex">selectInput</span><span class="er">(</span><span class="ex">inputId</span> = ns<span class="er">(</span><span class="st">"var"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-51"><a href="#cb4-51"></a>                      <span class="ex">label</span> =  <span class="st">"Column name"</span>,</span>
-<span id="cb4-52"><a href="#cb4-52"></a>                      <span class="ex">choices</span> = NULL<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-53"><a href="#cb4-53"></a>          <span class="ex">plotOutput</span><span class="er">(</span><span class="ex">outputId</span> = ns<span class="er">(</span><span class="st">"hist"</span><span class="kw">))</span></span>
-<span id="cb4-54"><a href="#cb4-54"></a>        <span class="kw">)</span></span>
-<span id="cb4-55"><a href="#cb4-55"></a>      <span class="kw">}</span></span>
-<span id="cb4-56"><a href="#cb4-56"></a>    <span class="er">)</span></span>
-<span id="cb4-57"><a href="#cb4-57"></a>  <span class="er">)</span></span>
-<span id="cb4-58"><a href="#cb4-58"></a><span class="er">)</span></span>
-<span id="cb4-59"><a href="#cb4-59"></a></span>
-<span id="cb4-60"><a href="#cb4-60"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
-<span id="cb4-61"><a href="#cb4-61"></a><span class="kw">```</span></span>
-<span id="cb4-62"><a href="#cb4-62"></a></span>
-<span id="cb4-63"><a href="#cb4-63"></a><span class="co"># A simple example for clinical trials data with custom module</span></span>
-<span id="cb4-64"><a href="#cb4-64"></a></span>
-<span id="cb4-65"><a href="#cb4-65"></a><span class="kw">```</span>{shinylive-r}</span>
-<span id="cb4-66"><a href="#cb4-66"></a><span class="co">#| standalone: true</span></span>
-<span id="cb4-67"><a href="#cb4-67"></a><span class="co">#| viewerHeight: 800</span></span>
-<span id="cb4-68"><a href="#cb4-68"></a><span class="co">#| components: [viewer, editor]</span></span>
-<span id="cb4-69"><a href="#cb4-69"></a><span class="co">#| layout: vertical</span></span>
-<span id="cb4-70"><a href="#cb4-70"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal</span><span class="kw">)</span></span>
-<span id="cb4-71"><a href="#cb4-71"></a><span class="ex">library</span><span class="er">(</span><span class="ex">tern</span><span class="kw">)</span></span>
-<span id="cb4-72"><a href="#cb4-72"></a><span class="ex">library</span><span class="er">(</span><span class="ex">dplyr</span><span class="kw">)</span></span>
-<span id="cb4-73"><a href="#cb4-73"></a></span>
-<span id="cb4-74"><a href="#cb4-74"></a><span class="ex">adsl</span> <span class="op">&lt;</span>- tern_ex_adsl %<span class="op">&gt;</span>%</span>
-<span id="cb4-75"><a href="#cb4-75"></a>  <span class="fu">df_explicit_na()</span></span>
-<span id="cb4-76"><a href="#cb4-76"></a></span>
-<span id="cb4-77"><a href="#cb4-77"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
-<span id="cb4-78"><a href="#cb4-78"></a>  <span class="ex">data</span> = cdisc_data<span class="er">(</span></span>
-<span id="cb4-79"><a href="#cb4-79"></a>    <span class="ex">adsl</span> = adsl</span>
-<span id="cb4-80"><a href="#cb4-80"></a>  <span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-81"><a href="#cb4-81"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
-<span id="cb4-82"><a href="#cb4-82"></a>    <span class="ex">module</span><span class="er">(</span></span>
-<span id="cb4-83"><a href="#cb4-83"></a>      <span class="st">"demographic table"</span><span class="ex">,</span></span>
-<span id="cb4-84"><a href="#cb4-84"></a>      <span class="ex">server</span> = function<span class="er">(</span><span class="ex">input,</span> output, session, data<span class="kw">)</span> <span class="kw">{</span></span>
-<span id="cb4-85"><a href="#cb4-85"></a>        <span class="ex">output</span><span class="va">$table</span> <span class="op">&lt;</span>- renderUI<span class="er">(</span><span class="kw">{</span></span>
-<span id="cb4-86"><a href="#cb4-86"></a>          <span class="ex">validate</span><span class="er">(</span><span class="ex">need</span><span class="er">(</span><span class="ex">input</span><span class="va">$vars</span><span class="ex">,</span> <span class="st">"Please select summary variables"</span><span class="kw">))</span></span>
-<span id="cb4-87"><a href="#cb4-87"></a></span>
-<span id="cb4-88"><a href="#cb4-88"></a>          <span class="ex">lyt</span> <span class="op">&lt;</span>- basic_table<span class="er">(</span><span class="ex">show_colcounts</span> = TRUE<span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
-<span id="cb4-89"><a href="#cb4-89"></a>            <span class="ex">split_cols_by</span><span class="er">(</span><span class="ex">var</span> = <span class="st">"ACTARM"</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
-<span id="cb4-90"><a href="#cb4-90"></a>            <span class="ex">add_overall_col</span><span class="er">(</span><span class="st">"All Patients"</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
-<span id="cb4-91"><a href="#cb4-91"></a>            <span class="ex">analyze_vars</span><span class="er">(</span></span>
-<span id="cb4-92"><a href="#cb4-92"></a>                <span class="ex">vars</span> = input<span class="va">$vars</span>,</span>
-<span id="cb4-93"><a href="#cb4-93"></a>                <span class="ex">var_labels</span> = var_labels<span class="er">(</span><span class="fu">data()</span><span class="ex">[[</span><span class="st">"adsl"</span><span class="ex">]][,</span> input<span class="va">$vars</span>]<span class="kw">)</span></span>
-<span id="cb4-94"><a href="#cb4-94"></a>            <span class="kw">)</span></span>
-<span id="cb4-95"><a href="#cb4-95"></a></span>
-<span id="cb4-96"><a href="#cb4-96"></a>            <span class="ex">result</span> <span class="op">&lt;</span>- build_table<span class="er">(</span><span class="ex">lyt,</span> adsl<span class="kw">)</span></span>
-<span id="cb4-97"><a href="#cb4-97"></a></span>
-<span id="cb4-98"><a href="#cb4-98"></a>            <span class="ex">as_html</span><span class="er">(</span><span class="ex">result</span><span class="kw">)</span></span>
-<span id="cb4-99"><a href="#cb4-99"></a>        <span class="kw">})</span></span>
-<span id="cb4-100"><a href="#cb4-100"></a>      <span class="ex">},</span></span>
-<span id="cb4-101"><a href="#cb4-101"></a>      <span class="ex">ui</span> = function<span class="er">(</span><span class="fu">id</span><span class="kw">)</span> <span class="kw">{</span></span>
-<span id="cb4-102"><a href="#cb4-102"></a>        <span class="ex">ns</span> <span class="op">&lt;</span>- NS<span class="er">(</span><span class="fu">id</span><span class="kw">)</span></span>
-<span id="cb4-103"><a href="#cb4-103"></a>        <span class="ex">list</span><span class="er">(</span></span>
-<span id="cb4-104"><a href="#cb4-104"></a>          <span class="ex">shiny::selectInput</span><span class="er">(</span></span>
-<span id="cb4-105"><a href="#cb4-105"></a>            <span class="ex">ns</span><span class="er">(</span><span class="st">"vars"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-106"><a href="#cb4-106"></a>            <span class="st">"Summary variables"</span><span class="ex">,</span></span>
-<span id="cb4-107"><a href="#cb4-107"></a>            <span class="ex">choices</span> = c<span class="er">(</span><span class="st">"AGE"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"RACE"</span>, <span class="st">"STRATA1"</span>, <span class="st">"STRATA2"</span>, <span class="st">"BMRKR1"</span>, <span class="st">"BMRKR2"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-108"><a href="#cb4-108"></a>            <span class="ex">selected</span> = c<span class="er">(</span><span class="st">"AGE"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"RACE"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-109"><a href="#cb4-109"></a>            <span class="ex">multiple</span> = TRUE</span>
-<span id="cb4-110"><a href="#cb4-110"></a>          <span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-111"><a href="#cb4-111"></a>          <span class="ex">uiOutput</span><span class="er">(</span><span class="ex">ns</span><span class="er">(</span><span class="st">"table"</span><span class="kw">))</span></span>
-<span id="cb4-112"><a href="#cb4-112"></a>        <span class="kw">)</span></span>
-<span id="cb4-113"><a href="#cb4-113"></a>      <span class="kw">}</span></span>
-<span id="cb4-114"><a href="#cb4-114"></a>    <span class="er">)</span></span>
-<span id="cb4-115"><a href="#cb4-115"></a>  <span class="er">)</span></span>
-<span id="cb4-116"><a href="#cb4-116"></a><span class="er">)</span></span>
-<span id="cb4-117"><a href="#cb4-117"></a></span>
-<span id="cb4-118"><a href="#cb4-118"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
-<span id="cb4-119"><a href="#cb4-119"></a><span class="kw">```</span></span>
-<span id="cb4-120"><a href="#cb4-120"></a></span>
-<span id="cb4-121"><a href="#cb4-121"></a><span class="co"># Use pre-created modules</span></span>
-<span id="cb4-122"><a href="#cb4-122"></a></span>
-<span id="cb4-123"><a href="#cb4-123"></a><span class="kw">```</span>{shinylive-r}</span>
-<span id="cb4-124"><a href="#cb4-124"></a><span class="co">#| standalone: true</span></span>
-<span id="cb4-125"><a href="#cb4-125"></a><span class="co">#| viewerHeight: 800</span></span>
-<span id="cb4-126"><a href="#cb4-126"></a><span class="co">#| components: [viewer, editor]</span></span>
-<span id="cb4-127"><a href="#cb4-127"></a><span class="co">#| layout: vertical</span></span>
-<span id="cb4-128"><a href="#cb4-128"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal.modules.clinical</span><span class="kw">)</span></span>
-<span id="cb4-129"><a href="#cb4-129"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal.modules.general</span><span class="kw">)</span></span>
-<span id="cb4-130"><a href="#cb4-130"></a><span class="ex">library</span><span class="er">(</span><span class="ex">sparkline</span><span class="kw">)</span></span>
-<span id="cb4-131"><a href="#cb4-131"></a><span class="ex">library</span><span class="er">(</span><span class="ex">magrittr</span><span class="kw">)</span></span>
-<span id="cb4-132"><a href="#cb4-132"></a></span>
-<span id="cb4-133"><a href="#cb4-133"></a><span class="ex">data</span> <span class="op">&lt;</span>- cdisc_data<span class="er">(</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
-<span id="cb4-134"><a href="#cb4-134"></a>  <span class="ex">within</span><span class="er">(</span><span class="kw">{</span></span>
-<span id="cb4-135"><a href="#cb4-135"></a>    <span class="ex">ADSL</span> <span class="op">&lt;</span>- tmc_ex_adsl</span>
-<span id="cb4-136"><a href="#cb4-136"></a>    <span class="ex">ADTTE</span> <span class="op">&lt;</span>- tmc_ex_adtte</span>
-<span id="cb4-137"><a href="#cb4-137"></a>  <span class="kw">})</span></span>
-<span id="cb4-138"><a href="#cb4-138"></a><span class="ex">datanames</span><span class="er">(</span><span class="ex">data</span><span class="kw">)</span> <span class="op">&lt;</span>- <span class="ex">c</span><span class="er">(</span><span class="st">"ADSL"</span><span class="ex">,</span> <span class="st">"ADTTE"</span><span class="kw">)</span></span>
-<span id="cb4-139"><a href="#cb4-139"></a><span class="ex">join_keys</span><span class="er">(</span><span class="ex">data</span><span class="kw">)</span> <span class="op">&lt;</span>- <span class="va">default_cdisc_join_keys</span><span class="op">[</span>datanames(data)<span class="op">]</span></span>
-<span id="cb4-140"><a href="#cb4-140"></a></span>
-<span id="cb4-141"><a href="#cb4-141"></a><span class="ex">ADSL</span> <span class="op">&lt;</span>- data[<span class="pp">[</span><span class="st">"ADSL"</span><span class="pp">]</span>]</span>
-<span id="cb4-142"><a href="#cb4-142"></a><span class="ex">ADTTE</span> <span class="op">&lt;</span>- data[<span class="pp">[</span><span class="st">"ADTTE"</span><span class="pp">]</span>]</span>
-<span id="cb4-143"><a href="#cb4-143"></a></span>
-<span id="cb4-144"><a href="#cb4-144"></a><span class="ex">arm_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"ARM"</span><span class="ex">,</span> <span class="st">"ARMCD"</span>, <span class="st">"ACTARMCD"</span><span class="kw">)</span></span>
-<span id="cb4-145"><a href="#cb4-145"></a><span class="ex">strata_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"STRATA1"</span><span class="ex">,</span> <span class="st">"STRATA2"</span><span class="kw">)</span></span>
-<span id="cb4-146"><a href="#cb4-146"></a><span class="ex">facet_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"BMRKR2"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"COUNTRY"</span><span class="kw">)</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="in">```{shinylive-r}</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#| standalone: true</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#| viewerHeight: 800</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#| components: [viewer, editor]</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#| layout: vertical</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal</span><span class="kw">)</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>  <span class="ex">data</span> = teal_data<span class="er">(</span><span class="ex">iris</span> = iris<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>    <span class="ex">module</span><span class="er">(</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>      <span class="ex">label</span> = <span class="st">"iris histogram"</span>,</span>
+<span id="cb4-40"><a href="#cb4-40"></a>      <span class="ex">server</span> = function<span class="er">(</span><span class="ex">input,</span> output, session, data<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>        <span class="ex">updateSelectInput</span><span class="er">(</span><span class="ex">session</span> = session,</span>
+<span id="cb4-42"><a href="#cb4-42"></a>                          <span class="ex">inputId</span> =  <span class="st">"var"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43"></a>                          <span class="ex">choices</span> = names<span class="er">(</span><span class="fu">data()</span><span class="ex">[[</span><span class="st">"iris"</span><span class="ex">]]</span><span class="kw">)</span><span class="ex">[1:4]</span><span class="kw">)</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a></span>
+<span id="cb4-45"><a href="#cb4-45"></a>        <span class="ex">output</span><span class="va">$hist</span> <span class="op">&lt;</span>- renderPlot<span class="er">(</span><span class="kw">{</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a>          <span class="ex">req</span><span class="er">(</span><span class="ex">input</span><span class="va">$var</span><span class="kw">)</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>          <span class="ex">hist</span><span class="er">(</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>            <span class="ex">x</span> = data<span class="er">(</span><span class="kw">)</span><span class="ex">[[</span><span class="st">"iris"</span><span class="ex">]][[input</span><span class="va">$var</span><span class="ex">]],</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a>            <span class="ex">main</span> = sprintf<span class="er">(</span><span class="st">"Histogram of %s"</span><span class="ex">,</span> input<span class="va">$var</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a>            <span class="ex">xlab</span> = input<span class="va">$var</span></span>
+<span id="cb4-51"><a href="#cb4-51"></a>          <span class="kw">)</span></span>
+<span id="cb4-52"><a href="#cb4-52"></a>        <span class="kw">})</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a>      <span class="ex">},</span></span>
+<span id="cb4-54"><a href="#cb4-54"></a>      <span class="ex">ui</span> = function<span class="er">(</span><span class="fu">id</span><span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a>        <span class="ex">ns</span> <span class="op">&lt;</span>- NS<span class="er">(</span><span class="fu">id</span><span class="kw">)</span></span>
+<span id="cb4-56"><a href="#cb4-56"></a>        <span class="ex">list</span><span class="er">(</span></span>
+<span id="cb4-57"><a href="#cb4-57"></a>          <span class="ex">selectInput</span><span class="er">(</span><span class="ex">inputId</span> = ns<span class="er">(</span><span class="st">"var"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-58"><a href="#cb4-58"></a>                      <span class="ex">label</span> =  <span class="st">"Column name"</span>,</span>
+<span id="cb4-59"><a href="#cb4-59"></a>                      <span class="ex">choices</span> = NULL<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-60"><a href="#cb4-60"></a>          <span class="ex">plotOutput</span><span class="er">(</span><span class="ex">outputId</span> = ns<span class="er">(</span><span class="st">"hist"</span><span class="kw">))</span></span>
+<span id="cb4-61"><a href="#cb4-61"></a>        <span class="kw">)</span></span>
+<span id="cb4-62"><a href="#cb4-62"></a>      <span class="kw">}</span></span>
+<span id="cb4-63"><a href="#cb4-63"></a>    <span class="er">)</span></span>
+<span id="cb4-64"><a href="#cb4-64"></a>  <span class="er">)</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a><span class="er">)</span></span>
+<span id="cb4-66"><a href="#cb4-66"></a></span>
+<span id="cb4-67"><a href="#cb4-67"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
+<span id="cb4-68"><a href="#cb4-68"></a><span class="kw">```</span></span>
+<span id="cb4-69"><a href="#cb4-69"></a></span>
+<span id="cb4-70"><a href="#cb4-70"></a><span class="co"># A simple example for clinical trials data with custom module</span></span>
+<span id="cb4-71"><a href="#cb4-71"></a></span>
+<span id="cb4-72"><a href="#cb4-72"></a><span class="kw">```</span>{shinylive-r}</span>
+<span id="cb4-73"><a href="#cb4-73"></a><span class="co">#| standalone: true</span></span>
+<span id="cb4-74"><a href="#cb4-74"></a><span class="co">#| viewerHeight: 800</span></span>
+<span id="cb4-75"><a href="#cb4-75"></a><span class="co">#| components: [viewer, editor]</span></span>
+<span id="cb4-76"><a href="#cb4-76"></a><span class="co">#| layout: vertical</span></span>
+<span id="cb4-77"><a href="#cb4-77"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal</span><span class="kw">)</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a><span class="ex">library</span><span class="er">(</span><span class="ex">tern</span><span class="kw">)</span></span>
+<span id="cb4-79"><a href="#cb4-79"></a><span class="ex">library</span><span class="er">(</span><span class="ex">dplyr</span><span class="kw">)</span></span>
+<span id="cb4-80"><a href="#cb4-80"></a></span>
+<span id="cb4-81"><a href="#cb4-81"></a><span class="ex">adsl</span> <span class="op">&lt;</span>- tern_ex_adsl %<span class="op">&gt;</span>%</span>
+<span id="cb4-82"><a href="#cb4-82"></a>  <span class="fu">df_explicit_na()</span></span>
+<span id="cb4-83"><a href="#cb4-83"></a></span>
+<span id="cb4-84"><a href="#cb4-84"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
+<span id="cb4-85"><a href="#cb4-85"></a>  <span class="ex">data</span> = cdisc_data<span class="er">(</span></span>
+<span id="cb4-86"><a href="#cb4-86"></a>    <span class="ex">adsl</span> = adsl</span>
+<span id="cb4-87"><a href="#cb4-87"></a>  <span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-88"><a href="#cb4-88"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
+<span id="cb4-89"><a href="#cb4-89"></a>    <span class="ex">module</span><span class="er">(</span></span>
+<span id="cb4-90"><a href="#cb4-90"></a>      <span class="st">"demographic table"</span><span class="ex">,</span></span>
+<span id="cb4-91"><a href="#cb4-91"></a>      <span class="ex">server</span> = function<span class="er">(</span><span class="ex">input,</span> output, session, data<span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb4-92"><a href="#cb4-92"></a>        <span class="ex">output</span><span class="va">$table</span> <span class="op">&lt;</span>- renderUI<span class="er">(</span><span class="kw">{</span></span>
+<span id="cb4-93"><a href="#cb4-93"></a>          <span class="ex">validate</span><span class="er">(</span><span class="ex">need</span><span class="er">(</span><span class="ex">input</span><span class="va">$vars</span><span class="ex">,</span> <span class="st">"Please select summary variables"</span><span class="kw">))</span></span>
+<span id="cb4-94"><a href="#cb4-94"></a></span>
+<span id="cb4-95"><a href="#cb4-95"></a>          <span class="ex">lyt</span> <span class="op">&lt;</span>- basic_table<span class="er">(</span><span class="ex">show_colcounts</span> = TRUE<span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
+<span id="cb4-96"><a href="#cb4-96"></a>            <span class="ex">split_cols_by</span><span class="er">(</span><span class="ex">var</span> = <span class="st">"ACTARM"</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
+<span id="cb4-97"><a href="#cb4-97"></a>            <span class="ex">add_overall_col</span><span class="er">(</span><span class="st">"All Patients"</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
+<span id="cb4-98"><a href="#cb4-98"></a>            <span class="ex">analyze_vars</span><span class="er">(</span></span>
+<span id="cb4-99"><a href="#cb4-99"></a>                <span class="ex">vars</span> = input<span class="va">$vars</span>,</span>
+<span id="cb4-100"><a href="#cb4-100"></a>                <span class="ex">var_labels</span> = var_labels<span class="er">(</span><span class="fu">data()</span><span class="ex">[[</span><span class="st">"adsl"</span><span class="ex">]][,</span> input<span class="va">$vars</span>]<span class="kw">)</span></span>
+<span id="cb4-101"><a href="#cb4-101"></a>            <span class="kw">)</span></span>
+<span id="cb4-102"><a href="#cb4-102"></a></span>
+<span id="cb4-103"><a href="#cb4-103"></a>            <span class="ex">result</span> <span class="op">&lt;</span>- build_table<span class="er">(</span><span class="ex">lyt,</span> adsl<span class="kw">)</span></span>
+<span id="cb4-104"><a href="#cb4-104"></a></span>
+<span id="cb4-105"><a href="#cb4-105"></a>            <span class="ex">as_html</span><span class="er">(</span><span class="ex">result</span><span class="kw">)</span></span>
+<span id="cb4-106"><a href="#cb4-106"></a>        <span class="kw">})</span></span>
+<span id="cb4-107"><a href="#cb4-107"></a>      <span class="ex">},</span></span>
+<span id="cb4-108"><a href="#cb4-108"></a>      <span class="ex">ui</span> = function<span class="er">(</span><span class="fu">id</span><span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb4-109"><a href="#cb4-109"></a>        <span class="ex">ns</span> <span class="op">&lt;</span>- NS<span class="er">(</span><span class="fu">id</span><span class="kw">)</span></span>
+<span id="cb4-110"><a href="#cb4-110"></a>        <span class="ex">list</span><span class="er">(</span></span>
+<span id="cb4-111"><a href="#cb4-111"></a>          <span class="ex">shiny::selectInput</span><span class="er">(</span></span>
+<span id="cb4-112"><a href="#cb4-112"></a>            <span class="ex">ns</span><span class="er">(</span><span class="st">"vars"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-113"><a href="#cb4-113"></a>            <span class="st">"Summary variables"</span><span class="ex">,</span></span>
+<span id="cb4-114"><a href="#cb4-114"></a>            <span class="ex">choices</span> = c<span class="er">(</span><span class="st">"AGE"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"RACE"</span>, <span class="st">"STRATA1"</span>, <span class="st">"STRATA2"</span>, <span class="st">"BMRKR1"</span>, <span class="st">"BMRKR2"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-115"><a href="#cb4-115"></a>            <span class="ex">selected</span> = c<span class="er">(</span><span class="st">"AGE"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"RACE"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-116"><a href="#cb4-116"></a>            <span class="ex">multiple</span> = TRUE</span>
+<span id="cb4-117"><a href="#cb4-117"></a>          <span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-118"><a href="#cb4-118"></a>          <span class="ex">uiOutput</span><span class="er">(</span><span class="ex">ns</span><span class="er">(</span><span class="st">"table"</span><span class="kw">))</span></span>
+<span id="cb4-119"><a href="#cb4-119"></a>        <span class="kw">)</span></span>
+<span id="cb4-120"><a href="#cb4-120"></a>      <span class="kw">}</span></span>
+<span id="cb4-121"><a href="#cb4-121"></a>    <span class="er">)</span></span>
+<span id="cb4-122"><a href="#cb4-122"></a>  <span class="er">)</span></span>
+<span id="cb4-123"><a href="#cb4-123"></a><span class="er">)</span></span>
+<span id="cb4-124"><a href="#cb4-124"></a></span>
+<span id="cb4-125"><a href="#cb4-125"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
+<span id="cb4-126"><a href="#cb4-126"></a><span class="kw">```</span></span>
+<span id="cb4-127"><a href="#cb4-127"></a></span>
+<span id="cb4-128"><a href="#cb4-128"></a><span class="co"># Use pre-created modules</span></span>
+<span id="cb4-129"><a href="#cb4-129"></a></span>
+<span id="cb4-130"><a href="#cb4-130"></a><span class="kw">```</span>{shinylive-r}</span>
+<span id="cb4-131"><a href="#cb4-131"></a><span class="co">#| standalone: true</span></span>
+<span id="cb4-132"><a href="#cb4-132"></a><span class="co">#| viewerHeight: 800</span></span>
+<span id="cb4-133"><a href="#cb4-133"></a><span class="co">#| components: [viewer, editor]</span></span>
+<span id="cb4-134"><a href="#cb4-134"></a><span class="co">#| layout: vertical</span></span>
+<span id="cb4-135"><a href="#cb4-135"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal.modules.clinical</span><span class="kw">)</span></span>
+<span id="cb4-136"><a href="#cb4-136"></a><span class="ex">library</span><span class="er">(</span><span class="ex">teal.modules.general</span><span class="kw">)</span></span>
+<span id="cb4-137"><a href="#cb4-137"></a><span class="ex">library</span><span class="er">(</span><span class="ex">sparkline</span><span class="kw">)</span></span>
+<span id="cb4-138"><a href="#cb4-138"></a><span class="ex">library</span><span class="er">(</span><span class="ex">magrittr</span><span class="kw">)</span></span>
+<span id="cb4-139"><a href="#cb4-139"></a></span>
+<span id="cb4-140"><a href="#cb4-140"></a><span class="ex">data</span> <span class="op">&lt;</span>- cdisc_data<span class="er">(</span><span class="kw">)</span> <span class="ex">%</span><span class="op">&gt;</span>%</span>
+<span id="cb4-141"><a href="#cb4-141"></a>  <span class="ex">within</span><span class="er">(</span><span class="kw">{</span></span>
+<span id="cb4-142"><a href="#cb4-142"></a>    <span class="ex">ADSL</span> <span class="op">&lt;</span>- tmc_ex_adsl</span>
+<span id="cb4-143"><a href="#cb4-143"></a>    <span class="ex">ADTTE</span> <span class="op">&lt;</span>- tmc_ex_adtte</span>
+<span id="cb4-144"><a href="#cb4-144"></a>  <span class="kw">})</span></span>
+<span id="cb4-145"><a href="#cb4-145"></a><span class="ex">names</span><span class="er">(</span><span class="ex">data</span><span class="kw">)</span> <span class="op">&lt;</span>- <span class="ex">c</span><span class="er">(</span><span class="st">"ADSL"</span><span class="ex">,</span> <span class="st">"ADTTE"</span><span class="kw">)</span></span>
+<span id="cb4-146"><a href="#cb4-146"></a><span class="ex">join_keys</span><span class="er">(</span><span class="ex">data</span><span class="kw">)</span> <span class="op">&lt;</span>- <span class="va">default_cdisc_join_keys</span><span class="op">[</span>names(data)<span class="op">]</span></span>
 <span id="cb4-147"><a href="#cb4-147"></a></span>
-<span id="cb4-148"><a href="#cb4-148"></a><span class="ex">cs_arm_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
-<span id="cb4-149"><a href="#cb4-149"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = arm_vars<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-150"><a href="#cb4-150"></a>  <span class="ex">selected</span> = <span class="st">"ARM"</span></span>
-<span id="cb4-151"><a href="#cb4-151"></a><span class="kw">)</span></span>
-<span id="cb4-152"><a href="#cb4-152"></a></span>
-<span id="cb4-153"><a href="#cb4-153"></a><span class="ex">cs_strata_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
-<span id="cb4-154"><a href="#cb4-154"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = strata_vars<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-155"><a href="#cb4-155"></a>  <span class="ex">selected</span> = <span class="st">"STRATA1"</span></span>
-<span id="cb4-156"><a href="#cb4-156"></a><span class="kw">)</span></span>
-<span id="cb4-157"><a href="#cb4-157"></a></span>
-<span id="cb4-158"><a href="#cb4-158"></a><span class="ex">cs_facet_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
-<span id="cb4-159"><a href="#cb4-159"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = facet_vars<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-160"><a href="#cb4-160"></a>  <span class="ex">selected</span> = <span class="st">"BMRKR2"</span></span>
-<span id="cb4-161"><a href="#cb4-161"></a><span class="kw">)</span></span>
-<span id="cb4-162"><a href="#cb4-162"></a></span>
-<span id="cb4-163"><a href="#cb4-163"></a><span class="ex">cs_paramcd_tte</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
-<span id="cb4-164"><a href="#cb4-164"></a>  <span class="ex">choices</span> = value_choices<span class="er">(</span><span class="ex">ADTTE,</span> <span class="st">"PARAMCD"</span>, <span class="st">"PARAM"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-165"><a href="#cb4-165"></a>  <span class="ex">selected</span> = <span class="st">"OS"</span></span>
-<span id="cb4-166"><a href="#cb4-166"></a><span class="kw">)</span></span>
-<span id="cb4-167"><a href="#cb4-167"></a></span>
-<span id="cb4-168"><a href="#cb4-168"></a><span class="ex">date_vars_asl</span> <span class="op">&lt;</span>- names<span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span><span class="ex">[vapply</span><span class="er">(</span><span class="ex">ADSL,</span> function<span class="er">(</span><span class="ex">x</span><span class="kw">)</span> <span class="ex">inherits</span><span class="er">(</span><span class="ex">x,</span> c<span class="er">(</span><span class="st">"Date"</span><span class="ex">,</span> <span class="st">"POSIXct"</span>, <span class="st">"POSIXlt"</span><span class="kw">))</span><span class="ex">,</span> logical<span class="er">(</span><span class="ex">1</span><span class="kw">))</span><span class="ex">]</span></span>
-<span id="cb4-169"><a href="#cb4-169"></a><span class="ex">demog_vars_asl</span> <span class="op">&lt;</span>- names<span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span><span class="ex">[!</span><span class="er">(</span><span class="ex">names</span><span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span> <span class="ex">%in%</span> c<span class="er">(</span><span class="st">"USUBJID"</span><span class="ex">,</span> <span class="st">"STUDYID"</span>, date_vars_asl<span class="kw">))</span><span class="ex">]</span></span>
-<span id="cb4-170"><a href="#cb4-170"></a></span>
-<span id="cb4-171"><a href="#cb4-171"></a><span class="ex">arm_ref_comp</span> <span class="op">&lt;</span>- list<span class="er">(</span></span>
-<span id="cb4-172"><a href="#cb4-172"></a>  <span class="ex">ACTARMCD</span> = list<span class="er">(</span></span>
-<span id="cb4-173"><a href="#cb4-173"></a>    <span class="ex">ref</span> = <span class="st">"ARM B"</span>,</span>
-<span id="cb4-174"><a href="#cb4-174"></a>    <span class="ex">comp</span> = c<span class="er">(</span><span class="st">"ARM A"</span><span class="ex">,</span> <span class="st">"ARM C"</span><span class="kw">)</span></span>
-<span id="cb4-175"><a href="#cb4-175"></a>  <span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-176"><a href="#cb4-176"></a>  <span class="ex">ARM</span> = list<span class="er">(</span></span>
-<span id="cb4-177"><a href="#cb4-177"></a>    <span class="ex">ref</span> = <span class="st">"B: Placebo"</span>,</span>
-<span id="cb4-178"><a href="#cb4-178"></a>    <span class="ex">comp</span> = c<span class="er">(</span><span class="st">"A: Drug X"</span><span class="ex">,</span> <span class="st">"C: Combination"</span><span class="kw">)</span></span>
-<span id="cb4-179"><a href="#cb4-179"></a>  <span class="kw">)</span></span>
-<span id="cb4-180"><a href="#cb4-180"></a><span class="kw">)</span></span>
-<span id="cb4-181"><a href="#cb4-181"></a></span>
-<span id="cb4-182"><a href="#cb4-182"></a></span>
-<span id="cb4-183"><a href="#cb4-183"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
-<span id="cb4-184"><a href="#cb4-184"></a>  <span class="ex">data</span> = data,</span>
-<span id="cb4-185"><a href="#cb4-185"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
-<span id="cb4-186"><a href="#cb4-186"></a>    <span class="ex">tm_data_table</span><span class="er">(</span><span class="st">"Data Table"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-187"><a href="#cb4-187"></a>    <span class="ex">tm_variable_browser</span><span class="er">(</span><span class="st">"Variable Browser"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-188"><a href="#cb4-188"></a>    <span class="ex">tm_t_summary</span><span class="er">(</span></span>
-<span id="cb4-189"><a href="#cb4-189"></a>      <span class="ex">label</span> = <span class="st">"Demographic Table"</span>,</span>
-<span id="cb4-190"><a href="#cb4-190"></a>      <span class="ex">dataname</span> = <span class="st">"ADSL"</span>,</span>
-<span id="cb4-191"><a href="#cb4-191"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
-<span id="cb4-192"><a href="#cb4-192"></a>      <span class="ex">summarize_vars</span> = choices_selected<span class="er">(</span></span>
-<span id="cb4-193"><a href="#cb4-193"></a>        <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> demog_vars_asl<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-194"><a href="#cb4-194"></a>        <span class="ex">selected</span> = c<span class="er">(</span><span class="st">"SEX"</span><span class="ex">,</span> <span class="st">"AGE"</span>, <span class="st">"RACE"</span><span class="kw">)</span></span>
-<span id="cb4-195"><a href="#cb4-195"></a>      <span class="kw">)</span></span>
-<span id="cb4-196"><a href="#cb4-196"></a>    <span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-197"><a href="#cb4-197"></a>    <span class="ex">tm_g_km</span><span class="er">(</span></span>
-<span id="cb4-198"><a href="#cb4-198"></a>      <span class="ex">label</span> = <span class="st">"Kaplan Meier Plot"</span>,</span>
-<span id="cb4-199"><a href="#cb4-199"></a>      <span class="ex">dataname</span> = <span class="st">"ADTTE"</span>,</span>
-<span id="cb4-200"><a href="#cb4-200"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
-<span id="cb4-201"><a href="#cb4-201"></a>      <span class="ex">arm_ref_comp</span> = arm_ref_comp,</span>
-<span id="cb4-202"><a href="#cb4-202"></a>      <span class="ex">paramcd</span> = cs_paramcd_tte,</span>
-<span id="cb4-203"><a href="#cb4-203"></a>      <span class="ex">facet_var</span> = cs_facet_var,</span>
-<span id="cb4-204"><a href="#cb4-204"></a>      <span class="ex">strata_var</span> = cs_strata_var,</span>
-<span id="cb4-205"><a href="#cb4-205"></a>      <span class="ex">plot_height</span> = c<span class="er">(</span><span class="ex">1800L,</span> 200L, 4000L<span class="kw">)</span></span>
-<span id="cb4-206"><a href="#cb4-206"></a>    <span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-207"><a href="#cb4-207"></a>    <span class="ex">tm_t_tte</span><span class="er">(</span></span>
-<span id="cb4-208"><a href="#cb4-208"></a>      <span class="ex">label</span> = <span class="st">"Time To Event Table"</span>,</span>
-<span id="cb4-209"><a href="#cb4-209"></a>      <span class="ex">dataname</span> = <span class="st">"ADTTE"</span>,</span>
-<span id="cb4-210"><a href="#cb4-210"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
-<span id="cb4-211"><a href="#cb4-211"></a>      <span class="ex">arm_ref_comp</span> = arm_ref_comp,</span>
-<span id="cb4-212"><a href="#cb4-212"></a>      <span class="ex">paramcd</span> = cs_paramcd_tte,</span>
-<span id="cb4-213"><a href="#cb4-213"></a>      <span class="ex">strata_var</span> = cs_strata_var,</span>
-<span id="cb4-214"><a href="#cb4-214"></a>      <span class="ex">time_points</span> = choices_selected<span class="er">(</span><span class="ex">c</span><span class="er">(</span><span class="ex">182,</span> 243<span class="kw">)</span><span class="ex">,</span> 182<span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-215"><a href="#cb4-215"></a>      <span class="ex">event_desc_var</span> = choices_selected<span class="er">(</span></span>
-<span id="cb4-216"><a href="#cb4-216"></a>        <span class="ex">variable_choices</span><span class="er">(</span><span class="ex">ADTTE,</span> <span class="st">"EVNTDESC"</span><span class="kw">)</span><span class="ex">,</span></span>
-<span id="cb4-217"><a href="#cb4-217"></a>        <span class="st">"EVNTDESC"</span><span class="ex">,</span></span>
-<span id="cb4-218"><a href="#cb4-218"></a>        <span class="ex">fixed</span> = TRUE</span>
-<span id="cb4-219"><a href="#cb4-219"></a>      <span class="kw">)</span></span>
-<span id="cb4-220"><a href="#cb4-220"></a>    <span class="kw">)</span></span>
-<span id="cb4-221"><a href="#cb4-221"></a>  <span class="kw">)</span></span>
-<span id="cb4-222"><a href="#cb4-222"></a><span class="kw">)</span></span>
-<span id="cb4-223"><a href="#cb4-223"></a></span>
-<span id="cb4-224"><a href="#cb4-224"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
-<span id="cb4-225"><a href="#cb4-225"></a><span class="kw">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb4-148"><a href="#cb4-148"></a><span class="ex">ADSL</span> <span class="op">&lt;</span>- data[<span class="pp">[</span><span class="st">"ADSL"</span><span class="pp">]</span>]</span>
+<span id="cb4-149"><a href="#cb4-149"></a><span class="ex">ADTTE</span> <span class="op">&lt;</span>- data[<span class="pp">[</span><span class="st">"ADTTE"</span><span class="pp">]</span>]</span>
+<span id="cb4-150"><a href="#cb4-150"></a></span>
+<span id="cb4-151"><a href="#cb4-151"></a><span class="ex">arm_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"ARM"</span><span class="ex">,</span> <span class="st">"ARMCD"</span>, <span class="st">"ACTARMCD"</span><span class="kw">)</span></span>
+<span id="cb4-152"><a href="#cb4-152"></a><span class="ex">strata_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"STRATA1"</span><span class="ex">,</span> <span class="st">"STRATA2"</span><span class="kw">)</span></span>
+<span id="cb4-153"><a href="#cb4-153"></a><span class="ex">facet_vars</span> <span class="op">&lt;</span>- c<span class="er">(</span><span class="st">"BMRKR2"</span><span class="ex">,</span> <span class="st">"SEX"</span>, <span class="st">"COUNTRY"</span><span class="kw">)</span></span>
+<span id="cb4-154"><a href="#cb4-154"></a></span>
+<span id="cb4-155"><a href="#cb4-155"></a><span class="ex">cs_arm_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
+<span id="cb4-156"><a href="#cb4-156"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = arm_vars<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-157"><a href="#cb4-157"></a>  <span class="ex">selected</span> = <span class="st">"ARM"</span></span>
+<span id="cb4-158"><a href="#cb4-158"></a><span class="kw">)</span></span>
+<span id="cb4-159"><a href="#cb4-159"></a></span>
+<span id="cb4-160"><a href="#cb4-160"></a><span class="ex">cs_strata_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
+<span id="cb4-161"><a href="#cb4-161"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = strata_vars<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-162"><a href="#cb4-162"></a>  <span class="ex">selected</span> = <span class="st">"STRATA1"</span></span>
+<span id="cb4-163"><a href="#cb4-163"></a><span class="kw">)</span></span>
+<span id="cb4-164"><a href="#cb4-164"></a></span>
+<span id="cb4-165"><a href="#cb4-165"></a><span class="ex">cs_facet_var</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
+<span id="cb4-166"><a href="#cb4-166"></a>  <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> subset = facet_vars<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-167"><a href="#cb4-167"></a>  <span class="ex">selected</span> = <span class="st">"BMRKR2"</span></span>
+<span id="cb4-168"><a href="#cb4-168"></a><span class="kw">)</span></span>
+<span id="cb4-169"><a href="#cb4-169"></a></span>
+<span id="cb4-170"><a href="#cb4-170"></a><span class="ex">cs_paramcd_tte</span> <span class="op">&lt;</span>- choices_selected<span class="er">(</span></span>
+<span id="cb4-171"><a href="#cb4-171"></a>  <span class="ex">choices</span> = value_choices<span class="er">(</span><span class="ex">ADTTE,</span> <span class="st">"PARAMCD"</span>, <span class="st">"PARAM"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-172"><a href="#cb4-172"></a>  <span class="ex">selected</span> = <span class="st">"OS"</span></span>
+<span id="cb4-173"><a href="#cb4-173"></a><span class="kw">)</span></span>
+<span id="cb4-174"><a href="#cb4-174"></a></span>
+<span id="cb4-175"><a href="#cb4-175"></a><span class="ex">date_vars_asl</span> <span class="op">&lt;</span>- names<span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span><span class="ex">[vapply</span><span class="er">(</span><span class="ex">ADSL,</span> function<span class="er">(</span><span class="ex">x</span><span class="kw">)</span> <span class="ex">inherits</span><span class="er">(</span><span class="ex">x,</span> c<span class="er">(</span><span class="st">"Date"</span><span class="ex">,</span> <span class="st">"POSIXct"</span>, <span class="st">"POSIXlt"</span><span class="kw">))</span><span class="ex">,</span> logical<span class="er">(</span><span class="ex">1</span><span class="kw">))</span><span class="ex">]</span></span>
+<span id="cb4-176"><a href="#cb4-176"></a><span class="ex">demog_vars_asl</span> <span class="op">&lt;</span>- names<span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span><span class="ex">[!</span><span class="er">(</span><span class="ex">names</span><span class="er">(</span><span class="ex">ADSL</span><span class="kw">)</span> <span class="ex">%in%</span> c<span class="er">(</span><span class="st">"USUBJID"</span><span class="ex">,</span> <span class="st">"STUDYID"</span>, date_vars_asl<span class="kw">))</span><span class="ex">]</span></span>
+<span id="cb4-177"><a href="#cb4-177"></a></span>
+<span id="cb4-178"><a href="#cb4-178"></a><span class="ex">arm_ref_comp</span> <span class="op">&lt;</span>- list<span class="er">(</span></span>
+<span id="cb4-179"><a href="#cb4-179"></a>  <span class="ex">ACTARMCD</span> = list<span class="er">(</span></span>
+<span id="cb4-180"><a href="#cb4-180"></a>    <span class="ex">ref</span> = <span class="st">"ARM B"</span>,</span>
+<span id="cb4-181"><a href="#cb4-181"></a>    <span class="ex">comp</span> = c<span class="er">(</span><span class="st">"ARM A"</span><span class="ex">,</span> <span class="st">"ARM C"</span><span class="kw">)</span></span>
+<span id="cb4-182"><a href="#cb4-182"></a>  <span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-183"><a href="#cb4-183"></a>  <span class="ex">ARM</span> = list<span class="er">(</span></span>
+<span id="cb4-184"><a href="#cb4-184"></a>    <span class="ex">ref</span> = <span class="st">"B: Placebo"</span>,</span>
+<span id="cb4-185"><a href="#cb4-185"></a>    <span class="ex">comp</span> = c<span class="er">(</span><span class="st">"A: Drug X"</span><span class="ex">,</span> <span class="st">"C: Combination"</span><span class="kw">)</span></span>
+<span id="cb4-186"><a href="#cb4-186"></a>  <span class="kw">)</span></span>
+<span id="cb4-187"><a href="#cb4-187"></a><span class="kw">)</span></span>
+<span id="cb4-188"><a href="#cb4-188"></a></span>
+<span id="cb4-189"><a href="#cb4-189"></a></span>
+<span id="cb4-190"><a href="#cb4-190"></a><span class="ex">app</span> <span class="op">&lt;</span>- init<span class="er">(</span></span>
+<span id="cb4-191"><a href="#cb4-191"></a>  <span class="ex">data</span> = data,</span>
+<span id="cb4-192"><a href="#cb4-192"></a>  <span class="ex">modules</span> = list<span class="er">(</span></span>
+<span id="cb4-193"><a href="#cb4-193"></a>    <span class="ex">tm_data_table</span><span class="er">(</span><span class="st">"Data Table"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-194"><a href="#cb4-194"></a>    <span class="ex">tm_variable_browser</span><span class="er">(</span><span class="st">"Variable Browser"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-195"><a href="#cb4-195"></a>    <span class="ex">tm_t_summary</span><span class="er">(</span></span>
+<span id="cb4-196"><a href="#cb4-196"></a>      <span class="ex">label</span> = <span class="st">"Demographic Table"</span>,</span>
+<span id="cb4-197"><a href="#cb4-197"></a>      <span class="ex">dataname</span> = <span class="st">"ADSL"</span>,</span>
+<span id="cb4-198"><a href="#cb4-198"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
+<span id="cb4-199"><a href="#cb4-199"></a>      <span class="ex">summarize_vars</span> = choices_selected<span class="er">(</span></span>
+<span id="cb4-200"><a href="#cb4-200"></a>        <span class="ex">choices</span> = variable_choices<span class="er">(</span><span class="ex">ADSL,</span> demog_vars_asl<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-201"><a href="#cb4-201"></a>        <span class="ex">selected</span> = c<span class="er">(</span><span class="st">"SEX"</span><span class="ex">,</span> <span class="st">"AGE"</span>, <span class="st">"RACE"</span><span class="kw">)</span></span>
+<span id="cb4-202"><a href="#cb4-202"></a>      <span class="kw">)</span></span>
+<span id="cb4-203"><a href="#cb4-203"></a>    <span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-204"><a href="#cb4-204"></a>    <span class="ex">tm_g_km</span><span class="er">(</span></span>
+<span id="cb4-205"><a href="#cb4-205"></a>      <span class="ex">label</span> = <span class="st">"Kaplan Meier Plot"</span>,</span>
+<span id="cb4-206"><a href="#cb4-206"></a>      <span class="ex">dataname</span> = <span class="st">"ADTTE"</span>,</span>
+<span id="cb4-207"><a href="#cb4-207"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
+<span id="cb4-208"><a href="#cb4-208"></a>      <span class="ex">arm_ref_comp</span> = arm_ref_comp,</span>
+<span id="cb4-209"><a href="#cb4-209"></a>      <span class="ex">paramcd</span> = cs_paramcd_tte,</span>
+<span id="cb4-210"><a href="#cb4-210"></a>      <span class="ex">facet_var</span> = cs_facet_var,</span>
+<span id="cb4-211"><a href="#cb4-211"></a>      <span class="ex">strata_var</span> = cs_strata_var,</span>
+<span id="cb4-212"><a href="#cb4-212"></a>      <span class="ex">plot_height</span> = c<span class="er">(</span><span class="ex">1800L,</span> 200L, 4000L<span class="kw">)</span></span>
+<span id="cb4-213"><a href="#cb4-213"></a>    <span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-214"><a href="#cb4-214"></a>    <span class="ex">tm_t_tte</span><span class="er">(</span></span>
+<span id="cb4-215"><a href="#cb4-215"></a>      <span class="ex">label</span> = <span class="st">"Time To Event Table"</span>,</span>
+<span id="cb4-216"><a href="#cb4-216"></a>      <span class="ex">dataname</span> = <span class="st">"ADTTE"</span>,</span>
+<span id="cb4-217"><a href="#cb4-217"></a>      <span class="ex">arm_var</span> = cs_arm_var,</span>
+<span id="cb4-218"><a href="#cb4-218"></a>      <span class="ex">arm_ref_comp</span> = arm_ref_comp,</span>
+<span id="cb4-219"><a href="#cb4-219"></a>      <span class="ex">paramcd</span> = cs_paramcd_tte,</span>
+<span id="cb4-220"><a href="#cb4-220"></a>      <span class="ex">strata_var</span> = cs_strata_var,</span>
+<span id="cb4-221"><a href="#cb4-221"></a>      <span class="ex">time_points</span> = choices_selected<span class="er">(</span><span class="ex">c</span><span class="er">(</span><span class="ex">182,</span> 243<span class="kw">)</span><span class="ex">,</span> 182<span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-222"><a href="#cb4-222"></a>      <span class="ex">event_desc_var</span> = choices_selected<span class="er">(</span></span>
+<span id="cb4-223"><a href="#cb4-223"></a>        <span class="ex">variable_choices</span><span class="er">(</span><span class="ex">ADTTE,</span> <span class="st">"EVNTDESC"</span><span class="kw">)</span><span class="ex">,</span></span>
+<span id="cb4-224"><a href="#cb4-224"></a>        <span class="st">"EVNTDESC"</span><span class="ex">,</span></span>
+<span id="cb4-225"><a href="#cb4-225"></a>        <span class="ex">fixed</span> = TRUE</span>
+<span id="cb4-226"><a href="#cb4-226"></a>      <span class="kw">)</span></span>
+<span id="cb4-227"><a href="#cb4-227"></a>    <span class="kw">)</span></span>
+<span id="cb4-228"><a href="#cb4-228"></a>  <span class="kw">)</span></span>
+<span id="cb4-229"><a href="#cb4-229"></a><span class="kw">)</span></span>
+<span id="cb4-230"><a href="#cb4-230"></a></span>
+<span id="cb4-231"><a href="#cb4-231"></a><span class="ex">shinyApp</span><span class="er">(</span><span class="ex">app</span><span class="va">$ui</span><span class="ex">,</span> app<span class="va">$server</span><span class="kw">)</span></span>
+<span id="cb4-232"><a href="#cb4-232"></a><span class="kw">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
