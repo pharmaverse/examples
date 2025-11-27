@@ -7,6 +7,8 @@ project:
     watch-inputs: true
     navigate: true
     timeout: 300
+  pre-render:
+    - interactive/prepare.R
 
 website:
   title: "pharmaverse examples"

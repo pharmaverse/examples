@@ -1,0 +1,1 @@
+shinylive::assets_ensure()

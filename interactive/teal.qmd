@@ -3,6 +3,11 @@ title: "`teal` applications"
 order: 1
 ---
 
+```{r}
+#| include: false
+shinylive::assets_ensure()
+```
+
 [`teal`](https://insightsengineering.github.io/teal/latest-tag/) is a Shiny-based framework that streamlines the process of creating an application for clinical trials data. App developers are required to specify input data as well as analysis modules choosing from a wide range of available modules or creating their own module.
 
 The main features of a `teal` app include:
@@ -135,8 +140,8 @@ data <- cdisc_data() %>%
     ADSL <- tmc_ex_adsl
     ADTTE <- tmc_ex_adtte
   })
-datanames(data) <- c("ADSL", "ADTTE")
-join_keys(data) <- default_cdisc_join_keys[datanames(data)]
+names(data) <- c("ADSL", "ADTTE")
+join_keys(data) <- default_cdisc_join_keys[names(data)]
 
 ADSL <- data[["ADSL"]]
 ADTTE <- data[["ADTTE"]]
