@@ -59,7 +59,7 @@ Suggests:
     knitr,
     rmarkdown
 Remotes:
-    posit-dev/r-shinylive
+    shinylive=posit-dev/r-shinylive
 Encoding: UTF-8
 Language: en-US
 
