@@ -89,7 +89,7 @@ ard <-
   ard_stack(
     adsl,
     ard_continuous(variables = AGE),
-    ard_categorical(variables = c(AGEGR1, SEX, RACE)),
+    ard_tabulate(variables = c(AGEGR1, SEX, RACE)),
     .by = ACTARM, # split results by treatment arm
     .attributes = TRUE # optionally include column labels in the ARD
   )
