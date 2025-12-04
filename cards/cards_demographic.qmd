@@ -27,7 +27,7 @@ Analysis Results Datasets (ARDs) are a core component of the emerging [CDISC Ana
 
 ### About the {cards} Package
 
-The [{cards}](https://insightsengineering.github.io/cards/) package is a powerful R package designed to create Analysis Results Datasets that conform to the CDISC ARD standard. Key features include:
+The [{cards}](https://insightsengineering.github.io/cards/) package is a powerful R package designed to create Analysis Results Datasets (ARDs). Key features include:
 
 - Creates ARDs with summary statistics for continuous and categorical variables
 - Supports stratified analyses (e.g., by treatment arm)
