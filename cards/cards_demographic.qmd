@@ -88,7 +88,7 @@ theme_gtsummary_compact() # reduce default padding and font size for a gt table
 ard <-
   ard_stack(
     adsl,
-    ard_continuous(variables = AGE),
+    ard_summary(variables = AGE),
     ard_tabulate(variables = c(AGEGR1, SEX, RACE)),
     .by = ACTARM, # split results by treatment arm
     .attributes = TRUE # optionally include column labels in the ARD
