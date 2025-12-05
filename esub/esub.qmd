@@ -39,6 +39,12 @@ Since these pilots laid the foundation, several major pharma companies have
 submitted primarily using R to health authorities across the world, so this
 article includes a mix of learnings from the pilots and real submissions.
 
+In early 2025, the R Submissions WG [launched Pilot 5](https://r-consortium.org/posts/submissions-wg-pilot5-pilot6-and-more/)
+to explore replacing `xpts` with `datasetjson` as a transport file to the FDA via 
+the eCTD portal. The group successfully submitted the data package in early Fall of 2025 
+and has received positive feedback. Stay tuned for updates on the 
+[Pilot 5 Website](https://rconsortium.github.io/submissions-pilot5-website/).
+
 ## Submission Contents
 
 The areas of eSubmission that pharmaverse packages are most useful for would be
