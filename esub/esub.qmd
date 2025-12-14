@@ -41,7 +41,7 @@ article includes a mix of learnings from the pilots and real submissions.
 
 In early 2025, the R Submissions WG [launched Pilot 5](https://r-consortium.org/posts/submissions-wg-pilot5-pilot6-and-more/)
 to explore replacing `xpt` with `datasetjson` as a transport file to the FDA via 
-the eCTD portal. The group successfully submitted the data package in early Fall of 2025 
+the eCTD portal. The group successfully submitted the data package in early Q3 2025 
 and has received positive feedback. Stay tuned for updates and the FDA's
 final response - [Pilot 5 Website](https://rconsortium.github.io/submissions-pilot5-website/).
 
@@ -159,9 +159,7 @@ As an alternative to xpt, we also have `{datasetjson}` which enables the
 emerging new submission data exchange standard Dataset-JSON detailed
 [here](https://www.cdisc.org/standards/data-exchange/dataset-json). As this
 package is still experimental, we don't include code examples here but over time
-and as momentum grows we can add extra examples to this article.
-See R Submissions WG [pilot 5](https://rconsortium.github.io/submissions-pilot5-website/)
-for a pilot submission using Dataset-JSON.
+and as momentum grows we can add extra examples to this article. 
 
 ### Readable Code
 
