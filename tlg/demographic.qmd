@@ -164,8 +164,10 @@ library(tfrmt)
 ard <-
   ard_stack(
     adsl,
-    ard_continuous(variables = AGE,
-                   statistic = ~ continuous_summary_fns(c("N", "mean", "sd", "min", "max"))),
+    ard_continuous(
+      variables = AGE,
+      statistic = ~ continuous_summary_fns(c("N", "mean", "sd", "min", "max"))
+    ),
     ard_categorical(variables = c(AGEGR1, SEX, RACE)),
     .by = ACTARM, # split results by treatment arm
     .overall = TRUE,
@@ -175,23 +177,19 @@ ard <-
 # tidy the ARD for use in {tfrmt}
 ard_tbl <-
   ard |>
-  #reshape the data
+  # reshape the data
   shuffle_card(fill_overall = "Total") |>
-  
   # transform group-level freqs/pcts into a singular "bigN" row
-  prep_big_n(vars = "ACTARM") |> 
-  
+  prep_big_n(vars = "ACTARM") |>
   # consolidate vars into a single variable column
-  prep_combine_vars(vars = c("AGE","AGEGR1","SEX","RACE")) |> 
-  
+  prep_combine_vars(vars = c("AGE", "AGEGR1", "SEX", "RACE")) |>
   # coalesce categorical levels + continuous stats into a "label"
-  prep_label() |> 
-  
-  group_by(ACTARM, stat_variable) |> 
-  mutate(across(c(variable_level, label), ~ ifelse(stat_name=="N", "n", .x))) |> 
-  ungroup() |> 
-  unique() |> 
-  # sorting 
+  prep_label() |>
+  group_by(ACTARM, stat_variable) |>
+  mutate(across(c(variable_level, label), ~ ifelse(stat_name == "N", "n", .x))) |>
+  ungroup() |>
+  unique() |>
+  # sorting
   mutate(
     ord1 = fct_inorder(stat_variable) |> fct_relevel("SEX", after = 0) |> as.numeric(),
     ord2 = ifelse(label == "n", 1, 2)
@@ -232,8 +230,8 @@ DM_T01 <- tfrmt(
     -starts_with("ord")
   ),
   col_style_plan = col_style_plan(
-      col_style_structure(col = c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose", "Total"), align = "left")
-    ),
+    col_style_structure(col = c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose", "Total"), align = "left")
+  ),
   row_grp_plan = row_grp_plan(
     row_grp_structure(group_val = ".default", element_block(post_space = " "))
   )
@@ -241,5 +239,4 @@ DM_T01 <- tfrmt(
   print_to_gt(ard_tbl)
 
 DM_T01
-
 ```
