@@ -130,10 +130,10 @@ Subset to safety population.
 ```{r}
 # Filter to include only subjects marked as part of the safety population
 adsl <- pharmaverseadam::adsl |>
-  filter(SAFFL == "Y") 
+  filter(SAFFL == "Y")
 # Load adverse event data
 adae <- pharmaverseadam::adae |>
-  filter(SAFFL == "Y" & TRTEMFL == "Y") 
+  filter(SAFFL == "Y" & TRTEMFL == "Y")
 ```
 
 ------------------------------------------------------------------------
@@ -166,7 +166,7 @@ adsl2 <- adsl |>
 
 ae2_ard <- ard_stack_hierarchical(
   data = adae2,
-  by =  TRT01A, # Note: by variables must be present in the denominator dataset
+  by = TRT01A, # Note: by variables must be present in the denominator dataset
   variables = c(AEBODSYS, AETERM),
   denominator = adsl2,
   statistic = ~ c("n", "p"),
@@ -174,8 +174,7 @@ ae2_ard <- ard_stack_hierarchical(
   over_variables = TRUE,
   overall = TRUE
 ) |>
-filter(group2=="TRT01A" | variable=="TRT01A") #filter to stats we need
-
+  filter(group2 == "TRT01A" | variable == "TRT01A") # filter to stats we need
 ```
 
 
@@ -185,14 +184,14 @@ filter(group2=="TRT01A" | variable=="TRT01A") #filter to stats we need
 Further refine the ARD for use in tfrmt
 
 ```{r}
-ae3_ard <- bind_ard(ae_ard, ae2_ard) |> 
+ae3_ard <- bind_ard(ae_ard, ae2_ard) |>
   # reshape the data
   shuffle_card(fill_hierarchical_overall = "ANY EVENT") |>
   # transform group-level freqs/pcts into a singular "bigN" row
-  prep_big_n(vars = "TRT01A") |> 
+  prep_big_n(vars = "TRT01A") |>
   # for nested variables, fill any missing values with "ANY EVENT"
-  prep_hierarchical_fill(vars = c("AEBODSYS","AETERM"), fill = "ANY EVENT") |>
-  mutate(TRT01A = ifelse(TRT01A=="Overall TRT01A", "Total", TRT01A))
+  prep_hierarchical_fill(vars = c("AEBODSYS", "AETERM"), fill = "ANY EVENT") |>
+  mutate(TRT01A = ifelse(TRT01A == "Overall TRT01A", "Total", TRT01A))
 
 # create ordering columns, sort by aebodsys
 ordering_aebodsys <- ae3_ard |>
@@ -213,7 +212,7 @@ ordering_aeterm <- ae3_ard |>
 ae4_ard <- ae3_ard |>
   full_join(ordering_aebodsys, by = "AEBODSYS") |>
   full_join(ordering_aeterm, by = c("AEBODSYS", "AETERM")) |>
-  select(AEBODSYS, AETERM, ord1, ord2, stat, stat_name, TRT01A) 
+  select(AEBODSYS, AETERM, ord1, ord2, stat, stat_name, TRT01A)
 ```
 
 ------------------------------------------------------------------------
@@ -238,9 +237,11 @@ AE_T01 <- tfrmt_n_pct(
     value = stat,
     column = TRT01A,
     sorting_cols = c(ord1, ord2),
-    col_plan = col_plan("System Organ Class
-            Preferred Term" = AEBODSYS, Placebo,`Xanomeline High Dose`, `Xanomeline Low Dose`,
-            -ord1, -ord2),
+    col_plan = col_plan(
+      "System Organ Class
+            Preferred Term" = AEBODSYS, Placebo, `Xanomeline High Dose`, `Xanomeline Low Dose`,
+      -ord1, -ord2
+    ),
     row_grp_plan = row_grp_plan(row_grp_structure(
       group_val = ".default", element_block(post_space = " ")
     )),
