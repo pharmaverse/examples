@@ -164,6 +164,7 @@ bds
 BDS
 BILI
 BILIBL
+bigN
 BLAS
 blq
 BLQ
@@ -351,11 +352,14 @@ fansi
 FAS
 FASFL
 fastmap
+fct
 FDA's
 fileext
 flextable
 flx
 fmt
+fns
+forcats
 formatters
 FORMN
 FRLTU
@@ -388,6 +392,7 @@ iconv
 ifelse
 iframe
 init
+inorder
 inputId
 installedpackages
 ITT
@@ -494,6 +499,7 @@ onco
 ONCO
 ontrtfl
 ONTRTFL
+ord
 os
 othgrpvars
 outfile
@@ -532,6 +538,7 @@ PCTEST
 PCTESTCD
 PCTPT
 PCTPTNUM
+pcts
 pfs
 PFS
 pharma
@@ -604,6 +611,7 @@ refdates
 refdt
 REGIONCAT
 REGIONx
+relevel
 renderPlot
 renderUI
 renv
@@ -713,6 +721,7 @@ tempfile
 TEMPLOC
 TESTCD
 tf
+tfrmt
 tformat
 tgdt
 tgt

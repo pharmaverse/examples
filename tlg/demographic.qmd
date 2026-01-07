@@ -204,7 +204,7 @@ ard_tbl <-
   )) |>
   # drop variables not needed
   select(ACTARM, stat_variable, label, stat_name, stat, ord1, ord2) |>
-  # remove dups (extra denoms per variable level)
+  # remove duplicates (extra denominators per variable level)
   unique()
 
 # create a demographics table using {tfrmt}

@@ -193,14 +193,14 @@ ae3_ard <- bind_ard(ae_ard, ae2_ard) |>
   prep_hierarchical_fill(vars = c("AEBODSYS", "AETERM"), fill = "ANY EVENT") |>
   mutate(TRT01A = ifelse(TRT01A == "Overall TRT01A", "Total", TRT01A))
 
-# create ordering columns, sort by aebodsys
+# create ordering columns, sort by AEBODSYS
 ordering_aebodsys <- ae3_ard |>
   filter(TRT01A == "Total", stat_name == "n", AETERM == "ANY EVENT") |>
   arrange(desc(stat)) |>
   mutate(ord1 = row_number()) |>
   select(AEBODSYS, ord1)
 
-# sort by aeterm after aebodsys order
+# sort by AETERM after AEBODSYS order
 ordering_aeterm <- ae3_ard |>
   filter(TRT01A == "Total", stat_name == "n") |>
   group_by(AEBODSYS) |>
