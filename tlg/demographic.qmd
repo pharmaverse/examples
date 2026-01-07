@@ -16,8 +16,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the `{pharmaverseadam}` `ADSL` data as an input.
 
-In the examples below, we illustrate two general approaches for creating a demographics table.
-The first utilizes Analysis Results Datasets---part of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
+In the examples below, we illustrate three general approaches for creating a demographics table.
+The first and third utilize Analysis Results Datasets---part of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
 The second is the classic method of creating summary tables directly from a data set.
 
 ## Data preprocessing
