@@ -41,6 +41,7 @@ ae
 AE
 AEACN
 AEBDSYCD
+aebodsys
 AEBODSYS
 AEDECOD
 AEDIS
@@ -84,6 +85,7 @@ AESTDAT
 AESTDTC
 AESTDY
 AETERM
+aeterm
 AETHNIC
 AETHNICN
 AFRLT
@@ -362,7 +364,9 @@ fns
 forcats
 formatters
 FORMN
+freqs
 FRLTU
+frmt
 FRVDT
 fs
 Garolini
