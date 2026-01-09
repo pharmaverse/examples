@@ -1,3 +1,48 @@
 ---
 title: "TLG"
 ---
+
+## Overview
+
+This section demonstrates how to create Tables, Listings, and Graphs (TLGs) for clinical study reporting using pharmaverse packages. TLGs are essential components of clinical study reports and regulatory submissions, providing clear presentation of study results.
+
+The examples show how to generate publication-quality outputs using packages such as `{tfrmt}`, `{rtables}`, `{tern}`, and other pharmaverse tools, working with ADaM datasets as input.
+
+## Examples
+
+The following TLG examples are available:
+
+### Tables
+
+- **[Demographic Table](demographic.qmd)** - Create comprehensive demographic and baseline characteristics summary tables. This example illustrates two approaches: using Analysis Results Datasets (ARDs) following the CDISC Analysis Results Standard, and the classic method of creating summary tables directly from datasets.
+
+- **[Adverse Events Table](adverse_events.qmd)** - Generate adverse events summary tables with frequency counts and percentages.
+
+### Listings & Graphs
+
+- **[Pharmacokinetic Outputs](pharmacokinetic.qmd)** - Produce pharmacokinetic analysis outputs including concentration-time graphs and parameter summaries.
+
+## Approaches Demonstrated
+
+The examples in this section showcase different methodologies:
+
+1. **Analysis Results Datasets (ARDs)** - Using the emerging CDISC Analysis Results Standard for structured, reusable analysis results
+2. **Direct Summarization** - Classic approach of creating summary tables directly from analysis datasets
+
+## Key Packages Used
+
+- **`{tfrmt}`** - Table formatting and layout control
+- **`{rtables}`** - Flexible table creation with complex layouts
+- **`{tern}`** - Analysis and reporting functions for clinical trials
+- **`{ggplot2}`** - Publication-quality graphics
+
+## Getting Started
+
+Each example includes:
+
+- Data preprocessing and preparation
+- Summary statistics calculation
+- Table or graph generation
+- Formatting and styling for publication
+
+All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consistency and reproducibility across examples.

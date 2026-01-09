@@ -1,3 +1,36 @@
 ---
 title: "SDTM"
 ---
+
+## Overview
+
+This section contains examples demonstrating the creation of Study Data Tabulation Model (SDTM) domains using pharmaverse packages. SDTM is a CDISC standard for organizing and formatting data to streamline the regulatory review process.
+
+The examples in this section primarily utilize the `{sdtm.oak}` package along with other pharmaverse tools to transform raw clinical trial data into SDTM-compliant datasets.
+
+## Examples
+
+The following SDTM domain examples are available:
+
+### Demographics and Baseline Characteristics
+
+- **[DM (Demographics)](dm.qmd)** - Learn how to create a Demographics domain including subject-level information such as age, sex, race, and study participation dates.
+
+### Clinical Events
+
+- **[AE (Adverse Events)](ae.qmd)** - Create an Adverse Events domain to capture information about adverse events experienced by subjects during the study.
+
+### Findings
+
+- **[VS (Vital Signs)](vs.qmd)** - Build a Vital Signs domain to record measurements such as blood pressure, heart rate, temperature, and other vital sign observations.
+
+## Getting Started
+
+Each example includes:
+
+- Introduction and context
+- Step-by-step programming workflow
+- Code examples using pharmaverse packages
+- Expected output and validation checks
+
+Before working with these examples, it's recommended to review the [`{sdtm.oak}` package documentation](https://pharmaverse.github.io/sdtm.oak/) to understand key concepts such as algorithms, oak_id_vars, and mapping functions.
