@@ -51,29 +51,6 @@ jobs:
         with:
           to: html
 
-      # temporary!
-      # remove this step if closed (& relleased): https://github.com/quarto-ext/shinylive/issues/59
-      - name: Remove large WebR assets 🧹
-        run: |
-          packages_path <- sprintf("./_site/site_libs/quarto-contrib/shinylive-%s/shinylive/webr/packages", shinylive::assets_version())
-
-          # remove the dirs with size > 100 MB
-          for (x in list.dirs(packages_path)) {
-            x_files <- file.info(list.files(x, full.names = TRUE))
-            if (any(x_files$size > 100 * 1024^2)) {
-              print(x)
-              print(x_files)
-              unlink(x, recursive = TRUE)
-            }
-          }
-
-          # refresh the `metadata.rds` file
-          metadata_path <- file.path(packages_path, "metadata.rds")
-          metadata <- readRDS(metadata_path)
-          new_metadata <- metadata[intersect(names(metadata), list.dirs(packages_path, full.names = FALSE))]
-          saveRDS(new_metadata, metadata_path)
-        shell: Rscript {0}
-
       - name: Publish docs
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
