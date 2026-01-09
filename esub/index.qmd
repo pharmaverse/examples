@@ -1,3 +1,59 @@
 ---
 title: "eSubmission"
 ---
+
+## Overview
+
+This section provides examples for preparing electronic submissions (eSubmissions) to regulatory agencies using pharmaverse packages. eSubmissions are a critical component of the drug approval process, requiring properly formatted and validated datasets along with comprehensive documentation.
+
+The examples demonstrate how to leverage pharmaverse tools to ensure your submissions meet regulatory requirements and follow industry best practices.
+
+## Examples
+
+The following eSubmission examples are available:
+
+### Analysis Data Reviewer's Guide
+
+- **[ADRG (Analysis Data Reviewer's Guide)](esub.qmd)** - Learn how to create an Analysis Data Reviewer's Guide, a key document in regulatory submissions. The ADRG provides reviewers with essential information about the analysis datasets, data structures, and derivations used in the submission. This example demonstrates how to document dataset specifications, define.xml generation, and other critical components of a complete eSubmission package.
+
+## Key Components of eSubmissions
+
+Successful electronic submissions typically include:
+
+- **Analysis Datasets** - Properly formatted ADaM datasets in SAS transport (XPT) format
+- **Define.xml** - Machine-readable dataset and variable definitions
+- **ADRG** - Comprehensive guide to the analysis datasets and derivations
+- **Analysis Results Metadata (ARM)** - Documentation of analysis outputs
+- **Reviewers Guide** - Documentation to facilitate regulatory review
+
+## Regulatory Standards
+
+eSubmissions must comply with various regulatory standards and guidance:
+
+- **CDISC Standards** - SDTM, ADaM, Define-XML specifications
+- **FDA Guidance** - Study Data Technical Conformance Guide
+- **ICH Guidelines** - International standards for data standards and eCTD
+- **Pinnacle 21** - Validation and conformance checking
+
+## Key Packages Used
+
+- **`{xportr}`** - Creating SAS transport files and performing eSub checks
+- **`{metacore}`** - Managing metadata and specifications
+- **Various pharmaverse packages** - Dataset creation and validation
+
+## Getting Started
+
+The examples demonstrate:
+
+- Preparing analysis datasets for submission
+- Generating required documentation
+- Validating datasets against specifications
+- Creating submission-ready packages
+
+Following these examples will help ensure your submissions meet regulatory requirements and facilitate efficient review by regulatory agencies.
+
+## Resources
+
+For more information on eSubmissions and regulatory requirements, consult:
+- [CDISC website](https://www.cdisc.org/)
+- [FDA Study Data Standards Resources](https://www.fda.gov/industry/fda-data-standards-advisory-board/study-data-standards-resources)
