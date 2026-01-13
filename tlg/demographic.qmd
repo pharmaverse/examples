@@ -91,4 +91,4 @@ result
 
 ## See also
 
-For an alternative approach using Analysis Results Datasets (ARDs) and the [{cards}](https://insightsengineering.github.io/cards/) package, see the [CARDs Demographic Table example](../cards/cards_demographic.qmd).
+For an alternative approach using Analysis Results Datasets (ARDs) and the [{cards}](https://insightsengineering.github.io/cards/) package, see the [ARD + TLG Demographic Table example](../cards/cards_demographic.qmd).
