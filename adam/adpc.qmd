@@ -16,7 +16,7 @@ The Non-compartmental analysis (NCA) ADaM uses the CDISC Implementation Guide (<
 
 ## First Load Packages
 
-First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+First we will load the packages required for our project. We will use `{admiral}` for the creation of analysis data. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
 
 The source SDTM data will come from the CDISC pilot study data stored in `{pharmaversesdtm}`.
 
@@ -71,7 +71,7 @@ vs <- convert_blanks_to_na(vs)
 
 ### Derive PC Dates
 
-Here we use `{admiral}` functions for working with dates and we will also create a nominal time from first dose `NFRLT` for `PC` data based on `PCTPTNUM`.
+Here we use `{admiral}` functions for working with dates and we will also create a nominal time from first dose `NFRLT` for `PC` data using `derive_var_nfrlt()`.
 
 ```{r}
 #| label: PC Dates
@@ -101,8 +101,14 @@ pc_dates <- pc %>%
   # Derive event ID and nominal relative time from first dose (NFRLT)
   mutate(
     EVID = 0,
-    DRUG = PCTEST,
-    NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
+    DRUG = PCTEST
+  ) %>%
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "HOURS",
+    tpt_var = PCTPT,
+    visit_day = VISITDY
   )
 ```
 
@@ -112,7 +118,7 @@ print_df(pc_dates %>% select(USUBJID, PCTEST, ADTM, VISIT, PCTPT, NFRLT))
 
 ### Get Dosing Information
 
-Here we also create nominal time from first dose `NFRLT` for `EX` data based on `VISITDY`.
+Here we also create nominal time from first dose `NFRLT` for `EX` data based on `VISITDY` using `derive_var_nfrlt()`.
 
 ```{r}
 #| label: Dosing
@@ -141,11 +147,13 @@ ex_dates <- ex %>%
   ) %>%
   # Derive event ID and nominal relative time from first dose (NFRLT)
   mutate(
-    EVID = 1,
-    NFRLT = case_when(
-      VISITDY == 1 ~ 0,
-      TRUE ~ 24 * VISITDY
-    )
+    EVID = 1
+  ) %>%
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "HOURS",
+    visit_day = VISITDY
   ) %>%
   # Set missing end dates to start date
   mutate(AENDTM = case_when(
@@ -229,8 +237,6 @@ adpc_first_dose <- pc_dates %>%
     AVISIT = paste("Day", AVISITN),
   )
 ```
-
-
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(adpc_first_dose %>% select(USUBJID, FANLDTM, NFRLT, ADTM, AVISITN, AVISIT, PCTPT))
@@ -318,7 +324,6 @@ adpc_nom_next <- adpc_nom_prev %>%
 print_df(adpc_nom_prev %>% select(USUBJID, NFRLT, AVISIT, PCTPT, NFRLT_prev))
 ```
 
-
 ### Combine PC and EX Data
 
 Combine `PC` and `EX` records and derive the additional relative time variables.
@@ -348,6 +353,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
   # Derive Actual Relative Time from Reference Dose (ARRLT)
   derive_vars_duration(
     new_var = ARRLT,
+    new_var_unit = RRLTU,
     start_date = ADTM_prev,
     end_date = ADTM,
     out_unit = "hours",
@@ -406,11 +412,9 @@ adpc_nrrlt <- adpc_arrlt %>%
   )
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(adpc_nrrlt %>% select(USUBJID, NFRLT, NRRLT, AVISIT, PCTPT))
 ```
-
 
 ### Derive Analysis Variables
 
@@ -458,8 +462,6 @@ adpc_aval <- adpc_nrrlt %>%
   ) %>%
   # Derive relative time units
   mutate(
-    FRLTU = "h",
-    RRLTU = "h",
     # Derive PARAMCD
     PARAMCD = coalesce(PCTESTCD, "DOSE"),
     ALLOQ = PCLLOQ,
@@ -512,11 +514,9 @@ dtype <- adpc_aval %>%
   derive_vars_dtm_to_tm(exprs(PCRFTDTM))
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(dtype %>% select(USUBJID, DTYPE, BASETYPE, ATPT, NFRLT, NRRLT, AFRLT, ARRLT))
 ```
-
 
 ### Combine Original and DTYPE Copy
 
