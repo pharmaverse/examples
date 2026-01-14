@@ -187,6 +187,7 @@ cachem
 cairo
 cairoFT
 callr
+callout
 categorizationvars
 cdisc
 CDISC
@@ -619,6 +620,7 @@ repo
 reproducibility
 req
 requireNamespace
+reusability
 revealjs
 rex
 RFENDTC
