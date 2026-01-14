@@ -10,46 +10,106 @@ The examples demonstrate how to leverage multiple pharmaverse packages together,
 
 ## Examples
 
-The following ADaM dataset examples are available:
+### Subject-Level Analysis Dataset (ADSL)
 
-### Subject-Level Analysis Dataset
+-   **[ADSL (Subject-Level Analysis Dataset)](adsl.qmd)** - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.
 
--   [**ADSL (Subject-Level Analysis Dataset)**](adsl.qmd) - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.
+::: {.callout-tip}
+## Start Here
+ADSL is the foundation for most other ADaM datasets. We recommend starting with this example if you're new to ADaM development with pharmaverse packages. ADSL contains one record per subject and serves as the basis for merging subject-level variables into other ADaM datasets.
+:::
 
 ### Basic Data Structure (BDS) Analysis Datasets
 
--   [**ADAE (Adverse Events Analysis)**](adae.qmd) - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
--   [**ADVS (Vital Signs Analysis)**](advs.qmd) - Generate vital signs analysis dataset with baseline and change from baseline calculations.
--   [**ADRS (Response Analysis)**](adrs.qmd) - Create response analysis dataset for efficacy endpoints.
+BDS datasets follow a standard structure with one observation per subject per analysis parameter per analysis timepoint. These are commonly used for efficacy and safety analyses.
 
-### Time-to-Event Analysis Dataset
+-   **[ADVS (Vital Signs Analysis)](advs.qmd)** - Generate vital signs analysis dataset with baseline and change from baseline calculations.
+-   **[ADRS (Response Analysis)](adrs.qmd)** - Create response analysis dataset for efficacy endpoints.
 
--   [**ADTTE (Time-to-Event Analysis)**](adtte.qmd) - Develop time-to-event analysis dataset for survival analyses.
+### Occurrence Data Structure (OCCDS) Analysis Datasets
+
+OCCDS datasets have one observation per subject per occurrence of an event, capturing multiple events per subject.
+
+-   **[ADAE (Adverse Events Analysis)](adae.qmd)** - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
+
+### Time-to-Event Analysis Dataset (ADTTE)
+
+-   **[ADTTE (Time-to-Event Analysis)](adtte.qmd)** - Develop time-to-event analysis dataset for survival analyses, including censoring and event derivations.
 
 ### Pharmacokinetic Analysis Datasets
 
--   [**ADPC (Pharmacokinetic Concentrations)**](adpc.qmd) - Build pharmacokinetic concentration analysis dataset.
--   [**ADPPK (Population Pharmacokinetic)**](adppk.qmd) - Create population pharmacokinetic analysis dataset.
+-   **[ADPC (Pharmacokinetic Concentrations)](adpc.qmd)** - Build pharmacokinetic concentration analysis dataset with timepoint derivations.
+-   **[ADPPK (Population Pharmacokinetic)](adppk.qmd)** - Create population pharmacokinetic analysis dataset for modeling and simulation.
+
+## Quick Reference
+
+| Dataset Type | Example | Key Packages | Structure |
+|--------------|---------|--------------|-----------|
+| **Subject-Level** | [ADSL](adsl.qmd) | admiral, metacore, metatools, xportr | One record per subject |
+| **BDS - Vitals** | [ADVS](advs.qmd) | admiral, metacore, metatools | One record per subject per parameter per timepoint |
+| **BDS - Response** | [ADRS](adrs.qmd) | admiral, metacore, metatools | One record per subject per parameter per timepoint |
+| **OCCDS - Safety** | [ADAE](adae.qmd) | admiral, metacore, metatools | One record per subject per event |
+| **Time-to-Event** | [ADTTE](adtte.qmd) | admiral, metacore, metatools | One record per subject per parameter |
+| **PK Concentration** | [ADPC](adpc.qmd) | admiral, metacore, metatools | One record per subject per timepoint per analyte |
+| **Population PK** | [ADPPK](adppk.qmd) | admiral, metacore, metatools | One record per subject per timepoint |
+
+## Workflow Overview
+
+Each example demonstrates a consistent workflow for creating ADaM datasets:
+
+1. **Data Input** - Load SDTM datasets and required metadata specifications
+2. **Derivations** - Apply ADaM derivation functions to create analysis variables (e.g., baseline flags, change from baseline, derived parameters)
+3. **Metadata Application** - Use metadata specifications to control dataset attributes, labels, and formats
+4. **Validation** - Perform dataset checks and validation against specifications
+5. **Export** - Create SAS transport files ready for regulatory submission
+
+::: {.callout-note}
+## Dataset Dependencies
+
+Most ADaM datasets require ADSL as input for subject-level variables. The typical flow is:
+
+**SDTM datasets** → **ADSL** → **Other ADaM datasets** → **TLGs**
+:::
 
 ## Key Packages Used
 
--   [**`{admiral}`**](https://pharmaverse.github.io/admiral/) - Core ADaM derivations and functions
--   [**`{metacore}`**](https://atorus-research.github.io/metacore/) - Metadata and specifications management
--   [**`{metatools}`**](https://pharmaverse.github.io/metatools/) - Dataset building and validation using metadata
--   [**`{xportr}`**](https://atorus-research.github.io/xportr/) - SAS transport file creation and eSub checks
+-   **[`{admiral}`](https://pharmaverse.github.io/admiral/)** - Core ADaM derivations and functions for creating analysis datasets following CDISC standards
+-   **[`{metacore}`](https://atorus-research.github.io/metacore/)** - Metadata and specifications management, storing variable-level metadata
+-   **[`{metatools}`](https://pharmaverse.github.io/metatools/)** - Dataset building and validation using metadata, applying specifications to datasets
+-   **[`{xportr}`](https://atorus-research.github.io/xportr/)** - SAS transport file creation and eSub compliance checks for regulatory submissions
 
 ## Meet the `{admiral}` Family
 
--   [**Admiral Family**](https://pharmaverse.org/e2eclinical/adam/) - Explore the `{admiral}` extension packages including `{admiralonco}`, `{admiralophtha}`, `{admiralvaccine}`, etc.
+The `{admiral}` ecosystem includes specialized extension packages for different therapeutic areas and study types:
 
-## Getting Started
+-   **[Admiral Family Overview](https://pharmaverse.org/e2eclinical/adam/)** - Explore the complete admiral family
+-   **`{admiralonco}`** - Oncology-specific ADaM datasets (e.g., ADRS for tumor response, ADTTE for overall survival)
+-   **`{admiralophtha}`** - Ophthalmology endpoints and analysis datasets
+-   **`{admiralvaccine}`** - Vaccine trial datasets including immunogenicity and reactogenicity
+-   **Additional extensions** - Packages for other therapeutic areas are under development
 
-Each example demonstrates:
+Each extension package builds on `{admiral}` core functionality while providing domain-specific derivations.
 
--   Data input from SDTM datasets
--   Derivation of analysis variables
--   Application of metadata specifications
--   Dataset validation and checks
--   Export to SAS transport format
+## Additional Resources
 
-We recommend starting with ADSL, as it serves as the foundation for most other ADaM datasets.
+::: {.callout-note}
+## Learn More
+
+-   [CDISC ADaM Implementation Guide](https://www.cdisc.org/standards/foundational/adam) - Official ADaM standard documentation and data structure specifications
+-   [{admiral} Documentation](https://pharmaverse.github.io/admiral/) - Comprehensive guide to admiral functions, workflows, and best practices
+-   [Pharmaverse E2E Clinical Reporting](https://pharmaverse.org/e2eclinical/) - End-to-end examples showing the full pipeline from SDTM to TLGs
+-   [{admiral} Vignettes](https://pharmaverse.github.io/admiral/articles/) - Detailed articles on specific derivation patterns and use cases
+:::
+
+## Common Derivations Across Examples
+
+While each ADaM dataset has unique requirements, several derivation patterns appear across multiple examples:
+
+- **Baseline derivations** - Identifying and flagging baseline records
+- **Change from baseline** - Calculating analysis values relative to baseline
+- **Analysis flags** - Creating indicators for analysis populations and key events
+- **Date/time imputations** - Handling partial or missing dates
+- **Treatment variables** - Deriving planned and actual treatment information
+- **Parameter derivations** - Creating derived or calculated parameters
+
+These common patterns are demonstrated throughout the examples, showing how `{admiral}` functions can be reused across different dataset types.
