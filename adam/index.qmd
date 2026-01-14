@@ -14,38 +14,42 @@ The following ADaM dataset examples are available:
 
 ### Subject-Level Analysis Dataset
 
-- **[ADSL (Subject-Level Analysis Dataset)](adsl.qmd)** - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.
+-   [**ADSL (Subject-Level Analysis Dataset)**](adsl.qmd) - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.
 
 ### Basic Data Structure (BDS) Analysis Datasets
 
-- **[ADAE (Adverse Events Analysis)](adae.qmd)** - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
-- **[ADVS (Vital Signs Analysis)](advs.qmd)** - Generate vital signs analysis dataset with baseline and change from baseline calculations.
-- **[ADRS (Response Analysis)](adrs.qmd)** - Create response analysis dataset for efficacy endpoints.
+-   [**ADAE (Adverse Events Analysis)**](adae.qmd) - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
+-   [**ADVS (Vital Signs Analysis)**](advs.qmd) - Generate vital signs analysis dataset with baseline and change from baseline calculations.
+-   [**ADRS (Response Analysis)**](adrs.qmd) - Create response analysis dataset for efficacy endpoints.
 
 ### Time-to-Event Analysis Dataset
 
-- **[ADTTE (Time-to-Event Analysis)](adtte.qmd)** - Develop time-to-event analysis dataset for survival analyses.
+-   [**ADTTE (Time-to-Event Analysis)**](adtte.qmd) - Develop time-to-event analysis dataset for survival analyses.
 
 ### Pharmacokinetic Analysis Datasets
 
-- **[ADPC (Pharmacokinetic Concentrations)](adpc.qmd)** - Build pharmacokinetic concentration analysis dataset.
-- **[ADPPK (Population Pharmacokinetic)](adppk.qmd)** - Create population pharmacokinetic analysis dataset.
+-   [**ADPC (Pharmacokinetic Concentrations)**](adpc.qmd) - Build pharmacokinetic concentration analysis dataset.
+-   [**ADPPK (Population Pharmacokinetic)**](adppk.qmd) - Create population pharmacokinetic analysis dataset.
 
 ## Key Packages Used
 
-- **[`{admiral}`](https://pharmaverse.github.io/admiral/)** - Core ADaM derivations and functions
-- **[`{metacore}`](https://atorus-research.github.io/metacore/)** - Metadata and specifications management
-- **[`{metatools}`](https://pharmaverse.github.io/metatools/)** - Dataset building and validation using metadata
-- **[`{xportr}`](https://atorus-research.github.io/xportr/)** - SAS transport file creation and eSub checks
+-   [**`{admiral}`**](https://pharmaverse.github.io/admiral/) - Core ADaM derivations and functions
+-   [**`{metacore}`**](https://atorus-research.github.io/metacore/) - Metadata and specifications management
+-   [**`{metatools}`**](https://pharmaverse.github.io/metatools/) - Dataset building and validation using metadata
+-   [**`{xportr}`**](https://atorus-research.github.io/xportr/) - SAS transport file creation and eSub checks
+
+## Meet the `{admiral}` Family
+
+-   [**Admiral Family**](https://pharmaverse.org/e2eclinical/adam/) - Explore the `{admiral}` extension packages including `{admiralonco}`, `{admiralophtha}`, `{admiralvaccine}`, etc.
 
 ## Getting Started
 
 Each example demonstrates:
 
-- Data input from SDTM datasets
-- Derivation of analysis variables
-- Application of metadata specifications
-- Dataset validation and checks
-- Export to SAS transport format
+-   Data input from SDTM datasets
+-   Derivation of analysis variables
+-   Application of metadata specifications
+-   Dataset validation and checks
+-   Export to SAS transport format
 
 We recommend starting with ADSL, as it serves as the foundation for most other ADaM datasets.
