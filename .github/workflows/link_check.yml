@@ -11,24 +11,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up R  # Install R from CRAN
+      - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.4.3' # You can specify a different R version if needed
+          r-version: '4.4.3'
 
       - name: Install R packages
         run: |
           Rscript -e 'install.packages("fs")'
         shell: bash
 
-      - name: Switch .qmd to .md
+      - name: Switch .qmd to .md and Update Links
         run: Rscript R/switch.R
         shell: bash
+
+      - name: Verify .qmd Conversion
+        run: |
+          if ls **/*.qmd; then
+            echo "Error: .qmd files still exist after switch.R!"
+            exit 1
+          fi
+          echo "All .qmd files successfully converted to .md."
 
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.8.0
         with:
           fail: true
-          exclude-paths: "**/*.qmd"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
