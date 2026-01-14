@@ -6,43 +6,123 @@ title: "TLG"
 
 This section demonstrates how to create Tables, Listings, and Graphs (TLGs) for clinical study reporting using pharmaverse packages. TLGs are essential components of clinical study reports and regulatory submissions, providing clear presentation of study results.
 
-The examples show how to generate publication-quality outputs using packages such as `{tfrmt}`, `{rtables}`, `{tern}`, and other pharmaverse tools, working with ADaM datasets as input.
+The examples showcase **two distinct approaches** for generating publication-quality outputs, working with ADaM datasets as input.
 
-## Examples
+## Which Approach Should I Use?
 
-The following TLG examples are available:
+### Analysis Results Datasets (ARDs) 🆕
 
-### Tables
+**Best for:**
 
-- **[Demographic Table](demographic.qmd)** - Create comprehensive demographic and baseline characteristics summary tables. This example illustrates two approaches: using Analysis Results Datasets (ARDs) following the CDISC Analysis Results Standard, and the classic method of creating summary tables directly from datasets.
+-   Organizations implementing the CDISC Analysis Results Standard
+-   Teams wanting reusable, structured analysis results
+-   Projects requiring multiple output formats from the same statistics
+-   Regulatory submissions emphasizing data standardization and traceability
+-   Separating statistical computation from table formatting
 
-- **[Adverse Events Table](adverse_events.qmd)** - Generate adverse events summary tables with frequency counts and percentages.
+**Packages:** `{cards}`, `{tfrmt}`, `{gtsummary}`
+
+**Workflow:** Data → ARD (structured statistics) → Formatted Table
+
+### Classic Direct Summarization 📊
+
+**Best for:**
+
+-   Quick ad-hoc analyses and exploratory work
+-   Teams familiar with traditional R table packages
+-   Complex nested layouts requiring fine-grained control
+-   Existing workflows using `{rtables}`/`{tern}`
+-   Single-purpose table generation
+
+**Packages:** `{rtables}`, `{tern}`
+
+**Workflow:** Data → Formatted Table (single step)
+
+::: callout-tip
+## Getting Started
+
+Both approaches produce publication-quality outputs - the choice depends on your workflow and organizational standards. ARDs represent the emerging standard for structured analysis results, while the classic approach offers a mature, stable ecosystem with extensive layout capabilities.
+:::
+
+## Examples by Approach
+
+### Using Analysis Results Datasets (ARDs)
+
+These examples leverage the CDISC Analysis Results Standard, creating structured ARDs first using `{cards}`, then formatting them into tables. This two-step approach promotes reusability, standardization, and separation of statistical computation from presentation.
+
+#### Demographic Tables
+
+-   [**{cards} + {gtsummary}**](demographic.qmd#gtsummary-cards) - Build demographics from ARDs with bidirectional workflow (ARD → Table or Table → ARD)
+-   [**{cards} + {tfrmt}**](demographic.qmd#tfrmt-cards) - Create highly customized demographic tables from ARDs
+
+#### Adverse Events Tables
+
+-   [**{cards} + {tfrmt}**](adverse_events.qmd#tfrmt-cards) - Generate AE summaries with hierarchical organization and custom formatting
+
+------------------------------------------------------------------------
+
+### Classic Direct Summarization
+
+These examples create tables directly from analysis datasets using the traditional single-step approach with `{rtables}` and `{tern}`.
+
+#### Demographic Tables
+
+-   [**{rtables} + {tern}**](demographic.qmd#rtables-tern) - Comprehensive demographic and baseline characteristics summaries
+
+#### Adverse Events Tables
+
+-   [**{rtables} + {tern}**](adverse_events.qmd#rtables-tern) - AE summaries with frequency counts, percentages, and system organ class groupings
+
+------------------------------------------------------------------------
 
 ### Listings & Graphs
 
-- **[Pharmacokinetic Outputs](pharmacokinetic.qmd)** - Produce pharmacokinetic analysis outputs including concentration-time graphs and parameter summaries.
+-   [**Pharmacokinetic Outputs**](pharmacokinetic.qmd) - Concentration-time graphs and parameter summaries
 
-## Approaches Demonstrated
+## Quick Reference Table
 
-The examples in this section showcase different methodologies:
-
-1. **Analysis Results Datasets (ARDs)** - Using the emerging CDISC Analysis Results Standard for structured, reusable analysis results
-2. **Direct Summarization** - Classic approach of creating summary tables directly from analysis datasets
+| Table Type | ARD Approach | Classic Approach |
+|--------------------|-----------------------|-----------------------------|
+| **Demographics** | [{cards} + {gtsummary}](demographic.qmd#gtsummary-cards)<br/>[{cards} + {tfrmt}](demographic.qmd#tfrmt-cards) | [{rtables} + {tern}](demographic.qmd#rtables-tern) |
+| **Adverse Events** | [{cards} + {tfrmt}](adverse_events.qmd#tfrmt-cards) | [{rtables} + {tern}](adverse_events.qmd#rtables-tern) |
+| **PK Outputs** | *Coming soon* | [View example](pharmacokinetic.qmd) |
 
 ## Key Packages Used
 
-- **`{tfrmt}`** - Table formatting and layout control
-- **`{rtables}`** - Flexible table creation with complex layouts
-- **`{tern}`** - Analysis and reporting functions for clinical trials
-- **`{ggplot2}`** - Publication-quality graphics
+### ARD Ecosystem
 
-## Getting Started
+-   **`{cards}`** - Create and manipulate Analysis Results Datasets following CDISC standards
+-   **`{tfrmt}`** - Transform ARDs into publication-ready tables with precise formatting control
+-   **`{gtsummary}`** - Generate summary tables from ARDs with support for multiple output formats
 
-Each example includes:
+### Classic Ecosystem
 
-- Data preprocessing and preparation
-- Summary statistics calculation
-- Table or graph generation
-- Formatting and styling for publication
+-   **`{rtables}`** - Create complex tables with flexible layouts and nested structures
+-   **`{tern}`** - Analysis and reporting functions specifically designed for clinical trials
 
-All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consistency and reproducibility across examples.
+### Graphics
+
+-   **`{ggplot2}`** - Publication-quality graphics for all approaches
+
+## What Each Example Includes
+
+All examples provide complete, reproducible code with:
+
+-   Data preprocessing and preparation steps
+-   Summary statistics calculation
+-   Table or graph generation with detailed explanations
+-   Formatting and styling for publication-ready output
+-   Comments and best practices
+
+All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consistency and reproducibility.
+
+## Learn More
+
+::: callout-note
+## Resources
+
+-   [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard) - Official standard documentation
+-   [{cards} package documentation](https://insightsengineering.github.io/cards/) - Learn more about creating ARDs
+-   [{tfrmt} package documentation](https://gsk-biostatistics.github.io/tfrmt/) - Advanced table formatting with ARDs
+-   [{rtables} package documentation](https://insightsengineering.github.io/rtables/) - Comprehensive table creation guide
+:::
