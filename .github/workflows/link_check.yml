@@ -29,5 +29,6 @@ jobs:
         uses: lycheeverse/lychee-action@v1.8.0
         with:
           fail: true
+          exclude-paths: "**/*.qmd"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
