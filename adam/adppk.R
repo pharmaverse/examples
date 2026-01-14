@@ -219,7 +219,7 @@ adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
     new_var = AFRLT,
     start_date = FANLDTM,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -228,7 +228,7 @@ adppk_aprlt <- bind_rows(adppk_nom_prev, ex_exp) %>%
     new_var = APRLT,
     start_date = ADTM_prev,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%

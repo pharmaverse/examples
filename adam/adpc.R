@@ -241,7 +241,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
     new_var = AFRLT,
     start_date = FANLDTM,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -251,7 +251,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
     new_var_unit = RRLTU,
     start_date = ADTM_prev,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -260,7 +260,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
     new_var = AXRLT,
     start_date = ADTM_next,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
