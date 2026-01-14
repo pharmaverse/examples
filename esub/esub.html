@@ -743,6 +743,18 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <pre><code></code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
+<pre><code>── Variables in metadata not found in dataset. ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ 10 metadata variables skipped</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>── Variable length is shorter than the length specified in the metadata. ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -756,6 +768,18 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>✔ 13 lengths resolved `RFSTDTC`, `RFENDTC`, `RFXSTDTC`, `RFXENDTC`, `RFICDTC`, `RFPENDTC`, `DMDTC`, `DMDY`, `LSTALVDT`, `LDDTHGR1`, `DTH30FL`, `DTHA30FL`, and `DTHB30FL`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Variables in metadata not found in dataset. ──</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>✔ 10 metadata variables skipped</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Data frame exported to 1 xpt files.</code></pre>
@@ -788,13 +812,13 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
 <p>For closed source packages, if you plan to submit the code then there are 2 main options - <code>{pkglite}</code> to create txt files, or zip files (as were successfully used in later R Submission WG pilots).</p>
 <p>Here is an example taken from the R Submission WG pilot 1 around how they used <code>pkglite::pack()</code> to provide packages as txt files. On the other side <code>pkglite::unpack()</code> could then be used to unpack.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(pkglite)</span>
-<span id="cb23-2"><a href="#cb23-2"></a></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co"># Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>path<span class="sc">$</span>home <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">collate</span>(<span class="fu">file_ectd</span>(), <span class="fu">file_auto</span>(<span class="st">"inst"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">prune</span>(<span class="st">"R/zzz.R"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">library</span>(pkglite)</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="co"># Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>path<span class="sc">$</span>home <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>  <span class="fu">collate</span>(<span class="fu">file_ectd</span>(), <span class="fu">file_auto</span>(<span class="st">"inst"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>  <span class="fu">prune</span>(<span class="st">"R/zzz.R"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can also check the following example Reviewer’s Guides as used for these pilots:</p>
 <ul>
@@ -1289,258 +1313,258 @@ i Types in data considered as numeric (xportr.numeric_types option): 'integer', 
   <div class="nav-page nav-page-next">
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">---</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="an">title:</span><span class="co"> "eSubmission"</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="co">---</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="fu">## Introduction</span></span>
-<span id="cb24-6"><a href="#cb24-6"></a></span>
-<span id="cb24-7"><a href="#cb24-7"></a>This article shares learnings from R and open source based submission experiences,</span>
-<span id="cb24-8"><a href="#cb24-8"></a>and how these can be achieved using pharmaverse packages in conjunction.</span>
-<span id="cb24-9"><a href="#cb24-9"></a></span>
-<span id="cb24-10"><a href="#cb24-10"></a>When considering such a submission, it is important to discuss this early on</span>
-<span id="cb24-11"><a href="#cb24-11"></a>with the regulatory agency during any pre-submission correspondence.</span>
-<span id="cb24-12"><a href="#cb24-12"></a></span>
-<span id="cb24-13"><a href="#cb24-13"></a>The main pharmaverse packages specifically supporting eSubmission are as follows: </span>
-<span id="cb24-14"><a href="#cb24-14"></a></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{xportr}`</span><span class="co">](https://atorus-research.github.io/xportr/)</span>: delivers the SAS transport file (XPT) and eSub checks.</span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{pkglite}`</span><span class="co">](https://merck.github.io/pkglite/)</span>: enables exchange of closed source R packages via text files.</span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{datasetjson}`</span><span class="co">](https://atorus-research.github.io/datasetjson/)</span>: experimental package to deliver Dataset-JSON.</span>
-<span id="cb24-18"><a href="#cb24-18"></a></span>
-<span id="cb24-19"><a href="#cb24-19"></a>Note that a python equivalent of <span class="in">`{pkglite}`</span> also exists, read more at <span class="co">[</span><span class="ot">pharmaverse python</span><span class="co">](https://pharmaverse.org/e2eclinical/python/)</span>.</span>
-<span id="cb24-20"><a href="#cb24-20"></a></span>
-<span id="cb24-21"><a href="#cb24-21"></a>Of course, most of the pharmaverse packages contribute to eSubmission in some way,</span>
-<span id="cb24-22"><a href="#cb24-22"></a>through their focus on enabling clinical reporting and analyses deliverables that</span>
-<span id="cb24-23"><a href="#cb24-23"></a>form the backbone of any submission. There are many other examples on this site</span>
-<span id="cb24-24"><a href="#cb24-24"></a>dedicated to these, so we won't repeat here. One package we did want to call out</span>
-<span id="cb24-25"><a href="#cb24-25"></a>here is <span class="co">[</span><span class="ot">`{aNCA}`</span><span class="co">](https://pharmaverse.github.io/aNCA/)</span> which performs</span>
-<span id="cb24-26"><a href="#cb24-26"></a>Non-Compartmental Analysis, as clinical pharmacology analyses are another</span>
-<span id="cb24-27"><a href="#cb24-27"></a>important part of submissions.</span>
-<span id="cb24-28"><a href="#cb24-28"></a></span>
-<span id="cb24-29"><a href="#cb24-29"></a><span class="fu">## R Submissions Working Group</span></span>
-<span id="cb24-30"><a href="#cb24-30"></a></span>
-<span id="cb24-31"><a href="#cb24-31"></a>Within the R Consortium, the R Submissions WG have conducted several pilots to</span>
-<span id="cb24-32"><a href="#cb24-32"></a>provide open examples of submitting R-based clinical trial data/analysis packages</span>
-<span id="cb24-33"><a href="#cb24-33"></a>to the FDA.</span>
-<span id="cb24-34"><a href="#cb24-34"></a></span>
-<span id="cb24-35"><a href="#cb24-35"></a>Anyone new to R-based submissions should definitely check out the open materials</span>
-<span id="cb24-36"><a href="#cb24-36"></a>from this team <span class="co">[</span><span class="ot">here</span><span class="co">](https://rconsortium.github.io/submissions-wg/)</span>.</span>
-<span id="cb24-37"><a href="#cb24-37"></a></span>
-<span id="cb24-38"><a href="#cb24-38"></a>Since these pilots laid the foundation, several major pharma companies have</span>
-<span id="cb24-39"><a href="#cb24-39"></a>submitted primarily using R to health authorities across the world, so this</span>
-<span id="cb24-40"><a href="#cb24-40"></a>article includes a mix of learnings from the pilots and real submissions.</span>
-<span id="cb24-41"><a href="#cb24-41"></a></span>
-<span id="cb24-42"><a href="#cb24-42"></a>In early 2025, the R Submissions WG <span class="co">[</span><span class="ot">launched Pilot 5</span><span class="co">](https://r-consortium.org/posts/submissions-wg-pilot5-pilot6-and-more/)</span></span>
-<span id="cb24-43"><a href="#cb24-43"></a>to explore replacing <span class="in">`xpt`</span> with <span class="in">`datasetjson`</span> as a transport file to the FDA via </span>
-<span id="cb24-44"><a href="#cb24-44"></a>the eCTD portal. The group successfully submitted the data package in early Q3 2025 </span>
-<span id="cb24-45"><a href="#cb24-45"></a>and has received positive feedback. Stay tuned for updates and the FDA's</span>
-<span id="cb24-46"><a href="#cb24-46"></a>final response - <span class="co">[</span><span class="ot">Pilot 5 Website</span><span class="co">](https://rconsortium.github.io/submissions-pilot5-website/)</span>.</span>
-<span id="cb24-47"><a href="#cb24-47"></a></span>
-<span id="cb24-48"><a href="#cb24-48"></a><span class="fu">## Submission Contents</span></span>
-<span id="cb24-49"><a href="#cb24-49"></a></span>
-<span id="cb24-50"><a href="#cb24-50"></a>The areas of eSubmission that pharmaverse packages are most useful for would be</span>
-<span id="cb24-51"><a href="#cb24-51"></a>data, readable code, and documentation.</span>
-<span id="cb24-52"><a href="#cb24-52"></a></span>
-<span id="cb24-53"><a href="#cb24-53"></a>Each of the sections below talk in more detail of these areas, plus specific</span>
-<span id="cb24-54"><a href="#cb24-54"></a>mention of validation which is a common topic raised around usage of open</span>
-<span id="cb24-55"><a href="#cb24-55"></a>source.</span>
-<span id="cb24-56"><a href="#cb24-56"></a></span>
-<span id="cb24-57"><a href="#cb24-57"></a><span class="fu">### Data</span></span>
-<span id="cb24-58"><a href="#cb24-58"></a></span>
-<span id="cb24-59"><a href="#cb24-59"></a>The main 2 forms of dataset for CDISC clinical trial submission are SDTM and</span>
-<span id="cb24-60"><a href="#cb24-60"></a>ADaM. Refer to the separate example articles on this site for how best to go</span>
-<span id="cb24-61"><a href="#cb24-61"></a>about producing these.</span>
-<span id="cb24-62"><a href="#cb24-62"></a></span>
-<span id="cb24-63"><a href="#cb24-63"></a>For eSubmission the most common transport file format used to deliver these to</span>
-<span id="cb24-64"><a href="#cb24-64"></a>health authorities is as xpt files, and for this we use <span class="in">`{xportr}`</span>. This package</span>
-<span id="cb24-65"><a href="#cb24-65"></a>works well with <span class="in">`{metacore}`</span> harmonized specification objects as shown in the</span>
-<span id="cb24-66"><a href="#cb24-66"></a>ADaM articles on this site.</span>
-<span id="cb24-67"><a href="#cb24-67"></a></span>
-<span id="cb24-68"><a href="#cb24-68"></a>Here is an example call using a synthetic <span class="in">`ADSL`</span> ADaM from <span class="in">`{pharmaverseadam}`</span></span>
-<span id="cb24-69"><a href="#cb24-69"></a>that shows how to produce xpt files, as well as how certain <span class="in">`{xportr}`</span></span>
-<span id="cb24-70"><a href="#cb24-70"></a>functions can be used to take attributes directly from specifications so as</span>
-<span id="cb24-71"><a href="#cb24-71"></a>to ensure specification to dataset consistency. This helps to ensure</span>
-<span id="cb24-72"><a href="#cb24-72"></a>eSubmission-readiness. Additionally the package includes a number of built-in</span>
-<span id="cb24-73"><a href="#cb24-73"></a>CDISC conformance checks as detailed on the</span>
-<span id="cb24-74"><a href="#cb24-74"></a><span class="co">[</span><span class="ot">site</span><span class="co">](https://atorus-research.github.io/xportr/)</span>.</span>
-<span id="cb24-75"><a href="#cb24-75"></a></span>
-<span id="cb24-76"><a href="#cb24-76"></a><span class="in">```{r clean, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb24-77"><a href="#cb24-77"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb24-78"><a href="#cb24-78"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb24-79"><a href="#cb24-79"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb24-80"><a href="#cb24-80"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb24-81"><a href="#cb24-81"></a></span>
-<span id="cb24-82"><a href="#cb24-82"></a><span class="co"># Read in metacore object</span></span>
-<span id="cb24-83"><a href="#cb24-83"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(</span>
-<span id="cb24-84"><a href="#cb24-84"></a>  <span class="at">path =</span> <span class="st">"./metadata/safety_specs.xlsx"</span>,</span>
-<span id="cb24-85"><a href="#cb24-85"></a>  <span class="co"># All datasets are described in the same sheet</span></span>
-<span id="cb24-86"><a href="#cb24-86"></a>  <span class="at">where_sep_sheet =</span> <span class="cn">FALSE</span></span>
-<span id="cb24-87"><a href="#cb24-87"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-88"><a href="#cb24-88"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span>
-<span id="cb24-89"><a href="#cb24-89"></a></span>
-<span id="cb24-90"><a href="#cb24-90"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
-<span id="cb24-91"><a href="#cb24-91"></a></span>
-<span id="cb24-92"><a href="#cb24-92"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
-<span id="cb24-93"><a href="#cb24-93"></a>  <span class="co"># Coerce variable type to match specification</span></span>
-<span id="cb24-94"><a href="#cb24-94"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-95"><a href="#cb24-95"></a>  <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb24-96"><a href="#cb24-96"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-97"><a href="#cb24-97"></a>  <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb24-98"><a href="#cb24-98"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-99"><a href="#cb24-99"></a>  <span class="co"># Assigns SAS length from a variable level metadata</span></span>
-<span id="cb24-100"><a href="#cb24-100"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-101"><a href="#cb24-101"></a>  <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb24-102"><a href="#cb24-102"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-103"><a href="#cb24-103"></a>  <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb24-104"><a href="#cb24-104"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span>
-<span id="cb24-105"><a href="#cb24-105"></a><span class="in">```</span></span>
-<span id="cb24-106"><a href="#cb24-106"></a></span>
-<span id="cb24-107"><a href="#cb24-107"></a><span class="in">```{r label}</span></span>
-<span id="cb24-108"><a href="#cb24-108"></a><span class="co"># We can examine that the attributes have been correctly applied, for example</span></span>
-<span id="cb24-109"><a href="#cb24-109"></a><span class="co"># as follows for the dataset label</span></span>
-<span id="cb24-110"><a href="#cb24-110"></a><span class="fu">attr</span>(adsl, <span class="st">"label"</span>)</span>
-<span id="cb24-111"><a href="#cb24-111"></a><span class="in">```</span></span>
-<span id="cb24-112"><a href="#cb24-112"></a></span>
-<span id="cb24-113"><a href="#cb24-113"></a>Now here's an example where the checks would help to identify future possible</span>
-<span id="cb24-114"><a href="#cb24-114"></a>eSubmission challenges. Note the console messages explaining the issues.</span>
-<span id="cb24-115"><a href="#cb24-115"></a></span>
-<span id="cb24-116"><a href="#cb24-116"></a><span class="in">```{r challenges}</span></span>
-<span id="cb24-117"><a href="#cb24-117"></a>adsl_challenges <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
-<span id="cb24-118"><a href="#cb24-118"></a>  <span class="co"># Make a numeric variable as character, which conflicts with specifications</span></span>
-<span id="cb24-119"><a href="#cb24-119"></a>  <span class="fu">mutate</span>(<span class="at">AGE =</span> <span class="fu">as.character</span>(AGE)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-120"><a href="#cb24-120"></a>  <span class="co"># Add a variable that is name &gt;8 characters which is not allowed for xpt v5</span></span>
-<span id="cb24-121"><a href="#cb24-121"></a>  <span class="fu">mutate</span>(<span class="at">REGIONCAT =</span> REGION1)</span>
-<span id="cb24-122"><a href="#cb24-122"></a></span>
-<span id="cb24-123"><a href="#cb24-123"></a>adsl_challenges <span class="ot">&lt;-</span> adsl_challenges <span class="sc">%&gt;%</span></span>
-<span id="cb24-124"><a href="#cb24-124"></a>  <span class="co"># Coerce variable type to match specification</span></span>
-<span id="cb24-125"><a href="#cb24-125"></a>  <span class="co"># This time we use the verbose argument to add a warning to the console</span></span>
-<span id="cb24-126"><a href="#cb24-126"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">verbose =</span> <span class="st">"warn"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-127"><a href="#cb24-127"></a>  <span class="co"># Write xpt v5 transport file</span></span>
-<span id="cb24-128"><a href="#cb24-128"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span>
-<span id="cb24-129"><a href="#cb24-129"></a><span class="in">```</span></span>
-<span id="cb24-130"><a href="#cb24-130"></a></span>
-<span id="cb24-131"><a href="#cb24-131"></a>Furthermore, the package functions also include certain arguments that you can</span>
-<span id="cb24-132"><a href="#cb24-132"></a>use to help shape to your specific submission needs.</span>
-<span id="cb24-133"><a href="#cb24-133"></a></span>
-<span id="cb24-134"><a href="#cb24-134"></a>The below shows how some specific FDA requirements can be achieved using</span>
-<span id="cb24-135"><a href="#cb24-135"></a>the <span class="in">`length_source`</span> argument from <span class="in">`xportr::xportr_length()`</span> and the</span>
-<span id="cb24-136"><a href="#cb24-136"></a><span class="in">`max_size_gb`</span> argument from <span class="in">`xportr::xportr_write()`</span>, as detailed in the code comments.</span>
-<span id="cb24-137"><a href="#cb24-137"></a>In this case, the dataset splits would be very unlikely to occur in practice for</span>
-<span id="cb24-138"><a href="#cb24-138"></a><span class="in">`ADSL`</span> but would be much more likely on a BDS dataset such as <span class="in">`ADLB`</span> for a</span>
-<span id="cb24-139"><a href="#cb24-139"></a>large study.</span>
-<span id="cb24-140"><a href="#cb24-140"></a></span>
-<span id="cb24-141"><a href="#cb24-141"></a><span class="in">```{r examples}</span></span>
-<span id="cb24-142"><a href="#cb24-142"></a>adsl_example <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
-<span id="cb24-143"><a href="#cb24-143"></a>  <span class="co"># Coerce variable type to match specification</span></span>
-<span id="cb24-144"><a href="#cb24-144"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-145"><a href="#cb24-145"></a>  <span class="co"># Assigns variable label from metacore specifications</span></span>
-<span id="cb24-146"><a href="#cb24-146"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-147"><a href="#cb24-147"></a>  <span class="co"># Assigns dataset label from metacore specifications</span></span>
-<span id="cb24-148"><a href="#cb24-148"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-149"><a href="#cb24-149"></a>  <span class="co"># Assigns length from the maximum length of any value of the variable as per FDA data minimization guidance</span></span>
-<span id="cb24-150"><a href="#cb24-150"></a>  <span class="fu">xportr_length</span>(<span class="at">metadata =</span> metacore, <span class="at">length_source =</span> <span class="st">"data"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-151"><a href="#cb24-151"></a>  <span class="co"># Assigns variable format from metacore specifications</span></span>
-<span id="cb24-152"><a href="#cb24-152"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
-<span id="cb24-153"><a href="#cb24-153"></a>  <span class="co"># Write xpt v5 transport file but split into smaller subsets if greater than 5GB</span></span>
-<span id="cb24-154"><a href="#cb24-154"></a>  <span class="co"># according to the FDA cutoff size</span></span>
-<span id="cb24-155"><a href="#cb24-155"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>, <span class="at">max_size_gb =</span> <span class="dv">5</span>)</span>
-<span id="cb24-156"><a href="#cb24-156"></a><span class="in">```</span></span>
-<span id="cb24-157"><a href="#cb24-157"></a></span>
-<span id="cb24-158"><a href="#cb24-158"></a>As an alternative to xpt, we also have <span class="in">`{datasetjson}`</span> which enables the</span>
-<span id="cb24-159"><a href="#cb24-159"></a>emerging new submission data exchange standard Dataset-JSON detailed</span>
-<span id="cb24-160"><a href="#cb24-160"></a><span class="co">[</span><span class="ot">here</span><span class="co">](https://www.cdisc.org/standards/data-exchange/dataset-json)</span>. As this</span>
-<span id="cb24-161"><a href="#cb24-161"></a>package is still experimental, we don't include code examples here but over time</span>
-<span id="cb24-162"><a href="#cb24-162"></a>and as momentum grows we can add extra examples to this article. </span>
-<span id="cb24-163"><a href="#cb24-163"></a></span>
-<span id="cb24-164"><a href="#cb24-164"></a><span class="fu">### Readable Code</span></span>
-<span id="cb24-165"><a href="#cb24-165"></a></span>
-<span id="cb24-166"><a href="#cb24-166"></a>When using internal company-specific closed source tools and codebases, we</span>
-<span id="cb24-167"><a href="#cb24-167"></a>often face challenges around providing readable code to health authorities as</span>
-<span id="cb24-168"><a href="#cb24-168"></a>internal single company solutions are by nature not easily accessible and understandable.</span>
-<span id="cb24-169"><a href="#cb24-169"></a>This is one of the benefits of using open source codebases in the submission</span>
-<span id="cb24-170"><a href="#cb24-170"></a>setting as it enables review teams to look deeper into the functions used, plus</span>
-<span id="cb24-171"><a href="#cb24-171"></a>they have the same open solutions available to use themselves as part of their</span>
-<span id="cb24-172"><a href="#cb24-172"></a>review. As more of the industry embraces open source, we may even see more</span>
-<span id="cb24-173"><a href="#cb24-173"></a>harmonization of submission packages across the industry as the same packages</span>
-<span id="cb24-174"><a href="#cb24-174"></a>are re-used, and this should lead to greater familiarity from review teams</span>
-<span id="cb24-175"><a href="#cb24-175"></a>easing their critical submission dossier review.</span>
-<span id="cb24-176"><a href="#cb24-176"></a></span>
-<span id="cb24-177"><a href="#cb24-177"></a>The nature of R packages and functions, as well as influence from <span class="in">`{tidyverse}`</span>,</span>
-<span id="cb24-178"><a href="#cb24-178"></a>has encouraged most pharmaverse package development teams to embrace modular</span>
-<span id="cb24-179"><a href="#cb24-179"></a>strategy to their code. So when you use packages like <span class="in">`{admiral}`</span>, you'll see</span>
-<span id="cb24-180"><a href="#cb24-180"></a>that the ADaM templates have been built with readability in mind specifically to</span>
-<span id="cb24-181"><a href="#cb24-181"></a>aid with eSubmission.</span>
-<span id="cb24-182"><a href="#cb24-182"></a></span>
-<span id="cb24-183"><a href="#cb24-183"></a><span class="fu">### Documentation</span></span>
-<span id="cb24-184"><a href="#cb24-184"></a></span>
-<span id="cb24-185"><a href="#cb24-185"></a>When using R for submission there are some important recommendations around</span>
-<span id="cb24-186"><a href="#cb24-186"></a>documentation you should include as part of the eSubmission package. Most</span>
-<span id="cb24-187"><a href="#cb24-187"></a>companies include these in the Reviewer's Guide documents (_the PHUSE Advance Hub</span>
-<span id="cb24-188"><a href="#cb24-188"></a>offers example templates for these_), but you might also choose to use a</span>
-<span id="cb24-189"><a href="#cb24-189"></a>programTOC document.</span>
-<span id="cb24-190"><a href="#cb24-190"></a></span>
-<span id="cb24-191"><a href="#cb24-191"></a>Here's the information we recommend including:</span>
-<span id="cb24-192"><a href="#cb24-192"></a></span>
-<span id="cb24-193"><a href="#cb24-193"></a><span class="ss">- </span>R version used</span>
-<span id="cb24-194"><a href="#cb24-194"></a><span class="ss">- </span>Descriptions of the main open source R package used, the version of each that</span>
-<span id="cb24-195"><a href="#cb24-195"></a>you used, and where these are available from (especially if anywhere other than CRAN)</span>
-<span id="cb24-196"><a href="#cb24-196"></a><span class="ss">- </span>Descriptions of any closed source packages used (see details below)</span>
-<span id="cb24-197"><a href="#cb24-197"></a><span class="ss">- </span>Basic installation instructions of the R version used and how to install the</span>
-<span id="cb24-198"><a href="#cb24-198"></a>package versions that you used (e.g. from CRAN). The R installation instructions</span>
-<span id="cb24-199"><a href="#cb24-199"></a>should cover installation from Windows.</span>
-<span id="cb24-200"><a href="#cb24-200"></a></span>
-<span id="cb24-201"><a href="#cb24-201"></a>Here is an example extract of what the documentation of the open source packages</span>
-<span id="cb24-202"><a href="#cb24-202"></a>used might look like:</span>
-<span id="cb24-203"><a href="#cb24-203"></a></span>
-<span id="cb24-204"><a href="#cb24-204"></a><span class="al">![Example Reviewer's Guide Table](ADRG.png)</span>{fig-align="center"}</span>
-<span id="cb24-205"><a href="#cb24-205"></a></span>
-<span id="cb24-206"><a href="#cb24-206"></a>For closed source packages, if you plan to submit the code then there are 2 main</span>
-<span id="cb24-207"><a href="#cb24-207"></a>options - <span class="in">`{pkglite}`</span> to create txt files, or zip files (as were successfully</span>
-<span id="cb24-208"><a href="#cb24-208"></a>used in later R Submission WG pilots).</span>
-<span id="cb24-209"><a href="#cb24-209"></a></span>
-<span id="cb24-210"><a href="#cb24-210"></a>Here is an example taken from the R Submission WG pilot 1 around how they used</span>
-<span id="cb24-211"><a href="#cb24-211"></a><span class="in">`pkglite::pack()`</span> to provide packages as txt files. On the other side</span>
-<span id="cb24-212"><a href="#cb24-212"></a><span class="in">`pkglite::unpack()`</span> could then be used to unpack.</span>
-<span id="cb24-213"><a href="#cb24-213"></a></span>
-<span id="cb24-214"><a href="#cb24-214"></a><span class="in">```{r pack, eval=FALSE}</span></span>
-<span id="cb24-215"><a href="#cb24-215"></a><span class="fu">library</span>(pkglite)</span>
-<span id="cb24-216"><a href="#cb24-216"></a></span>
-<span id="cb24-217"><a href="#cb24-217"></a><span class="co"># Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt</span></span>
-<span id="cb24-218"><a href="#cb24-218"></a>path<span class="sc">$</span>home <span class="sc">%&gt;%</span></span>
-<span id="cb24-219"><a href="#cb24-219"></a>  <span class="fu">collate</span>(<span class="fu">file_ectd</span>(), <span class="fu">file_auto</span>(<span class="st">"inst"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-220"><a href="#cb24-220"></a>  <span class="fu">prune</span>(<span class="st">"R/zzz.R"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-221"><a href="#cb24-221"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span>
-<span id="cb24-222"><a href="#cb24-222"></a><span class="in">```</span></span>
-<span id="cb24-223"><a href="#cb24-223"></a></span>
-<span id="cb24-224"><a href="#cb24-224"></a>You can also check the following example Reviewer's Guides as used for these pilots:</span>
-<span id="cb24-225"><a href="#cb24-225"></a></span>
-<span id="cb24-226"><a href="#cb24-226"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Pilot 1</span><span class="co">](https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf)</span>,</span>
-<span id="cb24-227"><a href="#cb24-227"></a>using <span class="in">`{pkglite}`</span></span>
-<span id="cb24-228"><a href="#cb24-228"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Pilot 3</span><span class="co">](https://github.com/RConsortium/submissions-pilot3-adam-to-fda/blob/main/m5/datasets/rconsortiumpilot3/analysis/adam/datasets/adrg.pdf)</span>,</span>
-<span id="cb24-229"><a href="#cb24-229"></a>using compressed .zip approach</span>
-<span id="cb24-230"><a href="#cb24-230"></a></span>
-<span id="cb24-231"><a href="#cb24-231"></a>For further Reviewer's Guide guidance, regardless of the programming language used for</span>
-<span id="cb24-232"><a href="#cb24-232"></a>regulatory submissions, refer to the completion guidelines found at this</span>
-<span id="cb24-233"><a href="#cb24-233"></a><span class="co">[</span><span class="ot">PHUSE ADRG Package WG</span><span class="co">](https://advance.hub.phuse.global/wiki/spaces/WEL/pages/26804660/Analysis+Data+Reviewer+s+Guide+ADRG+Package)</span>.</span>
-<span id="cb24-234"><a href="#cb24-234"></a>As we progress on this open source submission journey, it is worth monitoring this</span>
-<span id="cb24-235"><a href="#cb24-235"></a><span class="co">[</span><span class="ot">PHUSE Open-Source Metadata Documentation WG</span><span class="co">](https://phuse-org.github.io/OSDocuMeta/)</span></span>
-<span id="cb24-236"><a href="#cb24-236"></a>to see how the guidance continues to evolve in this space.</span>
-<span id="cb24-237"><a href="#cb24-237"></a></span>
-<span id="cb24-238"><a href="#cb24-238"></a><span class="fu">### Validation</span></span>
-<span id="cb24-239"><a href="#cb24-239"></a></span>
-<span id="cb24-240"><a href="#cb24-240"></a>Last but not least, through the submission process you might be asked to</span>
-<span id="cb24-241"><a href="#cb24-241"></a>provide evidence of why you consider the open source code used to be accurate</span>
-<span id="cb24-242"><a href="#cb24-242"></a>and reliable.</span>
-<span id="cb24-243"><a href="#cb24-243"></a></span>
-<span id="cb24-244"><a href="#cb24-244"></a>This of course is a huge topic and one where you should first refer to</span>
-<span id="cb24-245"><a href="#cb24-245"></a>guidance from the <span class="co">[</span><span class="ot">R Validation Hub</span><span class="co">](https://pharmar.org/)</span>.</span>
-<span id="cb24-246"><a href="#cb24-246"></a></span>
-<span id="cb24-247"><a href="#cb24-247"></a>Pharmaverse also offers a selection of recommended packages that can help with</span>
-<span id="cb24-248"><a href="#cb24-248"></a>this via our <span class="co">[</span><span class="ot">Developers page</span><span class="co">](https://pharmaverse.org/e2eclinical/developers/)</span></span>
-<span id="cb24-249"><a href="#cb24-249"></a>under Package Validation. Under CI/CD it also offers <span class="in">`thevalidatoR`</span> which is a GitHub</span>
-<span id="cb24-250"><a href="#cb24-250"></a>action that can be used to produce standardized validation reports, such as this</span>
-<span id="cb24-251"><a href="#cb24-251"></a><span class="co">[</span><span class="ot">example</span><span class="co">](https://github.com/insightsengineering/thevalidatoR/blob/main/readme_files/report-0.1-admiral.pdf)</span></span>
-<span id="cb24-252"><a href="#cb24-252"></a>from an earlier version of <span class="in">`{admiral}`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1"></a><span class="co">---</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="an">title:</span><span class="co"> "eSubmission"</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="co">---</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a></span>
+<span id="cb32-5"><a href="#cb32-5"></a><span class="fu">## Introduction</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a></span>
+<span id="cb32-7"><a href="#cb32-7"></a>This article shares learnings from R and open source based submission experiences,</span>
+<span id="cb32-8"><a href="#cb32-8"></a>and how these can be achieved using pharmaverse packages in conjunction.</span>
+<span id="cb32-9"><a href="#cb32-9"></a></span>
+<span id="cb32-10"><a href="#cb32-10"></a>When considering such a submission, it is important to discuss this early on</span>
+<span id="cb32-11"><a href="#cb32-11"></a>with the regulatory agency during any pre-submission correspondence.</span>
+<span id="cb32-12"><a href="#cb32-12"></a></span>
+<span id="cb32-13"><a href="#cb32-13"></a>The main pharmaverse packages specifically supporting eSubmission are as follows: </span>
+<span id="cb32-14"><a href="#cb32-14"></a></span>
+<span id="cb32-15"><a href="#cb32-15"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{xportr}`</span><span class="co">](https://atorus-research.github.io/xportr/)</span>: delivers the SAS transport file (XPT) and eSub checks.</span>
+<span id="cb32-16"><a href="#cb32-16"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{pkglite}`</span><span class="co">](https://merck.github.io/pkglite/)</span>: enables exchange of closed source R packages via text files.</span>
+<span id="cb32-17"><a href="#cb32-17"></a><span class="ss">-   </span><span class="co">[</span><span class="ot">`{datasetjson}`</span><span class="co">](https://atorus-research.github.io/datasetjson/)</span>: experimental package to deliver Dataset-JSON.</span>
+<span id="cb32-18"><a href="#cb32-18"></a></span>
+<span id="cb32-19"><a href="#cb32-19"></a>Note that a python equivalent of <span class="in">`{pkglite}`</span> also exists, read more at <span class="co">[</span><span class="ot">pharmaverse python</span><span class="co">](https://pharmaverse.org/e2eclinical/python/)</span>.</span>
+<span id="cb32-20"><a href="#cb32-20"></a></span>
+<span id="cb32-21"><a href="#cb32-21"></a>Of course, most of the pharmaverse packages contribute to eSubmission in some way,</span>
+<span id="cb32-22"><a href="#cb32-22"></a>through their focus on enabling clinical reporting and analyses deliverables that</span>
+<span id="cb32-23"><a href="#cb32-23"></a>form the backbone of any submission. There are many other examples on this site</span>
+<span id="cb32-24"><a href="#cb32-24"></a>dedicated to these, so we won't repeat here. One package we did want to call out</span>
+<span id="cb32-25"><a href="#cb32-25"></a>here is <span class="co">[</span><span class="ot">`{aNCA}`</span><span class="co">](https://pharmaverse.github.io/aNCA/)</span> which performs</span>
+<span id="cb32-26"><a href="#cb32-26"></a>Non-Compartmental Analysis, as clinical pharmacology analyses are another</span>
+<span id="cb32-27"><a href="#cb32-27"></a>important part of submissions.</span>
+<span id="cb32-28"><a href="#cb32-28"></a></span>
+<span id="cb32-29"><a href="#cb32-29"></a><span class="fu">## R Submissions Working Group</span></span>
+<span id="cb32-30"><a href="#cb32-30"></a></span>
+<span id="cb32-31"><a href="#cb32-31"></a>Within the R Consortium, the R Submissions WG have conducted several pilots to</span>
+<span id="cb32-32"><a href="#cb32-32"></a>provide open examples of submitting R-based clinical trial data/analysis packages</span>
+<span id="cb32-33"><a href="#cb32-33"></a>to the FDA.</span>
+<span id="cb32-34"><a href="#cb32-34"></a></span>
+<span id="cb32-35"><a href="#cb32-35"></a>Anyone new to R-based submissions should definitely check out the open materials</span>
+<span id="cb32-36"><a href="#cb32-36"></a>from this team <span class="co">[</span><span class="ot">here</span><span class="co">](https://rconsortium.github.io/submissions-wg/)</span>.</span>
+<span id="cb32-37"><a href="#cb32-37"></a></span>
+<span id="cb32-38"><a href="#cb32-38"></a>Since these pilots laid the foundation, several major pharma companies have</span>
+<span id="cb32-39"><a href="#cb32-39"></a>submitted primarily using R to health authorities across the world, so this</span>
+<span id="cb32-40"><a href="#cb32-40"></a>article includes a mix of learnings from the pilots and real submissions.</span>
+<span id="cb32-41"><a href="#cb32-41"></a></span>
+<span id="cb32-42"><a href="#cb32-42"></a>In early 2025, the R Submissions WG <span class="co">[</span><span class="ot">launched Pilot 5</span><span class="co">](https://r-consortium.org/posts/submissions-wg-pilot5-pilot6-and-more/)</span></span>
+<span id="cb32-43"><a href="#cb32-43"></a>to explore replacing <span class="in">`xpt`</span> with <span class="in">`datasetjson`</span> as a transport file to the FDA via </span>
+<span id="cb32-44"><a href="#cb32-44"></a>the eCTD portal. The group successfully submitted the data package in early Q3 2025 </span>
+<span id="cb32-45"><a href="#cb32-45"></a>and has received positive feedback. Stay tuned for updates and the FDA's</span>
+<span id="cb32-46"><a href="#cb32-46"></a>final response - <span class="co">[</span><span class="ot">Pilot 5 Website</span><span class="co">](https://rconsortium.github.io/submissions-pilot5-website/)</span>.</span>
+<span id="cb32-47"><a href="#cb32-47"></a></span>
+<span id="cb32-48"><a href="#cb32-48"></a><span class="fu">## Submission Contents</span></span>
+<span id="cb32-49"><a href="#cb32-49"></a></span>
+<span id="cb32-50"><a href="#cb32-50"></a>The areas of eSubmission that pharmaverse packages are most useful for would be</span>
+<span id="cb32-51"><a href="#cb32-51"></a>data, readable code, and documentation.</span>
+<span id="cb32-52"><a href="#cb32-52"></a></span>
+<span id="cb32-53"><a href="#cb32-53"></a>Each of the sections below talk in more detail of these areas, plus specific</span>
+<span id="cb32-54"><a href="#cb32-54"></a>mention of validation which is a common topic raised around usage of open</span>
+<span id="cb32-55"><a href="#cb32-55"></a>source.</span>
+<span id="cb32-56"><a href="#cb32-56"></a></span>
+<span id="cb32-57"><a href="#cb32-57"></a><span class="fu">### Data</span></span>
+<span id="cb32-58"><a href="#cb32-58"></a></span>
+<span id="cb32-59"><a href="#cb32-59"></a>The main 2 forms of dataset for CDISC clinical trial submission are SDTM and</span>
+<span id="cb32-60"><a href="#cb32-60"></a>ADaM. Refer to the separate example articles on this site for how best to go</span>
+<span id="cb32-61"><a href="#cb32-61"></a>about producing these.</span>
+<span id="cb32-62"><a href="#cb32-62"></a></span>
+<span id="cb32-63"><a href="#cb32-63"></a>For eSubmission the most common transport file format used to deliver these to</span>
+<span id="cb32-64"><a href="#cb32-64"></a>health authorities is as xpt files, and for this we use <span class="in">`{xportr}`</span>. This package</span>
+<span id="cb32-65"><a href="#cb32-65"></a>works well with <span class="in">`{metacore}`</span> harmonized specification objects as shown in the</span>
+<span id="cb32-66"><a href="#cb32-66"></a>ADaM articles on this site.</span>
+<span id="cb32-67"><a href="#cb32-67"></a></span>
+<span id="cb32-68"><a href="#cb32-68"></a>Here is an example call using a synthetic <span class="in">`ADSL`</span> ADaM from <span class="in">`{pharmaverseadam}`</span></span>
+<span id="cb32-69"><a href="#cb32-69"></a>that shows how to produce xpt files, as well as how certain <span class="in">`{xportr}`</span></span>
+<span id="cb32-70"><a href="#cb32-70"></a>functions can be used to take attributes directly from specifications so as</span>
+<span id="cb32-71"><a href="#cb32-71"></a>to ensure specification to dataset consistency. This helps to ensure</span>
+<span id="cb32-72"><a href="#cb32-72"></a>eSubmission-readiness. Additionally the package includes a number of built-in</span>
+<span id="cb32-73"><a href="#cb32-73"></a>CDISC conformance checks as detailed on the</span>
+<span id="cb32-74"><a href="#cb32-74"></a><span class="co">[</span><span class="ot">site</span><span class="co">](https://atorus-research.github.io/xportr/)</span>.</span>
+<span id="cb32-75"><a href="#cb32-75"></a></span>
+<span id="cb32-76"><a href="#cb32-76"></a><span class="in">```{r clean, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb32-77"><a href="#cb32-77"></a><span class="fu">library</span>(metacore)</span>
+<span id="cb32-78"><a href="#cb32-78"></a><span class="fu">library</span>(xportr)</span>
+<span id="cb32-79"><a href="#cb32-79"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb32-80"><a href="#cb32-80"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-81"><a href="#cb32-81"></a></span>
+<span id="cb32-82"><a href="#cb32-82"></a><span class="co"># Read in metacore object</span></span>
+<span id="cb32-83"><a href="#cb32-83"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(</span>
+<span id="cb32-84"><a href="#cb32-84"></a>  <span class="at">path =</span> <span class="st">"./metadata/safety_specs.xlsx"</span>,</span>
+<span id="cb32-85"><a href="#cb32-85"></a>  <span class="co"># All datasets are described in the same sheet</span></span>
+<span id="cb32-86"><a href="#cb32-86"></a>  <span class="at">where_sep_sheet =</span> <span class="cn">FALSE</span></span>
+<span id="cb32-87"><a href="#cb32-87"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-88"><a href="#cb32-88"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADSL"</span>)</span>
+<span id="cb32-89"><a href="#cb32-89"></a></span>
+<span id="cb32-90"><a href="#cb32-90"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb32-91"><a href="#cb32-91"></a></span>
+<span id="cb32-92"><a href="#cb32-92"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<span id="cb32-93"><a href="#cb32-93"></a>  <span class="co"># Coerce variable type to match specification</span></span>
+<span id="cb32-94"><a href="#cb32-94"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-95"><a href="#cb32-95"></a>  <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb32-96"><a href="#cb32-96"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-97"><a href="#cb32-97"></a>  <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb32-98"><a href="#cb32-98"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-99"><a href="#cb32-99"></a>  <span class="co"># Assigns SAS length from a variable level metadata</span></span>
+<span id="cb32-100"><a href="#cb32-100"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-101"><a href="#cb32-101"></a>  <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb32-102"><a href="#cb32-102"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-103"><a href="#cb32-103"></a>  <span class="co"># Write xpt v5 transport file</span></span>
+<span id="cb32-104"><a href="#cb32-104"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span>
+<span id="cb32-105"><a href="#cb32-105"></a><span class="in">```</span></span>
+<span id="cb32-106"><a href="#cb32-106"></a></span>
+<span id="cb32-107"><a href="#cb32-107"></a><span class="in">```{r label}</span></span>
+<span id="cb32-108"><a href="#cb32-108"></a><span class="co"># We can examine that the attributes have been correctly applied, for example</span></span>
+<span id="cb32-109"><a href="#cb32-109"></a><span class="co"># as follows for the dataset label</span></span>
+<span id="cb32-110"><a href="#cb32-110"></a><span class="fu">attr</span>(adsl, <span class="st">"label"</span>)</span>
+<span id="cb32-111"><a href="#cb32-111"></a><span class="in">```</span></span>
+<span id="cb32-112"><a href="#cb32-112"></a></span>
+<span id="cb32-113"><a href="#cb32-113"></a>Now here's an example where the checks would help to identify future possible</span>
+<span id="cb32-114"><a href="#cb32-114"></a>eSubmission challenges. Note the console messages explaining the issues.</span>
+<span id="cb32-115"><a href="#cb32-115"></a></span>
+<span id="cb32-116"><a href="#cb32-116"></a><span class="in">```{r challenges}</span></span>
+<span id="cb32-117"><a href="#cb32-117"></a>adsl_challenges <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<span id="cb32-118"><a href="#cb32-118"></a>  <span class="co"># Make a numeric variable as character, which conflicts with specifications</span></span>
+<span id="cb32-119"><a href="#cb32-119"></a>  <span class="fu">mutate</span>(<span class="at">AGE =</span> <span class="fu">as.character</span>(AGE)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-120"><a href="#cb32-120"></a>  <span class="co"># Add a variable that is name &gt;8 characters which is not allowed for xpt v5</span></span>
+<span id="cb32-121"><a href="#cb32-121"></a>  <span class="fu">mutate</span>(<span class="at">REGIONCAT =</span> REGION1)</span>
+<span id="cb32-122"><a href="#cb32-122"></a></span>
+<span id="cb32-123"><a href="#cb32-123"></a>adsl_challenges <span class="ot">&lt;-</span> adsl_challenges <span class="sc">%&gt;%</span></span>
+<span id="cb32-124"><a href="#cb32-124"></a>  <span class="co"># Coerce variable type to match specification</span></span>
+<span id="cb32-125"><a href="#cb32-125"></a>  <span class="co"># This time we use the verbose argument to add a warning to the console</span></span>
+<span id="cb32-126"><a href="#cb32-126"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">verbose =</span> <span class="st">"warn"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-127"><a href="#cb32-127"></a>  <span class="co"># Write xpt v5 transport file</span></span>
+<span id="cb32-128"><a href="#cb32-128"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>)</span>
+<span id="cb32-129"><a href="#cb32-129"></a><span class="in">```</span></span>
+<span id="cb32-130"><a href="#cb32-130"></a></span>
+<span id="cb32-131"><a href="#cb32-131"></a>Furthermore, the package functions also include certain arguments that you can</span>
+<span id="cb32-132"><a href="#cb32-132"></a>use to help shape to your specific submission needs.</span>
+<span id="cb32-133"><a href="#cb32-133"></a></span>
+<span id="cb32-134"><a href="#cb32-134"></a>The below shows how some specific FDA requirements can be achieved using</span>
+<span id="cb32-135"><a href="#cb32-135"></a>the <span class="in">`length_source`</span> argument from <span class="in">`xportr::xportr_length()`</span> and the</span>
+<span id="cb32-136"><a href="#cb32-136"></a><span class="in">`max_size_gb`</span> argument from <span class="in">`xportr::xportr_write()`</span>, as detailed in the code comments.</span>
+<span id="cb32-137"><a href="#cb32-137"></a>In this case, the dataset splits would be very unlikely to occur in practice for</span>
+<span id="cb32-138"><a href="#cb32-138"></a><span class="in">`ADSL`</span> but would be much more likely on a BDS dataset such as <span class="in">`ADLB`</span> for a</span>
+<span id="cb32-139"><a href="#cb32-139"></a>large study.</span>
+<span id="cb32-140"><a href="#cb32-140"></a></span>
+<span id="cb32-141"><a href="#cb32-141"></a><span class="in">```{r examples}</span></span>
+<span id="cb32-142"><a href="#cb32-142"></a>adsl_example <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">%&gt;%</span></span>
+<span id="cb32-143"><a href="#cb32-143"></a>  <span class="co"># Coerce variable type to match specification</span></span>
+<span id="cb32-144"><a href="#cb32-144"></a>  <span class="fu">xportr_type</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-145"><a href="#cb32-145"></a>  <span class="co"># Assigns variable label from metacore specifications</span></span>
+<span id="cb32-146"><a href="#cb32-146"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-147"><a href="#cb32-147"></a>  <span class="co"># Assigns dataset label from metacore specifications</span></span>
+<span id="cb32-148"><a href="#cb32-148"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-149"><a href="#cb32-149"></a>  <span class="co"># Assigns length from the maximum length of any value of the variable as per FDA data minimization guidance</span></span>
+<span id="cb32-150"><a href="#cb32-150"></a>  <span class="fu">xportr_length</span>(<span class="at">metadata =</span> metacore, <span class="at">length_source =</span> <span class="st">"data"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-151"><a href="#cb32-151"></a>  <span class="co"># Assigns variable format from metacore specifications</span></span>
+<span id="cb32-152"><a href="#cb32-152"></a>  <span class="fu">xportr_format</span>(<span class="at">metadata =</span> metacore) <span class="sc">%&gt;%</span></span>
+<span id="cb32-153"><a href="#cb32-153"></a>  <span class="co"># Write xpt v5 transport file but split into smaller subsets if greater than 5GB</span></span>
+<span id="cb32-154"><a href="#cb32-154"></a>  <span class="co"># according to the FDA cutoff size</span></span>
+<span id="cb32-155"><a href="#cb32-155"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adsl.xpt"</span>), <span class="at">metadata =</span> metacore, <span class="at">domain =</span> <span class="st">"ADSL"</span>, <span class="at">max_size_gb =</span> <span class="dv">5</span>)</span>
+<span id="cb32-156"><a href="#cb32-156"></a><span class="in">```</span></span>
+<span id="cb32-157"><a href="#cb32-157"></a></span>
+<span id="cb32-158"><a href="#cb32-158"></a>As an alternative to xpt, we also have <span class="in">`{datasetjson}`</span> which enables the</span>
+<span id="cb32-159"><a href="#cb32-159"></a>emerging new submission data exchange standard Dataset-JSON detailed</span>
+<span id="cb32-160"><a href="#cb32-160"></a><span class="co">[</span><span class="ot">here</span><span class="co">](https://www.cdisc.org/standards/data-exchange/dataset-json)</span>. As this</span>
+<span id="cb32-161"><a href="#cb32-161"></a>package is still experimental, we don't include code examples here but over time</span>
+<span id="cb32-162"><a href="#cb32-162"></a>and as momentum grows we can add extra examples to this article. </span>
+<span id="cb32-163"><a href="#cb32-163"></a></span>
+<span id="cb32-164"><a href="#cb32-164"></a><span class="fu">### Readable Code</span></span>
+<span id="cb32-165"><a href="#cb32-165"></a></span>
+<span id="cb32-166"><a href="#cb32-166"></a>When using internal company-specific closed source tools and codebases, we</span>
+<span id="cb32-167"><a href="#cb32-167"></a>often face challenges around providing readable code to health authorities as</span>
+<span id="cb32-168"><a href="#cb32-168"></a>internal single company solutions are by nature not easily accessible and understandable.</span>
+<span id="cb32-169"><a href="#cb32-169"></a>This is one of the benefits of using open source codebases in the submission</span>
+<span id="cb32-170"><a href="#cb32-170"></a>setting as it enables review teams to look deeper into the functions used, plus</span>
+<span id="cb32-171"><a href="#cb32-171"></a>they have the same open solutions available to use themselves as part of their</span>
+<span id="cb32-172"><a href="#cb32-172"></a>review. As more of the industry embraces open source, we may even see more</span>
+<span id="cb32-173"><a href="#cb32-173"></a>harmonization of submission packages across the industry as the same packages</span>
+<span id="cb32-174"><a href="#cb32-174"></a>are re-used, and this should lead to greater familiarity from review teams</span>
+<span id="cb32-175"><a href="#cb32-175"></a>easing their critical submission dossier review.</span>
+<span id="cb32-176"><a href="#cb32-176"></a></span>
+<span id="cb32-177"><a href="#cb32-177"></a>The nature of R packages and functions, as well as influence from <span class="in">`{tidyverse}`</span>,</span>
+<span id="cb32-178"><a href="#cb32-178"></a>has encouraged most pharmaverse package development teams to embrace modular</span>
+<span id="cb32-179"><a href="#cb32-179"></a>strategy to their code. So when you use packages like <span class="in">`{admiral}`</span>, you'll see</span>
+<span id="cb32-180"><a href="#cb32-180"></a>that the ADaM templates have been built with readability in mind specifically to</span>
+<span id="cb32-181"><a href="#cb32-181"></a>aid with eSubmission.</span>
+<span id="cb32-182"><a href="#cb32-182"></a></span>
+<span id="cb32-183"><a href="#cb32-183"></a><span class="fu">### Documentation</span></span>
+<span id="cb32-184"><a href="#cb32-184"></a></span>
+<span id="cb32-185"><a href="#cb32-185"></a>When using R for submission there are some important recommendations around</span>
+<span id="cb32-186"><a href="#cb32-186"></a>documentation you should include as part of the eSubmission package. Most</span>
+<span id="cb32-187"><a href="#cb32-187"></a>companies include these in the Reviewer's Guide documents (_the PHUSE Advance Hub</span>
+<span id="cb32-188"><a href="#cb32-188"></a>offers example templates for these_), but you might also choose to use a</span>
+<span id="cb32-189"><a href="#cb32-189"></a>programTOC document.</span>
+<span id="cb32-190"><a href="#cb32-190"></a></span>
+<span id="cb32-191"><a href="#cb32-191"></a>Here's the information we recommend including:</span>
+<span id="cb32-192"><a href="#cb32-192"></a></span>
+<span id="cb32-193"><a href="#cb32-193"></a><span class="ss">- </span>R version used</span>
+<span id="cb32-194"><a href="#cb32-194"></a><span class="ss">- </span>Descriptions of the main open source R package used, the version of each that</span>
+<span id="cb32-195"><a href="#cb32-195"></a>you used, and where these are available from (especially if anywhere other than CRAN)</span>
+<span id="cb32-196"><a href="#cb32-196"></a><span class="ss">- </span>Descriptions of any closed source packages used (see details below)</span>
+<span id="cb32-197"><a href="#cb32-197"></a><span class="ss">- </span>Basic installation instructions of the R version used and how to install the</span>
+<span id="cb32-198"><a href="#cb32-198"></a>package versions that you used (e.g. from CRAN). The R installation instructions</span>
+<span id="cb32-199"><a href="#cb32-199"></a>should cover installation from Windows.</span>
+<span id="cb32-200"><a href="#cb32-200"></a></span>
+<span id="cb32-201"><a href="#cb32-201"></a>Here is an example extract of what the documentation of the open source packages</span>
+<span id="cb32-202"><a href="#cb32-202"></a>used might look like:</span>
+<span id="cb32-203"><a href="#cb32-203"></a></span>
+<span id="cb32-204"><a href="#cb32-204"></a><span class="al">![Example Reviewer's Guide Table](ADRG.png)</span>{fig-align="center"}</span>
+<span id="cb32-205"><a href="#cb32-205"></a></span>
+<span id="cb32-206"><a href="#cb32-206"></a>For closed source packages, if you plan to submit the code then there are 2 main</span>
+<span id="cb32-207"><a href="#cb32-207"></a>options - <span class="in">`{pkglite}`</span> to create txt files, or zip files (as were successfully</span>
+<span id="cb32-208"><a href="#cb32-208"></a>used in later R Submission WG pilots).</span>
+<span id="cb32-209"><a href="#cb32-209"></a></span>
+<span id="cb32-210"><a href="#cb32-210"></a>Here is an example taken from the R Submission WG pilot 1 around how they used</span>
+<span id="cb32-211"><a href="#cb32-211"></a><span class="in">`pkglite::pack()`</span> to provide packages as txt files. On the other side</span>
+<span id="cb32-212"><a href="#cb32-212"></a><span class="in">`pkglite::unpack()`</span> could then be used to unpack.</span>
+<span id="cb32-213"><a href="#cb32-213"></a></span>
+<span id="cb32-214"><a href="#cb32-214"></a><span class="in">```{r pack, eval=FALSE}</span></span>
+<span id="cb32-215"><a href="#cb32-215"></a><span class="fu">library</span>(pkglite)</span>
+<span id="cb32-216"><a href="#cb32-216"></a></span>
+<span id="cb32-217"><a href="#cb32-217"></a><span class="co"># Using pkglite to pack proprietary R package and saved into ectd/r0pkg.txt</span></span>
+<span id="cb32-218"><a href="#cb32-218"></a>path<span class="sc">$</span>home <span class="sc">%&gt;%</span></span>
+<span id="cb32-219"><a href="#cb32-219"></a>  <span class="fu">collate</span>(<span class="fu">file_ectd</span>(), <span class="fu">file_auto</span>(<span class="st">"inst"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-220"><a href="#cb32-220"></a>  <span class="fu">prune</span>(<span class="st">"R/zzz.R"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-221"><a href="#cb32-221"></a>  <span class="fu">pack</span>(<span class="at">output =</span> <span class="st">"ectd/r0pkg.txt"</span>)</span>
+<span id="cb32-222"><a href="#cb32-222"></a><span class="in">```</span></span>
+<span id="cb32-223"><a href="#cb32-223"></a></span>
+<span id="cb32-224"><a href="#cb32-224"></a>You can also check the following example Reviewer's Guides as used for these pilots:</span>
+<span id="cb32-225"><a href="#cb32-225"></a></span>
+<span id="cb32-226"><a href="#cb32-226"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Pilot 1</span><span class="co">](https://github.com/RConsortium/submissions-pilot1-to-fda/blob/main/m5/datasets/rconsortiumpilot1/analysis/adam/datasets/adrg.pdf)</span>,</span>
+<span id="cb32-227"><a href="#cb32-227"></a>using <span class="in">`{pkglite}`</span></span>
+<span id="cb32-228"><a href="#cb32-228"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Pilot 3</span><span class="co">](https://github.com/RConsortium/submissions-pilot3-adam-to-fda/blob/main/m5/datasets/rconsortiumpilot3/analysis/adam/datasets/adrg.pdf)</span>,</span>
+<span id="cb32-229"><a href="#cb32-229"></a>using compressed .zip approach</span>
+<span id="cb32-230"><a href="#cb32-230"></a></span>
+<span id="cb32-231"><a href="#cb32-231"></a>For further Reviewer's Guide guidance, regardless of the programming language used for</span>
+<span id="cb32-232"><a href="#cb32-232"></a>regulatory submissions, refer to the completion guidelines found at this</span>
+<span id="cb32-233"><a href="#cb32-233"></a><span class="co">[</span><span class="ot">PHUSE ADRG Package WG</span><span class="co">](https://advance.hub.phuse.global/wiki/spaces/WEL/pages/26804660/Analysis+Data+Reviewer+s+Guide+ADRG+Package)</span>.</span>
+<span id="cb32-234"><a href="#cb32-234"></a>As we progress on this open source submission journey, it is worth monitoring this</span>
+<span id="cb32-235"><a href="#cb32-235"></a><span class="co">[</span><span class="ot">PHUSE Open-Source Metadata Documentation WG</span><span class="co">](https://phuse-org.github.io/OSDocuMeta/)</span></span>
+<span id="cb32-236"><a href="#cb32-236"></a>to see how the guidance continues to evolve in this space.</span>
+<span id="cb32-237"><a href="#cb32-237"></a></span>
+<span id="cb32-238"><a href="#cb32-238"></a><span class="fu">### Validation</span></span>
+<span id="cb32-239"><a href="#cb32-239"></a></span>
+<span id="cb32-240"><a href="#cb32-240"></a>Last but not least, through the submission process you might be asked to</span>
+<span id="cb32-241"><a href="#cb32-241"></a>provide evidence of why you consider the open source code used to be accurate</span>
+<span id="cb32-242"><a href="#cb32-242"></a>and reliable.</span>
+<span id="cb32-243"><a href="#cb32-243"></a></span>
+<span id="cb32-244"><a href="#cb32-244"></a>This of course is a huge topic and one where you should first refer to</span>
+<span id="cb32-245"><a href="#cb32-245"></a>guidance from the <span class="co">[</span><span class="ot">R Validation Hub</span><span class="co">](https://pharmar.org/)</span>.</span>
+<span id="cb32-246"><a href="#cb32-246"></a></span>
+<span id="cb32-247"><a href="#cb32-247"></a>Pharmaverse also offers a selection of recommended packages that can help with</span>
+<span id="cb32-248"><a href="#cb32-248"></a>this via our <span class="co">[</span><span class="ot">Developers page</span><span class="co">](https://pharmaverse.org/e2eclinical/developers/)</span></span>
+<span id="cb32-249"><a href="#cb32-249"></a>under Package Validation. Under CI/CD it also offers <span class="in">`thevalidatoR`</span> which is a GitHub</span>
+<span id="cb32-250"><a href="#cb32-250"></a>action that can be used to produce standardized validation reports, such as this</span>
+<span id="cb32-251"><a href="#cb32-251"></a><span class="co">[</span><span class="ot">example</span><span class="co">](https://github.com/insightsengineering/thevalidatoR/blob/main/readme_files/report-0.1-admiral.pdf)</span></span>
+<span id="cb32-252"><a href="#cb32-252"></a>from an earlier version of <span class="in">`{admiral}`</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
