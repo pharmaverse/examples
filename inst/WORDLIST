@@ -16,6 +16,8 @@ adlb
 ADLB
 admiraldiscovery
 admiralonco
+admiralophtha
+admiralvaccine
 adpc
 ADPC
 adppk
@@ -218,6 +220,7 @@ Creatinine
 creatu
 CRF
 CRP
+CSRs
 css
 csv
 ctype
@@ -384,6 +387,7 @@ htmltools
 htmlwidgets
 httpuv
 IC
+ICH
 iconv
 ifelse
 iframe
@@ -572,6 +576,7 @@ prgB
 processx
 profvis
 programTOC
+programmatically
 PROJID
 PROJIDN
 ps
@@ -642,6 +647,7 @@ rv
 rx
 SAE
 SAFFL
+SAPs
 sas
 SASFL
 SCRFDT
@@ -714,6 +720,7 @@ TEMPLOC
 TESTCD
 tf
 tformat
+tfrmt
 tgdt
 tgt
 thevalidatoR
