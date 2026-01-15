@@ -19,6 +19,12 @@ This guide will show you how pharmaverse packages, along with some from tidyvers
 In the examples below, we illustrate three general approaches for creating a demographics table.
 The first and third utilize Analysis Results Datasets---part of the emerging [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard).
 The second is the classic method of creating summary tables directly from a data set.
+## Multiple Approaches Shown
+
+This example includes:
+
+-   **ARD-based approaches**: `{cards}` + `{gtsummary}` or `{tfrmt}` - Creates structured Analysis Results Datasets following CDISC standards, then formats them into tables
+-   **Classic approach**: `{rtables}` + `{tern}` - Direct table creation from datasets using mature, stable packages
 
 ## Data preprocessing
 
