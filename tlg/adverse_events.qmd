@@ -104,7 +104,7 @@ result
 
 ## {tfrmt} & {cards}
 
-In the example below, we will use the [{tfrmt}](https://github.com/GSK-Biostatistics/tfrmt) and [{cards}](https://insightsengineering.github.io/cards/) packages to create a demographics tables.
+In the example below, we will use the [{tfrmt}](https://github.com/GSK-Biostatistics/tfrmt) and [{cards}](https://insightsengineering.github.io/cards/) packages to create a adverse events tables.
 
 - The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard)).
 - The {tfrmt} utilizes ARDs to create tables.
