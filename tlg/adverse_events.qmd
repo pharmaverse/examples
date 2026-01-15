@@ -15,6 +15,12 @@ knitr::knit_hooks$set(purl = invisible_hook_purl)
 ## Introduction
 
 This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create an Adverse Events table, using the `{pharmaverseadam}` `ADSL` and `ADAE` data as an input.
+## Multiple Approaches Shown
+
+This example includes:
+
+- **ARD-based approach**: `{cards}` + `{tfrmt}` - Creates structured Analysis Results Datasets following CDISC standards, then formats them into tables
+- **Classic approach**: `{rtables}` + `{tern}` - Direct table creation from datasets using mature, stable packages
 
 In the examples below, we illustrate two general approaches for creating an Adverse events table.  The first is the classic method of creating summary tables directly from a data set. The second utilizes Analysis Results Datasets—part of the emerging CDISC Analysis Results Standard.
 
