@@ -110,7 +110,7 @@ In the example below, we will use the [{tfrmt}](https://github.com/GSK-Biostatis
 - The {tfrmt} utilizes ARDs to create tables.
 
 In the example below, we first build an ARD with the needed summary statistics using {cards}.
-Then, we use the ARD to build the demographics table with {tfrmt}.
+Then, we use the ARD to build the adverse events table with {tfrmt}.
 
 ### Load libraries
 
