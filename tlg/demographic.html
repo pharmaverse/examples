@@ -606,7 +606,12 @@ function googleTranslateElementInit() {
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <code>{pharmaverseadam}</code> <code>ADSL</code> data as an input.</p>
-<p>In the examples below, we illustrate two general approaches for creating a demographics table. The first utilizes Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set.</p>
+<p>In the examples below, we illustrate three general approaches for creating a demographics table. The first and third utilize Analysis Results Datasets—part of the emerging <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>. The second is the classic method of creating summary tables directly from a data set. ## Multiple Approaches Shown</p>
+<p>This example includes:</p>
+<ul>
+<li><strong>ARD-based approaches</strong>: <code>{cards}</code> + <code>{gtsummary}</code> or <code>{tfrmt}</code> - Creates structured Analysis Results Datasets following CDISC standards, then formats them into tables</li>
+<li><strong>Classic approach</strong>: <code>{rtables}</code> + <code>{tern}</code> - Direct table creation from datasets using mature, stable packages</li>
+</ul>
 </section>
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data preprocessing</h2>
@@ -672,23 +677,23 @@ function googleTranslateElementInit() {
 <span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
 <span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="tmnklbbuen" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tmnklbbuen table {
+<div id="zleapxbtod" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zleapxbtod table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tmnklbbuen thead, #tmnklbbuen tbody, #tmnklbbuen tfoot, #tmnklbbuen tr, #tmnklbbuen td, #tmnklbbuen th {
+#zleapxbtod thead, #zleapxbtod tbody, #zleapxbtod tfoot, #zleapxbtod tr, #zleapxbtod td, #zleapxbtod th {
   border-style: none;
 }
 
-#tmnklbbuen p {
+#zleapxbtod p {
   margin: 0;
   padding: 0;
 }
 
-#tmnklbbuen .gt_table {
+#zleapxbtod .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -714,12 +719,12 @@ function googleTranslateElementInit() {
   border-left-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_caption {
+#zleapxbtod .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tmnklbbuen .gt_title {
+#zleapxbtod .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -731,7 +736,7 @@ function googleTranslateElementInit() {
   border-bottom-width: 0;
 }
 
-#tmnklbbuen .gt_subtitle {
+#zleapxbtod .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -743,7 +748,7 @@ function googleTranslateElementInit() {
   border-top-width: 0;
 }
 
-#tmnklbbuen .gt_heading {
+#zleapxbtod .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -755,13 +760,13 @@ function googleTranslateElementInit() {
   border-right-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_bottom_border {
+#zleapxbtod .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_col_headings {
+#zleapxbtod .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -776,7 +781,7 @@ function googleTranslateElementInit() {
   border-right-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_col_heading {
+#zleapxbtod .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -796,7 +801,7 @@ function googleTranslateElementInit() {
   overflow-x: hidden;
 }
 
-#tmnklbbuen .gt_column_spanner_outer {
+#zleapxbtod .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -808,15 +813,15 @@ function googleTranslateElementInit() {
   padding-right: 4px;
 }
 
-#tmnklbbuen .gt_column_spanner_outer:first-child {
+#zleapxbtod .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tmnklbbuen .gt_column_spanner_outer:last-child {
+#zleapxbtod .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tmnklbbuen .gt_column_spanner {
+#zleapxbtod .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -828,11 +833,11 @@ function googleTranslateElementInit() {
   width: 100%;
 }
 
-#tmnklbbuen .gt_spanner_row {
+#zleapxbtod .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tmnklbbuen .gt_group_heading {
+#zleapxbtod .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -858,7 +863,7 @@ function googleTranslateElementInit() {
   text-align: left;
 }
 
-#tmnklbbuen .gt_empty_group_heading {
+#zleapxbtod .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -873,15 +878,15 @@ function googleTranslateElementInit() {
   vertical-align: middle;
 }
 
-#tmnklbbuen .gt_from_md > :first-child {
+#zleapxbtod .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tmnklbbuen .gt_from_md > :last-child {
+#zleapxbtod .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tmnklbbuen .gt_row {
+#zleapxbtod .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -900,7 +905,7 @@ function googleTranslateElementInit() {
   overflow-x: hidden;
 }
 
-#tmnklbbuen .gt_stub {
+#zleapxbtod .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,7 +918,7 @@ function googleTranslateElementInit() {
   padding-right: 5px;
 }
 
-#tmnklbbuen .gt_stub_row_group {
+#zleapxbtod .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -927,15 +932,15 @@ function googleTranslateElementInit() {
   vertical-align: top;
 }
 
-#tmnklbbuen .gt_row_group_first td {
+#zleapxbtod .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tmnklbbuen .gt_row_group_first th {
+#zleapxbtod .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tmnklbbuen .gt_summary_row {
+#zleapxbtod .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -945,16 +950,16 @@ function googleTranslateElementInit() {
   padding-right: 5px;
 }
 
-#tmnklbbuen .gt_first_summary_row {
+#zleapxbtod .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_first_summary_row.thick {
+#zleapxbtod .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tmnklbbuen .gt_last_summary_row {
+#zleapxbtod .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -964,7 +969,7 @@ function googleTranslateElementInit() {
   border-bottom-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_grand_summary_row {
+#zleapxbtod .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -974,7 +979,7 @@ function googleTranslateElementInit() {
   padding-right: 5px;
 }
 
-#tmnklbbuen .gt_first_grand_summary_row {
+#zleapxbtod .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -984,7 +989,7 @@ function googleTranslateElementInit() {
   border-top-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_last_grand_summary_row_top {
+#zleapxbtod .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -994,11 +999,11 @@ function googleTranslateElementInit() {
   border-bottom-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_striped {
+#zleapxbtod .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tmnklbbuen .gt_table_body {
+#zleapxbtod .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1007,7 +1012,7 @@ function googleTranslateElementInit() {
   border-bottom-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_footnotes {
+#zleapxbtod .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1021,7 +1026,7 @@ function googleTranslateElementInit() {
   border-right-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_footnote {
+#zleapxbtod .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1030,7 +1035,7 @@ function googleTranslateElementInit() {
   padding-right: 5px;
 }
 
-#tmnklbbuen .gt_sourcenotes {
+#zleapxbtod .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1044,7 +1049,7 @@ function googleTranslateElementInit() {
   border-right-color: #D3D3D3;
 }
 
-#tmnklbbuen .gt_sourcenote {
+#zleapxbtod .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1052,72 +1057,72 @@ function googleTranslateElementInit() {
   padding-right: 5px;
 }
 
-#tmnklbbuen .gt_left {
+#zleapxbtod .gt_left {
   text-align: left;
 }
 
-#tmnklbbuen .gt_center {
+#zleapxbtod .gt_center {
   text-align: center;
 }
 
-#tmnklbbuen .gt_right {
+#zleapxbtod .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tmnklbbuen .gt_font_normal {
+#zleapxbtod .gt_font_normal {
   font-weight: normal;
 }
 
-#tmnklbbuen .gt_font_bold {
+#zleapxbtod .gt_font_bold {
   font-weight: bold;
 }
 
-#tmnklbbuen .gt_font_italic {
+#zleapxbtod .gt_font_italic {
   font-style: italic;
 }
 
-#tmnklbbuen .gt_super {
+#zleapxbtod .gt_super {
   font-size: 65%;
 }
 
-#tmnklbbuen .gt_footnote_marks {
+#zleapxbtod .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tmnklbbuen .gt_asterisk {
+#zleapxbtod .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tmnklbbuen .gt_indent_1 {
+#zleapxbtod .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tmnklbbuen .gt_indent_2 {
+#zleapxbtod .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tmnklbbuen .gt_indent_3 {
+#zleapxbtod .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tmnklbbuen .gt_indent_4 {
+#zleapxbtod .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tmnklbbuen .gt_indent_5 {
+#zleapxbtod .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tmnklbbuen .katex-display {
+#zleapxbtod .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tmnklbbuen div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zleapxbtod div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1352,6 +1357,758 @@ Race
   AMERICAN INDIAN OR ALASKA NATIVE        0              1 (1.4%)                  0              1 (0.4%)  
   BLACK OR AFRICAN AMERICAN           8 (9.3%)          9 (12.5%)              6 (6.2%)          23 (9.1%)  
   WHITE                              78 (90.7%)         62 (86.1%)            90 (93.8%)        230 (90.6%) </code></pre>
+</div>
+</div>
+</section>
+<section id="tfrmt-cards" class="level2">
+<h2 class="anchored" data-anchor-id="tfrmt-cards">{tfrmt} &amp; {cards}</h2>
+<p>In the example below, we will use the <a href="https://github.com/GSK-Biostatistics/tfrmt">{tfrmt}</a> and <a href="https://insightsengineering.github.io/cards/">{cards}</a> packages to create a demographics tables.</p>
+<ul>
+<li>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <a href="https://www.cdisc.org/standards/foundational/analysis-results-standard">CDISC Analysis Results Standard</a>).</li>
+<li>The {tfrmt} utilizes ARDs to create tables.</li>
+</ul>
+<p>In the example below, we first build an ARD with the needed summary statistics using {cards}. Then, we use the ARD to build the demographics table with {tfrmt}.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(cards)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="fu">library</span>(tfrmt)</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>ard <span class="ot">&lt;-</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">ard_stack</span>(</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    adsl,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="fu">ard_continuous</span>(</span>
+<span id="cb12-10"><a href="#cb12-10"></a>      <span class="at">variables =</span> AGE,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>      <span class="at">statistic =</span> <span class="sc">~</span> <span class="fu">continuous_summary_fns</span>(<span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>))</span>
+<span id="cb12-12"><a href="#cb12-12"></a>    ),</span>
+<span id="cb12-13"><a href="#cb12-13"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
+<span id="cb12-14"><a href="#cb12-14"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>    <span class="at">.overall =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-16"><a href="#cb12-16"></a>    <span class="at">.total_n =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a>  )</span>
+<span id="cb12-18"><a href="#cb12-18"></a></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="co"># tidy the ARD for use in {tfrmt}</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a>ard_tbl <span class="ot">&lt;-</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>  ard <span class="sc">|&gt;</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>  <span class="co"># reshape the data</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a>  <span class="fu">shuffle_card</span>(<span class="at">fill_overall =</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a>  <span class="co"># transform group-level freqs/pcts into a singular "bigN" row</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a>  <span class="fu">prep_big_n</span>(<span class="at">vars =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a>  <span class="co"># consolidate vars into a single variable column</span></span>
+<span id="cb12-27"><a href="#cb12-27"></a>  <span class="fu">prep_combine_vars</span>(<span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a>  <span class="co"># coalesce categorical levels + continuous stats into a "label"</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a>  <span class="fu">prep_label</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a>  <span class="fu">group_by</span>(ACTARM, stat_variable) <span class="sc">|&gt;</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(variable_level, label), <span class="sc">~</span> <span class="fu">ifelse</span>(stat_name <span class="sc">==</span> <span class="st">"N"</span>, <span class="st">"n"</span>, .x))) <span class="sc">|&gt;</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a>  <span class="co"># sorting</span></span>
+<span id="cb12-35"><a href="#cb12-35"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-36"><a href="#cb12-36"></a>    <span class="at">ord1 =</span> <span class="fu">fct_inorder</span>(stat_variable) <span class="sc">|&gt;</span> <span class="fu">fct_relevel</span>(<span class="st">"SEX"</span>, <span class="at">after =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">as.numeric</span>(),</span>
+<span id="cb12-37"><a href="#cb12-37"></a>    <span class="at">ord2 =</span> <span class="fu">ifelse</span>(label <span class="sc">==</span> <span class="st">"n"</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb12-38"><a href="#cb12-38"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a>  <span class="co"># relabel the variables</span></span>
+<span id="cb12-40"><a href="#cb12-40"></a>  <span class="fu">mutate</span>(<span class="at">stat_variable =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-41"><a href="#cb12-41"></a>    stat_variable <span class="sc">==</span> <span class="st">"AGE"</span> <span class="sc">~</span> <span class="st">"Age (YEARS) at First Dose"</span>,</span>
+<span id="cb12-42"><a href="#cb12-42"></a>    stat_variable <span class="sc">==</span> <span class="st">"AGEGR1"</span> <span class="sc">~</span> <span class="st">"Age Group (YEARS) at First Dose"</span>,</span>
+<span id="cb12-43"><a href="#cb12-43"></a>    stat_variable <span class="sc">==</span> <span class="st">"SEX"</span> <span class="sc">~</span> <span class="st">"Sex"</span>,</span>
+<span id="cb12-44"><a href="#cb12-44"></a>    stat_variable <span class="sc">==</span> <span class="st">"RACE"</span> <span class="sc">~</span> <span class="st">"High Level Race"</span>,</span>
+<span id="cb12-45"><a href="#cb12-45"></a>    <span class="at">.default =</span> stat_variable</span>
+<span id="cb12-46"><a href="#cb12-46"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a>  <span class="co"># drop variables not needed</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a>  <span class="fu">select</span>(ACTARM, stat_variable, label, stat_name, stat, ord1, ord2) <span class="sc">|&gt;</span></span>
+<span id="cb12-49"><a href="#cb12-49"></a>  <span class="co"># remove duplicates (extra denominators per variable level)</span></span>
+<span id="cb12-50"><a href="#cb12-50"></a>  <span class="fu">unique</span>()</span>
+<span id="cb12-51"><a href="#cb12-51"></a></span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="co"># create a demographics table using {tfrmt}</span></span>
+<span id="cb12-53"><a href="#cb12-53"></a>DM_T01 <span class="ot">&lt;-</span> <span class="fu">tfrmt</span>(</span>
+<span id="cb12-54"><a href="#cb12-54"></a>  <span class="at">group =</span> stat_variable,</span>
+<span id="cb12-55"><a href="#cb12-55"></a>  <span class="at">label =</span> label,</span>
+<span id="cb12-56"><a href="#cb12-56"></a>  <span class="at">param =</span> stat_name,</span>
+<span id="cb12-57"><a href="#cb12-57"></a>  <span class="at">value =</span> stat,</span>
+<span id="cb12-58"><a href="#cb12-58"></a>  <span class="at">column =</span> ACTARM,</span>
+<span id="cb12-59"><a href="#cb12-59"></a>  <span class="at">sorting_cols =</span> <span class="fu">c</span>(ord1, ord2),</span>
+<span id="cb12-60"><a href="#cb12-60"></a>  <span class="at">body_plan =</span> <span class="fu">body_plan</span>(</span>
+<span id="cb12-61"><a href="#cb12-61"></a>    <span class="fu">frmt_structure</span>(<span class="at">group_val =</span> <span class="st">".default"</span>, <span class="at">label_val =</span> <span class="st">".default"</span>, <span class="fu">frmt</span>(<span class="st">"xxx"</span>)),</span>
+<span id="cb12-62"><a href="#cb12-62"></a>    <span class="fu">frmt_structure</span>(</span>
+<span id="cb12-63"><a href="#cb12-63"></a>      <span class="at">group_val =</span> <span class="st">".default"</span>, <span class="at">label_val =</span> <span class="st">".default"</span>,</span>
+<span id="cb12-64"><a href="#cb12-64"></a>      <span class="fu">frmt_combine</span>(<span class="st">"{n} ({p}%)"</span>,</span>
+<span id="cb12-65"><a href="#cb12-65"></a>        <span class="at">n =</span> <span class="fu">frmt</span>(<span class="st">"xxx"</span>),</span>
+<span id="cb12-66"><a href="#cb12-66"></a>        <span class="at">p =</span> <span class="fu">frmt</span>(<span class="st">"xx"</span>, <span class="at">transform =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb12-67"><a href="#cb12-67"></a>      )</span>
+<span id="cb12-68"><a href="#cb12-68"></a>    )</span>
+<span id="cb12-69"><a href="#cb12-69"></a>  ),</span>
+<span id="cb12-70"><a href="#cb12-70"></a>  <span class="at">big_n =</span> <span class="fu">big_n_structure</span>(<span class="at">param_val =</span> <span class="st">"bigN"</span>, <span class="at">n_frmt =</span> <span class="fu">frmt</span>(<span class="st">" (N=xx)"</span>)),</span>
+<span id="cb12-71"><a href="#cb12-71"></a>  <span class="at">col_plan =</span> <span class="fu">col_plan</span>(</span>
+<span id="cb12-72"><a href="#cb12-72"></a>    <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"ord"</span>)</span>
+<span id="cb12-73"><a href="#cb12-73"></a>  ),</span>
+<span id="cb12-74"><a href="#cb12-74"></a>  <span class="at">col_style_plan =</span> <span class="fu">col_style_plan</span>(</span>
+<span id="cb12-75"><a href="#cb12-75"></a>    <span class="fu">col_style_structure</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">"Placebo"</span>, <span class="st">"Xanomeline High Dose"</span>, <span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Total"</span>), <span class="at">align =</span> <span class="st">"left"</span>)</span>
+<span id="cb12-76"><a href="#cb12-76"></a>  ),</span>
+<span id="cb12-77"><a href="#cb12-77"></a>  <span class="at">row_grp_plan =</span> <span class="fu">row_grp_plan</span>(</span>
+<span id="cb12-78"><a href="#cb12-78"></a>    <span class="fu">row_grp_structure</span>(<span class="at">group_val =</span> <span class="st">".default"</span>, <span class="fu">element_block</span>(<span class="at">post_space =</span> <span class="st">" "</span>))</span>
+<span id="cb12-79"><a href="#cb12-79"></a>  )</span>
+<span id="cb12-80"><a href="#cb12-80"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb12-81"><a href="#cb12-81"></a>  <span class="fu">print_to_gt</span>(ard_tbl)</span>
+<span id="cb12-82"><a href="#cb12-82"></a></span>
+<span id="cb12-83"><a href="#cb12-83"></a>DM_T01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="lscbzneqnb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lscbzneqnb table {
+  font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lscbzneqnb thead, #lscbzneqnb tbody, #lscbzneqnb tfoot, #lscbzneqnb tr, #lscbzneqnb td, #lscbzneqnb th {
+  border-style: none;
+}
+
+#lscbzneqnb p {
+  margin: 0;
+  padding: 0;
+}
+
+#lscbzneqnb .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lscbzneqnb .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lscbzneqnb .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lscbzneqnb .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lscbzneqnb .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lscbzneqnb .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lscbzneqnb .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lscbzneqnb .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lscbzneqnb .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lscbzneqnb .gt_group_heading {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: rgba(255, 255, 255, 0);
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+  border-bottom-color: rgba(255, 255, 255, 0);
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lscbzneqnb .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: rgba(255, 255, 255, 0);
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+  border-bottom-color: rgba(255, 255, 255, 0);
+  vertical-align: middle;
+}
+
+#lscbzneqnb .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lscbzneqnb .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lscbzneqnb .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lscbzneqnb .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 0px;
+  border-right-color: rgba(255, 255, 255, 0);
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lscbzneqnb .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 0px;
+  border-right-color: rgba(255, 255, 255, 0);
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lscbzneqnb .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lscbzneqnb .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lscbzneqnb .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lscbzneqnb .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lscbzneqnb .gt_last_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lscbzneqnb .gt_first_grand_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_last_grand_summary_row_top {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lscbzneqnb .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lscbzneqnb .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lscbzneqnb .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lscbzneqnb .gt_left {
+  text-align: left;
+}
+
+#lscbzneqnb .gt_center {
+  text-align: center;
+}
+
+#lscbzneqnb .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lscbzneqnb .gt_font_normal {
+  font-weight: normal;
+}
+
+#lscbzneqnb .gt_font_bold {
+  font-weight: bold;
+}
+
+#lscbzneqnb .gt_font_italic {
+  font-style: italic;
+}
+
+#lscbzneqnb .gt_super {
+  font-size: 65%;
+}
+
+#lscbzneqnb .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lscbzneqnb .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lscbzneqnb .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lscbzneqnb .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lscbzneqnb .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lscbzneqnb .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lscbzneqnb .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lscbzneqnb .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lscbzneqnb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" style="text-align: left;" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="Placebo-(N=86)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 0px; border-top-style: solid; border-top-color: transparent;" scope="col">Placebo (N=86)</th>
+<th id="Xanomeline-High-Dose-(N=72)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 0px; border-top-style: solid; border-top-color: transparent;" scope="col">Xanomeline High Dose (N=72)</th>
+<th id="Xanomeline-Low-Dose-(N=96)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 0px; border-top-style: solid; border-top-color: transparent;" scope="col">Xanomeline Low Dose (N=96)</th>
+<th id="Total-(N=254)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="text-align: center; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 0px; border-top-style: solid; border-top-color: transparent;" scope="col">Total (N=254)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">Sex</th>
+<td class="gt_row gt_right" headers="stub_1_1 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_1 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_1 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_1 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+</tr>
+<tr class="even">
+<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;n</th>
+<td class="gt_row gt_right" headers="stub_1_2 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_2 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_2 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_2 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;FEMALE</th>
+<td class="gt_row gt_right" headers="stub_1_3 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;53 (62%)</td>
+<td class="gt_row gt_right" headers="stub_1_3 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;35 (49%)</td>
+<td class="gt_row gt_right" headers="stub_1_3 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;55 (57%)</td>
+<td class="gt_row gt_right" headers="stub_1_3 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">143 (56%)</td>
+</tr>
+<tr class="even">
+<th id="stub_1_4" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;MALE</th>
+<td class="gt_row gt_right" headers="stub_1_4 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;33 (38%)</td>
+<td class="gt_row gt_right" headers="stub_1_4 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;37 (51%)</td>
+<td class="gt_row gt_right" headers="stub_1_4 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;41 (43%)</td>
+<td class="gt_row gt_right" headers="stub_1_4 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">111 (44%)</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_5" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;</th>
+<td class="gt_row gt_right" headers="stub_1_5 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_5 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_5 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_5 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="even">
+<th id="stub_1_6" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">Age (YEARS) at First Dose</th>
+<td class="gt_row gt_right" headers="stub_1_6 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_6 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_6 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_6 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_7" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;n</th>
+<td class="gt_row gt_right" headers="stub_1_7 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_7 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_7 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_7 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="even">
+<th id="stub_1_8" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;Mean</th>
+<td class="gt_row gt_right" headers="stub_1_8 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_8 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;74&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_8 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;76&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_8 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_9" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;SD</th>
+<td class="gt_row gt_right" headers="stub_1_9 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_9 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_9 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_9 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="even">
+<th id="stub_1_10" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;Min</th>
+<td class="gt_row gt_right" headers="stub_1_10 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;52&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_10 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;56&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_10 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_10 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;51&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_11" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;Max</th>
+<td class="gt_row gt_right" headers="stub_1_11 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;89&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_11 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_11 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;88&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_11 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;89&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="even">
+<th id="stub_1_12" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;</th>
+<td class="gt_row gt_right" headers="stub_1_12 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_12 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_12 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_12 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_13" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">Age Group (YEARS) at First Dose</th>
+<td class="gt_row gt_right" headers="stub_1_13 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_13 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_13 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_13 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+</tr>
+<tr class="even">
+<th id="stub_1_14" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;n</th>
+<td class="gt_row gt_right" headers="stub_1_14 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_14 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_14 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_14 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_15" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;18-40</th>
+<td class="gt_row gt_right" headers="stub_1_15 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+<td class="gt_row gt_right" headers="stub_1_15 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+<td class="gt_row gt_right" headers="stub_1_15 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+<td class="gt_row gt_right" headers="stub_1_15 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+</tr>
+<tr class="even">
+<th id="stub_1_16" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;41-64</th>
+<td class="gt_row gt_right" headers="stub_1_16 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;14 (16%)</td>
+<td class="gt_row gt_right" headers="stub_1_16 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;11 (15%)</td>
+<td class="gt_row gt_right" headers="stub_1_16 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;8 ( 8%)</td>
+<td class="gt_row gt_right" headers="stub_1_16 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;33 (13%)</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_17" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&gt;=65</th>
+<td class="gt_row gt_right" headers="stub_1_17 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;72 (84%)</td>
+<td class="gt_row gt_right" headers="stub_1_17 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;61 (85%)</td>
+<td class="gt_row gt_right" headers="stub_1_17 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;88 (92%)</td>
+<td class="gt_row gt_right" headers="stub_1_17 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">221 (87%)</td>
+</tr>
+<tr class="even">
+<th id="stub_1_18" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;</th>
+<td class="gt_row gt_right" headers="stub_1_18 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_18 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_18 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_18 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_19" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">High Level Race</th>
+<td class="gt_row gt_right" headers="stub_1_19 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_19 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_19 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+<td class="gt_row gt_right" headers="stub_1_19 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;"><br>
+</td>
+</tr>
+<tr class="even">
+<th id="stub_1_20" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;n</th>
+<td class="gt_row gt_right" headers="stub_1_20 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_20 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_20 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;96&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_20 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_21" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;AMERICAN INDIAN OR ALASKA NATIVE</th>
+<td class="gt_row gt_right" headers="stub_1_21 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+<td class="gt_row gt_right" headers="stub_1_21 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;1 ( 1%)</td>
+<td class="gt_row gt_right" headers="stub_1_21 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;0 ( 0%)</td>
+<td class="gt_row gt_right" headers="stub_1_21 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;1 ( 0%)</td>
+</tr>
+<tr class="even">
+<th id="stub_1_22" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;BLACK OR AFRICAN AMERICAN</th>
+<td class="gt_row gt_right" headers="stub_1_22 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;8 ( 9%)</td>
+<td class="gt_row gt_right" headers="stub_1_22 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;9 (12%)</td>
+<td class="gt_row gt_right" headers="stub_1_22 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;6 ( 6%)</td>
+<td class="gt_row gt_right" headers="stub_1_22 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;23 ( 9%)</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_23" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;WHITE</th>
+<td class="gt_row gt_right" headers="stub_1_23 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;78 (91%)</td>
+<td class="gt_row gt_right" headers="stub_1_23 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;62 (86%)</td>
+<td class="gt_row gt_right" headers="stub_1_23 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;90 (94%)</td>
+<td class="gt_row gt_right" headers="stub_1_23 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">230 (91%)</td>
+</tr>
+<tr class="even">
+<th id="stub_1_24" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;</th>
+<td class="gt_row gt_right" headers="stub_1_24 Placebo (N=86)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_24 Xanomeline High Dose (N=72)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_24 Xanomeline Low Dose (N=96)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td class="gt_row gt_right" headers="stub_1_24 Total (N=254)" style="text-align: left; white-space: pre-wrap; font-family: Courier, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; border-top-width: 1px; border-top-style: solid; border-top-color: transparent; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: transparent;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+</div>
 </div>
 </div>
 
@@ -1837,151 +2594,254 @@ Race
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> "Demographic Table"</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co">---</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb12-8"><a href="#cb12-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb12-9"><a href="#cb12-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a>}</span>
-<span id="cb12-11"><a href="#cb12-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb12-12"><a href="#cb12-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="in">```</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="fu">## Introduction</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a></span>
-<span id="cb12-17"><a href="#cb12-17"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
-<span id="cb12-18"><a href="#cb12-18"></a></span>
-<span id="cb12-19"><a href="#cb12-19"></a>In the examples below, we illustrate two general approaches for creating a demographics table.</span>
-<span id="cb12-20"><a href="#cb12-20"></a>The first utilizes Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
-<span id="cb12-21"><a href="#cb12-21"></a>The second is the classic method of creating summary tables directly from a data set.</span>
-<span id="cb12-22"><a href="#cb12-22"></a></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="fu">## Data preprocessing</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a></span>
-<span id="cb12-25"><a href="#cb12-25"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
-<span id="cb12-26"><a href="#cb12-26"></a></span>
-<span id="cb12-27"><a href="#cb12-27"></a><span class="in">```{r preproc}</span></span>
-<span id="cb12-28"><a href="#cb12-28"></a><span class="co">#| message: false</span></span>
-<span id="cb12-29"><a href="#cb12-29"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb12-30"><a href="#cb12-30"></a></span>
-<span id="cb12-31"><a href="#cb12-31"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
-<span id="cb12-32"><a href="#cb12-32"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
-<span id="cb12-33"><a href="#cb12-33"></a>  <span class="fu">filter</span>(<span class="sc">!</span>ACTARM <span class="sc">%in%</span> <span class="st">"Screen Failure"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-34"><a href="#cb12-34"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-35"><a href="#cb12-35"></a>    <span class="at">SEX =</span> <span class="fu">case_match</span>(SEX, <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"MALE"</span>, <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"FEMALE"</span>),</span>
-<span id="cb12-36"><a href="#cb12-36"></a>    <span class="at">AGEGR1 =</span></span>
-<span id="cb12-37"><a href="#cb12-37"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb12-38"><a href="#cb12-38"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
-<span id="cb12-39"><a href="#cb12-39"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
-<span id="cb12-40"><a href="#cb12-40"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
-<span id="cb12-41"><a href="#cb12-41"></a>      ) <span class="sc">|&gt;</span></span>
-<span id="cb12-42"><a href="#cb12-42"></a>        <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
-<span id="cb12-43"><a href="#cb12-43"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-44"><a href="#cb12-44"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
-<span id="cb12-45"><a href="#cb12-45"></a>    <span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
-<span id="cb12-46"><a href="#cb12-46"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
-<span id="cb12-47"><a href="#cb12-47"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
-<span id="cb12-48"><a href="#cb12-48"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
-<span id="cb12-49"><a href="#cb12-49"></a>  )</span>
-<span id="cb12-50"><a href="#cb12-50"></a><span class="in">```</span></span>
-<span id="cb12-51"><a href="#cb12-51"></a></span>
-<span id="cb12-52"><a href="#cb12-52"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
-<span id="cb12-53"><a href="#cb12-53"></a></span>
-<span id="cb12-54"><a href="#cb12-54"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
-<span id="cb12-55"><a href="#cb12-55"></a></span>
-<span id="cb12-56"><a href="#cb12-56"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
-<span id="cb12-57"><a href="#cb12-57"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
-<span id="cb12-58"><a href="#cb12-58"></a></span>
-<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">#### ARD ➡ Table</span></span>
-<span id="cb12-60"><a href="#cb12-60"></a></span>
-<span id="cb12-61"><a href="#cb12-61"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
-<span id="cb12-62"><a href="#cb12-62"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
-<span id="cb12-63"><a href="#cb12-63"></a></span>
-<span id="cb12-64"><a href="#cb12-64"></a><span class="in">```{r gtsummary-table}</span></span>
-<span id="cb12-65"><a href="#cb12-65"></a><span class="co">#| message: false</span></span>
-<span id="cb12-66"><a href="#cb12-66"></a><span class="fu">library</span>(cards)</span>
-<span id="cb12-67"><a href="#cb12-67"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb12-68"><a href="#cb12-68"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
-<span id="cb12-69"><a href="#cb12-69"></a></span>
-<span id="cb12-70"><a href="#cb12-70"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
-<span id="cb12-71"><a href="#cb12-71"></a>ard <span class="ot">&lt;-</span></span>
-<span id="cb12-72"><a href="#cb12-72"></a>  <span class="fu">ard_stack</span>(</span>
-<span id="cb12-73"><a href="#cb12-73"></a>    adsl,</span>
-<span id="cb12-74"><a href="#cb12-74"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
-<span id="cb12-75"><a href="#cb12-75"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
-<span id="cb12-76"><a href="#cb12-76"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
-<span id="cb12-77"><a href="#cb12-77"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
-<span id="cb12-78"><a href="#cb12-78"></a>  )</span>
-<span id="cb12-79"><a href="#cb12-79"></a></span>
-<span id="cb12-80"><a href="#cb12-80"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
-<span id="cb12-81"><a href="#cb12-81"></a><span class="fu">tbl_ard_summary</span>(</span>
-<span id="cb12-82"><a href="#cb12-82"></a>  <span class="at">cards =</span> ard,</span>
-<span id="cb12-83"><a href="#cb12-83"></a>  <span class="at">by =</span> ACTARM,</span>
-<span id="cb12-84"><a href="#cb12-84"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
-<span id="cb12-85"><a href="#cb12-85"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
-<span id="cb12-86"><a href="#cb12-86"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
-<span id="cb12-87"><a href="#cb12-87"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb12-88"><a href="#cb12-88"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
-<span id="cb12-89"><a href="#cb12-89"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
-<span id="cb12-90"><a href="#cb12-90"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span>
-<span id="cb12-91"><a href="#cb12-91"></a><span class="in">```</span></span>
-<span id="cb12-92"><a href="#cb12-92"></a></span>
-<span id="cb12-93"><a href="#cb12-93"></a><span class="fu">#### Table ➡ ARD</span></span>
-<span id="cb12-94"><a href="#cb12-94"></a></span>
-<span id="cb12-95"><a href="#cb12-95"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
-<span id="cb12-96"><a href="#cb12-96"></a></span>
-<span id="cb12-97"><a href="#cb12-97"></a><span class="in">```{r gtsummary-ard}</span></span>
-<span id="cb12-98"><a href="#cb12-98"></a><span class="co"># build demographics table directly from a data frame</span></span>
-<span id="cb12-99"><a href="#cb12-99"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
-<span id="cb12-100"><a href="#cb12-100"></a></span>
-<span id="cb12-101"><a href="#cb12-101"></a><span class="co"># extract ARD from table object</span></span>
-<span id="cb12-102"><a href="#cb12-102"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span>
-<span id="cb12-103"><a href="#cb12-103"></a><span class="in">```</span></span>
-<span id="cb12-104"><a href="#cb12-104"></a></span>
-<span id="cb12-105"><a href="#cb12-105"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
-<span id="cb12-106"><a href="#cb12-106"></a></span>
-<span id="cb12-107"><a href="#cb12-107"></a>The packages used with a brief description of their purpose are as follows:</span>
-<span id="cb12-108"><a href="#cb12-108"></a></span>
-<span id="cb12-109"><a href="#cb12-109"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
-<span id="cb12-110"><a href="#cb12-110"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
-<span id="cb12-111"><a href="#cb12-111"></a></span>
-<span id="cb12-112"><a href="#cb12-112"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
-<span id="cb12-113"><a href="#cb12-113"></a></span>
-<span id="cb12-114"><a href="#cb12-114"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
-<span id="cb12-115"><a href="#cb12-115"></a></span>
-<span id="cb12-116"><a href="#cb12-116"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb12-117"><a href="#cb12-117"></a><span class="fu">library</span>(tern)</span>
-<span id="cb12-118"><a href="#cb12-118"></a></span>
-<span id="cb12-119"><a href="#cb12-119"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
-<span id="cb12-120"><a href="#cb12-120"></a>  <span class="fu">df_explicit_na</span>()</span>
-<span id="cb12-121"><a href="#cb12-121"></a><span class="in">```</span></span>
-<span id="cb12-122"><a href="#cb12-122"></a></span>
-<span id="cb12-123"><a href="#cb12-123"></a>Now we create the demographic table.</span>
-<span id="cb12-124"><a href="#cb12-124"></a></span>
-<span id="cb12-125"><a href="#cb12-125"></a><span class="in">```{r rtables-table}</span></span>
-<span id="cb12-126"><a href="#cb12-126"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb12-127"><a href="#cb12-127"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb12-128"><a href="#cb12-128"></a>  <span class="st">"Age (yr)"</span>,</span>
-<span id="cb12-129"><a href="#cb12-129"></a>  <span class="st">"Age group"</span>,</span>
-<span id="cb12-130"><a href="#cb12-130"></a>  <span class="st">"Sex"</span>,</span>
-<span id="cb12-131"><a href="#cb12-131"></a>  <span class="st">"Race"</span></span>
-<span id="cb12-132"><a href="#cb12-132"></a>)</span>
-<span id="cb12-133"><a href="#cb12-133"></a></span>
-<span id="cb12-134"><a href="#cb12-134"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-135"><a href="#cb12-135"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-136"><a href="#cb12-136"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-137"><a href="#cb12-137"></a>  <span class="fu">analyze_vars</span>(</span>
-<span id="cb12-138"><a href="#cb12-138"></a>    <span class="at">vars =</span> vars,</span>
-<span id="cb12-139"><a href="#cb12-139"></a>    <span class="at">var_labels =</span> var_labels</span>
-<span id="cb12-140"><a href="#cb12-140"></a>  )</span>
-<span id="cb12-141"><a href="#cb12-141"></a></span>
-<span id="cb12-142"><a href="#cb12-142"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
-<span id="cb12-143"><a href="#cb12-143"></a></span>
-<span id="cb12-144"><a href="#cb12-144"></a>result</span>
-<span id="cb12-145"><a href="#cb12-145"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1"></a><span class="co">---</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="an">title:</span><span class="co"> "Demographic Table"</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="an">order:</span><span class="co"> 1</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">---</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb13-8"><a href="#cb13-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb13-12"><a href="#cb13-12"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="in">```</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="fu">## Introduction</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a>This guide will show you how pharmaverse packages, along with some from tidyverse, can be used to create a Demographic table, using the <span class="in">`{pharmaverseadam}`</span> <span class="in">`ADSL`</span> data as an input.</span>
+<span id="cb13-18"><a href="#cb13-18"></a></span>
+<span id="cb13-19"><a href="#cb13-19"></a>In the examples below, we illustrate three general approaches for creating a demographics table.</span>
+<span id="cb13-20"><a href="#cb13-20"></a>The first and third utilize Analysis Results Datasets---part of the emerging <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>.</span>
+<span id="cb13-21"><a href="#cb13-21"></a>The second is the classic method of creating summary tables directly from a data set.</span>
+<span id="cb13-22"><a href="#cb13-22"></a><span class="fu">## Multiple Approaches Shown</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a></span>
+<span id="cb13-24"><a href="#cb13-24"></a>This example includes:</span>
+<span id="cb13-25"><a href="#cb13-25"></a></span>
+<span id="cb13-26"><a href="#cb13-26"></a><span class="ss">-   </span>**ARD-based approaches**: <span class="in">`{cards}`</span> + <span class="in">`{gtsummary}`</span> or <span class="in">`{tfrmt}`</span> - Creates structured Analysis Results Datasets following CDISC standards, then formats them into tables</span>
+<span id="cb13-27"><a href="#cb13-27"></a><span class="ss">-   </span>**Classic approach**: <span class="in">`{rtables}`</span> + <span class="in">`{tern}`</span> - Direct table creation from datasets using mature, stable packages</span>
+<span id="cb13-28"><a href="#cb13-28"></a></span>
+<span id="cb13-29"><a href="#cb13-29"></a><span class="fu">## Data preprocessing</span></span>
+<span id="cb13-30"><a href="#cb13-30"></a></span>
+<span id="cb13-31"><a href="#cb13-31"></a>Now we will add some pre-processing to create some extra formatted variables ready for display in the table.</span>
+<span id="cb13-32"><a href="#cb13-32"></a></span>
+<span id="cb13-33"><a href="#cb13-33"></a><span class="in">```{r preproc}</span></span>
+<span id="cb13-34"><a href="#cb13-34"></a><span class="co">#| message: false</span></span>
+<span id="cb13-35"><a href="#cb13-35"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-36"><a href="#cb13-36"></a></span>
+<span id="cb13-37"><a href="#cb13-37"></a><span class="co"># Create categorical variables, remove screen failures, and assign column labels</span></span>
+<span id="cb13-38"><a href="#cb13-38"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl <span class="sc">|&gt;</span></span>
+<span id="cb13-39"><a href="#cb13-39"></a>  <span class="fu">filter</span>(<span class="sc">!</span>ACTARM <span class="sc">%in%</span> <span class="st">"Screen Failure"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-40"><a href="#cb13-40"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-41"><a href="#cb13-41"></a>    <span class="at">SEX =</span> <span class="fu">case_match</span>(SEX, <span class="st">"M"</span> <span class="sc">~</span> <span class="st">"MALE"</span>, <span class="st">"F"</span> <span class="sc">~</span> <span class="st">"FEMALE"</span>),</span>
+<span id="cb13-42"><a href="#cb13-42"></a>    <span class="at">AGEGR1 =</span></span>
+<span id="cb13-43"><a href="#cb13-43"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb13-44"><a href="#cb13-44"></a>        <span class="fu">between</span>(AGE, <span class="dv">18</span>, <span class="dv">40</span>) <span class="sc">~</span> <span class="st">"18-40"</span>,</span>
+<span id="cb13-45"><a href="#cb13-45"></a>        <span class="fu">between</span>(AGE, <span class="dv">41</span>, <span class="dv">64</span>) <span class="sc">~</span> <span class="st">"41-64"</span>,</span>
+<span id="cb13-46"><a href="#cb13-46"></a>        AGE <span class="sc">&gt;</span> <span class="dv">64</span> <span class="sc">~</span> <span class="st">"&gt;=65"</span></span>
+<span id="cb13-47"><a href="#cb13-47"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb13-48"><a href="#cb13-48"></a>        <span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"18-40"</span>, <span class="st">"41-64"</span>, <span class="st">"&gt;=65"</span>))</span>
+<span id="cb13-49"><a href="#cb13-49"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-50"><a href="#cb13-50"></a>  labelled<span class="sc">::</span><span class="fu">set_variable_labels</span>(</span>
+<span id="cb13-51"><a href="#cb13-51"></a>    <span class="at">AGE =</span> <span class="st">"Age (yr)"</span>,</span>
+<span id="cb13-52"><a href="#cb13-52"></a>    <span class="at">AGEGR1 =</span> <span class="st">"Age group"</span>,</span>
+<span id="cb13-53"><a href="#cb13-53"></a>    <span class="at">SEX =</span> <span class="st">"Sex"</span>,</span>
+<span id="cb13-54"><a href="#cb13-54"></a>    <span class="at">RACE =</span> <span class="st">"Race"</span></span>
+<span id="cb13-55"><a href="#cb13-55"></a>  )</span>
+<span id="cb13-56"><a href="#cb13-56"></a><span class="in">```</span></span>
+<span id="cb13-57"><a href="#cb13-57"></a></span>
+<span id="cb13-58"><a href="#cb13-58"></a><span class="fu">## {gtsummary} &amp; {cards}</span></span>
+<span id="cb13-59"><a href="#cb13-59"></a></span>
+<span id="cb13-60"><a href="#cb13-60"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{gtsummary}</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
+<span id="cb13-61"><a href="#cb13-61"></a></span>
+<span id="cb13-62"><a href="#cb13-62"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
+<span id="cb13-63"><a href="#cb13-63"></a><span class="ss">- </span>The {gtsummary} utilizes ARDs to create tables.</span>
+<span id="cb13-64"><a href="#cb13-64"></a></span>
+<span id="cb13-65"><a href="#cb13-65"></a><span class="fu">#### ARD ➡ Table</span></span>
+<span id="cb13-66"><a href="#cb13-66"></a></span>
+<span id="cb13-67"><a href="#cb13-67"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
+<span id="cb13-68"><a href="#cb13-68"></a>Then, we use the ARD to build the demographics table with {gtsummary}.</span>
+<span id="cb13-69"><a href="#cb13-69"></a></span>
+<span id="cb13-70"><a href="#cb13-70"></a><span class="in">```{r gtsummary-table}</span></span>
+<span id="cb13-71"><a href="#cb13-71"></a><span class="co">#| message: false</span></span>
+<span id="cb13-72"><a href="#cb13-72"></a><span class="fu">library</span>(cards)</span>
+<span id="cb13-73"><a href="#cb13-73"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb13-74"><a href="#cb13-74"></a><span class="fu">theme_gtsummary_compact</span>() <span class="co"># reduce default padding and font size for a gt table</span></span>
+<span id="cb13-75"><a href="#cb13-75"></a></span>
+<span id="cb13-76"><a href="#cb13-76"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
+<span id="cb13-77"><a href="#cb13-77"></a>ard <span class="ot">&lt;-</span></span>
+<span id="cb13-78"><a href="#cb13-78"></a>  <span class="fu">ard_stack</span>(</span>
+<span id="cb13-79"><a href="#cb13-79"></a>    adsl,</span>
+<span id="cb13-80"><a href="#cb13-80"></a>    <span class="fu">ard_continuous</span>(<span class="at">variables =</span> AGE),</span>
+<span id="cb13-81"><a href="#cb13-81"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
+<span id="cb13-82"><a href="#cb13-82"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
+<span id="cb13-83"><a href="#cb13-83"></a>    <span class="at">.attributes =</span> <span class="cn">TRUE</span> <span class="co"># optionally include column labels in the ARD</span></span>
+<span id="cb13-84"><a href="#cb13-84"></a>  )</span>
+<span id="cb13-85"><a href="#cb13-85"></a></span>
+<span id="cb13-86"><a href="#cb13-86"></a><span class="co"># use the ARD to create a demographics table using {gtsummary}</span></span>
+<span id="cb13-87"><a href="#cb13-87"></a><span class="fu">tbl_ard_summary</span>(</span>
+<span id="cb13-88"><a href="#cb13-88"></a>  <span class="at">cards =</span> ard,</span>
+<span id="cb13-89"><a href="#cb13-89"></a>  <span class="at">by =</span> ACTARM,</span>
+<span id="cb13-90"><a href="#cb13-90"></a>  <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE),</span>
+<span id="cb13-91"><a href="#cb13-91"></a>  <span class="at">type =</span> AGE <span class="sc">~</span> <span class="st">"continuous2"</span>,</span>
+<span id="cb13-92"><a href="#cb13-92"></a>  <span class="at">statistic =</span> AGE <span class="sc">~</span> <span class="fu">c</span>(<span class="st">"{N}"</span>, <span class="st">"{mean} ({sd})"</span>, <span class="st">"{median} ({p25}, {p75})"</span>, <span class="st">"{min}, {max}"</span>)</span>
+<span id="cb13-93"><a href="#cb13-93"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-94"><a href="#cb13-94"></a>  <span class="fu">bold_labels</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-95"><a href="#cb13-95"></a>  <span class="fu">modify_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**{level}**  </span><span class="sc">\n</span><span class="st">N = {n}"</span>) <span class="sc">|&gt;</span> <span class="co"># add Ns to header</span></span>
+<span id="cb13-96"><a href="#cb13-96"></a>  <span class="fu">modify_footnote</span>(<span class="fu">everything</span>() <span class="sc">~</span> <span class="cn">NA</span>) <span class="co"># remove default footnote</span></span>
+<span id="cb13-97"><a href="#cb13-97"></a><span class="in">```</span></span>
+<span id="cb13-98"><a href="#cb13-98"></a></span>
+<span id="cb13-99"><a href="#cb13-99"></a><span class="fu">#### Table ➡ ARD</span></span>
+<span id="cb13-100"><a href="#cb13-100"></a></span>
+<span id="cb13-101"><a href="#cb13-101"></a>One may also build the demographics in the classic way using <span class="in">`gtsummary::tbl_summary()`</span> from a data frame, then extract the ARD from the table object.</span>
+<span id="cb13-102"><a href="#cb13-102"></a></span>
+<span id="cb13-103"><a href="#cb13-103"></a><span class="in">```{r gtsummary-ard}</span></span>
+<span id="cb13-104"><a href="#cb13-104"></a><span class="co"># build demographics table directly from a data frame</span></span>
+<span id="cb13-105"><a href="#cb13-105"></a>tbl <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span> <span class="fu">tbl_summary</span>(<span class="at">by =</span> ACTARM, <span class="at">include =</span> <span class="fu">c</span>(AGE, AGEGR1, SEX, RACE))</span>
+<span id="cb13-106"><a href="#cb13-106"></a></span>
+<span id="cb13-107"><a href="#cb13-107"></a><span class="co"># extract ARD from table object</span></span>
+<span id="cb13-108"><a href="#cb13-108"></a><span class="fu">gather_ard</span>(tbl)[[<span class="dv">1</span>]] <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>gts_column) <span class="co"># removing column so ARD fits on page</span></span>
+<span id="cb13-109"><a href="#cb13-109"></a><span class="in">```</span></span>
+<span id="cb13-110"><a href="#cb13-110"></a></span>
+<span id="cb13-111"><a href="#cb13-111"></a><span class="fu">## {rtables} &amp; {tern}</span></span>
+<span id="cb13-112"><a href="#cb13-112"></a></span>
+<span id="cb13-113"><a href="#cb13-113"></a>The packages used with a brief description of their purpose are as follows:</span>
+<span id="cb13-114"><a href="#cb13-114"></a></span>
+<span id="cb13-115"><a href="#cb13-115"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span>: designed to create and display complex tables with R.</span>
+<span id="cb13-116"><a href="#cb13-116"></a><span class="ss">* </span><span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span>: contains analysis functions to create tables and graphs used for clinical trial reporting.</span>
+<span id="cb13-117"><a href="#cb13-117"></a></span>
+<span id="cb13-118"><a href="#cb13-118"></a>After installation of packages, the first step is to load our pharmaverse packages and input data. Here, we are going to encode missing entries in a data frame <span class="in">`adsl`</span>.</span>
+<span id="cb13-119"><a href="#cb13-119"></a></span>
+<span id="cb13-120"><a href="#cb13-120"></a>Note that <span class="in">`{tern}`</span> depends on <span class="in">`{rtables}`</span> so the latter is automatically attached.</span>
+<span id="cb13-121"><a href="#cb13-121"></a></span>
+<span id="cb13-122"><a href="#cb13-122"></a><span class="in">```{r rtables-setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb13-123"><a href="#cb13-123"></a><span class="fu">library</span>(tern)</span>
+<span id="cb13-124"><a href="#cb13-124"></a></span>
+<span id="cb13-125"><a href="#cb13-125"></a>adsl2 <span class="ot">&lt;-</span> adsl <span class="sc">|&gt;</span></span>
+<span id="cb13-126"><a href="#cb13-126"></a>  <span class="fu">df_explicit_na</span>()</span>
+<span id="cb13-127"><a href="#cb13-127"></a><span class="in">```</span></span>
+<span id="cb13-128"><a href="#cb13-128"></a></span>
+<span id="cb13-129"><a href="#cb13-129"></a>Now we create the demographic table.</span>
+<span id="cb13-130"><a href="#cb13-130"></a></span>
+<span id="cb13-131"><a href="#cb13-131"></a><span class="in">```{r rtables-table}</span></span>
+<span id="cb13-132"><a href="#cb13-132"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb13-133"><a href="#cb13-133"></a>var_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-134"><a href="#cb13-134"></a>  <span class="st">"Age (yr)"</span>,</span>
+<span id="cb13-135"><a href="#cb13-135"></a>  <span class="st">"Age group"</span>,</span>
+<span id="cb13-136"><a href="#cb13-136"></a>  <span class="st">"Sex"</span>,</span>
+<span id="cb13-137"><a href="#cb13-137"></a>  <span class="st">"Race"</span></span>
+<span id="cb13-138"><a href="#cb13-138"></a>)</span>
+<span id="cb13-139"><a href="#cb13-139"></a></span>
+<span id="cb13-140"><a href="#cb13-140"></a>lyt <span class="ot">&lt;-</span> <span class="fu">basic_table</span>(<span class="at">show_colcounts =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-141"><a href="#cb13-141"></a>  <span class="fu">split_cols_by</span>(<span class="at">var =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-142"><a href="#cb13-142"></a>  <span class="fu">add_overall_col</span>(<span class="st">"All Patients"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-143"><a href="#cb13-143"></a>  <span class="fu">analyze_vars</span>(</span>
+<span id="cb13-144"><a href="#cb13-144"></a>    <span class="at">vars =</span> vars,</span>
+<span id="cb13-145"><a href="#cb13-145"></a>    <span class="at">var_labels =</span> var_labels</span>
+<span id="cb13-146"><a href="#cb13-146"></a>  )</span>
+<span id="cb13-147"><a href="#cb13-147"></a></span>
+<span id="cb13-148"><a href="#cb13-148"></a>result <span class="ot">&lt;-</span> <span class="fu">build_table</span>(lyt, adsl2)</span>
+<span id="cb13-149"><a href="#cb13-149"></a></span>
+<span id="cb13-150"><a href="#cb13-150"></a>result</span>
+<span id="cb13-151"><a href="#cb13-151"></a><span class="in">```</span></span>
+<span id="cb13-152"><a href="#cb13-152"></a></span>
+<span id="cb13-153"><a href="#cb13-153"></a><span class="fu">## {tfrmt} &amp; {cards}</span></span>
+<span id="cb13-154"><a href="#cb13-154"></a></span>
+<span id="cb13-155"><a href="#cb13-155"></a>In the example below, we will use the <span class="co">[</span><span class="ot">{tfrmt}</span><span class="co">](https://github.com/GSK-Biostatistics/tfrmt)</span> and <span class="co">[</span><span class="ot">{cards}</span><span class="co">](https://insightsengineering.github.io/cards/)</span> packages to create a demographics tables.</span>
+<span id="cb13-156"><a href="#cb13-156"></a></span>
+<span id="cb13-157"><a href="#cb13-157"></a><span class="ss">- </span>The {cards} package creates Analysis Results Datasets (ARDs, which are a part of the <span class="co">[</span><span class="ot">CDISC Analysis Results Standard</span><span class="co">](https://www.cdisc.org/standards/foundational/analysis-results-standard)</span>).</span>
+<span id="cb13-158"><a href="#cb13-158"></a><span class="ss">- </span>The {tfrmt} utilizes ARDs to create tables.</span>
+<span id="cb13-159"><a href="#cb13-159"></a></span>
+<span id="cb13-160"><a href="#cb13-160"></a>In the example below, we first build an ARD with the needed summary statistics using {cards}.</span>
+<span id="cb13-161"><a href="#cb13-161"></a>Then, we use the ARD to build the demographics table with {tfrmt}.</span>
+<span id="cb13-162"><a href="#cb13-162"></a></span>
+<span id="cb13-163"><a href="#cb13-163"></a><span class="in">```{r tfrmt-table}</span></span>
+<span id="cb13-164"><a href="#cb13-164"></a><span class="co">#| message: false</span></span>
+<span id="cb13-165"><a href="#cb13-165"></a><span class="fu">library</span>(cards)</span>
+<span id="cb13-166"><a href="#cb13-166"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb13-167"><a href="#cb13-167"></a><span class="fu">library</span>(tfrmt)</span>
+<span id="cb13-168"><a href="#cb13-168"></a></span>
+<span id="cb13-169"><a href="#cb13-169"></a><span class="co"># build the ARD with the needed summary statistics using {cards}</span></span>
+<span id="cb13-170"><a href="#cb13-170"></a>ard <span class="ot">&lt;-</span></span>
+<span id="cb13-171"><a href="#cb13-171"></a>  <span class="fu">ard_stack</span>(</span>
+<span id="cb13-172"><a href="#cb13-172"></a>    adsl,</span>
+<span id="cb13-173"><a href="#cb13-173"></a>    <span class="fu">ard_continuous</span>(</span>
+<span id="cb13-174"><a href="#cb13-174"></a>      <span class="at">variables =</span> AGE,</span>
+<span id="cb13-175"><a href="#cb13-175"></a>      <span class="at">statistic =</span> <span class="sc">~</span> <span class="fu">continuous_summary_fns</span>(<span class="fu">c</span>(<span class="st">"N"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"max"</span>))</span>
+<span id="cb13-176"><a href="#cb13-176"></a>    ),</span>
+<span id="cb13-177"><a href="#cb13-177"></a>    <span class="fu">ard_categorical</span>(<span class="at">variables =</span> <span class="fu">c</span>(AGEGR1, SEX, RACE)),</span>
+<span id="cb13-178"><a href="#cb13-178"></a>    <span class="at">.by =</span> ACTARM, <span class="co"># split results by treatment arm</span></span>
+<span id="cb13-179"><a href="#cb13-179"></a>    <span class="at">.overall =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-180"><a href="#cb13-180"></a>    <span class="at">.total_n =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-181"><a href="#cb13-181"></a>  )</span>
+<span id="cb13-182"><a href="#cb13-182"></a></span>
+<span id="cb13-183"><a href="#cb13-183"></a><span class="co"># tidy the ARD for use in {tfrmt}</span></span>
+<span id="cb13-184"><a href="#cb13-184"></a>ard_tbl <span class="ot">&lt;-</span></span>
+<span id="cb13-185"><a href="#cb13-185"></a>  ard <span class="sc">|&gt;</span></span>
+<span id="cb13-186"><a href="#cb13-186"></a>  <span class="co"># reshape the data</span></span>
+<span id="cb13-187"><a href="#cb13-187"></a>  <span class="fu">shuffle_card</span>(<span class="at">fill_overall =</span> <span class="st">"Total"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-188"><a href="#cb13-188"></a>  <span class="co"># transform group-level freqs/pcts into a singular "bigN" row</span></span>
+<span id="cb13-189"><a href="#cb13-189"></a>  <span class="fu">prep_big_n</span>(<span class="at">vars =</span> <span class="st">"ACTARM"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-190"><a href="#cb13-190"></a>  <span class="co"># consolidate vars into a single variable column</span></span>
+<span id="cb13-191"><a href="#cb13-191"></a>  <span class="fu">prep_combine_vars</span>(<span class="at">vars =</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"AGEGR1"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-192"><a href="#cb13-192"></a>  <span class="co"># coalesce categorical levels + continuous stats into a "label"</span></span>
+<span id="cb13-193"><a href="#cb13-193"></a>  <span class="fu">prep_label</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-194"><a href="#cb13-194"></a>  <span class="fu">group_by</span>(ACTARM, stat_variable) <span class="sc">|&gt;</span></span>
+<span id="cb13-195"><a href="#cb13-195"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(variable_level, label), <span class="sc">~</span> <span class="fu">ifelse</span>(stat_name <span class="sc">==</span> <span class="st">"N"</span>, <span class="st">"n"</span>, .x))) <span class="sc">|&gt;</span></span>
+<span id="cb13-196"><a href="#cb13-196"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-197"><a href="#cb13-197"></a>  <span class="fu">unique</span>() <span class="sc">|&gt;</span></span>
+<span id="cb13-198"><a href="#cb13-198"></a>  <span class="co"># sorting</span></span>
+<span id="cb13-199"><a href="#cb13-199"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-200"><a href="#cb13-200"></a>    <span class="at">ord1 =</span> <span class="fu">fct_inorder</span>(stat_variable) <span class="sc">|&gt;</span> <span class="fu">fct_relevel</span>(<span class="st">"SEX"</span>, <span class="at">after =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">as.numeric</span>(),</span>
+<span id="cb13-201"><a href="#cb13-201"></a>    <span class="at">ord2 =</span> <span class="fu">ifelse</span>(label <span class="sc">==</span> <span class="st">"n"</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb13-202"><a href="#cb13-202"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-203"><a href="#cb13-203"></a>  <span class="co"># relabel the variables</span></span>
+<span id="cb13-204"><a href="#cb13-204"></a>  <span class="fu">mutate</span>(<span class="at">stat_variable =</span> <span class="fu">case_when</span>(</span>
+<span id="cb13-205"><a href="#cb13-205"></a>    stat_variable <span class="sc">==</span> <span class="st">"AGE"</span> <span class="sc">~</span> <span class="st">"Age (YEARS) at First Dose"</span>,</span>
+<span id="cb13-206"><a href="#cb13-206"></a>    stat_variable <span class="sc">==</span> <span class="st">"AGEGR1"</span> <span class="sc">~</span> <span class="st">"Age Group (YEARS) at First Dose"</span>,</span>
+<span id="cb13-207"><a href="#cb13-207"></a>    stat_variable <span class="sc">==</span> <span class="st">"SEX"</span> <span class="sc">~</span> <span class="st">"Sex"</span>,</span>
+<span id="cb13-208"><a href="#cb13-208"></a>    stat_variable <span class="sc">==</span> <span class="st">"RACE"</span> <span class="sc">~</span> <span class="st">"High Level Race"</span>,</span>
+<span id="cb13-209"><a href="#cb13-209"></a>    <span class="at">.default =</span> stat_variable</span>
+<span id="cb13-210"><a href="#cb13-210"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb13-211"><a href="#cb13-211"></a>  <span class="co"># drop variables not needed</span></span>
+<span id="cb13-212"><a href="#cb13-212"></a>  <span class="fu">select</span>(ACTARM, stat_variable, label, stat_name, stat, ord1, ord2) <span class="sc">|&gt;</span></span>
+<span id="cb13-213"><a href="#cb13-213"></a>  <span class="co"># remove duplicates (extra denominators per variable level)</span></span>
+<span id="cb13-214"><a href="#cb13-214"></a>  <span class="fu">unique</span>()</span>
+<span id="cb13-215"><a href="#cb13-215"></a></span>
+<span id="cb13-216"><a href="#cb13-216"></a><span class="co"># create a demographics table using {tfrmt}</span></span>
+<span id="cb13-217"><a href="#cb13-217"></a>DM_T01 <span class="ot">&lt;-</span> <span class="fu">tfrmt</span>(</span>
+<span id="cb13-218"><a href="#cb13-218"></a>  <span class="at">group =</span> stat_variable,</span>
+<span id="cb13-219"><a href="#cb13-219"></a>  <span class="at">label =</span> label,</span>
+<span id="cb13-220"><a href="#cb13-220"></a>  <span class="at">param =</span> stat_name,</span>
+<span id="cb13-221"><a href="#cb13-221"></a>  <span class="at">value =</span> stat,</span>
+<span id="cb13-222"><a href="#cb13-222"></a>  <span class="at">column =</span> ACTARM,</span>
+<span id="cb13-223"><a href="#cb13-223"></a>  <span class="at">sorting_cols =</span> <span class="fu">c</span>(ord1, ord2),</span>
+<span id="cb13-224"><a href="#cb13-224"></a>  <span class="at">body_plan =</span> <span class="fu">body_plan</span>(</span>
+<span id="cb13-225"><a href="#cb13-225"></a>    <span class="fu">frmt_structure</span>(<span class="at">group_val =</span> <span class="st">".default"</span>, <span class="at">label_val =</span> <span class="st">".default"</span>, <span class="fu">frmt</span>(<span class="st">"xxx"</span>)),</span>
+<span id="cb13-226"><a href="#cb13-226"></a>    <span class="fu">frmt_structure</span>(</span>
+<span id="cb13-227"><a href="#cb13-227"></a>      <span class="at">group_val =</span> <span class="st">".default"</span>, <span class="at">label_val =</span> <span class="st">".default"</span>,</span>
+<span id="cb13-228"><a href="#cb13-228"></a>      <span class="fu">frmt_combine</span>(<span class="st">"{n} ({p}%)"</span>,</span>
+<span id="cb13-229"><a href="#cb13-229"></a>        <span class="at">n =</span> <span class="fu">frmt</span>(<span class="st">"xxx"</span>),</span>
+<span id="cb13-230"><a href="#cb13-230"></a>        <span class="at">p =</span> <span class="fu">frmt</span>(<span class="st">"xx"</span>, <span class="at">transform =</span> <span class="sc">~</span> . <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb13-231"><a href="#cb13-231"></a>      )</span>
+<span id="cb13-232"><a href="#cb13-232"></a>    )</span>
+<span id="cb13-233"><a href="#cb13-233"></a>  ),</span>
+<span id="cb13-234"><a href="#cb13-234"></a>  <span class="at">big_n =</span> <span class="fu">big_n_structure</span>(<span class="at">param_val =</span> <span class="st">"bigN"</span>, <span class="at">n_frmt =</span> <span class="fu">frmt</span>(<span class="st">" (N=xx)"</span>)),</span>
+<span id="cb13-235"><a href="#cb13-235"></a>  <span class="at">col_plan =</span> <span class="fu">col_plan</span>(</span>
+<span id="cb13-236"><a href="#cb13-236"></a>    <span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"ord"</span>)</span>
+<span id="cb13-237"><a href="#cb13-237"></a>  ),</span>
+<span id="cb13-238"><a href="#cb13-238"></a>  <span class="at">col_style_plan =</span> <span class="fu">col_style_plan</span>(</span>
+<span id="cb13-239"><a href="#cb13-239"></a>    <span class="fu">col_style_structure</span>(<span class="at">col =</span> <span class="fu">c</span>(<span class="st">"Placebo"</span>, <span class="st">"Xanomeline High Dose"</span>, <span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Total"</span>), <span class="at">align =</span> <span class="st">"left"</span>)</span>
+<span id="cb13-240"><a href="#cb13-240"></a>  ),</span>
+<span id="cb13-241"><a href="#cb13-241"></a>  <span class="at">row_grp_plan =</span> <span class="fu">row_grp_plan</span>(</span>
+<span id="cb13-242"><a href="#cb13-242"></a>    <span class="fu">row_grp_structure</span>(<span class="at">group_val =</span> <span class="st">".default"</span>, <span class="fu">element_block</span>(<span class="at">post_space =</span> <span class="st">" "</span>))</span>
+<span id="cb13-243"><a href="#cb13-243"></a>  )</span>
+<span id="cb13-244"><a href="#cb13-244"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-245"><a href="#cb13-245"></a>  <span class="fu">print_to_gt</span>(ard_tbl)</span>
+<span id="cb13-246"><a href="#cb13-246"></a></span>
+<span id="cb13-247"><a href="#cb13-247"></a>DM_T01</span>
+<span id="cb13-248"><a href="#cb13-248"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
