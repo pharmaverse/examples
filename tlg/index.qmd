@@ -38,7 +38,7 @@ The examples showcase **two distinct approaches** for generating publication-qua
 
 **Workflow:** Data → Formatted Table (single step)
 
-::: callout-tip
+::: {.callout-tip}
 ## Getting Started
 
 Both approaches produce publication-quality outputs - the choice depends on your workflow and organizational standards. ARDs represent the emerging standard for structured analysis results, while the classic approach offers a mature, stable ecosystem with extensive layout capabilities.
@@ -52,12 +52,12 @@ These examples leverage the CDISC Analysis Results Standard, creating structured
 
 #### Demographic Tables
 
--   [**{cards} + {gtsummary}**](demographic.qmd#gtsummary-cards) - Build demographics from ARDs with bidirectional workflow (ARD → Table or Table → ARD)
--   [**{cards} + {tfrmt}**](demographic.qmd#tfrmt-cards) - Create highly customized demographic tables from ARDs
+-   **[{cards} + {gtsummary}](demographic.qmd#gtsummary-cards)** - Build demographics from ARDs with bidirectional workflow (ARD → Table or Table → ARD)
+-   **[{cards} + {tfrmt}](demographic.qmd#tfrmt-cards)** - Create highly customized demographic tables from ARDs
 
 #### Adverse Events Tables
 
--   [**{cards} + {tfrmt}**](adverse_events.qmd#tfrmt-cards) - Generate AE summaries with hierarchical organization and custom formatting
+-   **[{cards} + {tfrmt}](adverse_events.qmd#tfrmt-cards)** - Generate AE summaries with hierarchical organization and custom formatting
 
 ------------------------------------------------------------------------
 
@@ -67,17 +67,17 @@ These examples create tables directly from analysis datasets using the tradition
 
 #### Demographic Tables
 
--   [**{rtables} + {tern}**](demographic.qmd#rtables-tern) - Comprehensive demographic and baseline characteristics summaries
+-   **[{rtables} + {tern}](demographic.qmd#rtables-tern)** - Comprehensive demographic and baseline characteristics summaries
 
 #### Adverse Events Tables
 
--   [**{rtables} + {tern}**](adverse_events.qmd#rtables-tern) - AE summaries with frequency counts, percentages, and system organ class groupings
+-   **[{rtables} + {tern}](adverse_events.qmd#rtables-tern)** - AE summaries with frequency counts, percentages, and system organ class groupings
 
 ------------------------------------------------------------------------
 
 ### Listings & Graphs
 
--   [**Pharmacokinetic Outputs**](pharmacokinetic.qmd) - Concentration-time graphs and parameter summaries
+-   **[Pharmacokinetic Outputs](pharmacokinetic.qmd)** - Concentration-time graphs and parameter summaries
 
 ## Quick Reference Table
 
@@ -118,7 +118,7 @@ All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consi
 
 ## Learn More
 
-::: callout-note
+::: {.callout-note}
 ## Resources
 
 -   [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard) - Official standard documentation
