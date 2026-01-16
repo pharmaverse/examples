@@ -166,4 +166,3 @@ DM_T01 <- tfrmt(
   print_to_gt(ard_tbl)
 
 DM_T01
-

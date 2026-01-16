@@ -166,4 +166,3 @@ AE_T01 <- tfrmt_n_pct(
   print_to_gt(ae4_ard)
 
 AE_T01
-
