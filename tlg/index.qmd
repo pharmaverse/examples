@@ -93,7 +93,7 @@ These examples create tables directly from analysis datasets using the tradition
 
 -   **`{cards}`** - Create and manipulate Analysis Results Datasets following CDISC standards
 -   **`{tfrmt}`** - Transform ARDs into publication-ready tables with precise formatting control
--   **`{gtsummary}`** - Generate summary tables from ARDs with support for multiple output formats
+-   **`{gtsummary}`** - Generate listings or summary tables (with or without ARDs) with support for multiple output formats
 
 ### Classic Ecosystem
 
