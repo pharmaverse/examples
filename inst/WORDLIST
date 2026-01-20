@@ -16,6 +16,8 @@ adlb
 ADLB
 admiraldiscovery
 admiralonco
+admiralophtha
+admiralvaccine
 adpc
 ADPC
 adppk
@@ -188,6 +190,7 @@ cachem
 cairo
 cairoFT
 callr
+callout
 categorizationvars
 cdisc
 CDISC
@@ -221,6 +224,7 @@ Creatinine
 creatu
 CRF
 CRP
+CSRs
 css
 csv
 ctype
@@ -320,6 +324,7 @@ EOSDT
 eosstt
 EOSSTT
 EPI
+esub
 eSub
 eSubmission
 eval
@@ -392,9 +397,11 @@ htmltools
 htmlwidgets
 httpuv
 IC
+ICH
 iconv
 ifelse
 iframe
+immunogenicity
 init
 inorder
 inputId
@@ -497,6 +504,7 @@ nVersion
 NXRLT
 oakidvars
 OCC
+OCCDS
 occflags
 OID
 onco
@@ -583,6 +591,7 @@ prgB
 processx
 profvis
 programTOC
+programmatically
 PROJID
 PROJIDN
 ps
@@ -604,6 +613,7 @@ Rcpp
 rds
 reactable
 readct
+reactogenicity
 readdata
 readline
 README
@@ -625,6 +635,7 @@ repo
 reproducibility
 req
 requireNamespace
+reusability
 revealjs
 rex
 RFENDTC
@@ -654,6 +665,7 @@ rv
 rx
 SAE
 SAFFL
+SAPs
 sas
 SASFL
 SCRFDT
@@ -708,6 +720,7 @@ subperiods
 SUBPOS
 substr
 summarise
+Summarization
 summaryrec
 suppdm
 SUPPDM
@@ -727,6 +740,7 @@ TESTCD
 tf
 tfrmt
 tformat
+tfrmt
 tgdt
 tgt
 thevalidatoR

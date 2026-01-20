@@ -1,3 +1,43 @@
 ---
 title: "Documents"
 ---
+
+## Overview
+
+This section contains examples for generating various document outputs from clinical trial data using pharmaverse packages. These examples demonstrate how to create professional reports, presentations, and other document formats commonly used in pharmaceutical research and regulatory submissions.
+
+The examples leverage R's document generation capabilities combined with pharmaverse tools to automate the creation of formatted outputs.
+
+## Examples
+
+The following document generation examples are available:
+
+### Word Documents
+
+- **[DOCX Output](docx.qmd)** - Learn how to generate Microsoft Word documents from R, including tables, listings, and formatted text. This is particularly useful for creating clinical study reports and documentation that require Word format.
+
+### PowerPoint Presentations
+
+- **[Auto Slider](autoslider.qmd)** - Create automated PowerPoint presentations with clinical trial outputs. This example demonstrates how to programmatically generate slides containing tables, figures, and analysis results, streamlining the creation of study presentations and data review meetings.
+
+## Use Cases
+
+These document generation capabilities are valuable for:
+
+- Clinical study reports (CSRs)
+- Statistical analysis plans (SAPs)
+- Data review meetings
+- Regulatory submission documents
+- Study team presentations
+- Internal stakeholder communications
+
+## Getting Started
+
+Each example demonstrates:
+
+- Setting up document templates
+- Populating documents with analysis results
+- Formatting and styling outputs
+- Automating repetitive document creation tasks
+
+These tools can significantly reduce the time and effort required to produce professional documentation from your clinical trial analyses.
