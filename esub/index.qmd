@@ -10,7 +10,7 @@ The examples demonstrate how to leverage pharmaverse tools to ensure your submis
 
 ## Examples
 
-The following eSubmission examples are available:
+In our [eSubmission example](esub.qmd), you will find ever-evolving guidance on creating and checking all of the key clinical reporting components of an eSubmission when using R and open source
 
 ### Analysis Data Reviewer's Guide
 
@@ -22,9 +22,8 @@ Successful electronic submissions typically include:
 
 - **Datasets** - Properly formatted SDTM and ADaM datasets in SAS transport (XPT) format
 - **Define.xml** - Machine-readable dataset and variable definitions
-- **ADRG** - Comprehensive guide to the analysis datasets and derivations
-- **Analysis Results Metadata (ARM)** - Documentation of analysis outputs
-- **Reviewers Guide** - Documentation to facilitate regulatory review
+- **Reviewers Guides** - Comprehensive guide to the tabulation and analysis datasets and derivations 
+- **Readable Code** - Accessible and understandable TLG programs for key endpoints
 
 ## Regulatory Standards
 
@@ -33,12 +32,12 @@ eSubmissions must comply with various regulatory standards and guidance:
 - **CDISC Standards** - SDTM, ADaM, Define-XML specifications
 - **FDA Guidance** - Study Data Technical Conformance Guide
 - **ICH Guidelines** - International standards for data standards and eCTD
-- **Pinnacle 21** - Validation and conformance checking
 
 ## Key Packages Used
 
 - **`{xportr}`** - Creating SAS transport files and performing eSub checks
 - **`{metacore}`** - Managing metadata and specifications
+- **`{metatools}`** - Working with metadata and specifications to format and check data 
 - **Various pharmaverse packages** - Dataset creation and validation
 
 ## Getting Started
