@@ -34,7 +34,7 @@ OCCDS datasets have one observation per subject per occurrence of an event, capt
 
 ### Time-to-Event Analysis Dataset (ADTTE)
 
--   **[ADTTE (Time-to-Event Analysis)](adtte.qmd)** - Develop time-to-event analysis dataset for survival analyses, including censoring and event derivations.
+-   **[ADTTE (Time-to-Event Analysis)](adtte.qmd)** - Develop oncology time-to-event analysis dataset for survival analyses, including censoring and event derivations.
 
 ### Pharmacokinetic Analysis Datasets
 
