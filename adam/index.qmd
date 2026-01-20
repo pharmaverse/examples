@@ -8,50 +8,52 @@ This section provides end-to-end examples for creating Analysis Data Model (ADaM
 
 The examples demonstrate how to leverage multiple pharmaverse packages together, including `{admiral}`, `{metacore}`, `{metatools}`, and `{xportr}`, to build analysis-ready datasets from SDTM data.
 
+All examples use SDTM datasets from `{pharmaversesdtm}` as input, ensuring consistency and reproducibility.
+
 ## Examples
 
-### Subject-Level Analysis Dataset (ADSL)
+### Subject-Level Analysis Dataset (`ADSL`)
 
 -   **[ADSL (Subject-Level Analysis Dataset)](adsl.qmd)** - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.
 
 ::: {.callout-tip}
 ## Start Here
-ADSL is the foundation for most other ADaM datasets. We recommend starting with this example if you're new to ADaM development with pharmaverse packages. ADSL contains one record per subject and serves as the basis for merging subject-level variables into other ADaM datasets.
+`ADSL` is the foundation for most other ADaM datasets. We recommend starting with this example if you're new to ADaM development with pharmaverse packages. `ADSL` contains one record per subject and serves as the basis for merging subject-level variables into other ADaM datasets.
 :::
 
 ### Basic Data Structure (BDS) Analysis Datasets
 
 BDS datasets follow a standard structure with one observation per subject per analysis parameter per analysis timepoint. These are commonly used for efficacy and safety analyses.
 
--   **[ADVS (Vital Signs Analysis)](advs.qmd)** - Generate vital signs analysis dataset with baseline and change from baseline calculations.
--   **[ADRS (Response Analysis)](adrs.qmd)** - Create response analysis dataset for oncology efficacy endpoints.
+-   **[`ADVS` (Vital Signs Analysis)](advs.qmd)** - Generate vital signs analysis dataset with baseline and change from baseline calculations.
+-   **[`ADRS` (Response Analysis)](adrs.qmd)** - Create response analysis dataset for oncology efficacy endpoints.
 
 ### Occurrence Data Structure (OCCDS) Analysis Datasets
 
 OCCDS datasets have one observation per subject per occurrence of an event, capturing multiple events per subject.
 
--   **[ADAE (Adverse Events Analysis)](adae.qmd)** - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
+-   **[`ADAE` (Adverse Events Analysis)](adae.qmd)** - Build an analysis dataset for adverse events with derived variables for analysis and reporting.
 
-### Time-to-Event Analysis Dataset (ADTTE)
+### Time-to-Event Analysis Dataset (`ADTTE`)
 
--   **[ADTTE (Time-to-Event Analysis)](adtte.qmd)** - Develop oncology time-to-event analysis dataset for survival analyses, including censoring and event derivations.
+-   **[`ADTTE` (Time-to-Event Analysis)](adtte.qmd)** - Develop oncology time-to-event analysis dataset for survival analyses, including censoring and event derivations.
 
 ### Pharmacokinetic Analysis Datasets
 
--   **[ADPC (Pharmacokinetic Concentrations)](adpc.qmd)** - Build pharmacokinetic concentration analysis dataset with timepoint derivations.
--   **[ADPPK (Population Pharmacokinetic)](adppk.qmd)** - Create population pharmacokinetic analysis dataset for modeling and simulation.
+-   **[`ADPC` (Pharmacokinetic Concentrations)](adpc.qmd)** - Build pharmacokinetic concentration analysis dataset with timepoint derivations.
+-   **[`ADPPK` (Population Pharmacokinetic)](adppk.qmd)** - Create population pharmacokinetic analysis dataset for modeling and simulation.
 
 ## Quick Reference
 
 | Dataset Type | Example | Key Packages | Structure |
 |--------------|---------|--------------|-----------|
-| **Subject-Level** | [ADSL](adsl.qmd) | admiral, metacore, metatools, xportr | One record per subject |
-| **BDS - Vitals** | [ADVS](advs.qmd) | admiral, metacore, metatools | One record per subject per parameter per timepoint |
-| **BDS - Response** | [ADRS](adrs.qmd) | admiral, metacore, metatools | One record per subject per parameter per timepoint |
-| **OCCDS - Safety** | [ADAE](adae.qmd) | admiral, metacore, metatools | One record per subject per event |
-| **Time-to-Event** | [ADTTE](adtte.qmd) | admiral, metacore, metatools | One record per subject per parameter |
-| **PK Concentration** | [ADPC](adpc.qmd) | admiral, metacore, metatools | One record per subject per timepoint per analyte |
-| **Population PK** | [ADPPK](adppk.qmd) | admiral, metacore, metatools | One record per subject per timepoint |
+| **Subject-Level** | [`ADSL`](adsl.qmd) | admiral, metacore, metatools, xportr | One record per subject |
+| **BDS - Vitals** | [`ADVS`](advs.qmd) | admiral, metacore, metatools, xportr | One record per subject per parameter per timepoint |
+| **BDS - Response** | [`ADRS`](adrs.qmd) | admiral, metacore, metatools, xportr | One record per subject per parameter per timepoint |
+| **OCCDS - Safety** | [`ADAE`](adae.qmd) | admiral, metacore, metatools, xportr | One record per subject per event |
+| **Time-to-Event** | [`ADTTE`](adtte.qmd) | admiral, metacore, metatools, xportr | One record per subject per parameter |
+| **PK Concentration** | [`ADPC`](adpc.qmd) | admiral, metacore, metatools, xportr | One record per subject per timepoint per analyte |
+| **Population PK** | [`ADPPK`](adppk.qmd) | admiral, metacore, metatools, xportr | One record per subject per timepoint |
 
 ## Workflow Overview
 
@@ -66,9 +68,9 @@ Each example demonstrates a consistent workflow for creating ADaM datasets:
 ::: {.callout-note}
 ## Dataset Dependencies
 
-Most ADaM datasets require ADSL as input for subject-level variables. The typical flow is:
+Most ADaM datasets require `ADSL` as input for subject-level variables. The typical flow is:
 
-**SDTM datasets** → **ADSL** → **Other ADaM datasets** → **TLGs**
+**SDTM datasets** → **`ADSL`** → **Other ADaM datasets** → **TLGs**
 :::
 
 ## Key Packages Used
@@ -83,9 +85,7 @@ Most ADaM datasets require ADSL as input for subject-level variables. The typica
 The `{admiral}` ecosystem includes specialized extension packages for different therapeutic areas and study types:
 
 -   **[Admiral Family Overview](https://pharmaverse.org/e2eclinical/adam/)** - Explore the complete admiral family
--   **`{admiralonco}`** - Oncology-specific ADaM datasets (e.g., ADRS for tumor response, ADTTE for overall survival)
--   **`{admiralophtha}`** - Ophthalmology endpoints and analysis datasets
--   **`{admiralvaccine}`** - Vaccine trial datasets including immunogenicity and reactogenicity
+-   **Extension Packages** - These packages provide additional therapeutic area support, for example including functions for oncology endpoints such as RECIST v1.1 for solid tumors (`{admiralonco}`)
 -   **Additional extensions** - Packages for other therapeutic areas are under development
 
 Each extension package builds on `{admiral}` core functionality while providing domain-specific derivations.

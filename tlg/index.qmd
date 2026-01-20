@@ -97,6 +97,7 @@ These examples create tables directly from analysis datasets using the tradition
 
 ### Classic Ecosystem
 
+-   **`{rlistings}`** - Create regulatory ready listings for health authority review
 -   **`{rtables}`** - Create complex tables with flexible layouts and nested structures
 -   **`{tern}`** - Analysis and reporting functions specifically designed for clinical trials
 
@@ -123,6 +124,7 @@ All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consi
 
 -   [CDISC Analysis Results Standard](https://www.cdisc.org/standards/foundational/analysis-results-standard) - Official standard documentation
 -   [{cards} package documentation](https://insightsengineering.github.io/cards/) - Learn more about creating ARDs
+-   [{gtsummary} package documentation](https://www.danieldsjoberg.com/gtsummary) - Learn more about creating summary tables
 -   [{tfrmt} package documentation](https://gsk-biostatistics.github.io/tfrmt/) - Advanced table formatting with ARDs
 -   [{rtables} package documentation](https://insightsengineering.github.io/rtables/) - Comprehensive table creation guide
 :::

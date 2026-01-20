@@ -33,4 +33,6 @@ Each example includes:
 - Code examples using pharmaverse packages
 - Expected output and validation checks
 
+All examples use raw datasets from `{pharmaverseraw}` as input, ensuring consistency and reproducibility.
+
 Before working with these examples, it's recommended to review the [`{sdtm.oak}` package documentation](https://pharmaverse.github.io/sdtm.oak/) to understand key concepts such as algorithms, oak_id_vars, and mapping functions.
