@@ -24,7 +24,7 @@ ADSL is the foundation for most other ADaM datasets. We recommend starting with 
 BDS datasets follow a standard structure with one observation per subject per analysis parameter per analysis timepoint. These are commonly used for efficacy and safety analyses.
 
 -   **[ADVS (Vital Signs Analysis)](advs.qmd)** - Generate vital signs analysis dataset with baseline and change from baseline calculations.
--   **[ADRS (Response Analysis)](adrs.qmd)** - Create response analysis dataset for efficacy endpoints.
+-   **[ADRS (Response Analysis)](adrs.qmd)** - Create response analysis dataset for oncology efficacy endpoints.
 
 ### Occurrence Data Structure (OCCDS) Analysis Datasets
 
