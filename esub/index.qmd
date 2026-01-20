@@ -20,7 +20,7 @@ The following eSubmission examples are available:
 
 Successful electronic submissions typically include:
 
-- **Analysis Datasets** - Properly formatted ADaM datasets in SAS transport (XPT) format
+- **Datasets** - Properly formatted SDTM and ADaM datasets in SAS transport (XPT) format
 - **Define.xml** - Machine-readable dataset and variable definitions
 - **ADRG** - Comprehensive guide to the analysis datasets and derivations
 - **Analysis Results Metadata (ARM)** - Documentation of analysis outputs
