@@ -98,7 +98,6 @@ Each extension package builds on `{admiral}` core functionality while providing 
 -   [CDISC ADaM Implementation Guide](https://www.cdisc.org/standards/foundational/adam) - Official ADaM standard documentation and data structure specifications
 -   [{admiral} Documentation](https://pharmaverse.github.io/admiral/) - Comprehensive guide to admiral functions, workflows, and best practices
 -   [Pharmaverse E2E Clinical Reporting](https://pharmaverse.org/e2eclinical/) - Complete list of pharmaverse packages supporting the full clinical reporting pipeline
--   [{admiral} Vignettes](https://pharmaverse.github.io/admiral/articles/) - Detailed articles on specific derivation patterns and use cases
 :::
 
 ## Common Derivations Across Examples
