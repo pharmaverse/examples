@@ -33,9 +33,17 @@ When implementing logging in clinical trial workflows, consider:
 
 - **What to log** - Critical data transformations, decisions, warnings, and errors
 - **Log format** - Structured, searchable, and human-readable output
-- **Sensitive data** - Ensure patient privacy and data security in log files
+- **Sensitive data** - Protect patient privacy and data security by being cautious of what gets exposed in log files
 - **Retention** - Appropriate storage and archival of log files
 - **Performance** - Balance comprehensive logging with execution efficiency
+
+## Key Packages Used
+
+-   **`{logr}`** - Functions to help create log files
+-   **`{logrx}`** - Tools to facilitate logging in a clinical environment 
+-   **`{whirl}`** - Provide functionalities for executing scripts in batch and simultaneously getting a log from the individual executions
+
+
 
 ## Getting Started
 
