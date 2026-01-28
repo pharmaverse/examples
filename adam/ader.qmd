@@ -34,8 +34,6 @@ library(stringr)
 library(metacore)
 library(metatools)
 library(xportr)
-library(readxl)
-library(readr)
 ```
 
 ## Next Load Specifications for Metacore
@@ -121,7 +119,7 @@ ader_bor <- ader_tte %>%
 ```  
 
 
-Add Anaylsis Sequence Number using `admiral::derive_var_obs_number()`.
+Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
 
 ```{r}
 #| label: ASEQ
@@ -146,7 +144,7 @@ In this step we will create our numeric covariates using the `metatools::create_
 
 ```{r}
 #| label: Covariates
-#---- Derive Covariates ----
+# ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
 covar <- adsl %>%
@@ -185,7 +183,7 @@ Next we add additional baselines from vital signs and laboratory data.
 
 ```{r}
 #| label: Baselines
-#---- Derive additional baselines from ADVS and ADLB ----
+# ---- Derive additional baselines from ADVS and ADLB ----
 
 labsbl <- adlb %>%
   filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%

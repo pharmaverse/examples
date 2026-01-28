@@ -11,8 +11,6 @@ library(stringr)
 library(metacore)
 library(metatools)
 library(xportr)
-library(readxl)
-library(readr)
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
 # ---- Load Specs for Metacore ----
@@ -74,7 +72,7 @@ ader_aseq <- ader_bor %>%
   )
 
 ## ----r------------------------------------------------------------------------
-#---- Derive Covariates ----
+# ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
 covar <- adsl %>%
@@ -102,7 +100,7 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
 
 ## ----r------------------------------------------------------------------------
-#---- Derive additional baselines from ADVS and ADLB ----
+# ---- Derive additional baselines from ADVS and ADLB ----
 
 labsbl <- adlb %>%
   filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
