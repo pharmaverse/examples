@@ -64,6 +64,8 @@ adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
+adpp <- pharmaverseadam::adpp
+
 ```
 
 ## Derivations
@@ -118,13 +120,37 @@ ader_bor <- ader_tte %>%
   )
 ```  
 
+## Add Exposure Metrics from `ADPP`
+
+# Add exposure metrics
+
+```{r}
+#| label: AUCSS
+# ---- Add Exposure Metrics  ----
+ader_auc <- ader_bor %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_auc %>% select(
+  USUBJID, PFS, OS, BORC, AUCSS, CMAXSS
+))
+```
 
 Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
 
 ```{r}
 #| label: ASEQ
 # ---- Add Sequence Number ----
-ader_aseq <- ader_bor %>%
+ader_aseq <- ader_auc %>%
   derive_var_obs_number(
     by_vars = get_admiral_option("subject_keys"),
     check_type = "error"
