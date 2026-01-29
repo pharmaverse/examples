@@ -65,7 +65,6 @@ advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
 adpp <- pharmaverseadam::adpp
-
 ```
 
 ## Derivations

@@ -28,6 +28,8 @@ adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
+adpp <- pharmaverseadam::adpp
+
 
 ## ----r------------------------------------------------------------------------
 # ---- Derivations ----
@@ -64,8 +66,20 @@ ader_bor <- ader_tte %>%
   )
 
 ## ----r------------------------------------------------------------------------
+# ---- Add Exposure Metrics  ----
+ader_auc <- ader_bor %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+
+## ----r------------------------------------------------------------------------
 # ---- Add Sequence Number ----
-ader_aseq <- ader_bor %>%
+ader_aseq <- ader_auc %>%
   derive_var_obs_number(
     by_vars = get_admiral_option("subject_keys"),
     check_type = "error"
