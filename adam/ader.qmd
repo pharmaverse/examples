@@ -1,0 +1,308 @@
+---
+title: "ADER"
+order: 3
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
+```
+
+Exposure-Response (ER) modeling is a key tool in assessing the safety and efficacy of new drugs, enabling evaluation of the relationship between drug exposure, toxicity, and clinical benefit. ER datasets often resemble those used in Population Pharmacokinetic (PopPK) modeling, sharing features such as numeric covariates, relative time variables, and dependent outcomes. While CDISC released standards for PopPK data in 2023, no equivalent standards currently exist for ER data. However, many of the same principles could be applied. See the Population PK Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). 
+
+## First Load Packages
+
+First we will load the packages required for our project. We will use `{admiral}` and `{admiralonco}` for the creation of analysis data. We will source these from `{pharmaverseadam}`. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+
+Exposure Response data typically use ADaM data as source, so this example will depend on `{pharmaverseadam}` with data from existing `{admiral}` and `{admiralonco}` templates.
+
+```{r echo=TRUE, message=FALSE}
+#| label: Load Packages
+# Load Packages
+library(admiral)
+library(admiralonco)
+# pharmaverseadam contains example datasets generated from the CDISC pilot
+# project SDTM ran through admiral templates
+library(pharmaverseadam)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(metacore)
+library(metatools)
+library(xportr)
+```
+
+## Next Load Specifications for Metacore
+
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
+
+```{r echo=TRUE, message=FALSE}
+#| label: Load Specs
+#| warning: false
+# ---- Load Specs for Metacore ----
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+  select_dataset("ADER")
+```
+
+## Load Source Datasets
+
+We will load are ADaM data from `{pharmaverseadam}`. The main source will be `ADRS` and `ADTTE`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `ADVS` and laboratory data `ADLB`.
+
+```{r}
+#| label: Load Source
+# ---- Load source datasets ----
+# Load ADRS, ADTTE, ADSL, ADLB, ADVS and ADEX
+adrs <- pharmaverseadam::adrs_onco
+adtte <- pharmaverseadam::adtte_onco
+
+adsl <- pharmaverseadam::adsl
+adlb <- pharmaverseadam::adlb
+advs <- pharmaverseadam::advs
+adex <- pharmaverseadam::adex %>%
+  filter(PARCAT1 == "INDIVIDUAL")
+adpp <- pharmaverseadam::adpp
+```
+
+## Derivations
+
+### Derive Time to Event Variables from `ADTTE`
+
+We will use parameters from from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response.
+
+```{r}
+#| label: ADTTE
+# ---- Derivations ----
+# For ADTTE censor variables add "IND" to PARAMCD
+adttei <- adtte %>%
+  mutate(PARAMCD = paste0(PARAMCD, "IND"))
+
+ader_tte <- adsl %>%
+  select(!!!get_admiral_option("subject_keys")) %>%
+  # Create OS and PFS variables from ADTTE
+  derive_vars_transposed(
+    dataset_merge = adtte,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  # Create OS and PFS censor variables
+  derive_vars_transposed(
+    dataset_merge = adttei,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = CNSR
+  )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
+```
+
+
+We will use Best Overall Response by Investigator (BOR) from `ADRS`.
+
+```{r}
+#| label: ADRS
+# ---- Add ADRS data ----
+# Add response date to ADSL for duration of response calculation
+ader_bor <- ader_tte %>%
+  derive_vars_merged(
+    dataset_add = adrs,
+    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(BOR = AVAL, BORC = AVALC)
+  )
+```  
+
+## Add Exposure Metrics from `ADPP`
+
+# Add exposure metrics
+
+```{r}
+#| label: AUCSS
+# ---- Add Exposure Metrics  ----
+ader_auc <- ader_bor %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_auc %>% select(
+  USUBJID, PFS, OS, BORC, AUCSS, CMAXSS
+))
+```
+
+Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
+
+```{r}
+#| label: ASEQ
+# ---- Add Sequence Number ----
+ader_aseq <- ader_auc %>%
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    check_type = "error"
+  )
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_bor %>% select(
+  USUBJID, BOR, BORC
+))
+```
+
+## Derive Covariates Using `{metatools}`
+
+In this step we will create our numeric covariates using the `metatools::create_var_from_codelist()` function.
+
+```{r}
+#| label: Covariates
+# ---- Derive Covariates ----
+# Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
+
+covar <- adsl %>%
+  create_var_from_codelist(metacore, input_var = STUDYID, out_var = STUDYIDN) %>%
+  create_var_from_codelist(metacore, input_var = SEX, out_var = SEXN) %>%
+  create_var_from_codelist(metacore, input_var = RACE, out_var = RACEN) %>%
+  create_var_from_codelist(metacore, input_var = ETHNIC, out_var = ETHNICN) %>%
+  create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORT) %>%
+  create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORTC) %>%
+  create_var_from_codelist(metacore, input_var = ARM, out_var = ARMN) %>%
+  create_var_from_codelist(metacore, input_var = ACTARM, out_var = ACTARMN) %>%
+  create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYN) %>%
+  create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYL) %>%
+  mutate(
+    STUDYIDN = as.numeric(word(USUBJID, 1, sep = fixed("-"))),
+    SITEIDN = as.numeric(word(USUBJID, 2, sep = fixed("-"))),
+    USUBJIDN = as.numeric(word(USUBJID, 3, sep = fixed("-"))),
+    SUBJIDN = as.numeric(SUBJID),
+    ROUTE = unique(adex$EXROUTE)[1],
+    FORM = unique(adex$EXDOSFRM)[1],
+    REGION1 = COUNTRY,
+    REGION1N = COUNTRYN,
+  ) %>%
+  create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
+  create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
+```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(covar %>% select(USUBJID, SEX, SEXN, RACE, RACEN, FORM, FORMN))
+```
+
+### Derive Additional Baselines
+
+Next we add additional baselines from vital signs and laboratory data.
+
+```{r}
+#| label: Baselines
+# ---- Derive additional baselines from ADVS and ADLB ----
+
+labsbl <- adlb %>%
+  filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
+  mutate(PARAMCDB = paste0(PARAMCD, "BL")) %>%
+  select(STUDYID, USUBJID, PARAMCDB, AVAL)
+
+covar_vslb <- covar %>%
+  derive_vars_merged(
+    dataset_add = advs,
+    filter_add = PARAMCD == "HEIGHT" & ABLFL == "Y",
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(HTBL = AVAL)
+  ) %>%
+  derive_vars_merged(
+    dataset_add = advs,
+    filter_add = PARAMCD == "WEIGHT" & ABLFL == "Y",
+    by_vars = exprs(STUDYID, USUBJID),
+    new_vars = exprs(WTBL = AVAL)
+  ) %>%
+  derive_vars_transposed(
+    dataset_merge = labsbl,
+    by_vars = exprs(STUDYID, USUBJID),
+    key_var = PARAMCDB,
+    value_var = AVAL
+  ) %>%
+  mutate(
+    BMIBL = compute_bmi(height = HTBL, weight = WTBL),
+    BSABL = compute_bsa(
+      height = HTBL,
+      weight = WTBL,
+      method = "Mosteller"
+    ),
+    CRCLBL = compute_egfr(
+      creat = CREATBL, creatu = "SI", age = AGE, weight = WTBL, sex = SEX,
+      method = "CRCL"
+    ),
+    EGFRBL = compute_egfr(
+      creat = CREATBL, creatu = "SI", age = AGE, weight = WTBL, sex = SEX,
+      method = "CKD-EPI"
+    )
+  ) %>%
+  rename(TBILBL = BILIBL)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
+```
+
+
+### Combine with Covariates
+
+We combine our covariates with the rest of the data
+
+```{r}
+#| label: Combine with Covariates
+# Combine covariates with APPPK data
+# Combine covariates with ADER data
+
+ader_prefinal <- ader_aseq %>%
+  derive_vars_merged(
+    dataset_add = covar_vslb,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+## Check Data With metacore and metatools
+
+We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
+
+```{r}
+#| label: Metacore
+#| warning: false
+
+ader <- ader_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+## Apply Labels and Formats with xportr
+
+Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: xportr
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+ader_xpt <- ader %>%
+  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
+```
