@@ -422,7 +422,7 @@ adpc_aseq <- adpc_chg %>%
   create_var_from_codelist(metacore, input_var = PARAMCD, out_var = PARAMN)
 
 ## ----r------------------------------------------------------------------------
-#---- Derive additional baselines from VS ----
+# ---- Derive additional baselines from VS ----
 
 adpc_baselines <- adpc_aseq %>%
   derive_vars_merged(

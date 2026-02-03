@@ -585,7 +585,7 @@ Here we derive additional baseline values from `VS` for baseline height `HTBL` a
 
 ```{r}
 #| label: Baselines
-#---- Derive additional baselines from VS ----
+# ---- Derive additional baselines from VS ----
 
 adpc_baselines <- adpc_aseq %>%
   derive_vars_merged(

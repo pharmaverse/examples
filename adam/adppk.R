@@ -335,7 +335,7 @@ adppk_aseq <- adppk_aval %>%
   )
 
 ## ----r------------------------------------------------------------------------
-#---- Derive Covariates ----
+# ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
 covar <- adsl %>%
@@ -392,7 +392,7 @@ covar_vslb <- covar %>%
     BMIBL = compute_bmi(height = HTBL, weight = WTBL),
     BSABL = compute_bsa(
       height = HTBL,
-      weight = HTBL,
+      weight = WTBL,
       method = "Mosteller"
     ),
     CRCLBL = compute_egfr(
@@ -421,7 +421,7 @@ adppk_prefinal <- adppk_aseq %>%
     RECSEQ = row_number(),
     EXCLFCOM = "None"
   ) %>%
-  create_var_from_codelist(metacore, input_var = DVID, out_var = DVIDN) %>%
+  create_var_from_codelist(metacore, input_var = DVID, out_var = DVIDN, strict = FALSE) %>%
   create_var_from_codelist(metacore, input_var = EXCLFCOM, out_var = EXCLF)
 
 ## ----r------------------------------------------------------------------------
