@@ -104,7 +104,7 @@ print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
 ```
 
 
-We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vards_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` templates.
+We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vars_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` templates.
 
 ```{r}
 #| label: ADRS
