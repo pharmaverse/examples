@@ -30,7 +30,6 @@ adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
 adpp <- pharmaverseadam::adpp
 
-
 ## ----r------------------------------------------------------------------------
 # ---- Derivations ----
 # For ADTTE censor variables add "IND" to PARAMCD
