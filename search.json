@@ -275,6 +275,76 @@
     ]
   },
   {
+    "objectID": "esub/index.html#overview",
+    "href": "esub/index.html#overview",
+    "title": "eSubmission",
+    "section": "Overview",
+    "text": "Overview\nThis section provides examples for preparing electronic submissions (eSubmissions) to regulatory agencies using pharmaverse packages. eSubmissions are a critical component of the drug approval process, requiring properly formatted and validated datasets along with comprehensive documentation.\nThe examples demonstrate how to leverage pharmaverse tools to ensure your submissions meet regulatory requirements and follow industry best practices.",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#examples",
+    "href": "esub/index.html#examples",
+    "title": "eSubmission",
+    "section": "Examples",
+    "text": "Examples\nIn our eSubmission example, you will find ever-evolving guidance on creating and checking all of the key clinical reporting components of an eSubmission when using R and open source\n\nAnalysis Data Reviewer’s Guide\n\nADRG (Analysis Data Reviewer’s Guide) - Learn how to create an Analysis Data Reviewer’s Guide, a key document in regulatory submissions. The ADRG provides reviewers with essential information about the analysis datasets, data structures, and derivations used in the submission. This example demonstrates how to document dataset specifications, define.xml generation, and other critical components of a complete eSubmission package.",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#key-components-of-esubmissions",
+    "href": "esub/index.html#key-components-of-esubmissions",
+    "title": "eSubmission",
+    "section": "Key Components of eSubmissions",
+    "text": "Key Components of eSubmissions\nSuccessful electronic submissions typically include:\n\nDatasets - Properly formatted SDTM and ADaM datasets in SAS transport (XPT) format\nDefine.xml - Machine-readable dataset and variable definitions\nReviewers Guides - Comprehensive guide to the tabulation and analysis datasets and derivations\nReadable Code - Accessible and understandable TLG programs for key endpoints",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#regulatory-standards",
+    "href": "esub/index.html#regulatory-standards",
+    "title": "eSubmission",
+    "section": "Regulatory Standards",
+    "text": "Regulatory Standards\neSubmissions must comply with various regulatory standards and guidance:\n\nCDISC Standards - SDTM, ADaM, Define-XML specifications\nFDA Guidance - Study Data Technical Conformance Guide\nICH Guidelines - International standards for data standards and eCTD",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#key-packages-used",
+    "href": "esub/index.html#key-packages-used",
+    "title": "eSubmission",
+    "section": "Key Packages Used",
+    "text": "Key Packages Used\n\n{xportr} - Creating SAS transport files and performing eSub checks\n{metacore} - Managing metadata and specifications\n{metatools} - Working with metadata and specifications to format and check data\nVarious pharmaverse packages - Dataset creation and validation",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#getting-started",
+    "href": "esub/index.html#getting-started",
+    "title": "eSubmission",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe examples demonstrate:\n\nPreparing analysis datasets for submission\nGenerating required documentation\nValidating datasets against specifications\nCreating submission-ready packages\n\nFollowing these examples will help ensure your submissions meet regulatory requirements and facilitate efficient review by regulatory agencies.",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
+    "objectID": "esub/index.html#resources",
+    "href": "esub/index.html#resources",
+    "title": "eSubmission",
+    "section": "Resources",
+    "text": "Resources\nFor more information on eSubmissions and regulatory requirements, consult: - CDISC website - FDA Study Data Standards Resources",
+    "crumbs": [
+      "eSubmission"
+    ]
+  },
+  {
     "objectID": "session.html",
     "href": "session.html",
     "title": "Session Info",
@@ -571,6 +641,46 @@
     ]
   },
   {
+    "objectID": "digit_files/index.html#overview",
+    "href": "digit_files/index.html#overview",
+    "title": "Documents",
+    "section": "Overview",
+    "text": "Overview\nThis section contains examples for generating various document outputs from clinical trial data using pharmaverse packages. These examples demonstrate how to create professional reports, presentations, and other document formats commonly used in pharmaceutical research and regulatory submissions.\nThe examples leverage R’s document generation capabilities combined with pharmaverse tools to automate the creation of formatted outputs.",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
+    "objectID": "digit_files/index.html#examples",
+    "href": "digit_files/index.html#examples",
+    "title": "Documents",
+    "section": "Examples",
+    "text": "Examples\nThe following document generation examples are available:\n\nWord Documents\n\nDOCX Output - Learn how to generate Microsoft Word documents from R, including tables, listings, and formatted text. This is particularly useful for creating clinical study reports and documentation that require Word format.\n\n\n\nPowerPoint Presentations\n\nAuto Slider - Create automated PowerPoint presentations with clinical trial outputs. This example demonstrates how to programmatically generate slides containing tables, figures, and analysis results, streamlining the creation of study presentations and data review meetings.",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
+    "objectID": "digit_files/index.html#use-cases",
+    "href": "digit_files/index.html#use-cases",
+    "title": "Documents",
+    "section": "Use Cases",
+    "text": "Use Cases\nThese document generation capabilities are valuable for:\n\nClinical study reports (CSRs)\nStatistical analysis plans (SAPs)\nData review meetings\nRegulatory submission documents\nStudy team presentations\nInternal stakeholder communications",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
+    "objectID": "digit_files/index.html#getting-started",
+    "href": "digit_files/index.html#getting-started",
+    "title": "Documents",
+    "section": "Getting Started",
+    "text": "Getting Started\nEach example demonstrates:\n\nSetting up document templates\nPopulating documents with analysis results\nFormatting and styling outputs\nAutomating repetitive document creation tasks\n\nThese tools can significantly reduce the time and effort required to produce professional documentation from your clinical trial analyses.",
+    "crumbs": [
+      "Documents"
+    ]
+  },
+  {
     "objectID": "digit_files/autoslider.html#file-structure",
     "href": "digit_files/autoslider.html#file-structure",
     "title": "Slides",
@@ -601,6 +711,76 @@
     "crumbs": [
       "Documents",
       "Slides"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#overview",
+    "href": "tlg/index.html#overview",
+    "title": "TLG",
+    "section": "Overview",
+    "text": "Overview\nThis section demonstrates how to create Tables, Listings, and Graphs (TLGs) for clinical study reporting using pharmaverse packages. TLGs are essential components of clinical study reports and regulatory submissions, providing clear presentation of study results.\nThe examples showcase two distinct approaches for generating publication-quality outputs, working with ADaM datasets as input.",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#which-approach-should-i-use",
+    "href": "tlg/index.html#which-approach-should-i-use",
+    "title": "TLG",
+    "section": "Which Approach Should I Use?",
+    "text": "Which Approach Should I Use?\n\nAnalysis Results Datasets (ARDs) 🆕\nBest for:\n\nOrganizations implementing the CDISC Analysis Results Standard\nTeams wanting reusable, structured analysis results\nProjects requiring multiple output formats from the same statistics\nRegulatory submissions emphasizing data standardization and traceability\nSeparating statistical computation from table formatting\n\nPackages: {cards}, {tfrmt}, {gtsummary}\nWorkflow: Data → ARD (structured statistics) → Formatted Table\n\n\nClassic Direct Summarization 📊\nBest for:\n\nQuick ad-hoc analyses and exploratory work\nTeams familiar with traditional R table packages\nComplex nested layouts requiring fine-grained control\nExisting workflows using {rtables}/{tern}\nSingle-purpose table generation\n\nPackages: {rtables}, {tern}\nWorkflow: Data → Formatted Table (single step)\n\n\n\n\n\n\nTipGetting Started\n\n\n\nBoth approaches produce publication-quality outputs - the choice depends on your workflow and organizational standards. ARDs represent the emerging standard for structured analysis results, while the classic approach offers a mature, stable ecosystem with extensive layout capabilities.",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#examples-by-approach",
+    "href": "tlg/index.html#examples-by-approach",
+    "title": "TLG",
+    "section": "Examples by Approach",
+    "text": "Examples by Approach\n\nUsing Analysis Results Datasets (ARDs)\nThese examples leverage the CDISC Analysis Results Standard, creating structured ARDs first using {cards}, then formatting them into tables. This two-step approach promotes reusability, standardization, and separation of statistical computation from presentation.\n\nDemographic Tables\n\n{cards} + {gtsummary} - Build demographics from ARDs with bidirectional workflow (ARD → Table or Table → ARD)\n{cards} + {tfrmt} - Create highly customized demographic tables from ARDs\n\n\n\nAdverse Events Tables\n\n{cards} + {tfrmt} - Generate AE summaries with hierarchical organization and custom formatting\n\n\n\n\n\nClassic Direct Summarization\nThese examples create tables directly from analysis datasets using the traditional single-step approach with {rtables} and {tern}.\n\nDemographic Tables\n\n{rtables} + {tern} - Comprehensive demographic and baseline characteristics summaries\n\n\n\nAdverse Events Tables\n\n{rtables} + {tern} - AE summaries with frequency counts, percentages, and system organ class groupings\n\n\n\n\n\nListings & Graphs\n\nPharmacokinetic Outputs - Concentration-time graphs and parameter summaries",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#quick-reference-table",
+    "href": "tlg/index.html#quick-reference-table",
+    "title": "TLG",
+    "section": "Quick Reference Table",
+    "text": "Quick Reference Table\n\n\n\nTable Type\nARD Approach\nClassic Approach\n\n\n\n\nDemographics\n{cards} + {gtsummary}{cards} + {tfrmt}\n{rtables} + {tern}\n\n\nAdverse Events\n{cards} + {tfrmt}\n{rtables} + {tern}\n\n\nPK Outputs\nComing soon\nView example",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#key-packages-used",
+    "href": "tlg/index.html#key-packages-used",
+    "title": "TLG",
+    "section": "Key Packages Used",
+    "text": "Key Packages Used\n\nARD Ecosystem\n\n{cards} - Create and manipulate Analysis Results Datasets following CDISC standards\n{tfrmt} - Transform ARDs into publication-ready tables with precise formatting control\n{gtsummary} - Generate listings or summary tables (with or without ARDs) with support for multiple output formats\n\n\n\nClassic Ecosystem\n\n{rlistings} - Create regulatory ready listings for health authority review\n{rtables} - Create complex tables with flexible layouts and nested structures\n{tern} - Analysis and reporting functions specifically designed for clinical trials\n\n\n\nGraphics\n\n{ggplot2} - Publication-quality graphics for all approaches",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#what-each-example-includes",
+    "href": "tlg/index.html#what-each-example-includes",
+    "title": "TLG",
+    "section": "What Each Example Includes",
+    "text": "What Each Example Includes\nAll examples provide complete, reproducible code with:\n\nData preprocessing and preparation steps\nSummary statistics calculation\nTable or graph generation with detailed explanations\nFormatting and styling for publication-ready output\nComments and best practices\n\nAll examples use ADaM datasets from {pharmaverseadam} as input, ensuring consistency and reproducibility.",
+    "crumbs": [
+      "TLG"
+    ]
+  },
+  {
+    "objectID": "tlg/index.html#learn-more",
+    "href": "tlg/index.html#learn-more",
+    "title": "TLG",
+    "section": "Learn More",
+    "text": "Learn More\n\n\n\n\n\n\nNoteResources\n\n\n\n\nCDISC Analysis Results Standard - Official standard documentation\n{cards} package documentation - Learn more about creating ARDs\n{gtsummary} package documentation - Learn more about creating summary tables\n{tfrmt} package documentation - Advanced table formatting with ARDs\n{rtables} package documentation - Comprehensive table creation guide",
+    "crumbs": [
+      "TLG"
     ]
   },
   {
@@ -686,6 +866,36 @@
     "text": "Contributing\nIf you are interesting in contributing an article to this book, then see more in our GitHub repo README.\nYou can see a list of current contributors via our GitHub repo DESCRIPTION file.",
     "crumbs": [
       "Introduction"
+    ]
+  },
+  {
+    "objectID": "sdtm/index.html#overview",
+    "href": "sdtm/index.html#overview",
+    "title": "SDTM",
+    "section": "Overview",
+    "text": "Overview\nThis section contains examples demonstrating the creation of Study Data Tabulation Model (SDTM) domains using pharmaverse packages. SDTM is a CDISC standard for organizing and formatting data to streamline the regulatory review process.\nThe examples in this section primarily utilize the {sdtm.oak} package along with other pharmaverse tools to transform raw clinical trial data into SDTM-compliant datasets.",
+    "crumbs": [
+      "SDTM"
+    ]
+  },
+  {
+    "objectID": "sdtm/index.html#examples",
+    "href": "sdtm/index.html#examples",
+    "title": "SDTM",
+    "section": "Examples",
+    "text": "Examples\nThe following SDTM domain examples are available:\n\nDemographics and Baseline Characteristics\n\nDM (Demographics) - Learn how to create a Demographics domain including subject-level information such as age, sex, race, and study participation dates.\n\n\n\nClinical Events\n\nAE (Adverse Events) - Create an Adverse Events domain to capture information about adverse events experienced by subjects during the study.\n\n\n\nFindings\n\nVS (Vital Signs) - Build a Vital Signs domain to record measurements such as blood pressure, heart rate, temperature, and other vital sign observations.",
+    "crumbs": [
+      "SDTM"
+    ]
+  },
+  {
+    "objectID": "sdtm/index.html#getting-started",
+    "href": "sdtm/index.html#getting-started",
+    "title": "SDTM",
+    "section": "Getting Started",
+    "text": "Getting Started\nEach example includes:\n\nIntroduction and context\nStep-by-step programming workflow\nCode examples using pharmaverse packages\nExpected output and validation checks\n\nAll examples use raw datasets from {pharmaverseraw} as input, ensuring consistency and reproducibility.\nBefore working with these examples, it’s recommended to review the {sdtm.oak} package documentation to understand key concepts such as algorithms, oak_id_vars, and mapping functions.",
+    "crumbs": [
+      "SDTM"
     ]
   },
   {
@@ -986,6 +1196,86 @@
     ]
   },
   {
+    "objectID": "adam/index.html#overview",
+    "href": "adam/index.html#overview",
+    "title": "ADaM",
+    "section": "Overview",
+    "text": "Overview\nThis section provides end-to-end examples for creating Analysis Data Model (ADaM) datasets using pharmaverse packages. ADaM is a CDISC standard designed to facilitate efficient generation, replication, and review of clinical trial statistical analyses.\nThe examples demonstrate how to leverage multiple pharmaverse packages together, including {admiral}, {metacore}, {metatools}, and {xportr}, to build analysis-ready datasets from SDTM data.\nAll examples use SDTM datasets from {pharmaversesdtm} as input, ensuring consistency and reproducibility.",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#examples",
+    "href": "adam/index.html#examples",
+    "title": "ADaM",
+    "section": "Examples",
+    "text": "Examples\n\nSubject-Level Analysis Dataset (ADSL)\n\nADSL (Subject-Level Analysis Dataset) - Create the foundational subject-level dataset containing demographic, treatment, and study participation information.\n\n\n\n\n\n\n\nTipStart Here\n\n\n\nADSL is the foundation for most other ADaM datasets. We recommend starting with this example if you’re new to ADaM development with pharmaverse packages. ADSL contains one record per subject and serves as the basis for merging subject-level variables into other ADaM datasets.\n\n\n\n\nBasic Data Structure (BDS) Analysis Datasets\nBDS datasets follow a standard structure with one observation per subject per analysis parameter per analysis timepoint. These are commonly used for efficacy and safety analyses.\n\nADVS (Vital Signs Analysis) - Generate vital signs analysis dataset with baseline and change from baseline calculations.\nADRS (Response Analysis) - Create response analysis dataset for oncology efficacy endpoints.\n\n\n\nOccurrence Data Structure (OCCDS) Analysis Datasets\nOCCDS datasets have one observation per subject per occurrence of an event, capturing multiple events per subject.\n\nADAE (Adverse Events Analysis) - Build an analysis dataset for adverse events with derived variables for analysis and reporting.\n\n\n\nTime-to-Event Analysis Dataset (ADTTE)\n\nADTTE (Time-to-Event Analysis) - Develop oncology time-to-event analysis dataset for survival analyses, including censoring and event derivations.\n\n\n\nPharmacokinetic Analysis Datasets\n\nADPC (Pharmacokinetic Concentrations) - Build pharmacokinetic concentration analysis dataset with timepoint derivations.\nADPPK (Population Pharmacokinetic) - Create population pharmacokinetic analysis dataset for modeling and simulation.",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#quick-reference",
+    "href": "adam/index.html#quick-reference",
+    "title": "ADaM",
+    "section": "Quick Reference",
+    "text": "Quick Reference\n\n\n\nDataset Type\nExample\nKey Packages\nStructure\n\n\n\n\nSubject-Level\nADSL\nadmiral, metacore, metatools, xportr\nOne record per subject\n\n\nBDS - Vitals\nADVS\nadmiral, metacore, metatools, xportr\nOne record per subject per parameter per timepoint\n\n\nBDS - Response\nADRS\nadmiral, metacore, metatools, xportr\nOne record per subject per parameter per timepoint\n\n\nOCCDS - Safety\nADAE\nadmiral, metacore, metatools, xportr\nOne record per subject per event\n\n\nTime-to-Event\nADTTE\nadmiral, metacore, metatools, xportr\nOne record per subject per parameter\n\n\nPK Concentration\nADPC\nadmiral, metacore, metatools, xportr\nOne record per subject per timepoint per analyte\n\n\nPopulation PK\nADPPK\nadmiral, metacore, metatools, xportr\nOne record per subject per timepoint",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#workflow-overview",
+    "href": "adam/index.html#workflow-overview",
+    "title": "ADaM",
+    "section": "Workflow Overview",
+    "text": "Workflow Overview\nEach example demonstrates a consistent workflow for creating ADaM datasets:\n\nData Input - Load SDTM datasets and required metadata specifications\nDerivations - Apply ADaM derivation functions to create analysis variables (e.g., baseline flags, change from baseline, derived parameters)\nMetadata Application - Use metadata specifications to control dataset attributes, labels, and formats\nValidation - Perform dataset checks and validation against specifications\nExport - Create SAS transport files ready for regulatory submission\n\n\n\n\n\n\n\nNoteDataset Dependencies\n\n\n\nMost ADaM datasets require ADSL as input for subject-level variables. The typical flow is:\nSDTM datasets → ADSL → Other ADaM datasets → TLGs",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#key-packages-used",
+    "href": "adam/index.html#key-packages-used",
+    "title": "ADaM",
+    "section": "Key Packages Used",
+    "text": "Key Packages Used\n\n{admiral} - Core ADaM derivations and functions for creating analysis datasets following CDISC standards\n{metacore} - Metadata and specifications management, storing variable-level metadata\n{metatools} - Dataset building and validation using metadata, applying specifications to datasets\n{xportr} - SAS transport file creation and eSub compliance checks for regulatory submissions",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#meet-the-admiral-family",
+    "href": "adam/index.html#meet-the-admiral-family",
+    "title": "ADaM",
+    "section": "Meet the {admiral} Family",
+    "text": "Meet the {admiral} Family\nThe {admiral} ecosystem includes specialized extension packages for different therapeutic areas and study types:\n\nAdmiral Family Overview - Explore the complete admiral family\nExtension Packages - These packages provide additional therapeutic area support, for example including functions for oncology endpoints such as RECIST v1.1 for solid tumors ({admiralonco})\nAdditional extensions - Packages for other therapeutic areas are under development\n\nEach extension package builds on {admiral} core functionality while providing domain-specific derivations.",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#additional-resources",
+    "href": "adam/index.html#additional-resources",
+    "title": "ADaM",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\n\n\n\n\n\nNoteLearn More\n\n\n\n\nCDISC ADaM Implementation Guide - Official ADaM standard documentation and data structure specifications\n{admiral} Documentation - Comprehensive guide to admiral functions, workflows, and best practices\nPharmaverse E2E Clinical Reporting - Complete list of pharmaverse packages supporting the full clinical reporting pipeline",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
+    "objectID": "adam/index.html#common-derivations-across-examples",
+    "href": "adam/index.html#common-derivations-across-examples",
+    "title": "ADaM",
+    "section": "Common Derivations Across Examples",
+    "text": "Common Derivations Across Examples\nWhile each ADaM dataset has unique requirements, several derivation patterns appear across multiple examples:\n\nBaseline derivations - Identifying and flagging baseline records\nChange from baseline - Calculating analysis values relative to baseline\nAnalysis flags - Creating indicators for analysis populations and key events\nDate/time imputations - Handling partial or missing dates\nTreatment variables - Deriving planned and actual treatment information\nParameter derivations - Creating derived or calculated parameters\n\nThese common patterns are demonstrated throughout the examples, showing how {admiral} functions can be reused across different dataset types.",
+    "crumbs": [
+      "ADaM"
+    ]
+  },
+  {
     "objectID": "adam/adsl.html#introduction",
     "href": "adam/adsl.html#introduction",
     "title": "ADSL",
@@ -1115,6 +1405,116 @@
     "crumbs": [
       "ADaM",
       "ADPPK"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#overview",
+    "href": "logging/index.html#overview",
+    "title": "Logs",
+    "section": "Overview",
+    "text": "Overview\nThis section demonstrates best practices for implementing logging in clinical trial data analysis workflows using pharmaverse packages. Proper logging is essential for tracking data transformations, debugging issues, maintaining audit trails, and ensuring regulatory compliance.\nThe examples show how to integrate logging capabilities into your analysis pipelines to create comprehensive records of data processing steps and program execution.",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#examples",
+    "href": "logging/index.html#examples",
+    "title": "Logs",
+    "section": "Examples",
+    "text": "Examples\nThe following logging examples are available:\n\nWorkflow Logging\n\nLogging Implementation - Learn how to implement comprehensive logging in your clinical trial analysis workflows. This example covers setting up logging infrastructure, capturing key events and data transformations, and creating audit-ready log files that document the entire analysis process.",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#importance-of-logging",
+    "href": "logging/index.html#importance-of-logging",
+    "title": "Logs",
+    "section": "Importance of Logging",
+    "text": "Importance of Logging\nEffective logging provides critical benefits for clinical trial analyses:\n\nAudit Trail - Create a complete record of all data transformations and analysis steps\nDebugging - Quickly identify and diagnose issues in complex data pipelines\nValidation - Support validation efforts by documenting program behavior\nRegulatory Compliance - Meet regulatory requirements for traceability and documentation\nQuality Assurance - Enable thorough review of analysis processes\nReproducibility - Ensure analyses can be recreated and verified",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#key-considerations",
+    "href": "logging/index.html#key-considerations",
+    "title": "Logs",
+    "section": "Key Considerations",
+    "text": "Key Considerations\nWhen implementing logging in clinical trial workflows, consider:\n\nWhat to log - Critical data transformations, decisions, warnings, and errors\nLog format - Structured, searchable, and human-readable output\nSensitive data - Protect patient privacy and data security by being cautious of what gets exposed in log files\nRetention - Appropriate storage and archival of log files\nPerformance - Balance comprehensive logging with execution efficiency",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#key-packages-used",
+    "href": "logging/index.html#key-packages-used",
+    "title": "Logs",
+    "section": "Key Packages Used",
+    "text": "Key Packages Used\n\n{logr} - Functions to help create log files\n{logrx} - Tools to facilitate logging in a clinical environment\n{whirl} - Provide functionalities for executing scripts in batch and simultaneously getting a log from the individual executions",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "logging/index.html#getting-started",
+    "href": "logging/index.html#getting-started",
+    "title": "Logs",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe logging examples demonstrate:\n\nSetting up logging infrastructure\nIntegrating logging into data processing workflows\nCapturing meaningful information at appropriate levels\nCreating log outputs suitable for regulatory review\n\nImplementing robust logging practices is an investment in code quality, maintainability, and regulatory readiness.",
+    "crumbs": [
+      "Logs"
+    ]
+  },
+  {
+    "objectID": "interactive/index.html#overview",
+    "href": "interactive/index.html#overview",
+    "title": "Interactive",
+    "section": "Overview",
+    "text": "Overview\nThis section showcases interactive applications and tools for exploring and analyzing clinical trial data. Interactive applications enable dynamic data exploration, real-time analysis updates, and enhanced collaboration among study teams.\nThe examples demonstrate how pharmaverse packages can be used to create sophisticated interactive experiences for clinical data analysis and reporting.",
+    "crumbs": [
+      "Interactive"
+    ]
+  },
+  {
+    "objectID": "interactive/index.html#examples",
+    "href": "interactive/index.html#examples",
+    "title": "Interactive",
+    "section": "Examples",
+    "text": "Examples\nThe following interactive application examples are available:\n\nInteractive Data Exploration\n\nTeal Applications - Explore the {teal} framework for building modular, interactive Shiny applications specifically designed for clinical trial data analysis. Teal provides a standardized approach to creating interactive apps that integrate multiple analysis modules, enabling efficient data exploration, visualization, and reporting.",
+    "crumbs": [
+      "Interactive"
+    ]
+  },
+  {
+    "objectID": "interactive/index.html#benefits-of-interactive-applications",
+    "href": "interactive/index.html#benefits-of-interactive-applications",
+    "title": "Interactive",
+    "section": "Benefits of Interactive Applications",
+    "text": "Benefits of Interactive Applications\nInteractive applications provide several advantages for clinical trial analysis:\n\nDynamic Exploration - Allow users to interactively filter, subset, and explore data without programming\nReal-Time Updates - See analysis results update instantly as parameters change\nReproducibility - Maintain reproducible analyses while providing flexibility\nCollaboration - Enable statisticians, clinicians, and stakeholders to work together\nRegulatory Review - Facilitate reviewer exploration of study data and analyses",
+    "crumbs": [
+      "Interactive"
+    ]
+  },
+  {
+    "objectID": "interactive/index.html#key-packages-used",
+    "href": "interactive/index.html#key-packages-used",
+    "title": "Interactive",
+    "section": "Key Packages Used",
+    "text": "Key Packages Used\n\n{teal} - Framework for building modular clinical trial Shiny applications\n{shiny} - Web application framework for R\nVarious pharmaverse packages - Integrated for data processing and analysis",
+    "crumbs": [
+      "Interactive"
+    ]
+  },
+  {
+    "objectID": "interactive/index.html#getting-started",
+    "href": "interactive/index.html#getting-started",
+    "title": "Interactive",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe examples in this section may include interactive components that can be run locally or accessed through hosted applications. Follow the instructions in each example to set up and explore the interactive features.\nThese tools are particularly valuable for: - Exploratory data analysis - Safety monitoring - Efficacy assessment - Data review meetings - Regulatory interactions",
+    "crumbs": [
+      "Interactive"
     ]
   }
 ]
