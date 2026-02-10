@@ -21,10 +21,6 @@ jobs:
           Rscript -e 'install.packages("fs")'
         shell: bash
 
-      - name: Switch .qmd to .md
-        run: Rscript R/switch.R
-        shell: bash
-
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.8.0
         with:
