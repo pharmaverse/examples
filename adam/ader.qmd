@@ -1,6 +1,6 @@
 ---
 title: "ADER"
-order: 7
+order: 8
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
@@ -12,7 +12,23 @@ knitr::knit_hooks$set(purl = invisible_hook_purl)
 source("functions/print_df.R")
 ```
 
-Exposure-Response (ER) modeling is a key tool in assessing the safety and efficacy of new drugs, enabling evaluation of the relationship between drug exposure, toxicity, and clinical benefit. ER datasets often resemble those used in Population Pharmacokinetic (PopPK) modeling, sharing features such as numeric covariates, relative time variables, and dependent outcomes. While CDISC released standards for PopPK data in 2023, no equivalent standards currently exist for ER data. However, many of the same principles could be applied. See the Population PK Implementation Guide (<https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0>). 
+
+## Introduction
+
+Exposure-Response (ER) modeling is a critical tool in drug development for evaluating the relationships between drug exposure, safety, and efficacy. These analyses help characterize dose-response relationships, optimize dosing regimens, and support regulatory decision-making. 
+
+While CDISC released the Population Pharmacokinetic (PopPK) Implementation Guide in 2023 (see [Basic Data Structure for ADaM Population PK](https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0)), no equivalent standards currently exist specifically for ER data. However, ER datasets share many structural similarities with PopPK datasets, including numeric covariates, relative time variables, and pharmacokinetic exposure metrics. The examples below demonstrate how PopPK principles can be extended to create standardized ER analysis datasets.
+
+The following four specialized datasets support different aspects of exposure-response analysis:
+
+| Dataset | Full Name | Primary Purpose | Key Features |
+|---------|-----------|-----------------|--------------|
+| **ADER** | Exposure-Response Analysis Dataset | Integrated exposure-response relationships across safety and efficacy endpoints | Combines PK metrics (AUC, Cmax) with time-to-event outcomes (OS, PFS), tumor response, and baseline covariates |
+| **ADEE** | Exposure-Efficacy Analysis Dataset | Exposure relationships with efficacy and tumor response endpoints | Focuses on efficacy outcomes such as tumor measurements, response rates, and progression metrics linked to drug exposure |
+| **ADES** | Exposure-Safety Analysis Dataset | Exposure relationships with adverse events and safety endpoints | Links exposure metrics to adverse event occurrence, severity, and time-to-onset for safety signal detection |
+| **ADTRR** | Exposure-Tumor Response Rate Analysis Dataset | Exposure relationships with categorical tumor response metrics | Analyzes exposure impact on response categories (CR, PR, SD, PD) and best overall response |
+
+Each dataset builds upon standard ADaM datasets (ADSL, ADRS, ADTTE, ADAE, ADLB, ADVS) and incorporates pharmacokinetic parameters from ADPC/ADPP to create analysis-ready datasets for exposure-response modeling.
 
 ## First Load Packages
 
