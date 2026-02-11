@@ -17,7 +17,6 @@ library(xportr)
 metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADER")
 
-
 ## ----r------------------------------------------------------------------------
 # ---- Load source datasets ----
 # Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP and ADAE
@@ -186,17 +185,103 @@ ader_xpt <- ader %>%
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
 
-## ----r------------------------------------------------------------------------
-
-# [ADER-specific derivations continue...]
-
-
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
-# metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
-#   select_dataset("ADEE")
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+  select_dataset("ADEE")
 
 ## ----r------------------------------------------------------------------------
-# [ADEE-specific derivations...]
+# ---- Create adee base dataset
+
+# Get variable names from both datasets
+adsl_vars <- names(adsl)
+adtte_vars <- names(adtte)
+
+# Find common variables
+common_vars <- intersect(adsl_vars, adtte_vars)
+
+# Remove key variables to get variables to drop
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+# Ensure PARAMN exists in ADTTE
+if (!"PARAMN" %in% names(adtte)) {
+  adtte <- adtte %>%
+    mutate(
+      PARAMN = case_when(
+        PARAMCD == "PFS" ~ 1,
+        PARAMCD == "OS" ~ 2,
+        PARAMCD == "TTP" ~ 3,
+        PARAMCD == "TTNT" ~ 4,
+        TRUE ~ 99
+      )
+    )
+}
+
+# ---- Create ADEE Base
+
+adee_base <- adtte %>%
+  # Filter to efficacy endpoints
+  filter(PARAMCD %in% c("OS", "PFS", "TTP", "TTNT")) %>%
+  # Add derived variables
+  mutate(
+    EVENT = 1 - CNSR,
+    AVALU = if_else(!is.na(AVAL), "DAYS", NA_character_),
+  ) %>%
+  # Remove overlapping variables (use clean method)
+  select(-any_of(vars_to_drop))
+
+
+## ----r------------------------------------------------------------------------
+# ---- Add Analysis variables
+
+adee_aseq <- adee_base %>%
+  # Analysis flags
+  mutate(
+    ANL01FL = if_else(PARAMCD == "PFS", "Y", ""),
+    ANL02FL = if_else(PARAMCD == "OS", "Y", ""),
+    ANL03FL = if_else(PARAMCD == "TTP", "Y", ""),
+    ANL04FL = if_else(PARAMCD == "TTNT", "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "EFFICACY",
+    PARCAT2 = "TIME TO EVENT"
+  ) %>%
+  # Sequence number
+  derive_var_obs_number(
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(PARAMCD),
+    new_var = ASEQ,
+    check_type = "error"
+  )
+
+
+## ----r------------------------------------------------------------------------
+# Combine covariates with ADER data
+
+adee_prefinal <- adee_aseq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+
+## ----r------------------------------------------------------------------------
+adee <- adee_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+
+## ----r------------------------------------------------------------------------
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+adee_xpt <- adee %>%
+  xportr_type(metacore, domain = "ADEE") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adee.xpt")) # Write xpt v5 transport file
 
 ## ----r------------------------------------------------------------------------
 # [Similar structure...]

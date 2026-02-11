@@ -91,7 +91,7 @@ We will include common derivations for all exposure-response datasets first. The
 In this step we will create our numeric covariates using the `metatools::create_var_from_codelist()` function.
 
 ```{r}
-#| label: Covariates
+#| label: Common Covariates
 # ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
@@ -213,13 +213,12 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ## ADER
 
-
 ### Derive Time to Event Variables from `ADTTE`
 
 We will use parameters from from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
 
 ```{r}
-#| label: ADTTE
+#| label: ADER Add ADTTE variables
 # ---- Derivations ----
 # For ADTTE censor variables add "IND" to PARAMCD
 adttei <- adtte %>%
@@ -250,7 +249,7 @@ print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
 We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vars_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` templates.
 
 ```{r}
-#| label: ADRS
+#| label: ADER Add ADRS
 # ---- Add ADRS data ----
 # Add response date to ADSL for duration of response calculation
 ader_bor <- ader_tte %>%
@@ -265,7 +264,7 @@ ader_bor <- ader_tte %>%
 Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
 
 ```{r}
-#| label: ASEQ
+#| label: ADER ASEQ
 # ---- Add Sequence Number ----
 ader_aseq <- ader_bor %>%
   derive_var_obs_number(
@@ -285,7 +284,7 @@ print_df(ader_bor %>% select(
 We combine our covariates with the rest of the data
 
 ```{r}
-#| label: Combine with Covariates
+#| label: ADER Combine with Covariates
 # Combine covariates with ADER data
 
 ader_prefinal <- ader_aseq %>%
@@ -300,7 +299,7 @@ ader_prefinal <- ader_aseq %>%
 We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
 
 ```{r}
-#| label: Metacore
+#| label: ADER Metacore
 #| warning: false
 
 ader <- ader_prefinal %>%
@@ -316,7 +315,7 @@ ader <- ader_prefinal %>%
 Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
-#| label: xportr
+#| label: ADER xportr
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 ader_xpt <- ader %>%
@@ -328,25 +327,136 @@ ader_xpt <- ader %>%
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
 ```
 
-### Derive Time to Event Variables from ADTTE
-
-```{r}
-# [ADER-specific derivations continue...]
-```
-
 ## ADEE
 
 ### Load Specifications
 ```{r echo=TRUE, message=FALSE}
-#| label: Load Specs ADEE
+#| label: ADEE Load Specs
 #| warning: false
-# metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
-#   select_dataset("ADEE")
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+  select_dataset("ADEE")
 ```
 
 ```{r}
-# [ADEE-specific derivations...]
+#| label: ADEE Base dataset
+# ---- Create adee base dataset
+
+# Get variable names from both datasets
+adsl_vars <- names(adsl)
+adtte_vars <- names(adtte)
+
+# Find common variables
+common_vars <- intersect(adsl_vars, adtte_vars)
+
+# Remove key variables to get variables to drop
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+# Ensure PARAMN exists in ADTTE
+if (!"PARAMN" %in% names(adtte)) {
+  adtte <- adtte %>%
+    mutate(
+      PARAMN = case_when(
+        PARAMCD == "PFS" ~ 1,
+        PARAMCD == "OS" ~ 2,
+        PARAMCD == "TTP" ~ 3,
+        PARAMCD == "TTNT" ~ 4,
+        TRUE ~ 99
+      )
+    )
+}
+
+# ---- Create ADEE Base
+
+adee_base <- adtte %>%
+  # Filter to efficacy endpoints
+  filter(PARAMCD %in% c("OS", "PFS", "TTP", "TTNT")) %>%
+  # Add derived variables
+  mutate(
+    EVENT = 1 - CNSR,
+    AVALU = if_else(!is.na(AVAL), "DAYS", NA_character_),
+  ) %>%
+  # Remove overlapping variables (use clean method)
+  select(-any_of(vars_to_drop))
 ```
+
+### Add Analysis Variables
+
+```{r}
+#| label: ADEE Analysis variables
+# ---- Add Analysis variables
+
+adee_aseq <- adee_base %>%
+  # Analysis flags
+  mutate(
+    ANL01FL = if_else(PARAMCD == "PFS", "Y", ""),
+    ANL02FL = if_else(PARAMCD == "OS", "Y", ""),
+    ANL03FL = if_else(PARAMCD == "TTP", "Y", ""),
+    ANL04FL = if_else(PARAMCD == "TTNT", "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "EFFICACY",
+    PARCAT2 = "TIME TO EVENT"
+  ) %>%
+  # Sequence number
+  derive_var_obs_number(
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(PARAMCD),
+    new_var = ASEQ,
+    check_type = "error"
+  )
+```
+
+### Combine with Covariates and Exposure
+
+We combine our covariates with the rest of the data
+
+```{r}
+#| label: ADEE Combine with Covariates
+# Combine covariates with ADER data
+
+adee_prefinal <- adee_aseq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
+
+
+
+### Check Data With metacore and metatools
+
+We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
+
+```{r}
+#| label: Metacore
+#| warning: false
+
+adee <- adee_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+### Apply Labels and Formats with xportr
+
+Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: xportr
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+adee_xpt <- adee %>%
+  xportr_type(metacore, domain = "ADEE") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adee.xpt")) # Write xpt v5 transport file
+```
+
 
 ## ADES
 
