@@ -1,6 +1,6 @@
 ---
-title: "ADER"
-order: 8
+title: "Exposure-Response"
+order: 12
 ---
 
 ```{r setup script, include=FALSE, purl=FALSE}
@@ -12,17 +12,16 @@ knitr::knit_hooks$set(purl = invisible_hook_purl)
 source("functions/print_df.R")
 ```
 
+# Introduction
 
-## Introduction
-
-Exposure-Response (ER) modeling is a critical tool in drug development for evaluating the relationships between drug exposure, safety, and efficacy. These analyses help characterize dose-response relationships, optimize dosing regimens, and support regulatory decision-making. 
+Exposure-Response (ER) modeling is a critical tool in drug development for evaluating the relationships between drug exposure, safety, and efficacy. These analyses help characterize dose-response relationships, optimize dosing regimens, and support regulatory decision-making.
 
 While CDISC released the Population Pharmacokinetic (PopPK) Implementation Guide in 2023 (see [Basic Data Structure for ADaM Population PK](https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0)), no equivalent standards currently exist specifically for ER data. However, ER datasets share many structural similarities with PopPK datasets, including numeric covariates, relative time variables, and pharmacokinetic exposure metrics. The examples below demonstrate how PopPK principles can be extended to create standardized ER analysis datasets.
 
 The following four specialized datasets support different aspects of exposure-response analysis:
 
 | Dataset | Full Name | Primary Purpose | Key Features |
-|---------|-----------|-----------------|--------------|
+|------------------|------------------|-------------------|------------------|
 | **ADER** | Exposure-Response Analysis Dataset | Integrated exposure-response relationships across safety and efficacy endpoints | Combines PK metrics (AUC, Cmax) with time-to-event outcomes (OS, PFS), tumor response, and baseline covariates |
 | **ADEE** | Exposure-Efficacy Analysis Dataset | Exposure relationships with efficacy and tumor response endpoints | Focuses on efficacy outcomes such as tumor measurements, response rates, and progression metrics linked to drug exposure |
 | **ADES** | Exposure-Safety Analysis Dataset | Exposure relationships with adverse events and safety endpoints | Links exposure metrics to adverse event occurrence, severity, and time-to-onset for safety signal detection |
@@ -32,7 +31,7 @@ Each dataset builds upon standard ADaM datasets (ADSL, ADRS, ADTTE, ADAE, ADLB, 
 
 ## First Load Packages
 
-First we will load the packages required for our project. We will use `{admiral}` and `{admiralonco}` for the creation of analysis data. We will source these from `{pharmaverseadam}`. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](<https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html>). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+First we will load the packages required for our project. We will use `{admiral}` and `{admiralonco}` for the creation of analysis data. We will source these from `{pharmaverseadam}`. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
 
 Exposure Response data typically use ADaM data as source, so this example will depend on `{pharmaverseadam}` with data from existing `{admiral}` and `{admiralonco}` templates.
 
@@ -71,115 +70,21 @@ We will load are ADaM data from `{pharmaverseadam}`. The main source will be `AD
 ```{r}
 #| label: Load Source
 # ---- Load source datasets ----
-# Load ADRS, ADTTE, ADSL, ADLB, ADVS and ADEX
+# Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP and ADAE
 adrs <- pharmaverseadam::adrs_onco
 adtte <- pharmaverseadam::adtte_onco
-
 adsl <- pharmaverseadam::adsl
 adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
 adpp <- pharmaverseadam::adpp
+adae <- pharmaverseadam::adae
 ```
 
-## Derivations
+## Common Derivations
 
-### Derive Time to Event Variables from `ADTTE`
-
-We will use parameters from from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
-
-```{r}
-#| label: ADTTE
-# ---- Derivations ----
-# For ADTTE censor variables add "IND" to PARAMCD
-adttei <- adtte %>%
-  mutate(PARAMCD = paste0(PARAMCD, "IND"))
-
-ader_tte <- adsl %>%
-  select(!!!get_admiral_option("subject_keys")) %>%
-  # Create OS and PFS variables from ADTTE
-  derive_vars_transposed(
-    dataset_merge = adtte,
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = AVAL
-  ) %>%
-  # Create OS and PFS censor variables
-  derive_vars_transposed(
-    dataset_merge = adttei,
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = CNSR
-  )
-```
-
-
-```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
-```
-
-
-We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vars_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` templates.
-
-```{r}
-#| label: ADRS
-# ---- Add ADRS data ----
-# Add response date to ADSL for duration of response calculation
-ader_bor <- ader_tte %>%
-  derive_vars_merged(
-    dataset_add = adrs,
-    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
-    by_vars = get_admiral_option("subject_keys"),
-    new_vars = exprs(BOR = AVAL, BORC = AVALC)
-  )
-```  
-
-## Add Exposure Metrics from `ADPP`
-
-An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC` or `ADPPK`. Here we will use `AUCLST` and `CMAX` from the `ADPP` template from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters. 
-
-# Add exposure metrics
-
-```{r}
-#| label: AUCSS
-# ---- Add Exposure Metrics  ----
-ader_auc <- ader_bor %>%
-  derive_vars_transposed(
-    dataset_merge = adpp,
-    filter = PARAMCD %in% c("AUCLST", "CMAX"),
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = AVAL
-  ) %>%
-  rename(AUCSS = AUCLST, CMAXSS = CMAX)
-```
-
-
-```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(ader_auc %>% select(
-  USUBJID, PFS, OS, BORC, AUCSS, CMAXSS
-))
-```
-
-Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
-
-```{r}
-#| label: ASEQ
-# ---- Add Sequence Number ----
-ader_aseq <- ader_auc %>%
-  derive_var_obs_number(
-    by_vars = get_admiral_option("subject_keys"),
-    check_type = "error"
-  )
-```
-
-
-```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(ader_bor %>% select(
-  USUBJID, BOR, BORC
-))
-```
+We will include common derivations for all exposure-response datasets first. These include covariates and exposure metrics.
 
 ## Derive Covariates Using `{metatools}`
 
@@ -214,7 +119,6 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
 ```
-
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(covar %>% select(USUBJID, SEX, SEXN, RACE, RACEN, FORM, FORMN))
@@ -275,6 +179,106 @@ covar_vslb <- covar %>%
 print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 ```
 
+## Add Exposure Metrics from `ADPP`
+
+An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC` or `ADPPK`. Here we will use `AUCLST` and `CMAX` from the `ADPP` template from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
+
+```{r}
+#| label: AUCSS
+# ---- Add Exposure Metrics  ----
+covar_auc <- covar_vslb %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(covar_auc %>% select(
+  USUBJID, TRT01A, SEX, WTBL, HTBL, AUCSS, CMAXSS
+))
+```
+
+# Code for Individual Datasets
+
+Derivations specific to each dataset continue below. Select the appropriate tab to view.
+
+## Dataset-Specific Derivations
+
+::: {.panel-tabset}
+
+## ADER
+
+
+### Derive Time to Event Variables from `ADTTE`
+
+We will use parameters from from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
+
+```{r}
+#| label: ADTTE
+# ---- Derivations ----
+# For ADTTE censor variables add "IND" to PARAMCD
+adttei <- adtte %>%
+  mutate(PARAMCD = paste0(PARAMCD, "IND"))
+
+ader_tte <- adsl %>%
+  select(!!!get_admiral_option("subject_keys")) %>%
+  # Create OS and PFS variables from ADTTE
+  derive_vars_transposed(
+    dataset_merge = adtte,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  # Create OS and PFS censor variables
+  derive_vars_transposed(
+    dataset_merge = adttei,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = CNSR
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
+```
+
+We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vars_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` templates.
+
+```{r}
+#| label: ADRS
+# ---- Add ADRS data ----
+# Add response date to ADSL for duration of response calculation
+ader_bor <- ader_tte %>%
+  derive_vars_merged(
+    dataset_add = adrs,
+    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(BOR = AVAL, BORC = AVALC)
+  )
+```
+
+Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
+
+```{r}
+#| label: ASEQ
+# ---- Add Sequence Number ----
+ader_aseq <- ader_bor %>%
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    check_type = "error"
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ader_bor %>% select(
+  USUBJID, BOR, BORC
+))
+```
 
 ### Combine with Covariates
 
@@ -282,17 +286,16 @@ We combine our covariates with the rest of the data
 
 ```{r}
 #| label: Combine with Covariates
-# Combine covariates with APPPK data
 # Combine covariates with ADER data
 
 ader_prefinal <- ader_aseq %>%
   derive_vars_merged(
-    dataset_add = covar_vslb,
+    dataset_add = covar_auc,
     by_vars = exprs(STUDYID, USUBJID)
   )
 ```
 
-## Check Data With metacore and metatools
+### Check Data With metacore and metatools
 
 We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
 
@@ -308,7 +311,7 @@ ader <- ader_prefinal %>%
   sort_by_key(metacore) # Sorts the rows by the sort keys
 ```
 
-## Apply Labels and Formats with xportr
+### Apply Labels and Formats with xportr
 
 Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
@@ -324,3 +327,38 @@ ader_xpt <- ader %>%
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
 ```
+
+### Derive Time to Event Variables from ADTTE
+
+```{r}
+# [ADER-specific derivations continue...]
+```
+
+## ADEE
+
+### Load Specifications
+```{r echo=TRUE, message=FALSE}
+#| label: Load Specs ADEE
+#| warning: false
+# metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+#   select_dataset("ADEE")
+```
+
+```{r}
+# [ADEE-specific derivations...]
+```
+
+## ADES
+
+```{r}
+# [Similar structure...]
+```
+
+## ADTRR
+
+```{r}
+# [Similar structure...]
+```
+
+
+:::

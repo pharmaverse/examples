@@ -17,72 +17,19 @@ library(xportr)
 metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADER")
 
+
 ## ----r------------------------------------------------------------------------
 # ---- Load source datasets ----
-# Load ADRS, ADTTE, ADSL, ADLB, ADVS and ADEX
+# Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP and ADAE
 adrs <- pharmaverseadam::adrs_onco
 adtte <- pharmaverseadam::adtte_onco
-
 adsl <- pharmaverseadam::adsl
 adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
 adpp <- pharmaverseadam::adpp
-
-## ----r------------------------------------------------------------------------
-# ---- Derivations ----
-# For ADTTE censor variables add "IND" to PARAMCD
-adttei <- adtte %>%
-  mutate(PARAMCD = paste0(PARAMCD, "IND"))
-
-ader_tte <- adsl %>%
-  select(!!!get_admiral_option("subject_keys")) %>%
-  # Create OS and PFS variables from ADTTE
-  derive_vars_transposed(
-    dataset_merge = adtte,
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = AVAL
-  ) %>%
-  # Create OS and PFS censor variables
-  derive_vars_transposed(
-    dataset_merge = adttei,
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = CNSR
-  )
-
-## ----r------------------------------------------------------------------------
-# ---- Add ADRS data ----
-# Add response date to ADSL for duration of response calculation
-ader_bor <- ader_tte %>%
-  derive_vars_merged(
-    dataset_add = adrs,
-    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
-    by_vars = get_admiral_option("subject_keys"),
-    new_vars = exprs(BOR = AVAL, BORC = AVALC)
-  )
-
-## ----r------------------------------------------------------------------------
-# ---- Add Exposure Metrics  ----
-ader_auc <- ader_bor %>%
-  derive_vars_transposed(
-    dataset_merge = adpp,
-    filter = PARAMCD %in% c("AUCLST", "CMAX"),
-    by_vars = get_admiral_option("subject_keys"),
-    key_var = PARAMCD,
-    value_var = AVAL
-  ) %>%
-  rename(AUCSS = AUCLST, CMAXSS = CMAX)
-
-## ----r------------------------------------------------------------------------
-# ---- Add Sequence Number ----
-ader_aseq <- ader_auc %>%
-  derive_var_obs_number(
-    by_vars = get_admiral_option("subject_keys"),
-    check_type = "error"
-  )
+adae <- pharmaverseadam::adae
 
 ## ----r------------------------------------------------------------------------
 # ---- Derive Covariates ----
@@ -158,12 +105,65 @@ covar_vslb <- covar %>%
   rename(TBILBL = BILIBL)
 
 ## ----r------------------------------------------------------------------------
-# Combine covariates with APPPK data
+# ---- Add Exposure Metrics  ----
+covar_auc <- covar_vslb %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+
+## ----r------------------------------------------------------------------------
+# ---- Derivations ----
+# For ADTTE censor variables add "IND" to PARAMCD
+adttei <- adtte %>%
+  mutate(PARAMCD = paste0(PARAMCD, "IND"))
+
+ader_tte <- adsl %>%
+  select(!!!get_admiral_option("subject_keys")) %>%
+  # Create OS and PFS variables from ADTTE
+  derive_vars_transposed(
+    dataset_merge = adtte,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  # Create OS and PFS censor variables
+  derive_vars_transposed(
+    dataset_merge = adttei,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = CNSR
+  )
+
+## ----r------------------------------------------------------------------------
+# ---- Add ADRS data ----
+# Add response date to ADSL for duration of response calculation
+ader_bor <- ader_tte %>%
+  derive_vars_merged(
+    dataset_add = adrs,
+    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(BOR = AVAL, BORC = AVALC)
+  )
+
+## ----r------------------------------------------------------------------------
+# ---- Add Sequence Number ----
+ader_aseq <- ader_bor %>%
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    check_type = "error"
+  )
+
+## ----r------------------------------------------------------------------------
 # Combine covariates with ADER data
 
 ader_prefinal <- ader_aseq %>%
   derive_vars_merged(
-    dataset_add = covar_vslb,
+    dataset_add = covar_auc,
     by_vars = exprs(STUDYID, USUBJID)
   )
 
@@ -185,3 +185,21 @@ ader_xpt <- ader %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
+
+## ----r------------------------------------------------------------------------
+
+# [ADER-specific derivations continue...]
+
+
+## ----r echo=TRUE, message=FALSE-----------------------------------------------
+# metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+#   select_dataset("ADEE")
+
+## ----r------------------------------------------------------------------------
+# [ADEE-specific derivations...]
+
+## ----r------------------------------------------------------------------------
+# [Similar structure...]
+
+## ----r------------------------------------------------------------------------
+# [Similar structure...]
