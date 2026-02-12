@@ -72,7 +72,7 @@ We will load are ADaM data from `{pharmaverseadam}`. The main source will be `AD
 ```{r}
 #| label: Load Source
 # ---- Load source datasets ----
-# Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP and ADAE
+# Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP, ADAE and ADTR
 adrs <- pharmaverseadam::adrs_onco
 adtte <- pharmaverseadam::adtte_onco
 adsl <- pharmaverseadam::adsl
@@ -82,6 +82,7 @@ adex <- pharmaverseadam::adex %>%
   filter(PARCAT1 == "INDIVIDUAL")
 adpp <- pharmaverseadam::adpp
 adae <- pharmaverseadam::adae
+adtr <- pharmaverseadam::adtr_onco
 ```
 
 ## Common Derivations
@@ -117,6 +118,7 @@ covar <- adsl %>%
     FORM = unique(adex$EXDOSFRM)[1],
     REGION1 = COUNTRY,
     REGION1N = COUNTRYN,
+    TRT01AN = ARMN,
   ) %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
@@ -735,7 +737,160 @@ ades_xpt <- ades %>%
 
 ## ADTRR {#adtrr}
 
-```{r}
-# [Similar structure...]
+
+### Load Specifications for ADTRR
+
+```{r echo=TRUE, message=FALSE}
+#| label: ADTRR Load Specs
+#| warning: false
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+  select_dataset("ADTRR")
 ```
+
+
+```{r}
+# ---- Create tumor size parameter dataset
+
+# Get variable names for clean dropping
+adsl_vars <- names(covar_auc)
+adtr_vars <- names(adtr)
+common_vars <- intersect(adsl_vars, adtr_vars)
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+tsize_final <- adtr %>%
+  filter(PARAMCD == "SDIAM") %>%
+  mutate(
+    PARAMCD = "TSIZE",
+    PARAM = "Target Lesions Sum of Diameters",
+    PARAMN = 1
+  ) %>%
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "HOURS",
+    visit_day = ADY
+  ) %>%
+  select(-any_of(vars_to_drop)) %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+
+# ---- Add BOR from ADRS
+
+adrs_vars <- names(adrs)
+common_vars_adrs <- intersect(adsl_vars, adrs_vars)
+vars_to_drop_adrs <- setdiff(common_vars_adrs, c("STUDYID", "USUBJID"))
+
+bor <- adrs %>%
+  filter(PARAMCD == "BOR" & SAFFL == "Y") %>%
+  mutate(
+    PARAMN = 2,
+    # Create BORN from AVALC if AVAL doesn't exist
+    BORN = if ("AVAL" %in% names(.)) {
+      AVAL
+    } else {
+      case_when(
+        AVALC == "CR" ~ 4,
+        AVALC == "PR" ~ 3,
+        AVALC == "SD" ~ 2,
+        AVALC == "PD" ~ 1,
+        AVALC == "NE" ~ 0,
+        TRUE ~ NA_real_
+      )
+    }
+  ) %>%
+  select(-any_of(vars_to_drop_adrs)) %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+
+# ---- Derive Nadir
+
+# Calculate nadir from TSIZE records
+# Keep BASE, CHG, PCHG from the nadir timepoint
+nadir <- tsize_final %>%
+  filter(AVISITN > 0 & !is.na(AVAL)) %>%
+  group_by(STUDYID, USUBJID) %>%
+  filter(AVAL == min(AVAL, na.rm = TRUE)) %>%
+  slice(1) %>%
+  ungroup() %>%
+  mutate(
+    PARAMCD = "NADIR",
+    PARAM = "Nadir Tumor Size",
+    PARAMN = 3,
+    NADIR = AVAL,
+    NADPCHG = PCHG, # Keep PCHG at nadir
+    NADVST = AVISIT # Keep visit of nadir
+  )
+
+# ---- Combine parameters
+
+adtrr_base <- bind_rows(
+  tsize_final,
+  bor,
+  nadir
+) %>%
+  arrange(USUBJID, PARAMN, AVISITN)
+
+# ---- Add analysis variables
+
+# Ensure AVALU exists before mutating
+if (!"AVALU" %in% names(adtrr_base)) {
+  adtrr_base <- adtrr_base %>%
+    mutate(AVALU = NA_character_)
+}
+
+adtrr_prefinal <- adtrr_base %>%
+  # Analysis flags
+  mutate(
+    # Baseline flag
+    ABLFL = case_when(
+      !is.na(ABLFL) ~ ABLFL,
+      !is.na(AVISITN) & AVISITN == 0 ~ "Y",
+      TRUE ~ ""
+    ),
+
+    # Post-baseline flag
+    ANL01FL = if_else(!is.na(AVISITN) & AVISITN > 0, "Y", ""),
+
+    # Responders (CR or PR)
+    ANL02FL = if_else(!is.na(AVALC) & AVALC %in% c("CR", "PR"), "Y", ""),
+
+    # Has change from baseline
+    ANL03FL = if_else(!is.na(PCHG), "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "TUMOR RESPONSE",
+    PARCAT2 = case_when(
+      PARAMCD == "TSIZE" ~ "MEASUREMENT",
+      PARAMCD == "BOR" ~ "OVERALL RESPONSE",
+      PARAMCD == "NADIR" ~ "BEST RESPONSE",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  # Set AVALU (now guaranteed to exist)
+  mutate(
+    AVALU = case_when(
+      !is.na(AVALU) & AVALU != "" ~ AVALU, # Keep existing non-empty
+      PARAMCD == "TSIZE" ~ "mm",
+      PARAMCD == "NADIR" ~ "mm",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  # Sequence number
+  derive_var_obs_number(
+    by_vars = exprs(STUDYID, USUBJID),
+    order = exprs(PARAMN, AVISITN),
+    new_var = ASEQ,
+    check_type = "error"
+  ) %>%
+  arrange(USUBJID, PARAMN, AVISITN)
+```
+
+
+### Create ADTRR base dataset
+
 :::
