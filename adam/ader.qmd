@@ -930,4 +930,4 @@ adtrr_xpt <- adtrr %>%
 
 # Conclusions
 
-These Exposure-Response datasets are ready for modeling and for submission to regulatory agencies. By using CDISC-like  standards, the consistency with other ADaM data formats will facilate review and enhance tracebility.
+These Exposure-Response datasets are ready for modeling and for submission to regulatory agencies. By using CDISC-like  standards, the consistency with other ADaM data formats will facilitate review and enhance traceability.

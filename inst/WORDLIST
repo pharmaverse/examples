@@ -44,11 +44,14 @@ adslvars
 ADT
 ADTF
 ADTM
+adtr
+ADTR
 adtrr
 ADTRR
 ADTTE
 adtte
 adttei
+ADTTR
 ADURN
 ADURU
 advs
@@ -512,6 +515,8 @@ MRRLT
 mtcars
 multivar
 na
+NADPCHG
+NADVST
 NCA
 nDate
 nDose
@@ -676,6 +681,7 @@ repo
 reproducibility
 req
 requireNamespace
+Responders
 reusability
 revealjs
 rex
@@ -715,6 +721,7 @@ SASFL
 SCRFDT
 sd
 sdi
+SDIAM
 SDTM
 sdtm
 sdtmchecks
@@ -837,6 +844,8 @@ TRTxxA
 TRTxxP
 TRxxAGy
 TRxxPGy
+tsize
+TSIZE
 tt
 tte
 TTNT
