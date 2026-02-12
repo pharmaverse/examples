@@ -22,10 +22,10 @@ The following four specialized datasets support different aspects of exposure-re
 
 | Dataset | Full Name | Primary Purpose | Key Features |
 |------------------|------------------|-------------------|------------------|
-| **ADER** | Exposure-Response Analysis Dataset | Integrated exposure-response relationships across safety and efficacy endpoints | Combines PK metrics (AUC, Cmax) with time-to-event outcomes (OS, PFS), tumor response, and baseline covariates |
-| **ADEE** | Exposure-Efficacy Analysis Dataset | Exposure relationships with efficacy and tumor response endpoints | Focuses on efficacy outcomes such as tumor measurements, response rates, and progression metrics linked to drug exposure |
-| **ADES** | Exposure-Safety Analysis Dataset | Exposure relationships with adverse events and safety endpoints | Links exposure metrics to adverse event occurrence, severity, and time-to-onset for safety signal detection |
-| **ADTRR** | Exposure-Tumor Response Rate Analysis Dataset | Exposure relationships with categorical tumor response metrics | Analyzes exposure impact on response categories (CR, PR, SD, PD) and best overall response |
+| **[ADER](#ader)** | Exposure-Response Analysis Dataset | Integrated exposure-response relationships across safety and efficacy endpoints | Combines PK metrics (AUC, Cmax) with time-to-event outcomes (OS, PFS), tumor response, and baseline covariates |
+| **[ADEE](#adee)** | Exposure-Efficacy Analysis Dataset | Exposure relationships with efficacy and tumor response endpoints | Focuses on efficacy outcomes such as tumor measurements, response rates, and progression metrics linked to drug exposure |
+| **[ADES](#ades)** | Exposure-Safety Analysis Dataset | Exposure relationships with adverse events and safety endpoints | Links exposure metrics to adverse event occurrence, severity, and time-to-onset for safety signal detection |
+| **[ADTRR](#adtrr)** | Exposure-Tumor Response Rate Analysis Dataset | Exposure relationships with categorical tumor response metrics | Analyzes exposure impact on response categories (CR, PR, SD, PD) and best overall response |
 
 Each dataset builds upon standard ADaM datasets (ADSL, ADRS, ADTTE, ADAE, ADLB, ADVS) and incorporates pharmacokinetic parameters from ADPC/ADPP to create analysis-ready datasets for exposure-response modeling.
 
@@ -211,7 +211,7 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ::: {.panel-tabset}
 
-## ADER
+## ADER {#ader}
 
 ### Derive Time to Event Variables from `ADTTE`
 
@@ -327,7 +327,7 @@ ader_xpt <- ader %>%
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
 ```
 
-## ADEE
+## ADEE {#adee}
 
 ### Load Specifications
 ```{r echo=TRUE, message=FALSE}
@@ -458,13 +458,13 @@ adee_xpt <- adee %>%
 ```
 
 
-## ADES
+## ADES {#ades}
 
 ```{r}
 # [Similar structure...]
 ```
 
-## ADTRR
+## ADTRR {#adtrr}
 
 ```{r}
 # [Similar structure...]

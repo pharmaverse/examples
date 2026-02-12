@@ -229,7 +229,6 @@ adee_base <- adtte %>%
   # Remove overlapping variables (use clean method)
   select(-any_of(vars_to_drop))
 
-
 ## ----r------------------------------------------------------------------------
 # ---- Add Analysis variables
 
@@ -253,7 +252,6 @@ adee_aseq <- adee_base %>%
     new_var = ASEQ,
     check_type = "error"
   )
-
 
 ## ----r------------------------------------------------------------------------
 # Combine covariates with ADER data
