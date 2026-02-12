@@ -680,4 +680,3 @@ adtrr_xpt <- adtrr %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore, domain = "ADTRR") %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
-
