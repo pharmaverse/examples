@@ -31,7 +31,6 @@ adpp <- pharmaverseadam::adpp
 adae <- pharmaverseadam::adae
 adtr <- pharmaverseadam::adtr_onco
 
-
 ## ----r------------------------------------------------------------------------
 # ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
@@ -521,7 +520,6 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADTRR")
 
 ## ----r------------------------------------------------------------------------
-
 # ---- Create tumor size parameter dataset
 
 # Get variable names for clean dropping
@@ -661,3 +659,24 @@ adtrr_prefinal <- adtrr_base %>%
     check_type = "error"
   ) %>%
   arrange(USUBJID, PARAMN, AVISITN)
+
+## ----r------------------------------------------------------------------------
+## Check Data With metacore and metatools
+
+adtrr <- adtrr_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore, strict = FALSE) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+
+## ----r------------------------------------------------------------------------
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+adtrr_xpt <- adtrr %>%
+  xportr_type(metacore, domain = "ADTRR") %>% # Coerce variable type to match spec
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore, domain = "ADTRR") %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
