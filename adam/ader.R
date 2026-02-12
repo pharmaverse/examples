@@ -22,7 +22,8 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 # Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP, ADAE and ADTR
 adrs <- pharmaverseadam::adrs_onco
 adtte <- pharmaverseadam::adtte_onco
-adsl <- pharmaverseadam::adsl
+adsl <- pharmaverseadam::adsl %>%
+  filter(TRT01A != "Screen Failure")
 adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
@@ -44,6 +45,8 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORTC) %>%
   create_var_from_codelist(metacore, input_var = ARM, out_var = ARMN) %>%
   create_var_from_codelist(metacore, input_var = ACTARM, out_var = ACTARMN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
   create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYN) %>%
   create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYL) %>%
   mutate(
@@ -55,7 +58,6 @@ covar <- adsl %>%
     FORM = unique(adex$EXDOSFRM)[1],
     REGION1 = COUNTRY,
     REGION1N = COUNTRYN,
-    TRT01AN = ARMN,
   ) %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
@@ -520,7 +522,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADTRR")
 
 ## ----r------------------------------------------------------------------------
-# ---- Create tumor size parameter dataset
+# ---- Create base tumor size parameter dataset
 
 # Get variable names for clean dropping
 adsl_vars <- names(covar_auc)
@@ -541,12 +543,9 @@ tsize_final <- adtr %>%
     out_unit = "HOURS",
     visit_day = ADY
   ) %>%
-  select(-any_of(vars_to_drop)) %>%
-  derive_vars_merged(
-    dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
-  )
+  select(-any_of(vars_to_drop))
 
+## ----r------------------------------------------------------------------------
 # ---- Add BOR from ADRS
 
 adrs_vars <- names(adrs)
@@ -571,11 +570,10 @@ bor <- adrs %>%
       )
     }
   ) %>%
-  select(-any_of(vars_to_drop_adrs)) %>%
-  derive_vars_merged(
-    dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
-  )
+  select(-any_of(vars_to_drop_adrs))
+
+
+## ----r------------------------------------------------------------------------
 
 # ---- Derive Nadir
 
@@ -596,6 +594,7 @@ nadir <- tsize_final %>%
     NADVST = AVISIT # Keep visit of nadir
   )
 
+## ----r------------------------------------------------------------------------
 # ---- Combine parameters
 
 adtrr_base <- bind_rows(
@@ -613,7 +612,7 @@ if (!"AVALU" %in% names(adtrr_base)) {
     mutate(AVALU = NA_character_)
 }
 
-adtrr_prefinal <- adtrr_base %>%
+adtrr_seq <- adtrr_base %>%
   # Analysis flags
   mutate(
     # Baseline flag
@@ -659,6 +658,16 @@ adtrr_prefinal <- adtrr_base %>%
     check_type = "error"
   ) %>%
   arrange(USUBJID, PARAMN, AVISITN)
+
+## ----r------------------------------------------------------------------------
+
+adtrr_prefinal <- adtrr_seq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+
+
 
 ## ----r------------------------------------------------------------------------
 ## Check Data With metacore and metatools

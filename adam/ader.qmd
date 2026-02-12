@@ -75,7 +75,8 @@ We will load are ADaM data from `{pharmaverseadam}`. The main source will be `AD
 # Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP, ADAE and ADTR
 adrs <- pharmaverseadam::adrs_onco
 adtte <- pharmaverseadam::adtte_onco
-adsl <- pharmaverseadam::adsl
+adsl <- pharmaverseadam::adsl %>%
+  filter(TRT01A != "Screen Failure")
 adlb <- pharmaverseadam::adlb
 advs <- pharmaverseadam::advs
 adex <- pharmaverseadam::adex %>%
@@ -107,6 +108,8 @@ covar <- adsl %>%
   create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORTC) %>%
   create_var_from_codelist(metacore, input_var = ARM, out_var = ARMN) %>%
   create_var_from_codelist(metacore, input_var = ACTARM, out_var = ACTARMN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN) %>%
+  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
   create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYN) %>%
   create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYL) %>%
   mutate(
@@ -118,14 +121,13 @@ covar <- adsl %>%
     FORM = unique(adex$EXDOSFRM)[1],
     REGION1 = COUNTRY,
     REGION1N = COUNTRYN,
-    TRT01AN = ARMN,
   ) %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(covar %>% select(USUBJID, SEX, SEXN, RACE, RACEN, FORM, FORMN))
+print_df(covar %>% select(USUBJID, TRT01A, TRT01AN, SEX, SEXN, RACE, RACEN, FORM, FORMN))
 ```
 
 ### Derive Additional Baselines
@@ -737,7 +739,6 @@ ades_xpt <- ades %>%
 
 ## ADTRR {#adtrr}
 
-
 ### Load Specifications for ADTRR
 
 ```{r echo=TRUE, message=FALSE}
@@ -747,9 +748,12 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADTRR")
 ```
 
+### ADTRR Base Data
 
 ```{r}
-# ---- Create tumor size parameter dataset
+#| label: ADTRR Base Data
+
+# ---- Create base tumor size parameter dataset
 
 # Get variable names for clean dropping
 adsl_vars <- names(covar_auc)
@@ -770,11 +774,13 @@ tsize_final <- adtr %>%
     out_unit = "HOURS",
     visit_day = ADY
   ) %>%
-  select(-any_of(vars_to_drop)) %>%
-  derive_vars_merged(
-    dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
-  )
+  select(-any_of(vars_to_drop))
+```
+
+### Add BOR from ADRS
+
+```{r}
+#| label: ADTRR add BOR
 
 # ---- Add BOR from ADRS
 
@@ -800,12 +806,12 @@ bor <- adrs %>%
       )
     }
   ) %>%
-  select(-any_of(vars_to_drop_adrs)) %>%
-  derive_vars_merged(
-    dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
-  )
+  select(-any_of(vars_to_drop_adrs))
+```
 
+### Derive Nadir
+
+```{r}
 # ---- Derive Nadir
 
 # Calculate nadir from TSIZE records
@@ -824,6 +830,13 @@ nadir <- tsize_final %>%
     NADPCHG = PCHG, # Keep PCHG at nadir
     NADVST = AVISIT # Keep visit of nadir
   )
+```
+
+
+### Combine Parameters
+
+```{r}
+#| label: ADTRR combine parameters
 
 # ---- Combine parameters
 
@@ -842,7 +855,7 @@ if (!"AVALU" %in% names(adtrr_base)) {
     mutate(AVALU = NA_character_)
 }
 
-adtrr_prefinal <- adtrr_base %>%
+adtrr_seq <- adtrr_base %>%
   # Analysis flags
   mutate(
     # Baseline flag
@@ -890,8 +903,15 @@ adtrr_prefinal <- adtrr_base %>%
   arrange(USUBJID, PARAMN, AVISITN)
 ```
 
+### Combine with Covariate and Exposure Data
 
-
+```{r}
+adtrr_prefinal <- adtrr_seq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = exprs(STUDYID, USUBJID)
+  )
+```
 
 ### Check Data With metacore and metatools
 
@@ -930,4 +950,5 @@ adtrr_xpt <- adtrr %>%
 
 # Conclusions
 
-These Exposure-Response datasets are ready for modeling and for submission to regulatory agencies. By using CDISC-like  standards, the consistency with other ADaM data formats will facilitate review and enhance traceability.
+These Exposure-Response datasets are ready for modeling and for submission to regulatory agencies. By moving toward CDISC standards, the consistency with other ADaM data formats will facilitate review and enhance traceability.
+
