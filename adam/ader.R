@@ -375,7 +375,8 @@ subject_params <- bind_rows(
   sae_any,
   trae_any,
   aedcn
-)
+) %>%
+  arrange(USUBJID, PARAMCD)
 
 ## ----r------------------------------------------------------------------------
 # ---- Create event level parameters
@@ -452,7 +453,8 @@ event_params_complete <- event_params %>%
 ades_base <- bind_rows(
   subject_params_complete,
   event_params_complete
-)
+) %>%
+  arrange(USUBJID, PARAMCD)
 
 ## ----r------------------------------------------------------------------------
 # ---- Add analysis variables
@@ -572,9 +574,7 @@ bor <- adrs %>%
   ) %>%
   select(-any_of(vars_to_drop_adrs))
 
-
 ## ----r------------------------------------------------------------------------
-
 # ---- Derive Nadir
 
 # Calculate nadir from TSIZE records
@@ -660,14 +660,11 @@ adtrr_seq <- adtrr_base %>%
   arrange(USUBJID, PARAMN, AVISITN)
 
 ## ----r------------------------------------------------------------------------
-
 adtrr_prefinal <- adtrr_seq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
     by_vars = exprs(STUDYID, USUBJID)
   )
-
-
 
 ## ----r------------------------------------------------------------------------
 ## Check Data With metacore and metatools

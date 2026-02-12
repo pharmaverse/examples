@@ -385,6 +385,12 @@ adee_base <- adtte %>%
   select(-any_of(vars_to_drop))
 ```
 
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adee_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU))
+```
+
+
 ### Add Analysis Variables
 
 ```{r}
@@ -413,6 +419,11 @@ adee_aseq <- adee_base %>%
   )
 ```
 
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adee_aseq %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU, ANL01FL, ANL02FL, ASEQ))
+```
+
+
 ### Combine with Covariates and Exposure
 
 We combine our covariates with the rest of the data
@@ -426,6 +437,12 @@ adee_prefinal <- adee_aseq %>%
     dataset_add = covar_auc,
     by_vars = exprs(STUDYID, USUBJID)
   )
+```
+
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL, AVALU))
 ```
 
 ### Check Data With metacore and metatools
@@ -563,9 +580,16 @@ subject_params <- bind_rows(
   sae_any,
   trae_any,
   aedcn
-)
+) %>%
+  arrange(USUBJID, PARAMCD)
 ```
 
+
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC))
+```
 
 
 ### Create Event Level Parameters
@@ -647,7 +671,14 @@ event_params_complete <- event_params %>%
 ades_base <- bind_rows(
   subject_params_complete,
   event_params_complete
-)
+) %>%
+  arrange(USUBJID, PARAMCD)
+```
+
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC))
 ```
 
 
