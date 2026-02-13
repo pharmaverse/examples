@@ -503,7 +503,7 @@ ades_prefinal <- ades_flags %>%
 
 ades <- ades_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
-  check_variables(metacore, strict = FALSE) %>% # Check all variables specified are present and no more
+  check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
@@ -671,7 +671,7 @@ adtrr_prefinal <- adtrr_seq %>%
 
 adtrr <- adtrr_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
-  check_variables(metacore, strict = FALSE) %>% # Check all variables specified are present and no more
+  check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys

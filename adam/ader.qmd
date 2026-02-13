@@ -31,6 +31,8 @@ The following four specialized datasets support different aspects of exposure-re
 
 Each dataset builds upon standard ADaM datasets (ADSL, ADRS, ADTTE, ADAE, ADLB, ADVS) and incorporates pharmacokinetic parameters from ADPC/ADPP to create analysis-ready datasets for exposure-response modeling.
 
+The top of this page includes common derivations. See the tabs below for specifics for each dataset.
+
 ## First Load Packages
 
 First we will load the packages required for our project. We will use `{admiral}` and `{admiralonco}` for the creation of analysis data. We will source these from `{pharmaverseadam}`. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
@@ -53,9 +55,9 @@ library(metatools)
 library(xportr)
 ```
 
-## Next Load Specifications for Metacore
+## Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function.
+We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. We will subset for `ADER` first and load the other datasets below.
 
 ```{r echo=TRUE, message=FALSE}
 #| label: Load Specs
@@ -67,7 +69,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 
 ## Load Source Datasets
 
-We will load are ADaM data from `{pharmaverseadam}`. The main source will be `ADRS` and `ADTTE`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `ADVS` and laboratory data `ADLB`.
+We will load ADaM data from `{pharmaverseadam}`. The main sources will be `ADRS`, `ADTTE`, `ADAE`, and `ADTR`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `ADVS` and laboratory data `ADLB`. We will use exposure metrics from `ADPP`.
 
 ```{r}
 #| label: Load Source
@@ -317,7 +319,7 @@ ader <- ader_prefinal %>%
 
 ### Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
 #| label: ADER xportr
@@ -342,6 +344,8 @@ ader_xpt <- ader %>%
 metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADEE")
 ```
+
+### Create Base `ADEE` dataset from `ADTTE`
 
 ```{r}
 #| label: ADEE Base dataset
@@ -442,7 +446,7 @@ adee_prefinal <- adee_aseq %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL, AVALU))
+print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL, AVALU), n = 20)
 ```
 
 ### Check Data With metacore and metatools
@@ -489,9 +493,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADES")
 ```
 
-
-
-### Create ADES base dataset
+### Create `ADES` base dataset
 
 ```{r}
 #| label: ADES Base data
@@ -585,10 +587,8 @@ subject_params <- bind_rows(
 ```
 
 
-
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC))
+print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ```
 
 
@@ -676,9 +676,8 @@ ades_base <- bind_rows(
 ```
 
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC))
+print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDY), n = 20)
 ```
 
 
@@ -743,7 +742,7 @@ ades_prefinal <- ades_flags %>%
 
 ades <- ades_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
-  check_variables(metacore, strict = FALSE) %>% # Check all variables specified are present and no more
+  check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
@@ -770,7 +769,7 @@ ades_xpt <- ades %>%
 
 ## ADTRR {#adtrr}
 
-### Load Specifications for ADTRR
+### Load Specifications for `ADTRR`
 
 ```{r echo=TRUE, message=FALSE}
 #| label: ADTRR Load Specs
@@ -779,7 +778,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
   select_dataset("ADTRR")
 ```
 
-### ADTRR Base Data
+### Create `ADTRR` Base Data
 
 ```{r}
 #| label: ADTRR Base Data
@@ -808,7 +807,14 @@ tsize_final <- adtr %>%
   select(-any_of(vars_to_drop))
 ```
 
-### Add BOR from ADRS
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
+```
+
+
+
+### Add BOR from `ADRS`
 
 ```{r}
 #| label: ADTRR add BOR
@@ -840,6 +846,13 @@ bor <- adrs %>%
   select(-any_of(vars_to_drop_adrs))
 ```
 
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
+```
+
+
 ### Derive Nadir
 
 ```{r}
@@ -862,6 +875,12 @@ nadir <- tsize_final %>%
     NADVST = AVISIT # Keep visit of nadir
   )
 ```
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
+```
+
 
 
 ### Combine Parameters
@@ -934,6 +953,13 @@ adtrr_seq <- adtrr_base %>%
   arrange(USUBJID, PARAMN, AVISITN)
 ```
 
+
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
+```
+
+
 ### Combine with Covariate and Exposure Data
 
 ```{r}
@@ -952,7 +978,7 @@ adtrr_prefinal <- adtrr_seq %>%
 
 adtrr <- adtrr_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
-  check_variables(metacore, strict = FALSE) %>% # Check all variables specified are present and no more
+  check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
