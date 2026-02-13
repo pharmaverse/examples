@@ -129,6 +129,7 @@ covar <- adsl %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar
 print_df(covar %>% select(USUBJID, TRT01A, TRT01AN, SEX, SEXN, RACE, RACEN, FORM, FORMN))
 ```
 
@@ -184,6 +185,7 @@ covar_vslb <- covar %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar_vslb
 print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 ```
 
@@ -206,6 +208,7 @@ covar_auc <- covar_vslb %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar_auc
 print_df(covar_auc %>% select(
   USUBJID, TRT01A, SEX, WTBL, HTBL, AUCSS, CMAXSS
 ))
@@ -251,6 +254,7 @@ ader_tte <- adsl %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ader_tte
 print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
 ```
 
@@ -282,6 +286,7 @@ ader_aseq <- ader_bor %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ader_bor
 print_df(ader_bor %>% select(
   USUBJID, BOR, BORC
 ))
@@ -392,6 +397,7 @@ adee_base <- adtte %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_base
 print_df(adee_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU))
 ```
 
@@ -425,6 +431,7 @@ adee_aseq <- adee_base %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_seq
 print_df(adee_aseq %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU, ANL01FL, ANL02FL, ASEQ))
 ```
 
@@ -447,6 +454,7 @@ adee_prefinal <- adee_aseq %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_prefinal
 print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL, AVALU), n = 20)
 ```
 
@@ -589,6 +597,7 @@ subject_params <- bind_rows(
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print subject_params
 print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ```
 
@@ -678,6 +687,7 @@ ades_base <- bind_rows(
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ades_base
 print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDY), n = 20)
 ```
 
@@ -850,6 +860,7 @@ bor <- adrs %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print bor
 print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ```
 
@@ -880,6 +891,7 @@ nadir <- tsize_final %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print nadir
 print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
 ```
 
@@ -958,6 +970,7 @@ adtrr_seq <- adtrr_base %>%
 
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adtrr_seq
 print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
 ```
 
@@ -1012,5 +1025,7 @@ adtrr_xpt <- adtrr %>%
 
 # Conclusions
 
-These Exposure-Response datasets are ready for modeling and for submission to regulatory agencies. By moving toward CDISC standards, the consistency with other ADaM data formats will facilitate review and enhance traceability.
+These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
+
+
 
