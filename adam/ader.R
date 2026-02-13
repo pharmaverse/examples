@@ -258,7 +258,7 @@ adee_aseq <- adee_base %>%
   )
 
 ## ----r------------------------------------------------------------------------
-# Combine covariates with ADER data
+# Combine covariates with ADEE data
 
 adee_prefinal <- adee_aseq %>%
   derive_vars_merged(
@@ -490,7 +490,7 @@ ades_flags <- ades_base %>%
   ungroup()
 
 ## ----r------------------------------------------------------------------------
-# Combine covariates with ADER data
+# Combine covariates with ADES data
 
 ades_prefinal <- ades_flags %>%
   derive_vars_merged(
@@ -660,6 +660,8 @@ adtrr_seq <- adtrr_base %>%
   arrange(USUBJID, PARAMN, AVISITN)
 
 ## ----r------------------------------------------------------------------------
+# ---- Combine with covariates
+
 adtrr_prefinal <- adtrr_seq %>%
   derive_vars_merged(
     dataset_add = covar_auc,

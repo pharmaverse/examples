@@ -217,7 +217,8 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ## Dataset-Specific Derivations
 
-::: panel-tabset
+::: {.panel-tabset}
+
 ## ADER {#ader}
 
 ### Derive Time to Event Variables from `ADTTE`
@@ -434,7 +435,7 @@ We combine our covariates with the rest of the data
 
 ```{r}
 #| label: ADEE Combine with Covariates
-# Combine covariates with ADER data
+# Combine covariates with ADEE data
 
 adee_prefinal <- adee_aseq %>%
   derive_vars_merged(
@@ -454,7 +455,7 @@ print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL
 We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
 
 ```{r}
-#| label: Metacore
+#| label: ADEE Metacore
 #| warning: false
 
 adee <- adee_prefinal %>%
@@ -470,7 +471,7 @@ adee <- adee_prefinal %>%
 Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
-#| label: xportr
+#| label: ADEE xportr
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adee_xpt <- adee %>%
@@ -724,7 +725,7 @@ We combine our covariates with the rest of the data
 
 ```{r}
 #| label: ADES Combine with Covariates
-# Combine covariates with ADER data
+# Combine covariates with ADES data
 
 ades_prefinal <- ades_flags %>%
   derive_vars_merged(
@@ -856,6 +857,7 @@ print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ### Derive Nadir
 
 ```{r}
+#| label: ADTRR add NADIR
 # ---- Derive Nadir
 
 # Calculate nadir from TSIZE records
@@ -963,6 +965,9 @@ print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL
 ### Combine with Covariate and Exposure Data
 
 ```{r}
+#| label: ADTRR prefinal
+# ---- Combine with covariates
+
 adtrr_prefinal <- adtrr_seq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
@@ -989,7 +994,7 @@ adtrr <- adtrr_prefinal %>%
 Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
-#| label: adtrr xportr
+#| label: ADTRR xportr
 
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
