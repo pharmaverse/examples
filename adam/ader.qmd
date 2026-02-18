@@ -191,7 +191,7 @@ print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 
 ## Add Exposure Metrics from `ADPP`
 
-An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC` or `ADPPK`. Here we will use `AUCLST` and `CMAX` from the `ADPP` template from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
+An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC` or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
 
 ```{r}
 #| label: AUCSS
