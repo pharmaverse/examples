@@ -57,13 +57,13 @@ library(xportr)
 
 ## Load Specifications for Metacore
 
-We have saved our specifications in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. We will subset for `ADER` first and load the other datasets below.
+We have saved [our specifications](../metadata/pk_spec.xlsx) in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. We will subset for `ADER` first and load the other datasets below.
 
 ```{r echo=TRUE, message=FALSE}
 #| label: Load Specs
 #| warning: false
 # ---- Load Specs for Metacore ----
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADER")
 ```
 
@@ -220,8 +220,7 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ## Dataset-Specific Derivations
 
-::: {.panel-tabset}
-
+::: panel-tabset
 ## ADER {#ader}
 
 ### Derive Time to Event Variables from `ADTTE`
@@ -347,7 +346,7 @@ ader_xpt <- ader %>%
 ```{r echo=TRUE, message=FALSE}
 #| label: ADEE Load Specs
 #| warning: false
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADEE")
 ```
 
@@ -395,12 +394,10 @@ adee_base <- adtte %>%
   select(-any_of(vars_to_drop))
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print adee_base
 print_df(adee_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU))
 ```
-
 
 ### Add Analysis Variables
 
@@ -435,7 +432,6 @@ adee_aseq <- adee_base %>%
 print_df(adee_aseq %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU, ANL01FL, ANL02FL, ASEQ))
 ```
 
-
 ### Combine with Covariates and Exposure
 
 We combine our covariates with the rest of the data
@@ -450,8 +446,6 @@ adee_prefinal <- adee_aseq %>%
     by_vars = exprs(STUDYID, USUBJID)
   )
 ```
-
-
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print adee_prefinal
@@ -498,7 +492,7 @@ adee_xpt <- adee %>%
 ```{r echo=TRUE, message=FALSE}
 #| label: ADES Load Specs
 #| warning: false
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADES")
 ```
 
@@ -595,12 +589,10 @@ subject_params <- bind_rows(
   arrange(USUBJID, PARAMCD)
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print subject_params
 print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ```
-
 
 ### Create Event Level Parameters
 
@@ -685,12 +677,10 @@ ades_base <- bind_rows(
   arrange(USUBJID, PARAMCD)
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print ades_base
 print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDY), n = 20)
 ```
-
 
 ### Add Analysis Variables and Flags
 
@@ -744,7 +734,6 @@ ades_prefinal <- ades_flags %>%
   )
 ```
 
-
 ### Check Data With metacore and metatools
 
 ```{r}
@@ -777,7 +766,6 @@ ades_xpt <- ades %>%
   xportr_write(file.path(dir, "ades.xpt")) # Write xpt v5 transport file
 ```
 
-
 ## ADTRR {#adtrr}
 
 ### Load Specifications for `ADTRR`
@@ -785,7 +773,7 @@ ades_xpt <- ades %>%
 ```{r echo=TRUE, message=FALSE}
 #| label: ADTRR Load Specs
 #| warning: false
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADTRR")
 ```
 
@@ -818,12 +806,9 @@ tsize_final <- adtr %>%
   select(-any_of(vars_to_drop))
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
 ```
-
-
 
 ### Add BOR from `ADRS`
 
@@ -857,13 +842,10 @@ bor <- adrs %>%
   select(-any_of(vars_to_drop_adrs))
 ```
 
-
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print bor
 print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 ```
-
 
 ### Derive Nadir
 
@@ -893,8 +875,6 @@ nadir <- tsize_final %>%
 #| label: print nadir
 print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
 ```
-
-
 
 ### Combine Parameters
 
@@ -971,7 +951,6 @@ adtrr_seq <- adtrr_base %>%
 print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
 ```
 
-
 ### Combine with Covariate and Exposure Data
 
 ```{r}
@@ -1016,13 +995,8 @@ adtrr_xpt <- adtrr %>%
   xportr_df_label(metacore, domain = "ADTRR") %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
 ```
-
-
 :::
 
 # Conclusions
 
 These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
-
-
-
