@@ -966,8 +966,6 @@ adtrr_seq <- adtrr_base %>%
   arrange(USUBJID, PARAMN, AVISITN)
 ```
 
-
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print adtrr_seq
 print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
