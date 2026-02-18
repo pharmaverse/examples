@@ -226,7 +226,7 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ### Derive Time to Event Variables from `ADTTE`
 
-We will use parameters from from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
+We will use parameters from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
 
 ```{r}
 #| label: ADER Add ADTTE variables
