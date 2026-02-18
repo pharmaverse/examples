@@ -1,0 +1,227 @@
+---
+title: "Oncology Survival"
+order: 4
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+```
+
+## Introduction
+
+This guide demonstrates how pharmaverse packages, along with tools from the
+tidyverse, can be used to create standard oncology survival Tables, Listings,
+and Graphs (TLGs) using the `{pharmaverseadam}` `ADTTE` dataset as input.
+
+The packages used, with a brief description of their purpose, are as follows:
+
+* [`{pharmaverseadam}`](https://pharmaverse.github.io/pharmaverseadam/): provides
+  CDISC ADaM example datasets for use in pharmaverse examples and tests.
+* [`{ggsurvfit}`](https://www.danieldsjoberg.com/ggsurvfit/): eases the creation
+  of publication-ready time-to-event (survival) figures built on `{ggplot2}`.
+  Includes `Surv_CNSR()` to handle CDISC ADTTE censoring conventions natively.
+* [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/): creates
+  publication-ready summary and analytical tables. Works seamlessly with
+  `{ggsurvfit}` to generate median survival tables.
+* [`{dplyr}`](https://dplyr.tidyverse.org/): provides data manipulation
+  functions used to prepare and filter the ADTTE data.
+
+The outputs produced in this example are:
+
+1. **Kaplan-Meier plot** with confidence intervals, risk table, and median
+   guideline — a standard figure for oncology efficacy reporting.
+2. **Risk table** displayed beneath the KM plot showing number at risk, events,
+   and censored counts at each time point.
+3. **Median survival table** with 95% confidence interval, suitable for
+   inclusion in a clinical study report (CSR).
+
+---
+
+## Setup
+
+We load the required packages and read `ADTTE` from `{pharmaverseadam}`. Because
+the CDISC ADTTE censoring variable `CNSR` is coded `1 = censored / 0 = event`
+(the reverse of base R's `survival::Surv()` convention), we use `Surv_CNSR()`
+from `{ggsurvfit}` throughout to avoid any mis-coding.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(pharmaverseadam)
+library(ggsurvfit)
+library(gtsummary)
+library(dplyr)
+
+# ── Read data ──────────────────────────────────────────────────────────────────
+adtte <- pharmaverseadam::adtte_onco
+
+# Keep a single endpoint for the basic example: Overall Survival (OS).
+# Adjust PARAMCD to the endpoint of interest for other analyses.
+adtte_os <- adtte |>
+  filter(PARAMCD == "OS")
+
+# Preview key variables
+adtte_os |>
+  select(USUBJID, PARAM, PARAMCD, AVAL, CNSR, EVNTDESC, CNSDTDSC) |>
+  head(5)
+```
+
+> **Note on CNSR coding:** In CDISC ADTTE, `CNSR = 0` indicates an **event**
+> and `CNSR = 1` indicates **censoring**. `Surv_CNSR(AVAL, CNSR)` handles this
+> correctly without requiring manual recoding.
+
+---
+
+## Kaplan-Meier Plot
+
+### Basic KM Curve with Risk Table
+
+The plot below uses `survfit2()` with `Surv_CNSR()` to fit the survival model.
+Because `PARAM` and `PARAMCD` are present in the data, `{ggsurvfit}`
+automatically uses `PARAM` as the y-axis label — a key CDISC-aware feature.
+
+```{r km-plot, message=FALSE, warning=FALSE, fig.width=9, fig.height=7}
+# ── Fit the survival model ─────────────────────────────────────────────────────
+# survfit2() is preferred over survfit() as it tracks the calling environment,
+# enabling clean legend labels and p-value computation downstream.
+km_fit <- survfit2(Surv_CNSR(AVAL, CNSR) ~ 1, data = adtte_os)
+
+# ── Build the plot ─────────────────────────────────────────────────────────────
+km_fit |>
+  ggsurvfit(linewidth = 1) +
+  add_confidence_interval() +
+  add_risktable(
+    risktable_stats = c("n.risk", "cum.event", "cum.censor"),
+    stats_label = list(
+      n.risk = "At Risk",
+      cum.event = "Events (cum.)",
+      cum.censor = "Censored (cum.)"
+    )
+  ) +
+  add_quantile(
+    y_value   = 0.5, # median survival guideline
+    color     = "gray40",
+    linewidth = 0.75,
+    linetype  = "dashed"
+  ) +
+  add_censor_mark(shape = 3, size = 2) +
+  scale_ggsurvfit(x_scales = list(breaks = 0:6)) +
+  labs(
+    title = paste0(unique(adtte_os$PARAM), "\nKaplan-Meier Estimate"),
+    x = "Time (Years)",
+    y = "Overall Survival Probability",
+    caption = paste0(
+      "Analysis dataset: ADTTE  |  PARAMCD: ", unique(adtte_os$PARAMCD),
+      "\nCensored observations marked with '+'"
+    )
+  ) +
+  theme_ggsurvfit_default() +
+  theme(plot.caption = element_text(hjust = 0, size = 8))
+```
+
+**Figure notes:**
+
+* The shaded band shows the pointwise 95% confidence interval (default:
+  log-log transformed).
+* The dashed horizontal line marks the 50% survival probability; its
+  intersection with the curve gives the median survival time.
+* `+` marks indicate individual censored observations.
+* The risk table beneath the plot shows cumulative counts aligned to the
+  x-axis breaks.
+
+---
+
+## Median Survival Table
+
+`{gtsummary}`'s `tbl_survfit()` function extracts summary statistics from a
+`survfit` object and formats them as a publication-ready table. It respects
+CDISC ADTTE variable names when using `Surv_CNSR()`.
+
+```{r median-table, message=FALSE, warning=FALSE}
+# ── Median survival with 95% CI ────────────────────────────────────────────────
+tbl_survfit(
+  km_fit,
+  probs = 0.5, # 50th percentile = median
+  label_header = "**Median (95% CI)**"
+) |>
+  modify_caption(
+    paste0(
+      "**Table 1. Median Overall Survival**",
+      "\nADTTE  |  PARAMCD: ", unique(adtte_os$PARAMCD)
+    )
+  ) |>
+  bold_labels()
+```
+
+---
+
+## Survival Probability Table
+
+This table shows estimated survival probabilities at clinically meaningful
+time points (6, 12, 18, and 24 months = 0.5, 1, 1.5, 2 years), which are
+commonly reported in oncology CSR summaries.
+
+```{r prob-table, message=FALSE, warning=FALSE}
+# ── Survival probability at selected time points ───────────────────────────────
+tbl_survfit(
+  km_fit,
+  times        = c(0.5, 1, 1.5, 2), # time in years (AVAL units in adtte)
+  label_header = "**Survival Probability (95% CI)**"
+) |>
+  modify_header(
+    label = "**Time Point (Years)**"
+  ) |>
+  modify_caption(
+    paste0(
+      "**Table 2. Overall Survival Probability at Selected Time Points**",
+      "\nADTTE  |  PARAMCD: ", unique(adtte_os$PARAMCD)
+    )
+  ) |>
+  bold_labels()
+```
+
+---
+
+## Key Package Notes
+
+**`Surv_CNSR()` vs `Surv()`**
+
+CDISC ADTTE datasets use `CNSR = 0` for events and `CNSR = 1` for censoring —
+the opposite of `survival::Surv()`. Using `Surv_CNSR(AVAL, CNSR)` removes
+this error-prone manual recoding step:
+
+```{r cnsr-note, eval=FALSE}
+# ✗  Error-prone: requires manual recoding of CNSR
+survival::Surv(adtte_os$AVAL, 1 - adtte_os$CNSR)
+
+# ✓  Correct CDISC-aware approach
+ggsurvfit::Surv_CNSR(adtte_os$AVAL, adtte_os$CNSR)
+```
+
+**`survfit2()` vs `survfit()`**
+
+`survfit2()` tracks the calling environment, which enables `{ggsurvfit}` to
+cleanly remove raw variable names (e.g. `CNSR=0`) from figure legends and to
+compute p-values via `survfit2_p()`. For ADTTE data, it also reads `PARAM`/`PARAMCD`
+automatically to populate axis labels.
+
+**Extending to multiple strata**
+
+To compare arms (e.g. `TRT01A`), change the formula and add arm-level variables
+from `ADSL` via a merge:
+
+```{r strata-note, eval=FALSE}
+# Merge treatment from ADSL
+adsl <- pharmaverseadam::adsl
+adtte_os_arm <- adtte_os |>
+  left_join(select(adsl, USUBJID, TRT01A), by = "USUBJID")
+
+# Stratified KM
+survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01A, data = adtte_os_arm) |>
+  ggsurvfit(linewidth = 1) +
+  add_confidence_interval() +
+  add_risktable() +
+  scale_ggsurvfit()
+```

@@ -29,6 +29,7 @@ Imports:
     filters,
     forcats,
     gtsummary,
+    ggsurvfit,
     lubridate,
     labelled,
     magrittr,
