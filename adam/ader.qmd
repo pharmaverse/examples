@@ -889,7 +889,6 @@ nadir <- tsize_final %>%
   )
 ```
 
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print nadir
 print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
