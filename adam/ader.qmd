@@ -673,7 +673,6 @@ ades_base <- bind_rows(
 ) %>%
   arrange(USUBJID, PARAMCD)
 ```
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print ades_base
 print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDY), n = 20)
