@@ -774,6 +774,8 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 
 ### Create `ADTRR` Base Data
 
+We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will add nomimal time and actual time using `admiral::derive_var_nfrlt()` and `admiral::derive_vars_duration()`. In traditional Exposure-Response datasets these might be `TIME` and `NTIM` variables.
+
 ```{r}
 #| label: ADTRR Base Data
 
@@ -792,16 +794,26 @@ tsize_final <- adtr %>%
     PARAM = "Target Lesions Sum of Diameters",
     PARAMN = 1
   ) %>%
+  # Derive Nominal Relative Time from First Dose (NFRLT)
   derive_var_nfrlt(
     new_var = NFRLT,
     new_var_unit = FRLTU,
-    out_unit = "HOURS",
+    out_unit = "DAYS",
     visit_day = ADY
+  ) %>%
+  # Derive Actual Relative Time from First Dose (AFRLT)
+  derive_vars_duration(
+    new_var = AFRLT,
+    start_date = TRTSDT,
+    end_date = ADT,
+    out_unit = "DAYS",
+    floor_in = FALSE,
+    add_one = FALSE
   ) %>%
   select(-any_of(vars_to_drop))
 ```
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
+print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, FRLTU, BASE, AVAL, CHG), n = 20)
 ```
 ### Add BOR from `ADRS`
 
@@ -940,7 +952,7 @@ adtrr_seq <- adtrr_base %>%
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print adtrr_seq
-print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
+print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, BASE, AVAL, CHG), n = 20)
 ```
 
 ### Combine with Covariate and Exposure Data

@@ -14,7 +14,7 @@ library(xportr)
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
 # ---- Load Specs for Metacore ----
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADER")
 
 ## ----r------------------------------------------------------------------------
@@ -68,24 +68,24 @@ covar <- adsl %>%
 labsbl <- adlb %>%
   filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
   mutate(PARAMCDB = paste0(PARAMCD, "BL")) %>%
-  select(STUDYID, USUBJID, PARAMCDB, AVAL)
+  select(!!!get_admiral_option("subject_keys"), PARAMCDB, AVAL)
 
 covar_vslb <- covar %>%
   derive_vars_merged(
     dataset_add = advs,
     filter_add = PARAMCD == "HEIGHT" & ABLFL == "Y",
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     new_vars = exprs(HTBL = AVAL)
   ) %>%
   derive_vars_merged(
     dataset_add = advs,
     filter_add = PARAMCD == "WEIGHT" & ABLFL == "Y",
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     new_vars = exprs(WTBL = AVAL)
   ) %>%
   derive_vars_transposed(
     dataset_merge = labsbl,
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     key_var = PARAMCDB,
     value_var = AVAL
   ) %>%
@@ -144,7 +144,7 @@ ader_tte <- adsl %>%
 
 ## ----r------------------------------------------------------------------------
 # ---- Add ADRS data ----
-# Add response date to ADSL for duration of response calculation
+# Add response date to ADER for duration of response calculation
 ader_bor <- ader_tte %>%
   derive_vars_merged(
     dataset_add = adrs,
@@ -167,7 +167,7 @@ ader_aseq <- ader_bor %>%
 ader_prefinal <- ader_aseq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 ## ----r------------------------------------------------------------------------
@@ -175,14 +175,14 @@ ader <- ader_prefinal %>%
   drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
   check_variables(metacore) %>% # Check all variables specified are present and no more
   check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
-  order_cols(metacore) %>% # Orders the columns according to the spec
+  order_cols(metacore) %>% # Orders the columns according to the specs
   sort_by_key(metacore) # Sorts the rows by the sort keys
 
 ## ----r------------------------------------------------------------------------
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 ader_xpt <- ader %>%
-  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match specs
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
@@ -190,11 +190,11 @@ ader_xpt <- ader %>%
   xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADEE")
 
 ## ----r------------------------------------------------------------------------
-# ---- Create adee base dataset
+# ---- Create ADEE base dataset
 
 # Get variable names from both datasets
 adsl_vars <- names(adsl)
@@ -251,7 +251,7 @@ adee_aseq <- adee_base %>%
   ) %>%
   # Sequence number
   derive_var_obs_number(
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     order = exprs(PARAMCD),
     new_var = ASEQ,
     check_type = "error"
@@ -263,7 +263,7 @@ adee_aseq <- adee_base %>%
 adee_prefinal <- adee_aseq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 ## ----r------------------------------------------------------------------------
@@ -278,7 +278,7 @@ adee <- adee_prefinal %>%
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adee_xpt <- adee %>%
-  xportr_type(metacore, domain = "ADEE") %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADEE") %>% # Coerce variable type to match specs
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
@@ -286,7 +286,7 @@ adee_xpt <- adee %>%
   xportr_write(file.path(dir, "adee.xpt")) # Write xpt v5 transport file
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADES")
 
 ## ----r------------------------------------------------------------------------
@@ -299,7 +299,6 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 
 adsl_sub <- adsl %>%
   select(!!!get_admiral_option("subject_keys"))
-
 
 ## Any TEAE (Treatment-Emergent Adverse Event) ----
 teae_any <- adsl_sub %>%
@@ -428,7 +427,7 @@ event_params <- adae %>%
 subject_params_complete <- subject_params %>%
   derive_vars_merged(
     dataset_add = adsl_sub,
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
   ) %>%
   mutate(
     # Add event-level variables as NA for subject-level records
@@ -446,7 +445,7 @@ subject_params_complete <- subject_params %>%
 event_params_complete <- event_params %>%
   derive_vars_merged(
     dataset_add = adsl_sub,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 # Combine both levels
@@ -485,7 +484,7 @@ ades_flags <- ades_base %>%
   # Sort and create sequence number
   # Use coalesce to handle NA dates (puts them first in sort)
   arrange(USUBJID, PARAMN, coalesce(AESTDT, as.Date("1900-01-01"))) %>%
-  group_by(STUDYID, USUBJID) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
   mutate(ASEQ = row_number()) %>%
   ungroup()
 
@@ -495,7 +494,7 @@ ades_flags <- ades_base %>%
 ades_prefinal <- ades_flags %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 ## ----r------------------------------------------------------------------------
@@ -512,7 +511,7 @@ ades <- ades_prefinal %>%
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 ades_xpt <- ades %>%
-  xportr_type(metacore, domain = "ADES") %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADES") %>% # Coerce variable type to match specs
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
@@ -520,7 +519,7 @@ ades_xpt <- ades %>%
   xportr_write(file.path(dir, "ades.xpt")) # Write xpt v5 transport file
 
 ## ----r echo=TRUE, message=FALSE-----------------------------------------------
-metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADTRR")
 
 ## ----r------------------------------------------------------------------------
@@ -539,11 +538,21 @@ tsize_final <- adtr %>%
     PARAM = "Target Lesions Sum of Diameters",
     PARAMN = 1
   ) %>%
+  # Derive Nominal Relative Time from First Dose (NFRLT)
   derive_var_nfrlt(
     new_var = NFRLT,
     new_var_unit = FRLTU,
     out_unit = "HOURS",
     visit_day = ADY
+  ) %>%
+  # Derive Actual Relative Time from First Dose (AFRLT)
+  derive_vars_duration(
+    new_var = AFRLT,
+    start_date = TRTSDT,
+    end_date = ADT,
+    out_unit = "HOURS",
+    floor_in = FALSE,
+    add_one = FALSE
   ) %>%
   select(-any_of(vars_to_drop))
 
@@ -581,7 +590,7 @@ bor <- adrs %>%
 # Keep BASE, CHG, PCHG from the nadir timepoint
 nadir <- tsize_final %>%
   filter(AVISITN > 0 & !is.na(AVAL)) %>%
-  group_by(STUDYID, USUBJID) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
   filter(AVAL == min(AVAL, na.rm = TRUE)) %>%
   slice(1) %>%
   ungroup() %>%
@@ -652,7 +661,7 @@ adtrr_seq <- adtrr_base %>%
   ) %>%
   # Sequence number
   derive_var_obs_number(
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     order = exprs(PARAMN, AVISITN),
     new_var = ASEQ,
     check_type = "error"
@@ -665,7 +674,7 @@ adtrr_seq <- adtrr_base %>%
 adtrr_prefinal <- adtrr_seq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 ## ----r------------------------------------------------------------------------
@@ -682,7 +691,7 @@ adtrr <- adtrr_prefinal %>%
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 adtrr_xpt <- adtrr %>%
-  xportr_type(metacore, domain = "ADTRR") %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADTRR") %>% # Coerce variable type to match specs
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
