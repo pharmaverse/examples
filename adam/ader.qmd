@@ -509,7 +509,6 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 adsl_sub <- adsl %>%
   select(!!!get_admiral_option("subject_keys"))
 
-
 ## Any TEAE (Treatment-Emergent Adverse Event) ----
 teae_any <- adsl_sub %>%
   mutate(
