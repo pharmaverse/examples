@@ -774,7 +774,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 
 ### Create `ADTRR` Base Data
 
-We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will add nomimal time and actual time using `admiral::derive_var_nfrlt()` and `admiral::derive_vars_duration()`. In traditional Exposure-Response datasets these might be `TIME` and `NTIM` variables.
+We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will add nominal time and actual time using `admiral::derive_var_nfrlt()` and `admiral::derive_vars_duration()`. In traditional Exposure-Response datasets these might be `TIME` and `NTIM` variables.
 
 ```{r}
 #| label: ADTRR Base Data
