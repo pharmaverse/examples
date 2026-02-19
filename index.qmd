@@ -1,5 +1,5 @@
 ---
-title: "`pharmaverse` examples"
+title: "pharmaverse examples"
 ---
 
 The true beauty of pharmaverse (and open source in general) is when efforts from
@@ -9,44 +9,100 @@ will ever completely cover all your needs, but by piecing them together we can
 make complex tasks increasingly simple.
 
 This book contains end-to-end examples of using pharmaverse packages together to
-achieve common clinical reporting analyses, such as SDTM, ADaM and Tables/Listings/Graphs.
-The examples use consistent source test raw datasets from `{pharmaverseraw}`, 
-SDTMs and ADaMs from `{pharmaversesdtm}` and `{pharmaverseadam}` respectively.
+achieve common clinical reporting analyses, such as SDTM, ADaM, and
+Tables/Listings/Graphs. The examples use consistent source test raw datasets from
+`{pharmaverseraw}`, SDTMs from `{pharmaversesdtm}`, and ADaMs from
+`{pharmaverseadam}` respectively.
 
-We'll endeavour to include a selection of examples here over time, e.g. to help
-users when trying out the packages for PK/PD or Therapeutic Area specific
-(such as Oncology or Vaccines) analyses.
+::: {.callout-tip}
+## Try it in the cloud
 
-Note that this examples book should only be used to show how collections of
-packages can be used in conjunction - more thorough examples of individual
-package usages would always be covered in the package site vignettes and no
-need to repeat here.
+[Launch Posit Cloud](https://posit.cloud/content/7279124) to run any example
+interactively without a local R installation. Open **File → Open File** and
+choose whichever example script you'd like to explore.
+:::
 
-## Running the examples
+---
 
-### Posit Cloud
-Each example can be explored via a live and interactive Posit Cloud environment
-(preconfigured with all required package installations).
-Click here: ["Launch Posit Cloud"](https://posit.cloud/content/7279124) to
-try out any of the examples code.
-You can do this by clicking File: Open File: and then choosing whichever example script,
-e.g. `adam/adsl.R`. 
-Feel free to try out customizing any of the examples to better fit any of
-your own internal clinical reporting workflows!
+## Getting Started
 
-### Locally
-To run examples locally, download the [repository](https://github.com/pharmaverse/examples) and run the following in the R console inside the project folder to install dependencies
+The examples are organized by the stage of the clinical data pipeline they cover.
+If you're new to pharmaverse, working through them in order gives a natural end-to-end
+view of how the ecosystem fits together.
 
-```r
-if(!require(pak)) {
-  install.packages("pak")
-}
-pak::pak()
-```
-*Note: the R scripts are generated from `.qmd` files automatically using [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*
+| Section | What it covers | Good starting point if… |
+|---------|---------------|--------------------------|
+| **[SDTM](sdtm/index.qmd)** | Converting raw collected data to CDISC SDTM domains | You work upstream of ADaM or want to understand the data origin |
+| **[ADaM](adam/index.qmd)** | Building analysis datasets (ADSL, ADTTE, ADPC, etc.) from SDTM | You're implementing analysis-ready datasets for reporting |
+| **[TLG](tlg/index.qmd)** | Creating tables, listings, and graphs for clinical study reports | You focus on outputs — demographics, AEs, survival, PK summaries |
 
+If you're primarily interested in a specific output type, jump directly to the
+[TLG section](tlg/index.qmd), which is self-contained and uses pre-built ADaM
+datasets from `{pharmaverseadam}`.
+
+The site also includes introductory examples for several additional workflow areas:
+
+- **[Interactive](interactive/index.qmd)** — building clinical data exploration apps with `{teal}`
+- **[Documents](documents/index.qmd)** — automated report generation from ADaM data
+- **[Logs](logs/index.qmd)** — logging and traceability for clinical R workflows
+- **[eSub](esub/index.qmd)** — preparing outputs for electronic regulatory submission
+
+---
+
+## Packages Used in These Examples
+
+The table below covers every package used across the examples site, grouped by
+the part of the pipeline where it appears. Clicking a package name opens its
+documentation; the Example column links to where it is used on this site.
+
+### Data Packages
+
+| Package | Description | Example |
+|---------|-------------|---------|
+| [`{pharmaverseraw}`](https://pharmaverse.github.io/pharmaverseraw/) | Source raw datasets (AE, DM, EX, DS domains) used as the starting point for all SDTM examples | [SDTM](sdtm/index.qmd) |
+| [`{pharmaversesdtm}`](https://pharmaverse.github.io/pharmaversesdtm/) | CDISC SDTM example datasets generated from `{pharmaverseraw}` | [SDTM](sdtm/index.qmd) / [ADaM](adam/index.qmd) |
+| [`{pharmaverseadam}`](https://pharmaverse.github.io/pharmaverseadam/) | CDISC ADaM example datasets (ADSL, ADTTE, ADPC, etc.) used across TLG and PK examples | [TLG](tlg/index.qmd) / [PK](tlg/pharmacokinetic.qmd) |
+
+### SDTM Packages
+
+| Package | Description | Example |
+|---------|-------------|---------|
+| [`{sdtm.oak}`](https://pharmaverse.github.io/sdtm.oak/) | SDTM programming in R — maps raw collected data to CDISC SDTM domains using an algorithm-based engine | [SDTM](sdtm/index.qmd) |
+
+### ADaM Packages
+
+| Package | Description | Example |
+|---------|-------------|---------|
+| [`{admiral}`](https://pharmaverse.github.io/admiral/) | ADaM dataset construction in R — the core package for building ADSL, ADAE, ADTTE, and other standard domains | [ADaM](adam/index.qmd) |
+| [`{admiralonco}`](https://pharmaverse.github.io/admiralonco/) | Oncology-specific ADaM extensions for `{admiral}` — adds functions for tumor response, DOR, and TTE oncology endpoints | [ADaM](adam/index.qmd) |
+| [`{metacore}`](https://atorus-research.github.io/metacore/) | Stores and validates dataset metadata (variable definitions, codelists) from specs in a consistent R object | [ADaM](adam/index.qmd) |
+| [`{metatools}`](https://pharmaverse.github.io/metatools/) | Utilities for working with `{metacore}` objects — checking variables, applying codelists, and deriving variables from metadata | [ADaM](adam/index.qmd) |
+| [`{xportr}`](https://atorus-research.github.io/xportr/) | Applies SAS XPT metadata (types, labels, lengths, formats) and exports submission-ready `.xpt` transport files | [ADaM](adam/index.qmd) |
+
+### TLG Packages
+
+| Package | Description | Example |
+|---------|-------------|---------|
+| [`{rtables}`](https://insightsengineering.github.io/rtables/) | Framework for building complex nested tables with flexible layouts — the foundation of the NEST TLG stack | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
+| [`{tern}`](https://insightsengineering.github.io/tern/) | Analysis functions for clinical trial TLGs built on `{rtables}` — covers demographics, AEs, survival, PK summaries | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
+| [`{rlistings}`](https://insightsengineering.github.io/rlistings/) | Creates regulatory-ready listings from ADaM datasets | [PK](tlg/pharmacokinetic.qmd) |
+| [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) | Publication-ready summary and analytical tables — used here for survival median and time-point tables | [Oncology Survival](tlg/oncology_survival.qmd) |
+| [`{ggsurvfit}`](https://www.danieldsjoberg.com/ggsurvfit/) | Publication-ready Kaplan-Meier and time-to-event figures built on `{ggplot2}`, with native CDISC ADTTE support via `Surv_CNSR()` | [Oncology Survival](tlg/oncology_survival.qmd) |
+| [`{cards}`](https://insightsengineering.github.io/cards/) | Creates Analysis Results Datasets (ARDs) following the emerging CDISC Analysis Results Standard | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) |
+| [`{tfrmt}`](https://gsk-biostatistics.github.io/tfrmt/) | Transforms ARDs into publication-ready tables with precise formatting control — particularly suited to RTF regulatory outputs | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) |
+
+---
+
+::: {.callout-note}
 ## Contributing
-If you are interesting in contributing an article to this book, then
-see more in our GitHub repo README.
 
-You can see a list of current contributors via our GitHub repo DESCRIPTION file.
+Have an example that others would benefit from? Contributions are welcome — see
+the [GitHub repository](https://github.com/pharmaverse/examples) for guidance on
+how to structure and submit a new example. If you'd like to suggest an example
+without writing the code yourself, open an issue and the team will review it for
+the backlog.
+
+While you're there, consider giving the packages you use a
+[⭐ GitHub star](https://github.com/pharmaverse/examples) — it helps maintainers
+demonstrate community adoption and keeps the ecosystem visible to new users.
+:::
