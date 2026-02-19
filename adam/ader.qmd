@@ -135,7 +135,7 @@ print_df(covar %>% select(USUBJID, TRT01A, TRT01AN, SEX, SEXN, RACE, RACEN, FORM
 
 ### Derive Additional Baselines
 
-Next we add additional baselines from vital signs and laboratory data.
+Next we add additional baselines from vital signs and laboratory data. We will use `admiral::derive_vars_merged()` and `admiral::derive_vars_transposed()` to merge these datasets. Note that we use `get_admiral_option("subject_keys")` throughout to identify unique subjects instead of listing `STUDYID` and `USUBJID`.
 
 ```{r}
 #| label: Baselines
@@ -191,7 +191,7 @@ print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 
 ## Add Exposure Metrics from `ADPP`
 
-An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC` or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
+An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC`, `ADPPK`, or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
 
 ```{r}
 #| label: AUCSS
@@ -225,7 +225,7 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 
 ### Derive Time to Event Variables from `ADTTE`
 
-We will use parameters from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`.
+We will use parameters from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`. We also transpose the censor variables `CNSR` here as indicator variables appending "IND" to the parameter name.
 
 ```{r}
 #| label: ADER Add ADTTE variables
@@ -262,7 +262,7 @@ We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach t
 ```{r}
 #| label: ADER Add ADRS
 # ---- Add ADRS data ----
-# Add response date to ADSL for duration of response calculation
+# Add response date to ADER for duration of response calculation
 ader_bor <- ader_tte %>%
   derive_vars_merged(
     dataset_add = adrs,
