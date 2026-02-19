@@ -800,7 +800,6 @@ tsize_final <- adtr %>%
   ) %>%
   select(-any_of(vars_to_drop))
 ```
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
 ```
