@@ -354,7 +354,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 
 ```{r}
 #| label: ADEE Base dataset
-# ---- Create adee base dataset
+# ---- Create ADEE base dataset
 
 # Get variable names from both datasets
 adsl_vars <- names(adsl)
