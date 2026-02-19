@@ -350,9 +350,8 @@ initiative. It provides a richer illustrative dataset than `adtte_onco` for
 showing a **stratified KM plot**, since it has four well-separated treatment arms
 with a good event rate and an estimable median.
 
-The treatment arms are stored in `STR01` (not `ARM` or `TRT01A`) and have short
-coded values (`V`, `T`, `T->V`, `T+V`). Mapping these to readable labels in the
-`scale_color_*` call makes the legend self-explanatory.
+The treatment variable is `TRT01P` (planned treatment at randomisation), which
+contains the four arm labels directly.
 
 ```{r km-plot-adtte}
 #| message: false
@@ -361,17 +360,11 @@ coded values (`V`, `T`, `T->V`, `T+V`). Mapping these to readable labels in the
 #| fig-height: 8
 
 # ── ggsurvfit::adtte — four-arm breast cancer PFS trial ────────────────────────
-arm_labels <- c(
-  "V"    = "Vinorelbine (V)",
-  "T"    = "Docetaxel (T)",
-  "T->V" = "Docetaxel → Vinorelbine",
-  "T+V"  = "Docetaxel + Vinorelbine"
-)
-
-survfit2(Surv_CNSR(AVAL, CNSR) ~ STR01, data = ggsurvfit::adtte) |>
+# TRT01P = planned treatment; STR01 = hormone receptor status (not treatment)
+survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = ggsurvfit::adtte) |>
   ggsurvfit(linewidth = 1) +
-  scale_color_brewer(palette = "Dark2", labels = arm_labels) +
-  scale_fill_brewer(palette = "Dark2", labels = arm_labels) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
   add_confidence_interval() +
   add_risktable(
     risktable_stats = "n.risk",

@@ -144,17 +144,11 @@ survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
 
 ## ----r km-plot-adtte----------------------------------------------------------
 # ── ggsurvfit::adtte — four-arm breast cancer PFS trial ────────────────────────
-arm_labels <- c(
-  "V"    = "Vinorelbine (V)",
-  "T"    = "Docetaxel (T)",
-  "T->V" = "Docetaxel → Vinorelbine",
-  "T+V"  = "Docetaxel + Vinorelbine"
-)
-
-survfit2(Surv_CNSR(AVAL, CNSR) ~ STR01, data = ggsurvfit::adtte) |>
+# TRT01P = planned treatment; STR01 = hormone receptor status (not treatment)
+survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = ggsurvfit::adtte) |>
   ggsurvfit(linewidth = 1) +
-  scale_color_brewer(palette = "Dark2", labels = arm_labels) +
-  scale_fill_brewer(palette = "Dark2", labels = arm_labels) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
   add_confidence_interval() +
   add_risktable(
     risktable_stats = "n.risk",
