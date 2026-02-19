@@ -72,7 +72,7 @@ km_fit |>
   theme_ggsurvfit_default() +
   theme(plot.caption = element_text(hjust = 0, size = 8))
 
-## ----r median-table-----------------------------------------------------------
+## ----r median-table-classic---------------------------------------------------
 # ── Median survival with 95% CI ────────────────────────────────────────────────
 tbl_survfit(
   km_fit,
@@ -87,7 +87,7 @@ tbl_survfit(
   ) |>
   bold_labels()
 
-## ----r prob-table-------------------------------------------------------------
+## ----r prob-table-classic-----------------------------------------------------
 # ── Survival probability at selected time points ───────────────────────────────
 # AVAL in adtte_onco is in years; express months as fractions of a year
 tbl_survfit(
@@ -116,28 +116,71 @@ tbl_survfit(
   bold_labels()
 
 ## ----r cnsr-note--------------------------------------------------------------
-# ✗  Error-prone: requires manual recoding of CNSR
-survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
-
-# ✓  Correct CDISC-aware approach
-ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR)
+# # ✗  Error-prone: requires manual recoding of CNSR
+# survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
+#
+# # ✓  Correct CDISC-aware approach
+# ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR)
 
 ## ----r endpoint-note----------------------------------------------------------
-# Overall Survival — expect few events; median may not be estimable
-adtte_os <- adtte_onco |> filter(PARAMCD == "OS")
-
-# Duration of Response — responders only; smaller N than OS/PFS
-# Note: admiralonco uses PARAMCD = "RSD", not "DOR"
-adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
+# # Overall Survival — expect few events; median may not be estimable
+# adtte_os  <- adtte_onco |> filter(PARAMCD == "OS")
+#
+# # Duration of Response — responders only; smaller N than OS/PFS
+# # Note: admiralonco uses PARAMCD = "RSD", not "DOR"
+# adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
 
 ## ----r strata-note------------------------------------------------------------
-survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
+# survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
+#   ggsurvfit(linewidth = 1) +
+#   scale_color_brewer(palette = "Dark2") +
+#   scale_fill_brewer(palette  = "Dark2") +
+#   add_confidence_interval() +
+#   add_risktable(
+#     theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
+#   ) +
+#   add_pvalue(location = "annotation") +
+#   scale_ggsurvfit()
+
+## ----r km-plot-adtte----------------------------------------------------------
+# ── ggsurvfit::adtte — four-arm breast cancer PFS trial ────────────────────────
+arm_labels <- c(
+  "V"    = "Vinorelbine (V)",
+  "T"    = "Docetaxel (T)",
+  "T->V" = "Docetaxel → Vinorelbine",
+  "T+V"  = "Docetaxel + Vinorelbine"
+)
+
+survfit2(Surv_CNSR(AVAL, CNSR) ~ STR01, data = ggsurvfit::adtte) |>
   ggsurvfit(linewidth = 1) +
-  scale_color_brewer(palette = "Dark2") +
-  scale_fill_brewer(palette = "Dark2") +
+  scale_color_brewer(palette = "Dark2", labels = arm_labels) +
+  scale_fill_brewer(palette = "Dark2", labels = arm_labels) +
   add_confidence_interval() +
   add_risktable(
+    risktable_stats = "n.risk",
+    stats_label = list(n.risk = "At Risk"),
     theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
   ) +
-  add_pvalue(location = "annotation") +
-  scale_ggsurvfit()
+  add_quantile(
+    y_value   = 0.5,
+    color     = "gray40",
+    linewidth = 0.75,
+    linetype  = "dashed"
+  ) +
+  add_censor_mark(shape = 3, size = 1.5) +
+  add_pvalue(location = "annotation", x = 4.5) +
+  scale_ggsurvfit() +
+  labs(
+    title = "Progression-Free Survival by Treatment Arm",
+    x = "Time (Years)",
+    y = "Progression-Free Survival Probability",
+    caption = paste0(
+      "Dataset: ggsurvfit::adtte  |  HER2+ breast cancer Phase III trial",
+      "\nCensored observations marked with '+'"
+    )
+  ) +
+  theme_ggsurvfit_default() +
+  theme(
+    plot.caption  = element_text(hjust = 0, size = 8),
+    legend.title  = element_blank()
+  )
