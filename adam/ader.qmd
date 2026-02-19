@@ -331,7 +331,7 @@ Using `{xportr}` we check variable type, assign variable length, add variable la
 dir <- tempdir() # Change to whichever directory you want to save the dataset in
 
 ader_xpt <- ader %>%
-  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match spec
+  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match specs
   xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
   xportr_label(metacore) %>% # Assigns variable label from metacore specifications
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
