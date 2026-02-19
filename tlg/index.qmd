@@ -86,8 +86,8 @@ These examples create tables directly from analysis datasets using the tradition
 |------------------------|-------------------------------|-------------------------------|
 | **Demographics** | [{cards} + {gtsummary}](demographic.qmd#gtsummary-cards)<br/>[{cards} + {tfrmt}](demographic.qmd#tfrmt-cards) | [{rtables} + {tern}](demographic.qmd#rtables-tern) |
 | **Adverse Events** | [{cards} + {tfrmt}](adverse_events.qmd#tfrmt-cards) | [{rtables} + {tern}](adverse_events.qmd#rtables-tern) |
+| **Oncology Survival** | — | [View example](oncology_survival.qmd) |
 | **PK Outputs** | *Coming soon* | [View example](pharmacokinetic.qmd) |
-| **Oncology Survival** | *Coming soon* | [View example](oncology_survival.qmd) |
 
 ## Key Packages Used
 
