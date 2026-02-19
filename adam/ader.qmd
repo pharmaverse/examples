@@ -875,7 +875,6 @@ nadir <- tsize_final %>%
 #| label: print nadir
 print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
 ```
-
 ### Combine Parameters
 
 ```{r}
