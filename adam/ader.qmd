@@ -144,24 +144,24 @@ Next we add additional baselines from vital signs and laboratory data.
 labsbl <- adlb %>%
   filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
   mutate(PARAMCDB = paste0(PARAMCD, "BL")) %>%
-  select(STUDYID, USUBJID, PARAMCDB, AVAL)
+  select(!!!get_admiral_option("subject_keys"), PARAMCDB, AVAL)
 
 covar_vslb <- covar %>%
   derive_vars_merged(
     dataset_add = advs,
     filter_add = PARAMCD == "HEIGHT" & ABLFL == "Y",
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     new_vars = exprs(HTBL = AVAL)
   ) %>%
   derive_vars_merged(
     dataset_add = advs,
     filter_add = PARAMCD == "WEIGHT" & ABLFL == "Y",
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     new_vars = exprs(WTBL = AVAL)
   ) %>%
   derive_vars_transposed(
     dataset_merge = labsbl,
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     key_var = PARAMCDB,
     value_var = AVAL
   ) %>%
@@ -302,7 +302,7 @@ We combine our covariates with the rest of the data
 ader_prefinal <- ader_aseq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 ```
 
@@ -419,7 +419,7 @@ adee_aseq <- adee_base %>%
   ) %>%
   # Sequence number
   derive_var_obs_number(
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     order = exprs(PARAMCD),
     new_var = ASEQ,
     check_type = "error"
@@ -442,7 +442,7 @@ We combine our covariates with the rest of the data
 adee_prefinal <- adee_aseq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 ```
 
@@ -645,7 +645,7 @@ event_params <- adae %>%
 subject_params_complete <- subject_params %>%
   derive_vars_merged(
     dataset_add = adsl_sub,
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
   ) %>%
   mutate(
     # Add event-level variables as NA for subject-level records
@@ -663,7 +663,7 @@ subject_params_complete <- subject_params %>%
 event_params_complete <- event_params %>%
   derive_vars_merged(
     dataset_add = adsl_sub,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 
 # Combine both levels
@@ -710,7 +710,7 @@ ades_flags <- ades_base %>%
   # Sort and create sequence number
   # Use coalesce to handle NA dates (puts them first in sort)
   arrange(USUBJID, PARAMN, coalesce(AESTDT, as.Date("1900-01-01"))) %>%
-  group_by(STUDYID, USUBJID) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
   mutate(ASEQ = row_number()) %>%
   ungroup()
 ```
@@ -726,7 +726,7 @@ We combine our covariates with the rest of the data
 ades_prefinal <- ades_flags %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 ```
 ### Check Data With metacore and metatools
@@ -850,7 +850,7 @@ print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 # Keep BASE, CHG, PCHG from the nadir timepoint
 nadir <- tsize_final %>%
   filter(AVISITN > 0 & !is.na(AVAL)) %>%
-  group_by(STUDYID, USUBJID) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
   filter(AVAL == min(AVAL, na.rm = TRUE)) %>%
   slice(1) %>%
   ungroup() %>%
@@ -930,7 +930,7 @@ adtrr_seq <- adtrr_base %>%
   ) %>%
   # Sequence number
   derive_var_obs_number(
-    by_vars = exprs(STUDYID, USUBJID),
+    by_vars = get_admiral_option("subject_keys"),
     order = exprs(PARAMN, AVISITN),
     new_var = ASEQ,
     check_type = "error"
@@ -952,7 +952,7 @@ print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL
 adtrr_prefinal <- adtrr_seq %>%
   derive_vars_merged(
     dataset_add = covar_auc,
-    by_vars = exprs(STUDYID, USUBJID)
+    by_vars = get_admiral_option("subject_keys")
   )
 ```
 
