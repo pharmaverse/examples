@@ -803,7 +803,6 @@ tsize_final <- adtr %>%
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, BASE, AVAL, CHG), n = 20)
 ```
-
 ### Add BOR from `ADRS`
 
 ```{r}
