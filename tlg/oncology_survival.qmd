@@ -326,7 +326,7 @@ Because `adtte_onco` already contains `ARM` and `ARMCD` from the `{admiralonco}`
 template, no ADSL join is needed to produce a stratified KM plot:
 
 ```{r strata-note}
-#| eval: false
+#| eval: true
 
 survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
   ggsurvfit(linewidth = 1) +

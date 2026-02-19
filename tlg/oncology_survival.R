@@ -124,23 +124,23 @@ tbl_survfit(
 
 ## ----r endpoint-note----------------------------------------------------------
 # # Overall Survival — expect few events; median may not be estimable
-# adtte_os  <- adtte_onco |> filter(PARAMCD == "OS")
+# adtte_os <- adtte_onco |> filter(PARAMCD == "OS")
 #
 # # Duration of Response — responders only; smaller N than OS/PFS
 # # Note: admiralonco uses PARAMCD = "RSD", not "DOR"
 # adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
 
 ## ----r strata-note------------------------------------------------------------
-# survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
-#   ggsurvfit(linewidth = 1) +
-#   scale_color_brewer(palette = "Dark2") +
-#   scale_fill_brewer(palette  = "Dark2") +
-#   add_confidence_interval() +
-#   add_risktable(
-#     theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
-#   ) +
-#   add_pvalue(location = "annotation") +
-#   scale_ggsurvfit()
+survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
+  ggsurvfit(linewidth = 1) +
+  scale_color_brewer(palette = "Dark2") +
+  scale_fill_brewer(palette = "Dark2") +
+  add_confidence_interval() +
+  add_risktable(
+    theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
+  ) +
+  add_pvalue(location = "annotation") +
+  scale_ggsurvfit()
 
 ## ----r km-plot-adtte----------------------------------------------------------
 # ── ggsurvfit::adtte — four-arm breast cancer PFS trial ────────────────────────
