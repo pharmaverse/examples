@@ -586,7 +586,6 @@ subject_params <- bind_rows(
 ) %>%
   arrange(USUBJID, PARAMCD)
 ```
-
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print subject_params
 print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
