@@ -14,8 +14,9 @@ knitr::knit_hooks$set(purl = invisible_hook_purl)
 ## Introduction
 
 This guide demonstrates how pharmaverse packages, along with tools from the
-tidyverse, can be used to create standard oncology survival Tables, Listings,
-and Graphs (TLGs) using the `{pharmaverseadam}` `ADTTE_ONCO` dataset as input.
+tidyverse, can be used to create standard oncology efficacy Tables, Listings,
+and Graphs (TLGs) using the `{pharmaverseadam}` `ADTTE_ONCO` and `ADRS_ONCO`
+datasets as input.
 
 The packages used, with a brief description of their purpose, are as follows:
 
@@ -25,10 +26,12 @@ The packages used, with a brief description of their purpose, are as follows:
   of publication-ready time-to-event (survival) figures built on `{ggplot2}`.
   Includes `Surv_CNSR()` to handle CDISC ADTTE censoring conventions natively.
 * [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/): creates
-  publication-ready summary and analytical tables. Works seamlessly with
-  `{ggsurvfit}` to generate median survival tables.
+  publication-ready summary and analytical tables. Used here for survival and
+  tumor response summaries.
 * [`{dplyr}`](https://dplyr.tidyverse.org/): provides data manipulation
-  functions used to prepare and filter the ADTTE data.
+  functions used to prepare and filter the ADaM data.
+* [`{forcats}`](https://forcats.tidyverse.org/): provides factor manipulation
+  utilities used to order RECIST response categories for table display.
 
 The outputs produced in this example are:
 
@@ -39,19 +42,21 @@ The outputs produced in this example are:
 3. **Median survival table** with 95% confidence interval, suitable for
    inclusion in a clinical study report (CSR).
 4. **Survival probability table** at selected time points.
-5. **Stratified KM plot** using the built-in `ggsurvfit::adtte` four-arm trial
+5. **Best Overall Response table** with category counts, percentages, and
+   inline ORR (CR + PR) summary from `ADRS_ONCO`.
+6. **Stratified KM plot** using the built-in `ggsurvfit::adtte` four-arm trial
    dataset to illustrate multi-arm analyses.
 
 ---
 
 ## Setup
 
-We load the required packages and read `ADTTE_ONCO` from `{pharmaverseadam}`.
-This is the oncology-specific TTE dataset generated from the `{admiralonco}`
-template. It contains three endpoints — Overall Survival (`OS`), Progression
-Free Survival (`PFS`), and Duration of Response (`RSD`) — with treatment arm
-variables (`ARM`, `ARMCD`) already merged in, making it ready for stratified
-analyses without a separate ADSL join.
+We load the required packages and read `ADTTE_ONCO` and `ADRS_ONCO` from
+`{pharmaverseadam}`. `ADTTE_ONCO` is the oncology-specific TTE dataset generated
+from the `{admiralonco}` template — it contains three endpoints (OS, PFS, RSD)
+with treatment arm variables already merged in. `ADRS_ONCO` is the tumor response
+dataset containing per-visit and summary response parameters (BOR, CBOR, RSP)
+derived from RECIST 1.1 assessments.
 
 Because the CDISC ADTTE censoring variable `CNSR` is coded `1 = censored /
 0 = event` (the reverse of base R's `survival::Surv()` convention), we use
@@ -65,9 +70,14 @@ library(ggsurvfit)
 library(ggplot2)
 library(gtsummary)
 library(dplyr)
+library(forcats)
 
 # ── Read data ──────────────────────────────────────────────────────────────────
 adtte_onco <- pharmaverseadam::adtte_onco
+
+# ── ADRS_ONCO: tumor response data ───────────────────────────────────────────
+adrs_onco <- pharmaverseadam::adrs_onco |>
+  filter(ARMCD != "Scrnfail")
 
 # Overview of available endpoints and their event rates
 adtte_onco |>
@@ -92,7 +102,7 @@ adtte_onco |>
 #| message: false
 #| warning: false
 
-# ── Filter to PFS endpoint ─────────────────────────────────────────────────────
+# ── PFS endpoint ────────────────────────────────────
 adtte_pfs <- adtte_onco |>
   filter(PARAMCD == "PFS")
 
@@ -154,7 +164,7 @@ km_fit |>
   scale_ggsurvfit() +
   labs(
     title = paste0(unique(adtte_pfs$PARAM), "\nKaplan-Meier Estimate"),
-    x = paste0("Time (", unique(adtte_pfs$AVALU), ")"),
+    x = "Time (Years)", # AVALU not present in adtte_onco; AVAL is in years
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Analysis dataset: ADTTE_ONCO  |  PARAMCD: ", unique(adtte_pfs$PARAMCD),
@@ -210,7 +220,7 @@ tbl_survfit(
 This table shows estimated PFS probabilities at clinically meaningful time
 points. For PFS these are typically shorter intervals than OS — 3, 6, 9, and
 12 months are standard in many oncology trials. Adjust `times` to match the
-`AVALU` units in your dataset.
+`AVALU` units in your dataset. Note that `adtte_onco` does not include `AVALU`, so the x-axis label is hardcoded as `"Time (Years)"`.
 
 ```{r prob-table-classic}
 #| message: false
@@ -275,6 +285,83 @@ The `y` argument must be passed as a character string when using the data frame
 method. See the [`{cardx}` documentation](https://insightsengineering.github.io/cardx/main/reference/ard_survival_survfit.html)
 for full details.
 :::
+---
+
+## Best Overall Response Table
+
+The Best Overall Response (BOR) table is a standard oncology efficacy output
+summarising each subject's best RECIST response category across all post-baseline
+assessments. Using `PARAMCD == "CBOR"` (Confirmed Best Overall Response) aligns
+with the primary regulatory definition of ORR as confirmed CR + PR.
+
+The `{gtsummary}` `tbl_summary()` function produces the category counts and
+percentages directly from `AVALC`. Response categories are ordered from best to
+worst (CR → PR → SD → NON-CR/NON-PD → PD → NE → MISSING) using a factor, and
+the ORR row (CR + PR) is highlighted with `add_stat_label()`.
+
+```{r bor-setup}
+#| message: false
+#| warning: false
+
+# ── Filter to CBOR parameter ──────────────────────────────────
+# ANL01FL == "Y" restricts to the primary analysis flag records.
+adrs_bor <- adrs_onco |>
+  filter(PARAMCD == "CBOR" & ANL01FL == "Y") |>
+  mutate(
+    # Order AVALC from best to worst response for table display
+    AVALC = fct_relevel(
+      AVALC,
+      "CR", "PR", "SD", "NON-CR/NON-PD", "PD", "NE", "MISSING"
+    )
+  )
+```
+
+```{r bor-table}
+#| message: false
+#| warning: false
+
+# ── Best Overall Response table by treatment arm ───────────────────────────────
+adrs_bor |>
+  tbl_summary(
+    by = ARM,
+    include = AVALC,
+    label = list(AVALC = "Best Overall Response"),
+    statistic = list(AVALC = "{n} ({p}%)"),
+    digits = list(AVALC = list(0, 1))
+  ) |>
+  add_overall(last = TRUE) |>
+  add_n() |>
+  bold_labels() |>
+  modify_header(label = "**Response**") |>
+  modify_caption(
+    paste0(
+      "**Table 3. Confirmed Best Overall Response (RECIST 1.1)**",
+      "\nADRS_ONCO  |  PARAMCD: CBOR  |  ANL01FL = Y"
+    )
+  )
+```
+
+The ORR (overall response rate, CR + PR) is not directly produced by
+`tbl_summary()` as a combined row, but can be derived and appended using
+`tbl_stack()` or reported inline:
+
+```{r orr-inline}
+#| message: false
+#| warning: false
+
+# ── ORR: proportion with CR or PR, by arm ─────────────────────────────────────
+adrs_bor |>
+  summarise(
+    .by    = ARM,
+    n_resp = sum(AVALC %in% c("CR", "PR"), na.rm = TRUE),
+    n_tot  = n(),
+    orr    = round(100 * n_resp / n_tot, 1)
+  ) |>
+  mutate(label = paste0(n_resp, "/", n_tot, " (", orr, "%)")) |>
+  select(ARM, ORR = label) |>
+  knitr::kable(caption = "Overall Response Rate (CR + PR) by Arm")
+```
+
 
 ---
 
@@ -328,6 +415,8 @@ template, no ADSL join is needed to produce a stratified KM plot:
 ```{r strata-note}
 #| eval: true
 
+# With two arms (ARM), add_pvalue() computes and annotates a log-rank test p-value.
+# Not applicable for single-arm fits (~ 1) — only add when comparing groups.
 survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
   ggsurvfit(linewidth = 1) +
   scale_color_brewer(palette = "Dark2") +
@@ -351,7 +440,8 @@ showing a **stratified KM plot**, since it has four well-separated treatment arm
 with a good event rate and an estimable median.
 
 The treatment variable is `TRT01P` (planned treatment at randomisation), which
-contains the four arm labels directly.
+contains the four arm labels directly. `STR01` is hormone receptor status — a
+stratification covariate, not the treatment assignment.
 
 ```{r km-plot-adtte}
 #| message: false

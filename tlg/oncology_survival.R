@@ -4,9 +4,14 @@ library(ggsurvfit)
 library(ggplot2)
 library(gtsummary)
 library(dplyr)
+library(forcats)
 
 # ── Read data ──────────────────────────────────────────────────────────────────
 adtte_onco <- pharmaverseadam::adtte_onco
+
+# ── ADRS_ONCO: tumor response data ───────────────────────────────────────────
+adrs_onco <- pharmaverseadam::adrs_onco |>
+  filter(ARMCD != "Scrnfail")
 
 # Overview of available endpoints and their event rates
 adtte_onco |>
@@ -20,7 +25,7 @@ adtte_onco |>
   )
 
 ## ----r filter-pfs-------------------------------------------------------------
-# ── Filter to PFS endpoint ─────────────────────────────────────────────────────
+# ── PFS endpoint ────────────────────────────────────
 adtte_pfs <- adtte_onco |>
   filter(PARAMCD == "PFS")
 
@@ -62,7 +67,7 @@ km_fit |>
   scale_ggsurvfit() +
   labs(
     title = paste0(unique(adtte_pfs$PARAM), "\nKaplan-Meier Estimate"),
-    x = paste0("Time (", unique(adtte_pfs$AVALU), ")"),
+    x = "Time (Years)", # AVALU not present in adtte_onco; AVAL is in years
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Analysis dataset: ADTTE_ONCO  |  PARAMCD: ", unique(adtte_pfs$PARAMCD),
@@ -115,6 +120,53 @@ tbl_survfit(
   ) |>
   bold_labels()
 
+## ----r bor-setup--------------------------------------------------------------
+# ── Filter to CBOR parameter ──────────────────────────────────
+# ANL01FL == "Y" restricts to the primary analysis flag records.
+adrs_bor <- adrs_onco |>
+  filter(PARAMCD == "CBOR" & ANL01FL == "Y") |>
+  mutate(
+    # Order AVALC from best to worst response for table display
+    AVALC = fct_relevel(
+      AVALC,
+      "CR", "PR", "SD", "NON-CR/NON-PD", "PD", "NE", "MISSING"
+    )
+  )
+
+## ----r bor-table--------------------------------------------------------------
+# ── Best Overall Response table by treatment arm ───────────────────────────────
+adrs_bor |>
+  tbl_summary(
+    by = ARM,
+    include = AVALC,
+    label = list(AVALC = "Best Overall Response"),
+    statistic = list(AVALC = "{n} ({p}%)"),
+    digits = list(AVALC = list(0, 1))
+  ) |>
+  add_overall(last = TRUE) |>
+  add_n() |>
+  bold_labels() |>
+  modify_header(label = "**Response**") |>
+  modify_caption(
+    paste0(
+      "**Table 3. Confirmed Best Overall Response (RECIST 1.1)**",
+      "\nADRS_ONCO  |  PARAMCD: CBOR  |  ANL01FL = Y"
+    )
+  )
+
+## ----r orr-inline-------------------------------------------------------------
+# ── ORR: proportion with CR or PR, by arm ─────────────────────────────────────
+adrs_bor |>
+  summarise(
+    .by    = ARM,
+    n_resp = sum(AVALC %in% c("CR", "PR"), na.rm = TRUE),
+    n_tot  = n(),
+    orr    = round(100 * n_resp / n_tot, 1)
+  ) |>
+  mutate(label = paste0(n_resp, "/", n_tot, " (", orr, "%)")) |>
+  select(ARM, ORR = label) |>
+  knitr::kable(caption = "Overall Response Rate (CR + PR) by Arm")
+
 ## ----r cnsr-note--------------------------------------------------------------
 # # ✗  Error-prone: requires manual recoding of CNSR
 # survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
@@ -131,6 +183,8 @@ tbl_survfit(
 # adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
 
 ## ----r strata-note------------------------------------------------------------
+# With two arms (ARM), add_pvalue() computes and annotates a log-rank test p-value.
+# Not applicable for single-arm fits (~ 1) — only add when comparing groups.
 survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
   ggsurvfit(linewidth = 1) +
   scale_color_brewer(palette = "Dark2") +
