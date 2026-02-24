@@ -228,6 +228,7 @@ callout
 callr
 cardx
 categorizationvars
+CBOR
 CDISC
 cdisc
 CDISCPILOT
@@ -528,6 +529,7 @@ mtcars
 multivar
 na
 NADPCHG
+nADRS
 nADTTE
 NADVST
 natively
@@ -570,6 +572,7 @@ ONCO
 ONTRTFL
 ontrtfl
 ord
+orr
 os
 OSIND
 othgrpvars
@@ -729,6 +732,7 @@ RSD
 RSDIND
 RSDTC
 RSEVAL
+RSP
 RSSEQ
 RSSTRESC
 RSTESTCD
@@ -744,6 +748,7 @@ SAPs
 sas
 SASFL
 SCRFDT
+Scrnfail
 sd
 sdi
 SDIAM
@@ -798,6 +803,7 @@ subperiods
 SUBPOS
 substr
 summarise
+summarising
 Summarization
 summaryrec
 suppdm

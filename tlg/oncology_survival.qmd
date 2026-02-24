@@ -219,8 +219,7 @@ tbl_survfit(
 
 This table shows estimated PFS probabilities at clinically meaningful time
 points. For PFS these are typically shorter intervals than OS — 3, 6, 9, and
-12 months are standard in many oncology trials. Adjust `times` to match the
-`AVALU` units in your dataset. Note that `adtte_onco` does not include `AVALU`, so the x-axis label is hardcoded as `"Time (Years)"`.
+12 months are standard in many oncology trials. Adjust `times` to match the units in your dataset. 
 
 ```{r prob-table-classic}
 #| message: false
