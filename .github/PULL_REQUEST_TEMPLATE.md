@@ -10,7 +10,7 @@ Before you submit your pull request, take a look at the following checklist. Man
 - [ ] **Impact on Examples:** If your updates impact any examples, review locally for warnings or errors in the impacted example pages.
 - [ ] **Merge Conflicts:** Developers should address any merge conflicts and merge upon successful review.
 - [ ] **New Packages:** If new packages were used, ensure they are included in the `DESCRIPTION` file's `Imports` section.
-- [ ] **Landing Pages:** If new packages were added or removed, update the package tables in the [main landing page](index.qmd) and the relevant section landing page(s) (`sdtm/index.qmd`, `adam/index.qmd`, `tlg/index.qmd`).
+- [ ] **Landing Pages:** If new packages were added or removed, update the package tables in the [main landing page](../index.qmd) and the relevant section landing page(s) (`sdtm/index.qmd`, `adam/index.qmd`, `tlg/index.qmd`).
 - [ ] **Updated Examples:** If you added or updated an example, ensure it runs on the latest CRAN release versions of all packages used.
 - [ ] **Testing Instructions:** Provide instructions on how to test the code if necessary. 
 
