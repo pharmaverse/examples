@@ -366,6 +366,7 @@ eSubmission
 ETHNICN
 eval
 Evaluable
+evaluable
 EVID
 EVNTDESC
 EXCLF
@@ -396,6 +397,7 @@ fansi
 FAS
 FASFL
 fastmap
+favourable
 fct
 FDA's
 fileext
@@ -508,6 +510,7 @@ miniUI
 minumum
 mmHg
 mmm
+modelling
 Mosteller
 MRRLT
 mtcars
@@ -852,6 +855,7 @@ tte
 TTNT
 TTP
 tu
+tumour
 tz
 UDTC
 ui
@@ -877,6 +881,7 @@ VignetteEngine
 VignetteIndexEntry
 VISITDY
 VISITNUM
+visualisations
 VSBLFL
 VSCAT
 VSDTC
