@@ -61,12 +61,12 @@ view of how the ecosystem fits together.
 ```{mermaid}
 %%| fig-cap: "The pharmaverse clinical data pipeline"
 flowchart LR
-    RAW["**Raw Data**\n`{pharmaverseraw}`"]
-    SDTM["**SDTM**\n`{sdtm.oak}`"]
-    ADAM["**ADaM**\n`{admiral}`"]
-    TLG["**TLG**\n`{rtables}` · `{tern}`"]
-    INT["**Interactive**\n`{teal}`"]
-    DOC["**Documents**\n`{autoslideR}`"]
+    RAW["**Raw Data**\n{pharmaverseraw}"]
+    SDTM["**SDTM**\n{sdtm.oak}"]
+    ADAM["**ADaM**\n{admiral}"]
+    TLG["**TLG**\n{rtables} · {tern}"]
+    INT["**Interactive**\n{teal}"]
+    DOC["**Documents**\n{autoslideR}"]
     ESUB["**eSub**"]
     LOG["**Logging**"]
 
