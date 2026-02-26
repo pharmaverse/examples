@@ -36,19 +36,27 @@ adtr <- pharmaverseadam::adtr_onco
 # ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
-covar <- adsl %>%
-  create_var_from_codelist(metacore, input_var = STUDYID, out_var = STUDYIDN) %>%
-  create_var_from_codelist(metacore, input_var = SEX, out_var = SEXN) %>%
-  create_var_from_codelist(metacore, input_var = RACE, out_var = RACEN) %>%
-  create_var_from_codelist(metacore, input_var = ETHNIC, out_var = ETHNICN) %>%
-  create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORT) %>%
-  create_var_from_codelist(metacore, input_var = ARMCD, out_var = COHORTC) %>%
-  create_var_from_codelist(metacore, input_var = ARM, out_var = ARMN) %>%
-  create_var_from_codelist(metacore, input_var = ACTARM, out_var = ACTARMN) %>%
-  create_var_from_codelist(metacore, input_var = TRT01A, out_var = TRT01AN) %>%
-  create_var_from_codelist(metacore, input_var = TRT01P, out_var = TRT01PN) %>%
-  create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYN) %>%
-  create_var_from_codelist(metacore, input_var = COUNTRY, out_var = COUNTRYL) %>%
+covar <- purrr::reduce(
+  list(
+    c("STUDYID", "STUDYIDN"),
+    c("SEX", "SEXN"),
+    c("RACE", "RACEN"),
+    c("ETHNIC", "ETHNICN"),
+    c("ARMCD", "COHORT"),
+    c("ARMCD", "COHORTC"),
+    c("ARM", "ARMN"),
+    c("ACTARM", "ACTARMN"),
+    c("TRT01A", "TRT01AN"),
+    c("TRT01P", "TRT01PN"),
+    c("COUNTRY", "COUNTRYN"),
+    c("COUNTRY", "COUNTRYL")
+  ),
+  ~ create_var_from_codelist(.x, metacore,
+    input_var = !!rlang::sym(.y[1]),
+    out_var   = !!rlang::sym(.y[2])
+  ),
+  .init = adsl
+) %>%
   mutate(
     STUDYIDN = as.numeric(word(USUBJID, 1, sep = fixed("-"))),
     SITEIDN = as.numeric(word(USUBJID, 2, sep = fixed("-"))),
@@ -57,7 +65,7 @@ covar <- adsl %>%
     ROUTE = unique(adex$EXROUTE)[1],
     FORM = unique(adex$EXDOSFRM)[1],
     REGION1 = COUNTRY,
-    REGION1N = COUNTRYN,
+    REGION1N = COUNTRYN
   ) %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
@@ -542,7 +550,7 @@ tsize_final <- adtr %>%
   derive_var_nfrlt(
     new_var = NFRLT,
     new_var_unit = FRLTU,
-    out_unit = "HOURS",
+    out_unit = "DAYS",
     visit_day = ADY
   ) %>%
   # Derive Actual Relative Time from First Dose (AFRLT)
@@ -550,7 +558,7 @@ tsize_final <- adtr %>%
     new_var = AFRLT,
     start_date = TRTSDT,
     end_date = ADT,
-    out_unit = "HOURS",
+    out_unit = "DAYS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -697,3 +705,4 @@ adtrr_xpt <- adtrr %>%
   xportr_format(metacore) %>% # Assigns variable format from metacore specifications
   xportr_df_label(metacore, domain = "ADTRR") %>% # Assigns dataset label from metacore specifications
   xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
+
