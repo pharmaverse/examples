@@ -24,6 +24,7 @@ Imports:
     admiralonco,
     admiral,
     autoslider.core,
+    broom,
     cards,
     dplyr,
     filters,
