@@ -58,6 +58,38 @@ The examples are organized by the stage of the clinical data pipeline they cover
 If you're new to `pharmaverse`, working through them in order gives a natural end-to-end
 view of how the ecosystem fits together.
 
+```{mermaid}
+%%| fig-cap: "The pharmaverse clinical data pipeline"
+flowchart LR
+    RAW["**Raw Data**\n`{pharmaverseraw}`"]
+    SDTM["**SDTM**\n`{sdtm.oak}`"]
+    ADAM["**ADaM**\n`{admiral}`"]
+    TLG["**TLG**\n`{rtables}` · `{tern}`"]
+    INT["**Interactive**\n`{teal}`"]
+    DOC["**Documents**\n`{autoslideR}`"]
+    ESUB["**eSub**"]
+    LOG["**Logging**"]
+
+    RAW --> SDTM --> ADAM --> TLG
+    TLG <--> INT
+    TLG --> DOC
+    TLG --> ESUB
+
+    RAW -..-> LOG
+    SDTM -..-> LOG
+    ADAM -..-> LOG
+    TLG -..-> LOG
+
+    style RAW  fill:#d6eaf8,stroke:#2e86c1,color:#000
+    style SDTM fill:#2e86c1,stroke:#1a5276,color:#fff
+    style ADAM fill:#2e86c1,stroke:#1a5276,color:#fff
+    style TLG  fill:#2e86c1,stroke:#1a5276,color:#fff
+    style INT  fill:#d5f5e3,stroke:#1e8449,color:#000
+    style DOC  fill:#d5f5e3,stroke:#1e8449,color:#000
+    style ESUB fill:#d5f5e3,stroke:#1e8449,color:#000
+    style LOG  fill:#fdebd0,stroke:#ca6f1e,color:#000
+```
+
 | Section | What it covers | Good starting point if… |
 |---------|---------------|--------------------------|
 | **[SDTM](sdtm/index.qmd)** | Converting raw collected data to CDISC SDTM domains | You work upstream of ADaM or want to understand the data origin |
