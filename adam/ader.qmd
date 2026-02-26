@@ -1,5 +1,6 @@
 ---
 title: "ADER+"
+subtitle: "Exposure-Response Analysis Data"
 order: 12
 ---
 
@@ -96,6 +97,8 @@ In this step we will create our numeric covariates using the `metatools::create_
 
 ```{r}
 #| label: Common Covariates
+#| code-fold: true
+#| code-summary: "Show codelist derivations"
 # ---- Derive Covariates ----
 # Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
 
@@ -145,6 +148,8 @@ Next we add additional baselines from vital signs and laboratory data. We will u
 
 ```{r}
 #| label: Baselines
+#| code-fold: true
+#| code-summary: "Show baseline derivations"
 # ---- Derive additional baselines from ADVS and ADLB ----
 
 labsbl <- adlb %>%
@@ -219,6 +224,10 @@ print_df(covar_auc %>% select(
   USUBJID, TRT01A, SEX, WTBL, HTBL, AUCSS, CMAXSS
 ))
 ```
+
+## Conclusions
+
+These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
 
 ## Code for Individual Datasets
 
@@ -1006,7 +1015,3 @@ adtrr_xpt <- adtrr %>%
   xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
 ```
 :::
-
-## Conclusions
-
-These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
