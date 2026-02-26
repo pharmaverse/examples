@@ -12,9 +12,7 @@ knitr::knit_hooks$set(purl = invisible_hook_purl)
 source("functions/print_df.R")
 ```
 
-## Exposure-Response Analysis Data
-
-# Introduction
+## Introduction
 
 Exposure-Response (ER) modeling is a critical tool in drug development for evaluating the relationships between drug exposure, safety, and efficacy. These analyses help characterize dose-response relationships, optimize dosing regimens, and support regulatory decision-making.
 
@@ -122,7 +120,7 @@ covar <- adsl %>%
     ROUTE = unique(adex$EXROUTE)[1],
     FORM = unique(adex$EXDOSFRM)[1],
     REGION1 = COUNTRY,
-    REGION1N = COUNTRYN,
+    REGION1N = COUNTRYN
   ) %>%
   create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
   create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
@@ -214,7 +212,7 @@ print_df(covar_auc %>% select(
 ))
 ```
 
-# Code for Individual Datasets
+## Code for Individual Datasets
 
 Derivations specific to each dataset continue below. Select the appropriate tab to view.
 
@@ -469,7 +467,7 @@ adee <- adee_prefinal %>%
 
 ### Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
 #| label: ADEE xportr
@@ -675,7 +673,7 @@ ades_base <- bind_rows(
 ```
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 #| label: print ades_base
-print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDY), n = 20)
+print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDT), n = 20)
 ```
 
 ### Add Analysis Variables and Flags
@@ -745,7 +743,7 @@ ades <- ades_prefinal %>%
 
 ### Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
 #| label: ADES xportr
@@ -971,7 +969,7 @@ adtrr_prefinal <- adtrr_seq %>%
 ### Check Data With metacore and metatools
 
 ```{r}
-#| label: ADTTR metatools
+#| label: ADTRR metatools
 ## Check Data With metacore and metatools
 
 adtrr <- adtrr_prefinal %>%
@@ -984,7 +982,7 @@ adtrr <- adtrr_prefinal %>%
 
 ### Apply Labels and Formats with xportr
 
-Using {xportr} we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
 
 ```{r}
 #| label: ADTRR xportr
@@ -1001,6 +999,6 @@ adtrr_xpt <- adtrr %>%
 ```
 :::
 
-# Conclusions
+## Conclusions
 
 These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
