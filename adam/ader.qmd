@@ -300,9 +300,9 @@ ader_aseq <- ader_bor %>%
 ```
 
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
-#| label: print ader_bor
-print_df(ader_bor %>% select(
-  USUBJID, BOR, BORC
+#| label: print ader_aseq
+print_df(ader_aseq %>% select(
+  USUBJID, ASEQ, OS, PFS, BOR, BORC
 ))
 ```
 
