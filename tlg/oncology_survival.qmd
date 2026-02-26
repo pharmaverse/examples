@@ -98,6 +98,15 @@ adtte_onco |>
 > The code below uses `PARAMCD == "PFS"`; swap to `"OS"` or `"RSD"` as needed.
 > Note that `{admiralonco}` uses `"RSD"` (not `"DOR"`) for Duration of Response.
 
+::: {.callout-note}
+`pharmaverseadam::adtte_onco` is a small example dataset with limited events
+across all endpoints, so the resulting KM curves and tables are for illustration
+only and should not be interpreted clinically. For a richer example with more
+events and better-separated arms, see the
+[Stratified KM Plot](#stratified-km-plot-ggsurvfitadtte) section below, which
+uses the `ggsurvfit::adtte` four-arm breast cancer trial dataset.
+:::
+
 ```{r filter-pfs}
 #| message: false
 #| warning: false
@@ -123,8 +132,7 @@ adtte_pfs |>
 The plot below uses `survfit2()` with `Surv_CNSR()` to fit the survival model.
 Because `PARAM` and `PARAMCD` are present in the data, `{ggsurvfit}`
 automatically uses `PARAM` as the y-axis label — a key CDISC-aware feature.
-The KM plot is the same whether you use the Classic or ARD approach for the
-tables, so it is shown once here.
+The KM plot is shown once here and shared across all summary tables below.
 
 ```{r km-plot}
 #| message: false
@@ -164,7 +172,7 @@ km_fit |>
   scale_ggsurvfit() +
   labs(
     title = paste0(unique(adtte_pfs$PARAM), "\nKaplan-Meier Estimate"),
-    x = "Time (Years)", # AVALU not present in adtte_onco; AVAL is in years
+    x = "Time (Years)",
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Analysis dataset: ADTTE_ONCO  |  PARAMCD: ", unique(adtte_pfs$PARAMCD),
@@ -187,16 +195,15 @@ km_fit |>
 
 ---
 
-## Classic Approach
+## Summary Tables
 
-In the Classic approach, `{gtsummary}`'s `tbl_survfit()` consumes the `km_fit`
-`survfit2` object directly to produce publication-ready tables. No intermediate
-ARD layer is created; the statistics are extracted and formatted in a single
-pipeline.
+`{gtsummary}`'s `tbl_survfit()` consumes the `km_fit` `survfit2` object directly
+to produce publication-ready tables. The statistics are extracted and formatted
+in a single pipeline.
 
 ### Median Survival Table
 
-```{r median-table-classic}
+```{r median-table}
 #| message: false
 #| warning: false
 
@@ -219,9 +226,9 @@ tbl_survfit(
 
 This table shows estimated PFS probabilities at clinically meaningful time
 points. For PFS these are typically shorter intervals than OS — 3, 6, 9, and
-12 months are standard in many oncology trials. Adjust `times` to match the units in your dataset. 
+12 months are standard in many oncology trials. Adjust `times` to match the units in your dataset.
 
-```{r prob-table-classic}
+```{r prob-table}
 #| message: false
 #| warning: false
 
@@ -284,6 +291,7 @@ The `y` argument must be passed as a character string when using the data frame
 method. See the [`{cardx}` documentation](https://insightsengineering.github.io/cardx/main/reference/ard_survival_survfit.html)
 for full details.
 :::
+
 ---
 
 ## Best Overall Response Table
@@ -295,8 +303,8 @@ with the primary regulatory definition of ORR as confirmed CR + PR.
 
 The `{gtsummary}` `tbl_summary()` function produces the category counts and
 percentages directly from `AVALC`. Response categories are ordered from best to
-worst (CR → PR → SD → NON-CR/NON-PD → PD → NE → MISSING) using a factor, and
-the ORR row (CR + PR) is highlighted with `add_stat_label()`.
+worst (CR → PR → SD → NON-CR/NON-PD → PD → NE → MISSING) using a factor.
+The ORR (CR + PR) is then derived and reported separately in the inline chunk below.
 
 ```{r bor-setup}
 #| message: false
@@ -412,7 +420,7 @@ Because `adtte_onco` already contains `ARM` and `ARMCD` from the `{admiralonco}`
 template, no ADSL join is needed to produce a stratified KM plot:
 
 ```{r strata-note}
-#| eval: true
+#| eval: false
 
 # With two arms (ARM), add_pvalue() computes and annotates a log-rank test p-value.
 # Not applicable for single-arm fits (~ 1) — only add when comparing groups.

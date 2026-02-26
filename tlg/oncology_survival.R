@@ -67,7 +67,7 @@ km_fit |>
   scale_ggsurvfit() +
   labs(
     title = paste0(unique(adtte_pfs$PARAM), "\nKaplan-Meier Estimate"),
-    x = "Time (Years)", # AVALU not present in adtte_onco; AVAL is in years
+    x = "Time (Years)",
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Analysis dataset: ADTTE_ONCO  |  PARAMCD: ", unique(adtte_pfs$PARAMCD),
@@ -77,7 +77,7 @@ km_fit |>
   theme_ggsurvfit_default() +
   theme(plot.caption = element_text(hjust = 0, size = 8))
 
-## ----r median-table-classic---------------------------------------------------
+## ----r median-table-----------------------------------------------------------
 # ── Median survival with 95% CI ────────────────────────────────────────────────
 tbl_survfit(
   km_fit,
@@ -92,7 +92,7 @@ tbl_survfit(
   ) |>
   bold_labels()
 
-## ----r prob-table-classic-----------------------------------------------------
+## ----r prob-table-------------------------------------------------------------
 # ── Survival probability at selected time points ───────────────────────────────
 # AVAL in adtte_onco is in years; express months as fractions of a year
 tbl_survfit(
@@ -183,18 +183,18 @@ adrs_bor |>
 # adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
 
 ## ----r strata-note------------------------------------------------------------
-# With two arms (ARM), add_pvalue() computes and annotates a log-rank test p-value.
-# Not applicable for single-arm fits (~ 1) — only add when comparing groups.
-survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
-  ggsurvfit(linewidth = 1) +
-  scale_color_brewer(palette = "Dark2") +
-  scale_fill_brewer(palette = "Dark2") +
-  add_confidence_interval() +
-  add_risktable(
-    theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
-  ) +
-  add_pvalue(location = "annotation") +
-  scale_ggsurvfit()
+# # With two arms (ARM), add_pvalue() computes and annotates a log-rank test p-value.
+# # Not applicable for single-arm fits (~ 1) — only add when comparing groups.
+# survfit2(Surv_CNSR(AVAL, CNSR) ~ ARM, data = adtte_pfs) |>
+#   ggsurvfit(linewidth = 1) +
+#   scale_color_brewer(palette = "Dark2") +
+#   scale_fill_brewer(palette = "Dark2") +
+#   add_confidence_interval() +
+#   add_risktable(
+#     theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
+#   ) +
+#   add_pvalue(location = "annotation") +
+#   scale_ggsurvfit()
 
 ## ----r km-plot-adtte----------------------------------------------------------
 # ── ggsurvfit::adtte — four-arm breast cancer PFS trial ────────────────────────
