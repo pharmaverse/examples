@@ -5,6 +5,8 @@ library(ggplot2)
 library(gtsummary)
 library(dplyr)
 library(forcats)
+library(broom)
+library(survival)
 
 # ── Read data ──────────────────────────────────────────────────────────────────
 adtte_onco <- pharmaverseadam::adtte_onco
@@ -231,4 +233,79 @@ survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = ggsurvfit::adtte) |>
   theme(
     plot.caption  = element_text(hjust = 0, size = 8),
     legend.title  = element_blank()
+  )
+
+## ----r forest-setup-----------------------------------------------------------
+# ── Restrict to two arms ───────────────────────────────────────────────────────
+adtte_2arm <- ggsurvfit::adtte |>
+  filter(TRT01PN %in% c(1, 2)) |>
+  mutate(TRT01P = factor(TRT01P,
+    levels = c("tablemab x 52 weeks", "vismab x 52 weeks")
+  ))
+
+# ── Helper: fit Cox and return a one-row HR summary ──────────────────────────
+cox_hr <- function(data, subgroup, level) {
+  fit <- coxph(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = data)
+  tidy(fit, exponentiate = TRUE, conf.int = TRUE) |>
+    mutate(
+      subgroup = subgroup,
+      level    = level,
+      n        = nrow(data),
+      n_events = sum(data$CNSR == 0)
+    )
+}
+
+# ── Build rows: Overall + by STR01L + by STR02L ───────────────────────────────
+str01_rows <- lapply(unique(adtte_2arm$STR01L), function(lv) {
+  cox_hr(filter(adtte_2arm, STR01L == lv), "Hormone Receptor Status", lv)
+})
+
+str02_rows <- lapply(unique(adtte_2arm$STR02L), function(lv) {
+  cox_hr(filter(adtte_2arm, STR02L == lv), "Prior Radiotherapy", lv)
+})
+
+forest_data <- bind_rows(
+  cox_hr(adtte_2arm, "Overall", "Overall"),
+  bind_rows(str01_rows),
+  bind_rows(str02_rows)
+) |>
+  mutate(
+    label = ifelse(level == "Overall", "Overall", paste0("  ", level)),
+    label = factor(label, levels = rev(unique(label))),
+    hr_label = sprintf("%.2f (%.2f\u2013%.2f)", estimate, conf.low, conf.high)
+  )
+
+## ----r forest-plot------------------------------------------------------------
+ggplot(forest_data, aes(x = estimate, y = label)) +
+  geom_vline(xintercept = 1, linetype = "dashed", color = "gray50") +
+  geom_pointrange(
+    aes(xmin = conf.low, xmax = conf.high),
+    color = "#2c7bb6",
+    linewidth = 0.75,
+    fatten = 4
+  ) +
+  geom_text(
+    aes(x = 3.5, label = hr_label),
+    hjust = 1, size = 3
+  ) +
+  scale_x_log10(
+    limits = c(0.3, 4),
+    breaks = c(0.5, 1, 2),
+    labels = c("0.5", "1", "2")
+  ) +
+  facet_grid(subgroup ~ ., scales = "free_y", space = "free") +
+  labs(
+    title    = "Subgroup Forest Plot: PFS Hazard Ratio",
+    subtitle = "vismab x 52 weeks vs. tablemab x 52 weeks (reference)",
+    x        = "Hazard Ratio (log scale)  |  \u2190 Favours tablemab   Favours vismab \u2192",
+    y        = NULL,
+    caption  = "Dataset: ggsurvfit::adtte  |  Cox proportional hazards model  |  95% CI"
+  ) +
+  theme_bw() +
+  theme(
+    strip.background    = element_rect(fill = "gray90"),
+    strip.text          = element_text(face = "bold"),
+    panel.grid.minor    = element_blank(),
+    panel.grid.major.y  = element_blank(),
+    plot.caption        = element_text(hjust = 0, size = 8)
   )
