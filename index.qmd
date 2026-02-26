@@ -116,6 +116,14 @@ documentation; the Example column links to where it is used on this site.
 | [`{tfrmt}`](https://gsk-biostatistics.github.io/tfrmt/) | Transforms ARDs into publication-ready tables with precise formatting control — particularly suited to RTF regulatory outputs | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) |
 :::
 
+### Interactive Packages
+
+:::{tbl-colwidths="[15,60,25]"}
+| Package | Description | Example |
+|---------|-------------|---------|
+| [`{teal}`](https://insightsengineering.github.io/teal/latest-tag/) | Shiny-based framework for building interactive clinical trial data exploration apps — supports filter panels, reproducibility code, and a reporter for exporting results | [Interactive](interactive/teal.qmd) |
+:::
+
 ---
 
 ::: {.callout-note}
