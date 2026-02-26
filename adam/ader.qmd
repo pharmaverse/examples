@@ -50,6 +50,7 @@ library(dplyr)
 library(lubridate)
 library(stringr)
 library(purrr)
+library(rlang)
 library(metacore)
 library(metatools)
 library(xportr)
@@ -824,6 +825,7 @@ tsize_final <- adtr %>%
   select(-any_of(vars_to_drop))
 ```
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print tsize_final
 print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, FRLTU, BASE, AVAL, CHG), n = 20)
 ```
 
