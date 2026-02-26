@@ -106,7 +106,7 @@ documentation; the Example column links to where it is used on this site.
 
 :::{tbl-colwidths="[15,60,25]"}
 | Package | Description | Example |
-|-----------|-------------|---------|
+|---------|-------------|---------|
 | [`{rtables}`](https://insightsengineering.github.io/rtables/) | Framework for building complex nested tables with flexible layouts — the foundation of the NEST TLG stack | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
 | [`{tern}`](https://insightsengineering.github.io/tern/) | Analysis functions for clinical trial TLGs built on `{rtables}` — covers demographics, AEs, survival, PK summaries | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
 | [`{rlistings}`](https://insightsengineering.github.io/rlistings/) | Creates regulatory-ready listings from ADaM datasets | [PK](tlg/pharmacokinetic.qmd) |
