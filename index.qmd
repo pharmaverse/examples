@@ -161,16 +161,20 @@ documentation; the Example column links to where it is used on this site.
 ::: {.callout-note}
 ## Contributing
 
-Have an example that others would benefit from? Contributions are welcome — see
-the [GitHub repository](https://github.com/pharmaverse/examples) for guidance on
-how to structure and submit a new example. If you'd like to suggest an example
-without writing the code yourself, open an issue and the team will review it for
-the backlog.
+Have an example that others would benefit from? Open an
+[issue](https://github.com/pharmaverse/examples/issues) with your idea — new issues are
+automatically added to our [project board](https://github.com/orgs/pharmaverse/projects/24/views/1)
+for the team to review and prioritize. If you're willing to contribute the code yourself,
+say so in the issue and the team will provide repo access.
+
+A note on dependencies: there is no `renv` here. If your example needs a new package,
+add it to `Imports` in the root `DESCRIPTION` file and the deployment pipeline will
+install the latest CRAN release automatically.
 
 You can see a list of current contributors via our [GitHub repo DESCRIPTION file](https://github.com/pharmaverse/examples/blob/main/DESCRIPTION).
+If ever unsure, tag the team in your issue using `@pharmaverse/examples`.
 
-While you're there, consider giving the packages you use a
-[⭐ GitHub star](https://github.com/pharmaverse/examples) — it helps maintainers
-demonstrate community adoption and keeps the ecosystem visible to new users. 
-While you're there, please also consider adding a star to the Examples GitHub repo!
+Consider giving the [Examples repo](https://github.com/pharmaverse/examples) and any of
+the package repos listed in the tables above a ⭐ GitHub star — it helps maintainers
+demonstrate community adoption and keeps the ecosystem visible to new users.
 :::
