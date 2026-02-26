@@ -306,7 +306,7 @@ print_df(ader_aseq %>% select(
 ))
 ```
 
-### Combine with Covariates
+### Combine with Covariates and Exposure
 
 We combine our covariates with the rest of the data
 
@@ -365,7 +365,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADEE")
 ```
 
-### Create Base `ADEE` dataset from `ADTTE`
+### Create Base `ADEE` Dataset
 
 ```{r}
 #| label: ADEE Base dataset
@@ -510,7 +510,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADES")
 ```
 
-### Create `ADES` base dataset
+### Create Base `ADES` Dataset
 
 ```{r}
 #| label: ADES Base data
@@ -693,7 +693,7 @@ ades_base <- bind_rows(
 print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDT), n = 20)
 ```
 
-### Add Analysis Variables and Flags
+### Add Analysis Variables
 
 ```{r}
 #| label: ADES analysis variables
@@ -778,7 +778,7 @@ ades_xpt <- ades %>%
 
 ## ADTRR {#adtrr}
 
-### Load Specifications for `ADTRR`
+### Load Specifications
 
 ```{r echo=TRUE, message=FALSE}
 #| label: ADTRR Load Specs
@@ -787,7 +787,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
   select_dataset("ADTRR")
 ```
 
-### Create `ADTRR` Base Data
+### Create Base `ADTRR` Dataset
 
 We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will add nominal time and actual time using `admiral::derive_var_nfrlt()` and `admiral::derive_vars_duration()`. In traditional Exposure-Response datasets these might be `TIME` and `NTIM` variables.
 
@@ -970,7 +970,7 @@ adtrr_seq <- adtrr_base %>%
 print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, BASE, AVAL, CHG), n = 20)
 ```
 
-### Combine with Covariate and Exposure Data
+### Combine with Covariates and Exposure
 
 ```{r}
 #| label: ADTRR prefinal
