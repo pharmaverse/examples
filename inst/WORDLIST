@@ -133,6 +133,7 @@ anldates
 anldur
 anlflags
 ANLzzFL
+anonymised
 ANRHI
 anrind
 ANRIND
@@ -220,6 +221,7 @@ br
 bsa
 BSABL
 BST
+bw
 bzlib
 cachem
 cairo
@@ -257,6 +259,7 @@ config
 COUNTRYL
 COUNTRYN
 covar
+coxph
 CQ
 CQs
 CRCL
@@ -391,6 +394,7 @@ EXENDT
 EXENDTC
 EXENDTM
 EXENTMF
+exponentiate
 expovars
 expr
 exprs
@@ -407,6 +411,8 @@ fansi
 FAS
 FASFL
 fastmap
+favours
+Favours
 fct
 FDA's
 fileext
@@ -428,6 +434,7 @@ getOption
 getwd
 ggplot
 ggsurvfit
+ggsurvfitadtte
 ggtheme
 grDevices
 grepl
@@ -461,12 +468,14 @@ jpeg
 JSON
 kable
 Kaplan
+kaplan
 kate
 knitr
 kronecker
 labelled
 labsbl
 lapack
+lapply
 lasta
 lastalive
 lazyeval
@@ -503,6 +512,7 @@ LSTA
 LSTALVDT
 lsting
 lubridate
+lv
 lwr
 lyt
 macOS
@@ -513,6 +523,7 @@ mapvars
 maxdate
 MDV
 MedDRA
+meier
 Melkiades
 memoise
 metacore
@@ -553,6 +564,7 @@ nPK
 NPRLT
 nProtocol
 nr
+nrow
 NRRLT
 nrrlt
 Ns
@@ -635,6 +647,7 @@ plotOutput
 PN
 png
 poc
+pointrange
 PopPK
 pos
 POSIXct
@@ -691,6 +704,7 @@ RECIST
 recode
 recoding
 RECSEQ
+rect
 refdates
 refdt
 REGIONCAT
@@ -815,6 +829,7 @@ SYS
 Sys
 sysbp
 SYSBP
+tablemab
 tabset
 TBILBL
 tbl
@@ -913,6 +928,8 @@ Vinorelbine
 VIS
 VISITDY
 VISITNUM
+vismab
+vline
 VSBLFL
 VSCAT
 VSDTC
@@ -943,8 +960,11 @@ withr
 WTBL
 WTBLU
 Xanomeline
+xintercept
 xlab
 xlsx
+xmax
+xmin
 xmlparsedata
 xnu
 xportr
