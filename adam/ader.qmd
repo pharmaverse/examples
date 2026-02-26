@@ -516,89 +516,79 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 #| label: ADES Base data
 # ---- Create ades base dataset
 
-# Derive subject-level summary parameters from ADAE
+# Derive subject-level summary parameters from ADAE using derive_param_exist_flag()
 # NOTE: pharmaverseadam uses ASEV/ASEVN (severity) not AETOXGR/AETOXGRN
 
 # Get all subjects from ADSL
-
 adsl_sub <- adsl %>%
   select(!!!get_admiral_option("subject_keys"))
 
-## Any TEAE (Treatment-Emergent Adverse Event) ----
-teae_any <- adsl_sub %>%
-  mutate(
+# Derive binary subject-level AE flag parameters
+subject_params <- derive_param_exist_flag(
+  dataset_ref = adsl_sub,
+  dataset_add = adae,
+  condition = TRTEMFL == "Y",
+  false_value = "N",
+  missing_value = "N",
+  set_values_to = exprs(
+    AVAL = yn_to_numeric(AVALC),
     PARAMCD = "TEAE",
     PARAM = "Any Treatment-Emergent Adverse Event",
-    PARAMN = 1,
-    AVAL = if_else(
-      USUBJID %in% (adae %>% filter(TRTEMFL == "Y") %>% pull(USUBJID)),
-      1, 0
-    ),
-    AVALC = if_else(AVAL == 1, "Y", "N")
+    PARAMN = 1
   )
-
-## Any Severe TEAE (using ASEVN = 3 for SEVERE) ----
-teae_sev <- adsl_sub %>%
-  mutate(
-    PARAMCD = "TEAESEV", # Using ASEVN instead of AETOXGRN
-    PARAM = "Any Severe Treatment-Emergent Adverse Event",
-    PARAMN = 2,
-    AVAL = if_else(
-      USUBJID %in% (adae %>% filter(TRTEMFL == "Y" & ASEVN == 3) %>% pull(USUBJID)),
-      1, 0
-    ),
-    AVALC = if_else(AVAL == 1, "Y", "N")
-  )
-
-## Any Serious AE ----
-sae_any <- adsl_sub %>%
-  mutate(
-    PARAMCD = "SAE",
-    PARAM = "Any Serious Adverse Event",
-    PARAMN = 3,
-    AVAL = if_else(
-      USUBJID %in% (adae %>% filter(AESER == "Y") %>% pull(USUBJID)),
-      1, 0
-    ),
-    AVALC = if_else(AVAL == 1, "Y", "N")
-  )
-
-## Any Treatment-Related AE (using AREL character values) ----
-trae_any <- adsl_sub %>%
-  mutate(
-    PARAMCD = "TRAE",
-    PARAM = "Any Treatment-Related Adverse Event",
-    PARAMN = 4,
-    AVAL = if_else(
-      USUBJID %in% (adae %>%
-        filter(AREL %in% c("POSSIBLE", "PROBABLE", "RELATED")) %>%
-        pull(USUBJID)),
-      1, 0
-    ),
-    AVALC = if_else(AVAL == 1, "Y", "N")
-  )
-
-## AE Leading to Treatment Discontinuation ----
-aedcn <- adsl_sub %>%
-  mutate(
-    PARAMCD = "AEDCN",
-    PARAM = "AE Leading to Treatment Discontinuation",
-    PARAMN = 5,
-    AVAL = if_else(
-      USUBJID %in% (adae %>% filter(AEACN == "DRUG WITHDRAWN") %>% pull(USUBJID)),
-      1, 0
-    ),
-    AVALC = if_else(AVAL == 1, "Y", "N")
-  )
-
-# Combine subject-level parameters
-subject_params <- bind_rows(
-  teae_any,
-  teae_sev,
-  sae_any,
-  trae_any,
-  aedcn
 ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = TRTEMFL == "Y" & ASEVN == 3,
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "TEAESEV",
+      PARAM = "Any Severe Treatment-Emergent Adverse Event",
+      PARAMN = 2
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AESER == "Y",
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "SAE",
+      PARAM = "Any Serious Adverse Event",
+      PARAMN = 3
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AREL %in% c("POSSIBLE", "PROBABLE", "RELATED"),
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "TRAE",
+      PARAM = "Any Treatment-Related Adverse Event",
+      PARAMN = 4
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AEACN == "DRUG WITHDRAWN",
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "AEDCN",
+      PARAM = "AE Leading to Treatment Discontinuation",
+      PARAMN = 5
+    )
+  ) %>%
   arrange(USUBJID, PARAMCD)
 ```
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
