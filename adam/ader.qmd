@@ -49,6 +49,7 @@ library(pharmaverseadam)
 library(dplyr)
 library(lubridate)
 library(stringr)
+library(purrr)
 library(metacore)
 library(metatools)
 library(xportr)
@@ -91,9 +92,9 @@ adtr <- pharmaverseadam::adtr_onco
 
 We will include common derivations for all exposure-response datasets first. These include covariates and exposure metrics.
 
-## Derive Covariates Using `{metatools}`
+### Derive Covariates Using `{metatools}`
 
-In this step we will create our numeric covariates using the `metatools::create_var_from_codelist()` function.
+In this step we will create our numeric covariates using the `metatools::create_var_from_codelist()` function. Because there are 12 separate input/output variable pairs to map from controlled terminology codelists, we use `purrr::reduce()` to chain the calls programmatically rather than repeating them individually. Additional numeric identifiers (`STUDYIDN`, `USUBJIDN`, etc.) and study-level constants (`ROUTE`, `FORM`, `REGION1`) are derived with `mutate()`.
 
 ```{r}
 #| label: Common Covariates
@@ -200,7 +201,7 @@ covar_vslb <- covar %>%
 print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 ```
 
-## Add Exposure Metrics from `ADPP`
+### Add Exposure Metrics from `ADPP`
 
 An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC`, `ADPPK`, or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
 
@@ -512,6 +513,8 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 
 ### Create Base `ADES` Dataset
 
+`ADES` contains two levels of records: subject-level flag parameters and event-level AE records. Here we create the five subject-level summary flags using `admiral::derive_param_exist_flag()`, which evaluates a condition against `ADAE` for each subject in `ADSL` and sets `AVALC` to `"Y"` or `"N"` accordingly. `admiral::yn_to_numeric()` is used within `set_values_to` to derive the numeric `AVAL` directly. Note that `pharmaverseadam` records severity in `ASEV`/`ASEVN` rather than `AETOXGR`/`AETOXGRN`.
+
 ```{r}
 #| label: ADES Base data
 # ---- Create ades base dataset
@@ -597,6 +600,8 @@ print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20
 ```
 
 ### Create Event Level Parameters
+
+While subject-level parameters capture whether an event occurred at all, event-level records provide one row per individual adverse event and preserve granular information such as preferred term (`AEDECOD`), system organ class (`AEBODSYS`), severity (`AESEV`/`AESEVN`), seriousness (`AESER`), and relatedness (`AEREL`/`AERELN`). These records are restricted to treatment-emergent AEs (`TRTEMFL == "Y"`) and combined with the subject-level parameters into a single `ADES` dataset.
 
 ```{r}
 #| label: ADES Event level parameters
@@ -734,6 +739,7 @@ ades_prefinal <- ades_flags %>%
     by_vars = get_admiral_option("subject_keys")
   )
 ```
+
 ### Check Data With metacore and metatools
 
 ```{r}
@@ -820,7 +826,10 @@ tsize_final <- adtr %>%
 ```{r eval=TRUE, echo=FALSE, purl=FALSE}
 print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, FRLTU, BASE, AVAL, CHG), n = 20)
 ```
+
 ### Add BOR from `ADRS`
+
+Best Overall Response (BOR) is sourced from `ADRS` and included as a second parameter in `ADTRR`. We filter to safety-evaluable subjects (`SAFFL == "Y"`) and derive a numeric response code `BORN` ordered from most to least favourable: CR (4), PR (3), SD (2), PD (1), NE (0). Overlapping `ADSL` variables are dropped before combining with the tumour size records.
 
 ```{r}
 #| label: ADTRR add BOR
@@ -859,6 +868,8 @@ print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
 
 ### Derive Nadir
 
+The nadir is the minimum post-baseline tumour size observed for each subject. It is derived from `TSIZE` records and included as a third `ADTRR` parameter (`PARAMCD = "NADIR"`). The percentage change from baseline at the nadir timepoint (`NADPCHG`) and the visit label at which nadir was reached (`NADVST`) are preserved to support waterfall plots and other tumour response visualisations.
+
 ```{r}
 #| label: ADTRR add NADIR
 # ---- Derive Nadir
@@ -885,7 +896,10 @@ nadir <- tsize_final %>%
 #| label: print nadir
 print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
 ```
+
 ### Combine Parameters
+
+The three parameter datasets — tumour size (`TSIZE`), best overall response (`BOR`), and nadir (`NADIR`) — are stacked with `bind_rows()` and sorted by subject and parameter order. Analysis flags, parameter categories, units, and the analysis sequence number are then added. We use `derive_var_obs_number()` to compute `ASEQ` consistently, ordered by `PARAMN` and `AVISITN`.
 
 ```{r}
 #| label: ADTRR combine parameters
