@@ -122,6 +122,9 @@ covar_vslb <- covar %>%
 # Add appropriate exposure metrics from ADPP. Here we use AUCLST and CMAX as examples
 # this could be extended to include other parameters such as AUCINF, AUCALL, Tmax, Tlast etc.
 # depending on the needs of the analysis.
+# NOTE: If ADPP contains multiple visits (e.g., Day 1 and steady-state), add an AVISIT
+# filter below to select only the steady-state visit, e.g. filter_add = AVISIT == "Cycle 1 Day 8",
+# to ensure derive_vars_transposed() produces one record per subject.
 covar_auc <- covar_vslb %>%
   derive_vars_transposed(
     dataset_merge = adpp,

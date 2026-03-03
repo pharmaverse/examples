@@ -204,7 +204,7 @@ print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
 
 ### Add Exposure Metrics from `ADPP`
 
-An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC`, `ADPPK`, or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters.
+An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC`, `ADPPK`, or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters. If `ADPP` contains parameters from multiple visits (e.g., Cycle 1 Day 1 and steady-state), add a `filter` condition to restrict to the steady-state visit — for example `filter = PARAMCD %in% c("AUCLST", "CMAX") & AVISIT == "Cycle 1 Day 8"` — to ensure one record per subject is transposed.
 
 ```{r}
 #| label: AUCSS
@@ -212,6 +212,9 @@ An essential component of ER modeling is the exposure metrics calculated from th
 # Add appropriate exposure metrics from ADPP. Here we use AUCLST and CMAX as examples
 # this could be extended to include other parameters such as AUCINF, AUCALL, Tmax, Tlast etc.
 # depending on the needs of the analysis.
+# NOTE: If ADPP contains multiple visits (e.g., Day 1 and steady-state), add an AVISIT
+# filter below to select only the steady-state visit, e.g. filter_add = AVISIT == "Cycle 1 Day 8",
+# to ensure derive_vars_transposed() produces one record per subject.
 covar_auc <- covar_vslb %>%
   derive_vars_transposed(
     dataset_merge = adpp,
