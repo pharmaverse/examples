@@ -162,7 +162,7 @@ ader_tte <- adsl %>%
 ader_bor <- ader_tte %>%
   derive_vars_merged(
     dataset_add = adrs,
-    filter_add = PARAMCD == "BOR" & ANL01FL == "Y",
+    filter_add = PARAMCD == "BOR" & SAFFL == "Y" & ANL01FL == "Y",
     by_vars = get_admiral_option("subject_keys"),
     new_vars = exprs(BOR = AVAL, BORC = AVALC)
   )

@@ -167,6 +167,8 @@ ATPTN
 ATPTREF
 attr
 auc
+AUCALL
+AUCINF
 AUCLST
 AUCSS
 autofit
@@ -809,9 +811,11 @@ tidyverse
 Timepoint
 timepoint
 timingvars
+Tlast
 TLG
 TLGs
 tm
+Tmax
 tmc
 tmp
 TMPTC
