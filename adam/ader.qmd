@@ -209,6 +209,9 @@ An essential component of ER modeling is the exposure metrics calculated from th
 ```{r}
 #| label: AUCSS
 # ---- Add Exposure Metrics  ----
+# Add appropriate exposure metrics from ADPP. Here we use AUCLST and CMAX as examples
+# this could be extended to include other parameters such as AUCINF, AUCALL, Tmax, Tlast etc.
+# depending on the needs of the analysis.
 covar_auc <- covar_vslb %>%
   derive_vars_transposed(
     dataset_merge = adpp,
@@ -245,8 +248,9 @@ Derivations specific to each dataset continue below. Select the appropriate tab 
 We will use parameters from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`. We also transpose the censor variables `CNSR` here as indicator variables appending "IND" to the parameter name.
 
 ```{r}
-#| label: ADER Add ADTTE variables
-# ---- Derivations ----
+#| label: Create ADER base dataset
+# ---- Create ADER base dataset
+
 # For ADTTE censor variables add "IND" to PARAMCD
 adttei <- adtte %>%
   mutate(PARAMCD = paste0(PARAMCD, "IND"))
@@ -518,7 +522,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 
 ```{r}
 #| label: ADES Base data
-# ---- Create ades base dataset
+# ---- Create ADES base dataset
 
 # Derive subject-level summary parameters from ADAE using derive_param_exist_flag()
 # NOTE: pharmaverseadam uses ASEV/ASEVN (severity) not AETOXGR/AETOXGRN
@@ -790,8 +794,7 @@ We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will
 
 ```{r}
 #| label: ADTRR Base Data
-
-# ---- Create base tumor size parameter dataset
+# ---- Create ADTRR base dataset
 
 # Get variable names for clean dropping
 adsl_vars <- names(covar_auc)
