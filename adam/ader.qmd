@@ -365,8 +365,6 @@ ader_xpt <- ader %>%
 
 ## ADEE {#adee}
 
-`ADEE` is a BDS dataset structured one record per subject per time-to-event parameter. It links pharmacokinetic exposure metrics from `ADPP` with efficacy endpoints (OS, PFS, TTP, TTNT) sourced from `ADTTE`, enabling exposure-efficacy modeling and analysis of progression and survival outcomes.
-
 ### Load Specifications
 
 ```{r echo=TRUE, message=FALSE}
@@ -377,6 +375,8 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
 ```
 
 ### Create Base `ADEE` Dataset
+
+`ADEE` is a BDS dataset structured one record per subject per time-to-event parameter. It links pharmacokinetic exposure metrics from `ADPP` with efficacy endpoints (OS, PFS, TTP, TTNT) sourced from `ADTTE`, enabling exposure-efficacy modeling and analysis of progression and survival outcomes.
 
 ```{r}
 #| label: ADEE Base dataset
