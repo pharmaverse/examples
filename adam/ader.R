@@ -571,7 +571,7 @@ common_vars_adrs <- intersect(adsl_vars, adrs_vars)
 vars_to_drop_adrs <- setdiff(common_vars_adrs, c("STUDYID", "USUBJID"))
 
 bor <- adrs %>%
-  filter(PARAMCD == "BOR" & SAFFL == "Y") %>%
+  filter(PARAMCD == "BOR" & SAFFL == "Y" & ANL01FL == "Y") %>%
   mutate(
     PARAMN = 2,
     # Create BORN from AVALC if AVAL doesn't exist
