@@ -505,8 +505,11 @@ survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = ggsurvfit::adtte) |>
 
 * The risk table shows only `n.risk` here (rather than cumulative events and
   censored) to keep the four-strata table readable at standard figure width.
-* The log-rank p-value is placed as an annotation rather than in the caption
-  to keep it visible when the figure is used standalone.
+* The p-value is an **overall log-rank test** comparing survival across all four
+  arms simultaneously. It is placed as an annotation (rather than in the caption)
+  to remain visible when the figure is used standalone. For pairwise comparisons
+  of each active arm vs. a reference, a Cox model or `survdiff()` with specific
+  contrast coding would be needed instead.
 * `ggsurvfit::adtte` contains only a single PFS endpoint per subject, so no
   `filter(PARAMCD == ...)` step is needed.
 

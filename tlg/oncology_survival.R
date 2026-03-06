@@ -172,14 +172,14 @@ adrs_bor |>
 ## ----r cnsr-note--------------------------------------------------------------
 # # ✗  Error-prone: requires manual recoding of CNSR
 # survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
-# 
+#
 # # ✓  Correct CDISC-aware approach
 # ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR)
 
 ## ----r endpoint-note----------------------------------------------------------
 # # Overall Survival — expect few events; median may not be estimable
 # adtte_os <- adtte_onco |> filter(PARAMCD == "OS")
-# 
+#
 # # Duration of Response — responders only; smaller N than OS/PFS
 # # Note: admiralonco uses PARAMCD = "RSD", not "DOR"
 # adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
@@ -309,4 +309,3 @@ ggplot(forest_data, aes(x = estimate, y = label)) +
     panel.grid.major.y  = element_blank(),
     plot.caption        = element_text(hjust = 0, size = 8)
   )
-
