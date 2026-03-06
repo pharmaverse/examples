@@ -359,6 +359,7 @@ DVL
 dy
 dylib
 DYTPE
+eaf
 ec
 ECENDAT
 ECSTDAT
@@ -415,6 +416,8 @@ favours
 Favours
 fct
 FDA's
+fdebd
+fff
 fileext
 flextable
 flx
@@ -434,7 +437,6 @@ getOption
 getwd
 ggplot
 ggsurvfit
-ggsurvfitadtte
 ggtheme
 grDevices
 grepl
@@ -752,6 +754,7 @@ RSSTRESC
 RSTESTCD
 rstudioapi
 rtables
+RTF
 Rua
 rv
 rx
@@ -844,6 +847,7 @@ TESTCD
 tf
 tformat
 tfrmt
+tfrmt
 tgdt
 tgt
 th
@@ -856,6 +860,7 @@ Timepoint
 timepoint
 timingvars
 TLG
+tlg
 TLGs
 tm
 tmc
