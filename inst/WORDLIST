@@ -437,6 +437,7 @@ getOption
 getwd
 ggplot
 ggsurvfit
+ggsurvfitadtte
 ggtheme
 grDevices
 grepl
