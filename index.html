@@ -127,6 +127,9 @@ cookieconsent.run({
 </script> 
   
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'zh-CN,fr,es,ja,hi'}, 'google_translate_element');
@@ -603,34 +606,310 @@ function googleTranslateElementInit() {
 </header>
 
 
-<p>The true beauty of pharmaverse (and open source in general) is when efforts from various different developers come together to complement each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.</p>
-<p>This book contains end-to-end examples of using pharmaverse packages together to achieve common clinical reporting analyses, such as SDTM, ADaM and Tables/Listings/Graphs. The examples use consistent source test raw datasets from <code>{pharmaverseraw}</code>, SDTMs and ADaMs from <code>{pharmaversesdtm}</code> and <code>{pharmaverseadam}</code> respectively.</p>
+<p>The true beauty of <code>pharmaverse</code> (and open source in general) is when efforts from various different developers come together to complement each other as a whole greater than the sum of the individual parts. By design in R, no single package will ever completely cover all your needs, but by piecing them together we can make complex tasks increasingly simple.</p>
+<p>This book contains end-to-end examples of using <code>pharmaverse</code> packages together to achieve common clinical reporting analyses, such as SDTM, ADaM, and Tables/Listings/Graphs. The examples use consistent source test raw datasets from <code>{pharmaverseraw}</code>, SDTMs from <code>{pharmaversesdtm}</code>, and ADaMs from <code>{pharmaverseadam}</code> respectively.</p>
 <p>We’ll endeavour to include a selection of examples here over time, e.g.&nbsp;to help users when trying out the packages for PK/PD or Therapeutic Area specific (such as Oncology or Vaccines) analyses.</p>
 <p>Note that this examples book should only be used to show how collections of packages can be used in conjunction - more thorough examples of individual package usages would always be covered in the package site vignettes and no need to repeat here.</p>
 <section id="running-the-examples" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-examples">Running the examples</h2>
 <section id="posit-cloud" class="level3">
 <h3 class="anchored" data-anchor-id="posit-cloud">Posit Cloud</h3>
-<p>Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations). Click here: <a href="https://posit.cloud/content/7279124">“Launch Posit Cloud”</a> to try out any of the examples code. You can do this by clicking File: Open File: and then choosing whichever example script, e.g.&nbsp;<code>adam/adsl.R</code>. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://posit.cloud/content/7279124">Launch Posit Cloud</a> to run any example interactively without a local R installation. Each example can be explored via a live and interactive Posit Cloud environment (preconfigured with all required package installations).</p>
+<p>You can do this by clicking <strong>File → Open File</strong> and then choosing whichever example script, e.g.&nbsp;<code>adam/adsl.R</code>. Feel free to try out customizing any of the examples to better fit any of your own internal clinical reporting workflows!</p>
+</div>
+</div>
 </section>
 <section id="locally" class="level3">
 <h3 class="anchored" data-anchor-id="locally">Locally</h3>
-<p>To run examples locally, download the <a href="https://github.com/pharmaverse/examples">repository</a> and run the following in the R console inside the project folder to install dependencies</p>
+<p>To run examples locally, download the <a href="https://github.com/pharmaverse/examples">repository</a> and run the following in the R console inside the project folder to install dependencies:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pak)) {</span>
 <span id="cb1-2"><a href="#cb1-2"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>}</span>
 <span id="cb1-4"><a href="#cb1-4"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><em>Note: the R scripts are generated from <code>.qmd</code> files automatically using <a href="https://bookdown.org/yihui/rmarkdown-cookbook/purl.html"><code>knitr::purl</code></a>.</em></p>
+<hr>
 </section>
 </section>
-<section id="contributing" class="level2">
-<h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
-<p>If you are interesting in contributing an article to this book, then see more in our GitHub repo README.</p>
-<p>You can see a list of current contributors via our GitHub repo DESCRIPTION file.</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>The examples are organized by the stage of the clinical data pipeline they cover. If you’re new to <code>pharmaverse</code>, working through them in order gives a natural end-to-end view of how the ecosystem fits together.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    RAW["**Raw Data** {pharmaverseraw}"]
+    SDTM["**SDTM** {sdtm.oak}"]
+    ADAM["**ADaM** {admiral}"]
+    TLG["**TLG** {rtables} · {tern}"]
+    INT["**Interactive** {teal}"]
+    DOC["**Documents** {autoslideR}"]
+    ESUB["**eSub**"]
+    LOG["**Logging**"]
+
+    RAW --&gt; SDTM --&gt; ADAM --&gt; TLG
+    TLG &lt;--&gt; INT
+    TLG --&gt; DOC
+    TLG --&gt; ESUB
+
+    RAW -..-&gt; LOG
+    SDTM -..-&gt; LOG
+    ADAM -..-&gt; LOG
+    TLG -..-&gt; LOG
+
+    style RAW  fill:#d6eaf8,stroke:#2e86c1,color:#000
+    style SDTM fill:#2e86c1,stroke:#1a5276,color:#fff
+    style ADAM fill:#2e86c1,stroke:#1a5276,color:#fff
+    style TLG  fill:#2e86c1,stroke:#1a5276,color:#fff
+    style INT  fill:#d5f5e3,stroke:#1e8449,color:#000
+    style DOC  fill:#d5f5e3,stroke:#1e8449,color:#000
+    style ESUB fill:#d5f5e3,stroke:#1e8449,color:#000
+    style LOG  fill:#fdebd0,stroke:#ca6f1e,color:#000
+</pre>
+</div>
+<p></p><figcaption> The pharmaverse clinical data pipeline</figcaption> </figure><p></p>
+</div>
+</div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>What it covers</th>
+<th>Good starting point if…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><a href="./sdtm/index.html">SDTM</a></strong></td>
+<td>Converting raw collected data to CDISC SDTM domains</td>
+<td>You work upstream of ADaM or want to understand the data origin</td>
+</tr>
+<tr class="even">
+<td><strong><a href="./adam/index.html">ADaM</a></strong></td>
+<td>Building analysis datasets (<code>ADSL</code>, <code>ADTTE</code>, <code>ADPC</code>, etc.) from SDTM</td>
+<td>You’re implementing analysis-ready datasets for reporting</td>
+</tr>
+<tr class="odd">
+<td><strong><a href="./tlg/index.html">TLG</a></strong></td>
+<td>Creating tables, listings, and graphs for clinical study reports</td>
+<td>You focus on outputs — demographics, AEs, survival, PK summaries</td>
+</tr>
+</tbody>
+</table>
+<p>The site also includes introductory examples for several additional workflow areas:</p>
+<ul>
+<li><strong><a href="./interactive/index.html">Interactive</a></strong> — building clinical data exploration apps with <code>{teal}</code></li>
+<li><strong><a href="./digit_files/index.html">Documents</a></strong> — automated report generation from ADaM data</li>
+<li><strong><a href="./logging/index.html">Logging</a></strong> — logging and traceability for clinical R workflows</li>
+<li><strong><a href="./esub/index.html">eSub</a></strong> — preparing outputs for electronic regulatory submission</li>
+</ul>
+<hr>
+</section>
+<section id="packages-used-in-these-examples" class="level2">
+<h2 class="anchored" data-anchor-id="packages-used-in-these-examples">Packages Used in These Examples</h2>
+<p>The table below covers every package used across the examples site, grouped by the part of the pipeline where it appears. Clicking a package name opens its documentation; the Example column links to where it is used on this site.</p>
+<section id="data-packages" class="level3">
+<h3 class="anchored" data-anchor-id="data-packages">Data Packages</h3>
+<div data-tbl-colwidths="[15,60,25]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://pharmaverse.github.io/pharmaverseraw/"><code>{pharmaverseraw}</code></a></td>
+<td>Source raw datasets (<code>AE</code>, <code>DM</code>, <code>EX</code>, <code>DS</code> domains) used as the starting point for all SDTM examples</td>
+<td><a href="./sdtm/index.html">SDTM</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://pharmaverse.github.io/sdtm.oak/"><code>{sdtm.oak}</code></a></td>
+<td>SDTM programming in R — maps raw collected data to CDISC SDTM domains using an algorithm-based engine</td>
+<td><a href="./sdtm/index.html">SDTM</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://pharmaverse.github.io/pharmaversesdtm/"><code>{pharmaversesdtm}</code></a></td>
+<td>CDISC SDTM example datasets generated from <code>{pharmaverseraw}</code></td>
+<td><a href="./sdtm/index.html">SDTM</a> / <a href="./adam/index.html">ADaM</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://pharmaverse.github.io/pharmaverseadam/"><code>{pharmaverseadam}</code></a></td>
+<td>CDISC ADaM example datasets (<code>ADSL</code>, <code>ADTTE</code>, <code>ADPC</code>, etc.) used across TLG and PK examples</td>
+<td><a href="./tlg/index.html">TLG</a> / <a href="./tlg/pharmacokinetic.html">PK</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="adam-packages" class="level3">
+<h3 class="anchored" data-anchor-id="adam-packages">ADaM Packages</h3>
+<div data-tbl-colwidths="[15,60,25]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://pharmaverse.github.io/admiral/"><code>{admiral}</code></a></td>
+<td>ADaM dataset construction in R — the core package for building <code>ADSL</code>, <code>ADAE</code>, <code>ADTTE</code>, and other standard domains</td>
+<td><a href="./adam/index.html">ADaM</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://pharmaverse.github.io/admiralonco/"><code>{admiralonco}</code></a></td>
+<td>Oncology-specific ADaM extensions for <code>{admiral}</code> — adds functions for tumor response, DOR, and TTE oncology endpoints</td>
+<td><a href="./adam/index.html">ADaM</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://atorus-research.github.io/metacore/"><code>{metacore}</code></a></td>
+<td>Stores and validates dataset metadata (variable definitions, codelists) from specs in a consistent R object</td>
+<td><a href="./adam/index.html">ADaM</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://pharmaverse.github.io/metatools/"><code>{metatools}</code></a></td>
+<td>Utilities for working with <code>{metacore}</code> objects — checking variables, applying codelists, and deriving variables from metadata</td>
+<td><a href="./adam/index.html">ADaM</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://atorus-research.github.io/xportr/"><code>{xportr}</code></a></td>
+<td>Applies SAS XPT metadata (types, labels, lengths, formats) and exports submission-ready <code>.xpt</code> transport files</td>
+<td><a href="./adam/index.html">ADaM</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tlg-packages" class="level3">
+<h3 class="anchored" data-anchor-id="tlg-packages">TLG Packages</h3>
+<div data-tbl-colwidths="[15,60,25]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://insightsengineering.github.io/rtables/"><code>{rtables}</code></a></td>
+<td>Framework for building complex nested tables with flexible layouts — the foundation of the NEST TLG stack</td>
+<td><a href="./tlg/demographic.html">Demographics</a> / <a href="./tlg/adverse_events.html">AE</a> / <a href="./tlg/pharmacokinetic.html">PK</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://insightsengineering.github.io/tern/"><code>{tern}</code></a></td>
+<td>Analysis functions for clinical trial TLGs built on <code>{rtables}</code> — covers demographics, AEs, survival, PK summaries</td>
+<td><a href="./tlg/demographic.html">Demographics</a> / <a href="./tlg/adverse_events.html">AE</a> / <a href="./tlg/pharmacokinetic.html">PK</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://insightsengineering.github.io/rlistings/"><code>{rlistings}</code></a></td>
+<td>Creates regulatory-ready listings from ADaM datasets</td>
+<td><a href="./tlg/pharmacokinetic.html">PK</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://www.danieldsjoberg.com/gtsummary/"><code>{gtsummary}</code></a></td>
+<td>Publication-ready summary and analytical tables — ideal for demographics and analysis summaries</td>
+<td><a href="./tlg/demographic.html">Demographics</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://www.danieldsjoberg.com/ggsurvfit/"><code>{ggsurvfit}</code></a></td>
+<td>Publication-ready Kaplan-Meier and time-to-event figures built on <code>{ggplot2}</code></td>
+<td><a href="./tlg/index.html">TLG</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://insightsengineering.github.io/cards/"><code>{cards}</code></a></td>
+<td>Creates Analysis Results Datasets (ARDs) following the emerging CDISC Analysis Results Standard</td>
+<td><a href="./tlg/demographic.html">Demographics</a> / <a href="./tlg/adverse_events.html">AE</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://gsk-biostatistics.github.io/tfrmt/"><code>{tfrmt}</code></a></td>
+<td>Transforms ARDs into publication-ready tables with precise formatting control — particularly suited to RTF regulatory outputs</td>
+<td><a href="./tlg/demographic.html">Demographics</a> / <a href="./tlg/adverse_events.html">AE</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="interactive-packages" class="level3">
+<h3 class="anchored" data-anchor-id="interactive-packages">Interactive Packages</h3>
+<div data-tbl-colwidths="[15,60,25]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 60%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://insightsengineering.github.io/teal/latest-tag/"><code>{teal}</code></a></td>
+<td>Shiny-based framework for building interactive clinical trial data exploration apps — supports filter panels, reproducibility code, and a reporter for exporting results</td>
+<td><a href="./interactive/teal.html">Interactive</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Contributing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Have an example that others would benefit from? Open an <a href="https://github.com/pharmaverse/examples/issues">issue</a> with your idea — new issues are automatically added to our <a href="https://github.com/orgs/pharmaverse/projects/24/views/1">project board</a> for the team to review and prioritize. If you’re willing to contribute the code yourself, say so in the issue and the team will provide repo access.</p>
+<p>A note on dependencies: there is no <code>renv</code> here. If your example needs a new package, add it to <code>Imports</code> in the root <code>DESCRIPTION</code> file and the deployment pipeline will install the latest CRAN release automatically.</p>
+<p>You can see a list of current contributors via our <a href="https://github.com/pharmaverse/examples/blob/main/DESCRIPTION">GitHub repo DESCRIPTION file</a>. If ever unsure, tag the team in your issue using <code>@pharmaverse/examples</code>.</p>
+<p>Consider giving the <a href="https://github.com/pharmaverse/examples">Examples repo</a> and any of the package repos listed in the tables above a ⭐ GitHub star — it helps maintainers demonstrate community adoption and keeps the ecosystem visible to new users.</p>
+</div>
+</div>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1102,54 +1381,183 @@ function googleTranslateElementInit() {
 <span id="cb2-2"><a href="#cb2-2"></a><span class="an">title:</span><span class="co"> "`pharmaverse` examples"</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">---</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a></span>
-<span id="cb2-5"><a href="#cb2-5"></a>The true beauty of pharmaverse (and open source in general) is when efforts from</span>
+<span id="cb2-5"><a href="#cb2-5"></a>The true beauty of <span class="in">`pharmaverse`</span> (and open source in general) is when efforts from</span>
 <span id="cb2-6"><a href="#cb2-6"></a>various different developers come together to complement each other as a whole</span>
 <span id="cb2-7"><a href="#cb2-7"></a>greater than the sum of the individual parts. By design in R, no single package</span>
 <span id="cb2-8"><a href="#cb2-8"></a>will ever completely cover all your needs, but by piecing them together we can</span>
 <span id="cb2-9"><a href="#cb2-9"></a>make complex tasks increasingly simple.</span>
 <span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a>This book contains end-to-end examples of using pharmaverse packages together to</span>
-<span id="cb2-12"><a href="#cb2-12"></a>achieve common clinical reporting analyses, such as SDTM, ADaM and Tables/Listings/Graphs.</span>
-<span id="cb2-13"><a href="#cb2-13"></a>The examples use consistent source test raw datasets from <span class="in">`{pharmaverseraw}`</span>, </span>
-<span id="cb2-14"><a href="#cb2-14"></a>SDTMs and ADaMs from <span class="in">`{pharmaversesdtm}`</span> and <span class="in">`{pharmaverseadam}`</span> respectively.</span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a>We'll endeavour to include a selection of examples here over time, e.g. to help</span>
-<span id="cb2-17"><a href="#cb2-17"></a>users when trying out the packages for PK/PD or Therapeutic Area specific</span>
-<span id="cb2-18"><a href="#cb2-18"></a>(such as Oncology or Vaccines) analyses.</span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a>Note that this examples book should only be used to show how collections of</span>
-<span id="cb2-21"><a href="#cb2-21"></a>packages can be used in conjunction - more thorough examples of individual</span>
-<span id="cb2-22"><a href="#cb2-22"></a>package usages would always be covered in the package site vignettes and no</span>
-<span id="cb2-23"><a href="#cb2-23"></a>need to repeat here.</span>
-<span id="cb2-24"><a href="#cb2-24"></a></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="fu">## Running the examples</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="fu">### Posit Cloud</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>Each example can be explored via a live and interactive Posit Cloud environment</span>
-<span id="cb2-29"><a href="#cb2-29"></a>(preconfigured with all required package installations).</span>
-<span id="cb2-30"><a href="#cb2-30"></a>Click here: <span class="co">[</span><span class="ot">"Launch Posit Cloud"</span><span class="co">](https://posit.cloud/content/7279124)</span> to</span>
-<span id="cb2-31"><a href="#cb2-31"></a>try out any of the examples code.</span>
-<span id="cb2-32"><a href="#cb2-32"></a>You can do this by clicking File: Open File: and then choosing whichever example script,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>e.g. <span class="in">`adam/adsl.R`</span>. </span>
-<span id="cb2-34"><a href="#cb2-34"></a>Feel free to try out customizing any of the examples to better fit any of</span>
-<span id="cb2-35"><a href="#cb2-35"></a>your own internal clinical reporting workflows!</span>
-<span id="cb2-36"><a href="#cb2-36"></a></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="fu">### Locally</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a>To run examples locally, download the <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/pharmaverse/examples)</span> and run the following in the R console inside the project folder to install dependencies</span>
+<span id="cb2-11"><a href="#cb2-11"></a>This book contains end-to-end examples of using <span class="in">`pharmaverse`</span> packages together to</span>
+<span id="cb2-12"><a href="#cb2-12"></a>achieve common clinical reporting analyses, such as SDTM, ADaM, and</span>
+<span id="cb2-13"><a href="#cb2-13"></a>Tables/Listings/Graphs. The examples use consistent source test raw datasets from</span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="in">`{pharmaverseraw}`</span>, SDTMs from <span class="in">`{pharmaversesdtm}`</span>, and ADaMs from</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="in">`{pharmaverseadam}`</span> respectively.</span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a>We'll endeavour to include a selection of examples here over time, e.g. to help</span>
+<span id="cb2-18"><a href="#cb2-18"></a>users when trying out the packages for PK/PD or Therapeutic Area specific</span>
+<span id="cb2-19"><a href="#cb2-19"></a>(such as Oncology or Vaccines) analyses.</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>Note that this examples book should only be used to show how collections of</span>
+<span id="cb2-22"><a href="#cb2-22"></a>packages can be used in conjunction - more thorough examples of individual</span>
+<span id="cb2-23"><a href="#cb2-23"></a>package usages would always be covered in the package site vignettes and no</span>
+<span id="cb2-24"><a href="#cb2-24"></a>need to repeat here.</span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">## Running the examples</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="fu">### Posit Cloud</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a>::: {.callout-tip}</span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="co">[</span><span class="ot">Launch Posit Cloud</span><span class="co">](https://posit.cloud/content/7279124)</span> to run any example</span>
+<span id="cb2-32"><a href="#cb2-32"></a>interactively without a local R installation. Each example can be explored via a live and interactive Posit Cloud environment</span>
+<span id="cb2-33"><a href="#cb2-33"></a>(preconfigured with all required package installations).</span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a>You can do this by clicking **File → Open File** and then choosing whichever example script,</span>
+<span id="cb2-36"><a href="#cb2-36"></a>e.g. <span class="in">`adam/adsl.R`</span>. Feel free to try out customizing any of the examples to better fit any of</span>
+<span id="cb2-37"><a href="#cb2-37"></a>your own internal clinical reporting workflows!</span>
+<span id="cb2-38"><a href="#cb2-38"></a>:::</span>
 <span id="cb2-39"><a href="#cb2-39"></a></span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="in">```r</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pak)) {</span>
-<span id="cb2-42"><a href="#cb2-42"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
-<span id="cb2-43"><a href="#cb2-43"></a>}</span>
-<span id="cb2-44"><a href="#cb2-44"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span>
-<span id="cb2-45"><a href="#cb2-45"></a><span class="in">```</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a>*Note: the R scripts are generated from `.qmd` files automatically using [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*</span>
-<span id="cb2-47"><a href="#cb2-47"></a></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="fu">## Contributing</span></span>
-<span id="cb2-49"><a href="#cb2-49"></a>If you are interesting in contributing an article to this book, then</span>
-<span id="cb2-50"><a href="#cb2-50"></a>see more in our GitHub repo README.</span>
-<span id="cb2-51"><a href="#cb2-51"></a></span>
-<span id="cb2-52"><a href="#cb2-52"></a>You can see a list of current contributors via our GitHub repo DESCRIPTION file.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="fu">### Locally</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a></span>
+<span id="cb2-42"><a href="#cb2-42"></a>To run examples locally, download the <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/pharmaverse/examples)</span> and run the following in the R console inside the project folder to install dependencies:</span>
+<span id="cb2-43"><a href="#cb2-43"></a></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="in">```r</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(pak)) {</span>
+<span id="cb2-46"><a href="#cb2-46"></a>  <span class="fu">install.packages</span>(<span class="st">"pak"</span>)</span>
+<span id="cb2-47"><a href="#cb2-47"></a>}</span>
+<span id="cb2-48"><a href="#cb2-48"></a>pak<span class="sc">::</span><span class="fu">pak</span>()</span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="in">```</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a></span>
+<span id="cb2-51"><a href="#cb2-51"></a>*Note: the R scripts are generated from `.qmd` files automatically using [`knitr::purl`](https://bookdown.org/yihui/rmarkdown-cookbook/purl.html).*</span>
+<span id="cb2-52"><a href="#cb2-52"></a></span>
+<span id="cb2-53"><a href="#cb2-53"></a>---</span>
+<span id="cb2-54"><a href="#cb2-54"></a></span>
+<span id="cb2-55"><a href="#cb2-55"></a><span class="fu">## Getting Started</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a></span>
+<span id="cb2-57"><a href="#cb2-57"></a>The examples are organized by the stage of the clinical data pipeline they cover.</span>
+<span id="cb2-58"><a href="#cb2-58"></a>If you're new to <span class="in">`pharmaverse`</span>, working through them in order gives a natural end-to-end</span>
+<span id="cb2-59"><a href="#cb2-59"></a>view of how the ecosystem fits together.</span>
+<span id="cb2-60"><a href="#cb2-60"></a></span>
+<span id="cb2-63"><a href="#cb2-63"></a><span class="in">```{mermaid}</span></span>
+<span id="cb2-64"><a href="#cb2-64"></a>%%| fig-cap: <span class="ot">"</span><span class="st">The pharmaverse clinical data pipeline</span><span class="ot">"</span></span>
+<span id="cb2-65"><a href="#cb2-65"></a>flowchart LR</span>
+<span id="cb2-66"><a href="#cb2-66"></a>    RAW[<span class="ot">"</span><span class="st">**Raw Data** {pharmaverseraw}</span><span class="ot">"</span>]</span>
+<span id="cb2-67"><a href="#cb2-67"></a>    SDTM[<span class="ot">"</span><span class="st">**SDTM** {sdtm.oak}</span><span class="ot">"</span>]</span>
+<span id="cb2-68"><a href="#cb2-68"></a>    ADAM[<span class="ot">"</span><span class="st">**ADaM** {admiral}</span><span class="ot">"</span>]</span>
+<span id="cb2-69"><a href="#cb2-69"></a>    TLG[<span class="ot">"</span><span class="st">**TLG** {rtables} · {tern}</span><span class="ot">"</span>]</span>
+<span id="cb2-70"><a href="#cb2-70"></a>    INT[<span class="ot">"</span><span class="st">**Interactive** {teal}</span><span class="ot">"</span>]</span>
+<span id="cb2-71"><a href="#cb2-71"></a>    DOC[<span class="ot">"</span><span class="st">**Documents** {autoslideR}</span><span class="ot">"</span>]</span>
+<span id="cb2-72"><a href="#cb2-72"></a>    ESUB[<span class="ot">"</span><span class="st">**eSub**</span><span class="ot">"</span>]</span>
+<span id="cb2-73"><a href="#cb2-73"></a>    LOG[<span class="ot">"</span><span class="st">**Logging**</span><span class="ot">"</span>]</span>
+<span id="cb2-74"><a href="#cb2-74"></a></span>
+<span id="cb2-75"><a href="#cb2-75"></a>    RAW --&gt; SDTM --&gt; ADAM --&gt; TLG</span>
+<span id="cb2-76"><a href="#cb2-76"></a>    TLG &lt;--&gt; INT</span>
+<span id="cb2-77"><a href="#cb2-77"></a>    TLG --&gt; DOC</span>
+<span id="cb2-78"><a href="#cb2-78"></a>    TLG --&gt; ESUB</span>
+<span id="cb2-79"><a href="#cb2-79"></a></span>
+<span id="cb2-80"><a href="#cb2-80"></a>    RAW -..-&gt; LOG</span>
+<span id="cb2-81"><a href="#cb2-81"></a>    SDTM -..-&gt; LOG</span>
+<span id="cb2-82"><a href="#cb2-82"></a>    ADAM -..-&gt; LOG</span>
+<span id="cb2-83"><a href="#cb2-83"></a>    TLG -..-&gt; LOG</span>
+<span id="cb2-84"><a href="#cb2-84"></a></span>
+<span id="cb2-85"><a href="#cb2-85"></a>    style RAW  fill:<span class="co">#d6eaf8,stroke:#2e86c1,color:#000</span></span>
+<span id="cb2-86"><a href="#cb2-86"></a>    style SDTM fill:<span class="co">#2e86c1,stroke:#1a5276,color:#fff</span></span>
+<span id="cb2-87"><a href="#cb2-87"></a>    style ADAM fill:<span class="co">#2e86c1,stroke:#1a5276,color:#fff</span></span>
+<span id="cb2-88"><a href="#cb2-88"></a>    style TLG  fill:<span class="co">#2e86c1,stroke:#1a5276,color:#fff</span></span>
+<span id="cb2-89"><a href="#cb2-89"></a>    style INT  fill:<span class="co">#d5f5e3,stroke:#1e8449,color:#000</span></span>
+<span id="cb2-90"><a href="#cb2-90"></a>    style DOC  fill:<span class="co">#d5f5e3,stroke:#1e8449,color:#000</span></span>
+<span id="cb2-91"><a href="#cb2-91"></a>    style ESUB fill:<span class="co">#d5f5e3,stroke:#1e8449,color:#000</span></span>
+<span id="cb2-92"><a href="#cb2-92"></a>    style LOG  fill:<span class="co">#fdebd0,stroke:#ca6f1e,color:#000</span></span>
+<span id="cb2-93"><a href="#cb2-93"></a><span class="in">```</span></span>
+<span id="cb2-94"><a href="#cb2-94"></a></span>
+<span id="cb2-95"><a href="#cb2-95"></a><span class="pp">|</span> Section <span class="pp">|</span> What it covers <span class="pp">|</span> Good starting point if… <span class="pp">|</span></span>
+<span id="cb2-96"><a href="#cb2-96"></a><span class="pp">|---------|---------------|--------------------------|</span></span>
+<span id="cb2-97"><a href="#cb2-97"></a><span class="pp">|</span> **[SDTM](sdtm/index.qmd)** <span class="pp">|</span> Converting raw collected data to CDISC SDTM domains <span class="pp">|</span> You work upstream of ADaM or want to understand the data origin <span class="pp">|</span></span>
+<span id="cb2-98"><a href="#cb2-98"></a><span class="pp">|</span> **[ADaM](adam/index.qmd)** <span class="pp">|</span> Building analysis datasets (<span class="in">`ADSL`</span>, <span class="in">`ADTTE`</span>, <span class="in">`ADPC`</span>, etc.) from SDTM <span class="pp">|</span> You're implementing analysis-ready datasets for reporting <span class="pp">|</span></span>
+<span id="cb2-99"><a href="#cb2-99"></a><span class="pp">|</span> **[TLG](tlg/index.qmd)** <span class="pp">|</span> Creating tables, listings, and graphs for clinical study reports <span class="pp">|</span> You focus on outputs — demographics, AEs, survival, PK summaries <span class="pp">|</span></span>
+<span id="cb2-100"><a href="#cb2-100"></a></span>
+<span id="cb2-101"><a href="#cb2-101"></a>The site also includes introductory examples for several additional workflow areas:</span>
+<span id="cb2-102"><a href="#cb2-102"></a></span>
+<span id="cb2-103"><a href="#cb2-103"></a><span class="ss">- </span>**[Interactive](interactive/index.qmd)** — building clinical data exploration apps with <span class="in">`{teal}`</span></span>
+<span id="cb2-104"><a href="#cb2-104"></a><span class="ss">- </span>**[Documents](digit_files/index.qmd)** — automated report generation from ADaM data</span>
+<span id="cb2-105"><a href="#cb2-105"></a><span class="ss">- </span>**[Logging](logging/index.qmd)** — logging and traceability for clinical R workflows</span>
+<span id="cb2-106"><a href="#cb2-106"></a><span class="ss">- </span>**[eSub](esub/index.qmd)** — preparing outputs for electronic regulatory submission</span>
+<span id="cb2-107"><a href="#cb2-107"></a></span>
+<span id="cb2-108"><a href="#cb2-108"></a>---</span>
+<span id="cb2-109"><a href="#cb2-109"></a></span>
+<span id="cb2-110"><a href="#cb2-110"></a><span class="fu">## Packages Used in These Examples</span></span>
+<span id="cb2-111"><a href="#cb2-111"></a></span>
+<span id="cb2-112"><a href="#cb2-112"></a>The table below covers every package used across the examples site, grouped by</span>
+<span id="cb2-113"><a href="#cb2-113"></a>the part of the pipeline where it appears. Clicking a package name opens its</span>
+<span id="cb2-114"><a href="#cb2-114"></a>documentation; the Example column links to where it is used on this site.</span>
+<span id="cb2-115"><a href="#cb2-115"></a></span>
+<span id="cb2-116"><a href="#cb2-116"></a><span class="fu">### Data Packages</span></span>
+<span id="cb2-117"><a href="#cb2-117"></a></span>
+<span id="cb2-118"><a href="#cb2-118"></a>:::{tbl-colwidths="<span class="co">[</span><span class="ot">15,60,25</span><span class="co">]</span>"}</span>
+<span id="cb2-119"><a href="#cb2-119"></a><span class="pp">|</span> Package <span class="pp">|</span> Description <span class="pp">|</span> Example <span class="pp">|</span></span>
+<span id="cb2-120"><a href="#cb2-120"></a><span class="pp">|---------|-------------|---------|</span></span>
+<span id="cb2-121"><a href="#cb2-121"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{pharmaverseraw}`</span><span class="co">](https://pharmaverse.github.io/pharmaverseraw/)</span> <span class="pp">|</span> Source raw datasets (<span class="in">`AE`</span>, <span class="in">`DM`</span>, <span class="in">`EX`</span>, <span class="in">`DS`</span> domains) used as the starting point for all SDTM examples <span class="pp">|</span> <span class="co">[</span><span class="ot">SDTM</span><span class="co">](sdtm/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-122"><a href="#cb2-122"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{sdtm.oak}`</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/)</span> <span class="pp">|</span> SDTM programming in R — maps raw collected data to CDISC SDTM domains using an algorithm-based engine <span class="pp">|</span> <span class="co">[</span><span class="ot">SDTM</span><span class="co">](sdtm/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-123"><a href="#cb2-123"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{pharmaversesdtm}`</span><span class="co">](https://pharmaverse.github.io/pharmaversesdtm/)</span> <span class="pp">|</span> CDISC SDTM example datasets generated from <span class="in">`{pharmaverseraw}`</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">SDTM</span><span class="co">](sdtm/index.qmd)</span> / <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-124"><a href="#cb2-124"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{pharmaverseadam}`</span><span class="co">](https://pharmaverse.github.io/pharmaverseadam/)</span> <span class="pp">|</span> CDISC ADaM example datasets (<span class="in">`ADSL`</span>, <span class="in">`ADTTE`</span>, <span class="in">`ADPC`</span>, etc.) used across TLG and PK examples <span class="pp">|</span> <span class="co">[</span><span class="ot">TLG</span><span class="co">](tlg/index.qmd)</span> / <span class="co">[</span><span class="ot">PK</span><span class="co">](tlg/pharmacokinetic.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-125"><a href="#cb2-125"></a>:::</span>
+<span id="cb2-126"><a href="#cb2-126"></a></span>
+<span id="cb2-127"><a href="#cb2-127"></a><span class="fu">### ADaM Packages</span></span>
+<span id="cb2-128"><a href="#cb2-128"></a></span>
+<span id="cb2-129"><a href="#cb2-129"></a>:::{tbl-colwidths="<span class="co">[</span><span class="ot">15,60,25</span><span class="co">]</span>"}</span>
+<span id="cb2-130"><a href="#cb2-130"></a><span class="pp">|</span> Package <span class="pp">|</span> Description <span class="pp">|</span> Example <span class="pp">|</span></span>
+<span id="cb2-131"><a href="#cb2-131"></a><span class="pp">|---------|-------------|---------|</span></span>
+<span id="cb2-132"><a href="#cb2-132"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{admiral}`</span><span class="co">](https://pharmaverse.github.io/admiral/)</span> <span class="pp">|</span> ADaM dataset construction in R — the core package for building <span class="in">`ADSL`</span>, <span class="in">`ADAE`</span>, <span class="in">`ADTTE`</span>, and other standard domains <span class="pp">|</span> <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-133"><a href="#cb2-133"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{admiralonco}`</span><span class="co">](https://pharmaverse.github.io/admiralonco/)</span> <span class="pp">|</span> Oncology-specific ADaM extensions for <span class="in">`{admiral}`</span> — adds functions for tumor response, DOR, and TTE oncology endpoints <span class="pp">|</span> <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-134"><a href="#cb2-134"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{metacore}`</span><span class="co">](https://atorus-research.github.io/metacore/)</span> <span class="pp">|</span> Stores and validates dataset metadata (variable definitions, codelists) from specs in a consistent R object <span class="pp">|</span> <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-135"><a href="#cb2-135"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{metatools}`</span><span class="co">](https://pharmaverse.github.io/metatools/)</span> <span class="pp">|</span> Utilities for working with <span class="in">`{metacore}`</span> objects — checking variables, applying codelists, and deriving variables from metadata <span class="pp">|</span> <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-136"><a href="#cb2-136"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{xportr}`</span><span class="co">](https://atorus-research.github.io/xportr/)</span> <span class="pp">|</span> Applies SAS XPT metadata (types, labels, lengths, formats) and exports submission-ready <span class="in">`.xpt`</span> transport files <span class="pp">|</span> <span class="co">[</span><span class="ot">ADaM</span><span class="co">](adam/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-137"><a href="#cb2-137"></a>:::</span>
+<span id="cb2-138"><a href="#cb2-138"></a></span>
+<span id="cb2-139"><a href="#cb2-139"></a><span class="fu">### TLG Packages</span></span>
+<span id="cb2-140"><a href="#cb2-140"></a></span>
+<span id="cb2-141"><a href="#cb2-141"></a>:::{tbl-colwidths="<span class="co">[</span><span class="ot">15,60,25</span><span class="co">]</span>"}</span>
+<span id="cb2-142"><a href="#cb2-142"></a><span class="pp">|</span> Package <span class="pp">|</span> Description <span class="pp">|</span> Example <span class="pp">|</span></span>
+<span id="cb2-143"><a href="#cb2-143"></a><span class="pp">|---------|-------------|---------|</span></span>
+<span id="cb2-144"><a href="#cb2-144"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{rtables}`</span><span class="co">](https://insightsengineering.github.io/rtables/)</span> <span class="pp">|</span> Framework for building complex nested tables with flexible layouts — the foundation of the NEST TLG stack <span class="pp">|</span> <span class="co">[</span><span class="ot">Demographics</span><span class="co">](tlg/demographic.qmd)</span> / <span class="co">[</span><span class="ot">AE</span><span class="co">](tlg/adverse_events.qmd)</span> / <span class="co">[</span><span class="ot">PK</span><span class="co">](tlg/pharmacokinetic.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-145"><a href="#cb2-145"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{tern}`</span><span class="co">](https://insightsengineering.github.io/tern/)</span> <span class="pp">|</span> Analysis functions for clinical trial TLGs built on <span class="in">`{rtables}`</span> — covers demographics, AEs, survival, PK summaries <span class="pp">|</span> <span class="co">[</span><span class="ot">Demographics</span><span class="co">](tlg/demographic.qmd)</span> / <span class="co">[</span><span class="ot">AE</span><span class="co">](tlg/adverse_events.qmd)</span> / <span class="co">[</span><span class="ot">PK</span><span class="co">](tlg/pharmacokinetic.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-146"><a href="#cb2-146"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{rlistings}`</span><span class="co">](https://insightsengineering.github.io/rlistings/)</span> <span class="pp">|</span> Creates regulatory-ready listings from ADaM datasets <span class="pp">|</span> <span class="co">[</span><span class="ot">PK</span><span class="co">](tlg/pharmacokinetic.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-147"><a href="#cb2-147"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{gtsummary}`</span><span class="co">](https://www.danieldsjoberg.com/gtsummary/)</span> <span class="pp">|</span> Publication-ready summary and analytical tables — ideal for demographics and analysis summaries <span class="pp">|</span> <span class="co">[</span><span class="ot">Demographics</span><span class="co">](tlg/demographic.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-148"><a href="#cb2-148"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{ggsurvfit}`</span><span class="co">](https://www.danieldsjoberg.com/ggsurvfit/)</span> <span class="pp">|</span> Publication-ready Kaplan-Meier and time-to-event figures built on <span class="in">`{ggplot2}`</span> <span class="pp">|</span> <span class="co">[</span><span class="ot">TLG</span><span class="co">](tlg/index.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-149"><a href="#cb2-149"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{cards}`</span><span class="co">](https://insightsengineering.github.io/cards/)</span> <span class="pp">|</span> Creates Analysis Results Datasets (ARDs) following the emerging CDISC Analysis Results Standard <span class="pp">|</span> <span class="co">[</span><span class="ot">Demographics</span><span class="co">](tlg/demographic.qmd)</span> / <span class="co">[</span><span class="ot">AE</span><span class="co">](tlg/adverse_events.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-150"><a href="#cb2-150"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{tfrmt}`</span><span class="co">](https://gsk-biostatistics.github.io/tfrmt/)</span> <span class="pp">|</span> Transforms ARDs into publication-ready tables with precise formatting control — particularly suited to RTF regulatory outputs <span class="pp">|</span> <span class="co">[</span><span class="ot">Demographics</span><span class="co">](tlg/demographic.qmd)</span> / <span class="co">[</span><span class="ot">AE</span><span class="co">](tlg/adverse_events.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-151"><a href="#cb2-151"></a>:::</span>
+<span id="cb2-152"><a href="#cb2-152"></a></span>
+<span id="cb2-153"><a href="#cb2-153"></a><span class="fu">### Interactive Packages</span></span>
+<span id="cb2-154"><a href="#cb2-154"></a></span>
+<span id="cb2-155"><a href="#cb2-155"></a>:::{tbl-colwidths="<span class="co">[</span><span class="ot">15,60,25</span><span class="co">]</span>"}</span>
+<span id="cb2-156"><a href="#cb2-156"></a><span class="pp">|</span> Package <span class="pp">|</span> Description <span class="pp">|</span> Example <span class="pp">|</span></span>
+<span id="cb2-157"><a href="#cb2-157"></a><span class="pp">|---------|-------------|---------|</span></span>
+<span id="cb2-158"><a href="#cb2-158"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">`{teal}`</span><span class="co">](https://insightsengineering.github.io/teal/latest-tag/)</span> <span class="pp">|</span> Shiny-based framework for building interactive clinical trial data exploration apps — supports filter panels, reproducibility code, and a reporter for exporting results <span class="pp">|</span> <span class="co">[</span><span class="ot">Interactive</span><span class="co">](interactive/teal.qmd)</span> <span class="pp">|</span></span>
+<span id="cb2-159"><a href="#cb2-159"></a>:::</span>
+<span id="cb2-160"><a href="#cb2-160"></a></span>
+<span id="cb2-161"><a href="#cb2-161"></a>---</span>
+<span id="cb2-162"><a href="#cb2-162"></a></span>
+<span id="cb2-163"><a href="#cb2-163"></a>::: {.callout-note}</span>
+<span id="cb2-164"><a href="#cb2-164"></a><span class="fu">## Contributing</span></span>
+<span id="cb2-165"><a href="#cb2-165"></a></span>
+<span id="cb2-166"><a href="#cb2-166"></a>Have an example that others would benefit from? Open an</span>
+<span id="cb2-167"><a href="#cb2-167"></a><span class="co">[</span><span class="ot">issue</span><span class="co">](https://github.com/pharmaverse/examples/issues)</span> with your idea — new issues are</span>
+<span id="cb2-168"><a href="#cb2-168"></a>automatically added to our <span class="co">[</span><span class="ot">project board</span><span class="co">](https://github.com/orgs/pharmaverse/projects/24/views/1)</span></span>
+<span id="cb2-169"><a href="#cb2-169"></a>for the team to review and prioritize. If you're willing to contribute the code yourself,</span>
+<span id="cb2-170"><a href="#cb2-170"></a>say so in the issue and the team will provide repo access.</span>
+<span id="cb2-171"><a href="#cb2-171"></a></span>
+<span id="cb2-172"><a href="#cb2-172"></a>A note on dependencies: there is no <span class="in">`renv`</span> here. If your example needs a new package,</span>
+<span id="cb2-173"><a href="#cb2-173"></a>add it to <span class="in">`Imports`</span> in the root <span class="in">`DESCRIPTION`</span> file and the deployment pipeline will</span>
+<span id="cb2-174"><a href="#cb2-174"></a>install the latest CRAN release automatically.</span>
+<span id="cb2-175"><a href="#cb2-175"></a></span>
+<span id="cb2-176"><a href="#cb2-176"></a>You can see a list of current contributors via our <span class="co">[</span><span class="ot">GitHub repo DESCRIPTION file</span><span class="co">](https://github.com/pharmaverse/examples/blob/main/DESCRIPTION)</span>.</span>
+<span id="cb2-177"><a href="#cb2-177"></a>If ever unsure, tag the team in your issue using <span class="in">`@pharmaverse/examples`</span>.</span>
+<span id="cb2-178"><a href="#cb2-178"></a></span>
+<span id="cb2-179"><a href="#cb2-179"></a>Consider giving the <span class="co">[</span><span class="ot">Examples repo</span><span class="co">](https://github.com/pharmaverse/examples)</span> and any of</span>
+<span id="cb2-180"><a href="#cb2-180"></a>the package repos listed in the tables above a ⭐ GitHub star — it helps maintainers</span>
+<span id="cb2-181"><a href="#cb2-181"></a>demonstrate community adoption and keeps the ecosystem visible to new users.</span>
+<span id="cb2-182"><a href="#cb2-182"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
