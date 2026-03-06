@@ -69,7 +69,7 @@ km_fit |>
   scale_ggsurvfit() +
   labs(
     title = paste0(unique(adtte_pfs$PARAM), "\nKaplan-Meier Estimate"),
-    x = "Time (Years)",
+    x = "Time (Days)",
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Analysis dataset: ADTTE_ONCO  |  PARAMCD: ", unique(adtte_pfs$PARAMCD),
@@ -96,10 +96,10 @@ tbl_survfit(
 
 ## ----r prob-table-------------------------------------------------------------
 # ── Survival probability at selected time points ───────────────────────────────
-# AVAL in adtte_onco is in years; express months as fractions of a year
+# AVAL in adtte_onco is in days
 tbl_survfit(
   km_fit,
-  times        = c(0.25, 0.5, 0.75, 1), # 3, 6, 9, 12 months in years
+  times        = c(30, 60, 90, 180), # 1, 2, 3, 6 months in days
   label_header = "**PFS Probability (95% CI)**"
 ) |>
   modify_header(
@@ -108,10 +108,10 @@ tbl_survfit(
   modify_table_body(
     ~ .x |>
       mutate(label = recode(label,
-        "0.25" = "3 months",
-        "0.5"  = "6 months",
-        "0.75" = "9 months",
-        "1"    = "12 months"
+        "30"  = "1 month",
+        "60"  = "2 months",
+        "90"  = "3 months",
+        "180" = "6 months"
       ))
   ) |>
   modify_caption(
@@ -172,14 +172,14 @@ adrs_bor |>
 ## ----r cnsr-note--------------------------------------------------------------
 # # ✗  Error-prone: requires manual recoding of CNSR
 # survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
-#
+# 
 # # ✓  Correct CDISC-aware approach
 # ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR)
 
 ## ----r endpoint-note----------------------------------------------------------
 # # Overall Survival — expect few events; median may not be estimable
 # adtte_os <- adtte_onco |> filter(PARAMCD == "OS")
-#
+# 
 # # Duration of Response — responders only; smaller N than OS/PFS
 # # Note: admiralonco uses PARAMCD = "RSD", not "DOR"
 # adtte_rsd <- adtte_onco |> filter(PARAMCD == "RSD")
@@ -222,7 +222,7 @@ survfit2(Surv_CNSR(AVAL, CNSR) ~ TRT01P, data = ggsurvfit::adtte) |>
   scale_ggsurvfit() +
   labs(
     title = "Progression-Free Survival by Treatment Arm",
-    x = "Time (Years)",
+    x = "Time (Years)", # ggsurvfit::adtte AVAL is in years
     y = "Progression-Free Survival Probability",
     caption = paste0(
       "Dataset: ggsurvfit::adtte  |  HER2+ breast cancer Phase III trial",
@@ -309,3 +309,4 @@ ggplot(forest_data, aes(x = estimate, y = label)) +
     panel.grid.major.y  = element_blank(),
     plot.caption        = element_text(hjust = 0, size = 8)
   )
+
