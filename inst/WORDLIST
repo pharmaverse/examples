@@ -307,6 +307,7 @@ DMDTC
 DMDY
 dmvars
 docx
+DOR
 DOSEA
 DOSEP
 DOSEU
@@ -347,6 +348,7 @@ DVL
 dy
 dylib
 DYTPE
+eaf
 ec
 ECENDAT
 ECSTDAT
@@ -402,6 +404,8 @@ fastmap
 favourable
 fct
 FDA's
+fdebd
+fff
 fileext
 flextable
 flx
@@ -420,6 +424,7 @@ gb
 getOption
 getwd
 ggplot
+ggsurvfit
 ggtheme
 grDevices
 grepl
@@ -714,6 +719,7 @@ RSSTRESC
 RSTESTCD
 rstudioapi
 rtables
+RTF
 Rua
 rv
 rx
@@ -782,6 +788,7 @@ summaryrec
 suppdm
 SUPPDM
 suppressWarnings
+Surv
 sym
 SYS
 Sys
@@ -813,6 +820,7 @@ timepoint
 timingvars
 Tlast
 TLG
+tlg
 TLGs
 tm
 Tmax
