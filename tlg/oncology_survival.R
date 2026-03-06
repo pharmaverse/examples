@@ -51,12 +51,13 @@ km_fit |>
   add_confidence_interval() +
   add_risktable(
     risktable_stats = c("n.risk", "cum.event", "cum.censor"),
+    # ── stats_label renames the row labels in the risk table.
+    # ── Named-list format (stat = "Label") is required by add_risktable().
     stats_label = list(
       n.risk     = "At Risk",
       cum.event  = "Events (cum.)",
       cum.censor = "Censored (cum.)"
     ),
-    # ── Slightly smaller label text keeps row labels from squeezing number columns
     theme = theme_risktable_default(axis.text.y.size = 9, plot.title.size = 9)
   ) +
   add_quantile(

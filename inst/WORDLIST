@@ -412,6 +412,7 @@ fansi
 FAS
 FASFL
 fastmap
+fatten
 favours
 Favours
 fct
@@ -588,6 +589,7 @@ ONTRTFL
 ontrtfl
 ord
 orr
+ORR
 os
 OSIND
 othgrpvars
@@ -596,6 +598,7 @@ outputId
 ovr
 OVR
 OVRLRESP
+pairwise
 pak
 pandoc
 Pandoc
