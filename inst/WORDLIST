@@ -99,6 +99,8 @@ Alanine
 ALLOQ
 AMBUL
 Aminotransferase
+analyte
+Analyte
 aNCA
 anl
 ANL
@@ -106,11 +108,9 @@ anldates
 anldur
 anlflags
 ANLzzFL
-analyte
-Analyte
+ANRHI
 anrind
 ANRIND
-ANRHI
 ANRLO
 AOCCIFL
 APPPK
@@ -166,9 +166,9 @@ BASETYPE
 basetypes
 bds
 BDS
+bigN
 BILI
 BILIBL
-bigN
 BLAS
 blq
 BLQ
@@ -189,8 +189,8 @@ bzlib
 cachem
 cairo
 cairoFT
-callr
 callout
+callr
 categorizationvars
 cdisc
 CDISC
@@ -201,6 +201,7 @@ cli
 clst
 CMT
 CNSDTDSC
+CNSR
 codebases
 codelist
 codelists
@@ -242,8 +243,8 @@ datasetjson
 datetime
 Datetime
 datetimes
-Davide
 davidblair
+Davide
 de
 DEATHDT
 deathvars
@@ -268,10 +269,11 @@ DM
 DMDTC
 DMDY
 dmvars
+docx
+DOR
 DOSEA
 DOSEP
 DOSEU
-docx
 dplyr
 ds
 DS
@@ -309,10 +311,11 @@ DVL
 dy
 dylib
 DYTPE
+eaf
 ec
-eCTD
 ECENDAT
 ECSTDAT
+eCTD
 ectd
 edelarua
 eg
@@ -361,6 +364,8 @@ FASFL
 fastmap
 fct
 FDA's
+fdebd
+fff
 fileext
 flextable
 flx
@@ -379,6 +384,7 @@ gb
 getOption
 getwd
 ggplot
+ggsurvfit
 ggtheme
 grDevices
 grepl
@@ -469,8 +475,8 @@ Metacore
 metatools
 miniUI
 minumum
-mmm
 mmHg
+mmm
 Mosteller
 MRRLT
 mtcars
@@ -591,8 +597,8 @@ prgA
 prgB
 processx
 profvis
-programTOC
 programmatically
+programTOC
 PROJID
 PROJIDN
 ps
@@ -613,8 +619,8 @@ rangeind
 Rcpp
 rds
 reactable
-readct
 reactogenicity
+readct
 readdata
 readline
 README
@@ -661,6 +667,7 @@ RSSTRESC
 RSTESTCD
 rstudioapi
 rtables
+RTF
 Rua
 rv
 rx
@@ -726,6 +733,7 @@ summaryrec
 suppdm
 SUPPDM
 suppressWarnings
+Surv
 SYS
 Sys
 sysbp
@@ -739,8 +747,8 @@ tempfile
 TEMPLOC
 TESTCD
 tf
-tfrmt
 tformat
+tfrmt
 tfrmt
 tgdt
 tgt
@@ -753,6 +761,7 @@ timepoint
 Timepoint
 timingvars
 TLG
+tlg
 TLGs
 tm
 tmc
