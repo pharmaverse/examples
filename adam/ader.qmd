@@ -1,0 +1,1031 @@
+---
+title: "ADER+"
+subtitle: "Exposure-Response Analysis Data"
+order: 12
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
+```
+
+## Introduction
+
+Exposure-Response (ER) modeling is a critical tool in drug development for evaluating the relationships between drug exposure, safety, and efficacy. These analyses help characterize dose-response relationships, optimize dosing regimens, and support regulatory decision-making.
+
+While CDISC released the Population Pharmacokinetic (PopPK) Implementation Guide in 2023 (see [Basic Data Structure for ADaM Population PK](https://www.cdisc.org/standards/foundational/adam/basic-data-structure-adam-poppk-implementation-guide-v1-0)), no equivalent standards currently exist specifically for ER data. However, ER datasets share many structural similarities with PopPK datasets, including numeric covariates, relative time variables, and pharmacokinetic exposure metrics. The examples below demonstrate how PopPK principles can be extended to create standardized ER analysis datasets.
+
+The following four specialized datasets support different aspects of exposure-response analysis:
+
+| Dataset | Full Name | Primary Purpose | Key Features |
+|------------------|------------------|-------------------|------------------|
+| [**ADER**](#ader) | Exposure-Response Analysis Dataset | Integrated exposure-response relationships across safety and efficacy endpoints | Combines PK metrics (AUC, Cmax) with time-to-event outcomes (OS, PFS), tumor response, and baseline covariates |
+| [**ADEE**](#adee) | Exposure-Efficacy Analysis Dataset | Exposure relationships with efficacy and tumor response endpoints | Focuses on efficacy outcomes such as tumor measurements, response rates, and progression metrics linked to drug exposure |
+| [**ADES**](#ades) | Exposure-Safety Analysis Dataset | Exposure relationships with adverse events and safety endpoints | Links exposure metrics to adverse event occurrence, severity, and time-to-onset for safety signal detection |
+| [**ADTRR**](#adtrr) | Exposure-Tumor Response Rate Analysis Dataset | Exposure relationships with categorical tumor response metrics | Analyzes exposure impact on response categories (CR, PR, SD, PD) and best overall response |
+
+Each dataset builds upon standard ADaM datasets (ADSL, ADRS, ADTTE, ADAE, ADLB, ADVS) and incorporates pharmacokinetic parameters from ADPC/ADPP to create analysis-ready datasets for exposure-response modeling.
+
+The top of this page includes common derivations. See the tabs below for specifics for each dataset.
+
+## First Load Packages
+
+First we will load the packages required for our project. We will use `{admiral}` and `{admiralonco}` for the creation of analysis data. We will source these from `{pharmaverseadam}`. `{admiral}` requires `{dplyr}`, `{lubridate}` and `{stringr}`. Find other `{admiral}` functions and related variables by searching [admiraldiscovery](https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html). We will use `{metacore}` and `{metatools}` to store and manipulate metadata from our specifications. We will use `{xportr}` to perform checks on the final data and export to a transport file.
+
+Exposure Response data typically use ADaM data as source, so this example will depend on `{pharmaverseadam}` with data from existing `{admiral}` and `{admiralonco}` templates.
+
+```{r echo=TRUE, message=FALSE}
+#| label: Load Packages
+# Load Packages
+library(admiral)
+library(admiralonco)
+# pharmaverseadam contains example datasets generated from the CDISC pilot
+# project SDTM ran through admiral templates
+library(pharmaverseadam)
+library(dplyr)
+library(lubridate)
+library(stringr)
+library(purrr)
+library(rlang)
+library(metacore)
+library(metatools)
+library(xportr)
+```
+
+## Load Specifications for Metacore
+
+We have saved [our specifications](../metadata/pk_spec.xlsx) in an Excel file and will load them into `{metacore}` with the `metacore::spec_to_metacore()` function. We will subset for `ADER` first and load the other datasets below.
+
+```{r echo=TRUE, message=FALSE}
+#| label: Load Specs
+#| warning: false
+# ---- Load Specs for Metacore ----
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
+  select_dataset("ADER")
+```
+
+## Load Source Datasets
+
+We will load ADaM data from `{pharmaverseadam}`. The main sources will be `ADRS`, `ADTTE`, `ADAE`, and `ADTR`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `ADVS` and laboratory data `ADLB`. We will use exposure metrics from `ADPP`.
+
+```{r}
+#| label: Load Source
+# ---- Load source datasets ----
+# Load ADRS, ADTTE, ADSL, ADLB, ADVS, ADEX, ADPP, ADAE and ADTR
+adrs <- pharmaverseadam::adrs_onco
+adtte <- pharmaverseadam::adtte_onco
+adsl <- pharmaverseadam::adsl %>%
+  filter(TRT01A != "Screen Failure")
+adlb <- pharmaverseadam::adlb
+advs <- pharmaverseadam::advs
+adex <- pharmaverseadam::adex %>%
+  filter(PARCAT1 == "INDIVIDUAL")
+adpp <- pharmaverseadam::adpp
+adae <- pharmaverseadam::adae
+adtr <- pharmaverseadam::adtr_onco
+```
+
+## Common Derivations
+
+We will include common derivations for all exposure-response datasets first. These include covariates and exposure metrics.
+
+### Derive Covariates Using `{metatools}`
+
+In this step we will create our numeric covariates using the `metatools::create_var_from_codelist()` function. Because there are 12 separate input/output variable pairs to map from controlled terminology codelists, we use `purrr::reduce()` to chain the calls programmatically rather than repeating them individually. Additional numeric identifiers (`STUDYIDN`, `USUBJIDN`, etc.) and study-level constants (`ROUTE`, `FORM`, `REGION1`) are derived with `mutate()`.
+
+```{r}
+#| label: Common Covariates
+#| code-fold: true
+#| code-summary: "Show codelist derivations"
+# ---- Derive Covariates ----
+# Include numeric values for STUDYIDN, USUBJIDN, SEXN, RACEN etc.
+
+covar <- purrr::reduce(
+  list(
+    c("STUDYID", "STUDYIDN"),
+    c("SEX", "SEXN"),
+    c("RACE", "RACEN"),
+    c("ETHNIC", "ETHNICN"),
+    c("ARMCD", "COHORT"),
+    c("ARMCD", "COHORTC"),
+    c("ARM", "ARMN"),
+    c("ACTARM", "ACTARMN"),
+    c("TRT01A", "TRT01AN"),
+    c("TRT01P", "TRT01PN"),
+    c("COUNTRY", "COUNTRYN"),
+    c("COUNTRY", "COUNTRYL")
+  ),
+  ~ create_var_from_codelist(.x, metacore,
+    input_var = !!rlang::sym(.y[1]),
+    out_var   = !!rlang::sym(.y[2])
+  ),
+  .init = adsl
+) %>%
+  mutate(
+    STUDYIDN = as.numeric(word(USUBJID, 1, sep = fixed("-"))),
+    SITEIDN = as.numeric(word(USUBJID, 2, sep = fixed("-"))),
+    USUBJIDN = as.numeric(word(USUBJID, 3, sep = fixed("-"))),
+    SUBJIDN = as.numeric(SUBJID),
+    ROUTE = unique(adex$EXROUTE)[1],
+    FORM = unique(adex$EXDOSFRM)[1],
+    REGION1 = COUNTRY,
+    REGION1N = COUNTRYN
+  ) %>%
+  create_var_from_codelist(metacore, input_var = FORM, out_var = FORMN) %>%
+  create_var_from_codelist(metacore, input_var = ROUTE, out_var = ROUTEN)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar
+print_df(covar %>% select(USUBJID, TRT01A, TRT01AN, SEX, SEXN, RACE, RACEN, FORM, FORMN))
+```
+
+### Derive Additional Baselines
+
+Next we add additional baselines from vital signs and laboratory data. We will use `admiral::derive_vars_merged()` and `admiral::derive_vars_transposed()` to merge these datasets. Note that we use `get_admiral_option("subject_keys")` throughout to identify unique subjects instead of listing `STUDYID` and `USUBJID`.
+
+```{r}
+#| label: Baselines
+#| code-fold: true
+#| code-summary: "Show baseline derivations"
+# ---- Derive additional baselines from ADVS and ADLB ----
+
+labsbl <- adlb %>%
+  filter(ABLFL == "Y" & PARAMCD %in% c("CREAT", "ALT", "AST", "BILI")) %>%
+  mutate(PARAMCDB = paste0(PARAMCD, "BL")) %>%
+  select(!!!get_admiral_option("subject_keys"), PARAMCDB, AVAL)
+
+covar_vslb <- covar %>%
+  derive_vars_merged(
+    dataset_add = advs,
+    filter_add = PARAMCD == "HEIGHT" & ABLFL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(HTBL = AVAL)
+  ) %>%
+  derive_vars_merged(
+    dataset_add = advs,
+    filter_add = PARAMCD == "WEIGHT" & ABLFL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(WTBL = AVAL)
+  ) %>%
+  derive_vars_transposed(
+    dataset_merge = labsbl,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCDB,
+    value_var = AVAL
+  ) %>%
+  mutate(
+    BMIBL = compute_bmi(height = HTBL, weight = WTBL),
+    BSABL = compute_bsa(
+      height = HTBL,
+      weight = WTBL,
+      method = "Mosteller"
+    ),
+    CRCLBL = compute_egfr(
+      creat = CREATBL, creatu = "SI", age = AGE, weight = WTBL, sex = SEX,
+      method = "CRCL"
+    ),
+    EGFRBL = compute_egfr(
+      creat = CREATBL, creatu = "SI", age = AGE, weight = WTBL, sex = SEX,
+      method = "CKD-EPI"
+    )
+  ) %>%
+  rename(TBILBL = BILIBL)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar_vslb
+print_df(covar_vslb %>% select(USUBJID, WTBL, HTBL, BMIBL, CRCLBL))
+```
+
+### Add Exposure Metrics from `ADPP`
+
+An essential component of ER modeling is the exposure metrics calculated from the PK concentration data in `ADPC`, `ADPPK`, or `ADPP`. Here we will use `AUCLST` and `CMAX` from the `ADPP` dataset from `{admiral}` in `{pharmaverseadam}`. See the `{aNCA}` package for details about calculating `AUC`, `CMAX`, and other parameters. If `ADPP` contains parameters from multiple visits (e.g., Cycle 1 Day 1 and steady-state), add a `filter` condition to restrict to the steady-state visit — for example `filter = PARAMCD %in% c("AUCLST", "CMAX") & AVISIT == "Cycle 1 Day 8"` — to ensure one record per subject is transposed.
+
+```{r}
+#| label: AUCSS
+# ---- Add Exposure Metrics  ----
+# Add appropriate exposure metrics from ADPP. Here we use AUCLST and CMAX as examples
+# this could be extended to include other parameters such as AUCINF, AUCALL, Tmax, Tlast etc.
+# depending on the needs of the analysis.
+# NOTE: If ADPP contains multiple visits (e.g., Day 1 and steady-state), add an AVISIT
+# filter below to select only the steady-state visit, e.g. filter_add = AVISIT == "Cycle 1 Day 8",
+# to ensure derive_vars_transposed() produces one record per subject.
+covar_auc <- covar_vslb %>%
+  derive_vars_transposed(
+    dataset_merge = adpp,
+    filter = PARAMCD %in% c("AUCLST", "CMAX"),
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  rename(AUCSS = AUCLST, CMAXSS = CMAX)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print covar_auc
+print_df(covar_auc %>% select(
+  USUBJID, TRT01A, SEX, WTBL, HTBL, AUCSS, CMAXSS
+))
+```
+
+## Conclusions
+
+These Exposure-Response datasets demonstrate a practical approach to standardizing ER data using CDISC ADaM principles and the Pharmaverse ecosystem. The four datasets work together to support different modeling objectives: `ADER` for integrated exposure-response analysis, `ADEE` for efficacy endpoints, `ADES` for safety evaluation, and `ADTRR` for tumor response assessment. The framework demonstrated here can be adapted for study-specific ER endpoints. By standardizing the structure of exposure-response data and maintaining consistency with other ADaM formats, these datasets facilitate regulatory review, enhance traceability, and enable reproducible pharmacometric analyses. We encourage the community to adopt and refine these approaches as CDISC continues to develop formal ER data standards.
+
+## Code for Individual Datasets
+
+Derivations specific to each dataset continue below. Select the appropriate tab to view.
+
+## Dataset-Specific Derivations
+
+::: panel-tabset
+## ADER {#ader}
+
+### Derive Time to Event Variables from `ADTTE`
+
+We will use parameters from `ADTTE` for Overall Survival, Progression Free Survival and Duration of Response. We will use `admiral::derive_vars_transposed()` to transpose the `AVAL` for each `PARAMCD`. We also transpose the censor variables `CNSR` here as indicator variables appending "IND" to the parameter name.
+
+```{r}
+#| label: Create ADER base dataset
+# ---- Create ADER base dataset
+
+# For ADTTE censor variables add "IND" to PARAMCD
+adttei <- adtte %>%
+  mutate(PARAMCD = paste0(PARAMCD, "IND"))
+
+ader_tte <- adsl %>%
+  select(!!!get_admiral_option("subject_keys")) %>%
+  # Create OS and PFS variables from ADTTE
+  derive_vars_transposed(
+    dataset_merge = adtte,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = AVAL
+  ) %>%
+  # Create OS and PFS censor variables
+  derive_vars_transposed(
+    dataset_merge = adttei,
+    by_vars = get_admiral_option("subject_keys"),
+    key_var = PARAMCD,
+    value_var = CNSR
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ader_tte
+print_df(ader_tte %>% select(USUBJID, OS, OSIND, PFS, PFSIND, RSD, RSDIND))
+```
+
+We will use Best Overall Response by Investigator (BOR) from `ADRS`. We attach this to the data with `admiral::derive_vars_merged()`. Note that `derive_vars_transposed()` and `derive_vars_merged()` will be our primary ways of combining data from the different `{admiral}` and `{admiralonco}` datasets.
+
+```{r}
+#| label: ADER Add ADRS
+# ---- Add ADRS data ----
+# Add response date to ADER for duration of response calculation
+ader_bor <- ader_tte %>%
+  derive_vars_merged(
+    dataset_add = adrs,
+    filter_add = PARAMCD == "BOR" & SAFFL == "Y" & ANL01FL == "Y",
+    by_vars = get_admiral_option("subject_keys"),
+    new_vars = exprs(BOR = AVAL, BORC = AVALC)
+  )
+```
+
+Add Analysis Sequence Number using `admiral::derive_var_obs_number()`.
+
+```{r}
+#| label: ADER ASEQ
+# ---- Add Sequence Number ----
+ader_aseq <- ader_bor %>%
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    check_type = "error"
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ader_aseq
+print_df(ader_aseq %>% select(
+  USUBJID, ASEQ, OS, PFS, BOR, BORC
+))
+```
+
+### Combine with Covariates and Exposure
+
+We combine our covariates with the rest of the data
+
+```{r}
+#| label: ADER Combine with Covariates
+# Combine covariates with ADER data
+
+ader_prefinal <- ader_aseq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = get_admiral_option("subject_keys")
+  )
+```
+
+### Check Data With metacore and metatools
+
+We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
+
+```{r}
+#| label: ADER Metacore
+#| warning: false
+
+ader <- ader_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the specs
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+### Apply Labels and Formats with xportr
+
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: ADER xportr
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+ader_xpt <- ader %>%
+  xportr_type(metacore, domain = "ADER") %>% # Coerce variable type to match specs
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "ader.xpt")) # Write xpt v5 transport file
+```
+
+## ADEE {#adee}
+
+### Load Specifications
+
+```{r echo=TRUE, message=FALSE}
+#| label: ADEE Load Specs
+#| warning: false
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
+  select_dataset("ADEE")
+```
+
+### Create Base `ADEE` Dataset
+
+`ADEE` is a BDS dataset structured one record per subject per time-to-event parameter. It links pharmacokinetic exposure metrics from `ADPP` with efficacy endpoints (OS, PFS, TTP, TTNT) sourced from `ADTTE`, enabling exposure-efficacy modeling and analysis of progression and survival outcomes.
+
+```{r}
+#| label: ADEE Base dataset
+# ---- Create ADEE base dataset
+
+# Get variable names from both datasets
+adsl_vars <- names(adsl)
+adtte_vars <- names(adtte)
+
+# Find common variables
+common_vars <- intersect(adsl_vars, adtte_vars)
+
+# Remove key variables to get variables to drop
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+# Ensure PARAMN exists in ADTTE
+if (!"PARAMN" %in% names(adtte)) {
+  adtte <- adtte %>%
+    mutate(
+      PARAMN = case_when(
+        PARAMCD == "PFS" ~ 1,
+        PARAMCD == "OS" ~ 2,
+        PARAMCD == "TTP" ~ 3,
+        PARAMCD == "TTNT" ~ 4,
+        TRUE ~ 99
+      )
+    )
+}
+
+# ---- Create ADEE Base
+
+adee_base <- adtte %>%
+  # Filter to efficacy endpoints
+  filter(PARAMCD %in% c("OS", "PFS", "TTP", "TTNT")) %>%
+  # Add derived variables
+  mutate(
+    EVENT = 1 - CNSR,
+    AVALU = if_else(!is.na(AVAL), "DAYS", NA_character_),
+  ) %>%
+  # Remove overlapping variables (use clean method)
+  select(-any_of(vars_to_drop))
+```
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_base
+print_df(adee_base %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU))
+```
+
+### Add Analysis Variables
+
+```{r}
+#| label: ADEE Analysis variables
+# ---- Add Analysis variables
+
+adee_aseq <- adee_base %>%
+  # Analysis flags
+  mutate(
+    ANL01FL = if_else(PARAMCD == "PFS", "Y", ""),
+    ANL02FL = if_else(PARAMCD == "OS", "Y", ""),
+    ANL03FL = if_else(PARAMCD == "TTP", "Y", ""),
+    ANL04FL = if_else(PARAMCD == "TTNT", "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "EFFICACY",
+    PARCAT2 = "TIME TO EVENT"
+  ) %>%
+  # Sequence number
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    order = exprs(PARAMCD),
+    new_var = ASEQ,
+    check_type = "error"
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_seq
+print_df(adee_aseq %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALU, ANL01FL, ANL02FL, ASEQ))
+```
+
+### Combine with Covariates and Exposure
+
+We combine our covariates with the rest of the data
+
+```{r}
+#| label: ADEE Combine with Covariates
+# Combine covariates with ADEE data
+
+adee_prefinal <- adee_aseq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = get_admiral_option("subject_keys")
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adee_prefinal
+print_df(adee_prefinal %>% select(USUBJID, TRT01PN, AUCSS, CMAXSS, PARAMCD, AVAL, AVALU), n = 20)
+```
+
+### Check Data With metacore and metatools
+
+We use `{metacore}` objects with `{metatools}` functions to perform a number of checks on the data. We will drop variables not in the specs and make sure all the variables from the specs are included.
+
+```{r}
+#| label: ADEE Metacore
+#| warning: false
+
+adee <- adee_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+### Apply Labels and Formats with xportr
+
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: ADEE xportr
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+adee_xpt <- adee %>%
+  xportr_type(metacore, domain = "ADEE") %>% # Coerce variable type to match specs
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore) %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adee.xpt")) # Write xpt v5 transport file
+```
+
+## ADES {#ades}
+
+### Load Specifications
+
+```{r echo=TRUE, message=FALSE}
+#| label: ADES Load Specs
+#| warning: false
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
+  select_dataset("ADES")
+```
+
+### Create Base `ADES` Dataset
+
+`ADES` contains two levels of records: subject-level flag parameters and event-level AE records. Here we create the five subject-level summary flags using `admiral::derive_param_exist_flag()`, which evaluates a condition against `ADAE` for each subject in `ADSL` and sets `AVALC` to `"Y"` or `"N"` accordingly. `admiral::yn_to_numeric()` is used within `set_values_to` to derive the numeric `AVAL` directly. Note that `pharmaverseadam` records severity in `ASEV`/`ASEVN` rather than `AETOXGR`/`AETOXGRN`.
+
+```{r}
+#| label: ADES Base data
+# ---- Create ADES base dataset
+
+# Derive subject-level summary parameters from ADAE using derive_param_exist_flag()
+# NOTE: pharmaverseadam uses ASEV/ASEVN (severity) not AETOXGR/AETOXGRN
+
+# Get all subjects from ADSL
+adsl_sub <- adsl %>%
+  select(!!!get_admiral_option("subject_keys"))
+
+# Derive binary subject-level AE flag parameters
+subject_params <- derive_param_exist_flag(
+  dataset_ref = adsl_sub,
+  dataset_add = adae,
+  condition = TRTEMFL == "Y",
+  false_value = "N",
+  missing_value = "N",
+  set_values_to = exprs(
+    AVAL = yn_to_numeric(AVALC),
+    PARAMCD = "TEAE",
+    PARAM = "Any Treatment-Emergent Adverse Event",
+    PARAMN = 1
+  )
+) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = TRTEMFL == "Y" & ASEVN == 3,
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "TEAESEV",
+      PARAM = "Any Severe Treatment-Emergent Adverse Event",
+      PARAMN = 2
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AESER == "Y",
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "SAE",
+      PARAM = "Any Serious Adverse Event",
+      PARAMN = 3
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AREL %in% c("POSSIBLE", "PROBABLE", "RELATED"),
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "TRAE",
+      PARAM = "Any Treatment-Related Adverse Event",
+      PARAMN = 4
+    )
+  ) %>%
+  derive_param_exist_flag(
+    dataset_ref = adsl_sub,
+    dataset_add = adae,
+    condition = AEACN == "DRUG WITHDRAWN",
+    false_value = "N",
+    missing_value = "N",
+    set_values_to = exprs(
+      AVAL = yn_to_numeric(AVALC),
+      PARAMCD = "AEDCN",
+      PARAM = "AE Leading to Treatment Discontinuation",
+      PARAMN = 5
+    )
+  ) %>%
+  arrange(USUBJID, PARAMCD)
+```
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print subject_params
+print_df(subject_params %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
+```
+
+### Create Event Level Parameters
+
+While subject-level parameters capture whether an event occurred at all, event-level records provide one row per individual adverse event and preserve granular information such as preferred term (`AEDECOD`), system organ class (`AEBODSYS`), severity (`AESEV`/`AESEVN`), seriousness (`AESER`), and relatedness (`AEREL`/`AERELN`). These records are restricted to treatment-emergent AEs (`TRTEMFL == "Y"`) and combined with the subject-level parameters into a single `ADES` dataset.
+
+```{r}
+#| label: ADES Event level parameters
+
+# ---- Create event level parameters
+
+# Get variable names for clean dropping
+adsl_vars <- names(covar_auc)
+adae_vars <- names(adae)
+common_vars <- intersect(adsl_vars, adae_vars)
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+# Create event-level records from ADAE
+# NOTE: Using actual pharmaverseadam variables (ASEV/ASEVN, AREL)
+event_params <- adae %>%
+  filter(TRTEMFL == "Y") %>% # Treatment-emergent only
+  mutate(
+    PARAMCD = "AETERM",
+    PARAM = "Adverse Event Term",
+    PARAMN = 10,
+    AVAL = 1, # Event occurred
+    AVALC = "Y",
+
+    # Keep AE-specific variables (8-char names)
+    # Using actual pharmaverseadam ADAE variables
+    AEDECOD = AEDECOD, # Preferred term
+    AEBODSYS = AEBODSYS, # System organ class
+    AESEV = ASEV, # Severity (char): MILD, MODERATE, SEVERE
+    AESEVN = ASEVN, # Severity (num): 1, 2, 3
+    AESER = AESER, # Serious flag: Y/N
+    AEREL = AREL, # Relationship (char): NOT RELATED, POSSIBLE, etc.
+
+    # Create numeric relationship for analysis
+    AERELN = case_when(
+      AREL == "NOT RELATED" ~ 0,
+      AREL == "UNLIKELY RELATED" ~ 1,
+      AREL == "POSSIBLE" ~ 2,
+      AREL == "PROBABLE" ~ 3,
+      AREL == "RELATED" ~ 4,
+      TRUE ~ NA_real_
+    ),
+    AESTDT = ASTDT, # AE start date (8 chars)
+    AEENDT = AENDT # AE end date (8 chars)
+  ) %>%
+  select(-any_of(vars_to_drop))
+
+# ---- Combine subject and event levels
+
+# Ensure all AE-specific variables exist in subject_params (as NA)
+# This prevents issues when binding with event_params
+subject_params_complete <- subject_params %>%
+  derive_vars_merged(
+    dataset_add = adsl_sub,
+    by_vars = get_admiral_option("subject_keys"),
+  ) %>%
+  mutate(
+    # Add event-level variables as NA for subject-level records
+    AESTDT = as.Date(NA),
+    AEENDT = as.Date(NA),
+    AEDECOD = NA_character_,
+    AEBODSYS = NA_character_,
+    AESEV = NA_character_,
+    AESEVN = NA_integer_,
+    AESER = NA_character_,
+    AEREL = NA_character_,
+    AERELN = NA_real_
+  )
+
+event_params_complete <- event_params %>%
+  derive_vars_merged(
+    dataset_add = adsl_sub,
+    by_vars = get_admiral_option("subject_keys")
+  )
+
+# Combine both levels
+ades_base <- bind_rows(
+  subject_params_complete,
+  event_params_complete
+) %>%
+  arrange(USUBJID, PARAMCD)
+```
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print ades_base
+print_df(ades_base %>% select(USUBJID, PARAMCD, PARAM, AEDECOD, AVAL, AVALC, AESTDT), n = 20)
+```
+
+### Add Analysis Variables
+
+```{r}
+#| label: ADES analysis variables
+# ---- Add analysis variables
+
+ades_flags <- ades_base %>%
+  # Analysis flags
+  mutate(
+    ANL01FL = if_else(PARAMCD == "TEAE", "Y", ""),
+    ANL02FL = if_else(PARAMCD == "TEAESEV", "Y", ""),
+    ANL03FL = if_else(PARAMCD == "SAE", "Y", ""),
+    ANL04FL = if_else(PARAMCD == "TRAE", "Y", ""),
+    ANL05FL = if_else(PARAMCD == "AETERM", "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "SAFETY",
+    PARCAT2 = case_when(
+      PARAMN <= 5 ~ "SUBJECT-LEVEL",
+      PARAMN >= 10 ~ "EVENT-LEVEL",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  # Analysis timepoint
+  mutate(
+    AVISIT = if_else(PARAMN <= 5, "OVERALL", "AT EVENT"),
+    AVISITN = if_else(PARAMN <= 5, 99, 0)
+  ) %>%
+  # Sort and create sequence number
+  # Use coalesce to handle NA dates (puts them first in sort)
+  arrange(USUBJID, PARAMN, coalesce(AESTDT, as.Date("1900-01-01"))) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
+  mutate(ASEQ = row_number()) %>%
+  ungroup()
+```
+
+### Combine with Covariates and Exposure
+
+We combine our covariates with the rest of the data
+
+```{r}
+#| label: ADES Combine with Covariates
+# Combine covariates with ADES data
+
+ades_prefinal <- ades_flags %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = get_admiral_option("subject_keys")
+  )
+```
+
+### Check Data With metacore and metatools
+
+```{r}
+#| label: ADES metatools
+## Check Data With metacore and metatools
+
+ades <- ades_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+### Apply Labels and Formats with xportr
+
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: ADES xportr
+
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+ades_xpt <- ades %>%
+  xportr_type(metacore, domain = "ADES") %>% # Coerce variable type to match specs
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore, domain = "ADES") %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "ades.xpt")) # Write xpt v5 transport file
+```
+
+## ADTRR {#adtrr}
+
+### Load Specifications
+
+```{r echo=TRUE, message=FALSE}
+#| label: ADTRR Load Specs
+#| warning: false
+metacore <- spec_to_metacore("./metadata/pk_spec.xlsx", quiet = TRUE) %>%
+  select_dataset("ADTRR")
+```
+
+### Create Base `ADTRR` Dataset
+
+We will derive the tumor size parameter `PARAMCD = "TSIZE"` from `ADTR`. We will add nominal time and actual time using `admiral::derive_var_nfrlt()` and `admiral::derive_vars_duration()`. In traditional Exposure-Response datasets these might be `TIME` and `NTIM` variables.
+
+```{r}
+#| label: ADTRR Base Data
+# ---- Create ADTRR base dataset
+
+# Get variable names for clean dropping
+adsl_vars <- names(covar_auc)
+adtr_vars <- names(adtr)
+common_vars <- intersect(adsl_vars, adtr_vars)
+vars_to_drop <- setdiff(common_vars, c("STUDYID", "USUBJID"))
+
+tsize_final <- adtr %>%
+  filter(PARAMCD == "SDIAM") %>%
+  mutate(
+    PARAMCD = "TSIZE",
+    PARAM = "Target Lesions Sum of Diameters",
+    PARAMN = 1
+  ) %>%
+  # Derive Nominal Relative Time from First Dose (NFRLT)
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "DAYS",
+    visit_day = ADY
+  ) %>%
+  # Derive Actual Relative Time from First Dose (AFRLT)
+  derive_vars_duration(
+    new_var = AFRLT,
+    start_date = TRTSDT,
+    end_date = ADT,
+    out_unit = "DAYS",
+    floor_in = FALSE,
+    add_one = FALSE
+  ) %>%
+  select(-any_of(vars_to_drop))
+```
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print tsize_final
+print_df(tsize_final %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, FRLTU, BASE, AVAL, CHG), n = 20)
+```
+
+### Add BOR from `ADRS`
+
+Best Overall Response (BOR) is sourced from `ADRS` and included as a second parameter in `ADTRR`. We filter to safety-evaluable subjects (`SAFFL == "Y"`) and derive a numeric response code `BORN` ordered from most to least favourable: CR (4), PR (3), SD (2), PD (1), NE (0). Overlapping `ADSL` variables are dropped before combining with the tumour size records.
+
+```{r}
+#| label: ADTRR add BOR
+
+# ---- Add BOR from ADRS
+
+adrs_vars <- names(adrs)
+common_vars_adrs <- intersect(adsl_vars, adrs_vars)
+vars_to_drop_adrs <- setdiff(common_vars_adrs, c("STUDYID", "USUBJID"))
+
+bor <- adrs %>%
+  filter(PARAMCD == "BOR" & SAFFL == "Y" & ANL01FL == "Y") %>%
+  mutate(
+    PARAMN = 2,
+    # Create BORN from AVALC if AVAL doesn't exist
+    BORN = if ("AVAL" %in% names(.)) {
+      AVAL
+    } else {
+      case_when(
+        AVALC == "CR" ~ 4,
+        AVALC == "PR" ~ 3,
+        AVALC == "SD" ~ 2,
+        AVALC == "PD" ~ 1,
+        AVALC == "NE" ~ 0,
+        TRUE ~ NA_real_
+      )
+    }
+  ) %>%
+  select(-any_of(vars_to_drop_adrs))
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print bor
+print_df(bor %>% select(USUBJID, PARAMCD, PARAM, AVAL, AVALC), n = 20)
+```
+
+### Derive Nadir
+
+The nadir is the minimum post-baseline tumour size observed for each subject. It is derived from `TSIZE` records and included as a third `ADTRR` parameter (`PARAMCD = "NADIR"`). The percentage change from baseline at the nadir timepoint (`NADPCHG`) and the visit label at which nadir was reached (`NADVST`) are preserved to support waterfall plots and other tumour response visualisations.
+
+```{r}
+#| label: ADTRR add NADIR
+# ---- Derive Nadir
+
+# Calculate nadir from TSIZE records
+# Keep BASE, CHG, PCHG from the nadir timepoint
+nadir <- tsize_final %>%
+  filter(AVISITN > 0 & !is.na(AVAL)) %>%
+  group_by(!!!get_admiral_option("subject_keys")) %>%
+  filter(AVAL == min(AVAL, na.rm = TRUE)) %>%
+  slice(1) %>%
+  ungroup() %>%
+  mutate(
+    PARAMCD = "NADIR",
+    PARAM = "Nadir Tumor Size",
+    PARAMN = 3,
+    NADIR = AVAL,
+    NADPCHG = PCHG, # Keep PCHG at nadir
+    NADVST = AVISIT # Keep visit of nadir
+  )
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print nadir
+print_df(nadir %>% select(USUBJID, PARAMCD, PARAM, NADIR, NADPCHG), n = 20)
+```
+
+### Combine Parameters
+
+The three parameter datasets — tumour size (`TSIZE`), best overall response (`BOR`), and nadir (`NADIR`) — are stacked with `bind_rows()` and sorted by subject and parameter order. Analysis flags, parameter categories, units, and the analysis sequence number are then added. We use `derive_var_obs_number()` to compute `ASEQ` consistently, ordered by `PARAMN` and `AVISITN`.
+
+```{r}
+#| label: ADTRR combine parameters
+
+# ---- Combine parameters
+
+adtrr_base <- bind_rows(
+  tsize_final,
+  bor,
+  nadir
+) %>%
+  arrange(USUBJID, PARAMN, AVISITN)
+
+# ---- Add analysis variables
+
+# Ensure AVALU exists before mutating
+if (!"AVALU" %in% names(adtrr_base)) {
+  adtrr_base <- adtrr_base %>%
+    mutate(AVALU = NA_character_)
+}
+
+adtrr_seq <- adtrr_base %>%
+  # Analysis flags
+  mutate(
+    # Baseline flag
+    ABLFL = case_when(
+      !is.na(ABLFL) ~ ABLFL,
+      !is.na(AVISITN) & AVISITN == 0 ~ "Y",
+      TRUE ~ ""
+    ),
+
+    # Post-baseline flag
+    ANL01FL = if_else(!is.na(AVISITN) & AVISITN > 0, "Y", ""),
+
+    # Responders (CR or PR)
+    ANL02FL = if_else(!is.na(AVALC) & AVALC %in% c("CR", "PR"), "Y", ""),
+
+    # Has change from baseline
+    ANL03FL = if_else(!is.na(PCHG), "Y", "")
+  ) %>%
+  # Parameter categories
+  mutate(
+    PARCAT1 = "TUMOR RESPONSE",
+    PARCAT2 = case_when(
+      PARAMCD == "TSIZE" ~ "MEASUREMENT",
+      PARAMCD == "BOR" ~ "OVERALL RESPONSE",
+      PARAMCD == "NADIR" ~ "BEST RESPONSE",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  # Set AVALU (now guaranteed to exist)
+  mutate(
+    AVALU = case_when(
+      !is.na(AVALU) & AVALU != "" ~ AVALU, # Keep existing non-empty
+      PARAMCD == "TSIZE" ~ "mm",
+      PARAMCD == "NADIR" ~ "mm",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  # Sequence number
+  derive_var_obs_number(
+    by_vars = get_admiral_option("subject_keys"),
+    order = exprs(PARAMN, AVISITN),
+    new_var = ASEQ,
+    check_type = "error"
+  ) %>%
+  arrange(USUBJID, PARAMN, AVISITN)
+```
+
+```{r eval=TRUE, echo=FALSE, purl=FALSE}
+#| label: print adtrr_seq
+print_df(adtrr_seq %>% select(USUBJID, PARAMCD, PARAM, AVISIT, NFRLT, AFRLT, BASE, AVAL, CHG), n = 20)
+```
+
+### Combine with Covariates and Exposure
+
+```{r}
+#| label: ADTRR prefinal
+# ---- Combine with covariates
+
+adtrr_prefinal <- adtrr_seq %>%
+  derive_vars_merged(
+    dataset_add = covar_auc,
+    by_vars = get_admiral_option("subject_keys")
+  )
+```
+
+### Check Data With metacore and metatools
+
+```{r}
+#| label: ADTRR metatools
+## Check Data With metacore and metatools
+
+adtrr <- adtrr_prefinal %>%
+  drop_unspec_vars(metacore) %>% # Drop unspecified variables from specs
+  check_variables(metacore) %>% # Check all variables specified are present and no more
+  check_ct_data(metacore) %>% # Checks all variables with CT only contain values within the CT
+  order_cols(metacore) %>% # Orders the columns according to the spec
+  sort_by_key(metacore) # Sorts the rows by the sort keys
+```
+
+### Apply Labels and Formats with xportr
+
+Using `{xportr}` we check variable type, assign variable length, add variable labels, add variable formats, and save a transport file with `xportr::xportr_write()`.
+
+```{r}
+#| label: ADTRR xportr
+
+dir <- tempdir() # Change to whichever directory you want to save the dataset in
+
+adtrr_xpt <- adtrr %>%
+  xportr_type(metacore, domain = "ADTRR") %>% # Coerce variable type to match specs
+  xportr_length(metacore) %>% # Assigns SAS length from a variable level metadata
+  xportr_label(metacore) %>% # Assigns variable label from metacore specifications
+  xportr_format(metacore) %>% # Assigns variable format from metacore specifications
+  xportr_df_label(metacore, domain = "ADTRR") %>% # Assigns dataset label from metacore specifications
+  xportr_write(file.path(dir, "adtrr.xpt")) # Write xpt v5 transport file
+```
+:::

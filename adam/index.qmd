@@ -43,6 +43,15 @@ OCCDS datasets have one observation per subject per occurrence of an event, capt
 -   **[`ADPC` (Pharmacokinetic Concentrations)](adpc.qmd)** - Build pharmacokinetic concentration analysis dataset with timepoint derivations.
 -   **[`ADPPK` (Population Pharmacokinetic)](adppk.qmd)** - Create population pharmacokinetic analysis dataset for modeling and simulation.
 
+### Exposure-Response Analysis Datasets
+
+Exposure-Response (ER) datasets link pharmacokinetic exposure metrics (e.g., AUC, Cmax) from `ADPP` with safety, efficacy, and tumour response endpoints to support ER modelling.
+
+-   **[`ADER` (Exposure-Response Analysis)](ader.qmd#ader)** - Integrated dataset combining PK metrics with time-to-event outcomes (OS, PFS) and baseline covariates.
+-   **[`ADEE` (Exposure-Efficacy Analysis)](ader.qmd#adee)** - Exposure relationships with efficacy endpoints such as tumour response and progression.
+-   **[`ADES` (Exposure-Safety Analysis)](ader.qmd#ades)** - Links exposure metrics to adverse event occurrence, severity, and treatment discontinuation.
+-   **[`ADTRR` (Exposure-Tumor Response Rate)](ader.qmd#adtrr)** - Exposure relationships with categorical tumour response metrics (CR, PR, SD, PD) and nadir tumour size.
+
 ## Quick Reference
 
 | Dataset Type | Example | Key Packages | Structure |
@@ -54,6 +63,10 @@ OCCDS datasets have one observation per subject per occurrence of an event, capt
 | **Time-to-Event** | [`ADTTE`](adtte.qmd) | admiral, metacore, metatools, xportr | One record per subject per parameter |
 | **PK Concentration** | [`ADPC`](adpc.qmd) | admiral, metacore, metatools, xportr | One record per subject per timepoint per analyte |
 | **Population PK** | [`ADPPK`](adppk.qmd) | admiral, metacore, metatools, xportr | One record per subject per timepoint |
+| **Exposure-Response** | [`ADER`](ader.qmd#ader) | admiral, admiralonco, metacore, metatools, xportr | One record per subject |
+| **Exposure-Efficacy** | [`ADEE`](ader.qmd#adee) | admiral, admiralonco, metacore, metatools, xportr | One record per subject per parameter |
+| **Exposure-Safety** | [`ADES`](ader.qmd#ades) | admiral, admiralonco, metacore, metatools, xportr | One record per subject per AE parameter or event |
+| **Exposure-Tumor Response** | [`ADTRR`](ader.qmd#adtrr) | admiral, admiralonco, metacore, metatools, xportr | One record per subject per parameter per timepoint |
 
 ## Workflow Overview
 
