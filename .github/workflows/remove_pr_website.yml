@@ -1,0 +1,65 @@
+name: Remove PR website
+
+on:
+  workflow_call:
+    secrets:
+      GITHUB_PAT:
+        required: false
+        description: GitHub API access token, which might be needed for downstream ops or rendering.
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  delete-subfolder:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.event.pull_request.head.ref }}
+    steps:
+      - name: Checkout repository (default branch)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Ensure gh-pages exists and check it out
+        run: |
+          set -euo pipefail
+          if git ls-remote --heads origin gh-pages | grep -q 'refs/heads/gh-pages'; then
+            git fetch origin gh-pages:gh-pages
+            git checkout gh-pages
+          else
+            echo "gh-pages branch not found. Nothing to do."
+            exit 0
+          fi
+        shell: bash
+
+      - name: Remove subfolder named after merged branch (if present)
+        run: |
+          set -euo pipefail
+          SUBDIR="${BRANCH}"
+          echo "SUBDIR: ${SUBDIR}"
+          if [ -z "$SUBDIR" ]; then
+            echo "Branch name empty. Nothing to do."
+            exit 0
+          fi
+
+          if [ -d "$SUBDIR" ]; then
+            git rm -r --ignore-unmatch -- "$SUBDIR"
+            if [ -n "$(git status --porcelain)" ]; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git commit -m "ci: remove gh-pages subfolder for merged branch ${BRANCH}"
+              git push origin gh-pages
+            else
+              echo "No changes to commit after removal."
+            fi
+          else
+            echo "Subfolder '$SUBDIR' does not exist on gh-pages. Nothing to do."
+          fi
+        shell: bash

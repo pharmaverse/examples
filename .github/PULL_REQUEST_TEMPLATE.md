@@ -14,3 +14,4 @@ Before you submit your pull request, take a look at the following checklist. Man
 - [ ] **Updated Examples:** If you added or updated an example, ensure it runs on the latest CRAN release versions of all packages used.
 - [ ] **Testing Instructions:** Provide instructions on how to test the code if necessary. 
 
+By default, a temporary website with the content of the PR is created. To avoid this add `[skip website]` to the title of the PR.
