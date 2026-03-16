@@ -52,8 +52,19 @@ jobs:
           to: html
 
       - name: Publish docs
+        # runs when main branch is updated, or when a PR is merged into main
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+
+      - name: Publish PR docs in a subdirectory
+        # runs when a PR is opened or updated, but not when merged into main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          destination_dir: ${{ github.head_ref }}
+
