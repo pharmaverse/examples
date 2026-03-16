@@ -2,6 +2,8 @@
 title: "`pharmaverse` examples"
 ---
 
+This paragraph is NEW!!!
+
 The true beauty of `pharmaverse` (and open source in general) is when efforts from
 various different developers come together to complement each other as a whole
 greater than the sum of the individual parts. By design in R, no single package
