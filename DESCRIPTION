@@ -42,7 +42,6 @@ Imports:
     pharmaverseadam,
     pkglite,
     reactable,
-    reactablefmtr,
     rtables,
     rtables.officer,
     rlistings,

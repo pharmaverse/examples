@@ -41,6 +41,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Jupyter
+        run: python3 -m pip install jupyter
+
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
