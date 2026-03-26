@@ -1,5 +1,5 @@
-// Shinylive 0.10.6
-// Copyright 2025 Posit, PBC
+// Shinylive 0.10.8
+// Copyright 2026 Posit, PBC
 
 // node_modules/js-yaml/dist/js-yaml.mjs
 function isNothing(subject) {
@@ -865,6 +865,18 @@ function charFromCodepoint(c) {
     (c - 65536 & 1023) + 56320
   );
 }
+function setProperty(object, key, value) {
+  if (key === "__proto__") {
+    Object.defineProperty(object, key, {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value
+    });
+  } else {
+    object[key] = value;
+  }
+}
 var simpleEscapeCheck = new Array(256);
 var simpleEscapeMap = new Array(256);
 for (i = 0; i < 256; i++) {
@@ -984,7 +996,7 @@ function mergeMappings(state, destination, source, overridableKeys) {
   for (index = 0, quantity = sourceKeys.length; index < quantity; index += 1) {
     key = sourceKeys[index];
     if (!_hasOwnProperty$1.call(destination, key)) {
-      destination[key] = source[key];
+      setProperty(destination, key, source[key]);
       overridableKeys[key] = true;
     }
   }
@@ -1024,16 +1036,7 @@ function storeMappingPair(state, _result, overridableKeys, keyTag, keyNode, valu
       state.position = startPos || state.position;
       throwError(state, "duplicated mapping key");
     }
-    if (keyNode === "__proto__") {
-      Object.defineProperty(_result, keyNode, {
-        configurable: true,
-        enumerable: true,
-        writable: true,
-        value: valueNode
-      });
-    } else {
-      _result[keyNode] = valueNode;
-    }
+    setProperty(_result, keyNode, valueNode);
     delete overridableKeys[keyNode];
   }
   return _result;
@@ -2751,5 +2754,5 @@ function convertComponentArrayToAppMode(components) {
 /*! Bundled license information:
 
 js-yaml/dist/js-yaml.mjs:
-  (*! js-yaml 4.1.0 https://github.com/nodeca/js-yaml @license MIT *)
+  (*! js-yaml 4.1.1 https://github.com/nodeca/js-yaml @license MIT *)
 */
