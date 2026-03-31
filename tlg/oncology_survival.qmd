@@ -162,8 +162,7 @@ km_fit |>
   add_confidence_interval() +
   add_risktable(
     risktable_stats = c("n.risk", "cum.event", "cum.censor"),
-    # ── stats_label renames the row labels in the risk table.
-    # ── Named-list format (stat = "Label") is required by add_risktable().
+    risktable_group = "risktable_stats",
     stats_label = list(
       n.risk     = "At Risk",
       cum.event  = "Events (cum.)",
@@ -391,13 +390,13 @@ this error-prone manual recoding step, and it works identically in both the
 `survfit2()` call for plotting and the `ard_survival_survfit()` call for ARDs:
 
 ```{r cnsr-note}
-#| eval: false
+#| output: true
 
 # ✗  Error-prone: requires manual recoding of CNSR
-survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR)
+head(survival::Surv(adtte_pfs$AVAL, 1 - adtte_pfs$CNSR), 8)
 
-# ✓  Correct CDISC-aware approach
-ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR)
+# ✓  Correct CDISC-aware approach — identical result, no manual recoding needed
+head(ggsurvfit::Surv_CNSR(adtte_pfs$AVAL, adtte_pfs$CNSR), 8)
 ```
 
 **`survfit2()` vs `survfit()`**
