@@ -4,7 +4,6 @@ aCRF
 ACTARM
 ACTARMCD
 ACTARMN
-ACTARMN
 adae
 ADAE
 adam
@@ -97,7 +96,6 @@ AESDISAB
 AESDTH
 AESEQ
 AESER
-AESER
 AESEV
 AESEVN
 AESHOSP
@@ -170,6 +168,8 @@ ATPTN
 ATPTREF
 attr
 auc
+AUCALL
+AUCINF
 AUCLST
 AUCSS
 autofit
@@ -381,6 +381,7 @@ eSubmission
 ETHNICN
 eval
 Evaluable
+evaluable
 EVID
 EVNTDESC
 EXCLF
@@ -415,6 +416,7 @@ fastmap
 fatten
 favours
 Favours
+favourable
 fct
 FDA's
 fdebd
@@ -538,6 +540,7 @@ minumum
 mis
 mmHg
 mmm
+modelling
 Mosteller
 MRRLT
 mtcars
@@ -574,6 +577,7 @@ nrrlt
 Ns
 ns
 nSampling
+NTIM
 nTime
 num
 nVersion
@@ -638,6 +642,7 @@ PFSIND
 pharma
 pharmacokinetic
 Pharmacokinetic
+pharmacometric
 pharmaverse
 Pharmaverse
 pharmaverseadam
@@ -727,6 +732,7 @@ req
 requireNamespace
 Responders
 responders
+Responders
 reusability
 revealjs
 rex
@@ -748,6 +754,8 @@ RRLTU
 Rscript
 RSD
 rsd
+RSD
+RSDIND
 RSD
 RSDIND
 RSDTC
@@ -833,6 +841,7 @@ suppressWarnings
 Surv
 survdiff
 survfit
+sym
 SYS
 Sys
 sysbp
@@ -845,13 +854,15 @@ tcl
 teae
 TEAE
 TEAESEV
+teae
+TEAE
+TEAESEV
 tempdir
 tempfile
 TEMPLOC
 TESTCD
 tf
 tformat
-tfrmt
 tfrmt
 tgdt
 tgt
@@ -864,10 +875,12 @@ tidyverse
 Timepoint
 timepoint
 timingvars
+Tlast
 TLG
 tlg
 TLGs
 tm
+Tmax
 tmc
 tmp
 TMPTC
@@ -911,6 +924,7 @@ tte
 TTNT
 TTP
 tu
+tumour
 tz
 UDTC
 ui
@@ -940,6 +954,7 @@ VISITDY
 VISITNUM
 vismab
 vline
+visualisations
 VSBLFL
 VSCAT
 VSDTC
