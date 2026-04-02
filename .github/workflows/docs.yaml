@@ -26,6 +26,7 @@ on:
 jobs:
   build-deploy:
     name: Build & Deploy Website
+    if: "github.event_name != 'pull_request' || !contains(github.event.pull_request.title, '[skip website]')"
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -40,6 +41,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Jupyter
+        run: python3 -m pip install jupyter
+
       - name: Setup R
         uses: r-lib/actions/setup-r@v2
 
@@ -51,32 +55,30 @@ jobs:
         with:
           to: html
 
-      # temporary!
-      # remove this step if closed (& relleased): https://github.com/quarto-ext/shinylive/issues/59
-      - name: Remove large WebR assets 🧹
-        run: |
-          packages_path <- sprintf("./_site/site_libs/quarto-contrib/shinylive-%s/shinylive/webr/packages", shinylive::assets_version())
-
-          # remove the dirs with size > 100 MB
-          for (x in list.dirs(packages_path)) {
-            x_files <- file.info(list.files(x, full.names = TRUE))
-            if (any(x_files$size > 100 * 1024^2)) {
-              print(x)
-              print(x_files)
-              unlink(x, recursive = TRUE)
-            }
-          }
-
-          # refresh the `metadata.rds` file
-          metadata_path <- file.path(packages_path, "metadata.rds")
-          metadata <- readRDS(metadata_path)
-          new_metadata <- metadata[intersect(names(metadata), list.dirs(packages_path, full.names = FALSE))]
-          saveRDS(new_metadata, metadata_path)
-        shell: Rscript {0}
-
       - name: Publish docs
+        # runs when main branch is updated, or when a PR is merged into main
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+
+      - name: Publish PR docs in a subdirectory
+        # runs when a PR is opened or updated, but not when merged into main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          destination_dir: ${{ github.head_ref }}
+
+      - name: Create comment
+        # runs when a PR is opened or updated, but not when merged into main
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: "Documentation Website"
+          message: |
+            The website is available at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ github.head_ref }}.
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}

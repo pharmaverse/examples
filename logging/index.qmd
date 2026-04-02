@@ -1,3 +1,57 @@
 ---
 title: "Logs"
 ---
+
+## Overview
+
+This section demonstrates best practices for implementing logging in clinical trial data analysis workflows using pharmaverse packages. Proper logging is essential for tracking data transformations, debugging issues, maintaining audit trails, and ensuring regulatory compliance.
+
+The examples show how to integrate logging capabilities into your analysis pipelines to create comprehensive records of data processing steps and program execution.
+
+## Examples
+
+The following logging examples are available:
+
+### Workflow Logging
+
+- **[Logging Implementation](logging.qmd)** - Learn how to implement comprehensive logging in your clinical trial analysis workflows. This example covers setting up logging infrastructure, capturing key events and data transformations, and creating audit-ready log files that document the entire analysis process.
+
+## Importance of Logging
+
+Effective logging provides critical benefits for clinical trial analyses:
+
+- **Audit Trail** - Create a complete record of all data transformations and analysis steps
+- **Debugging** - Quickly identify and diagnose issues in complex data pipelines
+- **Validation** - Support validation efforts by documenting program behavior
+- **Regulatory Compliance** - Meet regulatory requirements for traceability and documentation
+- **Quality Assurance** - Enable thorough review of analysis processes
+- **Reproducibility** - Ensure analyses can be recreated and verified
+
+## Key Considerations
+
+When implementing logging in clinical trial workflows, consider:
+
+- **What to log** - Critical data transformations, decisions, warnings, and errors
+- **Log format** - Structured, searchable, and human-readable output
+- **Sensitive data** - Protect patient privacy and data security by being cautious of what gets exposed in log files
+- **Retention** - Appropriate storage and archival of log files
+- **Performance** - Balance comprehensive logging with execution efficiency
+
+## Key Packages Used
+
+-   **`{logr}`** - Functions to help create log files
+-   **`{logrx}`** - Tools to facilitate logging in a clinical environment 
+-   **`{whirl}`** - Provide functionalities for executing scripts in batch and simultaneously getting a log from the individual executions
+
+
+
+## Getting Started
+
+The logging examples demonstrate:
+
+- Setting up logging infrastructure
+- Integrating logging into data processing workflows
+- Capturing meaningful information at appropriate levels
+- Creating log outputs suitable for regulatory review
+
+Implementing robust logging practices is an investment in code quality, maintainability, and regulatory readiness.

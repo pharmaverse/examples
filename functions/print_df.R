@@ -1,5 +1,4 @@
 library(reactable)
-library(reactablefmtr)
 
 print_df <- function(dataset, n = 10) {
   out <- dataset
@@ -20,8 +19,5 @@ print_df <- function(dataset, n = 10) {
       highlightColor = "#dfe6f2",
       cellPadding = "8px"
     )
-  ) %>%
-    add_title("Sample of Data",
-      font_size = 16
-    )
+  )
 }

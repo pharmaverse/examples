@@ -16,6 +16,7 @@ Authors@R:
     person("Aksel", "Thomsen", , "oath@novonordisk.com", role = "aut"),
     person("Shiyu", "Chen", , "shiyu.chen@atorusresearch.com", role = "aut"),
     person("Rammprasad", "Ganapathy", , "rammprasad.ganapathy@gene.com", role = "aut")
+    person("Alanah", "Jonas", , "alanah.x.jonas@gsk.com", role = "aut"),
 Description: This is not a package, but we just use this file to declare
     the dependencies of the site.
 URL: https://github.com/pharmaverse/examples
@@ -26,6 +27,7 @@ Imports:
     cards,
     dplyr,
     filters,
+    forcats,
     gtsummary,
     lubridate,
     labelled,
@@ -38,7 +40,6 @@ Imports:
     pharmaverseadam,
     pkglite,
     reactable,
-    reactablefmtr,
     rtables,
     rtables.officer,
     rlistings,
@@ -50,6 +51,7 @@ Imports:
     teal.modules.clinical,
     teal.modules.general,
     tern,
+    tfrmt,
     tidyr,
     xportr,
     logr,
@@ -58,6 +60,8 @@ Imports:
 Suggests:
     knitr,
     rmarkdown
+Remotes:
+    shinylive=posit-dev/r-shinylive
 Encoding: UTF-8
 Language: en-US
 

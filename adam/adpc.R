@@ -46,7 +46,8 @@ pc_dates <- pc %>%
   derive_vars_dtm(
     new_vars_prefix = "A",
     dtc = PCDTC,
-    time_imputation = "00:00:00"
+    time_imputation = "00:00:00",
+    ignore_seconds_flag = FALSE
   ) %>%
   # Derive dates and times from date/times
   derive_vars_dtm_to_dt(exprs(ADTM)) %>%
@@ -55,8 +56,14 @@ pc_dates <- pc %>%
   # Derive event ID and nominal relative time from first dose (NFRLT)
   mutate(
     EVID = 0,
-    DRUG = PCTEST,
-    NFRLT = if_else(PCTPTNUM < 0, 0, PCTPTNUM), .after = USUBJID
+    DRUG = PCTEST
+  ) %>%
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "HOURS",
+    tpt_var = PCTPT,
+    visit_day = VISITDY
   )
 
 ## ----r------------------------------------------------------------------------
@@ -84,11 +91,13 @@ ex_dates <- ex %>%
   ) %>%
   # Derive event ID and nominal relative time from first dose (NFRLT)
   mutate(
-    EVID = 1,
-    NFRLT = case_when(
-      VISITDY == 1 ~ 0,
-      TRUE ~ 24 * VISITDY
-    )
+    EVID = 1
+  ) %>%
+  derive_var_nfrlt(
+    new_var = NFRLT,
+    new_var_unit = FRLTU,
+    out_unit = "HOURS",
+    visit_day = VISITDY
   ) %>%
   # Set missing end dates to start date
   mutate(AENDTM = case_when(
@@ -232,16 +241,17 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
     new_var = AFRLT,
     start_date = FANLDTM,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
   # Derive Actual Relative Time from Reference Dose (ARRLT)
   derive_vars_duration(
     new_var = ARRLT,
+    new_var_unit = RRLTU,
     start_date = ADTM_prev,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -250,7 +260,7 @@ adpc_arrlt <- bind_rows(adpc_nom_next, ex_exp) %>%
     new_var = AXRLT,
     start_date = ADTM_next,
     end_date = ADTM,
-    out_unit = "hours",
+    out_unit = "HOURS",
     floor_in = FALSE,
     add_one = FALSE
   ) %>%
@@ -329,8 +339,6 @@ adpc_aval <- adpc_nrrlt %>%
   ) %>%
   # Derive relative time units
   mutate(
-    FRLTU = "h",
-    RRLTU = "h",
     # Derive PARAMCD
     PARAMCD = coalesce(PCTESTCD, "DOSE"),
     ALLOQ = PCLLOQ,
@@ -414,7 +422,7 @@ adpc_aseq <- adpc_chg %>%
   create_var_from_codelist(metacore, input_var = PARAMCD, out_var = PARAMN)
 
 ## ----r------------------------------------------------------------------------
-#---- Derive additional baselines from VS ----
+# ---- Derive additional baselines from VS ----
 
 adpc_baselines <- adpc_aseq %>%
   derive_vars_merged(

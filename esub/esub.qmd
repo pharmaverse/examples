@@ -39,6 +39,12 @@ Since these pilots laid the foundation, several major pharma companies have
 submitted primarily using R to health authorities across the world, so this
 article includes a mix of learnings from the pilots and real submissions.
 
+In early 2025, the R Submissions WG [launched Pilot 5](https://r-consortium.org/posts/submissions-wg-pilot5-pilot6-and-more/)
+to explore replacing `xpt` with `datasetjson` as a transport file to the FDA via 
+the eCTD portal. The group successfully submitted the data package in early Q3 2025 
+and has received positive feedback. Stay tuned for updates and the FDA's
+final response - [Pilot 5 Website](https://rconsortium.github.io/submissions-pilot5-website/).
+
 ## Submission Contents
 
 The areas of eSubmission that pharmaverse packages are most useful for would be
@@ -153,9 +159,7 @@ As an alternative to xpt, we also have `{datasetjson}` which enables the
 emerging new submission data exchange standard Dataset-JSON detailed
 [here](https://www.cdisc.org/standards/data-exchange/dataset-json). As this
 package is still experimental, we don't include code examples here but over time
-and as momentum grows we can add extra examples to this article.
-See R Submissions WG [pilot 5](https://rconsortium.github.io/submissions-pilot5-website/)
-for a pilot submission using Dataset-JSON.
+and as momentum grows we can add extra examples to this article. 
 
 ### Readable Code
 
