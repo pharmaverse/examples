@@ -23,6 +23,7 @@ The following SDTM domain examples are available:
 ### Findings
 
 - **[VS (Vital Signs)](vs.qmd)** - Build a Vital Signs domain to record measurements such as blood pressure, heart rate, temperature, and other vital sign observations.
+- **[PP (Pharmacokinetic Parameters)](pp.qmd)** - Create a Pharmacokinetic Parameters domain from ADNCA data using `{aNCA}`, producing NCA results in CDISC PP format.
 
 ## Getting Started
 
