@@ -735,7 +735,7 @@
     "href": "sdtm/pp.html#load",
     "title": "PP",
     "section": "Load packages and data",
-    "text": "Load packages and data\n\nlibrary(aNCA)\nlibrary(dplyr)\n\n{aNCA} ships with adnca_example, a 76-row ADNCA dataset with two analytes (DrugA and Metab-DrugA), two specimen types (SERUM and URINE), and two dosing periods. Subjects received different dose levels via extravascular and intravascular routes.\n\nadnca_data &lt;- adnca_example\nhead(adnca_data)",
+    "text": "Load packages and data\n\nlibrary(aNCA)\nlibrary(dplyr)\n\n{aNCA} ships with adnca_example, a 76-row ADNCA dataset with two analytes (DrugA and Metab-DrugA), two specimen types (SERUM and URINE) and two dosing periods. Subjects received different dose levels via extravascular and intravascular routes.\n\nadnca_data &lt;- adnca_example\nhead(adnca_data)",
     "crumbs": [
       "SDTM",
       "PP"
@@ -779,7 +779,7 @@
     "href": "sdtm/pp.html#create",
     "title": "PP",
     "section": "Create and configure the PKNCA data object",
-    "text": "Create and configure the PKNCA data object\nPKNCA_create_data_object() applies the column mapping, filters, and duplicate handling. PKNCA_update_data_object() then configures the AUC method, intervals, parameters, and units:\n\npknca_obj &lt;- adnca_data %&gt;%\n  PKNCA_create_data_object(\n    mapping = mapping,\n    applied_filters = applied_filters,\n    time_duplicate_rows = NULL\n  ) %&gt;%\n  PKNCA_update_data_object(\n    method = \"lin up/log down\",\n    selected_analytes = \"DrugA\",\n    selected_profile = \"DOSE 1\",\n    selected_pcspec = \"SERUM\",\n    start_impute = \"yes\",\n    exclusion_list = list(),\n    hl_adj_rules = slope_rules,\n    keep_interval_cols = setdiff(extra_vars_to_keep, c(\"DOSEA\", \"ATPTREF\", \"ROUTE\")),\n    min_hl_points = 3,\n    parameter_selections = parameters_selected_per_study,\n    int_parameters = int_parameters,\n    custom_units_table = units_table\n  )",
+    "text": "Create and configure the PKNCA data object\nPKNCA_create_data_object() applies the column mapping, filters and duplicate handling. PKNCA_update_data_object() then configures the AUC method, intervals, parameters and units:\n\npknca_obj &lt;- adnca_data %&gt;%\n  PKNCA_create_data_object(\n    mapping = mapping,\n    applied_filters = applied_filters,\n    time_duplicate_rows = NULL\n  ) %&gt;%\n  PKNCA_update_data_object(\n    method = \"lin up/log down\",\n    selected_analytes = \"DrugA\",\n    selected_profile = \"DOSE 1\",\n    selected_pcspec = \"SERUM\",\n    start_impute = \"yes\",\n    exclusion_list = list(),\n    hl_adj_rules = slope_rules,\n    keep_interval_cols = setdiff(extra_vars_to_keep, c(\"DOSEA\", \"ATPTREF\", \"ROUTE\")),\n    min_hl_points = 3,\n    parameter_selections = parameters_selected_per_study,\n    int_parameters = int_parameters,\n    custom_units_table = units_table\n  )",
     "crumbs": [
       "SDTM",
       "PP"
@@ -812,7 +812,7 @@
     "href": "sdtm/pp.html#export",
     "title": "PP",
     "section": "Export CDISC datasets (PP, ADPP, ADNCA)",
-    "text": "Export CDISC datasets (PP, ADPP, ADNCA)\nexport_cdisc() produces the PP, ADPP, and ADNCA datasets. Flag rules are formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:\n\n# Format flag rule messages for ADPP criterion columns\nflag_operators &lt;- c(\n  R2ADJ = \" &lt; \", R2 = \" &lt; \", AUCPEO = \" &gt; \", AUCPEP = \" &gt; \", LAMZSPN = \" &lt; \"\n)\nchecked_flags &lt;- purrr::keep(flag_rules, function(x) x$is.checked)\nflag_rule_msgs &lt;- if (length(checked_flags) &gt; 0) {\n  vapply(names(checked_flags), function(nm) {\n    paste0(nm, flag_operators[nm], checked_flags[[nm]]$threshold)\n  }, character(1), USE.NAMES = FALSE)\n} else {\n  NULL\n}\n\ncdisc_datasets &lt;- pknca_res %&gt;%\n  export_cdisc(\n    grouping_vars = extra_vars_to_keep,\n    flag_rules = flag_rule_msgs\n  )\n\nThe result is a named list with three data frames:\n\ncdisc_datasets$pp — PP domain: one row per parameter per subject.\ncdisc_datasets$adpp — ADPP: PP with ADaM-style flags and criterion columns (CRITy, CRITyFL, PPSUMFL, PPSUMRSN).\ncdisc_datasets$adnca — ADNCA: the full analysis dataset with results joined back to the concentration-time data.\n\n\n# View the PP domain\nhead(cdisc_datasets$pp)",
+    "text": "Export CDISC datasets (PP, ADPP, ADNCA)\nexport_cdisc() produces the PP, ADPP and ADNCA datasets. Flag rules are formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:\n\n# Format flag rule messages for ADPP criterion columns\nflag_operators &lt;- c(\n  R2ADJ = \" &lt; \", R2 = \" &lt; \", AUCPEO = \" &gt; \", AUCPEP = \" &gt; \", LAMZSPN = \" &lt; \"\n)\nchecked_flags &lt;- purrr::keep(flag_rules, function(x) x$is.checked)\nflag_rule_msgs &lt;- if (length(checked_flags) &gt; 0) {\n  vapply(names(checked_flags), function(nm) {\n    paste0(nm, flag_operators[nm], checked_flags[[nm]]$threshold)\n  }, character(1), USE.NAMES = FALSE)\n} else {\n  NULL\n}\n\ncdisc_datasets &lt;- pknca_res %&gt;%\n  export_cdisc(\n    grouping_vars = extra_vars_to_keep,\n    flag_rules = flag_rule_msgs\n  )\n\nThe result is a named list with three data frames:\n\ncdisc_datasets$pp — PP domain: one row per parameter per subject.\ncdisc_datasets$adpp — ADPP: PP with ADaM-style flags and criterion columns (CRITy, CRITyFL, PPSUMFL, PPSUMRSN).\ncdisc_datasets$adnca — ADNCA: the full analysis dataset with results joined back to the concentration-time data.\n\n\n# View the PP domain\nhead(cdisc_datasets$pp)",
     "crumbs": [
       "SDTM",
       "PP"
@@ -834,7 +834,7 @@
     "href": "sdtm/pp.html#generate-from-the-anca-shiny-app",
     "title": "PP",
     "section": "Generate from the aNCA Shiny app",
-    "text": "Generate from the aNCA Shiny app\n\naNCA::run_app()\n\nFrom the app, configure mapping, filters, and NCA settings, then export via the Save button to get the settings YAML, reproducible R script, and all outputs.\nFor more details on both workflows, see the R Script Walkthrough on the aNCA website.",
+    "text": "Generate from the aNCA Shiny app\n\naNCA::run_app()\n\nFrom the app, configure mapping, filters and NCA settings, then export via the Save button to get the settings YAML, reproducible R script and all outputs.",
     "crumbs": [
       "SDTM",
       "PP"
