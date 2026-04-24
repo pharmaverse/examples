@@ -20,7 +20,7 @@ holds non-compartmental analysis (NCA) results — one row per parameter per
 subject per time-reference.
 
 `{aNCA}` wraps `{PKNCA}` for the NCA calculations and adds column mapping,
-CDISC code translation, flag rules, and export helpers so the full pipeline
+CDISC code translation, flag rules and export helpers so the full pipeline
 runs in a single script.
 
 By the end of this example you will have:
@@ -48,7 +48,7 @@ library(dplyr)
 ```
 
 `{aNCA}` ships with `adnca_example`, a 76-row ADNCA dataset with two analytes
-(DrugA and Metab-DrugA), two specimen types (SERUM and URINE), and two dosing
+(DrugA and Metab-DrugA), two specimen types (SERUM and URINE) and two dosing
 periods. Subjects received different dose levels via extravascular and
 intravascular routes.
 
@@ -189,9 +189,9 @@ extra_vars_to_keep <- c(
 
 ## Create and configure the PKNCA data object {#create}
 
-`PKNCA_create_data_object()` applies the column mapping, filters, and duplicate
+`PKNCA_create_data_object()` applies the column mapping, filters and duplicate
 handling. `PKNCA_update_data_object()` then configures the AUC method,
-intervals, parameters, and units:
+intervals, parameters and units:
 
 ```{r create, eval=FALSE}
 pknca_obj <- adnca_data %>%
@@ -248,7 +248,7 @@ pknca_res <- pknca_res %>%
 
 ## Export CDISC datasets (PP, ADPP, ADNCA) {#export}
 
-`export_cdisc()` produces the PP, ADPP, and ADNCA datasets. Flag rules are
+`export_cdisc()` produces the PP, ADPP and ADNCA datasets. Flag rules are
 formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:
 
 ```{r export, eval=FALSE}
@@ -306,9 +306,5 @@ get_settings_code(
 aNCA::run_app()
 ```
 
-From the app, configure mapping, filters, and NCA settings, then export via the
-**Save** button to get the settings YAML, reproducible R script, and all outputs.
-
-For more details on both workflows, see the
-[R Script Walkthrough](https://pharmaverse.github.io/aNCA/articles/example_r_script.html)
-on the aNCA website.
+From the app, configure mapping, filters and NCA settings, then export via the
+**Save** button to get the settings YAML, reproducible R script and all outputs.
