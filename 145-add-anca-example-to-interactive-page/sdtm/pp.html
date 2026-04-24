@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PP – pharmaverse examples</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../adam/index.html" rel="next">
+<link href="../sdtm/ae.html" rel="prev">
+<link href="../assets/img/Pharmaverse_examples.png" rel="icon" type="image/png">
+<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e759cb4a6f415918d15c6ff98a4164ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"express",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en-US"
+  });
+});
+</script> 
+  
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'zh-CN,fr,es,ja,hi'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<link rel="stylesheet" href="../assets/css/style.scss">
+<meta property="og:title" content="PP – pharmaverse examples">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://pharmaverse.github.io/examples/sdtm/assets/img/Pharmaverse_examples.png">
+<meta property="og:site_name" content="pharmaverse examples">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pharmaverse examples</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://pharmaverse.github.io/examples/"> <i class="bi bi-house" role="img" aria-label="pharmaverse">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://app.slack.com/client/T028PB489D3/"> <i class="bi bi-slack" role="img" aria-label="Slack">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/pharmaverse/examples"> <i class="bi bi-github" role="img" aria-label="Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/index.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/pp.html">PP</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/img/Pharmaverse_examples.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../sdtm/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SDTM</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/dm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DM</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/vs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/ae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sdtm/pp.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">PP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../adam/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADaM</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adsl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADSL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/advs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADVS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adae.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADAE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adrs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADRS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adtte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADTTE</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adpc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPC</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/adppk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADPPK</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../adam/ader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ADER+</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../tlg/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TLG</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/demographic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demographic Table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/adverse_events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Adverse Events</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tlg/pharmacokinetic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmacokinetic</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../digit_files/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documents</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../digit_files/autoslider.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../digit_files/docx.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documents</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../interactive/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Interactive</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../interactive/teal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>teal</code> applications</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../logging/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../logging/logging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Difference Between <code>logr</code>, <code>logrx</code>, and <code>whirl</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../esub/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">eSubmission</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../esub/esub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">eSubmission</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../session.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session Info</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://pharmaverse.org/" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pharmaverse Home</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<div id="google_translate_element"></div>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../sdtm/index.html">SDTM</a></li><li class="breadcrumb-item"><a href="../sdtm/pp.html">PP</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">PP</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i></button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This article shows how to create a Pharmacokinetic Parameters (<code>PP</code>) domain from an ADNCA dataset using the <code>{aNCA}</code> package. <code>PP</code> is the SDTM domain that holds non-compartmental analysis (NCA) results — one row per parameter per subject per time-reference.</p>
+<p><code>{aNCA}</code> wraps <code>{PKNCA}</code> for the NCA calculations and adds column mapping, CDISC code translation, flag rules, and export helpers so the full pipeline runs in a single script.</p>
+<p>By the end of this example you will have:</p>
+<ul>
+<li>NCA results computed from concentration-time data</li>
+<li>A CDISC-compliant <strong>PP</strong> dataset</li>
+<li>Companion <strong>ADPP</strong> and <strong>ADNCA</strong> datasets</li>
+</ul>
+</section>
+<section id="programming-workflow" class="level1">
+<h1>Programming workflow</h1>
+<ul>
+<li><a href="#load">Load packages and data</a></li>
+<li><a href="#mapping">Define column mapping</a></li>
+<li><a href="#filters">Set up filters</a></li>
+<li><a href="#settings">Define NCA settings</a></li>
+<li><a href="#create">Create and configure the PKNCA data object</a></li>
+<li><a href="#run">Run NCA calculations</a></li>
+<li><a href="#flags">Apply flag rules</a></li>
+<li><a href="#export">Export CDISC datasets (PP, ADPP, ADNCA)</a></li>
+</ul>
+<section id="load" class="level2">
+<h2 class="anchored" data-anchor-id="load">Load packages and data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(aNCA)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(dplyr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>{aNCA}</code> ships with <code>adnca_example</code>, a 76-row ADNCA dataset with two analytes (DrugA and Metab-DrugA), two specimen types (SERUM and URINE), and two dosing periods. Subjects received different dose levels via extravascular and intravascular routes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>adnca_data <span class="ot">&lt;-</span> adnca_example</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(adnca_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="mapping" class="level2">
+<h2 class="anchored" data-anchor-id="mapping">Define column mapping</h2>
+<p>The mapping tells <code>{aNCA}</code> which columns in your dataset correspond to the expected CDISC variables. Keys are standard ADNCA column names; values are the actual column names in your data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>mapping <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="at">STUDYID  =</span> <span class="st">"STUDYID"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="at">USUBJID  =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="at">DOSEA    =</span> <span class="st">"DOSEA"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="at">DOSEU    =</span> <span class="st">"DOSEU"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="at">DOSETRT  =</span> <span class="st">"DOSETRT"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="at">PARAM    =</span> <span class="st">"PARAM"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="at">Metabolites =</span> <span class="st">"Metab-DrugA"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="at">ARRLT    =</span> <span class="st">"ARRLT"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="at">NRRLT    =</span> <span class="st">"NRRLT"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="at">AFRLT    =</span> <span class="st">"AFRLT"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="at">NCAwXRS  =</span> <span class="fu">c</span>(<span class="st">"NCA1XRS"</span>, <span class="st">"NCA2XRS"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="at">NFRLT    =</span> <span class="st">"NFRLT"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="at">PCSPEC   =</span> <span class="st">"PCSPEC"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="at">ROUTE    =</span> <span class="st">"ROUTE"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="at">TRTRINT  =</span> <span class="st">"TRTRINT"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="at">ADOSEDUR =</span> <span class="st">"ADOSEDUR"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18"></a>  <span class="at">Grouping_Variables =</span> <span class="fu">c</span>(<span class="st">"TRT01A"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span>),</span>
+<span id="cb3-19"><a href="#cb3-19"></a>  <span class="at">RRLTU    =</span> <span class="st">"RRLTU"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="at">VOLUME   =</span> <span class="st">"VOLUME"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="at">VOLUMEU  =</span> <span class="st">"VOLUMEU"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="at">AVAL     =</span> <span class="st">"AVAL"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="at">AVALU    =</span> <span class="st">"AVALU"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="at">ATPTREF  =</span> <span class="st">"ATPTREF"</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A few notes:</p>
+<ul>
+<li><strong><code>Metabolites</code></strong>: PARAM value(s) that represent metabolites. Sets the <code>METABFL</code> flag internally.</li>
+<li><strong><code>NCAwXRS</code></strong>: Column(s) with NCA exclusion reason codes. Flagged subjects are excluded from calculations.</li>
+<li><strong><code>Grouping_Variables</code></strong>: Columns carried through to results and used for grouping in descriptive statistics.</li>
+</ul>
+</section>
+<section id="filters" class="level2">
+<h2 class="anchored" data-anchor-id="filters">Set up filters</h2>
+<p>Filters restrict the data before analysis. Each filter specifies a column and the values to keep. Here we keep only the parent drug for serum specimens:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>applied_filters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">list</span>(<span class="at">column =</span> <span class="st">"PARAM"</span>,  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"DrugA"</span>)),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">list</span>(<span class="at">column =</span> <span class="st">"PCSPEC"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"SERUM"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="settings" class="level2">
+<h2 class="anchored" data-anchor-id="settings">Define NCA settings</h2>
+<section id="partial-interval-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="partial-interval-calculations">Partial interval calculations</h3>
+<p>Interval parameters compute AUC or average concentration over custom time windows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>int_parameters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="at">parameter =</span> <span class="fu">c</span>(<span class="st">"AUCINT"</span>, <span class="st">"CAVGINT"</span>),</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="at">start_auc =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">end_auc   =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="parameter-selections" class="level3">
+<h3 class="anchored" data-anchor-id="parameter-selections">Parameter selections</h3>
+<p>Select which NCA parameters to compute, grouped by study type:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>parameters_selected_per_study <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="st">`</span><span class="at">Single Extravascular</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="st">"auclast"</span>, <span class="st">"cmax"</span>, <span class="st">"tmax"</span>, <span class="st">"half.life"</span>, <span class="st">"aucinf.obs"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="st">"vz.obs"</span>, <span class="st">"cl.obs"</span>, <span class="st">"aumclast"</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  ),</span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="st">`</span><span class="at">Single IV Bolus</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="st">"auclast"</span>, <span class="st">"cmax"</span>, <span class="st">"half.life"</span>, <span class="st">"aucinf.obs"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="st">"vz.obs"</span>, <span class="st">"cl.obs"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  )</span>
+<span id="cb6-10"><a href="#cb6-10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="custom-units" class="level3">
+<h3 class="anchored" data-anchor-id="custom-units">Custom units</h3>
+<p>Override default units for specific parameters:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>units_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="at">PPTESTCD =</span> <span class="fu">c</span>(<span class="st">"CMAX"</span>, <span class="st">"TMAX"</span>, <span class="st">"AUCLAST"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="at">PPSTRESU =</span> <span class="fu">c</span>(<span class="st">"ng/mL"</span>, <span class="st">"h"</span>, <span class="st">"ng*h/mL"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="flag-rules" class="level3">
+<h3 class="anchored" data-anchor-id="flag-rules">Flag rules</h3>
+<p>Quality thresholds for terminal elimination regression. Parameters that violate a checked rule are flagged and excluded from summary statistics:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>flag_rules <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="at">R2ADJ   =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="fl">0.7</span>),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="at">R2      =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">FALSE</span>, <span class="at">threshold =</span> <span class="fl">0.7</span>),</span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="at">AUCPEO  =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">20</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="at">AUCPEP  =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">20</span>),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="at">LAMZSPN =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">2</span>)</span>
+<span id="cb8-7"><a href="#cb8-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="slope-rules-and-extra-variables" class="level3">
+<h3 class="anchored" data-anchor-id="slope-rules-and-extra-variables">Slope rules and extra variables</h3>
+<p>Slope rules allow manual override of the lambda-z regression range. Pass an empty data frame if no manual adjustments are needed:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>slope_rules <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="at">USUBJID =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">ATPTREF =</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="at">DOSNOA  =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">TYPE    =</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="at">RANGE   =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">REASON  =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>extra_vars_to_keep <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb9-8"><a href="#cb9-8"></a>  mapping<span class="sc">$</span>Grouping_Variables, <span class="st">"DOSEA"</span>, <span class="st">"ATPTREF"</span>, <span class="st">"ROUTE"</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="create" class="level2">
+<h2 class="anchored" data-anchor-id="create">Create and configure the PKNCA data object</h2>
+<p><code>PKNCA_create_data_object()</code> applies the column mapping, filters, and duplicate handling. <code>PKNCA_update_data_object()</code> then configures the AUC method, intervals, parameters, and units:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>pknca_obj <span class="ot">&lt;-</span> adnca_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">PKNCA_create_data_object</span>(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="at">mapping =</span> mapping,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">applied_filters =</span> applied_filters,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">time_duplicate_rows =</span> <span class="cn">NULL</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">PKNCA_update_data_object</span>(</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="at">method =</span> <span class="st">"lin up/log down"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="at">selected_analytes =</span> <span class="st">"DrugA"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">selected_profile =</span> <span class="st">"DOSE 1"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">selected_pcspec =</span> <span class="st">"SERUM"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">start_impute =</span> <span class="st">"yes"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13"></a>    <span class="at">exclusion_list =</span> <span class="fu">list</span>(),</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="at">hl_adj_rules =</span> slope_rules,</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="at">keep_interval_cols =</span> <span class="fu">setdiff</span>(extra_vars_to_keep, <span class="fu">c</span>(<span class="st">"DOSEA"</span>, <span class="st">"ATPTREF"</span>, <span class="st">"ROUTE"</span>)),</span>
+<span id="cb10-16"><a href="#cb10-16"></a>    <span class="at">min_hl_points =</span> <span class="dv">3</span>,</span>
+<span id="cb10-17"><a href="#cb10-17"></a>    <span class="at">parameter_selections =</span> parameters_selected_per_study,</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    <span class="at">int_parameters =</span> int_parameters,</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="at">custom_units_table =</span> units_table</span>
+<span id="cb10-20"><a href="#cb10-20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="run" class="level2">
+<h2 class="anchored" data-anchor-id="run">Run NCA calculations</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>pknca_res <span class="ot">&lt;-</span> pknca_obj <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">PKNCA_calculate_nca</span>(</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">blq_rule =</span> <span class="fu">list</span>(<span class="at">first =</span> <span class="st">"keep"</span>, <span class="at">middle =</span> <span class="st">"keep"</span>, <span class="at">last =</span> <span class="st">"keep"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">add_f_to_pknca_results</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">mutate</span>(<span class="at">PPTESTCD =</span> <span class="fu">translate_terms</span>(PPTESTCD, <span class="st">"PKNCA"</span>, <span class="st">"PPTESTCD"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><strong><code>blq_rule</code></strong>: How to handle BLQ values at different positions in the concentration-time profile. Options: <code>"keep"</code>, <code>"0"</code>, <code>"loq/2"</code>.</li>
+<li><strong><code>add_f_to_pknca_results(NULL)</code></strong>: Pass an AUC type to compute bioavailability, or <code>NULL</code> to skip.</li>
+</ul>
+</section>
+<section id="flags" class="level2">
+<h2 class="anchored" data-anchor-id="flags">Apply flag rules</h2>
+<p>Flag rules mark parameters that fail quality thresholds. Flagged parameters get an exclusion reason and are dropped from descriptive statistics:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>pknca_res <span class="ot">&lt;-</span> pknca_res <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">PKNCA_hl_rules_exclusion</span>(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="at">rules =</span> flag_rules <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>      purrr<span class="sc">::</span><span class="fu">keep</span>(\(x) x<span class="sc">$</span>is.checked) <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>      purrr<span class="sc">::</span><span class="fu">map</span>(\(x) x<span class="sc">$</span>threshold)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="export" class="level2">
+<h2 class="anchored" data-anchor-id="export">Export CDISC datasets (PP, ADPP, ADNCA)</h2>
+<p><code>export_cdisc()</code> produces the PP, ADPP, and ADNCA datasets. Flag rules are formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Format flag rule messages for ADPP criterion columns</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>flag_operators <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">R2ADJ =</span> <span class="st">" &lt; "</span>, <span class="at">R2 =</span> <span class="st">" &lt; "</span>, <span class="at">AUCPEO =</span> <span class="st">" &gt; "</span>, <span class="at">AUCPEP =</span> <span class="st">" &gt; "</span>, <span class="at">LAMZSPN =</span> <span class="st">" &lt; "</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>checked_flags <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">keep</span>(flag_rules, <span class="cf">function</span>(x) x<span class="sc">$</span>is.checked)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>flag_rule_msgs <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">length</span>(checked_flags) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">vapply</span>(<span class="fu">names</span>(checked_flags), <span class="cf">function</span>(nm) {</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="fu">paste0</span>(nm, flag_operators[nm], checked_flags[[nm]]<span class="sc">$</span>threshold)</span>
+<span id="cb13-9"><a href="#cb13-9"></a>  }, <span class="fu">character</span>(<span class="dv">1</span>), <span class="at">USE.NAMES =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-10"><a href="#cb13-10"></a>} <span class="cf">else</span> {</span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="cn">NULL</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>}</span>
+<span id="cb13-13"><a href="#cb13-13"></a></span>
+<span id="cb13-14"><a href="#cb13-14"></a>cdisc_datasets <span class="ot">&lt;-</span> pknca_res <span class="sc">%&gt;%</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">export_cdisc</span>(</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    <span class="at">grouping_vars =</span> extra_vars_to_keep,</span>
+<span id="cb13-17"><a href="#cb13-17"></a>    <span class="at">flag_rules =</span> flag_rule_msgs</span>
+<span id="cb13-18"><a href="#cb13-18"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The result is a named list with three data frames:</p>
+<ul>
+<li><strong><code>cdisc_datasets$pp</code></strong> — PP domain: one row per parameter per subject.</li>
+<li><strong><code>cdisc_datasets$adpp</code></strong> — ADPP: PP with ADaM-style flags and criterion columns (CRITy, CRITyFL, PPSUMFL, PPSUMRSN).</li>
+<li><strong><code>cdisc_datasets$adnca</code></strong> — ADNCA: the full analysis dataset with results joined back to the concentration-time data.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># View the PP domain</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">head</span>(cdisc_datasets<span class="sc">$</span>pp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="alternative-workflows" class="level1">
+<h1>Alternative workflows</h1>
+<section id="generate-the-script-from-a-yaml-settings-file" class="level2">
+<h2 class="anchored" data-anchor-id="generate-the-script-from-a-yaml-settings-file">Generate the script from a YAML settings file</h2>
+<p>The aNCA Shiny app exports a settings YAML that captures the full analysis configuration. You can regenerate the R script from it:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">get_settings_code</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">settings_file_path =</span> <span class="st">"my_settings.yaml"</span>,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">data_path =</span> <span class="st">"my_adnca_data.csv"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="at">output_path =</span> <span class="st">"nca_script.R"</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="generate-from-the-anca-shiny-app" class="level2">
+<h2 class="anchored" data-anchor-id="generate-from-the-anca-shiny-app">Generate from the aNCA Shiny app</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>aNCA<span class="sc">::</span><span class="fu">run_app</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From the app, configure mapping, filters, and NCA settings, then export via the <strong>Save</strong> button to get the settings YAML, reproducible R script, and all outputs.</p>
+<p>For more details on both workflows, see the <a href="https://pharmaverse.github.io/aNCA/articles/example_r_script.html">R Script Walkthrough</a> on the aNCA website.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pharmaverse\.github\.io\/examples\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../sdtm/ae.html" class="pagination-link" aria-label="AE">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">AE</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../adam/index.html" class="pagination-link" aria-label="ADaM">
+        <span class="nav-page-text">ADaM</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="co">---</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="an">title:</span><span class="co"> "PP"</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="an">order:</span><span class="co"> 4</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co">---</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb17-8"><a href="#cb17-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="cn">NULL</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a>}</span>
+<span id="cb17-11"><a href="#cb17-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="in">```</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="fu"># Introduction</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a></span>
+<span id="cb17-17"><a href="#cb17-17"></a>This article shows how to create a Pharmacokinetic Parameters (<span class="in">`PP`</span>) domain</span>
+<span id="cb17-18"><a href="#cb17-18"></a>from an ADNCA dataset using the <span class="in">`{aNCA}`</span> package. <span class="in">`PP`</span> is the SDTM domain that</span>
+<span id="cb17-19"><a href="#cb17-19"></a>holds non-compartmental analysis (NCA) results — one row per parameter per</span>
+<span id="cb17-20"><a href="#cb17-20"></a>subject per time-reference.</span>
+<span id="cb17-21"><a href="#cb17-21"></a></span>
+<span id="cb17-22"><a href="#cb17-22"></a><span class="in">`{aNCA}`</span> wraps <span class="in">`{PKNCA}`</span> for the NCA calculations and adds column mapping,</span>
+<span id="cb17-23"><a href="#cb17-23"></a>CDISC code translation, flag rules, and export helpers so the full pipeline</span>
+<span id="cb17-24"><a href="#cb17-24"></a>runs in a single script.</span>
+<span id="cb17-25"><a href="#cb17-25"></a></span>
+<span id="cb17-26"><a href="#cb17-26"></a>By the end of this example you will have:</span>
+<span id="cb17-27"><a href="#cb17-27"></a></span>
+<span id="cb17-28"><a href="#cb17-28"></a><span class="ss">- </span>NCA results computed from concentration-time data</span>
+<span id="cb17-29"><a href="#cb17-29"></a><span class="ss">- </span>A CDISC-compliant **PP** dataset</span>
+<span id="cb17-30"><a href="#cb17-30"></a><span class="ss">- </span>Companion **ADPP** and **ADNCA** datasets</span>
+<span id="cb17-31"><a href="#cb17-31"></a></span>
+<span id="cb17-32"><a href="#cb17-32"></a><span class="fu"># Programming workflow</span></span>
+<span id="cb17-33"><a href="#cb17-33"></a></span>
+<span id="cb17-34"><a href="#cb17-34"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Load packages and data</span><span class="co">](#load)</span></span>
+<span id="cb17-35"><a href="#cb17-35"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Define column mapping</span><span class="co">](#mapping)</span></span>
+<span id="cb17-36"><a href="#cb17-36"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Set up filters</span><span class="co">](#filters)</span></span>
+<span id="cb17-37"><a href="#cb17-37"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Define NCA settings</span><span class="co">](#settings)</span></span>
+<span id="cb17-38"><a href="#cb17-38"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create and configure the PKNCA data object</span><span class="co">](#create)</span></span>
+<span id="cb17-39"><a href="#cb17-39"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Run NCA calculations</span><span class="co">](#run)</span></span>
+<span id="cb17-40"><a href="#cb17-40"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Apply flag rules</span><span class="co">](#flags)</span></span>
+<span id="cb17-41"><a href="#cb17-41"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Export CDISC datasets (PP, ADPP, ADNCA)</span><span class="co">](#export)</span></span>
+<span id="cb17-42"><a href="#cb17-42"></a></span>
+<span id="cb17-43"><a href="#cb17-43"></a><span class="fu">## Load packages and data {#load}</span></span>
+<span id="cb17-44"><a href="#cb17-44"></a></span>
+<span id="cb17-45"><a href="#cb17-45"></a><span class="in">```{r load, eval=FALSE}</span></span>
+<span id="cb17-46"><a href="#cb17-46"></a><span class="fu">library</span>(aNCA)</span>
+<span id="cb17-47"><a href="#cb17-47"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb17-48"><a href="#cb17-48"></a><span class="in">```</span></span>
+<span id="cb17-49"><a href="#cb17-49"></a></span>
+<span id="cb17-50"><a href="#cb17-50"></a><span class="in">`{aNCA}`</span> ships with <span class="in">`adnca_example`</span>, a 76-row ADNCA dataset with two analytes</span>
+<span id="cb17-51"><a href="#cb17-51"></a>(DrugA and Metab-DrugA), two specimen types (SERUM and URINE), and two dosing</span>
+<span id="cb17-52"><a href="#cb17-52"></a>periods. Subjects received different dose levels via extravascular and</span>
+<span id="cb17-53"><a href="#cb17-53"></a>intravascular routes.</span>
+<span id="cb17-54"><a href="#cb17-54"></a></span>
+<span id="cb17-55"><a href="#cb17-55"></a><span class="in">```{r data, eval=FALSE}</span></span>
+<span id="cb17-56"><a href="#cb17-56"></a>adnca_data <span class="ot">&lt;-</span> adnca_example</span>
+<span id="cb17-57"><a href="#cb17-57"></a><span class="fu">head</span>(adnca_data)</span>
+<span id="cb17-58"><a href="#cb17-58"></a><span class="in">```</span></span>
+<span id="cb17-59"><a href="#cb17-59"></a></span>
+<span id="cb17-60"><a href="#cb17-60"></a><span class="fu">## Define column mapping {#mapping}</span></span>
+<span id="cb17-61"><a href="#cb17-61"></a></span>
+<span id="cb17-62"><a href="#cb17-62"></a>The mapping tells <span class="in">`{aNCA}`</span> which columns in your dataset correspond to the</span>
+<span id="cb17-63"><a href="#cb17-63"></a>expected CDISC variables. Keys are standard ADNCA column names; values are the</span>
+<span id="cb17-64"><a href="#cb17-64"></a>actual column names in your data.</span>
+<span id="cb17-65"><a href="#cb17-65"></a></span>
+<span id="cb17-66"><a href="#cb17-66"></a><span class="in">```{r mapping, eval=FALSE}</span></span>
+<span id="cb17-67"><a href="#cb17-67"></a>mapping <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-68"><a href="#cb17-68"></a>  <span class="at">STUDYID  =</span> <span class="st">"STUDYID"</span>,</span>
+<span id="cb17-69"><a href="#cb17-69"></a>  <span class="at">USUBJID  =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="cb17-70"><a href="#cb17-70"></a>  <span class="at">DOSEA    =</span> <span class="st">"DOSEA"</span>,</span>
+<span id="cb17-71"><a href="#cb17-71"></a>  <span class="at">DOSEU    =</span> <span class="st">"DOSEU"</span>,</span>
+<span id="cb17-72"><a href="#cb17-72"></a>  <span class="at">DOSETRT  =</span> <span class="st">"DOSETRT"</span>,</span>
+<span id="cb17-73"><a href="#cb17-73"></a>  <span class="at">PARAM    =</span> <span class="st">"PARAM"</span>,</span>
+<span id="cb17-74"><a href="#cb17-74"></a>  <span class="at">Metabolites =</span> <span class="st">"Metab-DrugA"</span>,</span>
+<span id="cb17-75"><a href="#cb17-75"></a>  <span class="at">ARRLT    =</span> <span class="st">"ARRLT"</span>,</span>
+<span id="cb17-76"><a href="#cb17-76"></a>  <span class="at">NRRLT    =</span> <span class="st">"NRRLT"</span>,</span>
+<span id="cb17-77"><a href="#cb17-77"></a>  <span class="at">AFRLT    =</span> <span class="st">"AFRLT"</span>,</span>
+<span id="cb17-78"><a href="#cb17-78"></a>  <span class="at">NCAwXRS  =</span> <span class="fu">c</span>(<span class="st">"NCA1XRS"</span>, <span class="st">"NCA2XRS"</span>),</span>
+<span id="cb17-79"><a href="#cb17-79"></a>  <span class="at">NFRLT    =</span> <span class="st">"NFRLT"</span>,</span>
+<span id="cb17-80"><a href="#cb17-80"></a>  <span class="at">PCSPEC   =</span> <span class="st">"PCSPEC"</span>,</span>
+<span id="cb17-81"><a href="#cb17-81"></a>  <span class="at">ROUTE    =</span> <span class="st">"ROUTE"</span>,</span>
+<span id="cb17-82"><a href="#cb17-82"></a>  <span class="at">TRTRINT  =</span> <span class="st">"TRTRINT"</span>,</span>
+<span id="cb17-83"><a href="#cb17-83"></a>  <span class="at">ADOSEDUR =</span> <span class="st">"ADOSEDUR"</span>,</span>
+<span id="cb17-84"><a href="#cb17-84"></a>  <span class="at">Grouping_Variables =</span> <span class="fu">c</span>(<span class="st">"TRT01A"</span>, <span class="st">"RACE"</span>, <span class="st">"SEX"</span>),</span>
+<span id="cb17-85"><a href="#cb17-85"></a>  <span class="at">RRLTU    =</span> <span class="st">"RRLTU"</span>,</span>
+<span id="cb17-86"><a href="#cb17-86"></a>  <span class="at">VOLUME   =</span> <span class="st">"VOLUME"</span>,</span>
+<span id="cb17-87"><a href="#cb17-87"></a>  <span class="at">VOLUMEU  =</span> <span class="st">"VOLUMEU"</span>,</span>
+<span id="cb17-88"><a href="#cb17-88"></a>  <span class="at">AVAL     =</span> <span class="st">"AVAL"</span>,</span>
+<span id="cb17-89"><a href="#cb17-89"></a>  <span class="at">AVALU    =</span> <span class="st">"AVALU"</span>,</span>
+<span id="cb17-90"><a href="#cb17-90"></a>  <span class="at">ATPTREF  =</span> <span class="st">"ATPTREF"</span></span>
+<span id="cb17-91"><a href="#cb17-91"></a>)</span>
+<span id="cb17-92"><a href="#cb17-92"></a><span class="in">```</span></span>
+<span id="cb17-93"><a href="#cb17-93"></a></span>
+<span id="cb17-94"><a href="#cb17-94"></a>A few notes:</span>
+<span id="cb17-95"><a href="#cb17-95"></a></span>
+<span id="cb17-96"><a href="#cb17-96"></a><span class="ss">- </span>**`Metabolites`**: PARAM value(s) that represent metabolites. Sets the</span>
+<span id="cb17-97"><a href="#cb17-97"></a>  <span class="in">`METABFL`</span> flag internally.</span>
+<span id="cb17-98"><a href="#cb17-98"></a><span class="ss">- </span>**`NCAwXRS`**: Column(s) with NCA exclusion reason codes. Flagged subjects</span>
+<span id="cb17-99"><a href="#cb17-99"></a>  are excluded from calculations.</span>
+<span id="cb17-100"><a href="#cb17-100"></a><span class="ss">- </span>**`Grouping_Variables`**: Columns carried through to results and used for</span>
+<span id="cb17-101"><a href="#cb17-101"></a>  grouping in descriptive statistics.</span>
+<span id="cb17-102"><a href="#cb17-102"></a></span>
+<span id="cb17-103"><a href="#cb17-103"></a><span class="fu">## Set up filters {#filters}</span></span>
+<span id="cb17-104"><a href="#cb17-104"></a></span>
+<span id="cb17-105"><a href="#cb17-105"></a>Filters restrict the data before analysis. Each filter specifies a column and</span>
+<span id="cb17-106"><a href="#cb17-106"></a>the values to keep. Here we keep only the parent drug for serum specimens:</span>
+<span id="cb17-107"><a href="#cb17-107"></a></span>
+<span id="cb17-108"><a href="#cb17-108"></a><span class="in">```{r filters, eval=FALSE}</span></span>
+<span id="cb17-109"><a href="#cb17-109"></a>applied_filters <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-110"><a href="#cb17-110"></a>  <span class="fu">list</span>(<span class="at">column =</span> <span class="st">"PARAM"</span>,  <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"DrugA"</span>)),</span>
+<span id="cb17-111"><a href="#cb17-111"></a>  <span class="fu">list</span>(<span class="at">column =</span> <span class="st">"PCSPEC"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"SERUM"</span>))</span>
+<span id="cb17-112"><a href="#cb17-112"></a>)</span>
+<span id="cb17-113"><a href="#cb17-113"></a><span class="in">```</span></span>
+<span id="cb17-114"><a href="#cb17-114"></a></span>
+<span id="cb17-115"><a href="#cb17-115"></a><span class="fu">## Define NCA settings {#settings}</span></span>
+<span id="cb17-116"><a href="#cb17-116"></a></span>
+<span id="cb17-117"><a href="#cb17-117"></a><span class="fu">### Partial interval calculations</span></span>
+<span id="cb17-118"><a href="#cb17-118"></a></span>
+<span id="cb17-119"><a href="#cb17-119"></a>Interval parameters compute AUC or average concentration over custom time</span>
+<span id="cb17-120"><a href="#cb17-120"></a>windows:</span>
+<span id="cb17-121"><a href="#cb17-121"></a></span>
+<span id="cb17-122"><a href="#cb17-122"></a><span class="in">```{r int_parameters, eval=FALSE}</span></span>
+<span id="cb17-123"><a href="#cb17-123"></a>int_parameters <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-124"><a href="#cb17-124"></a>  <span class="at">parameter =</span> <span class="fu">c</span>(<span class="st">"AUCINT"</span>, <span class="st">"CAVGINT"</span>),</span>
+<span id="cb17-125"><a href="#cb17-125"></a>  <span class="at">start_auc =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-126"><a href="#cb17-126"></a>  <span class="at">end_auc   =</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">12</span>)</span>
+<span id="cb17-127"><a href="#cb17-127"></a>)</span>
+<span id="cb17-128"><a href="#cb17-128"></a><span class="in">```</span></span>
+<span id="cb17-129"><a href="#cb17-129"></a></span>
+<span id="cb17-130"><a href="#cb17-130"></a><span class="fu">### Parameter selections</span></span>
+<span id="cb17-131"><a href="#cb17-131"></a></span>
+<span id="cb17-132"><a href="#cb17-132"></a>Select which NCA parameters to compute, grouped by study type:</span>
+<span id="cb17-133"><a href="#cb17-133"></a></span>
+<span id="cb17-134"><a href="#cb17-134"></a><span class="in">```{r parameters, eval=FALSE}</span></span>
+<span id="cb17-135"><a href="#cb17-135"></a>parameters_selected_per_study <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-136"><a href="#cb17-136"></a>  <span class="st">`</span><span class="at">Single Extravascular</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb17-137"><a href="#cb17-137"></a>    <span class="st">"auclast"</span>, <span class="st">"cmax"</span>, <span class="st">"tmax"</span>, <span class="st">"half.life"</span>, <span class="st">"aucinf.obs"</span>,</span>
+<span id="cb17-138"><a href="#cb17-138"></a>    <span class="st">"vz.obs"</span>, <span class="st">"cl.obs"</span>, <span class="st">"aumclast"</span></span>
+<span id="cb17-139"><a href="#cb17-139"></a>  ),</span>
+<span id="cb17-140"><a href="#cb17-140"></a>  <span class="st">`</span><span class="at">Single IV Bolus</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb17-141"><a href="#cb17-141"></a>    <span class="st">"auclast"</span>, <span class="st">"cmax"</span>, <span class="st">"half.life"</span>, <span class="st">"aucinf.obs"</span>,</span>
+<span id="cb17-142"><a href="#cb17-142"></a>    <span class="st">"vz.obs"</span>, <span class="st">"cl.obs"</span></span>
+<span id="cb17-143"><a href="#cb17-143"></a>  )</span>
+<span id="cb17-144"><a href="#cb17-144"></a>)</span>
+<span id="cb17-145"><a href="#cb17-145"></a><span class="in">```</span></span>
+<span id="cb17-146"><a href="#cb17-146"></a></span>
+<span id="cb17-147"><a href="#cb17-147"></a><span class="fu">### Custom units</span></span>
+<span id="cb17-148"><a href="#cb17-148"></a></span>
+<span id="cb17-149"><a href="#cb17-149"></a>Override default units for specific parameters:</span>
+<span id="cb17-150"><a href="#cb17-150"></a></span>
+<span id="cb17-151"><a href="#cb17-151"></a><span class="in">```{r units, eval=FALSE}</span></span>
+<span id="cb17-152"><a href="#cb17-152"></a>units_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-153"><a href="#cb17-153"></a>  <span class="at">PPTESTCD =</span> <span class="fu">c</span>(<span class="st">"CMAX"</span>, <span class="st">"TMAX"</span>, <span class="st">"AUCLAST"</span>),</span>
+<span id="cb17-154"><a href="#cb17-154"></a>  <span class="at">PPSTRESU =</span> <span class="fu">c</span>(<span class="st">"ng/mL"</span>, <span class="st">"h"</span>, <span class="st">"ng*h/mL"</span>)</span>
+<span id="cb17-155"><a href="#cb17-155"></a>)</span>
+<span id="cb17-156"><a href="#cb17-156"></a><span class="in">```</span></span>
+<span id="cb17-157"><a href="#cb17-157"></a></span>
+<span id="cb17-158"><a href="#cb17-158"></a><span class="fu">### Flag rules</span></span>
+<span id="cb17-159"><a href="#cb17-159"></a></span>
+<span id="cb17-160"><a href="#cb17-160"></a>Quality thresholds for terminal elimination regression. Parameters that violate</span>
+<span id="cb17-161"><a href="#cb17-161"></a>a checked rule are flagged and excluded from summary statistics:</span>
+<span id="cb17-162"><a href="#cb17-162"></a></span>
+<span id="cb17-163"><a href="#cb17-163"></a><span class="in">```{r flags, eval=FALSE}</span></span>
+<span id="cb17-164"><a href="#cb17-164"></a>flag_rules <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-165"><a href="#cb17-165"></a>  <span class="at">R2ADJ   =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="fl">0.7</span>),</span>
+<span id="cb17-166"><a href="#cb17-166"></a>  <span class="at">R2      =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">FALSE</span>, <span class="at">threshold =</span> <span class="fl">0.7</span>),</span>
+<span id="cb17-167"><a href="#cb17-167"></a>  <span class="at">AUCPEO  =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">20</span>),</span>
+<span id="cb17-168"><a href="#cb17-168"></a>  <span class="at">AUCPEP  =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">20</span>),</span>
+<span id="cb17-169"><a href="#cb17-169"></a>  <span class="at">LAMZSPN =</span> <span class="fu">list</span>(<span class="at">is.checked =</span> <span class="cn">TRUE</span>,  <span class="at">threshold =</span> <span class="dv">2</span>)</span>
+<span id="cb17-170"><a href="#cb17-170"></a>)</span>
+<span id="cb17-171"><a href="#cb17-171"></a><span class="in">```</span></span>
+<span id="cb17-172"><a href="#cb17-172"></a></span>
+<span id="cb17-173"><a href="#cb17-173"></a><span class="fu">### Slope rules and extra variables</span></span>
+<span id="cb17-174"><a href="#cb17-174"></a></span>
+<span id="cb17-175"><a href="#cb17-175"></a>Slope rules allow manual override of the lambda-z regression range. Pass an</span>
+<span id="cb17-176"><a href="#cb17-176"></a>empty data frame if no manual adjustments are needed:</span>
+<span id="cb17-177"><a href="#cb17-177"></a></span>
+<span id="cb17-178"><a href="#cb17-178"></a><span class="in">```{r slope_extra, eval=FALSE}</span></span>
+<span id="cb17-179"><a href="#cb17-179"></a>slope_rules <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb17-180"><a href="#cb17-180"></a>  <span class="at">USUBJID =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">ATPTREF =</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb17-181"><a href="#cb17-181"></a>  <span class="at">DOSNOA  =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">TYPE    =</span> <span class="fu">character</span>(<span class="dv">0</span>),</span>
+<span id="cb17-182"><a href="#cb17-182"></a>  <span class="at">RANGE   =</span> <span class="fu">character</span>(<span class="dv">0</span>), <span class="at">REASON  =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb17-183"><a href="#cb17-183"></a>)</span>
+<span id="cb17-184"><a href="#cb17-184"></a></span>
+<span id="cb17-185"><a href="#cb17-185"></a>extra_vars_to_keep <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-186"><a href="#cb17-186"></a>  mapping<span class="sc">$</span>Grouping_Variables, <span class="st">"DOSEA"</span>, <span class="st">"ATPTREF"</span>, <span class="st">"ROUTE"</span></span>
+<span id="cb17-187"><a href="#cb17-187"></a>)</span>
+<span id="cb17-188"><a href="#cb17-188"></a><span class="in">```</span></span>
+<span id="cb17-189"><a href="#cb17-189"></a></span>
+<span id="cb17-190"><a href="#cb17-190"></a><span class="fu">## Create and configure the PKNCA data object {#create}</span></span>
+<span id="cb17-191"><a href="#cb17-191"></a></span>
+<span id="cb17-192"><a href="#cb17-192"></a><span class="in">`PKNCA_create_data_object()`</span> applies the column mapping, filters, and duplicate</span>
+<span id="cb17-193"><a href="#cb17-193"></a>handling. <span class="in">`PKNCA_update_data_object()`</span> then configures the AUC method,</span>
+<span id="cb17-194"><a href="#cb17-194"></a>intervals, parameters, and units:</span>
+<span id="cb17-195"><a href="#cb17-195"></a></span>
+<span id="cb17-196"><a href="#cb17-196"></a><span class="in">```{r create, eval=FALSE}</span></span>
+<span id="cb17-197"><a href="#cb17-197"></a>pknca_obj <span class="ot">&lt;-</span> adnca_data <span class="sc">%&gt;%</span></span>
+<span id="cb17-198"><a href="#cb17-198"></a>  <span class="fu">PKNCA_create_data_object</span>(</span>
+<span id="cb17-199"><a href="#cb17-199"></a>    <span class="at">mapping =</span> mapping,</span>
+<span id="cb17-200"><a href="#cb17-200"></a>    <span class="at">applied_filters =</span> applied_filters,</span>
+<span id="cb17-201"><a href="#cb17-201"></a>    <span class="at">time_duplicate_rows =</span> <span class="cn">NULL</span></span>
+<span id="cb17-202"><a href="#cb17-202"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-203"><a href="#cb17-203"></a>  <span class="fu">PKNCA_update_data_object</span>(</span>
+<span id="cb17-204"><a href="#cb17-204"></a>    <span class="at">method =</span> <span class="st">"lin up/log down"</span>,</span>
+<span id="cb17-205"><a href="#cb17-205"></a>    <span class="at">selected_analytes =</span> <span class="st">"DrugA"</span>,</span>
+<span id="cb17-206"><a href="#cb17-206"></a>    <span class="at">selected_profile =</span> <span class="st">"DOSE 1"</span>,</span>
+<span id="cb17-207"><a href="#cb17-207"></a>    <span class="at">selected_pcspec =</span> <span class="st">"SERUM"</span>,</span>
+<span id="cb17-208"><a href="#cb17-208"></a>    <span class="at">start_impute =</span> <span class="st">"yes"</span>,</span>
+<span id="cb17-209"><a href="#cb17-209"></a>    <span class="at">exclusion_list =</span> <span class="fu">list</span>(),</span>
+<span id="cb17-210"><a href="#cb17-210"></a>    <span class="at">hl_adj_rules =</span> slope_rules,</span>
+<span id="cb17-211"><a href="#cb17-211"></a>    <span class="at">keep_interval_cols =</span> <span class="fu">setdiff</span>(extra_vars_to_keep, <span class="fu">c</span>(<span class="st">"DOSEA"</span>, <span class="st">"ATPTREF"</span>, <span class="st">"ROUTE"</span>)),</span>
+<span id="cb17-212"><a href="#cb17-212"></a>    <span class="at">min_hl_points =</span> <span class="dv">3</span>,</span>
+<span id="cb17-213"><a href="#cb17-213"></a>    <span class="at">parameter_selections =</span> parameters_selected_per_study,</span>
+<span id="cb17-214"><a href="#cb17-214"></a>    <span class="at">int_parameters =</span> int_parameters,</span>
+<span id="cb17-215"><a href="#cb17-215"></a>    <span class="at">custom_units_table =</span> units_table</span>
+<span id="cb17-216"><a href="#cb17-216"></a>  )</span>
+<span id="cb17-217"><a href="#cb17-217"></a><span class="in">```</span></span>
+<span id="cb17-218"><a href="#cb17-218"></a></span>
+<span id="cb17-219"><a href="#cb17-219"></a><span class="fu">## Run NCA calculations {#run}</span></span>
+<span id="cb17-220"><a href="#cb17-220"></a></span>
+<span id="cb17-221"><a href="#cb17-221"></a><span class="in">```{r run, eval=FALSE}</span></span>
+<span id="cb17-222"><a href="#cb17-222"></a>pknca_res <span class="ot">&lt;-</span> pknca_obj <span class="sc">%&gt;%</span></span>
+<span id="cb17-223"><a href="#cb17-223"></a>  <span class="fu">PKNCA_calculate_nca</span>(</span>
+<span id="cb17-224"><a href="#cb17-224"></a>    <span class="at">blq_rule =</span> <span class="fu">list</span>(<span class="at">first =</span> <span class="st">"keep"</span>, <span class="at">middle =</span> <span class="st">"keep"</span>, <span class="at">last =</span> <span class="st">"keep"</span>)</span>
+<span id="cb17-225"><a href="#cb17-225"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-226"><a href="#cb17-226"></a>  <span class="fu">add_f_to_pknca_results</span>(<span class="cn">NULL</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-227"><a href="#cb17-227"></a>  <span class="fu">mutate</span>(<span class="at">PPTESTCD =</span> <span class="fu">translate_terms</span>(PPTESTCD, <span class="st">"PKNCA"</span>, <span class="st">"PPTESTCD"</span>))</span>
+<span id="cb17-228"><a href="#cb17-228"></a><span class="in">```</span></span>
+<span id="cb17-229"><a href="#cb17-229"></a></span>
+<span id="cb17-230"><a href="#cb17-230"></a><span class="ss">- </span>**`blq_rule`**: How to handle BLQ values at different positions in the</span>
+<span id="cb17-231"><a href="#cb17-231"></a>  concentration-time profile. Options: <span class="in">`"keep"`</span>, <span class="in">`"0"`</span>, <span class="in">`"loq/2"`</span>.</span>
+<span id="cb17-232"><a href="#cb17-232"></a><span class="ss">- </span>**`add_f_to_pknca_results(NULL)`**: Pass an AUC type to compute</span>
+<span id="cb17-233"><a href="#cb17-233"></a>  bioavailability, or <span class="in">`NULL`</span> to skip.</span>
+<span id="cb17-234"><a href="#cb17-234"></a></span>
+<span id="cb17-235"><a href="#cb17-235"></a><span class="fu">## Apply flag rules {#flags}</span></span>
+<span id="cb17-236"><a href="#cb17-236"></a></span>
+<span id="cb17-237"><a href="#cb17-237"></a>Flag rules mark parameters that fail quality thresholds. Flagged parameters</span>
+<span id="cb17-238"><a href="#cb17-238"></a>get an exclusion reason and are dropped from descriptive statistics:</span>
+<span id="cb17-239"><a href="#cb17-239"></a></span>
+<span id="cb17-240"><a href="#cb17-240"></a><span class="in">```{r apply_flags, eval=FALSE}</span></span>
+<span id="cb17-241"><a href="#cb17-241"></a>pknca_res <span class="ot">&lt;-</span> pknca_res <span class="sc">%&gt;%</span></span>
+<span id="cb17-242"><a href="#cb17-242"></a>  <span class="fu">PKNCA_hl_rules_exclusion</span>(</span>
+<span id="cb17-243"><a href="#cb17-243"></a>    <span class="at">rules =</span> flag_rules <span class="sc">%&gt;%</span></span>
+<span id="cb17-244"><a href="#cb17-244"></a>      purrr<span class="sc">::</span><span class="fu">keep</span>(\(x) x<span class="sc">$</span>is.checked) <span class="sc">%&gt;%</span></span>
+<span id="cb17-245"><a href="#cb17-245"></a>      purrr<span class="sc">::</span><span class="fu">map</span>(\(x) x<span class="sc">$</span>threshold)</span>
+<span id="cb17-246"><a href="#cb17-246"></a>  )</span>
+<span id="cb17-247"><a href="#cb17-247"></a><span class="in">```</span></span>
+<span id="cb17-248"><a href="#cb17-248"></a></span>
+<span id="cb17-249"><a href="#cb17-249"></a><span class="fu">## Export CDISC datasets (PP, ADPP, ADNCA) {#export}</span></span>
+<span id="cb17-250"><a href="#cb17-250"></a></span>
+<span id="cb17-251"><a href="#cb17-251"></a><span class="in">`export_cdisc()`</span> produces the PP, ADPP, and ADNCA datasets. Flag rules are</span>
+<span id="cb17-252"><a href="#cb17-252"></a>formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:</span>
+<span id="cb17-253"><a href="#cb17-253"></a></span>
+<span id="cb17-254"><a href="#cb17-254"></a><span class="in">```{r export, eval=FALSE}</span></span>
+<span id="cb17-255"><a href="#cb17-255"></a><span class="co"># Format flag rule messages for ADPP criterion columns</span></span>
+<span id="cb17-256"><a href="#cb17-256"></a>flag_operators <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb17-257"><a href="#cb17-257"></a>  <span class="at">R2ADJ =</span> <span class="st">" &lt; "</span>, <span class="at">R2 =</span> <span class="st">" &lt; "</span>, <span class="at">AUCPEO =</span> <span class="st">" &gt; "</span>, <span class="at">AUCPEP =</span> <span class="st">" &gt; "</span>, <span class="at">LAMZSPN =</span> <span class="st">" &lt; "</span></span>
+<span id="cb17-258"><a href="#cb17-258"></a>)</span>
+<span id="cb17-259"><a href="#cb17-259"></a>checked_flags <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">keep</span>(flag_rules, <span class="cf">function</span>(x) x<span class="sc">$</span>is.checked)</span>
+<span id="cb17-260"><a href="#cb17-260"></a>flag_rule_msgs <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">length</span>(checked_flags) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb17-261"><a href="#cb17-261"></a>  <span class="fu">vapply</span>(<span class="fu">names</span>(checked_flags), <span class="cf">function</span>(nm) {</span>
+<span id="cb17-262"><a href="#cb17-262"></a>    <span class="fu">paste0</span>(nm, flag_operators[nm], checked_flags[[nm]]<span class="sc">$</span>threshold)</span>
+<span id="cb17-263"><a href="#cb17-263"></a>  }, <span class="fu">character</span>(<span class="dv">1</span>), <span class="at">USE.NAMES =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-264"><a href="#cb17-264"></a>} <span class="cf">else</span> {</span>
+<span id="cb17-265"><a href="#cb17-265"></a>  <span class="cn">NULL</span></span>
+<span id="cb17-266"><a href="#cb17-266"></a>}</span>
+<span id="cb17-267"><a href="#cb17-267"></a></span>
+<span id="cb17-268"><a href="#cb17-268"></a>cdisc_datasets <span class="ot">&lt;-</span> pknca_res <span class="sc">%&gt;%</span></span>
+<span id="cb17-269"><a href="#cb17-269"></a>  <span class="fu">export_cdisc</span>(</span>
+<span id="cb17-270"><a href="#cb17-270"></a>    <span class="at">grouping_vars =</span> extra_vars_to_keep,</span>
+<span id="cb17-271"><a href="#cb17-271"></a>    <span class="at">flag_rules =</span> flag_rule_msgs</span>
+<span id="cb17-272"><a href="#cb17-272"></a>  )</span>
+<span id="cb17-273"><a href="#cb17-273"></a><span class="in">```</span></span>
+<span id="cb17-274"><a href="#cb17-274"></a></span>
+<span id="cb17-275"><a href="#cb17-275"></a>The result is a named list with three data frames:</span>
+<span id="cb17-276"><a href="#cb17-276"></a></span>
+<span id="cb17-277"><a href="#cb17-277"></a><span class="ss">- </span>**`cdisc_datasets$pp`** — PP domain: one row per parameter per subject.</span>
+<span id="cb17-278"><a href="#cb17-278"></a><span class="ss">- </span>**`cdisc_datasets$adpp`** — ADPP: PP with ADaM-style flags and criterion</span>
+<span id="cb17-279"><a href="#cb17-279"></a>  columns (CRITy, CRITyFL, PPSUMFL, PPSUMRSN).</span>
+<span id="cb17-280"><a href="#cb17-280"></a><span class="ss">- </span>**`cdisc_datasets$adnca`** — ADNCA: the full analysis dataset with results</span>
+<span id="cb17-281"><a href="#cb17-281"></a>  joined back to the concentration-time data.</span>
+<span id="cb17-282"><a href="#cb17-282"></a></span>
+<span id="cb17-283"><a href="#cb17-283"></a><span class="in">```{r view_pp, eval=FALSE}</span></span>
+<span id="cb17-284"><a href="#cb17-284"></a><span class="co"># View the PP domain</span></span>
+<span id="cb17-285"><a href="#cb17-285"></a><span class="fu">head</span>(cdisc_datasets<span class="sc">$</span>pp)</span>
+<span id="cb17-286"><a href="#cb17-286"></a><span class="in">```</span></span>
+<span id="cb17-287"><a href="#cb17-287"></a></span>
+<span id="cb17-288"><a href="#cb17-288"></a><span class="fu"># Alternative workflows</span></span>
+<span id="cb17-289"><a href="#cb17-289"></a></span>
+<span id="cb17-290"><a href="#cb17-290"></a><span class="fu">## Generate the script from a YAML settings file</span></span>
+<span id="cb17-291"><a href="#cb17-291"></a></span>
+<span id="cb17-292"><a href="#cb17-292"></a>The aNCA Shiny app exports a settings YAML that captures the full analysis</span>
+<span id="cb17-293"><a href="#cb17-293"></a>configuration. You can regenerate the R script from it:</span>
+<span id="cb17-294"><a href="#cb17-294"></a></span>
+<span id="cb17-295"><a href="#cb17-295"></a><span class="in">```{r yaml, eval=FALSE}</span></span>
+<span id="cb17-296"><a href="#cb17-296"></a><span class="fu">get_settings_code</span>(</span>
+<span id="cb17-297"><a href="#cb17-297"></a>  <span class="at">settings_file_path =</span> <span class="st">"my_settings.yaml"</span>,</span>
+<span id="cb17-298"><a href="#cb17-298"></a>  <span class="at">data_path =</span> <span class="st">"my_adnca_data.csv"</span>,</span>
+<span id="cb17-299"><a href="#cb17-299"></a>  <span class="at">output_path =</span> <span class="st">"nca_script.R"</span></span>
+<span id="cb17-300"><a href="#cb17-300"></a>)</span>
+<span id="cb17-301"><a href="#cb17-301"></a><span class="in">```</span></span>
+<span id="cb17-302"><a href="#cb17-302"></a></span>
+<span id="cb17-303"><a href="#cb17-303"></a><span class="fu">## Generate from the aNCA Shiny app</span></span>
+<span id="cb17-304"><a href="#cb17-304"></a></span>
+<span id="cb17-305"><a href="#cb17-305"></a><span class="in">```{r app, eval=FALSE}</span></span>
+<span id="cb17-306"><a href="#cb17-306"></a>aNCA<span class="sc">::</span><span class="fu">run_app</span>()</span>
+<span id="cb17-307"><a href="#cb17-307"></a><span class="in">```</span></span>
+<span id="cb17-308"><a href="#cb17-308"></a></span>
+<span id="cb17-309"><a href="#cb17-309"></a>From the app, configure mapping, filters, and NCA settings, then export via the</span>
+<span id="cb17-310"><a href="#cb17-310"></a>**Save** button to get the settings YAML, reproducible R script, and all outputs.</span>
+<span id="cb17-311"><a href="#cb17-311"></a></span>
+<span id="cb17-312"><a href="#cb17-312"></a>For more details on both workflows, see the</span>
+<span id="cb17-313"><a href="#cb17-313"></a><span class="co">[</span><span class="ot">R Script Walkthrough</span><span class="co">](https://pharmaverse.github.io/aNCA/articles/example_r_script.html)</span></span>
+<span id="cb17-314"><a href="#cb17-314"></a>on the aNCA website.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
