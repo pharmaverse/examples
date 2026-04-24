@@ -19,8 +19,6 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: "10 10 * * *"
   workflow_dispatch:
 
 jobs:
@@ -58,10 +56,11 @@ jobs:
       - name: Publish docs
         # runs when main branch is updated, or when a PR is merged into main
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+          keep_files: true
 
       - name: Publish PR docs in a subdirectory
         # runs when a PR is opened or updated, but not when merged into main
