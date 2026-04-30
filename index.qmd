@@ -142,8 +142,8 @@ documentation; the Example column links to where it is used on this site.
 | [`{rtables}`](https://insightsengineering.github.io/rtables/) | Framework for building complex nested tables with flexible layouts — the foundation of the NEST TLG stack | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
 | [`{tern}`](https://insightsengineering.github.io/tern/) | Analysis functions for clinical trial TLGs built on `{rtables}` — covers demographics, AEs, survival, PK summaries | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) / [PK](tlg/pharmacokinetic.qmd) |
 | [`{rlistings}`](https://insightsengineering.github.io/rlistings/) | Creates regulatory-ready listings from ADaM datasets | [PK](tlg/pharmacokinetic.qmd) |
-| [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) | Publication-ready summary and analytical tables — ideal for demographics and analysis summaries | [Demographics](tlg/demographic.qmd) |
-| [`{ggsurvfit}`](https://www.danieldsjoberg.com/ggsurvfit/) | Publication-ready Kaplan-Meier and time-to-event figures built on `{ggplot2}` | [TLG](tlg/index.qmd) |
+| [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/) | Publication-ready summary and analytical tables — ideal for demographics and analysis summaries | [Demographics](tlg/demographic.qmd) / [Oncology Survival](tlg/oncology_survival.qmd) |
+| [`{ggsurvfit}`](https://www.danieldsjoberg.com/ggsurvfit/) | Publication-ready Kaplan-Meier and time-to-event figures built on `{ggplot2}` | [Oncology Survival](tlg/oncology_survival.qmd) |
 | [`{cards}`](https://insightsengineering.github.io/cards/) | Creates Analysis Results Datasets (ARDs) following the emerging CDISC Analysis Results Standard | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) |
 | [`{tfrmt}`](https://gsk-biostatistics.github.io/tfrmt/) | Transforms ARDs into publication-ready tables with precise formatting control — particularly suited to RTF regulatory outputs | [Demographics](tlg/demographic.qmd) / [AE](tlg/adverse_events.qmd) |
 :::

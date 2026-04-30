@@ -78,13 +78,15 @@ These examples create tables directly from analysis datasets using the tradition
 ### Listings & Graphs
 
 -   **[Pharmacokinetic Outputs](pharmacokinetic.qmd)** - Concentration-time graphs and parameter summaries
+-   **[Oncology Survival Outputs](oncology_survival.qmd)** - Kaplan-Meier plots with risk tables, median survival summaries, best overall response tables, and a subgroup forest plot using ADTTE and ADRS
 
 ## Quick Reference Table
 
 | Table Type | ARD Approach | Classic Approach |
-|--------------------|-----------------------|-----------------------------|
+|------------------------|-------------------------------|-------------------------------|
 | **Demographics** | [{cards} + {gtsummary}](demographic.qmd#gtsummary-cards)<br/>[{cards} + {tfrmt}](demographic.qmd#tfrmt-cards) | [{rtables} + {tern}](demographic.qmd#rtables-tern) |
 | **Adverse Events** | [{cards} + {tfrmt}](adverse_events.qmd#tfrmt-cards) | [{rtables} + {tern}](adverse_events.qmd#rtables-tern) |
+| **Oncology Survival** | — | [KM plot](oncology_survival.qmd#kaplan-meier-plot) / [Survival tables](oncology_survival.qmd#summary-tables) / [BOR table](oncology_survival.qmd#best-overall-response-table) / [Forest plot](oncology_survival.qmd#subgroup-forest-plot) |
 | **PK Outputs** | *Coming soon* | [View example](pharmacokinetic.qmd) |
 
 ## Key Packages Used
@@ -104,6 +106,9 @@ These examples create tables directly from analysis datasets using the tradition
 ### Graphics
 
 -   **`{ggplot2}`** - Publication-quality graphics for all approaches
+-   **`{ggsurvfit}`** - Publication-ready Kaplan-Meier and time-to-event figures with native CDISC ADTTE support
+-   **`{broom}`** - Extracts tidy, data-frame model output from Cox regression fits — used to build subgroup forest plots
+-   **`{survival}`** - Provides `coxph()` for fitting Cox proportional hazards models
 
 ## What Each Example Includes
 
@@ -127,4 +132,5 @@ All examples use ADaM datasets from `{pharmaverseadam}` as input, ensuring consi
 -   [{gtsummary} package documentation](https://www.danieldsjoberg.com/gtsummary) - Learn more about creating summary tables
 -   [{tfrmt} package documentation](https://gsk-biostatistics.github.io/tfrmt/) - Advanced table formatting with ARDs
 -   [{rtables} package documentation](https://insightsengineering.github.io/rtables/) - Comprehensive table creation guide
+-   [{ggsurvfit} package documentation](https://www.danieldsjoberg.com/ggsurvfit/) - Time-to-event figures with CDISC ADTTE support
 :::
