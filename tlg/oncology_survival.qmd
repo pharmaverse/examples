@@ -619,3 +619,22 @@ ggplot(forest_data, aes(x = estimate, y = label)) +
   difference in that subgroup at the 5% level.
 * This is for illustration only — the dataset uses anonymised arm names and
   should not be interpreted as a real-world efficacy comparison.
+
+---
+
+## Customization Tips
+
+You can easily tailor the appearance and output of your tables and plots:
+
+- **Themes & Colors:**
+  - Use `theme_ggsurvfit_default()` or any `ggplot2` theme (e.g., `theme_minimal()`, `theme_bw()`) to change the look of plots.
+  - Adjust color palettes with `scale_color_manual()`, `scale_fill_brewer()`, or your own color vectors.
+- **Fonts & Labels:**
+  - Modify axis titles, legend text, and captions using `labs()` and `theme()` arguments (e.g., `axis.title = element_text(size = 14)`).
+- **Exporting:**
+  - Save plots with `ggsave("plot.png", width = 8, height = 6)`.
+  - Export tables to Word/HTML with `as_flextable()` or `as_gt()` from `{gtsummary}`.
+- **Table Formatting:**
+  - Use `{gtsummary}` functions like `bold_labels()`, `modify_caption()`, and `modify_header()` for custom table styling.
+
+See the documentation for each package for more advanced customization options.
