@@ -439,6 +439,7 @@ gb
 getOption
 getwd
 ggplot
+ggsave
 ggsurvfit
 ggsurvfitadtte
 ggtheme
