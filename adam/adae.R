@@ -35,7 +35,7 @@ metacore <- spec_to_metacore(
 # Select required ADSL variables
 adsl_vars <- exprs(TRTSDT, TRTEDT, DTHDT)
 
-# Join ADSL variables with VS
+# Join ADSL variables with AE
 adae <- ae %>%
   derive_vars_merged(
     dataset_add = adsl,
