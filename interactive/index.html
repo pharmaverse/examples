@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,14 +81,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e759cb4a6f415918d15c6ff98a4164ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-6d1fbd4bf31f641928d60b6580c97d79.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -761,16 +764,16 @@ function googleTranslateElementInit() {
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1132,50 +1135,50 @@ function googleTranslateElementInit() {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> "Interactive"</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">## Overview</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>This section showcases interactive applications and tools for exploring and analyzing clinical trial data. Interactive applications enable dynamic data exploration, real-time analysis updates, and enhanced collaboration among study teams.</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>The examples demonstrate how pharmaverse packages can be used to create sophisticated interactive experiences for clinical data analysis and reporting.</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="fu">## Examples</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a>The following interactive application examples are available:</span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">### Interactive Data Exploration</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="ss">- </span>**[Teal Applications](teal.qmd)** - Explore the <span class="in">`{teal}`</span> framework for building modular, interactive Shiny applications specifically designed for clinical trial data analysis. Teal provides a standardized approach to creating interactive apps that integrate multiple analysis modules, enabling efficient data exploration, visualization, and reporting.</span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a><span class="fu">## Benefits of Interactive Applications</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>Interactive applications provide several advantages for clinical trial analysis:</span>
-<span id="cb1-22"><a href="#cb1-22"></a></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="ss">- </span>**Dynamic Exploration** - Allow users to interactively filter, subset, and explore data without programming</span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="ss">- </span>**Real-Time Updates** - See analysis results update instantly as parameters change</span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="ss">- </span>**Reproducibility** - Maintain reproducible analyses while providing flexibility</span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="ss">- </span>**Collaboration** - Enable statisticians, clinicians, and stakeholders to work together</span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="ss">- </span>**Regulatory Review** - Facilitate reviewer exploration of study data and analyses</span>
-<span id="cb1-28"><a href="#cb1-28"></a></span>
-<span id="cb1-29"><a href="#cb1-29"></a><span class="fu">## Key Packages Used</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="ss">- </span>**`{teal}`** - Framework for building modular clinical trial Shiny applications</span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="ss">- </span>**`{shiny}`** - Web application framework for R</span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="ss">- </span>**Various pharmaverse packages** - Integrated for data processing and analysis</span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="fu">## Getting Started</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a></span>
-<span id="cb1-37"><a href="#cb1-37"></a>The examples in this section may include interactive components that can be run locally or accessed through hosted applications. Follow the instructions in each example to set up and explore the interactive features.</span>
-<span id="cb1-38"><a href="#cb1-38"></a></span>
-<span id="cb1-39"><a href="#cb1-39"></a>These tools are particularly valuable for:</span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="ss">- </span>Exploratory data analysis</span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="ss">- </span>Safety monitoring</span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="ss">- </span>Efficacy assessment</span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="ss">- </span>Data review meetings</span>
-<span id="cb1-44"><a href="#cb1-44"></a><span class="ss">- </span>Regulatory interactions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "Interactive"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="co">---</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="fu">## Overview</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>This section showcases interactive applications and tools for exploring and analyzing clinical trial data. Interactive applications enable dynamic data exploration, real-time analysis updates, and enhanced collaboration among study teams.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>The examples demonstrate how pharmaverse packages can be used to create sophisticated interactive experiences for clinical data analysis and reporting.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a><span class="fu">## Examples</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>The following interactive application examples are available:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a><span class="fu">### Interactive Data Exploration</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a><span class="ss">- </span>**[Teal Applications](teal.qmd)** - Explore the <span class="in">`{teal}`</span> framework for building modular, interactive Shiny applications specifically designed for clinical trial data analysis. Teal provides a standardized approach to creating interactive apps that integrate multiple analysis modules, enabling efficient data exploration, visualization, and reporting.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a><span class="fu">## Benefits of Interactive Applications</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>Interactive applications provide several advantages for clinical trial analysis:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a><span class="ss">- </span>**Dynamic Exploration** - Allow users to interactively filter, subset, and explore data without programming</span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a><span class="ss">- </span>**Real-Time Updates** - See analysis results update instantly as parameters change</span>
+<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a><span class="ss">- </span>**Reproducibility** - Maintain reproducible analyses while providing flexibility</span>
+<span id="cb1-26"><a href="#cb1-26" aria-label="26"></a><span class="ss">- </span>**Collaboration** - Enable statisticians, clinicians, and stakeholders to work together</span>
+<span id="cb1-27"><a href="#cb1-27" aria-label="27"></a><span class="ss">- </span>**Regulatory Review** - Facilitate reviewer exploration of study data and analyses</span>
+<span id="cb1-28"><a href="#cb1-28" aria-label="28"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-label="29"></a><span class="fu">## Key Packages Used</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-label="30"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-label="31"></a><span class="ss">- </span>**`{teal}`** - Framework for building modular clinical trial Shiny applications</span>
+<span id="cb1-32"><a href="#cb1-32" aria-label="32"></a><span class="ss">- </span>**`{shiny}`** - Web application framework for R</span>
+<span id="cb1-33"><a href="#cb1-33" aria-label="33"></a><span class="ss">- </span>**Various pharmaverse packages** - Integrated for data processing and analysis</span>
+<span id="cb1-34"><a href="#cb1-34" aria-label="34"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-label="35"></a><span class="fu">## Getting Started</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-label="36"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-label="37"></a>The examples in this section may include interactive components that can be run locally or accessed through hosted applications. Follow the instructions in each example to set up and explore the interactive features.</span>
+<span id="cb1-38"><a href="#cb1-38" aria-label="38"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-label="39"></a>These tools are particularly valuable for:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-label="40"></a><span class="ss">- </span>Exploratory data analysis</span>
+<span id="cb1-41"><a href="#cb1-41" aria-label="41"></a><span class="ss">- </span>Safety monitoring</span>
+<span id="cb1-42"><a href="#cb1-42" aria-label="42"></a><span class="ss">- </span>Efficacy assessment</span>
+<span id="cb1-43"><a href="#cb1-43" aria-label="43"></a><span class="ss">- </span>Data review meetings</span>
+<span id="cb1-44"><a href="#cb1-44" aria-label="44"></a><span class="ss">- </span>Regulatory interactions</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

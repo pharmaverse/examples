@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,14 +81,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e759cb4a6f415918d15c6ff98a4164ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-6d1fbd4bf31f641928d60b6580c97d79.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -628,42 +631,42 @@ function googleTranslateElementInit() {
 <h1>Load Packages</h1>
 <p>First, we load the necessary packages required for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(admiral)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(admiralonco)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(metatools)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(admiral)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">library</span>(admiralonco)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="fu">library</span>(metacore)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="fu">library</span>(metatools)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="fu">library</span>(xportr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="fu">library</span>(pharmaversesdtm)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="fu">library</span>(stringr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-specifications-for-metacore" class="level1">
 <h1>Load Specifications for Metacore</h1>
 <p>Load the specifications stored in an Excel file into a <code>{metacore}</code> object.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="load-source-datasets" class="level1">
 <h1>Load Source Datasets</h1>
 <p>We load the required SDTM datasets (<code>RS</code>, <code>TU</code>) and ADaM dataset (<code>ADSL</code>) necessary for creating the <code>ADRS</code> dataset.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
-<span id="cb3-2"><a href="#cb3-2"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
-<span id="cb3-3"><a href="#cb3-3"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Convert blanks to NA</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
-<span id="cb3-7"><a href="#cb3-7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a><span class="co"># Convert blanks to NA</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-1e53894b10c7e337f183" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-1e53894b10c7e337f183">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-1ef59b3963eaa574df29" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1ef59b3963eaa574df29">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DOMAIN":["RS","RS","RS","RS","RS","RS","RS","RS","RS","RS"],"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1015","01-701-1028"],"VISITNUM":[2,2,2,3,3,3,4,4,4,2],"VISIT":["WEEK 3","WEEK 3","WEEK 3","WEEK 6","WEEK 6","WEEK 6","WEEK 9","WEEK 9","WEEK 9","WEEK 3"],"RSTESTCD":["OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP","OVRLRESP"],"RSTEST":["Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response","Overall Response"],"RSORRES":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSSTRESC":["SD","SD","SD","NE","NE","NE","CR","CR","CR","SD"],"RSEVAL":["INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR","INDEPENDENT ASSESSOR","INVESTIGATOR","INDEPENDENT ASSESSOR"],"RSEVALID":["RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1","RADIOLOGIST 2",null,"RADIOLOGIST 1"],"RSACPTFL":[null,"Y",null,"Y",null,null,null,"Y",null,"Y"],"RSDTC":["2014-01-23","2014-01-23","2014-01-23","2014-02","2014-02","2014-02","2014-03-06","2014-03-06","2014-03-06","2013-08-09"],"RSSEQ":[1,2,3,4,5,6,7,8,9,1]},"columns":[{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"VISITNUM","name":"VISITNUM","type":"numeric"},{"id":"VISIT","name":"VISIT","type":"character"},{"id":"RSTESTCD","name":"RSTESTCD","type":"character"},{"id":"RSTEST","name":"RSTEST","type":"character"},{"id":"RSORRES","name":"RSORRES","type":"character"},{"id":"RSSTRESC","name":"RSSTRESC","type":"character"},{"id":"RSEVAL","name":"RSEVAL","type":"character"},{"id":"RSEVALID","name":"RSEVALID","type":"character"},{"id":"RSACPTFL","name":"RSACPTFL","type":"character"},{"id":"RSDTC","name":"RSDTC","type":"character"},{"id":"RSSEQ","name":"RSSEQ","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"958f06a59b938d0e0ce040b7d6d0306c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -671,13 +674,13 @@ function googleTranslateElementInit() {
 <h1>Merging ADSL with RS</h1>
 <p>Merge <code>ADSL</code> to the <code>RS</code> domain by selecting only the necessary variables for derivations.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  rs,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb4-7"><a href="#cb4-7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>  rs,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>  <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pre-processing-of-input-records" class="level1">
@@ -686,74 +689,74 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="select-overall-response-records-and-set-parameter-details">Select Overall Response Records and Set Parameter Details</h2>
 <p>Filter the <code>RS</code> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="date-imputation-and-deriving-adt-adtf-avisit" class="level2">
 <h2 class="anchored" data-anchor-id="date-imputation-and-deriving-adt-adtf-avisit">Date Imputation and Deriving <code>ADT</code>, <code>ADTF</code>, <code>AVISIT</code></h2>
 <p>Impute missing dates and derive analysis dates and visits.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">derive_vars_dt</span>(</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">dtc =</span> RSDTC,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    <span class="at">dtc =</span> RSDTC,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-avalc-and-aval" class="level2">
 <h2 class="anchored" data-anchor-id="derive-avalc-and-aval">Derive <code>AVALC</code> and <code>AVAL</code></h2>
 <p>Populate <code>AVALC</code> with assessed values and create the numeric version <code>AVAL</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
-<span id="cb7-5"><a href="#cb7-5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="flag-worst-assessment-at-each-date-anl01fl" class="level2">
 <h2 class="anchored" data-anchor-id="flag-worst-assessment-at-each-date-anl01fl">Flag Worst Assessment at Each Date (<code>ANL01FL</code>)</h2>
 <p>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">case_when</span>(</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb8-8"><a href="#cb8-8"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>  )</span>
-<span id="cb8-11"><a href="#cb8-11"></a>}</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">restrict_derivation</span>(</span>
-<span id="cb8-15"><a href="#cb8-15"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
-<span id="cb8-17"><a href="#cb8-17"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
-<span id="cb8-18"><a href="#cb8-18"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
-<span id="cb8-19"><a href="#cb8-19"></a>      <span class="at">new_var =</span> ANL01FL,</span>
-<span id="cb8-20"><a href="#cb8-20"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a>    ),</span>
-<span id="cb8-22"><a href="#cb8-22"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
-<span id="cb8-23"><a href="#cb8-23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>  )</span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>}</span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a>  <span class="fu">restrict_derivation</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
+<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-label="19"></a>      <span class="at">new_var =</span> ANL01FL,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-label="20"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-label="21"></a>    ),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-label="22"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
+<span id="cb8-23"><a href="#cb8-23" aria-label="23"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-a9506e4cbe7fc7713240" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-a9506e4cbe7fc7713240">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ca3905c170b5066e84e3" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ca3905c170b5066e84e3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1028","01-701-1028","01-701-1028","01-701-1034","01-701-1034","01-701-1097","01-701-1115"],"PARAMCD":["OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR","OVR"],"ADT":["2014-01-23","2014-02-28","2014-03-06","2013-08-09","2013-08-30","2013-09-20","2014-07-22","2014-08-12","2014-01-22","2012-12-21"],"AVAL":[3,6,1,3,5,3,4,4,4,3],"AVALC":["SD","NE","CR","SD","PD","SD","NON-CR/NON-PD","NON-CR/NON-PD","NON-CR/NON-PD","SD"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"65c9fa0ee3002230088c61cd3059849a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -764,31 +767,31 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="derive-progressive-disease-parameter">Derive Progressive Disease Parameter</h2>
 <p>Use the <code>admiral::derive_extreme_records()</code> function to find the date of first <code>PD</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb9-4"><a href="#cb9-4"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb9-6"><a href="#cb9-6"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb9-12"><a href="#cb9-12"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb9-18"><a href="#cb9-18"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a>    )</span>
-<span id="cb9-20"><a href="#cb9-20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-label="9"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-label="10"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-label="11"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-label="12"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-label="13"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-label="14"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-label="15"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-label="16"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-label="17"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb9-18"><a href="#cb9-18" aria-label="18"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-label="19"></a>    )</span>
+<span id="cb9-20"><a href="#cb9-20" aria-label="20"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-2c9b8177ecfd13ebc56d" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2c9b8177ecfd13ebc56d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-18f60904de34302d12a2" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-18f60904de34302d12a2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1028","01-701-1130","01-701-1133","01-701-1015","01-701-1023","01-701-1033","01-701-1034","01-701-1047","01-701-1057","01-701-1097"],"PARAMCD":["PD","PD","PD","PD","PD","PD","PD","PD","PD","PD"],"ADT":["2013-08-30","2014-04-19","2012-12-30",null,null,null,null,null,null,null],"AVAL":[1,1,1,0,0,0,0,0,0,0],"AVALC":["Y","Y","Y","N","N","N","N","N","N","N"],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"a3423813d85efaae93ab77e7fd9414c2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -796,55 +799,55 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="derive-death-parameter">Derive Death Parameter</h2>
 <p>Create a new death parameter using the death date from <code>ADSL</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb10-6"><a href="#cb10-6"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    <span class="at">dataset_add =</span> adsldth,</span>
-<span id="cb10-8"><a href="#cb10-8"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
-<span id="cb10-10"><a href="#cb10-10"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb10-11"><a href="#cb10-11"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb10-13"><a href="#cb10-13"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
-<span id="cb10-14"><a href="#cb10-14"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
-<span id="cb10-15"><a href="#cb10-15"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
-<span id="cb10-16"><a href="#cb10-16"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb10-17"><a href="#cb10-17"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb10-18"><a href="#cb10-18"></a>      <span class="at">ADT =</span> DTHDT</span>
-<span id="cb10-19"><a href="#cb10-19"></a>    )</span>
-<span id="cb10-20"><a href="#cb10-20"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>    <span class="at">dataset_add =</span> adsldth,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-label="11"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-label="12"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-label="13"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-label="14"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-label="15"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-label="16"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-label="17"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-label="18"></a>      <span class="at">ADT =</span> DTHDT</span>
+<span id="cb10-19"><a href="#cb10-19" aria-label="19"></a>    )</span>
+<span id="cb10-20"><a href="#cb10-20" aria-label="20"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-label="21"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="derive-last-disease-assessment-parameter" class="level2">
 <h2 class="anchored" data-anchor-id="derive-last-disease-assessment-parameter">Derive Last Disease Assessment Parameter</h2>
 <p>Create a parameter for the last disease assessment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb11-6"><a href="#cb11-6"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb11-8"><a href="#cb11-8"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb11-10"><a href="#cb11-10"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
-<span id="cb11-12"><a href="#cb11-12"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb11-13"><a href="#cb11-13"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb11-14"><a href="#cb11-14"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb11-15"><a href="#cb11-15"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a>    )</span>
-<span id="cb11-17"><a href="#cb11-17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb11-10"><a href="#cb11-10" aria-label="10"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-label="11"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-label="12"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-label="13"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-label="14"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-label="15"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-label="16"></a>    )</span>
+<span id="cb11-17"><a href="#cb11-17" aria-label="17"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-dc17be96f79bfcfb2830" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-dc17be96f79bfcfb2830">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-2a44601b17bc0fdd20cc" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2a44601b17bc0fdd20cc">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"USUBJID":["01-701-1015","01-701-1028","01-701-1034","01-701-1097","01-701-1115","01-701-1118","01-701-1130","01-701-1133","01-701-1023","01-701-1033"],"PARAMCD":["LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA","LSTA"],"ADT":["2014-03-06","2013-09-20","2014-08-12","2014-01-22","2013-02-01","2014-06-04","2014-04-19","2012-12-30",null,null],"AVAL":[1,3,4,4,1,2,5,5,"NA","NA"],"AVALC":["CR","SD","NON-CR/NON-PD","NON-CR/NON-PD","CR","PR","PD","PD",null,null],"ANL01FL":["Y","Y","Y","Y","Y","Y","Y","Y","Y","Y"]},"columns":[{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"PARAMCD","name":"PARAMCD","type":"character"},{"id":"ADT","name":"ADT","type":"Date"},{"id":"AVAL","name":"AVAL","type":"numeric"},{"id":"AVALC","name":"AVALC","type":"character"},{"id":"ANL01FL","name":"ANL01FL","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"bfa6d43acb5249c9b9c49eec5492584e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -853,28 +856,28 @@ function googleTranslateElementInit() {
 <h1>Apply Metadata and Perform Associated Checks</h1>
 <p>Apply metadata and conduct checks to ensure data quality and compliance.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-label="5"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-label="6"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-label="7"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="apply-labels-and-formats-with-xportr" class="level1">
 <h1>Apply Labels and Formats with xportr</h1>
 <p>Finally, apply labels, formats, and export the dataset to an XPT file.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-label="5"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-label="6"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-label="7"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-label="8"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-label="9"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -1004,16 +1007,16 @@ Width set to 12 to accommodate.</code></pre>
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1375,286 +1378,286 @@ Width set to 12 to accommodate.</code></pre>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">---</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="an">title:</span><span class="co"> "ADRS"</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="an">order:</span><span class="co"> 4</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a><span class="co">---</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a></span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb19-8"><a href="#cb19-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb19-9"><a href="#cb19-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a>}</span>
-<span id="cb19-11"><a href="#cb19-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="in">```</span></span>
-<span id="cb19-14"><a href="#cb19-14"></a></span>
-<span id="cb19-15"><a href="#cb19-15"></a><span class="fu"># Introduction</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a></span>
-<span id="cb19-17"><a href="#cb19-17"></a>The Response Analysis Dataset (<span class="in">`ADRS`</span>) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an <span class="in">`ADRS`</span> ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include <span class="in">`CR`</span> (Complete Response), <span class="in">`PR`</span> (Partial Response), <span class="in">`SD`</span> (Stable Disease), <span class="in">`NON-CR/NON-PD`</span> (Non-CR/Non-PD), <span class="in">`PD`</span> (Progressive Disease), and <span class="in">`NE`</span> (Not Evaluable). See <span class="in">`{admiral}`</span> and <span class="in">`{admiralonco}`</span> for more information. Find other <span class="in">`{admiral}`</span> functions and related variables by searching <span class="co">[</span><span class="ot">admiraldiscovery</span><span class="co">](&lt;https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html&gt;)</span></span>
-<span id="cb19-18"><a href="#cb19-18"></a></span>
-<span id="cb19-19"><a href="#cb19-19"></a>This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).</span>
-<span id="cb19-20"><a href="#cb19-20"></a></span>
-<span id="cb19-21"><a href="#cb19-21"></a><span class="fu"># Load Packages</span></span>
-<span id="cb19-22"><a href="#cb19-22"></a></span>
-<span id="cb19-23"><a href="#cb19-23"></a>First, we load the necessary packages required for creating the <span class="in">`ADRS`</span> dataset.</span>
-<span id="cb19-24"><a href="#cb19-24"></a></span>
-<span id="cb19-25"><a href="#cb19-25"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb19-26"><a href="#cb19-26"></a><span class="fu">library</span>(admiral)</span>
-<span id="cb19-27"><a href="#cb19-27"></a><span class="fu">library</span>(admiralonco)</span>
-<span id="cb19-28"><a href="#cb19-28"></a><span class="fu">library</span>(metacore)</span>
-<span id="cb19-29"><a href="#cb19-29"></a><span class="fu">library</span>(metatools)</span>
-<span id="cb19-30"><a href="#cb19-30"></a><span class="fu">library</span>(xportr)</span>
-<span id="cb19-31"><a href="#cb19-31"></a><span class="fu">library</span>(pharmaversesdtm)</span>
-<span id="cb19-32"><a href="#cb19-32"></a><span class="fu">library</span>(pharmaverseadam)</span>
-<span id="cb19-33"><a href="#cb19-33"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb19-34"><a href="#cb19-34"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb19-35"><a href="#cb19-35"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb19-36"><a href="#cb19-36"></a><span class="in">```</span></span>
-<span id="cb19-37"><a href="#cb19-37"></a></span>
-<span id="cb19-38"><a href="#cb19-38"></a><span class="fu"># Load Specifications for Metacore</span></span>
-<span id="cb19-39"><a href="#cb19-39"></a></span>
-<span id="cb19-40"><a href="#cb19-40"></a>Load the specifications stored in an Excel file into a <span class="in">`{metacore}`</span> object.</span>
-<span id="cb19-41"><a href="#cb19-41"></a></span>
-<span id="cb19-42"><a href="#cb19-42"></a><span class="in">```{r read-specs}</span></span>
-<span id="cb19-43"><a href="#cb19-43"></a><span class="co">#| warning: false</span></span>
-<span id="cb19-44"><a href="#cb19-44"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-45"><a href="#cb19-45"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span>
-<span id="cb19-46"><a href="#cb19-46"></a><span class="in">```</span></span>
-<span id="cb19-47"><a href="#cb19-47"></a></span>
-<span id="cb19-48"><a href="#cb19-48"></a><span class="fu"># Load Source Datasets</span></span>
-<span id="cb19-49"><a href="#cb19-49"></a></span>
-<span id="cb19-50"><a href="#cb19-50"></a>We load the required SDTM datasets (<span class="in">`RS`</span>, <span class="in">`TU`</span>) and ADaM dataset (<span class="in">`ADSL`</span>) necessary for creating the <span class="in">`ADRS`</span> dataset.</span>
-<span id="cb19-51"><a href="#cb19-51"></a></span>
-<span id="cb19-52"><a href="#cb19-52"></a><span class="in">```{r load-data}</span></span>
-<span id="cb19-53"><a href="#cb19-53"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
-<span id="cb19-54"><a href="#cb19-54"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
-<span id="cb19-55"><a href="#cb19-55"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
-<span id="cb19-56"><a href="#cb19-56"></a></span>
-<span id="cb19-57"><a href="#cb19-57"></a><span class="co"># Convert blanks to NA</span></span>
-<span id="cb19-58"><a href="#cb19-58"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
-<span id="cb19-59"><a href="#cb19-59"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span>
-<span id="cb19-60"><a href="#cb19-60"></a><span class="in">```</span></span>
-<span id="cb19-61"><a href="#cb19-61"></a></span>
-<span id="cb19-62"><a href="#cb19-62"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-63"><a href="#cb19-63"></a><span class="fu">print_df</span>(rs, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb19-64"><a href="#cb19-64"></a><span class="in">```</span></span>
-<span id="cb19-65"><a href="#cb19-65"></a></span>
-<span id="cb19-66"><a href="#cb19-66"></a></span>
-<span id="cb19-67"><a href="#cb19-67"></a><span class="fu"># Merging ADSL with RS</span></span>
-<span id="cb19-68"><a href="#cb19-68"></a></span>
-<span id="cb19-69"><a href="#cb19-69"></a>Merge <span class="in">`ADSL`</span> to the <span class="in">`RS`</span> domain by selecting only the necessary variables for derivations.</span>
-<span id="cb19-70"><a href="#cb19-70"></a></span>
-<span id="cb19-71"><a href="#cb19-71"></a><span class="in">```{r merge-adsl-rs}</span></span>
-<span id="cb19-72"><a href="#cb19-72"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
-<span id="cb19-73"><a href="#cb19-73"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
-<span id="cb19-74"><a href="#cb19-74"></a>  rs,</span>
-<span id="cb19-75"><a href="#cb19-75"></a>  <span class="at">dataset_add =</span> adsl,</span>
-<span id="cb19-76"><a href="#cb19-76"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
-<span id="cb19-77"><a href="#cb19-77"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
-<span id="cb19-78"><a href="#cb19-78"></a>)</span>
-<span id="cb19-79"><a href="#cb19-79"></a><span class="in">```</span></span>
-<span id="cb19-80"><a href="#cb19-80"></a></span>
-<span id="cb19-81"><a href="#cb19-81"></a><span class="fu"># Pre-processing of Input Records</span></span>
-<span id="cb19-82"><a href="#cb19-82"></a></span>
-<span id="cb19-83"><a href="#cb19-83"></a><span class="fu">## Select Overall Response Records and Set Parameter Details</span></span>
-<span id="cb19-84"><a href="#cb19-84"></a></span>
-<span id="cb19-85"><a href="#cb19-85"></a>Filter the <span class="in">`RS`</span> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</span>
-<span id="cb19-86"><a href="#cb19-86"></a></span>
-<span id="cb19-87"><a href="#cb19-87"></a><span class="in">```{r set-param-details}</span></span>
-<span id="cb19-88"><a href="#cb19-88"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
-<span id="cb19-89"><a href="#cb19-89"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-90"><a href="#cb19-90"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-91"><a href="#cb19-91"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
-<span id="cb19-92"><a href="#cb19-92"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
-<span id="cb19-93"><a href="#cb19-93"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb19-94"><a href="#cb19-94"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb19-95"><a href="#cb19-95"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
-<span id="cb19-96"><a href="#cb19-96"></a>  )</span>
-<span id="cb19-97"><a href="#cb19-97"></a><span class="in">```</span></span>
-<span id="cb19-98"><a href="#cb19-98"></a></span>
-<span id="cb19-99"><a href="#cb19-99"></a><span class="fu">## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`</span></span>
-<span id="cb19-100"><a href="#cb19-100"></a></span>
-<span id="cb19-101"><a href="#cb19-101"></a>Impute missing dates and derive analysis dates and visits.</span>
-<span id="cb19-102"><a href="#cb19-102"></a></span>
-<span id="cb19-103"><a href="#cb19-103"></a><span class="in">```{r impute-dates}</span></span>
-<span id="cb19-104"><a href="#cb19-104"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
-<span id="cb19-105"><a href="#cb19-105"></a>  <span class="fu">derive_vars_dt</span>(</span>
-<span id="cb19-106"><a href="#cb19-106"></a>    <span class="at">dtc =</span> RSDTC,</span>
-<span id="cb19-107"><a href="#cb19-107"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
-<span id="cb19-108"><a href="#cb19-108"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
-<span id="cb19-109"><a href="#cb19-109"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
-<span id="cb19-110"><a href="#cb19-110"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-111"><a href="#cb19-111"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span>
-<span id="cb19-112"><a href="#cb19-112"></a><span class="in">```</span></span>
-<span id="cb19-113"><a href="#cb19-113"></a></span>
-<span id="cb19-114"><a href="#cb19-114"></a><span class="fu">## Derive `AVALC` and `AVAL`</span></span>
-<span id="cb19-115"><a href="#cb19-115"></a></span>
-<span id="cb19-116"><a href="#cb19-116"></a>Populate <span class="in">`AVALC`</span> with assessed values and create the numeric version <span class="in">`AVAL`</span>.</span>
-<span id="cb19-117"><a href="#cb19-117"></a></span>
-<span id="cb19-118"><a href="#cb19-118"></a><span class="in">```{r derive-aval}</span></span>
-<span id="cb19-119"><a href="#cb19-119"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
-<span id="cb19-120"><a href="#cb19-120"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-121"><a href="#cb19-121"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
-<span id="cb19-122"><a href="#cb19-122"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
-<span id="cb19-123"><a href="#cb19-123"></a>  )</span>
-<span id="cb19-124"><a href="#cb19-124"></a><span class="in">```</span></span>
-<span id="cb19-125"><a href="#cb19-125"></a></span>
-<span id="cb19-126"><a href="#cb19-126"></a><span class="fu">## Flag Worst Assessment at Each Date (`ANL01FL`)</span></span>
-<span id="cb19-127"><a href="#cb19-127"></a></span>
-<span id="cb19-128"><a href="#cb19-128"></a>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</span>
-<span id="cb19-129"><a href="#cb19-129"></a></span>
-<span id="cb19-130"><a href="#cb19-130"></a><span class="in">```{r flag-worst-assessment}</span></span>
-<span id="cb19-131"><a href="#cb19-131"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
-<span id="cb19-132"><a href="#cb19-132"></a>  <span class="fu">case_when</span>(</span>
-<span id="cb19-133"><a href="#cb19-133"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb19-134"><a href="#cb19-134"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb19-135"><a href="#cb19-135"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb19-136"><a href="#cb19-136"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb19-137"><a href="#cb19-137"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb19-138"><a href="#cb19-138"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
-<span id="cb19-139"><a href="#cb19-139"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
-<span id="cb19-140"><a href="#cb19-140"></a>  )</span>
-<span id="cb19-141"><a href="#cb19-141"></a>}</span>
-<span id="cb19-142"><a href="#cb19-142"></a></span>
-<span id="cb19-143"><a href="#cb19-143"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
-<span id="cb19-144"><a href="#cb19-144"></a>  <span class="fu">restrict_derivation</span>(</span>
-<span id="cb19-145"><a href="#cb19-145"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
-<span id="cb19-146"><a href="#cb19-146"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
-<span id="cb19-147"><a href="#cb19-147"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
-<span id="cb19-148"><a href="#cb19-148"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
-<span id="cb19-149"><a href="#cb19-149"></a>      <span class="at">new_var =</span> ANL01FL,</span>
-<span id="cb19-150"><a href="#cb19-150"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
-<span id="cb19-151"><a href="#cb19-151"></a>    ),</span>
-<span id="cb19-152"><a href="#cb19-152"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
-<span id="cb19-153"><a href="#cb19-153"></a>  )</span>
-<span id="cb19-154"><a href="#cb19-154"></a><span class="in">```</span></span>
-<span id="cb19-155"><a href="#cb19-155"></a></span>
-<span id="cb19-156"><a href="#cb19-156"></a></span>
-<span id="cb19-157"><a href="#cb19-157"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-158"><a href="#cb19-158"></a><span class="fu">print_df</span>(adrs_anl01fl <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb19-159"><a href="#cb19-159"></a><span class="in">```</span></span>
-<span id="cb19-160"><a href="#cb19-160"></a></span>
-<span id="cb19-161"><a href="#cb19-161"></a><span class="fu"># Deriving Parameters</span></span>
-<span id="cb19-162"><a href="#cb19-162"></a></span>
-<span id="cb19-163"><a href="#cb19-163"></a><span class="fu">## Derive Progressive Disease Parameter</span></span>
-<span id="cb19-164"><a href="#cb19-164"></a></span>
-<span id="cb19-165"><a href="#cb19-165"></a>Use the <span class="in">`admiral::derive_extreme_records()`</span> function to find the date of first <span class="in">`PD`</span>.</span>
-<span id="cb19-166"><a href="#cb19-166"></a></span>
-<span id="cb19-167"><a href="#cb19-167"></a><span class="in">```{r derive-pd}</span></span>
-<span id="cb19-168"><a href="#cb19-168"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
-<span id="cb19-169"><a href="#cb19-169"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb19-170"><a href="#cb19-170"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb19-171"><a href="#cb19-171"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
-<span id="cb19-172"><a href="#cb19-172"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb19-173"><a href="#cb19-173"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb19-174"><a href="#cb19-174"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb19-175"><a href="#cb19-175"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
-<span id="cb19-176"><a href="#cb19-176"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb19-177"><a href="#cb19-177"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb19-178"><a href="#cb19-178"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb19-179"><a href="#cb19-179"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
-<span id="cb19-180"><a href="#cb19-180"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
-<span id="cb19-181"><a href="#cb19-181"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb19-182"><a href="#cb19-182"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb19-183"><a href="#cb19-183"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb19-184"><a href="#cb19-184"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb19-185"><a href="#cb19-185"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb19-186"><a href="#cb19-186"></a>    )</span>
-<span id="cb19-187"><a href="#cb19-187"></a>  )</span>
-<span id="cb19-188"><a href="#cb19-188"></a><span class="in">```</span></span>
-<span id="cb19-189"><a href="#cb19-189"></a></span>
-<span id="cb19-190"><a href="#cb19-190"></a></span>
-<span id="cb19-191"><a href="#cb19-191"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-192"><a href="#cb19-192"></a><span class="fu">print_df</span>(adrs_pd <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"PD"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb19-193"><a href="#cb19-193"></a><span class="in">```</span></span>
-<span id="cb19-194"><a href="#cb19-194"></a></span>
-<span id="cb19-195"><a href="#cb19-195"></a><span class="fu">## Derive Death Parameter</span></span>
-<span id="cb19-196"><a href="#cb19-196"></a></span>
-<span id="cb19-197"><a href="#cb19-197"></a>Create a new death parameter using the death date from <span class="in">`ADSL`</span>.</span>
-<span id="cb19-198"><a href="#cb19-198"></a></span>
-<span id="cb19-199"><a href="#cb19-199"></a><span class="in">```{r derive-death}</span></span>
-<span id="cb19-200"><a href="#cb19-200"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
-<span id="cb19-201"><a href="#cb19-201"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
-<span id="cb19-202"><a href="#cb19-202"></a></span>
-<span id="cb19-203"><a href="#cb19-203"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
-<span id="cb19-204"><a href="#cb19-204"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb19-205"><a href="#cb19-205"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
-<span id="cb19-206"><a href="#cb19-206"></a>    <span class="at">dataset_add =</span> adsldth,</span>
-<span id="cb19-207"><a href="#cb19-207"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb19-208"><a href="#cb19-208"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
-<span id="cb19-209"><a href="#cb19-209"></a>    <span class="at">exist_flag =</span> AVALC,</span>
-<span id="cb19-210"><a href="#cb19-210"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
-<span id="cb19-211"><a href="#cb19-211"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb19-212"><a href="#cb19-212"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
-<span id="cb19-213"><a href="#cb19-213"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
-<span id="cb19-214"><a href="#cb19-214"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
-<span id="cb19-215"><a href="#cb19-215"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
-<span id="cb19-216"><a href="#cb19-216"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
-<span id="cb19-217"><a href="#cb19-217"></a>      <span class="at">ADT =</span> DTHDT</span>
-<span id="cb19-218"><a href="#cb19-218"></a>    )</span>
-<span id="cb19-219"><a href="#cb19-219"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-220"><a href="#cb19-220"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span>
-<span id="cb19-221"><a href="#cb19-221"></a><span class="in">```</span></span>
-<span id="cb19-222"><a href="#cb19-222"></a></span>
-<span id="cb19-223"><a href="#cb19-223"></a><span class="fu">## Derive Last Disease Assessment Parameter</span></span>
-<span id="cb19-224"><a href="#cb19-224"></a></span>
-<span id="cb19-225"><a href="#cb19-225"></a>Create a parameter for the last disease assessment.</span>
-<span id="cb19-226"><a href="#cb19-226"></a></span>
-<span id="cb19-227"><a href="#cb19-227"></a><span class="in">```{r derive-lsta}</span></span>
-<span id="cb19-228"><a href="#cb19-228"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
-<span id="cb19-229"><a href="#cb19-229"></a>  <span class="fu">derive_extreme_records</span>(</span>
-<span id="cb19-230"><a href="#cb19-230"></a>    <span class="at">dataset_ref =</span> adsl,</span>
-<span id="cb19-231"><a href="#cb19-231"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
-<span id="cb19-232"><a href="#cb19-232"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
-<span id="cb19-233"><a href="#cb19-233"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
-<span id="cb19-234"><a href="#cb19-234"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
-<span id="cb19-235"><a href="#cb19-235"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
-<span id="cb19-236"><a href="#cb19-236"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
-<span id="cb19-237"><a href="#cb19-237"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
-<span id="cb19-238"><a href="#cb19-238"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
-<span id="cb19-239"><a href="#cb19-239"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
-<span id="cb19-240"><a href="#cb19-240"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
-<span id="cb19-241"><a href="#cb19-241"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
-<span id="cb19-242"><a href="#cb19-242"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
-<span id="cb19-243"><a href="#cb19-243"></a>    )</span>
-<span id="cb19-244"><a href="#cb19-244"></a>  )</span>
-<span id="cb19-245"><a href="#cb19-245"></a><span class="in">```</span></span>
-<span id="cb19-246"><a href="#cb19-246"></a></span>
-<span id="cb19-247"><a href="#cb19-247"></a></span>
-<span id="cb19-248"><a href="#cb19-248"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb19-249"><a href="#cb19-249"></a><span class="fu">print_df</span>(adrs_lsta <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb19-250"><a href="#cb19-250"></a><span class="in">```</span></span>
-<span id="cb19-251"><a href="#cb19-251"></a></span>
-<span id="cb19-252"><a href="#cb19-252"></a><span class="fu"># Apply Metadata and Perform Associated Checks</span></span>
-<span id="cb19-253"><a href="#cb19-253"></a></span>
-<span id="cb19-254"><a href="#cb19-254"></a>Apply metadata and conduct checks to ensure data quality and compliance.</span>
-<span id="cb19-255"><a href="#cb19-255"></a></span>
-<span id="cb19-256"><a href="#cb19-256"></a><span class="in">```{r apply-metadata-check, message=FALSE, warning=FALSE}</span></span>
-<span id="cb19-257"><a href="#cb19-257"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
-<span id="cb19-258"><a href="#cb19-258"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
-<span id="cb19-259"><a href="#cb19-259"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
-<span id="cb19-260"><a href="#cb19-260"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
-<span id="cb19-261"><a href="#cb19-261"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
-<span id="cb19-262"><a href="#cb19-262"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
-<span id="cb19-263"><a href="#cb19-263"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span>
-<span id="cb19-264"><a href="#cb19-264"></a><span class="in">```</span></span>
-<span id="cb19-265"><a href="#cb19-265"></a></span>
-<span id="cb19-266"><a href="#cb19-266"></a><span class="fu"># Apply Labels and Formats with xportr</span></span>
-<span id="cb19-267"><a href="#cb19-267"></a></span>
-<span id="cb19-268"><a href="#cb19-268"></a>Finally, apply labels, formats, and export the dataset to an XPT file.</span>
-<span id="cb19-269"><a href="#cb19-269"></a></span>
-<span id="cb19-270"><a href="#cb19-270"></a><span class="in">```{r xportr}</span></span>
-<span id="cb19-271"><a href="#cb19-271"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
-<span id="cb19-272"><a href="#cb19-272"></a></span>
-<span id="cb19-273"><a href="#cb19-273"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
-<span id="cb19-274"><a href="#cb19-274"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
-<span id="cb19-275"><a href="#cb19-275"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
-<span id="cb19-276"><a href="#cb19-276"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
-<span id="cb19-277"><a href="#cb19-277"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
-<span id="cb19-278"><a href="#cb19-278"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
-<span id="cb19-279"><a href="#cb19-279"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span>
-<span id="cb19-280"><a href="#cb19-280"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "ADRS"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a><span class="an">order:</span><span class="co"> 4</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a><span class="co">---</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-label="5"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-label="6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-label="7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb19-8"><a href="#cb19-8" aria-label="8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-label="9"></a>  <span class="cn">NULL</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-label="10"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-label="11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-label="12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-label="13"></a><span class="in">```</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-label="14"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-label="15"></a><span class="fu"># Introduction</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-label="16"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-label="17"></a>The Response Analysis Dataset (<span class="in">`ADRS`</span>) is an essential part of oncology clinical trials for monitoring disease response and progression. This article describes how to create an <span class="in">`ADRS`</span> ADaM dataset, focusing on common oncology endpoint parameters based on RECIST v1.1 criteria. The primary response values include <span class="in">`CR`</span> (Complete Response), <span class="in">`PR`</span> (Partial Response), <span class="in">`SD`</span> (Stable Disease), <span class="in">`NON-CR/NON-PD`</span> (Non-CR/Non-PD), <span class="in">`PD`</span> (Progressive Disease), and <span class="in">`NE`</span> (Not Evaluable). See <span class="in">`{admiral}`</span> and <span class="in">`{admiralonco}`</span> for more information. Find other <span class="in">`{admiral}`</span> functions and related variables by searching <span class="co">[</span><span class="ot">admiraldiscovery</span><span class="co">](&lt;https://pharmaverse.github.io/admiraldiscovery/articles/reactable.html&gt;)</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-label="18"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-label="19"></a>This guide uses key pharmaverse packages along with tidyverse components to demonstrate the step-by-step process, ensuring the inclusion of metadata, validation, and exporting to a compliant SAS transport file (XPT).</span>
+<span id="cb19-20"><a href="#cb19-20" aria-label="20"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-label="21"></a><span class="fu"># Load Packages</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-label="22"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-label="23"></a>First, we load the necessary packages required for creating the <span class="in">`ADRS`</span> dataset.</span>
+<span id="cb19-24"><a href="#cb19-24" aria-label="24"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-label="25"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-label="26"></a><span class="fu">library</span>(admiral)</span>
+<span id="cb19-27"><a href="#cb19-27" aria-label="27"></a><span class="fu">library</span>(admiralonco)</span>
+<span id="cb19-28"><a href="#cb19-28" aria-label="28"></a><span class="fu">library</span>(metacore)</span>
+<span id="cb19-29"><a href="#cb19-29" aria-label="29"></a><span class="fu">library</span>(metatools)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-label="30"></a><span class="fu">library</span>(xportr)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-label="31"></a><span class="fu">library</span>(pharmaversesdtm)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-label="32"></a><span class="fu">library</span>(pharmaverseadam)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-label="33"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-label="34"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-label="35"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-label="36"></a><span class="in">```</span></span>
+<span id="cb19-37"><a href="#cb19-37" aria-label="37"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-label="38"></a><span class="fu"># Load Specifications for Metacore</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-label="39"></a></span>
+<span id="cb19-40"><a href="#cb19-40" aria-label="40"></a>Load the specifications stored in an Excel file into a <span class="in">`{metacore}`</span> object.</span>
+<span id="cb19-41"><a href="#cb19-41" aria-label="41"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-label="42"></a><span class="in">```{r read-specs}</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-label="43"></a><span class="co">#| warning: false</span></span>
+<span id="cb19-44"><a href="#cb19-44" aria-label="44"></a>metacore <span class="ot">&lt;-</span> <span class="fu">spec_to_metacore</span>(<span class="st">"./metadata/onco_spec.xlsx"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-label="45"></a>  <span class="fu">select_dataset</span>(<span class="st">"ADRS"</span>)</span>
+<span id="cb19-46"><a href="#cb19-46" aria-label="46"></a><span class="in">```</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-label="47"></a></span>
+<span id="cb19-48"><a href="#cb19-48" aria-label="48"></a><span class="fu"># Load Source Datasets</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-label="49"></a></span>
+<span id="cb19-50"><a href="#cb19-50" aria-label="50"></a>We load the required SDTM datasets (<span class="in">`RS`</span>, <span class="in">`TU`</span>) and ADaM dataset (<span class="in">`ADSL`</span>) necessary for creating the <span class="in">`ADRS`</span> dataset.</span>
+<span id="cb19-51"><a href="#cb19-51" aria-label="51"></a></span>
+<span id="cb19-52"><a href="#cb19-52" aria-label="52"></a><span class="in">```{r load-data}</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-label="53"></a>adsl <span class="ot">&lt;-</span> pharmaverseadam<span class="sc">::</span>adsl</span>
+<span id="cb19-54"><a href="#cb19-54" aria-label="54"></a>rs <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>rs_onco_recist</span>
+<span id="cb19-55"><a href="#cb19-55" aria-label="55"></a>tu <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>tu_onco_recist</span>
+<span id="cb19-56"><a href="#cb19-56" aria-label="56"></a></span>
+<span id="cb19-57"><a href="#cb19-57" aria-label="57"></a><span class="co"># Convert blanks to NA</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-label="58"></a>rs <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(rs)</span>
+<span id="cb19-59"><a href="#cb19-59" aria-label="59"></a>tu <span class="ot">&lt;-</span> <span class="fu">convert_blanks_to_na</span>(tu)</span>
+<span id="cb19-60"><a href="#cb19-60" aria-label="60"></a><span class="in">```</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-label="61"></a></span>
+<span id="cb19-62"><a href="#cb19-62" aria-label="62"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-label="63"></a><span class="fu">print_df</span>(rs, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb19-64"><a href="#cb19-64" aria-label="64"></a><span class="in">```</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-label="65"></a></span>
+<span id="cb19-66"><a href="#cb19-66" aria-label="66"></a></span>
+<span id="cb19-67"><a href="#cb19-67" aria-label="67"></a><span class="fu"># Merging ADSL with RS</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-label="68"></a></span>
+<span id="cb19-69"><a href="#cb19-69" aria-label="69"></a>Merge <span class="in">`ADSL`</span> to the <span class="in">`RS`</span> domain by selecting only the necessary variables for derivations.</span>
+<span id="cb19-70"><a href="#cb19-70" aria-label="70"></a></span>
+<span id="cb19-71"><a href="#cb19-71" aria-label="71"></a><span class="in">```{r merge-adsl-rs}</span></span>
+<span id="cb19-72"><a href="#cb19-72" aria-label="72"></a>adsl_vars <span class="ot">&lt;-</span> <span class="fu">exprs</span>(RANDDT)</span>
+<span id="cb19-73"><a href="#cb19-73" aria-label="73"></a>adrs_merged <span class="ot">&lt;-</span> <span class="fu">derive_vars_merged</span>(</span>
+<span id="cb19-74"><a href="#cb19-74" aria-label="74"></a>  rs,</span>
+<span id="cb19-75"><a href="#cb19-75" aria-label="75"></a>  <span class="at">dataset_add =</span> adsl,</span>
+<span id="cb19-76"><a href="#cb19-76" aria-label="76"></a>  <span class="at">new_vars =</span> adsl_vars,</span>
+<span id="cb19-77"><a href="#cb19-77" aria-label="77"></a>  <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID)</span>
+<span id="cb19-78"><a href="#cb19-78" aria-label="78"></a>)</span>
+<span id="cb19-79"><a href="#cb19-79" aria-label="79"></a><span class="in">```</span></span>
+<span id="cb19-80"><a href="#cb19-80" aria-label="80"></a></span>
+<span id="cb19-81"><a href="#cb19-81" aria-label="81"></a><span class="fu"># Pre-processing of Input Records</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-label="82"></a></span>
+<span id="cb19-83"><a href="#cb19-83" aria-label="83"></a><span class="fu">## Select Overall Response Records and Set Parameter Details</span></span>
+<span id="cb19-84"><a href="#cb19-84" aria-label="84"></a></span>
+<span id="cb19-85"><a href="#cb19-85" aria-label="85"></a>Filter the <span class="in">`RS`</span> domain to include only overall response records assessed by the investigator and set the parameter details accordingly.</span>
+<span id="cb19-86"><a href="#cb19-86" aria-label="86"></a></span>
+<span id="cb19-87"><a href="#cb19-87" aria-label="87"></a><span class="in">```{r set-param-details}</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-label="88"></a>adrs_ovr <span class="ot">&lt;-</span> adrs_merged <span class="sc">%&gt;%</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-label="89"></a>  <span class="fu">filter</span>(RSEVAL <span class="sc">==</span> <span class="st">"INVESTIGATOR"</span> <span class="sc">&amp;</span> RSTESTCD <span class="sc">==</span> <span class="st">"OVRLRESP"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-90"><a href="#cb19-90" aria-label="90"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-91"><a href="#cb19-91" aria-label="91"></a>    <span class="at">PARAMCD =</span> <span class="st">"OVR"</span>,</span>
+<span id="cb19-92"><a href="#cb19-92" aria-label="92"></a>    <span class="at">PARAM =</span> <span class="st">"Overall Response by Investigator"</span>,</span>
+<span id="cb19-93"><a href="#cb19-93" aria-label="93"></a>    <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-94"><a href="#cb19-94" aria-label="94"></a>    <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-95"><a href="#cb19-95" aria-label="95"></a>    <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span></span>
+<span id="cb19-96"><a href="#cb19-96" aria-label="96"></a>  )</span>
+<span id="cb19-97"><a href="#cb19-97" aria-label="97"></a><span class="in">```</span></span>
+<span id="cb19-98"><a href="#cb19-98" aria-label="98"></a></span>
+<span id="cb19-99"><a href="#cb19-99" aria-label="99"></a><span class="fu">## Date Imputation and Deriving `ADT`, `ADTF`, `AVISIT`</span></span>
+<span id="cb19-100"><a href="#cb19-100" aria-label="100"></a></span>
+<span id="cb19-101"><a href="#cb19-101" aria-label="101"></a>Impute missing dates and derive analysis dates and visits.</span>
+<span id="cb19-102"><a href="#cb19-102" aria-label="102"></a></span>
+<span id="cb19-103"><a href="#cb19-103" aria-label="103"></a><span class="in">```{r impute-dates}</span></span>
+<span id="cb19-104"><a href="#cb19-104" aria-label="104"></a>adrs_imputed <span class="ot">&lt;-</span> adrs_ovr <span class="sc">%&gt;%</span></span>
+<span id="cb19-105"><a href="#cb19-105" aria-label="105"></a>  <span class="fu">derive_vars_dt</span>(</span>
+<span id="cb19-106"><a href="#cb19-106" aria-label="106"></a>    <span class="at">dtc =</span> RSDTC,</span>
+<span id="cb19-107"><a href="#cb19-107" aria-label="107"></a>    <span class="at">new_vars_prefix =</span> <span class="st">"A"</span>,</span>
+<span id="cb19-108"><a href="#cb19-108" aria-label="108"></a>    <span class="at">highest_imputation =</span> <span class="st">"D"</span>,</span>
+<span id="cb19-109"><a href="#cb19-109" aria-label="109"></a>    <span class="at">date_imputation =</span> <span class="st">"last"</span></span>
+<span id="cb19-110"><a href="#cb19-110" aria-label="110"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-111"><a href="#cb19-111" aria-label="111"></a>  <span class="fu">mutate</span>(<span class="at">AVISIT =</span> VISIT)</span>
+<span id="cb19-112"><a href="#cb19-112" aria-label="112"></a><span class="in">```</span></span>
+<span id="cb19-113"><a href="#cb19-113" aria-label="113"></a></span>
+<span id="cb19-114"><a href="#cb19-114" aria-label="114"></a><span class="fu">## Derive `AVALC` and `AVAL`</span></span>
+<span id="cb19-115"><a href="#cb19-115" aria-label="115"></a></span>
+<span id="cb19-116"><a href="#cb19-116" aria-label="116"></a>Populate <span class="in">`AVALC`</span> with assessed values and create the numeric version <span class="in">`AVAL`</span>.</span>
+<span id="cb19-117"><a href="#cb19-117" aria-label="117"></a></span>
+<span id="cb19-118"><a href="#cb19-118" aria-label="118"></a><span class="in">```{r derive-aval}</span></span>
+<span id="cb19-119"><a href="#cb19-119" aria-label="119"></a>adrs_aval <span class="ot">&lt;-</span> adrs_imputed <span class="sc">%&gt;%</span></span>
+<span id="cb19-120"><a href="#cb19-120" aria-label="120"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-121"><a href="#cb19-121" aria-label="121"></a>    <span class="at">AVALC =</span> RSSTRESC,</span>
+<span id="cb19-122"><a href="#cb19-122" aria-label="122"></a>    <span class="at">AVAL =</span> <span class="fu">aval_resp</span>(AVALC)</span>
+<span id="cb19-123"><a href="#cb19-123" aria-label="123"></a>  )</span>
+<span id="cb19-124"><a href="#cb19-124" aria-label="124"></a><span class="in">```</span></span>
+<span id="cb19-125"><a href="#cb19-125" aria-label="125"></a></span>
+<span id="cb19-126"><a href="#cb19-126" aria-label="126"></a><span class="fu">## Flag Worst Assessment at Each Date (`ANL01FL`)</span></span>
+<span id="cb19-127"><a href="#cb19-127" aria-label="127"></a></span>
+<span id="cb19-128"><a href="#cb19-128" aria-label="128"></a>Flag the worst assessment at each date, considering only valid assessments from the randomization date onward.</span>
+<span id="cb19-129"><a href="#cb19-129" aria-label="129"></a></span>
+<span id="cb19-130"><a href="#cb19-130" aria-label="130"></a><span class="in">```{r flag-worst-assessment}</span></span>
+<span id="cb19-131"><a href="#cb19-131" aria-label="131"></a>worst_resp <span class="ot">&lt;-</span> <span class="cf">function</span>(arg) {</span>
+<span id="cb19-132"><a href="#cb19-132" aria-label="132"></a>  <span class="fu">case_when</span>(</span>
+<span id="cb19-133"><a href="#cb19-133" aria-label="133"></a>    arg <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb19-134"><a href="#cb19-134" aria-label="134"></a>    arg <span class="sc">==</span> <span class="st">"CR"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb19-135"><a href="#cb19-135" aria-label="135"></a>    arg <span class="sc">==</span> <span class="st">"PR"</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb19-136"><a href="#cb19-136" aria-label="136"></a>    arg <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb19-137"><a href="#cb19-137" aria-label="137"></a>    arg <span class="sc">==</span> <span class="st">"NON-CR/NON-PD"</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb19-138"><a href="#cb19-138" aria-label="138"></a>    arg <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb19-139"><a href="#cb19-139" aria-label="139"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb19-140"><a href="#cb19-140" aria-label="140"></a>  )</span>
+<span id="cb19-141"><a href="#cb19-141" aria-label="141"></a>}</span>
+<span id="cb19-142"><a href="#cb19-142" aria-label="142"></a></span>
+<span id="cb19-143"><a href="#cb19-143" aria-label="143"></a>adrs_anl01fl <span class="ot">&lt;-</span> adrs_aval <span class="sc">%&gt;%</span></span>
+<span id="cb19-144"><a href="#cb19-144" aria-label="144"></a>  <span class="fu">restrict_derivation</span>(</span>
+<span id="cb19-145"><a href="#cb19-145" aria-label="145"></a>    <span class="at">derivation =</span> derive_var_extreme_flag,</span>
+<span id="cb19-146"><a href="#cb19-146" aria-label="146"></a>    <span class="at">args =</span> <span class="fu">params</span>(</span>
+<span id="cb19-147"><a href="#cb19-147" aria-label="147"></a>      <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID, ADT),</span>
+<span id="cb19-148"><a href="#cb19-148" aria-label="148"></a>      <span class="at">order =</span> <span class="fu">exprs</span>(<span class="fu">worst_resp</span>(AVALC), RSSEQ),</span>
+<span id="cb19-149"><a href="#cb19-149" aria-label="149"></a>      <span class="at">new_var =</span> ANL01FL,</span>
+<span id="cb19-150"><a href="#cb19-150" aria-label="150"></a>      <span class="at">mode =</span> <span class="st">"last"</span></span>
+<span id="cb19-151"><a href="#cb19-151" aria-label="151"></a>    ),</span>
+<span id="cb19-152"><a href="#cb19-152" aria-label="152"></a>    <span class="at">filter =</span> <span class="sc">!</span><span class="fu">is.na</span>(AVAL) <span class="sc">&amp;</span> ADT <span class="sc">&gt;=</span> RANDDT</span>
+<span id="cb19-153"><a href="#cb19-153" aria-label="153"></a>  )</span>
+<span id="cb19-154"><a href="#cb19-154" aria-label="154"></a><span class="in">```</span></span>
+<span id="cb19-155"><a href="#cb19-155" aria-label="155"></a></span>
+<span id="cb19-156"><a href="#cb19-156" aria-label="156"></a></span>
+<span id="cb19-157"><a href="#cb19-157" aria-label="157"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb19-158"><a href="#cb19-158" aria-label="158"></a><span class="fu">print_df</span>(adrs_anl01fl <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb19-159"><a href="#cb19-159" aria-label="159"></a><span class="in">```</span></span>
+<span id="cb19-160"><a href="#cb19-160" aria-label="160"></a></span>
+<span id="cb19-161"><a href="#cb19-161" aria-label="161"></a><span class="fu"># Deriving Parameters</span></span>
+<span id="cb19-162"><a href="#cb19-162" aria-label="162"></a></span>
+<span id="cb19-163"><a href="#cb19-163" aria-label="163"></a><span class="fu">## Derive Progressive Disease Parameter</span></span>
+<span id="cb19-164"><a href="#cb19-164" aria-label="164"></a></span>
+<span id="cb19-165"><a href="#cb19-165" aria-label="165"></a>Use the <span class="in">`admiral::derive_extreme_records()`</span> function to find the date of first <span class="in">`PD`</span>.</span>
+<span id="cb19-166"><a href="#cb19-166" aria-label="166"></a></span>
+<span id="cb19-167"><a href="#cb19-167" aria-label="167"></a><span class="in">```{r derive-pd}</span></span>
+<span id="cb19-168"><a href="#cb19-168" aria-label="168"></a>adrs_pd <span class="ot">&lt;-</span> adrs_anl01fl <span class="sc">%&gt;%</span></span>
+<span id="cb19-169"><a href="#cb19-169" aria-label="169"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-170"><a href="#cb19-170" aria-label="170"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb19-171"><a href="#cb19-171" aria-label="171"></a>    <span class="at">dataset_add =</span> adrs_anl01fl,</span>
+<span id="cb19-172"><a href="#cb19-172" aria-label="172"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-173"><a href="#cb19-173" aria-label="173"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> AVALC <span class="sc">==</span> <span class="st">"PD"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-174"><a href="#cb19-174" aria-label="174"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb19-175"><a href="#cb19-175" aria-label="175"></a>    <span class="at">mode =</span> <span class="st">"first"</span>,</span>
+<span id="cb19-176"><a href="#cb19-176" aria-label="176"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb19-177"><a href="#cb19-177" aria-label="177"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb19-178"><a href="#cb19-178" aria-label="178"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-179"><a href="#cb19-179" aria-label="179"></a>      <span class="at">PARAMCD =</span> <span class="st">"PD"</span>,</span>
+<span id="cb19-180"><a href="#cb19-180" aria-label="180"></a>      <span class="at">PARAM =</span> <span class="st">"Disease Progression by Investigator"</span>,</span>
+<span id="cb19-181"><a href="#cb19-181" aria-label="181"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-182"><a href="#cb19-182" aria-label="182"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-183"><a href="#cb19-183" aria-label="183"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb19-184"><a href="#cb19-184" aria-label="184"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb19-185"><a href="#cb19-185" aria-label="185"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb19-186"><a href="#cb19-186" aria-label="186"></a>    )</span>
+<span id="cb19-187"><a href="#cb19-187" aria-label="187"></a>  )</span>
+<span id="cb19-188"><a href="#cb19-188" aria-label="188"></a><span class="in">```</span></span>
+<span id="cb19-189"><a href="#cb19-189" aria-label="189"></a></span>
+<span id="cb19-190"><a href="#cb19-190" aria-label="190"></a></span>
+<span id="cb19-191"><a href="#cb19-191" aria-label="191"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb19-192"><a href="#cb19-192" aria-label="192"></a><span class="fu">print_df</span>(adrs_pd <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"PD"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb19-193"><a href="#cb19-193" aria-label="193"></a><span class="in">```</span></span>
+<span id="cb19-194"><a href="#cb19-194" aria-label="194"></a></span>
+<span id="cb19-195"><a href="#cb19-195" aria-label="195"></a><span class="fu">## Derive Death Parameter</span></span>
+<span id="cb19-196"><a href="#cb19-196" aria-label="196"></a></span>
+<span id="cb19-197"><a href="#cb19-197" aria-label="197"></a>Create a new death parameter using the death date from <span class="in">`ADSL`</span>.</span>
+<span id="cb19-198"><a href="#cb19-198" aria-label="198"></a></span>
+<span id="cb19-199"><a href="#cb19-199" aria-label="199"></a><span class="in">```{r derive-death}</span></span>
+<span id="cb19-200"><a href="#cb19-200" aria-label="200"></a>adsldth <span class="ot">&lt;-</span> adsl <span class="sc">%&gt;%</span></span>
+<span id="cb19-201"><a href="#cb19-201" aria-label="201"></a>  <span class="fu">select</span>(STUDYID, USUBJID, DTHDT, <span class="sc">!!!</span>adsl_vars)</span>
+<span id="cb19-202"><a href="#cb19-202" aria-label="202"></a></span>
+<span id="cb19-203"><a href="#cb19-203" aria-label="203"></a>adrs_death <span class="ot">&lt;-</span> adrs_pd <span class="sc">%&gt;%</span></span>
+<span id="cb19-204"><a href="#cb19-204" aria-label="204"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-205"><a href="#cb19-205" aria-label="205"></a>    <span class="at">dataset_ref =</span> adsldth,</span>
+<span id="cb19-206"><a href="#cb19-206" aria-label="206"></a>    <span class="at">dataset_add =</span> adsldth,</span>
+<span id="cb19-207"><a href="#cb19-207" aria-label="207"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-208"><a href="#cb19-208" aria-label="208"></a>    <span class="at">filter_add =</span> <span class="sc">!</span><span class="fu">is.na</span>(DTHDT),</span>
+<span id="cb19-209"><a href="#cb19-209" aria-label="209"></a>    <span class="at">exist_flag =</span> AVALC,</span>
+<span id="cb19-210"><a href="#cb19-210" aria-label="210"></a>    <span class="at">false_value =</span> <span class="st">"N"</span>,</span>
+<span id="cb19-211"><a href="#cb19-211" aria-label="211"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-212"><a href="#cb19-212" aria-label="212"></a>      <span class="at">PARAMCD =</span> <span class="st">"DEATH"</span>,</span>
+<span id="cb19-213"><a href="#cb19-213" aria-label="213"></a>      <span class="at">PARAM =</span> <span class="st">"Death"</span>,</span>
+<span id="cb19-214"><a href="#cb19-214" aria-label="214"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Reference Event"</span>,</span>
+<span id="cb19-215"><a href="#cb19-215" aria-label="215"></a>      <span class="at">AVAL =</span> <span class="fu">yn_to_numeric</span>(AVALC),</span>
+<span id="cb19-216"><a href="#cb19-216" aria-label="216"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-217"><a href="#cb19-217" aria-label="217"></a>      <span class="at">ADT =</span> DTHDT</span>
+<span id="cb19-218"><a href="#cb19-218" aria-label="218"></a>    )</span>
+<span id="cb19-219"><a href="#cb19-219" aria-label="219"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-220"><a href="#cb19-220" aria-label="220"></a>  <span class="fu">select</span>(<span class="sc">-</span>DTHDT)</span>
+<span id="cb19-221"><a href="#cb19-221" aria-label="221"></a><span class="in">```</span></span>
+<span id="cb19-222"><a href="#cb19-222" aria-label="222"></a></span>
+<span id="cb19-223"><a href="#cb19-223" aria-label="223"></a><span class="fu">## Derive Last Disease Assessment Parameter</span></span>
+<span id="cb19-224"><a href="#cb19-224" aria-label="224"></a></span>
+<span id="cb19-225"><a href="#cb19-225" aria-label="225"></a>Create a parameter for the last disease assessment.</span>
+<span id="cb19-226"><a href="#cb19-226" aria-label="226"></a></span>
+<span id="cb19-227"><a href="#cb19-227" aria-label="227"></a><span class="in">```{r derive-lsta}</span></span>
+<span id="cb19-228"><a href="#cb19-228" aria-label="228"></a>adrs_lsta <span class="ot">&lt;-</span> adrs_death <span class="sc">%&gt;%</span></span>
+<span id="cb19-229"><a href="#cb19-229" aria-label="229"></a>  <span class="fu">derive_extreme_records</span>(</span>
+<span id="cb19-230"><a href="#cb19-230" aria-label="230"></a>    <span class="at">dataset_ref =</span> adsl,</span>
+<span id="cb19-231"><a href="#cb19-231" aria-label="231"></a>    <span class="at">dataset_add =</span> adrs_death,</span>
+<span id="cb19-232"><a href="#cb19-232" aria-label="232"></a>    <span class="at">by_vars =</span> <span class="fu">exprs</span>(STUDYID, USUBJID),</span>
+<span id="cb19-233"><a href="#cb19-233" aria-label="233"></a>    <span class="at">filter_add =</span> PARAMCD <span class="sc">==</span> <span class="st">"OVR"</span> <span class="sc">&amp;</span> ANL01FL <span class="sc">==</span> <span class="st">"Y"</span>,</span>
+<span id="cb19-234"><a href="#cb19-234" aria-label="234"></a>    <span class="at">order =</span> <span class="fu">exprs</span>(ADT, RSSEQ),</span>
+<span id="cb19-235"><a href="#cb19-235" aria-label="235"></a>    <span class="at">mode =</span> <span class="st">"last"</span>,</span>
+<span id="cb19-236"><a href="#cb19-236" aria-label="236"></a>    <span class="at">set_values_to =</span> <span class="fu">exprs</span>(</span>
+<span id="cb19-237"><a href="#cb19-237" aria-label="237"></a>      <span class="at">PARAMCD =</span> <span class="st">"LSTA"</span>,</span>
+<span id="cb19-238"><a href="#cb19-238" aria-label="238"></a>      <span class="at">PARAM =</span> <span class="st">"Last Disease Assessment by Investigator"</span>,</span>
+<span id="cb19-239"><a href="#cb19-239" aria-label="239"></a>      <span class="at">PARCAT1 =</span> <span class="st">"Tumor Response"</span>,</span>
+<span id="cb19-240"><a href="#cb19-240" aria-label="240"></a>      <span class="at">PARCAT2 =</span> <span class="st">"Investigator"</span>,</span>
+<span id="cb19-241"><a href="#cb19-241" aria-label="241"></a>      <span class="at">PARCAT3 =</span> <span class="st">"RECIST 1.1"</span>,</span>
+<span id="cb19-242"><a href="#cb19-242" aria-label="242"></a>      <span class="at">ANL01FL =</span> <span class="st">"Y"</span></span>
+<span id="cb19-243"><a href="#cb19-243" aria-label="243"></a>    )</span>
+<span id="cb19-244"><a href="#cb19-244" aria-label="244"></a>  )</span>
+<span id="cb19-245"><a href="#cb19-245" aria-label="245"></a><span class="in">```</span></span>
+<span id="cb19-246"><a href="#cb19-246" aria-label="246"></a></span>
+<span id="cb19-247"><a href="#cb19-247" aria-label="247"></a></span>
+<span id="cb19-248"><a href="#cb19-248" aria-label="248"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb19-249"><a href="#cb19-249" aria-label="249"></a><span class="fu">print_df</span>(adrs_lsta <span class="sc">%&gt;%</span> <span class="fu">select</span>(USUBJID, PARAMCD, ADT, AVAL, AVALC, ANL01FL) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(PARAMCD <span class="sc">==</span> <span class="st">"LSTA"</span>), <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb19-250"><a href="#cb19-250" aria-label="250"></a><span class="in">```</span></span>
+<span id="cb19-251"><a href="#cb19-251" aria-label="251"></a></span>
+<span id="cb19-252"><a href="#cb19-252" aria-label="252"></a><span class="fu"># Apply Metadata and Perform Associated Checks</span></span>
+<span id="cb19-253"><a href="#cb19-253" aria-label="253"></a></span>
+<span id="cb19-254"><a href="#cb19-254" aria-label="254"></a>Apply metadata and conduct checks to ensure data quality and compliance.</span>
+<span id="cb19-255"><a href="#cb19-255" aria-label="255"></a></span>
+<span id="cb19-256"><a href="#cb19-256" aria-label="256"></a><span class="in">```{r apply-metadata-check, message=FALSE, warning=FALSE}</span></span>
+<span id="cb19-257"><a href="#cb19-257" aria-label="257"></a>adrs_checked <span class="ot">&lt;-</span> adrs_lsta <span class="sc">%&gt;%</span></span>
+<span id="cb19-258"><a href="#cb19-258" aria-label="258"></a>  <span class="fu">add_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Add variables specified in the metadata</span></span>
+<span id="cb19-259"><a href="#cb19-259" aria-label="259"></a>  <span class="fu">drop_unspec_vars</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Drop variables not specified in metadata</span></span>
+<span id="cb19-260"><a href="#cb19-260" aria-label="260"></a>  <span class="fu">check_variables</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check all variables specified are present and no more</span></span>
+<span id="cb19-261"><a href="#cb19-261" aria-label="261"></a>  <span class="fu">check_ct_data</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Check controlled terminology</span></span>
+<span id="cb19-262"><a href="#cb19-262" aria-label="262"></a>  <span class="fu">order_cols</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Order columns according to metadata</span></span>
+<span id="cb19-263"><a href="#cb19-263" aria-label="263"></a>  <span class="fu">sort_by_key</span>(metacore) <span class="co"># Sort rows by sort keys</span></span>
+<span id="cb19-264"><a href="#cb19-264" aria-label="264"></a><span class="in">```</span></span>
+<span id="cb19-265"><a href="#cb19-265" aria-label="265"></a></span>
+<span id="cb19-266"><a href="#cb19-266" aria-label="266"></a><span class="fu"># Apply Labels and Formats with xportr</span></span>
+<span id="cb19-267"><a href="#cb19-267" aria-label="267"></a></span>
+<span id="cb19-268"><a href="#cb19-268" aria-label="268"></a>Finally, apply labels, formats, and export the dataset to an XPT file.</span>
+<span id="cb19-269"><a href="#cb19-269" aria-label="269"></a></span>
+<span id="cb19-270"><a href="#cb19-270" aria-label="270"></a><span class="in">```{r xportr}</span></span>
+<span id="cb19-271"><a href="#cb19-271" aria-label="271"></a>dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>() <span class="co"># Specify the directory for saving the XPT file</span></span>
+<span id="cb19-272"><a href="#cb19-272" aria-label="272"></a></span>
+<span id="cb19-273"><a href="#cb19-273" aria-label="273"></a>adrs_xpt <span class="ot">&lt;-</span> adrs_checked <span class="sc">%&gt;%</span></span>
+<span id="cb19-274"><a href="#cb19-274" aria-label="274"></a>  <span class="fu">xportr_type</span>(metacore, <span class="at">domain =</span> <span class="st">"ADRS"</span>) <span class="sc">%&gt;%</span> <span class="co"># Coerce variable types to match metadata</span></span>
+<span id="cb19-275"><a href="#cb19-275" aria-label="275"></a>  <span class="fu">xportr_length</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable lengths from metadata</span></span>
+<span id="cb19-276"><a href="#cb19-276" aria-label="276"></a>  <span class="fu">xportr_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable labels from metadata</span></span>
+<span id="cb19-277"><a href="#cb19-277" aria-label="277"></a>  <span class="fu">xportr_format</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign variable formats from metadata</span></span>
+<span id="cb19-278"><a href="#cb19-278" aria-label="278"></a>  <span class="fu">xportr_df_label</span>(metacore) <span class="sc">%&gt;%</span> <span class="co"># Assign dataset labels from metadata</span></span>
+<span id="cb19-279"><a href="#cb19-279" aria-label="279"></a>  <span class="fu">xportr_write</span>(<span class="fu">file.path</span>(dir, <span class="st">"adrs.xpt"</span>)) <span class="co"># Write the XPT file</span></span>
+<span id="cb19-280"><a href="#cb19-280" aria-label="280"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

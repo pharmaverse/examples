@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,14 +81,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e759cb4a6f415918d15c6ff98a4164ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-4f7747fba102fb5f3e92089a50e7ca17.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-6d1fbd4bf31f641928d60b6580c97d79.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-544c3e1eb56cf8196ffc8ce22bd4614b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": true,
@@ -644,22 +647,22 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="readdata">Read in data</h2>
 <p>Read all the raw datasets into the environment. In this example, the raw dataset name is <code>ae_raw</code>. Users can read them from the <code>{pharmaverseraw}</code> package using the below code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sdtm.oak)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(pharmaverseraw)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>ae_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ae_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>ae_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ae_raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Adverse Events Raw dataset</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-641e2448a94da6fa1151" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-641e2448a94da6fa1151">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"FOLDER":["AE","AE","AE","AE","AE"],"FOLDERL":["Adverse Events","Adverse Events","Adverse Events","Adverse Events","Adverse Events"],"IT.AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema"],"AEOUTCOME":["Not Recovered/not Resolved","Not Recovered/not Resolved","Recovered/Resolved","Not Recovered/not Resolved","Not Recovered/not Resolved"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA"],"AEPTCD":["NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284"],"AEHLTCD":["NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192"],"AEHLGTCD":["NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AEBDSYCD":["NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785],"IT.AESEV":["Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event"],"IT.AESER":["No","No","No","No","No"],"IT.AEREL":["Probably Related","Probably Related","Remote","Possibly Related","Possibly Related"],"IT.AEACN":[null,null,null,null,null],"AESCAN":["No","No","No","No","No"],"AESCNO":["No","No","No","No","No"],"AEDIS":["No","No","No","No","No"],"IT.AESDTH":["No","No","No","No","No"],"IT.AESHOSP":["No","No","No","No","No"],"IT.AESLIFE":["No","No","No","No","No"],"AESOD":["No","No","No","No","No"],"AEDTCOL":["01/16/2014","01/16/2014","01/16/2014","08/27/2012","08/27/2012"],"IT.AESTDAT":["01/03/2014","01/03/2014","01/09/2014","08/26/2012","08/07/2012"],"IT.AEENDAT":[null,null,"01/11/2014",null,"08/30/2012"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.AETERM","name":"IT.AETERM","type":"character"},{"id":"AEOUTCOME","name":"AEOUTCOME","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"IT.AESEV","name":"IT.AESEV","type":"character"},{"id":"IT.AESER","name":"IT.AESER","type":"character"},{"id":"IT.AEREL","name":"IT.AEREL","type":"character"},{"id":"IT.AEACN","name":"IT.AEACN","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCNO","name":"AESCNO","type":"character"},{"id":"AEDIS","name":"AEDIS","type":"character"},{"id":"IT.AESDTH","name":"IT.AESDTH","type":"character"},{"id":"IT.AESHOSP","name":"IT.AESHOSP","type":"character"},{"id":"IT.AESLIFE","name":"IT.AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTCOL","name":"AEDTCOL","type":"character"},{"id":"IT.AESTDAT","name":"IT.AESTDAT","type":"character"},{"id":"IT.AEENDAT","name":"IT.AEENDAT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"82b547e19faa47663dc090d0267f2f32"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-a58712b79a6a6d771350" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a58712b79a6a6d771350">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"FOLDER":["AE","AE","AE","AE","AE"],"FOLDERL":["Adverse Events","Adverse Events","Adverse Events","Adverse Events","Adverse Events"],"IT.AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema"],"AEOUTCOME":["Not Recovered/not Resolved","Not Recovered/not Resolved","Recovered/Resolved","Not Recovered/not Resolved","Not Recovered/not Resolved"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA"],"AEPTCD":["NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284"],"AEHLTCD":["NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192"],"AEHLGTCD":["NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AEBDSYCD":["NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785],"IT.AESEV":["Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event"],"IT.AESER":["No","No","No","No","No"],"IT.AEREL":["Probably Related","Probably Related","Remote","Possibly Related","Possibly Related"],"IT.AEACN":[null,null,null,null,null],"AESCAN":["No","No","No","No","No"],"AESCNO":["No","No","No","No","No"],"AEDIS":["No","No","No","No","No"],"IT.AESDTH":["No","No","No","No","No"],"IT.AESHOSP":["No","No","No","No","No"],"IT.AESLIFE":["No","No","No","No","No"],"AESOD":["No","No","No","No","No"],"AEDTCOL":["01/16/2014","01/16/2014","01/16/2014","08/27/2012","08/27/2012"],"IT.AESTDAT":["01/03/2014","01/03/2014","01/09/2014","08/26/2012","08/07/2012"],"IT.AEENDAT":[null,null,"01/11/2014",null,"08/30/2012"]},"columns":[{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.AETERM","name":"IT.AETERM","type":"character"},{"id":"AEOUTCOME","name":"AEOUTCOME","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"IT.AESEV","name":"IT.AESEV","type":"character"},{"id":"IT.AESER","name":"IT.AESER","type":"character"},{"id":"IT.AEREL","name":"IT.AEREL","type":"character"},{"id":"IT.AEACN","name":"IT.AEACN","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCNO","name":"AESCNO","type":"character"},{"id":"AEDIS","name":"AEDIS","type":"character"},{"id":"IT.AESDTH","name":"IT.AESDTH","type":"character"},{"id":"IT.AESHOSP","name":"IT.AESHOSP","type":"character"},{"id":"IT.AESLIFE","name":"IT.AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTCOL","name":"AEDTCOL","type":"character"},{"id":"IT.AESTDAT","name":"IT.AESTDAT","type":"character"},{"id":"IT.AEENDAT","name":"IT.AEENDAT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"82b547e19faa47663dc090d0267f2f32"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Read in the DM domain</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="sdtm-acrf" class="level3">
 <h3 class="anchored" data-anchor-id="sdtm-acrf">SDTM aCRF</h3>
@@ -669,16 +672,16 @@ function googleTranslateElementInit() {
 <section id="oakidvars" class="level2">
 <h2 class="anchored" data-anchor-id="oakidvars">Create oak_id_vars</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ae_raw <span class="ot">&lt;-</span> ae_raw <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="at">raw_src =</span> <span class="st">"ae_raw"</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>ae_raw <span class="ot">&lt;-</span> ae_raw <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    <span class="at">raw_src =</span> <span class="st">"ae_raw"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-7278cbd1a55463ec5fc9" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-7278cbd1a55463ec5fc9">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023"],"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"FOLDER":["AE","AE","AE","AE","AE"],"FOLDERL":["Adverse Events","Adverse Events","Adverse Events","Adverse Events","Adverse Events"],"IT.AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema"],"AEOUTCOME":["Not Recovered/not Resolved","Not Recovered/not Resolved","Recovered/Resolved","Not Recovered/not Resolved","Not Recovered/not Resolved"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA"],"AEPTCD":["NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284"],"AEHLTCD":["NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192"],"AEHLGTCD":["NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AEBDSYCD":["NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785],"IT.AESEV":["Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event"],"IT.AESER":["No","No","No","No","No"],"IT.AEREL":["Probably Related","Probably Related","Remote","Possibly Related","Possibly Related"],"IT.AEACN":[null,null,null,null,null],"AESCAN":["No","No","No","No","No"],"AESCNO":["No","No","No","No","No"],"AEDIS":["No","No","No","No","No"],"IT.AESDTH":["No","No","No","No","No"],"IT.AESHOSP":["No","No","No","No","No"],"IT.AESLIFE":["No","No","No","No","No"],"AESOD":["No","No","No","No","No"],"AEDTCOL":["01/16/2014","01/16/2014","01/16/2014","08/27/2012","08/27/2012"],"IT.AESTDAT":["01/03/2014","01/03/2014","01/09/2014","08/26/2012","08/07/2012"],"IT.AEENDAT":[null,null,"01/11/2014",null,"08/30/2012"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.AETERM","name":"IT.AETERM","type":"character"},{"id":"AEOUTCOME","name":"AEOUTCOME","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"IT.AESEV","name":"IT.AESEV","type":"character"},{"id":"IT.AESER","name":"IT.AESER","type":"character"},{"id":"IT.AEREL","name":"IT.AEREL","type":"character"},{"id":"IT.AEACN","name":"IT.AEACN","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCNO","name":"AESCNO","type":"character"},{"id":"AEDIS","name":"AEDIS","type":"character"},{"id":"IT.AESDTH","name":"IT.AESDTH","type":"character"},{"id":"IT.AESHOSP","name":"IT.AESHOSP","type":"character"},{"id":"IT.AESLIFE","name":"IT.AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTCOL","name":"AEDTCOL","type":"character"},{"id":"IT.AESTDAT","name":"IT.AESTDAT","type":"character"},{"id":"IT.AEENDAT","name":"IT.AEENDAT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"933ffad85a64944443d94ae9042c1ee4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-0e0b0eca5e3fc8aebd96" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-0e0b0eca5e3fc8aebd96">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023"],"STUDY":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"PATNUM":["701-1015","701-1015","701-1015","701-1023","701-1023"],"FOLDER":["AE","AE","AE","AE","AE"],"FOLDERL":["Adverse Events","Adverse Events","Adverse Events","Adverse Events","Adverse Events"],"IT.AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema"],"AEOUTCOME":["Not Recovered/not Resolved","Not Recovered/not Resolved","Recovered/Resolved","Not Recovered/not Resolved","Not Recovered/not Resolved"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA"],"AEPTCD":["NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284"],"AEHLTCD":["NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192"],"AEHLGTCD":["NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AEBDSYCD":["NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785],"IT.AESEV":["Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event","Mild Adverse Event"],"IT.AESER":["No","No","No","No","No"],"IT.AEREL":["Probably Related","Probably Related","Remote","Possibly Related","Possibly Related"],"IT.AEACN":[null,null,null,null,null],"AESCAN":["No","No","No","No","No"],"AESCNO":["No","No","No","No","No"],"AEDIS":["No","No","No","No","No"],"IT.AESDTH":["No","No","No","No","No"],"IT.AESHOSP":["No","No","No","No","No"],"IT.AESLIFE":["No","No","No","No","No"],"AESOD":["No","No","No","No","No"],"AEDTCOL":["01/16/2014","01/16/2014","01/16/2014","08/27/2012","08/27/2012"],"IT.AESTDAT":["01/03/2014","01/03/2014","01/09/2014","08/26/2012","08/07/2012"],"IT.AEENDAT":[null,null,"01/11/2014",null,"08/30/2012"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"STUDY","name":"STUDY","type":"character"},{"id":"PATNUM","name":"PATNUM","type":"character"},{"id":"FOLDER","name":"FOLDER","type":"character"},{"id":"FOLDERL","name":"FOLDERL","type":"character"},{"id":"IT.AETERM","name":"IT.AETERM","type":"character"},{"id":"AEOUTCOME","name":"AEOUTCOME","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"IT.AESEV","name":"IT.AESEV","type":"character"},{"id":"IT.AESER","name":"IT.AESER","type":"character"},{"id":"IT.AEREL","name":"IT.AEREL","type":"character"},{"id":"IT.AEACN","name":"IT.AEACN","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCNO","name":"AESCNO","type":"character"},{"id":"AEDIS","name":"AEDIS","type":"character"},{"id":"IT.AESDTH","name":"IT.AESDTH","type":"character"},{"id":"IT.AESHOSP","name":"IT.AESHOSP","type":"character"},{"id":"IT.AESLIFE","name":"IT.AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTCOL","name":"AEDTCOL","type":"character"},{"id":"IT.AESTDAT","name":"IT.AESTDAT","type":"character"},{"id":"IT.AEENDAT","name":"IT.AEENDAT","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"933ffad85a64944443d94ae9042c1ee4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -686,12 +689,12 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="readct">Read in CT</h2>
 <p>Controlled Terminology is part of the SDTM specification and it is prepared by the user. In this example, the study controlled terminology name is <code>sdtm_ct.csv</code>. Users can read it from the package using the below code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e79e688795e16d8803ee" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e79e688795e16d8803ee">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-ca3f16320eed95f3c987" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ca3f16320eed95f3c987">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"codelist_code":["C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66726","C66728"],"term_code":["C25158","C25394","C29167","C42887","C42944","C42946","C42953","C42968","C42998","C25629"],"term_value":["CAPSULE","PILL","LOTION","AEROSOL","INHALANT","INJECTION","LIQUID","PATCH","TABLET","BEFORE"],"collected_value":["Capsule","Pill","Lotion","Aerosol","Inhalant","Injection","Liquid","Patch","Tablet","Prior"],"term_preferred_term":["Capsule Dosage Form","Pill Dosage Form","Lotion Dosage Form","Aerosol Dosage Form","Inhalant Dosage Form","Injectable Dosage Form","Liquid Dosage Form","patch","Tablet Dosage Form","Prior"],"term_synonyms":["cap","","","aer","","","","Patch Dosage Form","tab",""]},"columns":[{"id":"codelist_code","name":"codelist_code","type":"character"},{"id":"term_code","name":"term_code","type":"character"},{"id":"term_value","name":"term_value","type":"character"},{"id":"collected_value","name":"collected_value","type":"character"},{"id":"term_preferred_term","name":"term_preferred_term","type":"character"},{"id":"term_synonyms","name":"term_synonyms","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"457369fbf0ab91ab71cb6fc524d18704"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -700,20 +703,20 @@ function googleTranslateElementInit() {
 <p>The topic variable is mapped as a first step in the mapping process. It is the primary variable in the SDTM domain. The rest of the variables add further definition to the topic variable. In this example, the topic variable is <code>AETERM</code>. It is mapped from the raw dataset column <code>IT.AETERM</code>. The mapping logic is <code>Map the collected value in the ae_raw dataset IT.AETERM variable to AE.AETERM</code>.</p>
 <p>This mapping does not involve any controlled terminology. The <code>sdtm.oak::assign_no_ct()</code> function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>ae <span class="ot">&lt;-</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="co"># Derive topic variable</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="co"># Map AETERM using assign_no_ct, raw_var=IT.AETERM, tgt_var=AETERM</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">assign_no_ct</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AETERM"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">tgt_var =</span> <span class="st">"AETERM"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb5-9"><a href="#cb5-9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>ae <span class="ot">&lt;-</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>  <span class="co"># Derive topic variable</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>  <span class="co"># Map AETERM using assign_no_ct, raw_var=IT.AETERM, tgt_var=AETERM</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AETERM"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    <span class="at">tgt_var =</span> <span class="st">"AETERM"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-8eeb726e2d530acc6ab2" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8eeb726e2d530acc6ab2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023","701-1023","701-1023","701-1028","701-1028","701-1034"],"AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema","Erythema","Erythema","Application Site Erythema","Application Site Pruritus","Application Site Pruritus"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"AETERM","name":"AETERM","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"4504a2552f6f0c7c7132c279c147a3b4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-95380e693b051ad9ef12" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-95380e693b051ad9ef12">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023","701-1023","701-1023","701-1028","701-1028","701-1034"],"AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema","Erythema","Erythema","Application Site Erythema","Application Site Pruritus","Application Site Pruritus"]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"AETERM","name":"AETERM","type":"character"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"4504a2552f6f0c7c7132c279c147a3b4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -721,142 +724,142 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="maprest">Map Rest of the Variables</h2>
 <p>The Qualifiers, Identifiers, and Timing Variables can be mapped in any order.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="co"># Map AEOUT using assign_ct, raw_var=AEOUTCOME, tgt_var=AEOUT</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">raw_var =</span> <span class="st">"AEOUTCOME"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">tgt_var =</span> <span class="st">"AEOUT"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">ct_clst =</span> <span class="st">"C66768"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-10"><a href="#cb6-10"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="co"># Map AESEV using assign_no_ct, raw_var=IT.AESEV, tgt_var=AESEV</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-13"><a href="#cb6-13"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESEV"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEV"</span>,</span>
-<span id="cb6-16"><a href="#cb6-16"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-17"><a href="#cb6-17"></a>    <span class="at">ct_clst =</span> <span class="st">"C66769"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-19"><a href="#cb6-19"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a>  <span class="co"># Map AESER using assign_no_ct, raw_var=IT.AESER, tgt_var=AESER</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-22"><a href="#cb6-22"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-23"><a href="#cb6-23"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESER"</span>,</span>
-<span id="cb6-24"><a href="#cb6-24"></a>    <span class="at">tgt_var =</span> <span class="st">"AESER"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-26"><a href="#cb6-26"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-27"><a href="#cb6-27"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-28"><a href="#cb6-28"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a>  <span class="co"># Map AEACN using assign_no_ct, raw_var=IT.AEACN, tgt_var=AEACN</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>  <span class="fu">assign_no_ct</span>(</span>
-<span id="cb6-31"><a href="#cb6-31"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-32"><a href="#cb6-32"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEACN"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33"></a>    <span class="at">tgt_var =</span> <span class="st">"AEACN"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-35"><a href="#cb6-35"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a>  <span class="co"># Map AEREL using assign_ct, raw_var=IT.AEREL, tgt_var=AEREL</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a>  <span class="co"># User-added codelist is in the ct,</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-39"><a href="#cb6-39"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-40"><a href="#cb6-40"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEREL"</span>,</span>
-<span id="cb6-41"><a href="#cb6-41"></a>    <span class="at">tgt_var =</span> <span class="st">"AEREL"</span>,</span>
-<span id="cb6-42"><a href="#cb6-42"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-43"><a href="#cb6-43"></a>    <span class="at">ct_clst =</span> <span class="st">"AEREL"</span>,</span>
-<span id="cb6-44"><a href="#cb6-44"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-45"><a href="#cb6-45"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-46"><a href="#cb6-46"></a>  <span class="co"># Map AESCAN using assign_ct, raw_var=AESCAN, tgt_var=AESCAN</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-48"><a href="#cb6-48"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-49"><a href="#cb6-49"></a>    <span class="at">raw_var =</span> <span class="st">"AESCAN"</span>,</span>
-<span id="cb6-50"><a href="#cb6-50"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCAN"</span>,</span>
-<span id="cb6-51"><a href="#cb6-51"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-52"><a href="#cb6-52"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-53"><a href="#cb6-53"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-54"><a href="#cb6-54"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a>  <span class="co"># Map AESCNO using assign_ct, raw_var=AESCNO, tgt_var=AESCNO</span></span>
-<span id="cb6-56"><a href="#cb6-56"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-57"><a href="#cb6-57"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-58"><a href="#cb6-58"></a>    <span class="at">raw_var =</span> <span class="st">"AESCNO"</span>,</span>
-<span id="cb6-59"><a href="#cb6-59"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCONG"</span>,</span>
-<span id="cb6-60"><a href="#cb6-60"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-61"><a href="#cb6-61"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-62"><a href="#cb6-62"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-63"><a href="#cb6-63"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-64"><a href="#cb6-64"></a>  <span class="co"># Map AEDIS using assign_ct, raw_var=AEDIS, tgt_var=AEDIS</span></span>
-<span id="cb6-65"><a href="#cb6-65"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-66"><a href="#cb6-66"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-67"><a href="#cb6-67"></a>    <span class="at">raw_var =</span> <span class="st">"AEDIS"</span>,</span>
-<span id="cb6-68"><a href="#cb6-68"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDISAB"</span>,</span>
-<span id="cb6-69"><a href="#cb6-69"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-70"><a href="#cb6-70"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-71"><a href="#cb6-71"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-72"><a href="#cb6-72"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-73"><a href="#cb6-73"></a>  <span class="co"># Map AESDTH using assign_ct, raw_var=IT.AESDTH, tgt_var=AESDTH</span></span>
-<span id="cb6-74"><a href="#cb6-74"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-75"><a href="#cb6-75"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-76"><a href="#cb6-76"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESDTH"</span>,</span>
-<span id="cb6-77"><a href="#cb6-77"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDTH"</span>,</span>
-<span id="cb6-78"><a href="#cb6-78"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-79"><a href="#cb6-79"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-80"><a href="#cb6-80"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-81"><a href="#cb6-81"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-82"><a href="#cb6-82"></a>  <span class="co"># Map AESHOSP using assign_ct, raw_var=IT.AESHOSP, tgt_var=AESHOSP</span></span>
-<span id="cb6-83"><a href="#cb6-83"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-84"><a href="#cb6-84"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-85"><a href="#cb6-85"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESHOSP"</span>,</span>
-<span id="cb6-86"><a href="#cb6-86"></a>    <span class="at">tgt_var =</span> <span class="st">"AESHOSP"</span>,</span>
-<span id="cb6-87"><a href="#cb6-87"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-88"><a href="#cb6-88"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-89"><a href="#cb6-89"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-90"><a href="#cb6-90"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-91"><a href="#cb6-91"></a>  <span class="co"># Map AESLIFE using assign_ct, raw_var=IT.AESLIFE, tgt_var=AESLIFE</span></span>
-<span id="cb6-92"><a href="#cb6-92"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-93"><a href="#cb6-93"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-94"><a href="#cb6-94"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESLIFE"</span>,</span>
-<span id="cb6-95"><a href="#cb6-95"></a>    <span class="at">tgt_var =</span> <span class="st">"AESLIFE"</span>,</span>
-<span id="cb6-96"><a href="#cb6-96"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-97"><a href="#cb6-97"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-98"><a href="#cb6-98"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-99"><a href="#cb6-99"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-100"><a href="#cb6-100"></a>  <span class="co"># Map AESOD using assign_ct, raw_var=AESOD, tgt_var=AESOD</span></span>
-<span id="cb6-101"><a href="#cb6-101"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb6-102"><a href="#cb6-102"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-103"><a href="#cb6-103"></a>    <span class="at">raw_var =</span> <span class="st">"AESOD"</span>,</span>
-<span id="cb6-104"><a href="#cb6-104"></a>    <span class="at">tgt_var =</span> <span class="st">"AESOD"</span>,</span>
-<span id="cb6-105"><a href="#cb6-105"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb6-106"><a href="#cb6-106"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb6-107"><a href="#cb6-107"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-108"><a href="#cb6-108"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-109"><a href="#cb6-109"></a>  <span class="co"># Map AEDTC using assign_datetime, raw_var=AEDTCOL</span></span>
-<span id="cb6-110"><a href="#cb6-110"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb6-111"><a href="#cb6-111"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-112"><a href="#cb6-112"></a>    <span class="at">raw_var =</span> <span class="st">"AEDTCOL"</span>,</span>
-<span id="cb6-113"><a href="#cb6-113"></a>    <span class="at">tgt_var =</span> <span class="st">"AEDTC"</span>,</span>
-<span id="cb6-114"><a href="#cb6-114"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>)</span>
-<span id="cb6-115"><a href="#cb6-115"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-116"><a href="#cb6-116"></a>  <span class="co"># Map AESTDTC using assign_datetime, raw_var=IT.AESTDAT</span></span>
-<span id="cb6-117"><a href="#cb6-117"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb6-118"><a href="#cb6-118"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-119"><a href="#cb6-119"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESTDAT"</span>,</span>
-<span id="cb6-120"><a href="#cb6-120"></a>    <span class="at">tgt_var =</span> <span class="st">"AESTDTC"</span>,</span>
-<span id="cb6-121"><a href="#cb6-121"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
-<span id="cb6-122"><a href="#cb6-122"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-123"><a href="#cb6-123"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb6-124"><a href="#cb6-124"></a>  <span class="co"># Map AEENDTC using assign_datetime, raw_var=IT.AEENDAT</span></span>
-<span id="cb6-125"><a href="#cb6-125"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb6-126"><a href="#cb6-126"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb6-127"><a href="#cb6-127"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEENDAT"</span>,</span>
-<span id="cb6-128"><a href="#cb6-128"></a>    <span class="at">tgt_var =</span> <span class="st">"AEENDTC"</span>,</span>
-<span id="cb6-129"><a href="#cb6-129"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
-<span id="cb6-130"><a href="#cb6-130"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb6-131"><a href="#cb6-131"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>  <span class="co"># Map AEOUT using assign_ct, raw_var=AEOUTCOME, tgt_var=AEOUT</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    <span class="at">raw_var =</span> <span class="st">"AEOUTCOME"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    <span class="at">tgt_var =</span> <span class="st">"AEOUT"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>    <span class="at">ct_clst =</span> <span class="st">"C66768"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>  <span class="co"># Map AESEV using assign_no_ct, raw_var=IT.AESEV, tgt_var=AESEV</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESEV"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEV"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>    <span class="at">ct_clst =</span> <span class="st">"C66769"</span>,</span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a>  <span class="co"># Map AESER using assign_no_ct, raw_var=IT.AESER, tgt_var=AESER</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-label="23"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESER"</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-label="24"></a>    <span class="at">tgt_var =</span> <span class="st">"AESER"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-label="25"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-label="26"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-label="27"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-28"><a href="#cb6-28" aria-label="28"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-label="29"></a>  <span class="co"># Map AEACN using assign_no_ct, raw_var=IT.AEACN, tgt_var=AEACN</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-label="30"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb6-31"><a href="#cb6-31" aria-label="31"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-label="32"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEACN"</span>,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-label="33"></a>    <span class="at">tgt_var =</span> <span class="st">"AEACN"</span>,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-label="34"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-label="35"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-label="36"></a>  <span class="co"># Map AEREL using assign_ct, raw_var=IT.AEREL, tgt_var=AEREL</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-label="37"></a>  <span class="co"># User-added codelist is in the ct,</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-label="38"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-39"><a href="#cb6-39" aria-label="39"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-40"><a href="#cb6-40" aria-label="40"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEREL"</span>,</span>
+<span id="cb6-41"><a href="#cb6-41" aria-label="41"></a>    <span class="at">tgt_var =</span> <span class="st">"AEREL"</span>,</span>
+<span id="cb6-42"><a href="#cb6-42" aria-label="42"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-43"><a href="#cb6-43" aria-label="43"></a>    <span class="at">ct_clst =</span> <span class="st">"AEREL"</span>,</span>
+<span id="cb6-44"><a href="#cb6-44" aria-label="44"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-45"><a href="#cb6-45" aria-label="45"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-label="46"></a>  <span class="co"># Map AESCAN using assign_ct, raw_var=AESCAN, tgt_var=AESCAN</span></span>
+<span id="cb6-47"><a href="#cb6-47" aria-label="47"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-label="48"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-49"><a href="#cb6-49" aria-label="49"></a>    <span class="at">raw_var =</span> <span class="st">"AESCAN"</span>,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-label="50"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCAN"</span>,</span>
+<span id="cb6-51"><a href="#cb6-51" aria-label="51"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-52"><a href="#cb6-52" aria-label="52"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-53"><a href="#cb6-53" aria-label="53"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-54"><a href="#cb6-54" aria-label="54"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-label="55"></a>  <span class="co"># Map AESCNO using assign_ct, raw_var=AESCNO, tgt_var=AESCNO</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-label="56"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-57"><a href="#cb6-57" aria-label="57"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-58"><a href="#cb6-58" aria-label="58"></a>    <span class="at">raw_var =</span> <span class="st">"AESCNO"</span>,</span>
+<span id="cb6-59"><a href="#cb6-59" aria-label="59"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCONG"</span>,</span>
+<span id="cb6-60"><a href="#cb6-60" aria-label="60"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-61"><a href="#cb6-61" aria-label="61"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-62"><a href="#cb6-62" aria-label="62"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-63"><a href="#cb6-63" aria-label="63"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-64"><a href="#cb6-64" aria-label="64"></a>  <span class="co"># Map AEDIS using assign_ct, raw_var=AEDIS, tgt_var=AEDIS</span></span>
+<span id="cb6-65"><a href="#cb6-65" aria-label="65"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-66"><a href="#cb6-66" aria-label="66"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-67"><a href="#cb6-67" aria-label="67"></a>    <span class="at">raw_var =</span> <span class="st">"AEDIS"</span>,</span>
+<span id="cb6-68"><a href="#cb6-68" aria-label="68"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDISAB"</span>,</span>
+<span id="cb6-69"><a href="#cb6-69" aria-label="69"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-70"><a href="#cb6-70" aria-label="70"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-71"><a href="#cb6-71" aria-label="71"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-72"><a href="#cb6-72" aria-label="72"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-label="73"></a>  <span class="co"># Map AESDTH using assign_ct, raw_var=IT.AESDTH, tgt_var=AESDTH</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-label="74"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-75"><a href="#cb6-75" aria-label="75"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-76"><a href="#cb6-76" aria-label="76"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESDTH"</span>,</span>
+<span id="cb6-77"><a href="#cb6-77" aria-label="77"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDTH"</span>,</span>
+<span id="cb6-78"><a href="#cb6-78" aria-label="78"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-79"><a href="#cb6-79" aria-label="79"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-80"><a href="#cb6-80" aria-label="80"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-81"><a href="#cb6-81" aria-label="81"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-82"><a href="#cb6-82" aria-label="82"></a>  <span class="co"># Map AESHOSP using assign_ct, raw_var=IT.AESHOSP, tgt_var=AESHOSP</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-label="83"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-84"><a href="#cb6-84" aria-label="84"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-85"><a href="#cb6-85" aria-label="85"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESHOSP"</span>,</span>
+<span id="cb6-86"><a href="#cb6-86" aria-label="86"></a>    <span class="at">tgt_var =</span> <span class="st">"AESHOSP"</span>,</span>
+<span id="cb6-87"><a href="#cb6-87" aria-label="87"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-88"><a href="#cb6-88" aria-label="88"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-89"><a href="#cb6-89" aria-label="89"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-90"><a href="#cb6-90" aria-label="90"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-91"><a href="#cb6-91" aria-label="91"></a>  <span class="co"># Map AESLIFE using assign_ct, raw_var=IT.AESLIFE, tgt_var=AESLIFE</span></span>
+<span id="cb6-92"><a href="#cb6-92" aria-label="92"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-93"><a href="#cb6-93" aria-label="93"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-94"><a href="#cb6-94" aria-label="94"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESLIFE"</span>,</span>
+<span id="cb6-95"><a href="#cb6-95" aria-label="95"></a>    <span class="at">tgt_var =</span> <span class="st">"AESLIFE"</span>,</span>
+<span id="cb6-96"><a href="#cb6-96" aria-label="96"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-97"><a href="#cb6-97" aria-label="97"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-98"><a href="#cb6-98" aria-label="98"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-99"><a href="#cb6-99" aria-label="99"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-100"><a href="#cb6-100" aria-label="100"></a>  <span class="co"># Map AESOD using assign_ct, raw_var=AESOD, tgt_var=AESOD</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-label="101"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb6-102"><a href="#cb6-102" aria-label="102"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-103"><a href="#cb6-103" aria-label="103"></a>    <span class="at">raw_var =</span> <span class="st">"AESOD"</span>,</span>
+<span id="cb6-104"><a href="#cb6-104" aria-label="104"></a>    <span class="at">tgt_var =</span> <span class="st">"AESOD"</span>,</span>
+<span id="cb6-105"><a href="#cb6-105" aria-label="105"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb6-106"><a href="#cb6-106" aria-label="106"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb6-107"><a href="#cb6-107" aria-label="107"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-108"><a href="#cb6-108" aria-label="108"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-label="109"></a>  <span class="co"># Map AEDTC using assign_datetime, raw_var=AEDTCOL</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-label="110"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb6-111"><a href="#cb6-111" aria-label="111"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-112"><a href="#cb6-112" aria-label="112"></a>    <span class="at">raw_var =</span> <span class="st">"AEDTCOL"</span>,</span>
+<span id="cb6-113"><a href="#cb6-113" aria-label="113"></a>    <span class="at">tgt_var =</span> <span class="st">"AEDTC"</span>,</span>
+<span id="cb6-114"><a href="#cb6-114" aria-label="114"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>)</span>
+<span id="cb6-115"><a href="#cb6-115" aria-label="115"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-label="116"></a>  <span class="co"># Map AESTDTC using assign_datetime, raw_var=IT.AESTDAT</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-label="117"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb6-118"><a href="#cb6-118" aria-label="118"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-119"><a href="#cb6-119" aria-label="119"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESTDAT"</span>,</span>
+<span id="cb6-120"><a href="#cb6-120" aria-label="120"></a>    <span class="at">tgt_var =</span> <span class="st">"AESTDTC"</span>,</span>
+<span id="cb6-121"><a href="#cb6-121" aria-label="121"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb6-122"><a href="#cb6-122" aria-label="122"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-123"><a href="#cb6-123" aria-label="123"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-label="124"></a>  <span class="co"># Map AEENDTC using assign_datetime, raw_var=IT.AEENDAT</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-label="125"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb6-126"><a href="#cb6-126" aria-label="126"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb6-127"><a href="#cb6-127" aria-label="127"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEENDAT"</span>,</span>
+<span id="cb6-128"><a href="#cb6-128" aria-label="128"></a>    <span class="at">tgt_var =</span> <span class="st">"AEENDTC"</span>,</span>
+<span id="cb6-129"><a href="#cb6-129" aria-label="129"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb6-130"><a href="#cb6-130" aria-label="130"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb6-131"><a href="#cb6-131" aria-label="131"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-e6e29555a39be3f2d768" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e6e29555a39be3f2d768">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023","701-1023","701-1023","701-1028","701-1028","701-1034"],"AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema","Erythema","Erythema","Application Site Erythema","Application Site Pruritus","Application Site Pruritus"],"AEOUT":["NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED"],"AESEV":["MILD","MILD","MILD","MILD","MILD","MODERATE","MILD","MILD","MILD","MILD"],"AESER":["N","N","N","N","N","N","N","N","N","N"],"AEACN":[null,null,null,null,null,null,null,null,null,null],"AEREL":["PROBABLE","PROBABLE","REMOTE","POSSIBLE","POSSIBLE","PROBABLE","POSSIBLE","POSSIBLE","PROBABLE","PROBABLE"],"AESCAN":["No","No","No","No","No","No","No","No","No","No"],"AESCONG":["N","N","N","N","N","N","N","N","N","N"],"AESDISAB":["N","N","N","N","N","N","N","N","N","N"],"AESDTH":["N","N","N","N","N","N","N","N","N","N"],"AESHOSP":["N","N","N","N","N","N","N","N","N","N"],"AESLIFE":["N","N","N","N","N","N","N","N","N","N"],"AESOD":["No","No","No","No","No","No","No","No","No","No"],"AEDTC":["2014-01-16","2014-01-16","2014-01-16","2012-08-27","2012-08-27","2012-08-27","2012-09-02","2013-08-01","2013-08-14","2014-09-25"],"AESTDTC":["2014-01-03","2014-01-03","2014-01-09","2012-08-26","2012-08-07","2012-08-07","2012-08-07","2013-07-21","2013-08-08","2014-08-27"],"AEENDTC":[null,null,"2014-01-11",null,"2012-08-30",null,"2012-08-30",null,null,null]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"AETERM","name":"AETERM","type":"character"},{"id":"AEOUT","name":"AEOUT","type":"character"},{"id":"AESEV","name":"AESEV","type":"character"},{"id":"AESER","name":"AESER","type":"character"},{"id":"AEACN","name":"AEACN","type":"character"},{"id":"AEREL","name":"AEREL","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCONG","name":"AESCONG","type":"character"},{"id":"AESDISAB","name":"AESDISAB","type":"character"},{"id":"AESDTH","name":"AESDTH","type":"character"},{"id":"AESHOSP","name":"AESHOSP","type":"character"},{"id":"AESLIFE","name":"AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTC","name":"AEDTC","type":"iso8601"},{"id":"AESTDTC","name":"AESTDTC","type":"iso8601"},{"id":"AEENDTC","name":"AEENDTC","type":"iso8601"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"05ac2aa8923ba17e4ef58d00c2bf8d5f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-f76b432626c7c0f35f1d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f76b432626c7c0f35f1d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"oak_id":[1,2,3,4,5,6,7,8,9,10],"raw_source":["ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw","ae_raw"],"patient_number":["701-1015","701-1015","701-1015","701-1023","701-1023","701-1023","701-1023","701-1028","701-1028","701-1034"],"AETERM":["Application Site Erythema","Application Site Pruritus","Diarrhoea","Atrioventricular Block Second Degree","Erythema","Erythema","Erythema","Application Site Erythema","Application Site Pruritus","Application Site Pruritus"],"AEOUT":["NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED"],"AESEV":["MILD","MILD","MILD","MILD","MILD","MODERATE","MILD","MILD","MILD","MILD"],"AESER":["N","N","N","N","N","N","N","N","N","N"],"AEACN":[null,null,null,null,null,null,null,null,null,null],"AEREL":["PROBABLE","PROBABLE","REMOTE","POSSIBLE","POSSIBLE","PROBABLE","POSSIBLE","POSSIBLE","PROBABLE","PROBABLE"],"AESCAN":["No","No","No","No","No","No","No","No","No","No"],"AESCONG":["N","N","N","N","N","N","N","N","N","N"],"AESDISAB":["N","N","N","N","N","N","N","N","N","N"],"AESDTH":["N","N","N","N","N","N","N","N","N","N"],"AESHOSP":["N","N","N","N","N","N","N","N","N","N"],"AESLIFE":["N","N","N","N","N","N","N","N","N","N"],"AESOD":["No","No","No","No","No","No","No","No","No","No"],"AEDTC":["2014-01-16","2014-01-16","2014-01-16","2012-08-27","2012-08-27","2012-08-27","2012-09-02","2013-08-01","2013-08-14","2014-09-25"],"AESTDTC":["2014-01-03","2014-01-03","2014-01-09","2012-08-26","2012-08-07","2012-08-07","2012-08-07","2013-07-21","2013-08-08","2014-08-27"],"AEENDTC":[null,null,"2014-01-11",null,"2012-08-30",null,"2012-08-30",null,null,null]},"columns":[{"id":"oak_id","name":"oak_id","type":"numeric"},{"id":"raw_source","name":"raw_source","type":"character"},{"id":"patient_number","name":"patient_number","type":"character"},{"id":"AETERM","name":"AETERM","type":"character"},{"id":"AEOUT","name":"AEOUT","type":"character"},{"id":"AESEV","name":"AESEV","type":"character"},{"id":"AESER","name":"AESER","type":"character"},{"id":"AEACN","name":"AEACN","type":"character"},{"id":"AEREL","name":"AEREL","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCONG","name":"AESCONG","type":"character"},{"id":"AESDISAB","name":"AESDISAB","type":"character"},{"id":"AESDTH","name":"AESDTH","type":"character"},{"id":"AESHOSP","name":"AESHOSP","type":"character"},{"id":"AESLIFE","name":"AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTC","name":"AEDTC","type":"iso8601"},{"id":"AESTDTC","name":"AESTDTC","type":"iso8601"},{"id":"AEENDTC","name":"AEENDTC","type":"iso8601"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"05ac2aa8923ba17e4ef58d00c2bf8d5f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -868,53 +871,53 @@ function googleTranslateElementInit() {
 <h2 class="anchored" data-anchor-id="derivedvars">Create SDTM derived variables</h2>
 <p>The SDTM derived variables or any SDTM mapping that is applicable to all the records in the <code>ae</code> dataset produced in the previous step cam be created now.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">STUDYID =</span> ae_raw<span class="sc">$</span>STUDY,</span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="at">DOMAIN =</span> <span class="st">"AE"</span>,</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, ae_raw<span class="sc">$</span>PATNUM),</span>
-<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">AELLT =</span> ae_raw<span class="sc">$</span>AELLT,</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">AELLTCD =</span> ae_raw<span class="sc">$</span>AELLTCD,</span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="at">AEDECOD =</span> ae_raw<span class="sc">$</span>AEDECOD,</span>
-<span id="cb7-9"><a href="#cb7-9"></a>    <span class="at">AEPTCD =</span> ae_raw<span class="sc">$</span>AEPTCD,</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">AEHLT =</span> ae_raw<span class="sc">$</span>AEHLT,</span>
-<span id="cb7-11"><a href="#cb7-11"></a>    <span class="at">AEHLTCD =</span> ae_raw<span class="sc">$</span>AEHLTCD,</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    <span class="at">AEHLGT =</span> ae_raw<span class="sc">$</span>AEHLGT,</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    <span class="at">AEHLGTCD =</span> ae_raw<span class="sc">$</span>AEHLGTCD,</span>
-<span id="cb7-14"><a href="#cb7-14"></a>    <span class="at">AEBODSYS =</span> ae_raw<span class="sc">$</span>AEBODSYS,</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="at">AEBDSYCD =</span> ae_raw<span class="sc">$</span>AEBDSYCD,</span>
-<span id="cb7-16"><a href="#cb7-16"></a>    <span class="at">AESOC =</span> ae_raw<span class="sc">$</span>AESOC,</span>
-<span id="cb7-17"><a href="#cb7-17"></a>    <span class="at">AESOCCD =</span> ae_raw<span class="sc">$</span>AESOCCD,</span>
-<span id="cb7-18"><a href="#cb7-18"></a>    <span class="at">AETERM =</span> <span class="fu">toupper</span>(AETERM)</span>
-<span id="cb7-19"><a href="#cb7-19"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">derive_seq</span>(</span>
-<span id="cb7-21"><a href="#cb7-21"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEQ"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AETERM"</span>)</span>
-<span id="cb7-23"><a href="#cb7-23"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a>  <span class="fu">derive_study_day</span>(</span>
-<span id="cb7-25"><a href="#cb7-25"></a>    <span class="at">sdtm_in =</span> .,</span>
-<span id="cb7-26"><a href="#cb7-26"></a>    <span class="at">dm_domain =</span> dm,</span>
-<span id="cb7-27"><a href="#cb7-27"></a>    <span class="at">tgdt =</span> <span class="st">"AESTDTC"</span>,</span>
-<span id="cb7-28"><a href="#cb7-28"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
-<span id="cb7-29"><a href="#cb7-29"></a>    <span class="at">study_day_var =</span> <span class="st">"AESTDY"</span></span>
-<span id="cb7-30"><a href="#cb7-30"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>  <span class="fu">derive_study_day</span>(</span>
-<span id="cb7-32"><a href="#cb7-32"></a>    <span class="at">sdtm_in =</span> .,</span>
-<span id="cb7-33"><a href="#cb7-33"></a>    <span class="at">dm_domain =</span> dm,</span>
-<span id="cb7-34"><a href="#cb7-34"></a>    <span class="at">tgdt =</span> <span class="st">"AEENDTC"</span>,</span>
-<span id="cb7-35"><a href="#cb7-35"></a>    <span class="at">refdt =</span> <span class="st">"RFXENDTC"</span>,</span>
-<span id="cb7-36"><a href="#cb7-36"></a>    <span class="at">study_day_var =</span> <span class="st">"AEENDY"</span></span>
-<span id="cb7-37"><a href="#cb7-37"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a>  <span class="fu">select</span>(</span>
-<span id="cb7-39"><a href="#cb7-39"></a>    <span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"AESEQ"</span>, <span class="st">"AETERM"</span>, <span class="st">"AELLT"</span>, <span class="st">"AELLTCD"</span>, <span class="st">"AEDECOD"</span>, <span class="st">"AEPTCD"</span>, <span class="st">"AEHLT"</span>, <span class="st">"AEHLTCD"</span>, <span class="st">"AEHLGT"</span>,</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    <span class="st">"AEHLGTCD"</span>, <span class="st">"AEBODSYS"</span>, <span class="st">"AEBDSYCD"</span>, <span class="st">"AESOC"</span>, <span class="st">"AESOCCD"</span>, <span class="st">"AESEV"</span>, <span class="st">"AESER"</span>, <span class="st">"AEACN"</span>, <span class="st">"AEREL"</span>, <span class="st">"AEOUT"</span>, <span class="st">"AESCAN"</span>, <span class="st">"AESCONG"</span>,</span>
-<span id="cb7-41"><a href="#cb7-41"></a>    <span class="st">"AESDISAB"</span>, <span class="st">"AESDTH"</span>, <span class="st">"AESHOSP"</span>, <span class="st">"AESLIFE"</span>, <span class="st">"AESOD"</span>, <span class="st">"AEDTC"</span>, <span class="st">"AESTDTC"</span>, <span class="st">"AEENDTC"</span>, <span class="st">"AESTDY"</span>, <span class="st">"AEENDY"</span></span>
-<span id="cb7-42"><a href="#cb7-42"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="at">STUDYID =</span> ae_raw<span class="sc">$</span>STUDY,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>    <span class="at">DOMAIN =</span> <span class="st">"AE"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, ae_raw<span class="sc">$</span>PATNUM),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>    <span class="at">AELLT =</span> ae_raw<span class="sc">$</span>AELLT,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>    <span class="at">AELLTCD =</span> ae_raw<span class="sc">$</span>AELLTCD,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>    <span class="at">AEDECOD =</span> ae_raw<span class="sc">$</span>AEDECOD,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a>    <span class="at">AEPTCD =</span> ae_raw<span class="sc">$</span>AEPTCD,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>    <span class="at">AEHLT =</span> ae_raw<span class="sc">$</span>AEHLT,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a>    <span class="at">AEHLTCD =</span> ae_raw<span class="sc">$</span>AEHLTCD,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a>    <span class="at">AEHLGT =</span> ae_raw<span class="sc">$</span>AEHLGT,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-label="13"></a>    <span class="at">AEHLGTCD =</span> ae_raw<span class="sc">$</span>AEHLGTCD,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-label="14"></a>    <span class="at">AEBODSYS =</span> ae_raw<span class="sc">$</span>AEBODSYS,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-label="15"></a>    <span class="at">AEBDSYCD =</span> ae_raw<span class="sc">$</span>AEBDSYCD,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-label="16"></a>    <span class="at">AESOC =</span> ae_raw<span class="sc">$</span>AESOC,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-label="17"></a>    <span class="at">AESOCCD =</span> ae_raw<span class="sc">$</span>AESOCCD,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-label="18"></a>    <span class="at">AETERM =</span> <span class="fu">toupper</span>(AETERM)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-label="19"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-label="20"></a>  <span class="fu">derive_seq</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-label="21"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEQ"</span>,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-label="22"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AETERM"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-label="23"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-label="24"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb7-25"><a href="#cb7-25" aria-label="25"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-label="26"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-label="27"></a>    <span class="at">tgdt =</span> <span class="st">"AESTDTC"</span>,</span>
+<span id="cb7-28"><a href="#cb7-28" aria-label="28"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-label="29"></a>    <span class="at">study_day_var =</span> <span class="st">"AESTDY"</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-label="30"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-label="31"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb7-32"><a href="#cb7-32" aria-label="32"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-label="33"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb7-34"><a href="#cb7-34" aria-label="34"></a>    <span class="at">tgdt =</span> <span class="st">"AEENDTC"</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-label="35"></a>    <span class="at">refdt =</span> <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-label="36"></a>    <span class="at">study_day_var =</span> <span class="st">"AEENDY"</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-label="37"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-label="38"></a>  <span class="fu">select</span>(</span>
+<span id="cb7-39"><a href="#cb7-39" aria-label="39"></a>    <span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"AESEQ"</span>, <span class="st">"AETERM"</span>, <span class="st">"AELLT"</span>, <span class="st">"AELLTCD"</span>, <span class="st">"AEDECOD"</span>, <span class="st">"AEPTCD"</span>, <span class="st">"AEHLT"</span>, <span class="st">"AEHLTCD"</span>, <span class="st">"AEHLGT"</span>,</span>
+<span id="cb7-40"><a href="#cb7-40" aria-label="40"></a>    <span class="st">"AEHLGTCD"</span>, <span class="st">"AEBODSYS"</span>, <span class="st">"AEBDSYCD"</span>, <span class="st">"AESOC"</span>, <span class="st">"AESOCCD"</span>, <span class="st">"AESEV"</span>, <span class="st">"AESER"</span>, <span class="st">"AEACN"</span>, <span class="st">"AEREL"</span>, <span class="st">"AEOUT"</span>, <span class="st">"AESCAN"</span>, <span class="st">"AESCONG"</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-label="41"></a>    <span class="st">"AESDISAB"</span>, <span class="st">"AESDTH"</span>, <span class="st">"AESHOSP"</span>, <span class="st">"AESLIFE"</span>, <span class="st">"AESOD"</span>, <span class="st">"AEDTC"</span>, <span class="st">"AESTDTC"</span>, <span class="st">"AEENDTC"</span>, <span class="st">"AESTDY"</span>, <span class="st">"AEENDY"</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-label="42"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-2608fef26769c989b29f" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-2608fef26769c989b29f">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["AE","AE","AE","AE","AE","AE","AE","AE","AE","AE"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1023","01-701-1023","01-701-1023","01-701-1023","01-701-1028","01-701-1028","01-701-1034"],"AESEQ":[1,2,3,1,2,3,4,1,2,1],"AETERM":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA","ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","APPLICATION SITE PRURITUS"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA","LOCALIZED ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE ITCHING","APPLICATION SITE ITCHING"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150,10024781,10015150,10003041,10003047,10003047],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA","ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","APPLICATION SITE PRURITUS"],"AEPTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284","HLT_0284","HLT_0284","HLT_0617","HLT_0317","HLT_0317"],"AEHLTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192","HLGT_0192","HLGT_0192","HLGT_0152","HLGT_0338","HLGT_0338"],"AEHLGTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"],"AEBDSYCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785,10040785,10040785,10018065,10018065,10018065],"AESEV":["MILD","MILD","MILD","MILD","MILD","MODERATE","MILD","MILD","MILD","MILD"],"AESER":["N","N","N","N","N","N","N","N","N","N"],"AEACN":[null,null,null,null,null,null,null,null,null,null],"AEREL":["PROBABLE","PROBABLE","REMOTE","POSSIBLE","POSSIBLE","PROBABLE","POSSIBLE","POSSIBLE","PROBABLE","PROBABLE"],"AEOUT":["NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED"],"AESCAN":["No","No","No","No","No","No","No","No","No","No"],"AESCONG":["N","N","N","N","N","N","N","N","N","N"],"AESDISAB":["N","N","N","N","N","N","N","N","N","N"],"AESDTH":["N","N","N","N","N","N","N","N","N","N"],"AESHOSP":["N","N","N","N","N","N","N","N","N","N"],"AESLIFE":["N","N","N","N","N","N","N","N","N","N"],"AESOD":["No","No","No","No","No","No","No","No","No","No"],"AEDTC":["2014-01-16","2014-01-16","2014-01-16","2012-08-27","2012-08-27","2012-08-27","2012-09-02","2013-08-01","2013-08-14","2014-09-25"],"AESTDTC":["2014-01-03","2014-01-03","2014-01-09","2012-08-26","2012-08-07","2012-08-07","2012-08-07","2013-07-21","2013-08-08","2014-08-27"],"AEENDTC":[null,null,"2014-01-11",null,"2012-08-30",null,"2012-08-30",null,null,null],"AESTDY":[2,2,8,22,3,3,3,3,21,58],"AEENDY":["NA","NA",-172,"NA",-2,"NA",-2,"NA","NA","NA"]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"AESEQ","name":"AESEQ","type":"numeric"},{"id":"AETERM","name":"AETERM","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"AESEV","name":"AESEV","type":"character"},{"id":"AESER","name":"AESER","type":"character"},{"id":"AEACN","name":"AEACN","type":"character"},{"id":"AEREL","name":"AEREL","type":"character"},{"id":"AEOUT","name":"AEOUT","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCONG","name":"AESCONG","type":"character"},{"id":"AESDISAB","name":"AESDISAB","type":"character"},{"id":"AESDTH","name":"AESDTH","type":"character"},{"id":"AESHOSP","name":"AESHOSP","type":"character"},{"id":"AESLIFE","name":"AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTC","name":"AEDTC","type":"iso8601"},{"id":"AESTDTC","name":"AESTDTC","type":"Date"},{"id":"AEENDTC","name":"AEENDTC","type":"Date"},{"id":"AESTDY","name":"AESTDY","type":"numeric"},{"id":"AEENDY","name":"AEENDY","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"4692cccd8555e2073dcadc0309cc4aff"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-a944d9e4bfa0a124fe3d" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a944d9e4bfa0a124fe3d">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"STUDYID":["CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01","CDISCPILOT01"],"DOMAIN":["AE","AE","AE","AE","AE","AE","AE","AE","AE","AE"],"USUBJID":["01-701-1015","01-701-1015","01-701-1015","01-701-1023","01-701-1023","01-701-1023","01-701-1023","01-701-1028","01-701-1028","01-701-1034"],"AESEQ":[1,2,3,1,2,3,4,1,2,1],"AETERM":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA","ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","APPLICATION SITE PRURITUS"],"AELLT":["APPLICATION SITE REDNESS","APPLICATION SITE ITCHING","DIARRHEA","AV BLOCK SECOND DEGREE","ERYTHEMA","LOCALIZED ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE ITCHING","APPLICATION SITE ITCHING"],"AELLTCD":[10003058,10003047,10012727,10003851,10015150,10024781,10015150,10003041,10003047,10003047],"AEDECOD":["APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","DIARRHOEA","ATRIOVENTRICULAR BLOCK SECOND DEGREE","ERYTHEMA","ERYTHEMA","ERYTHEMA","APPLICATION SITE ERYTHEMA","APPLICATION SITE PRURITUS","APPLICATION SITE PRURITUS"],"AEPTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEHLT":["HLT_0617","HLT_0317","HLT_0148","HLT_0415","HLT_0284","HLT_0284","HLT_0284","HLT_0617","HLT_0317","HLT_0317"],"AEHLTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEHLGT":["HLGT_0152","HLGT_0338","HLGT_0588","HLGT_0086","HLGT_0192","HLGT_0192","HLGT_0192","HLGT_0152","HLGT_0338","HLGT_0338"],"AEHLGTCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AEBODSYS":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"],"AEBDSYCD":["NA","NA","NA","NA","NA","NA","NA","NA","NA","NA"],"AESOC":["GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GASTROINTESTINAL DISORDERS","CARDIAC DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","SKIN AND SUBCUTANEOUS TISSUE DISORDERS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS","GENERAL DISORDERS AND ADMINISTRATION SITE CONDITIONS"],"AESOCCD":[10018065,10018065,10017947,10007541,10040785,10040785,10040785,10018065,10018065,10018065],"AESEV":["MILD","MILD","MILD","MILD","MILD","MODERATE","MILD","MILD","MILD","MILD"],"AESER":["N","N","N","N","N","N","N","N","N","N"],"AEACN":[null,null,null,null,null,null,null,null,null,null],"AEREL":["PROBABLE","PROBABLE","REMOTE","POSSIBLE","POSSIBLE","PROBABLE","POSSIBLE","POSSIBLE","PROBABLE","PROBABLE"],"AEOUT":["NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","RECOVERED/RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED","NOT RECOVERED/NOT RESOLVED"],"AESCAN":["No","No","No","No","No","No","No","No","No","No"],"AESCONG":["N","N","N","N","N","N","N","N","N","N"],"AESDISAB":["N","N","N","N","N","N","N","N","N","N"],"AESDTH":["N","N","N","N","N","N","N","N","N","N"],"AESHOSP":["N","N","N","N","N","N","N","N","N","N"],"AESLIFE":["N","N","N","N","N","N","N","N","N","N"],"AESOD":["No","No","No","No","No","No","No","No","No","No"],"AEDTC":["2014-01-16","2014-01-16","2014-01-16","2012-08-27","2012-08-27","2012-08-27","2012-09-02","2013-08-01","2013-08-14","2014-09-25"],"AESTDTC":["2014-01-03","2014-01-03","2014-01-09","2012-08-26","2012-08-07","2012-08-07","2012-08-07","2013-07-21","2013-08-08","2014-08-27"],"AEENDTC":[null,null,"2014-01-11",null,"2012-08-30",null,"2012-08-30",null,null,null],"AESTDY":[2,2,8,22,3,3,3,3,21,58],"AEENDY":["NA","NA",-172,"NA",-2,"NA",-2,"NA","NA","NA"]},"columns":[{"id":"STUDYID","name":"STUDYID","type":"character"},{"id":"DOMAIN","name":"DOMAIN","type":"character"},{"id":"USUBJID","name":"USUBJID","type":"character"},{"id":"AESEQ","name":"AESEQ","type":"numeric"},{"id":"AETERM","name":"AETERM","type":"character"},{"id":"AELLT","name":"AELLT","type":"character"},{"id":"AELLTCD","name":"AELLTCD","type":"numeric"},{"id":"AEDECOD","name":"AEDECOD","type":"character"},{"id":"AEPTCD","name":"AEPTCD","type":"numeric"},{"id":"AEHLT","name":"AEHLT","type":"character"},{"id":"AEHLTCD","name":"AEHLTCD","type":"numeric"},{"id":"AEHLGT","name":"AEHLGT","type":"character"},{"id":"AEHLGTCD","name":"AEHLGTCD","type":"numeric"},{"id":"AEBODSYS","name":"AEBODSYS","type":"character"},{"id":"AEBDSYCD","name":"AEBDSYCD","type":"numeric"},{"id":"AESOC","name":"AESOC","type":"character"},{"id":"AESOCCD","name":"AESOCCD","type":"numeric"},{"id":"AESEV","name":"AESEV","type":"character"},{"id":"AESER","name":"AESER","type":"character"},{"id":"AEACN","name":"AEACN","type":"character"},{"id":"AEREL","name":"AEREL","type":"character"},{"id":"AEOUT","name":"AEOUT","type":"character"},{"id":"AESCAN","name":"AESCAN","type":"character"},{"id":"AESCONG","name":"AESCONG","type":"character"},{"id":"AESDISAB","name":"AESDISAB","type":"character"},{"id":"AESDTH","name":"AESDTH","type":"character"},{"id":"AESHOSP","name":"AESHOSP","type":"character"},{"id":"AESLIFE","name":"AESLIFE","type":"character"},{"id":"AESOD","name":"AESOD","type":"character"},{"id":"AEDTC","name":"AEDTC","type":"iso8601"},{"id":"AESTDTC","name":"AESTDTC","type":"Date"},{"id":"AEENDTC","name":"AEENDTC","type":"Date"},{"id":"AESTDY","name":"AESTDY","type":"numeric"},{"id":"AEENDY","name":"AEENDY","type":"numeric"}],"defaultPageSize":5,"highlight":true,"bordered":true,"striped":true,"compact":true,"nowrap":true,"theme":{"color":"#333","backgroundColor":"white","borderColor":"#ddd","stripedColor":"#f8f9fa","highlightColor":"#dfe6f2","cellPadding":"8px"},"dataKey":"4692cccd8555e2073dcadc0309cc4aff"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1034,16 +1037,16 @@ function googleTranslateElementInit() {
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1405,322 +1408,322 @@ function googleTranslateElementInit() {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="an">title:</span><span class="co"> "AE"</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="an">order:</span><span class="co"> 3</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">---</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
-<span id="cb8-8"><a href="#cb8-8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
-<span id="cb8-9"><a href="#cb8-9"></a>  <span class="cn">NULL</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>}</span>
-<span id="cb8-11"><a href="#cb8-11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="in">```</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="fu"># Introduction</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a>This article describes how to create an events SDTM domain using the <span class="in">`{sdtm.oak}`</span> package. Examples are currently presented and tested in the context of the <span class="in">`AE`</span> domain.</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a>Before reading this article, it is recommended that users review some of the articles in the package documentation of <span class="in">`{sdtm.oak}`</span> to understand some of the key concepts:</span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co">[</span><span class="ot">Algorithms &amp; Sub-Algorithms</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html)</span>,</span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">[</span><span class="ot">Creating an Interventions Domain</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html)</span>, which provides a detailed explanation of various concepts in <span class="in">`{sdtm.oak}`</span>, such as <span class="in">`oak_id_vars`</span>, <span class="in">`condition_add`</span>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</span>
-<span id="cb8-22"><a href="#cb8-22"></a></span>
-<span id="cb8-23"><a href="#cb8-23"></a>In this article, we will dive directly into programming and provide further explanation only where it is required.</span>
-<span id="cb8-24"><a href="#cb8-24"></a></span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="fu"># Programming workflow</span></span>
-<span id="cb8-26"><a href="#cb8-26"></a></span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in data</span><span class="co">](#readdata)</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create oak_id_vars</span><span class="co">](#oakidvars)</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in CT</span><span class="co">](#readct)</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Topic Variable</span><span class="co">](#maptopic)</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Rest of the Variables</span><span class="co">](#maprest)</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Repeat Map Topic and Map Rest</span><span class="co">](#repeatsteps)</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a></span>
-<span id="cb8-34"><a href="#cb8-34"></a>Repeat the above steps for different raw datasets before proceeding with the below steps.</span>
-<span id="cb8-35"><a href="#cb8-35"></a></span>
-<span id="cb8-36"><a href="#cb8-36"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create SDTM derived variables</span><span class="co">](#derivedvars)</span></span>
-<span id="cb8-37"><a href="#cb8-37"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Add Labels and Attributes</span><span class="co">](#attributes)</span></span>
-<span id="cb8-38"><a href="#cb8-38"></a></span>
-<span id="cb8-39"><a href="#cb8-39"></a><span class="fu">## Read in data {#readdata}</span></span>
-<span id="cb8-40"><a href="#cb8-40"></a></span>
-<span id="cb8-41"><a href="#cb8-41"></a>Read all the raw datasets into the environment. In this example, the raw dataset name is <span class="in">`ae_raw`</span>. Users can read them from the <span class="in">`{pharmaverseraw}`</span> package using the below code:</span>
-<span id="cb8-42"><a href="#cb8-42"></a></span>
-<span id="cb8-43"><a href="#cb8-43"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
-<span id="cb8-44"><a href="#cb8-44"></a><span class="fu">library</span>(sdtm.oak)</span>
-<span id="cb8-45"><a href="#cb8-45"></a><span class="fu">library</span>(pharmaverseraw)</span>
-<span id="cb8-46"><a href="#cb8-46"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-47"><a href="#cb8-47"></a></span>
-<span id="cb8-48"><a href="#cb8-48"></a>ae_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ae_raw</span>
-<span id="cb8-49"><a href="#cb8-49"></a><span class="in">```</span></span>
-<span id="cb8-50"><a href="#cb8-50"></a></span>
-<span id="cb8-51"><a href="#cb8-51"></a>Adverse Events Raw dataset</span>
-<span id="cb8-52"><a href="#cb8-52"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a><span class="fu">print_df</span>(ae_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb8-54"><a href="#cb8-54"></a><span class="in">```</span></span>
-<span id="cb8-55"><a href="#cb8-55"></a></span>
-<span id="cb8-56"><a href="#cb8-56"></a></span>
-<span id="cb8-57"><a href="#cb8-57"></a>Read in the DM domain</span>
-<span id="cb8-58"><a href="#cb8-58"></a></span>
-<span id="cb8-61"><a href="#cb8-61"></a><span class="in">```{r}</span></span>
-<span id="cb8-62"><a href="#cb8-62"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span>
-<span id="cb8-63"><a href="#cb8-63"></a><span class="in">```</span></span>
-<span id="cb8-64"><a href="#cb8-64"></a></span>
-<span id="cb8-65"><a href="#cb8-65"></a><span class="fu">### SDTM aCRF</span></span>
-<span id="cb8-66"><a href="#cb8-66"></a></span>
-<span id="cb8-67"><a href="#cb8-67"></a>The mock up of the Adverse Events aCRF can be viewed <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/AdverseEvent_aCRF.pdf)</span>:</span>
-<span id="cb8-68"><a href="#cb8-68"></a></span>
-<span id="cb8-69"><a href="#cb8-69"></a><span class="fu">## Create oak_id_vars {#oakidvars}</span></span>
-<span id="cb8-70"><a href="#cb8-70"></a></span>
-<span id="cb8-73"><a href="#cb8-73"></a><span class="in">```{r}</span></span>
-<span id="cb8-74"><a href="#cb8-74"></a>ae_raw <span class="ot">&lt;-</span> ae_raw <span class="sc">%&gt;%</span></span>
-<span id="cb8-75"><a href="#cb8-75"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
-<span id="cb8-76"><a href="#cb8-76"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
-<span id="cb8-77"><a href="#cb8-77"></a>    <span class="at">raw_src =</span> <span class="st">"ae_raw"</span></span>
-<span id="cb8-78"><a href="#cb8-78"></a>  )</span>
-<span id="cb8-79"><a href="#cb8-79"></a><span class="in">```</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a></span>
-<span id="cb8-81"><a href="#cb8-81"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-82"><a href="#cb8-82"></a><span class="fu">print_df</span>(ae_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb8-83"><a href="#cb8-83"></a><span class="in">```</span></span>
-<span id="cb8-84"><a href="#cb8-84"></a></span>
-<span id="cb8-85"><a href="#cb8-85"></a><span class="fu">## Read in CT {#readct}</span></span>
-<span id="cb8-86"><a href="#cb8-86"></a></span>
-<span id="cb8-87"><a href="#cb8-87"></a>Controlled Terminology is part of the SDTM specification and it is prepared by the user.  In this example, the study controlled terminology name is <span class="in">`sdtm_ct.csv`</span>. Users can read it from the package using the below code:</span>
-<span id="cb8-88"><a href="#cb8-88"></a><span class="in">```{r, echo = TRUE}</span></span>
-<span id="cb8-89"><a href="#cb8-89"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span>
-<span id="cb8-90"><a href="#cb8-90"></a><span class="in">```</span></span>
-<span id="cb8-91"><a href="#cb8-91"></a></span>
-<span id="cb8-92"><a href="#cb8-92"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-93"><a href="#cb8-93"></a><span class="fu">print_df</span>(study_ct, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb8-94"><a href="#cb8-94"></a><span class="in">```</span></span>
-<span id="cb8-95"><a href="#cb8-95"></a></span>
-<span id="cb8-96"><a href="#cb8-96"></a><span class="fu">## Map Topic Variable {#maptopic}</span></span>
-<span id="cb8-97"><a href="#cb8-97"></a></span>
-<span id="cb8-98"><a href="#cb8-98"></a>The topic variable is mapped as a first step in the mapping process. It is the primary variable in the SDTM domain. The rest of the variables add further definition to the topic variable. In this example, the topic variable is <span class="in">`AETERM`</span>. It is mapped from the raw dataset column <span class="in">`IT.AETERM`</span>. The mapping logic is <span class="in">`Map the collected value in the ae_raw dataset IT.AETERM variable to AE.AETERM`</span>.</span>
-<span id="cb8-99"><a href="#cb8-99"></a></span>
-<span id="cb8-100"><a href="#cb8-100"></a>This mapping does not involve any controlled terminology. The <span class="in">`sdtm.oak::assign_no_ct()`</span> function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.</span>
-<span id="cb8-101"><a href="#cb8-101"></a></span>
-<span id="cb8-104"><a href="#cb8-104"></a><span class="in">```{r}</span></span>
-<span id="cb8-105"><a href="#cb8-105"></a>ae <span class="ot">&lt;-</span></span>
-<span id="cb8-106"><a href="#cb8-106"></a>  <span class="co"># Derive topic variable</span></span>
-<span id="cb8-107"><a href="#cb8-107"></a>  <span class="co"># Map AETERM using assign_no_ct, raw_var=IT.AETERM, tgt_var=AETERM</span></span>
-<span id="cb8-108"><a href="#cb8-108"></a>  <span class="fu">assign_no_ct</span>(</span>
-<span id="cb8-109"><a href="#cb8-109"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-110"><a href="#cb8-110"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AETERM"</span>,</span>
-<span id="cb8-111"><a href="#cb8-111"></a>    <span class="at">tgt_var =</span> <span class="st">"AETERM"</span>,</span>
-<span id="cb8-112"><a href="#cb8-112"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-113"><a href="#cb8-113"></a>  )</span>
-<span id="cb8-114"><a href="#cb8-114"></a><span class="in">```</span></span>
-<span id="cb8-115"><a href="#cb8-115"></a></span>
-<span id="cb8-116"><a href="#cb8-116"></a></span>
-<span id="cb8-117"><a href="#cb8-117"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-118"><a href="#cb8-118"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb8-119"><a href="#cb8-119"></a><span class="in">```</span></span>
-<span id="cb8-120"><a href="#cb8-120"></a></span>
-<span id="cb8-121"><a href="#cb8-121"></a><span class="fu">## Map Rest of the Variables {#maprest}</span></span>
-<span id="cb8-122"><a href="#cb8-122"></a></span>
-<span id="cb8-123"><a href="#cb8-123"></a>The Qualifiers, Identifiers, and Timing Variables can be mapped in any order. </span>
-<span id="cb8-124"><a href="#cb8-124"></a></span>
-<span id="cb8-125"><a href="#cb8-125"></a><span class="in">```{r eval=TRUE}</span></span>
-<span id="cb8-126"><a href="#cb8-126"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
-<span id="cb8-127"><a href="#cb8-127"></a>  <span class="co"># Map AEOUT using assign_ct, raw_var=AEOUTCOME, tgt_var=AEOUT</span></span>
-<span id="cb8-128"><a href="#cb8-128"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-129"><a href="#cb8-129"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-130"><a href="#cb8-130"></a>    <span class="at">raw_var =</span> <span class="st">"AEOUTCOME"</span>,</span>
-<span id="cb8-131"><a href="#cb8-131"></a>    <span class="at">tgt_var =</span> <span class="st">"AEOUT"</span>,</span>
-<span id="cb8-132"><a href="#cb8-132"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-133"><a href="#cb8-133"></a>    <span class="at">ct_clst =</span> <span class="st">"C66768"</span>,</span>
-<span id="cb8-134"><a href="#cb8-134"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-135"><a href="#cb8-135"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-136"><a href="#cb8-136"></a>  <span class="co"># Map AESEV using assign_no_ct, raw_var=IT.AESEV, tgt_var=AESEV</span></span>
-<span id="cb8-137"><a href="#cb8-137"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-138"><a href="#cb8-138"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-139"><a href="#cb8-139"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESEV"</span>,</span>
-<span id="cb8-140"><a href="#cb8-140"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEV"</span>,</span>
-<span id="cb8-141"><a href="#cb8-141"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-142"><a href="#cb8-142"></a>    <span class="at">ct_clst =</span> <span class="st">"C66769"</span>,</span>
-<span id="cb8-143"><a href="#cb8-143"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-144"><a href="#cb8-144"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-145"><a href="#cb8-145"></a>  <span class="co"># Map AESER using assign_no_ct, raw_var=IT.AESER, tgt_var=AESER</span></span>
-<span id="cb8-146"><a href="#cb8-146"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-147"><a href="#cb8-147"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-148"><a href="#cb8-148"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESER"</span>,</span>
-<span id="cb8-149"><a href="#cb8-149"></a>    <span class="at">tgt_var =</span> <span class="st">"AESER"</span>,</span>
-<span id="cb8-150"><a href="#cb8-150"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-151"><a href="#cb8-151"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-152"><a href="#cb8-152"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-153"><a href="#cb8-153"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-154"><a href="#cb8-154"></a>  <span class="co"># Map AEACN using assign_no_ct, raw_var=IT.AEACN, tgt_var=AEACN</span></span>
-<span id="cb8-155"><a href="#cb8-155"></a>  <span class="fu">assign_no_ct</span>(</span>
-<span id="cb8-156"><a href="#cb8-156"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-157"><a href="#cb8-157"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEACN"</span>,</span>
-<span id="cb8-158"><a href="#cb8-158"></a>    <span class="at">tgt_var =</span> <span class="st">"AEACN"</span>,</span>
-<span id="cb8-159"><a href="#cb8-159"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-160"><a href="#cb8-160"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-161"><a href="#cb8-161"></a>  <span class="co"># Map AEREL using assign_ct, raw_var=IT.AEREL, tgt_var=AEREL</span></span>
-<span id="cb8-162"><a href="#cb8-162"></a>  <span class="co"># User-added codelist is in the ct,</span></span>
-<span id="cb8-163"><a href="#cb8-163"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-164"><a href="#cb8-164"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-165"><a href="#cb8-165"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEREL"</span>,</span>
-<span id="cb8-166"><a href="#cb8-166"></a>    <span class="at">tgt_var =</span> <span class="st">"AEREL"</span>,</span>
-<span id="cb8-167"><a href="#cb8-167"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-168"><a href="#cb8-168"></a>    <span class="at">ct_clst =</span> <span class="st">"AEREL"</span>,</span>
-<span id="cb8-169"><a href="#cb8-169"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-170"><a href="#cb8-170"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-171"><a href="#cb8-171"></a>  <span class="co"># Map AESCAN using assign_ct, raw_var=AESCAN, tgt_var=AESCAN</span></span>
-<span id="cb8-172"><a href="#cb8-172"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-173"><a href="#cb8-173"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-174"><a href="#cb8-174"></a>    <span class="at">raw_var =</span> <span class="st">"AESCAN"</span>,</span>
-<span id="cb8-175"><a href="#cb8-175"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCAN"</span>,</span>
-<span id="cb8-176"><a href="#cb8-176"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-177"><a href="#cb8-177"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-178"><a href="#cb8-178"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-179"><a href="#cb8-179"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-180"><a href="#cb8-180"></a>  <span class="co"># Map AESCNO using assign_ct, raw_var=AESCNO, tgt_var=AESCNO</span></span>
-<span id="cb8-181"><a href="#cb8-181"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-182"><a href="#cb8-182"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-183"><a href="#cb8-183"></a>    <span class="at">raw_var =</span> <span class="st">"AESCNO"</span>,</span>
-<span id="cb8-184"><a href="#cb8-184"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCONG"</span>,</span>
-<span id="cb8-185"><a href="#cb8-185"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-186"><a href="#cb8-186"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-187"><a href="#cb8-187"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-188"><a href="#cb8-188"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-189"><a href="#cb8-189"></a>  <span class="co"># Map AEDIS using assign_ct, raw_var=AEDIS, tgt_var=AEDIS</span></span>
-<span id="cb8-190"><a href="#cb8-190"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-191"><a href="#cb8-191"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-192"><a href="#cb8-192"></a>    <span class="at">raw_var =</span> <span class="st">"AEDIS"</span>,</span>
-<span id="cb8-193"><a href="#cb8-193"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDISAB"</span>,</span>
-<span id="cb8-194"><a href="#cb8-194"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-195"><a href="#cb8-195"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-196"><a href="#cb8-196"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-197"><a href="#cb8-197"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-198"><a href="#cb8-198"></a>  <span class="co"># Map AESDTH using assign_ct, raw_var=IT.AESDTH, tgt_var=AESDTH</span></span>
-<span id="cb8-199"><a href="#cb8-199"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-200"><a href="#cb8-200"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-201"><a href="#cb8-201"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESDTH"</span>,</span>
-<span id="cb8-202"><a href="#cb8-202"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDTH"</span>,</span>
-<span id="cb8-203"><a href="#cb8-203"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-204"><a href="#cb8-204"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-205"><a href="#cb8-205"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-206"><a href="#cb8-206"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-207"><a href="#cb8-207"></a>  <span class="co"># Map AESHOSP using assign_ct, raw_var=IT.AESHOSP, tgt_var=AESHOSP</span></span>
-<span id="cb8-208"><a href="#cb8-208"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-209"><a href="#cb8-209"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-210"><a href="#cb8-210"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESHOSP"</span>,</span>
-<span id="cb8-211"><a href="#cb8-211"></a>    <span class="at">tgt_var =</span> <span class="st">"AESHOSP"</span>,</span>
-<span id="cb8-212"><a href="#cb8-212"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-213"><a href="#cb8-213"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-214"><a href="#cb8-214"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-215"><a href="#cb8-215"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-216"><a href="#cb8-216"></a>  <span class="co"># Map AESLIFE using assign_ct, raw_var=IT.AESLIFE, tgt_var=AESLIFE</span></span>
-<span id="cb8-217"><a href="#cb8-217"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-218"><a href="#cb8-218"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-219"><a href="#cb8-219"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESLIFE"</span>,</span>
-<span id="cb8-220"><a href="#cb8-220"></a>    <span class="at">tgt_var =</span> <span class="st">"AESLIFE"</span>,</span>
-<span id="cb8-221"><a href="#cb8-221"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-222"><a href="#cb8-222"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-223"><a href="#cb8-223"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-224"><a href="#cb8-224"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-225"><a href="#cb8-225"></a>  <span class="co"># Map AESOD using assign_ct, raw_var=AESOD, tgt_var=AESOD</span></span>
-<span id="cb8-226"><a href="#cb8-226"></a>  <span class="fu">assign_ct</span>(</span>
-<span id="cb8-227"><a href="#cb8-227"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-228"><a href="#cb8-228"></a>    <span class="at">raw_var =</span> <span class="st">"AESOD"</span>,</span>
-<span id="cb8-229"><a href="#cb8-229"></a>    <span class="at">tgt_var =</span> <span class="st">"AESOD"</span>,</span>
-<span id="cb8-230"><a href="#cb8-230"></a>    <span class="at">ct_spec =</span> study_ct,</span>
-<span id="cb8-231"><a href="#cb8-231"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
-<span id="cb8-232"><a href="#cb8-232"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-233"><a href="#cb8-233"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-234"><a href="#cb8-234"></a>  <span class="co"># Map AEDTC using assign_datetime, raw_var=AEDTCOL</span></span>
-<span id="cb8-235"><a href="#cb8-235"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb8-236"><a href="#cb8-236"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-237"><a href="#cb8-237"></a>    <span class="at">raw_var =</span> <span class="st">"AEDTCOL"</span>,</span>
-<span id="cb8-238"><a href="#cb8-238"></a>    <span class="at">tgt_var =</span> <span class="st">"AEDTC"</span>,</span>
-<span id="cb8-239"><a href="#cb8-239"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>)</span>
-<span id="cb8-240"><a href="#cb8-240"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-241"><a href="#cb8-241"></a>  <span class="co"># Map AESTDTC using assign_datetime, raw_var=IT.AESTDAT</span></span>
-<span id="cb8-242"><a href="#cb8-242"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb8-243"><a href="#cb8-243"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-244"><a href="#cb8-244"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESTDAT"</span>,</span>
-<span id="cb8-245"><a href="#cb8-245"></a>    <span class="at">tgt_var =</span> <span class="st">"AESTDTC"</span>,</span>
-<span id="cb8-246"><a href="#cb8-246"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
-<span id="cb8-247"><a href="#cb8-247"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-248"><a href="#cb8-248"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-249"><a href="#cb8-249"></a>  <span class="co"># Map AEENDTC using assign_datetime, raw_var=IT.AEENDAT</span></span>
-<span id="cb8-250"><a href="#cb8-250"></a>  <span class="fu">assign_datetime</span>(</span>
-<span id="cb8-251"><a href="#cb8-251"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
-<span id="cb8-252"><a href="#cb8-252"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEENDAT"</span>,</span>
-<span id="cb8-253"><a href="#cb8-253"></a>    <span class="at">tgt_var =</span> <span class="st">"AEENDTC"</span>,</span>
-<span id="cb8-254"><a href="#cb8-254"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
-<span id="cb8-255"><a href="#cb8-255"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
-<span id="cb8-256"><a href="#cb8-256"></a>  )</span>
-<span id="cb8-257"><a href="#cb8-257"></a><span class="in">```</span></span>
-<span id="cb8-258"><a href="#cb8-258"></a></span>
-<span id="cb8-259"><a href="#cb8-259"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-260"><a href="#cb8-260"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb8-261"><a href="#cb8-261"></a><span class="in">```</span></span>
-<span id="cb8-262"><a href="#cb8-262"></a></span>
-<span id="cb8-263"><a href="#cb8-263"></a><span class="fu">## Repeat Map Topic and Map Rest {#repeatsteps}</span></span>
-<span id="cb8-264"><a href="#cb8-264"></a></span>
-<span id="cb8-265"><a href="#cb8-265"></a>There is only one topic variable in this raw data source, and there are no additional topic variable mappings. Users can proceed to the next step. This is required only if there is more than one topic variable to map.</span>
-<span id="cb8-266"><a href="#cb8-266"></a></span>
-<span id="cb8-267"><a href="#cb8-267"></a><span class="fu">## Create SDTM derived variables {#derivedvars}</span></span>
-<span id="cb8-268"><a href="#cb8-268"></a></span>
-<span id="cb8-269"><a href="#cb8-269"></a>The SDTM derived variables or any SDTM mapping that is applicable to all the records in the <span class="in">`ae`</span> dataset produced in the previous step cam be created now. </span>
-<span id="cb8-270"><a href="#cb8-270"></a></span>
-<span id="cb8-273"><a href="#cb8-273"></a><span class="in">```{r}</span></span>
-<span id="cb8-274"><a href="#cb8-274"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
-<span id="cb8-275"><a href="#cb8-275"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb8-276"><a href="#cb8-276"></a>    <span class="at">STUDYID =</span> ae_raw<span class="sc">$</span>STUDY,</span>
-<span id="cb8-277"><a href="#cb8-277"></a>    <span class="at">DOMAIN =</span> <span class="st">"AE"</span>,</span>
-<span id="cb8-278"><a href="#cb8-278"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, ae_raw<span class="sc">$</span>PATNUM),</span>
-<span id="cb8-279"><a href="#cb8-279"></a>    <span class="at">AELLT =</span> ae_raw<span class="sc">$</span>AELLT,</span>
-<span id="cb8-280"><a href="#cb8-280"></a>    <span class="at">AELLTCD =</span> ae_raw<span class="sc">$</span>AELLTCD,</span>
-<span id="cb8-281"><a href="#cb8-281"></a>    <span class="at">AEDECOD =</span> ae_raw<span class="sc">$</span>AEDECOD,</span>
-<span id="cb8-282"><a href="#cb8-282"></a>    <span class="at">AEPTCD =</span> ae_raw<span class="sc">$</span>AEPTCD,</span>
-<span id="cb8-283"><a href="#cb8-283"></a>    <span class="at">AEHLT =</span> ae_raw<span class="sc">$</span>AEHLT,</span>
-<span id="cb8-284"><a href="#cb8-284"></a>    <span class="at">AEHLTCD =</span> ae_raw<span class="sc">$</span>AEHLTCD,</span>
-<span id="cb8-285"><a href="#cb8-285"></a>    <span class="at">AEHLGT =</span> ae_raw<span class="sc">$</span>AEHLGT,</span>
-<span id="cb8-286"><a href="#cb8-286"></a>    <span class="at">AEHLGTCD =</span> ae_raw<span class="sc">$</span>AEHLGTCD,</span>
-<span id="cb8-287"><a href="#cb8-287"></a>    <span class="at">AEBODSYS =</span> ae_raw<span class="sc">$</span>AEBODSYS,</span>
-<span id="cb8-288"><a href="#cb8-288"></a>    <span class="at">AEBDSYCD =</span> ae_raw<span class="sc">$</span>AEBDSYCD,</span>
-<span id="cb8-289"><a href="#cb8-289"></a>    <span class="at">AESOC =</span> ae_raw<span class="sc">$</span>AESOC,</span>
-<span id="cb8-290"><a href="#cb8-290"></a>    <span class="at">AESOCCD =</span> ae_raw<span class="sc">$</span>AESOCCD,</span>
-<span id="cb8-291"><a href="#cb8-291"></a>    <span class="at">AETERM =</span> <span class="fu">toupper</span>(AETERM)</span>
-<span id="cb8-292"><a href="#cb8-292"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-293"><a href="#cb8-293"></a>  <span class="fu">derive_seq</span>(</span>
-<span id="cb8-294"><a href="#cb8-294"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEQ"</span>,</span>
-<span id="cb8-295"><a href="#cb8-295"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AETERM"</span>)</span>
-<span id="cb8-296"><a href="#cb8-296"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-297"><a href="#cb8-297"></a>  <span class="fu">derive_study_day</span>(</span>
-<span id="cb8-298"><a href="#cb8-298"></a>    <span class="at">sdtm_in =</span> .,</span>
-<span id="cb8-299"><a href="#cb8-299"></a>    <span class="at">dm_domain =</span> dm,</span>
-<span id="cb8-300"><a href="#cb8-300"></a>    <span class="at">tgdt =</span> <span class="st">"AESTDTC"</span>,</span>
-<span id="cb8-301"><a href="#cb8-301"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
-<span id="cb8-302"><a href="#cb8-302"></a>    <span class="at">study_day_var =</span> <span class="st">"AESTDY"</span></span>
-<span id="cb8-303"><a href="#cb8-303"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-304"><a href="#cb8-304"></a>  <span class="fu">derive_study_day</span>(</span>
-<span id="cb8-305"><a href="#cb8-305"></a>    <span class="at">sdtm_in =</span> .,</span>
-<span id="cb8-306"><a href="#cb8-306"></a>    <span class="at">dm_domain =</span> dm,</span>
-<span id="cb8-307"><a href="#cb8-307"></a>    <span class="at">tgdt =</span> <span class="st">"AEENDTC"</span>,</span>
-<span id="cb8-308"><a href="#cb8-308"></a>    <span class="at">refdt =</span> <span class="st">"RFXENDTC"</span>,</span>
-<span id="cb8-309"><a href="#cb8-309"></a>    <span class="at">study_day_var =</span> <span class="st">"AEENDY"</span></span>
-<span id="cb8-310"><a href="#cb8-310"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb8-311"><a href="#cb8-311"></a>  <span class="fu">select</span>(</span>
-<span id="cb8-312"><a href="#cb8-312"></a>    <span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"AESEQ"</span>, <span class="st">"AETERM"</span>, <span class="st">"AELLT"</span>, <span class="st">"AELLTCD"</span>, <span class="st">"AEDECOD"</span>, <span class="st">"AEPTCD"</span>, <span class="st">"AEHLT"</span>, <span class="st">"AEHLTCD"</span>, <span class="st">"AEHLGT"</span>,</span>
-<span id="cb8-313"><a href="#cb8-313"></a>    <span class="st">"AEHLGTCD"</span>, <span class="st">"AEBODSYS"</span>, <span class="st">"AEBDSYCD"</span>, <span class="st">"AESOC"</span>, <span class="st">"AESOCCD"</span>, <span class="st">"AESEV"</span>, <span class="st">"AESER"</span>, <span class="st">"AEACN"</span>, <span class="st">"AEREL"</span>, <span class="st">"AEOUT"</span>, <span class="st">"AESCAN"</span>, <span class="st">"AESCONG"</span>,</span>
-<span id="cb8-314"><a href="#cb8-314"></a>    <span class="st">"AESDISAB"</span>, <span class="st">"AESDTH"</span>, <span class="st">"AESHOSP"</span>, <span class="st">"AESLIFE"</span>, <span class="st">"AESOD"</span>, <span class="st">"AEDTC"</span>, <span class="st">"AESTDTC"</span>, <span class="st">"AEENDTC"</span>, <span class="st">"AESTDY"</span>, <span class="st">"AEENDY"</span></span>
-<span id="cb8-315"><a href="#cb8-315"></a>  )</span>
-<span id="cb8-316"><a href="#cb8-316"></a><span class="in">```</span></span>
-<span id="cb8-317"><a href="#cb8-317"></a></span>
-<span id="cb8-318"><a href="#cb8-318"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
-<span id="cb8-319"><a href="#cb8-319"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb8-320"><a href="#cb8-320"></a><span class="in">```</span></span>
-<span id="cb8-321"><a href="#cb8-321"></a></span>
-<span id="cb8-322"><a href="#cb8-322"></a><span class="fu">## Add Labels and Attributes {#attributes}</span></span>
-<span id="cb8-323"><a href="#cb8-323"></a></span>
-<span id="cb8-324"><a href="#cb8-324"></a>Yet to be developed. Please refer to <span class="in">`{metatools}`</span> package to investigate options.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "AE"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a><span class="an">order:</span><span class="co"> 3</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a><span class="co">---</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a><span class="in">```{r setup script, include=FALSE, purl=FALSE}</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>invisible_hook_purl <span class="ot">&lt;-</span> <span class="cf">function</span>(before, options, ...) {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>  knitr<span class="sc">::</span><span class="fu">hook_purl</span>(before, options, ...)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>  <span class="cn">NULL</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>}</span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span><span class="fu">set</span>(<span class="at">purl =</span> invisible_hook_purl)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a><span class="fu">source</span>(<span class="st">"functions/print_df.R"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a><span class="in">```</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a><span class="fu"># Introduction</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>This article describes how to create an events SDTM domain using the <span class="in">`{sdtm.oak}`</span> package. Examples are currently presented and tested in the context of the <span class="in">`AE`</span> domain.</span>
+<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-label="19"></a>Before reading this article, it is recommended that users review some of the articles in the package documentation of <span class="in">`{sdtm.oak}`</span> to understand some of the key concepts:</span>
+<span id="cb8-20"><a href="#cb8-20" aria-label="20"></a><span class="co">[</span><span class="ot">Algorithms &amp; Sub-Algorithms</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/algorithms.html)</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-label="21"></a><span class="co">[</span><span class="ot">Creating an Interventions Domain</span><span class="co">](https://pharmaverse.github.io/sdtm.oak/articles/interventions_domain.html)</span>, which provides a detailed explanation of various concepts in <span class="in">`{sdtm.oak}`</span>, such as <span class="in">`oak_id_vars`</span>, <span class="in">`condition_add`</span>, etc. It also offers guidance on which mapping algorithms or functions to use for different mappings and provides a more detailed explanation of how these mapping algorithms or functions work.</span>
+<span id="cb8-22"><a href="#cb8-22" aria-label="22"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-label="23"></a>In this article, we will dive directly into programming and provide further explanation only where it is required.</span>
+<span id="cb8-24"><a href="#cb8-24" aria-label="24"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-label="25"></a><span class="fu"># Programming workflow</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-label="26"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-label="27"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in data</span><span class="co">](#readdata)</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-label="28"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create oak_id_vars</span><span class="co">](#oakidvars)</span></span>
+<span id="cb8-29"><a href="#cb8-29" aria-label="29"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Read in CT</span><span class="co">](#readct)</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-label="30"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Topic Variable</span><span class="co">](#maptopic)</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-label="31"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Map Rest of the Variables</span><span class="co">](#maprest)</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-label="32"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Repeat Map Topic and Map Rest</span><span class="co">](#repeatsteps)</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-label="33"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-label="34"></a>Repeat the above steps for different raw datasets before proceeding with the below steps.</span>
+<span id="cb8-35"><a href="#cb8-35" aria-label="35"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-label="36"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Create SDTM derived variables</span><span class="co">](#derivedvars)</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-label="37"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Add Labels and Attributes</span><span class="co">](#attributes)</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-label="38"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-label="39"></a><span class="fu">## Read in data {#readdata}</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-label="40"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-label="41"></a>Read all the raw datasets into the environment. In this example, the raw dataset name is <span class="in">`ae_raw`</span>. Users can read them from the <span class="in">`{pharmaverseraw}`</span> package using the below code:</span>
+<span id="cb8-42"><a href="#cb8-42" aria-label="42"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-label="43"></a><span class="in">```{r setup, message=FALSE, warning=FALSE, results='hold'}</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-label="44"></a><span class="fu">library</span>(sdtm.oak)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-label="45"></a><span class="fu">library</span>(pharmaverseraw)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-label="46"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-label="47"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-label="48"></a>ae_raw <span class="ot">&lt;-</span> pharmaverseraw<span class="sc">::</span>ae_raw</span>
+<span id="cb8-49"><a href="#cb8-49" aria-label="49"></a><span class="in">```</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-label="50"></a></span>
+<span id="cb8-51"><a href="#cb8-51" aria-label="51"></a>Adverse Events Raw dataset</span>
+<span id="cb8-52"><a href="#cb8-52" aria-label="52"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-label="53"></a><span class="fu">print_df</span>(ae_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb8-54"><a href="#cb8-54" aria-label="54"></a><span class="in">```</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-label="55"></a></span>
+<span id="cb8-56"><a href="#cb8-56" aria-label="56"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-label="57"></a>Read in the DM domain</span>
+<span id="cb8-58"><a href="#cb8-58" aria-label="58"></a></span>
+<span id="cb8-61"><a href="#cb8-61" aria-label="59"></a><span class="in">```{r}</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-label="60"></a>dm <span class="ot">&lt;-</span> pharmaversesdtm<span class="sc">::</span>dm</span>
+<span id="cb8-63"><a href="#cb8-63" aria-label="61"></a><span class="in">```</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-label="62"></a></span>
+<span id="cb8-65"><a href="#cb8-65" aria-label="63"></a><span class="fu">### SDTM aCRF</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-label="64"></a></span>
+<span id="cb8-67"><a href="#cb8-67" aria-label="65"></a>The mock up of the Adverse Events aCRF can be viewed <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/pharmaverse/pharmaverseraw/blob/main/vignettes/articles/aCRFs/AdverseEvent_aCRF.pdf)</span>:</span>
+<span id="cb8-68"><a href="#cb8-68" aria-label="66"></a></span>
+<span id="cb8-69"><a href="#cb8-69" aria-label="67"></a><span class="fu">## Create oak_id_vars {#oakidvars}</span></span>
+<span id="cb8-70"><a href="#cb8-70" aria-label="68"></a></span>
+<span id="cb8-73"><a href="#cb8-73" aria-label="69"></a><span class="in">```{r}</span></span>
+<span id="cb8-74"><a href="#cb8-74" aria-label="70"></a>ae_raw <span class="ot">&lt;-</span> ae_raw <span class="sc">%&gt;%</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-label="71"></a>  <span class="fu">generate_oak_id_vars</span>(</span>
+<span id="cb8-76"><a href="#cb8-76" aria-label="72"></a>    <span class="at">pat_var =</span> <span class="st">"PATNUM"</span>,</span>
+<span id="cb8-77"><a href="#cb8-77" aria-label="73"></a>    <span class="at">raw_src =</span> <span class="st">"ae_raw"</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-label="74"></a>  )</span>
+<span id="cb8-79"><a href="#cb8-79" aria-label="75"></a><span class="in">```</span></span>
+<span id="cb8-80"><a href="#cb8-80" aria-label="76"></a></span>
+<span id="cb8-81"><a href="#cb8-81" aria-label="77"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-label="78"></a><span class="fu">print_df</span>(ae_raw, <span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb8-83"><a href="#cb8-83" aria-label="79"></a><span class="in">```</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-label="80"></a></span>
+<span id="cb8-85"><a href="#cb8-85" aria-label="81"></a><span class="fu">## Read in CT {#readct}</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-label="82"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-label="83"></a>Controlled Terminology is part of the SDTM specification and it is prepared by the user.  In this example, the study controlled terminology name is <span class="in">`sdtm_ct.csv`</span>. Users can read it from the package using the below code:</span>
+<span id="cb8-88"><a href="#cb8-88" aria-label="84"></a><span class="in">```{r, echo = TRUE}</span></span>
+<span id="cb8-89"><a href="#cb8-89" aria-label="85"></a>study_ct <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"metadata/sdtm_ct.csv"</span>)</span>
+<span id="cb8-90"><a href="#cb8-90" aria-label="86"></a><span class="in">```</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-label="87"></a></span>
+<span id="cb8-92"><a href="#cb8-92" aria-label="88"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-93"><a href="#cb8-93" aria-label="89"></a><span class="fu">print_df</span>(study_ct, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb8-94"><a href="#cb8-94" aria-label="90"></a><span class="in">```</span></span>
+<span id="cb8-95"><a href="#cb8-95" aria-label="91"></a></span>
+<span id="cb8-96"><a href="#cb8-96" aria-label="92"></a><span class="fu">## Map Topic Variable {#maptopic}</span></span>
+<span id="cb8-97"><a href="#cb8-97" aria-label="93"></a></span>
+<span id="cb8-98"><a href="#cb8-98" aria-label="94"></a>The topic variable is mapped as a first step in the mapping process. It is the primary variable in the SDTM domain. The rest of the variables add further definition to the topic variable. In this example, the topic variable is <span class="in">`AETERM`</span>. It is mapped from the raw dataset column <span class="in">`IT.AETERM`</span>. The mapping logic is <span class="in">`Map the collected value in the ae_raw dataset IT.AETERM variable to AE.AETERM`</span>.</span>
+<span id="cb8-99"><a href="#cb8-99" aria-label="95"></a></span>
+<span id="cb8-100"><a href="#cb8-100" aria-label="96"></a>This mapping does not involve any controlled terminology. The <span class="in">`sdtm.oak::assign_no_ct()`</span> function is used for mapping. Once the topic variable is mapped, the Qualifier, Identifier, and Timing variables can be mapped.</span>
+<span id="cb8-101"><a href="#cb8-101" aria-label="97"></a></span>
+<span id="cb8-104"><a href="#cb8-104" aria-label="98"></a><span class="in">```{r}</span></span>
+<span id="cb8-105"><a href="#cb8-105" aria-label="99"></a>ae <span class="ot">&lt;-</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-label="100"></a>  <span class="co"># Derive topic variable</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-label="101"></a>  <span class="co"># Map AETERM using assign_no_ct, raw_var=IT.AETERM, tgt_var=AETERM</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-label="102"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb8-109"><a href="#cb8-109" aria-label="103"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-110"><a href="#cb8-110" aria-label="104"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AETERM"</span>,</span>
+<span id="cb8-111"><a href="#cb8-111" aria-label="105"></a>    <span class="at">tgt_var =</span> <span class="st">"AETERM"</span>,</span>
+<span id="cb8-112"><a href="#cb8-112" aria-label="106"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-113"><a href="#cb8-113" aria-label="107"></a>  )</span>
+<span id="cb8-114"><a href="#cb8-114" aria-label="108"></a><span class="in">```</span></span>
+<span id="cb8-115"><a href="#cb8-115" aria-label="109"></a></span>
+<span id="cb8-116"><a href="#cb8-116" aria-label="110"></a></span>
+<span id="cb8-117"><a href="#cb8-117" aria-label="111"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-118"><a href="#cb8-118" aria-label="112"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb8-119"><a href="#cb8-119" aria-label="113"></a><span class="in">```</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-label="114"></a></span>
+<span id="cb8-121"><a href="#cb8-121" aria-label="115"></a><span class="fu">## Map Rest of the Variables {#maprest}</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-label="116"></a></span>
+<span id="cb8-123"><a href="#cb8-123" aria-label="117"></a>The Qualifiers, Identifiers, and Timing Variables can be mapped in any order. </span>
+<span id="cb8-124"><a href="#cb8-124" aria-label="118"></a></span>
+<span id="cb8-125"><a href="#cb8-125" aria-label="119"></a><span class="in">```{r eval=TRUE}</span></span>
+<span id="cb8-126"><a href="#cb8-126" aria-label="120"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-label="121"></a>  <span class="co"># Map AEOUT using assign_ct, raw_var=AEOUTCOME, tgt_var=AEOUT</span></span>
+<span id="cb8-128"><a href="#cb8-128" aria-label="122"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-129"><a href="#cb8-129" aria-label="123"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-130"><a href="#cb8-130" aria-label="124"></a>    <span class="at">raw_var =</span> <span class="st">"AEOUTCOME"</span>,</span>
+<span id="cb8-131"><a href="#cb8-131" aria-label="125"></a>    <span class="at">tgt_var =</span> <span class="st">"AEOUT"</span>,</span>
+<span id="cb8-132"><a href="#cb8-132" aria-label="126"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-133"><a href="#cb8-133" aria-label="127"></a>    <span class="at">ct_clst =</span> <span class="st">"C66768"</span>,</span>
+<span id="cb8-134"><a href="#cb8-134" aria-label="128"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-135"><a href="#cb8-135" aria-label="129"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-136"><a href="#cb8-136" aria-label="130"></a>  <span class="co"># Map AESEV using assign_no_ct, raw_var=IT.AESEV, tgt_var=AESEV</span></span>
+<span id="cb8-137"><a href="#cb8-137" aria-label="131"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-138"><a href="#cb8-138" aria-label="132"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-139"><a href="#cb8-139" aria-label="133"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESEV"</span>,</span>
+<span id="cb8-140"><a href="#cb8-140" aria-label="134"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEV"</span>,</span>
+<span id="cb8-141"><a href="#cb8-141" aria-label="135"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-142"><a href="#cb8-142" aria-label="136"></a>    <span class="at">ct_clst =</span> <span class="st">"C66769"</span>,</span>
+<span id="cb8-143"><a href="#cb8-143" aria-label="137"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-144"><a href="#cb8-144" aria-label="138"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-label="139"></a>  <span class="co"># Map AESER using assign_no_ct, raw_var=IT.AESER, tgt_var=AESER</span></span>
+<span id="cb8-146"><a href="#cb8-146" aria-label="140"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-147"><a href="#cb8-147" aria-label="141"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-148"><a href="#cb8-148" aria-label="142"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESER"</span>,</span>
+<span id="cb8-149"><a href="#cb8-149" aria-label="143"></a>    <span class="at">tgt_var =</span> <span class="st">"AESER"</span>,</span>
+<span id="cb8-150"><a href="#cb8-150" aria-label="144"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-151"><a href="#cb8-151" aria-label="145"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-152"><a href="#cb8-152" aria-label="146"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-153"><a href="#cb8-153" aria-label="147"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-154"><a href="#cb8-154" aria-label="148"></a>  <span class="co"># Map AEACN using assign_no_ct, raw_var=IT.AEACN, tgt_var=AEACN</span></span>
+<span id="cb8-155"><a href="#cb8-155" aria-label="149"></a>  <span class="fu">assign_no_ct</span>(</span>
+<span id="cb8-156"><a href="#cb8-156" aria-label="150"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-157"><a href="#cb8-157" aria-label="151"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEACN"</span>,</span>
+<span id="cb8-158"><a href="#cb8-158" aria-label="152"></a>    <span class="at">tgt_var =</span> <span class="st">"AEACN"</span>,</span>
+<span id="cb8-159"><a href="#cb8-159" aria-label="153"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-160"><a href="#cb8-160" aria-label="154"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-161"><a href="#cb8-161" aria-label="155"></a>  <span class="co"># Map AEREL using assign_ct, raw_var=IT.AEREL, tgt_var=AEREL</span></span>
+<span id="cb8-162"><a href="#cb8-162" aria-label="156"></a>  <span class="co"># User-added codelist is in the ct,</span></span>
+<span id="cb8-163"><a href="#cb8-163" aria-label="157"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-164"><a href="#cb8-164" aria-label="158"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-165"><a href="#cb8-165" aria-label="159"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEREL"</span>,</span>
+<span id="cb8-166"><a href="#cb8-166" aria-label="160"></a>    <span class="at">tgt_var =</span> <span class="st">"AEREL"</span>,</span>
+<span id="cb8-167"><a href="#cb8-167" aria-label="161"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-168"><a href="#cb8-168" aria-label="162"></a>    <span class="at">ct_clst =</span> <span class="st">"AEREL"</span>,</span>
+<span id="cb8-169"><a href="#cb8-169" aria-label="163"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-170"><a href="#cb8-170" aria-label="164"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-171"><a href="#cb8-171" aria-label="165"></a>  <span class="co"># Map AESCAN using assign_ct, raw_var=AESCAN, tgt_var=AESCAN</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-label="166"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-173"><a href="#cb8-173" aria-label="167"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-174"><a href="#cb8-174" aria-label="168"></a>    <span class="at">raw_var =</span> <span class="st">"AESCAN"</span>,</span>
+<span id="cb8-175"><a href="#cb8-175" aria-label="169"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCAN"</span>,</span>
+<span id="cb8-176"><a href="#cb8-176" aria-label="170"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-177"><a href="#cb8-177" aria-label="171"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-178"><a href="#cb8-178" aria-label="172"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-179"><a href="#cb8-179" aria-label="173"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-label="174"></a>  <span class="co"># Map AESCNO using assign_ct, raw_var=AESCNO, tgt_var=AESCNO</span></span>
+<span id="cb8-181"><a href="#cb8-181" aria-label="175"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-182"><a href="#cb8-182" aria-label="176"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-183"><a href="#cb8-183" aria-label="177"></a>    <span class="at">raw_var =</span> <span class="st">"AESCNO"</span>,</span>
+<span id="cb8-184"><a href="#cb8-184" aria-label="178"></a>    <span class="at">tgt_var =</span> <span class="st">"AESCONG"</span>,</span>
+<span id="cb8-185"><a href="#cb8-185" aria-label="179"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-186"><a href="#cb8-186" aria-label="180"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-187"><a href="#cb8-187" aria-label="181"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-188"><a href="#cb8-188" aria-label="182"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-189"><a href="#cb8-189" aria-label="183"></a>  <span class="co"># Map AEDIS using assign_ct, raw_var=AEDIS, tgt_var=AEDIS</span></span>
+<span id="cb8-190"><a href="#cb8-190" aria-label="184"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-191"><a href="#cb8-191" aria-label="185"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-192"><a href="#cb8-192" aria-label="186"></a>    <span class="at">raw_var =</span> <span class="st">"AEDIS"</span>,</span>
+<span id="cb8-193"><a href="#cb8-193" aria-label="187"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDISAB"</span>,</span>
+<span id="cb8-194"><a href="#cb8-194" aria-label="188"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-195"><a href="#cb8-195" aria-label="189"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-196"><a href="#cb8-196" aria-label="190"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-197"><a href="#cb8-197" aria-label="191"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-198"><a href="#cb8-198" aria-label="192"></a>  <span class="co"># Map AESDTH using assign_ct, raw_var=IT.AESDTH, tgt_var=AESDTH</span></span>
+<span id="cb8-199"><a href="#cb8-199" aria-label="193"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-200"><a href="#cb8-200" aria-label="194"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-201"><a href="#cb8-201" aria-label="195"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESDTH"</span>,</span>
+<span id="cb8-202"><a href="#cb8-202" aria-label="196"></a>    <span class="at">tgt_var =</span> <span class="st">"AESDTH"</span>,</span>
+<span id="cb8-203"><a href="#cb8-203" aria-label="197"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-204"><a href="#cb8-204" aria-label="198"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-205"><a href="#cb8-205" aria-label="199"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-206"><a href="#cb8-206" aria-label="200"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-label="201"></a>  <span class="co"># Map AESHOSP using assign_ct, raw_var=IT.AESHOSP, tgt_var=AESHOSP</span></span>
+<span id="cb8-208"><a href="#cb8-208" aria-label="202"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-209"><a href="#cb8-209" aria-label="203"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-210"><a href="#cb8-210" aria-label="204"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESHOSP"</span>,</span>
+<span id="cb8-211"><a href="#cb8-211" aria-label="205"></a>    <span class="at">tgt_var =</span> <span class="st">"AESHOSP"</span>,</span>
+<span id="cb8-212"><a href="#cb8-212" aria-label="206"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-213"><a href="#cb8-213" aria-label="207"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-214"><a href="#cb8-214" aria-label="208"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-215"><a href="#cb8-215" aria-label="209"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-216"><a href="#cb8-216" aria-label="210"></a>  <span class="co"># Map AESLIFE using assign_ct, raw_var=IT.AESLIFE, tgt_var=AESLIFE</span></span>
+<span id="cb8-217"><a href="#cb8-217" aria-label="211"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-218"><a href="#cb8-218" aria-label="212"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-219"><a href="#cb8-219" aria-label="213"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESLIFE"</span>,</span>
+<span id="cb8-220"><a href="#cb8-220" aria-label="214"></a>    <span class="at">tgt_var =</span> <span class="st">"AESLIFE"</span>,</span>
+<span id="cb8-221"><a href="#cb8-221" aria-label="215"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-222"><a href="#cb8-222" aria-label="216"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-223"><a href="#cb8-223" aria-label="217"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-224"><a href="#cb8-224" aria-label="218"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-225"><a href="#cb8-225" aria-label="219"></a>  <span class="co"># Map AESOD using assign_ct, raw_var=AESOD, tgt_var=AESOD</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-label="220"></a>  <span class="fu">assign_ct</span>(</span>
+<span id="cb8-227"><a href="#cb8-227" aria-label="221"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-228"><a href="#cb8-228" aria-label="222"></a>    <span class="at">raw_var =</span> <span class="st">"AESOD"</span>,</span>
+<span id="cb8-229"><a href="#cb8-229" aria-label="223"></a>    <span class="at">tgt_var =</span> <span class="st">"AESOD"</span>,</span>
+<span id="cb8-230"><a href="#cb8-230" aria-label="224"></a>    <span class="at">ct_spec =</span> study_ct,</span>
+<span id="cb8-231"><a href="#cb8-231" aria-label="225"></a>    <span class="at">ct_clst =</span> <span class="st">"C66742"</span>,</span>
+<span id="cb8-232"><a href="#cb8-232" aria-label="226"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-233"><a href="#cb8-233" aria-label="227"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-234"><a href="#cb8-234" aria-label="228"></a>  <span class="co"># Map AEDTC using assign_datetime, raw_var=AEDTCOL</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-label="229"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb8-236"><a href="#cb8-236" aria-label="230"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-237"><a href="#cb8-237" aria-label="231"></a>    <span class="at">raw_var =</span> <span class="st">"AEDTCOL"</span>,</span>
+<span id="cb8-238"><a href="#cb8-238" aria-label="232"></a>    <span class="at">tgt_var =</span> <span class="st">"AEDTC"</span>,</span>
+<span id="cb8-239"><a href="#cb8-239" aria-label="233"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>)</span>
+<span id="cb8-240"><a href="#cb8-240" aria-label="234"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-241"><a href="#cb8-241" aria-label="235"></a>  <span class="co"># Map AESTDTC using assign_datetime, raw_var=IT.AESTDAT</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-label="236"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb8-243"><a href="#cb8-243" aria-label="237"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-244"><a href="#cb8-244" aria-label="238"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AESTDAT"</span>,</span>
+<span id="cb8-245"><a href="#cb8-245" aria-label="239"></a>    <span class="at">tgt_var =</span> <span class="st">"AESTDTC"</span>,</span>
+<span id="cb8-246"><a href="#cb8-246" aria-label="240"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb8-247"><a href="#cb8-247" aria-label="241"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-248"><a href="#cb8-248" aria-label="242"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-249"><a href="#cb8-249" aria-label="243"></a>  <span class="co"># Map AEENDTC using assign_datetime, raw_var=IT.AEENDAT</span></span>
+<span id="cb8-250"><a href="#cb8-250" aria-label="244"></a>  <span class="fu">assign_datetime</span>(</span>
+<span id="cb8-251"><a href="#cb8-251" aria-label="245"></a>    <span class="at">raw_dat =</span> ae_raw,</span>
+<span id="cb8-252"><a href="#cb8-252" aria-label="246"></a>    <span class="at">raw_var =</span> <span class="st">"IT.AEENDAT"</span>,</span>
+<span id="cb8-253"><a href="#cb8-253" aria-label="247"></a>    <span class="at">tgt_var =</span> <span class="st">"AEENDTC"</span>,</span>
+<span id="cb8-254"><a href="#cb8-254" aria-label="248"></a>    <span class="at">raw_fmt =</span> <span class="fu">c</span>(<span class="st">"m/d/y"</span>),</span>
+<span id="cb8-255"><a href="#cb8-255" aria-label="249"></a>    <span class="at">id_vars =</span> <span class="fu">oak_id_vars</span>()</span>
+<span id="cb8-256"><a href="#cb8-256" aria-label="250"></a>  )</span>
+<span id="cb8-257"><a href="#cb8-257" aria-label="251"></a><span class="in">```</span></span>
+<span id="cb8-258"><a href="#cb8-258" aria-label="252"></a></span>
+<span id="cb8-259"><a href="#cb8-259" aria-label="253"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-label="254"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb8-261"><a href="#cb8-261" aria-label="255"></a><span class="in">```</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-label="256"></a></span>
+<span id="cb8-263"><a href="#cb8-263" aria-label="257"></a><span class="fu">## Repeat Map Topic and Map Rest {#repeatsteps}</span></span>
+<span id="cb8-264"><a href="#cb8-264" aria-label="258"></a></span>
+<span id="cb8-265"><a href="#cb8-265" aria-label="259"></a>There is only one topic variable in this raw data source, and there are no additional topic variable mappings. Users can proceed to the next step. This is required only if there is more than one topic variable to map.</span>
+<span id="cb8-266"><a href="#cb8-266" aria-label="260"></a></span>
+<span id="cb8-267"><a href="#cb8-267" aria-label="261"></a><span class="fu">## Create SDTM derived variables {#derivedvars}</span></span>
+<span id="cb8-268"><a href="#cb8-268" aria-label="262"></a></span>
+<span id="cb8-269"><a href="#cb8-269" aria-label="263"></a>The SDTM derived variables or any SDTM mapping that is applicable to all the records in the <span class="in">`ae`</span> dataset produced in the previous step cam be created now. </span>
+<span id="cb8-270"><a href="#cb8-270" aria-label="264"></a></span>
+<span id="cb8-273"><a href="#cb8-273" aria-label="265"></a><span class="in">```{r}</span></span>
+<span id="cb8-274"><a href="#cb8-274" aria-label="266"></a>ae <span class="ot">&lt;-</span> ae <span class="sc">%&gt;%</span></span>
+<span id="cb8-275"><a href="#cb8-275" aria-label="267"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb8-276"><a href="#cb8-276" aria-label="268"></a>    <span class="at">STUDYID =</span> ae_raw<span class="sc">$</span>STUDY,</span>
+<span id="cb8-277"><a href="#cb8-277" aria-label="269"></a>    <span class="at">DOMAIN =</span> <span class="st">"AE"</span>,</span>
+<span id="cb8-278"><a href="#cb8-278" aria-label="270"></a>    <span class="at">USUBJID =</span> <span class="fu">paste0</span>(<span class="st">"01-"</span>, ae_raw<span class="sc">$</span>PATNUM),</span>
+<span id="cb8-279"><a href="#cb8-279" aria-label="271"></a>    <span class="at">AELLT =</span> ae_raw<span class="sc">$</span>AELLT,</span>
+<span id="cb8-280"><a href="#cb8-280" aria-label="272"></a>    <span class="at">AELLTCD =</span> ae_raw<span class="sc">$</span>AELLTCD,</span>
+<span id="cb8-281"><a href="#cb8-281" aria-label="273"></a>    <span class="at">AEDECOD =</span> ae_raw<span class="sc">$</span>AEDECOD,</span>
+<span id="cb8-282"><a href="#cb8-282" aria-label="274"></a>    <span class="at">AEPTCD =</span> ae_raw<span class="sc">$</span>AEPTCD,</span>
+<span id="cb8-283"><a href="#cb8-283" aria-label="275"></a>    <span class="at">AEHLT =</span> ae_raw<span class="sc">$</span>AEHLT,</span>
+<span id="cb8-284"><a href="#cb8-284" aria-label="276"></a>    <span class="at">AEHLTCD =</span> ae_raw<span class="sc">$</span>AEHLTCD,</span>
+<span id="cb8-285"><a href="#cb8-285" aria-label="277"></a>    <span class="at">AEHLGT =</span> ae_raw<span class="sc">$</span>AEHLGT,</span>
+<span id="cb8-286"><a href="#cb8-286" aria-label="278"></a>    <span class="at">AEHLGTCD =</span> ae_raw<span class="sc">$</span>AEHLGTCD,</span>
+<span id="cb8-287"><a href="#cb8-287" aria-label="279"></a>    <span class="at">AEBODSYS =</span> ae_raw<span class="sc">$</span>AEBODSYS,</span>
+<span id="cb8-288"><a href="#cb8-288" aria-label="280"></a>    <span class="at">AEBDSYCD =</span> ae_raw<span class="sc">$</span>AEBDSYCD,</span>
+<span id="cb8-289"><a href="#cb8-289" aria-label="281"></a>    <span class="at">AESOC =</span> ae_raw<span class="sc">$</span>AESOC,</span>
+<span id="cb8-290"><a href="#cb8-290" aria-label="282"></a>    <span class="at">AESOCCD =</span> ae_raw<span class="sc">$</span>AESOCCD,</span>
+<span id="cb8-291"><a href="#cb8-291" aria-label="283"></a>    <span class="at">AETERM =</span> <span class="fu">toupper</span>(AETERM)</span>
+<span id="cb8-292"><a href="#cb8-292" aria-label="284"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-293"><a href="#cb8-293" aria-label="285"></a>  <span class="fu">derive_seq</span>(</span>
+<span id="cb8-294"><a href="#cb8-294" aria-label="286"></a>    <span class="at">tgt_var =</span> <span class="st">"AESEQ"</span>,</span>
+<span id="cb8-295"><a href="#cb8-295" aria-label="287"></a>    <span class="at">rec_vars =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AETERM"</span>)</span>
+<span id="cb8-296"><a href="#cb8-296" aria-label="288"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-297"><a href="#cb8-297" aria-label="289"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb8-298"><a href="#cb8-298" aria-label="290"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb8-299"><a href="#cb8-299" aria-label="291"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb8-300"><a href="#cb8-300" aria-label="292"></a>    <span class="at">tgdt =</span> <span class="st">"AESTDTC"</span>,</span>
+<span id="cb8-301"><a href="#cb8-301" aria-label="293"></a>    <span class="at">refdt =</span> <span class="st">"RFXSTDTC"</span>,</span>
+<span id="cb8-302"><a href="#cb8-302" aria-label="294"></a>    <span class="at">study_day_var =</span> <span class="st">"AESTDY"</span></span>
+<span id="cb8-303"><a href="#cb8-303" aria-label="295"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-304"><a href="#cb8-304" aria-label="296"></a>  <span class="fu">derive_study_day</span>(</span>
+<span id="cb8-305"><a href="#cb8-305" aria-label="297"></a>    <span class="at">sdtm_in =</span> .,</span>
+<span id="cb8-306"><a href="#cb8-306" aria-label="298"></a>    <span class="at">dm_domain =</span> dm,</span>
+<span id="cb8-307"><a href="#cb8-307" aria-label="299"></a>    <span class="at">tgdt =</span> <span class="st">"AEENDTC"</span>,</span>
+<span id="cb8-308"><a href="#cb8-308" aria-label="300"></a>    <span class="at">refdt =</span> <span class="st">"RFXENDTC"</span>,</span>
+<span id="cb8-309"><a href="#cb8-309" aria-label="301"></a>    <span class="at">study_day_var =</span> <span class="st">"AEENDY"</span></span>
+<span id="cb8-310"><a href="#cb8-310" aria-label="302"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-311"><a href="#cb8-311" aria-label="303"></a>  <span class="fu">select</span>(</span>
+<span id="cb8-312"><a href="#cb8-312" aria-label="304"></a>    <span class="st">"STUDYID"</span>, <span class="st">"DOMAIN"</span>, <span class="st">"USUBJID"</span>, <span class="st">"AESEQ"</span>, <span class="st">"AETERM"</span>, <span class="st">"AELLT"</span>, <span class="st">"AELLTCD"</span>, <span class="st">"AEDECOD"</span>, <span class="st">"AEPTCD"</span>, <span class="st">"AEHLT"</span>, <span class="st">"AEHLTCD"</span>, <span class="st">"AEHLGT"</span>,</span>
+<span id="cb8-313"><a href="#cb8-313" aria-label="305"></a>    <span class="st">"AEHLGTCD"</span>, <span class="st">"AEBODSYS"</span>, <span class="st">"AEBDSYCD"</span>, <span class="st">"AESOC"</span>, <span class="st">"AESOCCD"</span>, <span class="st">"AESEV"</span>, <span class="st">"AESER"</span>, <span class="st">"AEACN"</span>, <span class="st">"AEREL"</span>, <span class="st">"AEOUT"</span>, <span class="st">"AESCAN"</span>, <span class="st">"AESCONG"</span>,</span>
+<span id="cb8-314"><a href="#cb8-314" aria-label="306"></a>    <span class="st">"AESDISAB"</span>, <span class="st">"AESDTH"</span>, <span class="st">"AESHOSP"</span>, <span class="st">"AESLIFE"</span>, <span class="st">"AESOD"</span>, <span class="st">"AEDTC"</span>, <span class="st">"AESTDTC"</span>, <span class="st">"AEENDTC"</span>, <span class="st">"AESTDY"</span>, <span class="st">"AEENDY"</span></span>
+<span id="cb8-315"><a href="#cb8-315" aria-label="307"></a>  )</span>
+<span id="cb8-316"><a href="#cb8-316" aria-label="308"></a><span class="in">```</span></span>
+<span id="cb8-317"><a href="#cb8-317" aria-label="309"></a></span>
+<span id="cb8-318"><a href="#cb8-318" aria-label="310"></a><span class="in">```{r eval=TRUE, echo=FALSE, purl=FALSE}</span></span>
+<span id="cb8-319"><a href="#cb8-319" aria-label="311"></a><span class="fu">print_df</span>(ae, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb8-320"><a href="#cb8-320" aria-label="312"></a><span class="in">```</span></span>
+<span id="cb8-321"><a href="#cb8-321" aria-label="313"></a></span>
+<span id="cb8-322"><a href="#cb8-322" aria-label="314"></a><span class="fu">## Add Labels and Attributes {#attributes}</span></span>
+<span id="cb8-323"><a href="#cb8-323" aria-label="315"></a></span>
+<span id="cb8-324"><a href="#cb8-324" aria-label="316"></a>Yet to be developed. Please refer to <span class="in">`{metatools}`</span> package to investigate options.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
