@@ -1,0 +1,310 @@
+---
+title: "PP"
+order: 4
+---
+
+```{r setup script, include=FALSE, purl=FALSE}
+invisible_hook_purl <- function(before, options, ...) {
+  knitr::hook_purl(before, options, ...)
+  NULL
+}
+knitr::knit_hooks$set(purl = invisible_hook_purl)
+source("functions/print_df.R")
+```
+
+# Introduction
+
+This article shows how to create a Pharmacokinetic Parameters (`PP`) domain
+from an ADNCA dataset using the `{aNCA}` package. `PP` is the SDTM domain that
+holds non-compartmental analysis (NCA) results — one row per parameter per
+subject per time-reference.
+
+`{aNCA}` wraps `{PKNCA}` for the NCA calculations and adds column mapping,
+CDISC code translation, flag rules and export helpers so the full pipeline
+runs in a single script.
+
+By the end of this example you will have:
+
+- NCA results computed from concentration-time data
+- A CDISC-compliant **PP** dataset
+- Companion **ADPP** and **ADNCA** datasets
+
+# Programming workflow
+
+* [Load packages and data](#load)
+* [Define column mapping](#mapping)
+* [Set up filters](#filters)
+* [Define NCA settings](#settings)
+* [Create and configure the PKNCA data object](#create)
+* [Run NCA calculations](#run)
+* [Apply flag rules](#flags)
+* [Export CDISC datasets (PP, ADPP, ADNCA)](#export)
+
+## Load packages and data {#load}
+
+```{r load, eval=FALSE}
+library(aNCA)
+library(dplyr)
+```
+
+`{aNCA}` ships with `adnca_example`, a 76-row ADNCA dataset with two analytes
+(DrugA and Metab-DrugA), two specimen types (SERUM and URINE) and two dosing
+periods. Subjects received different dose levels via extravascular and
+intravascular routes.
+
+```{r data, eval=FALSE}
+adnca_data <- adnca_example
+head(adnca_data)
+```
+
+## Define column mapping {#mapping}
+
+The mapping tells `{aNCA}` which columns in your dataset correspond to the
+expected CDISC variables. Keys are standard ADNCA column names; values are the
+actual column names in your data.
+
+```{r mapping, eval=FALSE}
+mapping <- list(
+  STUDYID  = "STUDYID",
+  USUBJID  = "USUBJID",
+  DOSEA    = "DOSEA",
+  DOSEU    = "DOSEU",
+  DOSETRT  = "DOSETRT",
+  PARAM    = "PARAM",
+  Metabolites = "Metab-DrugA",
+  ARRLT    = "ARRLT",
+  NRRLT    = "NRRLT",
+  AFRLT    = "AFRLT",
+  NCAwXRS  = c("NCA1XRS", "NCA2XRS"),
+  NFRLT    = "NFRLT",
+  PCSPEC   = "PCSPEC",
+  ROUTE    = "ROUTE",
+  TRTRINT  = "TRTRINT",
+  ADOSEDUR = "ADOSEDUR",
+  Grouping_Variables = c("TRT01A", "RACE", "SEX"),
+  RRLTU    = "RRLTU",
+  VOLUME   = "VOLUME",
+  VOLUMEU  = "VOLUMEU",
+  AVAL     = "AVAL",
+  AVALU    = "AVALU",
+  ATPTREF  = "ATPTREF"
+)
+```
+
+A few notes:
+
+- **`Metabolites`**: PARAM value(s) that represent metabolites. Sets the
+  `METABFL` flag internally.
+- **`NCAwXRS`**: Column(s) with NCA exclusion reason codes. Flagged subjects
+  are excluded from calculations.
+- **`Grouping_Variables`**: Columns carried through to results and used for
+  grouping in descriptive statistics.
+
+## Set up filters {#filters}
+
+Filters restrict the data before analysis. Each filter specifies a column and
+the values to keep. Here we keep only the parent drug for serum specimens:
+
+```{r filters, eval=FALSE}
+applied_filters <- list(
+  list(column = "PARAM",  value = c("DrugA")),
+  list(column = "PCSPEC", value = c("SERUM"))
+)
+```
+
+## Define NCA settings {#settings}
+
+### Partial interval calculations
+
+Interval parameters compute AUC or average concentration over custom time
+windows:
+
+```{r int_parameters, eval=FALSE}
+int_parameters <- data.frame(
+  parameter = c("AUCINT", "CAVGINT"),
+  start_auc = c(0, 0),
+  end_auc   = c(12, 12)
+)
+```
+
+### Parameter selections
+
+Select which NCA parameters to compute, grouped by study type:
+
+```{r parameters, eval=FALSE}
+parameters_selected_per_study <- list(
+  `Single Extravascular` = c(
+    "auclast", "cmax", "tmax", "half.life", "aucinf.obs",
+    "vz.obs", "cl.obs", "aumclast"
+  ),
+  `Single IV Bolus` = c(
+    "auclast", "cmax", "half.life", "aucinf.obs",
+    "vz.obs", "cl.obs"
+  )
+)
+```
+
+### Custom units
+
+Override default units for specific parameters:
+
+```{r units, eval=FALSE}
+units_table <- data.frame(
+  PPTESTCD = c("CMAX", "TMAX", "AUCLAST"),
+  PPSTRESU = c("ng/mL", "h", "ng*h/mL")
+)
+```
+
+### Flag rules
+
+Quality thresholds for terminal elimination regression. Parameters that violate
+a checked rule are flagged and excluded from summary statistics:
+
+```{r flags, eval=FALSE}
+flag_rules <- list(
+  R2ADJ   = list(is.checked = TRUE,  threshold = 0.7),
+  R2      = list(is.checked = FALSE, threshold = 0.7),
+  AUCPEO  = list(is.checked = TRUE,  threshold = 20),
+  AUCPEP  = list(is.checked = TRUE,  threshold = 20),
+  LAMZSPN = list(is.checked = TRUE,  threshold = 2)
+)
+```
+
+### Slope rules and extra variables
+
+Slope rules allow manual override of the lambda-z regression range. Pass an
+empty data frame if no manual adjustments are needed:
+
+```{r slope_extra, eval=FALSE}
+slope_rules <- data.frame(
+  USUBJID = character(0), ATPTREF = character(0),
+  DOSNOA  = character(0), TYPE    = character(0),
+  RANGE   = character(0), REASON  = character(0)
+)
+
+extra_vars_to_keep <- c(
+  mapping$Grouping_Variables, "DOSEA", "ATPTREF", "ROUTE"
+)
+```
+
+## Create and configure the PKNCA data object {#create}
+
+`PKNCA_create_data_object()` applies the column mapping, filters and duplicate
+handling. `PKNCA_update_data_object()` then configures the AUC method,
+intervals, parameters and units:
+
+```{r create, eval=FALSE}
+pknca_obj <- adnca_data %>%
+  PKNCA_create_data_object(
+    mapping = mapping,
+    applied_filters = applied_filters,
+    time_duplicate_rows = NULL
+  ) %>%
+  PKNCA_update_data_object(
+    method = "lin up/log down",
+    selected_analytes = "DrugA",
+    selected_profile = "DOSE 1",
+    selected_pcspec = "SERUM",
+    start_impute = "yes",
+    exclusion_list = list(),
+    hl_adj_rules = slope_rules,
+    keep_interval_cols = setdiff(extra_vars_to_keep, c("DOSEA", "ATPTREF", "ROUTE")),
+    min_hl_points = 3,
+    parameter_selections = parameters_selected_per_study,
+    int_parameters = int_parameters,
+    custom_units_table = units_table
+  )
+```
+
+## Run NCA calculations {#run}
+
+```{r run, eval=FALSE}
+pknca_res <- pknca_obj %>%
+  PKNCA_calculate_nca(
+    blq_rule = list(first = "keep", middle = "keep", last = "keep")
+  ) %>%
+  add_f_to_pknca_results(NULL) %>%
+  mutate(PPTESTCD = translate_terms(PPTESTCD, "PKNCA", "PPTESTCD"))
+```
+
+- **`blq_rule`**: How to handle BLQ values at different positions in the
+  concentration-time profile. Options: `"keep"`, `"0"`, `"loq/2"`.
+- **`add_f_to_pknca_results(NULL)`**: Pass an AUC type to compute
+  bioavailability, or `NULL` to skip.
+
+## Apply flag rules {#flags}
+
+Flag rules mark parameters that fail quality thresholds. Flagged parameters
+get an exclusion reason and are dropped from descriptive statistics:
+
+```{r apply_flags, eval=FALSE}
+pknca_res <- pknca_res %>%
+  PKNCA_hl_rules_exclusion(
+    rules = flag_rules %>%
+      purrr::keep(\(x) x$is.checked) %>%
+      purrr::map(\(x) x$threshold)
+  )
+```
+
+## Export CDISC datasets (PP, ADPP, ADNCA) {#export}
+
+`export_cdisc()` produces the PP, ADPP and ADNCA datasets. Flag rules are
+formatted into CRITy/CRITyFL/PPSUMFL columns in ADPP:
+
+```{r export, eval=FALSE}
+# Format flag rule messages for ADPP criterion columns
+flag_operators <- c(
+  R2ADJ = " < ", R2 = " < ", AUCPEO = " > ", AUCPEP = " > ", LAMZSPN = " < "
+)
+checked_flags <- purrr::keep(flag_rules, function(x) x$is.checked)
+flag_rule_msgs <- if (length(checked_flags) > 0) {
+  vapply(names(checked_flags), function(nm) {
+    paste0(nm, flag_operators[nm], checked_flags[[nm]]$threshold)
+  }, character(1), USE.NAMES = FALSE)
+} else {
+  NULL
+}
+
+cdisc_datasets <- pknca_res %>%
+  export_cdisc(
+    grouping_vars = extra_vars_to_keep,
+    flag_rules = flag_rule_msgs
+  )
+```
+
+The result is a named list with three data frames:
+
+- **`cdisc_datasets$pp`** — PP domain: one row per parameter per subject.
+- **`cdisc_datasets$adpp`** — ADPP: PP with ADaM-style flags and criterion
+  columns (CRITy, CRITyFL, PPSUMFL, PPSUMRSN).
+- **`cdisc_datasets$adnca`** — ADNCA: the full analysis dataset with results
+  joined back to the concentration-time data.
+
+```{r view_pp, eval=FALSE}
+# View the PP domain
+head(cdisc_datasets$pp)
+```
+
+# Alternative workflows
+
+## Generate the script from a YAML settings file
+
+The aNCA Shiny app exports a settings YAML that captures the full analysis
+configuration. You can regenerate the R script from it:
+
+```{r yaml, eval=FALSE}
+get_settings_code(
+  settings_file_path = "my_settings.yaml",
+  data_path = "my_adnca_data.csv",
+  output_path = "nca_script.R"
+)
+```
+
+## Generate from the aNCA Shiny app
+
+```{r app, eval=FALSE}
+aNCA::run_app()
+```
+
+From the app, configure mapping, filters and NCA settings, then export via the
+**Save** button to get the settings YAML, reproducible R script and all outputs.
