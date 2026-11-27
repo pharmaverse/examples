@@ -656,7 +656,7 @@ advs_prefinal <- advs %>%
   order_cols(metacore) %>% # Orders the columns according to the spec
   sort_by_key(metacore) # Sorts the rows by the sort keys
 
-# Apply apply labels, formats, and export the dataset to an XPT file.
+# Apply labels, formats, and export the dataset to an XPT file.
 advs_final <- advs_prefinal %>%
   xportr_type(metacore) %>%
   xportr_length(metacore) %>%

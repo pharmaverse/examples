@@ -50,7 +50,7 @@ metacore <- spec_to_metacore("./metadata/pk_spec.xlsx") %>%
 
 ## Load Source Datasets
 
-We will load are SDTM data from `{pharmaversesdtm}`. The main components of this will be exposure data from `EX` and pharmacokinetic concentration data from `PC`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `VS`.
+We will load our SDTM data from `{pharmaversesdtm}`. The main components of this will be exposure data from `EX` and pharmacokinetic concentration data from `PC`. We will use `ADSL` for baseline characteristics and we will derive additional baselines from vital signs `VS`.
 
 ```{r}
 #| label: Load Source
