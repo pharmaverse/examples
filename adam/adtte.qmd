@@ -206,7 +206,7 @@ adtte_adsl_checked <- adtte_adsl %>%
   order_cols(metacore) %>%
   sort_by_key(metacore)
 
-# Apply apply labels, formats, and export the dataset to an XPT file.
+# Apply labels, formats, and export the dataset to an XPT file.
 adtte_final <- adtte_adsl_checked %>%
   xportr_type(metacore, domain = "ADTTE") %>%
   xportr_length(metacore) %>%
